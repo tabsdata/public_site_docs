@@ -450,6 +450,7 @@
 <section id="install-tabsdata-and-start-the-server">
 <span id="install-tabsdata"></span><h3>Install Tabsdata and Start the Server<a class="headerlink" href="#install-tabsdata-and-start-the-server" title="Link to this heading">#</a></h3>
 <p>While not required, you should install the Tabsdata Python package in a clean virtual environment. You can use <a class="reference external" href="https://docs.python.org/3/library/venv.html">python venv</a>, <a class="reference external" href="https://docs.conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html">conda</a> or other similar tools to create and manage your virtual environment.</p>
+<p><strong>Imp</strong>: The virtual environment or alternative installation location must have Python 3.12.</p>
 <p>To install Tabsdata, run the following command in your command line interface (CLI):</p>
 <div class="highlight-bash: notranslate"><div class="highlight"><pre><span></span>$ pip install tabsdata
 </pre></div>
@@ -502,7 +503,7 @@ $ echo. &gt; subscriber.py
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
-<p><strong>3. Download the tutorial sample data,</strong> <a class="reference external" href="https://github.com/tabsdata/tabsdata/blob/main/client/td-sdk/tabsdata/examples/input/persons.csv">persons.csv</a>, <strong>from this location &lt;link&gt; to the “input” folder in your working directory.</strong></p>
+<p><strong>3. Download the tutorial sample data,</strong> <a class="reference external" href="https://github.com/tabsdata/tabsdata/blob/main/client/td-sdk/tabsdata/examples/input/persons.csv">persons.csv</a>, <strong>from this location to the “input” folder in your working directory.</strong></p>
 </section>
 </section>
 <section id="step-1-log-in-and-create-a-collection">
@@ -512,7 +513,7 @@ $ echo. &gt; subscriber.py
 <ol class="arabic simple">
 <li><p>If you are not logged in, use the following command to log in to Tabsdata:</p></li>
 </ol>
-<div class="highlight-bash: notranslate"><div class="highlight"><pre><span></span>$ td login localhost --username admin --password password
+<div class="highlight-bash: notranslate"><div class="highlight"><pre><span></span>$ td login localhost --user admin --password tabsdata
 </pre></div>
 </div>
 <ol class="arabic simple" start="3">
@@ -572,6 +573,9 @@ def pub(persons: td.TableFrame):
 <a class="reference internal image-reference" href="../../_images/pub_schema.png"><img alt="../../_images/pub_schema.png" src="../../_images/pub_schema.png" style="width: 50%;" />
 </a>
 <p>To view the data in the table, use the following command:</p>
+<div class="highlight-python: notranslate"><div class="highlight"><pre><span></span>$ td table sample --collection tutorial --name persons
+</pre></div>
+</div>
 <p>Now that you have successfully defined, registered, and executed a publisher, you’re ready to do the same for a transformer….</p>
 </section>
 <section id="step-3-implement-a-transformer">
@@ -606,7 +610,7 @@ def transf_persons(persons: td.TableFrame):
 <li><p>Writes country-specific data to the appropriate table</p></li>
 </ul>
 <p>Since no trigger is explicitly defined, the transformer is triggered by a commit to the specified input table: <code class="docutils literal notranslate"><span class="pre">persons</span></code>. You can use a <code class="docutils literal notranslate"><span class="pre">trigger_by</span></code> command to define different trigger tables or to prevent automated triggering. For more information, see <a class="reference internal" href="../05_working_with_triggers/main.html#working-with-triggers"><span class="std std-ref">Working with Triggers</span></a>.</p>
-<p>You can configure transformers to perform a range of operations. For details, see &lt;hyperlink&gt;.</p>
+<p>You can configure transformers to perform a range of operations. For details, see <a class="reference internal" href="../04_working_with_functions/working_with_transformers/main.html#working-with-transformers"><span class="std std-ref">Working with Transformers</span></a>.</p>
 <p><strong>2. Register the transformer with a Tabsdata collection.</strong></p>
 <p>Before you execute a transformer, you need to register it with a collection. Transformers can read data from any Tabsdata collection. And like publishers, they write all of their output tables to the collection that they are registered with.</p>
 <p>Use the following command to register the <code class="docutils literal notranslate"><span class="pre">transf_persons</span></code> transformer with the <code class="docutils literal notranslate"><span class="pre">tutorial</span></code> collection:</p>
@@ -634,6 +638,10 @@ def transf_persons(persons: td.TableFrame):
 <a class="reference internal image-reference" href="../../_images/transf_schema.png"><img alt="../../_images/transf_schema.png" src="../../_images/transf_schema.png" style="width: 50%;" />
 </a>
 <p>If you like, you can use the command to check the schema for all of the new tables.</p>
+<p>To view the data in the table, use the following command:</p>
+<div class="highlight-bash: notranslate"><div class="highlight"><pre><span></span>$ td table sample --collection examples --name spanish
+</pre></div>
+</div>
 <p>Now that you have implemented a transformer, it’s time to work with a subscriber….</p>
 </section>
 <section id="step-4-implement-a-subscriber">
@@ -660,12 +668,12 @@ def sub(spanish: td.TableFrame, french: td.TableFrame) -&gt; (td.TableFrame, td.
 </pre></div>
 </div>
 <p>This subscriber, named sub, reads data from the spanish and french tables in the Tabsdata server and writes the output files spanish.json1 and french.ndjson to the output folder in the working directory.</p>
-<p>Since no trigger is explicitly defined, the subscriber is triggered by a commit to any of the specified input tables: spanish or french. You can use a trigger_by command to define different trigger tables or to prevent automated triggering. &lt;link&gt;</p>
-<p>You can configure subscribers to export data to many external systems. For details, see &lt; hyperlink to functions w/list&gt;.</p>
+<p>Since no trigger is explicitly defined, the subscriber is triggered by a commit to any of the specified input tables: spanish or french. You can use a trigger_by command to define different trigger tables or to prevent automated triggering.</p>
+<p>You can configure subscribers to export data to many external systems. For details, see <a class="reference internal" href="../05_working_with_triggers/main.html#working-with-triggers"><span class="std std-ref">Working with Triggers</span></a>.</p>
 <p><strong>2. Register the subscriber.</strong></p>
 <p>Before you execute a subscriber, you need to register it with a collection. Subscribers can read data from any Tabsdata collection.</p>
 <p>Use the following command to register the sub subscriber with the tutorial collection:</p>
-<div class="highlight-bash: notranslate"><div class="highlight"><pre><span></span>$ td fn register --collection tutorial --fn-path transformer.py::transf_persons --description &quot;tutorial_transformer&quot;
+<div class="highlight-bash: notranslate"><div class="highlight"><pre><span></span>$ td fn register --collection tutorial --fn-path subscriber.py::sub --description &quot;tutorial_subscriber&quot;
 </pre></div>
 </div>
 <p><strong>3. Execute the subscriber.</strong></p>
@@ -687,7 +695,7 @@ def sub(spanish: td.TableFrame, french: td.TableFrame) -&gt; (td.TableFrame, td.
 <section id="step-5-initiate-automated-triggers">
 <h2>Step 5. Initiate Automated Triggers<a class="headerlink" href="#step-5-initiate-automated-triggers" title="Link to this heading">#</a></h2>
 <p>So far, you have used manual triggers to execute the functions in this tutorial.</p>
-<p>As mentioned earlier, transformer and subscriber functions have default automated triggers: when a trigger is not explicitly defined, the input tables for the function act as trigger tables. Publishers do not include a default trigger like transformers and subscribers, but you can define them when needed. For more information, see &lt;hyperlink&gt;.&lt;add link to trigger info somewhere in this sentence&gt;</p>
+<p>As mentioned earlier, transformer and subscriber functions have default automated triggers: when a trigger is not explicitly defined, the input tables for the function act as trigger tables. Publishers do not include a default trigger like transformers and subscribers, but you can define them when needed. For more information, see <a class="reference internal" href="../05_working_with_triggers/main.html#working-with-triggers"><span class="std std-ref">Working with Triggers</span></a>.</p>
 <p>Since the tutorial transformer does not have a specified trigger, it is triggered by a commit to its input table, persons. Similarly, since the tutorial subscriber does not have a specified trigger, it is triggered by a commit to either of its input tables: french or spanish.</p>
 <p>So when the tutorial publisher executes, it writes to the persons table and creates a commit to that table. The commit to the persons table automatically triggers the transformer. The transformer processes the data and generates commits to the french and spanish tables. This automatically triggers the subscriber, which exports the data to files in the output directory. As a result, the manual execution of the tutorial publisher results in the automatic processing of the data and the writing of the desired output files.</p>
 <p>To see this in action, clear the output folder and test the automated triggers for this tutorial:</p>
@@ -711,7 +719,6 @@ def sub(spanish: td.TableFrame, french: td.TableFrame) -&gt; (td.TableFrame, td.
 <div class="highlight-bash: notranslate"><div class="highlight"><pre><span></span>$ td exec list-workers --trx &lt;transaction_ID&gt;
 </pre></div>
 </div>
-<p>&lt;&lt; add screenshot of the results? &gt;&gt;</p>
 <p><strong>4. Verify the output.</strong></p>
 <p>You can verify that the spanish.json1 and french.ndjson files have been written to the output folder with the following command:</p>
 <div class="highlight-bash: notranslate"><div class="highlight"><pre><span></span>$ ls output
@@ -723,12 +730,13 @@ def sub(spanish: td.TableFrame, french: td.TableFrame) -&gt; (td.TableFrame, td.
 <h2>Next Steps<a class="headerlink" href="#next-steps" title="Link to this heading">#</a></h2>
 <p>Congratulations on working with Tabsdata functions and creating an automated workflow!</p>
 <p>Here are some suggestions for your next steps:</p>
-<p>For a broader understanding of Tabsdata, see &lt;link to key concepts&gt;.</p>
-<p>Learn more about defining publishers &lt;link&gt;, transformers &lt;link&gt;, and subscribers &lt;link&gt;.</p>
-<p>Dive deeper into the processing that you can do with transformers. &lt;link&gt;</p>
-<p>Want to access an external system that does not have built-in support? You can build your own connector plugin. &lt;link&gt;</p>
-<p>If you run into problems, check out our troubleshooting chapter. &lt;link&gt;</p>
-<p>Wondering about our Tabsdata CLI? Enjoy! &lt;&lt; link &gt;&gt;</p>
+<ul class="simple">
+<li><p>For a broader understanding of Tabsdata, see <a class="reference internal" href="../03_key_concepts/main.html#key-concepts"><span class="std std-ref">Key Concepts</span></a>.</p></li>
+<li><p>Learn more about defining <a class="reference internal" href="../04_working_with_functions/working_with_publishers/main.html#working-with-publishers"><span class="std std-ref">publishers</span></a>, <a class="reference internal" href="../04_working_with_functions/working_with_transformers/main.html#working-with-transformers"><span class="std std-ref">transformers</span></a>, and <a class="reference internal" href="../04_working_with_functions/working_with_subscribers/main.html#working-with-subscribers"><span class="std std-ref">subscribers</span></a>.</p></li>
+<li><p>Dive deeper into the processing that you can do with transformers <a class="reference internal" href="../06_working_with_tables/table_frame_1.html#working-with-tables"><span class="std std-ref">here</span></a>.</p></li>
+<li><p>Want to access an external system that does not have built-in support? You can build your own <a class="reference internal" href="../07_working_with_connector_plugins/main.html#working-with-connector-plugins"><span class="std std-ref">connector plugins</span></a>.</p></li>
+<li><p>If you run into problems, check out our <a class="reference internal" href="../10_archive/troubleshooting.html#troubleshooting"><span class="std std-ref">Troubleshooting</span></a> chapter.</p></li>
+</ul>
 </section>
 </section>
 
