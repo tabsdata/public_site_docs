@@ -482,8 +482,8 @@
 <section id="projection">
 <h3>Projection<a class="headerlink" href="#projection" title="Link to this heading">#</a></h3>
 <p>Projection operations derive projected views from underlying tables.</p>
-<section id="columns-selection">
-<h4>Columns selection:<a class="headerlink" href="#columns-selection" title="Link to this heading">#</a></h4>
+<section id="column-selection">
+<h4>Column selection<a class="headerlink" href="#column-selection" title="Link to this heading">#</a></h4>
 <p>Here is an example code to select specific columns from a table.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">tf</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="n">td</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;first_name&quot;</span><span class="p">),</span> <span class="n">td</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;last_name&quot;</span><span class="p">))</span>
 </pre></div>
@@ -542,8 +542,8 @@
 </pre></div>
 </div>
 </section>
-<section id="columns-concatenation">
-<h4>Columns concatenation:<a class="headerlink" href="#columns-concatenation" title="Link to this heading">#</a></h4>
+<section id="column-concatenation">
+<h4>Column concatenation<a class="headerlink" href="#column-concatenation" title="Link to this heading">#</a></h4>
 <p>Here is an example code to concatenate 2 columns from a table and call the output column <code class="docutils literal notranslate"><span class="pre">full_name</span></code>.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">tf</span><span class="o">.</span><span class="n">select</span><span class="p">((</span><span class="n">td</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;first_name&quot;</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot; &quot;</span> <span class="o">+</span> <span class="n">td</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;last_name&quot;</span><span class="p">))</span><span class="o">.</span><span class="n">alias</span><span class="p">(</span><span class="s2">&quot;full_name&quot;</span><span class="p">))</span>
 </pre></div>
@@ -569,8 +569,8 @@
 </pre></div>
 </div>
 </section>
-<section id="columns-string-expressions">
-<h4>Columns string expressions:<a class="headerlink" href="#columns-string-expressions" title="Link to this heading">#</a></h4>
+<section id="column-string-expressions">
+<h4>Column string expressions<a class="headerlink" href="#column-string-expressions" title="Link to this heading">#</a></h4>
 <p>Here is an example code to convert the <code class="docutils literal notranslate"><span class="pre">last_name</span></code> column to upper case.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">tf</span><span class="o">.</span><span class="n">select</span><span class="p">(</span>
     <span class="p">(</span><span class="n">td</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;first_name&quot;</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot; &quot;</span> <span class="o">+</span> <span class="n">td</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;last_name&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">to_uppercase</span><span class="p">())</span><span class="o">.</span><span class="n">alias</span><span class="p">(</span>
@@ -600,8 +600,8 @@
 </pre></div>
 </div>
 </section>
-<section id="columns-type-casting-and-datetime-expressions">
-<h4>Columns type casting and datetime expressions:<a class="headerlink" href="#columns-type-casting-and-datetime-expressions" title="Link to this heading">#</a></h4>
+<section id="column-type-casting-and-datetime-expressions">
+<h4>Column type casting and datetime expressions<a class="headerlink" href="#column-type-casting-and-datetime-expressions" title="Link to this heading">#</a></h4>
 <p>Here is an example code to convert the values in the <code class="docutils literal notranslate"><span class="pre">birthdate</span></code> column to polars Date format, select the year from the converted value, and call the resultant column <code class="docutils literal notranslate"><span class="pre">birth_year</span></code>.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">tf</span><span class="o">.</span><span class="n">select</span><span class="p">(</span>
     <span class="n">td</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;first_name&quot;</span><span class="p">),</span>
@@ -631,8 +631,8 @@
 </pre></div>
 </div>
 </section>
-<section id="columns-numeric-expressions">
-<h4>Columns numeric expressions:<a class="headerlink" href="#columns-numeric-expressions" title="Link to this heading">#</a></h4>
+<section id="column-numeric-expressions">
+<h4>Column numeric expressions<a class="headerlink" href="#column-numeric-expressions" title="Link to this heading">#</a></h4>
 <p>Here is an example code to select the <code class="docutils literal notranslate"><span class="pre">height</span></code> column from the table, multiply the values to hundred, and name the result column <code class="docutils literal notranslate"><span class="pre">height_in_cm</span></code>.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">tf</span><span class="o">.</span><span class="n">select</span><span class="p">(</span>
     <span class="n">td</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;first_name&quot;</span><span class="p">),</span>
@@ -668,7 +668,7 @@
 <h3>Filter<a class="headerlink" href="#filter" title="Link to this heading">#</a></h3>
 <hr class="docutils" />
 <section id="simple-condition-on-column-value">
-<h4>Simple condition on column value:<a class="headerlink" href="#simple-condition-on-column-value" title="Link to this heading">#</a></h4>
+<h4>Simple condition on column value<a class="headerlink" href="#simple-condition-on-column-value" title="Link to this heading">#</a></h4>
 <p>Here is an example code to filter the values of the <code class="docutils literal notranslate"><span class="pre">last_name</span></code> column by the first letter as “A”.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">tf</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">td</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;last_name&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">starts_with</span><span class="p">(</span><span class="s2">&quot;A&quot;</span><span class="p">))</span>
 </pre></div>
@@ -700,7 +700,7 @@
 </div>
 </section>
 <section id="multiple-conditions-on-column-values">
-<h4>Multiple conditions on column values:<a class="headerlink" href="#multiple-conditions-on-column-values" title="Link to this heading">#</a></h4>
+<h4>Multiple conditions on column values<a class="headerlink" href="#multiple-conditions-on-column-values" title="Link to this heading">#</a></h4>
 <p>Here is an example code to filter by multiple conditions on <code class="docutils literal notranslate"><span class="pre">height</span></code> and <code class="docutils literal notranslate"><span class="pre">last_name</span></code> column.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">tf</span><span class="o">.</span><span class="n">filter</span><span class="p">((</span><span class="n">td</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;height&quot;</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mf">1.80</span><span class="p">)</span><span class="o">.</span><span class="n">and_</span><span class="p">(</span><span class="n">td</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;last_name&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">starts_with</span><span class="p">(</span><span class="s2">&quot;A&quot;</span><span class="p">)))</span>
 </pre></div>
@@ -906,17 +906,17 @@
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#table-operations">Table Operations</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#projection">Projection</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#columns-selection">Columns selection:</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#column-selection">Column selection</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#dropping-a-column">Dropping a column:</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#columns-concatenation">Columns concatenation:</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#columns-string-expressions">Columns string expressions:</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#columns-type-casting-and-datetime-expressions">Columns type casting and datetime expressions:</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#columns-numeric-expressions">Columns numeric expressions:</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#column-concatenation">Column concatenation</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#column-string-expressions">Column string expressions</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#column-type-casting-and-datetime-expressions">Column type casting and datetime expressions</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#column-numeric-expressions">Column numeric expressions</a></li>
 </ul>
 </li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#filter">Filter</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#simple-condition-on-column-value">Simple condition on column value:</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#multiple-conditions-on-column-values">Multiple conditions on column values:</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#simple-condition-on-column-value">Simple condition on column value</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#multiple-conditions-on-column-values">Multiple conditions on column values</a></li>
 </ul>
 </li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#aggregation">Aggregation</a></li>

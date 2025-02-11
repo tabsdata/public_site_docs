@@ -490,6 +490,15 @@
     <span class="k">return</span> <span class="o">&lt;</span><span class="n">table_frame_output1</span><span class="o">&gt;</span><span class="p">,</span> <span class="o">&lt;</span><span class="n">table_frame_output2</span><span class="o">&gt;</span>
 </pre></div>
 </div>
+<p><strong>Note:</strong> After defining the subscriber, you need to register it with a Tabsdata collection. For more information, see <a class="reference internal" href="../../../main_1.html#register-a-function"><span class="std std-ref">Register a Function</span></a>.</p>
+<p>Following properties are defined in the code above:</p>
+<section id="destination">
+<h3>Destination<a class="headerlink" href="#destination" title="Link to this heading">#</a></h3>
+<p><strong>Database URI</strong>: <code class="docutils literal notranslate"><span class="pre">&lt;path_to_db&gt;</span></code> is the URI to the database.</p>
+<p><strong>Destination tables</strong>: <code class="docutils literal notranslate"><span class="pre">&lt;table1&gt;</span></code>,``&lt;table2&gt;`` are the tables to create in the database.</p>
+<p><strong>Database Credentials</strong>: <code class="docutils literal notranslate"><span class="pre">&lt;db_username&gt;</span></code> and <code class="docutils literal notranslate"><span class="pre">&lt;db_password&gt;</span></code> are the username and password to log in to the database respectively.</p>
+<p><strong>if_table_exists</strong>: This is an optional property to define the strategy to follow when the table already exists. ‘replace’ will create a new database table, overwriting the existing one, and ‘append’ will append to the existing data in the table. Defaults to ‘append’.</p>
+</section>
 <section id="tables">
 <h3>Tables<a class="headerlink" href="#tables" title="Link to this heading">#</a></h3>
 <p><code class="docutils literal notranslate"><span class="pre">&lt;output_table1&gt;</span></code>, <code class="docutils literal notranslate"><span class="pre">&lt;output_table2&gt;</span></code>… are the names of the Tabsdata tables to be written to the external system.</p>
@@ -562,6 +571,7 @@
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-subscriber-mariadb">Example (Subscriber - MariaDB)</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#setup-subscriber-mariadb">Setup (Subscriber - MariaDB)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#destination">Destination</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tables">Tables</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#triggers">Triggers</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#name">Name</a></li>
