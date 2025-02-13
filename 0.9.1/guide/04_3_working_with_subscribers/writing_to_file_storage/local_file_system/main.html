@@ -1,0 +1,504 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-QEJPE16TH2"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-QEJPE16TH2');
+    </script>
+    
+    <title>Local File System &#8212; Tabsdata v0.0 documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../../../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="../../../../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css?v=8f2a1f02" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/custom.css?v=1e778574" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="../../../../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="../../../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+
+    <script src="../../../../_static/jquery.js?v=5d32c60e"></script>
+    <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+    <script src="../../../../_static/documentation_options.js?v=5ae79a96"></script>
+    <script src="../../../../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../../../_static/copybutton.js?v=a56c686a"></script>
+    <script src="../../../../_static/design-tabs.js?v=f930bc37"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'guide/04_3_working_with_subscribers/writing_to_file_storage/local_file_system/main';</script>
+    <script>
+        DOCUMENTATION_OPTIONS.theme_version = '0.16.1';
+        DOCUMENTATION_OPTIONS.theme_switcher_json_url = 'https://docs.tabsdata.com/version.json';
+        DOCUMENTATION_OPTIONS.theme_switcher_version_match = '0.9.1';
+        DOCUMENTATION_OPTIONS.show_version_warning_banner =
+            false;
+        </script>
+    <script src="../../../../_static/custom.js?v=4c20ed59"></script>
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="0.9.1" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+
+
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../../../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+     
+  
+
+<a class="navbar-brand logo" href="https://tabsdata.com/">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../../../_static/tabsdata_root.png" class="logo__image only-light" alt="Tabsdata v0.0 documentation - Home"/>
+    <img src="../../../../_static/tabsdata.png" class="logo__image only-dark pst-js-only" alt="Tabsdata v0.0 documentation - Home"/>
+  
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../intro.html">
+    Guide
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../../api_ref/index.html">
+    API Reference
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+        <div class="navbar-item">
+<div class="version-switcher__container dropdown pst-js-only">
+  <button id="pst-version-switcher-button-2"
+    type="button"
+    class="version-switcher__button btn btn-sm dropdown-toggle"
+    data-bs-toggle="dropdown"
+    aria-haspopup="listbox"
+    aria-controls="pst-version-switcher-list-2"
+    aria-label="Version switcher list"
+  >
+    Choose version  <!-- this text may get changed later by javascript -->
+    <span class="caret"></span>
+  </button>
+  <div id="pst-version-switcher-list-2"
+    class="version-switcher__menu dropdown-menu list-group-flush py-0"
+    role="listbox" aria-labelledby="pst-version-switcher-button-2">
+    <!-- dropdown will be populated by javascript on page load -->
+  </div>
+</div></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../intro.html">
+    Guide
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../../api_ref/index.html">
+    API Reference
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+<div class="version-switcher__container dropdown pst-js-only">
+  <button id="pst-version-switcher-button-3"
+    type="button"
+    class="version-switcher__button btn btn-sm dropdown-toggle"
+    data-bs-toggle="dropdown"
+    aria-haspopup="listbox"
+    aria-controls="pst-version-switcher-list-3"
+    aria-label="Version switcher list"
+  >
+    Choose version  <!-- this text may get changed later by javascript -->
+    <span class="caret"></span>
+  </button>
+  <div id="pst-version-switcher-list-3"
+    class="version-switcher__menu dropdown-menu list-group-flush py-0"
+    role="listbox" aria-labelledby="pst-version-switcher-button-3">
+    <!-- dropdown will be populated by javascript on page load -->
+  </div>
+</div></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+<nav class="bd-docs-nav bd-links"
+     aria-label="Section Navigation">
+  <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
+  <div class="bd-toc-item navbar-nav"><ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Local File System</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../amazon_s3/main.html">Amazon S3</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../azure/main.html">Azure Blob Storage</a></li>
+</ul>
+</div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../../../../index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">Local File System</span></li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="local-file-system">
+<span id="local-file-system-subscriber"></span><h1>Local File System<a class="headerlink" href="#local-file-system" title="Link to this heading">#</a></h1>
+<p>You can use a subscriber to write tables to a local file system from the Tabsdata server. Subscribers can write in following file formats: <a href="#id2"><span class="problematic" id="id3">|extensions_list_sub|</span></a>.</p>
+<section id="example-subscriber-local-file-system">
+<span id="id1"></span><h2>Example (Subscriber - Local File System)<a class="headerlink" href="#example-subscriber-local-file-system" title="Link to this heading">#</a></h2>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>    <span class="kn">import</span><span class="w"> </span><span class="nn">tabsdata</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">td</span>
+
+
+<span class="nd">@td</span><span class="o">.</span><span class="n">subscriber</span><span class="p">(</span>
+    <span class="n">tables</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;departments&quot;</span><span class="p">,</span> <span class="s2">&quot;employees_1&quot;</span><span class="p">,</span> <span class="s2">&quot;employees_2&quot;</span><span class="p">],</span>
+    <span class="n">destination</span><span class="o">=</span><span class="n">td</span><span class="o">.</span><span class="n">LocalFileDestination</span><span class="p">(</span>
+        <span class="p">[</span>
+            <span class="s2">&quot;/users/username/opt/hr/output/departments.csv&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;/users/username/opt/hr/output/employees_1.csv&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;/users/username/opt/hr/output/employees_2.csv&quot;</span><span class="p">,</span>
+        <span class="p">]</span>
+    <span class="p">),</span>
+<span class="p">)</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">write_employees</span><span class="p">(</span><span class="n">tf1</span><span class="p">:</span> <span class="n">td</span><span class="o">.</span><span class="n">TableFrame</span><span class="p">,</span> <span class="n">tf2</span><span class="p">:</span> <span class="n">td</span><span class="o">.</span><span class="n">TableFrame</span><span class="p">,</span> <span class="n">tf3</span><span class="p">:</span> <span class="n">td</span><span class="o">.</span><span class="n">TableFrame</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">tf1</span><span class="p">,</span> <span class="n">tf2</span><span class="p">,</span> <span class="n">tf3</span>
+</pre></div>
+</div>
+<p>Note: After defining the subscriber, you need to register it with a Tabsdata collection. For more information, see <a class="reference internal" href="../../../04_working_with_functions/main_1.html#register-a-function"><span class="std std-ref">Register a Function</span></a>.</p>
+</section>
+<section id="setup-subscriber-local-file-system">
+<h2>Setup (Subscriber - Local File System)<a class="headerlink" href="#setup-subscriber-local-file-system" title="Link to this heading">#</a></h2>
+<p>The following code uses placeholder values for defining a subscriber that reads data from the Tabsdata server and writes it to the Local File System:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>    <span class="kn">import</span><span class="w"> </span><span class="nn">tabsdata</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">td</span>
+
+
+<span class="nd">@td</span><span class="o">.</span><span class="n">subscriber</span><span class="p">(</span>
+    <span class="n">tables</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;&lt;output_table1&gt;&quot;</span><span class="p">,</span> <span class="s2">&quot;&lt;output_table2&gt;&quot;</span><span class="p">],</span>
+    <span class="n">destination</span><span class="o">=</span><span class="n">td</span><span class="o">.</span><span class="n">LocalFileDestination</span><span class="p">([</span><span class="s2">&quot;&lt;path_to_file1&gt;&quot;</span><span class="p">,</span> <span class="s2">&quot;&lt;path_to_file2&gt;&quot;</span><span class="p">]),</span>
+    <span class="n">trigger_by</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;&lt;trigger_table1&gt;&quot;</span><span class="p">,</span> <span class="s2">&quot;&lt;trigger_table2&gt;&quot;</span><span class="p">],</span>
+<span class="p">)</span>
+    <span class="k">def</span><span class="w"> </span><span class="o">&lt;</span><span class="n">subscriber_name</span><span class="o">&gt;</span><span class="p">(</span><span class="o">&lt;</span><span class="n">table_frame1</span><span class="o">&gt;</span><span class="p">:</span> <span class="n">td</span><span class="o">.</span><span class="n">TableFrame</span><span class="p">,</span> <span class="o">&lt;</span><span class="n">table_frame2</span><span class="o">&gt;</span><span class="p">:</span> <span class="n">td</span><span class="o">.</span><span class="n">TableFrame</span><span class="p">):</span>
+            <span class="o">&lt;</span><span class="n">function_logic</span><span class="o">&gt;</span>
+            <span class="k">return</span> <span class="o">&lt;</span><span class="n">table_frame_output1</span><span class="o">&gt;</span><span class="p">,</span> <span class="o">&lt;</span><span class="n">table_frame_output2</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<p><strong>Note:</strong> After defining the subscriber, you need to register it with a Tabsdata collection. For more information, see <a class="reference internal" href="../../../04_working_with_functions/main_1.html#register-a-function"><span class="std std-ref">Register a Function</span></a>.</p>
+<p>Following properties are defined in the setup code above:</p>
+<section id="destination">
+<h3>Destination<a class="headerlink" href="#destination" title="Link to this heading">#</a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">&lt;path_to_file1&gt;</span></code>, <code class="docutils literal notranslate"><span class="pre">&lt;path_to_file2&gt;</span></code>… are the full system directory paths to write the files to. They are usually of the format <code class="docutils literal notranslate"><span class="pre">/users/username/...</span></code>.</p>
+<p>All the destination files in a subscriber need to be have the same extension. Following file formats are supported currently: <a href="#id4"><span class="problematic" id="id5">|extensions_list_sub|</span></a>.</p>
+<p>You must use the absolute system path <code class="docutils literal notranslate"><span class="pre">(e.g.,</span> <span class="pre">/user/username/project/employees.csv)</span></code> in the code instead of the relative one <code class="docutils literal notranslate"><span class="pre">(e.g.,</span> <span class="pre">./employees.csv)</span></code>. Since these functions will be registered in the Tabsdata server, an absolute path is necessary to ensure proper access to the destination.</p>
+<p>You can specify as many file paths as needed.</p>
+<p>You can define the destination files in the following ways:</p>
+<p><strong>File Path</strong></p>
+<p>To write by file path where the file extension is included as part of the file path, define the destination as follows:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">destination</span><span class="o">=</span><span class="n">td</span><span class="o">.</span><span class="n">LocalFileDestination</span><span class="p">([</span>
+        <span class="s2">&quot;&lt;path_to_file1.ext&gt;&quot;</span><span class="p">,</span><span class="s2">&quot;&lt;path_to_file2.ext&gt;&quot;</span>
+        <span class="p">]),</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">&lt;path_to_file1.ext&gt;</span></code>, <code class="docutils literal notranslate"><span class="pre">&lt;path_to_file2.ext&gt;</span></code>… are paths to files with extensions of the file included in the file name.</p>
+<p><strong>File Format</strong></p>
+<p>To write files by file format where the format is declared separately and not in the file name, define the destination as follows:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">destination</span><span class="o">=</span><span class="n">td</span><span class="o">.</span><span class="n">LocalFileDestination</span><span class="p">([</span>
+        <span class="s2">&quot;&lt;path_to_file1_no_extension&gt;&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;&lt;path_to_file2_no_extension&gt;&quot;</span><span class="p">,</span>
+        <span class="p">],</span> <span class="nb">format</span><span class="o">=</span><span class="s2">&quot;&lt;format_name&gt;&quot;</span><span class="p">),</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">&quot;&lt;path_to_file1_no_extension&gt;&quot;</span></code>, <code class="docutils literal notranslate"><span class="pre">&quot;&lt;path_to_file2_no_extension&gt;&quot;</span></code>… are paths to files with extensions of the file not included in the file name. The extension is to all files is mentioned separately in <code class="docutils literal notranslate"><span class="pre">format</span></code>.</p>
+<p><strong>Custom delimiter for CSV</strong></p>
+<p>To define a custom delimiter for reading a CSV file, define the destination as follows:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">destination</span><span class="o">=</span><span class="n">td</span><span class="o">.</span><span class="n">LocalFileDestination</span><span class="p">([</span>
+        <span class="s2">&quot;&lt;path_to_file1_no_extension&gt;&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;&lt;path_to_file2_no_extension&gt;&quot;</span><span class="p">,</span>
+        <span class="p">],</span> <span class="nb">format</span><span class="o">=</span><span class="n">td</span><span class="o">.</span><span class="n">CSVFormat</span><span class="p">(</span><span class="n">separator</span><span class="o">=</span><span class="s2">&quot;&lt;separator_character&gt;&quot;</span><span class="p">)),</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">&quot;&lt;path_to_file1_no_extension&gt;&quot;</span></code>, <code class="docutils literal notranslate"><span class="pre">&quot;&lt;path_to_file2_no_extension&gt;&quot;</span></code>… are paths to CSV files with a custom delimiter, with extensions of the file not included in the file name. The delimiter is a single byte character such as colon (:), semicolon (;), and period (.) that separate the fields in the given file instead of a comma(,). You define the character in <code class="docutils literal notranslate"><span class="pre">separator</span></code>.</p>
+</section>
+</section>
+</section>
+
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+<div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-subscriber-local-file-system">Example (Subscriber - Local File System)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#setup-subscriber-local-file-system">Setup (Subscriber - Local File System)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#destination">Destination</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../../../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="../../../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+
+<!-- Your custom footer content here -->
+
+  </body>
+</html>
