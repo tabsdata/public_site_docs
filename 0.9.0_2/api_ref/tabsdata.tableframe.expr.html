@@ -1,0 +1,1467 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-QEJPE16TH2"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-QEJPE16TH2');
+    </script>
+    
+    <title>TableFrame &#8212; Tabsdata v0.0 documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=8f2a1f02" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=1e778574" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+
+    <script src="../_static/jquery.js?v=5d32c60e"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+    <script src="../_static/documentation_options.js?v=5ae79a96"></script>
+    <script src="../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'api_ref/tabsdata.tableframe.expr';</script>
+    <script>
+        DOCUMENTATION_OPTIONS.theme_version = '0.16.1';
+        DOCUMENTATION_OPTIONS.theme_switcher_json_url = 'https://docs.tabsdata.com/version.json';
+        DOCUMENTATION_OPTIONS.theme_switcher_version_match = '0.9.0';
+        DOCUMENTATION_OPTIONS.show_version_warning_banner =
+            false;
+        </script>
+    <script src="../_static/custom.js?v=4c20ed59"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="0.9.0" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+
+
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+     
+  
+
+<a class="navbar-brand logo" href="https://tabsdata.com/">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/tabsdata_root.png" class="logo__image only-light" alt="Tabsdata v0.0 documentation - Home"/>
+    <img src="../_static/tabsdata.png" class="logo__image only-dark pst-js-only" alt="Tabsdata v0.0 documentation - Home"/>
+  
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../guide/intro.html">
+    Guide
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="index.html">
+    API Reference
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../tutorials/index.html">
+    Tutorials
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+        <div class="navbar-item">
+<div class="version-switcher__container dropdown pst-js-only">
+  <button id="pst-version-switcher-button-2"
+    type="button"
+    class="version-switcher__button btn btn-sm dropdown-toggle"
+    data-bs-toggle="dropdown"
+    aria-haspopup="listbox"
+    aria-controls="pst-version-switcher-list-2"
+    aria-label="Version switcher list"
+  >
+    Choose version  <!-- this text may get changed later by javascript -->
+    <span class="caret"></span>
+  </button>
+  <div id="pst-version-switcher-list-2"
+    class="version-switcher__menu dropdown-menu list-group-flush py-0"
+    role="listbox" aria-labelledby="pst-version-switcher-button-2">
+    <!-- dropdown will be populated by javascript on page load -->
+  </div>
+</div></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar hide-on-wide">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../guide/intro.html">
+    Guide
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="index.html">
+    API Reference
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../tutorials/index.html">
+    Tutorials
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+<div class="version-switcher__container dropdown pst-js-only">
+  <button id="pst-version-switcher-button-3"
+    type="button"
+    class="version-switcher__button btn btn-sm dropdown-toggle"
+    data-bs-toggle="dropdown"
+    aria-haspopup="listbox"
+    aria-controls="pst-version-switcher-list-3"
+    aria-label="Version switcher list"
+  >
+    Choose version  <!-- this text may get changed later by javascript -->
+    <span class="caret"></span>
+  </button>
+  <div id="pst-version-switcher-list-3"
+    class="version-switcher__menu dropdown-menu list-group-flush py-0"
+    role="listbox" aria-labelledby="pst-version-switcher-button-3">
+    <!-- dropdown will be populated by javascript on page load -->
+  </div>
+</div></div>
+        
+      </div>
+    
+  </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">TableFrame</span></li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="tableframe">
+<h1>TableFrame<a class="headerlink" href="#tableframe" title="Link to this heading">#</a></h1>
+<section id="module-tabsdata.tableframe.expr.expr">
+<span id="tableframe-expr"></span><h2>TableFrame Expr<a class="headerlink" href="#module-tabsdata.tableframe.expr.expr" title="Link to this heading">#</a></h2>
+</section>
+<section id="module-tabsdata.tableframe.expr.string">
+<span id="tableframe-string"></span><h2>TableFrame String<a class="headerlink" href="#module-tabsdata.tableframe.expr.string" title="Link to this heading">#</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="tabsdata.tableframe.expr.string.TdExprStringNameSpace">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">TdExprStringNameSpace</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">expr</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ExprStringNameSpace</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/tabsdata/tabsdata/tree/main/client/td-sdk/tabsdata/string.py#L28"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tabsdata.tableframe.expr.string.TdExprStringNameSpace" title="Link to this definition">#</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.13)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="tabsdata.tableframe.expr.string.TdExprStringNameSpace.contains">
+<span class="sig-name descname"><span class="pre">contains</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pattern</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><span class="pre">str</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference internal" href="tableframe.html#tabsdata.Expr" title="tabsdata.TdExpr"><span class="pre">TdExpr</span></a></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">literal</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)"><span class="pre">bool</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">strict</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)"><span class="pre">bool</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="tableframe.html#tabsdata.Expr" title="tabsdata.TdExpr"><span class="pre">TdExpr</span></a></span></span><a class="reference external" href="https://github.com/tabsdata/tabsdata/tree/main/client/td-sdk/tabsdata/string.py#L525"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tabsdata.tableframe.expr.string.TdExprStringNameSpace.contains" title="Link to this definition">#</a></dt>
+<dd><p>Evaluate if the string contains a pattern.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>pattern</strong> – The pattern to search for.</p></li>
+<li><p><strong>literal</strong> – Take the pattern as a literal string (not a regex).</p></li>
+<li><p><strong>strict</strong> – if the given pattern is not valid regex, raise an error.</p></li>
+</ul>
+</dd>
+</dl>
+<p>Example:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span><span class="w"> </span><span class="nn">tabsdata</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">td</span>
+<span class="gp">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">tf</span><span class="p">:</span> <span class="n">td</span><span class="o">.</span><span class="n">TableFrame</span> <span class="o">...</span>
+<span class="gp">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">tf</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="n">td</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;a&quot;</span><span class="p">),</span> <span class="n">td</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;a&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">contains</span><span class="p">(</span><span class="s2">&quot;ab&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">alias</span><span class="p">(</span><span class="s2">&quot;contains&quot;</span><span class="p">))</span>
+<span class="gp">&gt;&gt;&gt;</span>
+<span class="go">┌──────┬──────────┐</span>
+<span class="go">│ a    ┆ contains │</span>
+<span class="go">│ ---  ┆ ---      │</span>
+<span class="go">│ str  ┆ bool     │</span>
+<span class="go">╞══════╪══════════╡</span>
+<span class="go">│ a    ┆ false    │</span>
+<span class="go">│ ab   ┆ true     │</span>
+<span class="go">│ b    ┆ false    │</span>
+<span class="go">│ xaby ┆ true     │</span>
+<span class="go">│ null ┆ null     │</span>
+<span class="go">└──────┴──────────┘</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tabsdata.tableframe.expr.string.TdExprStringNameSpace.contains_any">
+<span class="sig-name descname"><span class="pre">contains_any</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">patterns</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">td_expr.IntoTdExpr</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ascii_case_insensitive</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)"><span class="pre">bool</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">td_expr.TdExpr</span></span></span><a class="reference external" href="https://github.com/tabsdata/tabsdata/tree/main/client/td-sdk/tabsdata/string.py#L997"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tabsdata.tableframe.expr.string.TdExprStringNameSpace.contains_any" title="Link to this definition">#</a></dt>
+<dd><p>Evaluate if the string contains any of the given patterns.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>patterns</strong> – The patterns to search for.</p></li>
+<li><p><strong>ascii_case_insensitive</strong> – If true, the search is case-insensitive.</p></li>
+</ul>
+</dd>
+</dl>
+<p>Example:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span><span class="w"> </span><span class="nn">tabsdata</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">td</span>
+<span class="gp">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">tf</span><span class="p">:</span> <span class="n">td</span><span class="o">.</span><span class="n">TableFrame</span> <span class="o">...</span>
+<span class="gp">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">tf</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="n">td</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;a&quot;</span><span class="p">),</span> <span class="n">td</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;a&quot;</span><span class="p">)</span>
+<span class="go">      .str.contains_any([&quot;a&quot;, &quot;b&quot;]).alias(&quot;contains_any&quot;))</span>
+<span class="gp">&gt;&gt;&gt;</span>
+<span class="go">┌──────┬──────────────┐</span>
+<span class="go">│ a    ┆ contains_any │</span>
+<span class="go">│ ---  ┆ ---          │</span>
+<span class="go">│ str  ┆ bool         │</span>
+<span class="go">╞══════╪══════════════╡</span>
+<span class="go">│ abc  ┆ true         │</span>
+<span class="go">│ axy  ┆ true         │</span>
+<span class="go">│ xyb  ┆ true         │</span>
+<span class="go">│ xyz  ┆ false        │</span>
+<span class="go">│ null ┆ null         │</span>
+<span class="go">└──────┴──────────────┘</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tabsdata.tableframe.expr.string.TdExprStringNameSpace.count_matches">
+<span class="sig-name descname"><span class="pre">count_matches</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pattern</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><span class="pre">str</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference internal" href="tableframe.html#tabsdata.Expr" title="tabsdata.TdExpr"><span class="pre">TdExpr</span></a></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">literal</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)"><span class="pre">bool</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="tableframe.html#tabsdata.Expr" title="tabsdata.TdExpr"><span class="pre">TdExpr</span></a></span></span><a class="reference external" href="https://github.com/tabsdata/tabsdata/tree/main/client/td-sdk/tabsdata/string.py#L711"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tabsdata.tableframe.expr.string.TdExprStringNameSpace.count_matches" title="Link to this definition">#</a></dt>
+<dd><p>Counts the ocurrrences of the given pattern in the string.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>pattern</strong> – The pattern to extract.</p></li>
+<li><p><strong>literal</strong> – Take the pattern as a literal string (not a regex).</p></li>
+</ul>
+</dd>
+</dl>
+<p>Example:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span><span class="w"> </span><span class="nn">tabsdata</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">td</span>
+<span class="gp">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">tf</span><span class="p">:</span> <span class="n">td</span><span class="o">.</span><span class="n">TableFrame</span> <span class="o">...</span>
+<span class="gp">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">tf</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="n">td</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;a&quot;</span><span class="p">),</span> <span class="n">td</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;a&quot;</span><span class="p">)</span>
+<span class="go">      .str.count_matches(&quot;b.&quot;).alias(&quot;count_matches&quot;))</span>
+<span class="gp">&gt;&gt;&gt;</span>
+<span class="go">┌───────────┬───────────────┐</span>
+<span class="go">│ a         ┆ count_matches │</span>
+<span class="go">│ ---       ┆ ---           │</span>
+<span class="go">│ str       ┆ u32           │</span>
+<span class="go">╞═══════════╪═══════════════╡</span>
+<span class="go">│ a bAb c d ┆ 2             │</span>
+<span class="go">│ bCbb c d  ┆ 2             │</span>
+<span class="go">│ bb        ┆ 1             │</span>
+<span class="go">│ b         ┆ 0             │</span>
+<span class="go">│ a         ┆ 0             │</span>
+<span class="go">│ null      ┆ null          │</span>
+<span class="go">└───────────┴───────────────┘</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tabsdata.tableframe.expr.string.TdExprStringNameSpace.ends_with">
+<span class="sig-name descname"><span class="pre">ends_with</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">suffix</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><span class="pre">str</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference internal" href="tableframe.html#tabsdata.Expr" title="tabsdata.TdExpr"><span class="pre">TdExpr</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="tableframe.html#tabsdata.Expr" title="tabsdata.TdExpr"><span class="pre">TdExpr</span></a></span></span><a class="reference external" href="https://github.com/tabsdata/tabsdata/tree/main/client/td-sdk/tabsdata/string.py#L611"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tabsdata.tableframe.expr.string.TdExprStringNameSpace.ends_with" title="Link to this definition">#</a></dt>
+<dd><p>Evaluate if the string ends with.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>suffix</strong> – The suffix to search for.</p>
+</dd>
+</dl>
+<p>Example:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span><span class="w"> </span><span class="nn">tabsdata</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">td</span>
+<span class="gp">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">tf</span><span class="p">:</span> <span class="n">td</span><span class="o">.</span><span class="n">TableFrame</span> <span class="o">...</span>
+<span class="gp">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">tf</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="n">td</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;a&quot;</span><span class="p">),</span> <span class="n">td</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;a&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">ends_with</span><span class="p">(</span><span class="s2">&quot;b&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">alias</span><span class="p">(</span><span class="s2">&quot;ends_with&quot;</span><span class="p">))</span>
+<span class="gp">&gt;&gt;&gt;</span>
+<span class="go">┌──────┬───────────┐</span>
+<span class="go">│ a    ┆ ends_with │</span>
+<span class="go">│ ---  ┆ ---       │</span>
+<span class="go">│ str  ┆ bool      │</span>
+<span class="go">╞══════╪═══════════╡</span>
+<span class="go">│ a    ┆ false     │</span>
+<span class="go">│ ab   ┆ true      │</span>
+<span class="go">│ b    ┆ true      │</span>
+<span class="go">│ xaby ┆ false     │</span>
+<span class="go">│ null ┆ null      │</span>
+<span class="go">└──────┴───────────┘</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tabsdata.tableframe.expr.string.TdExprStringNameSpace.extract">
+<span class="sig-name descname"><span class="pre">extract</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pattern</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="tableframe.html#tabsdata.Expr" title="tabsdata.TdExpr"><span class="pre">TdExpr</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">Series</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><span class="pre">str</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">group_index</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><span class="pre">int</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="tableframe.html#tabsdata.Expr" title="tabsdata.TdExpr"><span class="pre">TdExpr</span></a></span></span><a class="reference external" href="https://github.com/tabsdata/tabsdata/tree/main/client/td-sdk/tabsdata/string.py#L674"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tabsdata.tableframe.expr.string.TdExprStringNameSpace.extract" title="Link to this definition">#</a></dt>
+<dd><p>Extract a pattern from the string.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>pattern</strong> – The pattern to extract.</p></li>
+<li><p><strong>group_index</strong> – The group index to extract.</p></li>
+</ul>
+</dd>
+</dl>
+<p>Example:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span><span class="w"> </span><span class="nn">tabsdata</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">td</span>
+<span class="gp">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">tf</span><span class="p">:</span> <span class="n">td</span><span class="o">.</span><span class="n">TableFrame</span> <span class="o">...</span>
+<span class="gp">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">tf</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="n">td</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;a&quot;</span><span class="p">),</span> <span class="n">td</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;a&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">extract</span><span class="p">(</span><span class="s2">&quot;(b.b)&quot;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">alias</span><span class="p">(</span><span class="s2">&quot;extract&quot;</span><span class="p">))</span>
+<span class="gp">&gt;&gt;&gt;</span>
+<span class="go">┌───────────┬─────────┐</span>
+<span class="go">│ a         ┆ extract │</span>
+<span class="go">│ ---       ┆ ---     │</span>
+<span class="go">│ str       ┆ str     │</span>
+<span class="go">╞═══════════╪═════════╡</span>
+<span class="go">│ a bAb c d ┆ bAb     │</span>
+<span class="go">│ bCbb c d  ┆ bCb     │</span>
+<span class="go">│ bb        ┆ null    │</span>
+<span class="go">│ null      ┆ null    │</span>
+<span class="go">└───────────┴─────────┘</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tabsdata.tableframe.expr.string.TdExprStringNameSpace.find">
+<span class="sig-name descname"><span class="pre">find</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pattern</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><span class="pre">str</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference internal" href="tableframe.html#tabsdata.Expr" title="tabsdata.TdExpr"><span class="pre">TdExpr</span></a></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">literal</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)"><span class="pre">bool</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">strict</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)"><span class="pre">bool</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="tableframe.html#tabsdata.Expr" title="tabsdata.TdExpr"><span class="pre">TdExpr</span></a></span></span><a class="reference external" href="https://github.com/tabsdata/tabsdata/tree/main/client/td-sdk/tabsdata/string.py#L568"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tabsdata.tableframe.expr.string.TdExprStringNameSpace.find" title="Link to this definition">#</a></dt>
+<dd><p>Find the position of the first occurrence of the given pattern.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>pattern</strong> – The pattern to search for.</p></li>
+<li><p><strong>literal</strong> – Take the pattern as a literal string (not a regex).</p></li>
+<li><p><strong>strict</strong> – if the given pattern is not valid regex, raise an error.</p></li>
+</ul>
+</dd>
+</dl>
+<p>Example:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span><span class="w"> </span><span class="nn">tabsdata</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">td</span>
+<span class="gp">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">tf</span><span class="p">:</span> <span class="n">td</span><span class="o">.</span><span class="n">TableFrame</span> <span class="o">...</span>
+<span class="gp">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">tf</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="n">td</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;a&quot;</span><span class="p">),</span> <span class="n">td</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;a&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s2">&quot;b&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">alias</span><span class="p">(</span><span class="s2">&quot;find&quot;</span><span class="p">))</span>
+<span class="gp">&gt;&gt;&gt;</span>
+<span class="go">┌──────┬──────┐</span>
+<span class="go">│ a    ┆ find │</span>
+<span class="go">│ ---  ┆ ---  │</span>
+<span class="go">│ str  ┆ u32  │</span>
+<span class="go">╞══════╪══════╡</span>
+<span class="go">│ a    ┆ null │</span>
+<span class="go">│ ab   ┆ 1    │</span>
+<span class="go">│ b    ┆ 0    │</span>
+<span class="go">│ xaby ┆ 2    │</span>
+<span class="go">│ null ┆ null │</span>
+<span class="go">└──────┴──────┘</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tabsdata.tableframe.expr.string.TdExprStringNameSpace.head">
+<span class="sig-name descname"><span class="pre">head</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">n</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><span class="pre">int</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference internal" href="tableframe.html#tabsdata.Expr" title="tabsdata.TdExpr"><span class="pre">TdExpr</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">Series</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><span class="pre">str</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="tableframe.html#tabsdata.Expr" title="tabsdata.TdExpr"><span class="pre">TdExpr</span></a></span></span><a class="reference external" href="https://github.com/tabsdata/tabsdata/tree/main/client/td-sdk/tabsdata/string.py#L904"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tabsdata.tableframe.expr.string.TdExprStringNameSpace.head" title="Link to this definition">#</a></dt>
+<dd><p>Extract the start of the string up to the given length.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>n</strong> – The length of the head.</p>
+</dd>
+</dl>
+<p>Example:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span><span class="w"> </span><span class="nn">tabsdata</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">td</span>
+<span class="gp">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">tf</span><span class="p">:</span> <span class="n">td</span><span class="o">.</span><span class="n">TableFrame</span> <span class="o">...</span>
+<span class="gp">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">tf</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="n">td</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;a&quot;</span><span class="p">),</span> <span class="n">td</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;a&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="n">alias</span><span class="p">(</span><span class="s2">&quot;head&quot;</span><span class="p">))</span>
+<span class="gp">&gt;&gt;&gt;</span>
+<span class="go">┌──────┬──────┐</span>
+<span class="go">│ a    ┆ head │</span>
+<span class="go">│ ---  ┆ ---  │</span>
+<span class="go">│ str  ┆ str  │</span>
+<span class="go">╞══════╪══════╡</span>
+<span class="go">│ abc  ┆ ab   │</span>
+<span class="go">│ a    ┆ a    │</span>
+<span class="go">│ null ┆ null │</span>
+<span class="go">└──────┴──────┘</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tabsdata.tableframe.expr.string.TdExprStringNameSpace.len_bytes">
+<span class="sig-name descname"><span class="pre">len_bytes</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="tableframe.html#tabsdata.Expr" title="tabsdata.TdExpr"><span class="pre">TdExpr</span></a></span></span><a class="reference external" href="https://github.com/tabsdata/tabsdata/tree/main/client/td-sdk/tabsdata/string.py#L156"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tabsdata.tableframe.expr.string.TdExprStringNameSpace.len_bytes" title="Link to this definition">#</a></dt>
+<dd><p>Return number of bytes (not chars) of a string.</p>
+<p>Example:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span><span class="w"> </span><span class="nn">tabsdata</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">td</span>
+<span class="gp">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">tf</span><span class="p">:</span> <span class="n">td</span><span class="o">.</span><span class="n">TableFrame</span> <span class="o">...</span>
+<span class="gp">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">tf</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="n">td</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;a&quot;</span><span class="p">),</span> <span class="n">td</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;a&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">len_bytes</span><span class="p">()</span><span class="o">.</span><span class="n">alias</span><span class="p">(</span><span class="s2">&quot;len_bytes&quot;</span><span class="p">))</span>
+<span class="gp">&gt;&gt;&gt;</span>
+<span class="go">┌──────┬────────────┐</span>
+<span class="go">│ a    ┆ to_decimal │</span>
+<span class="go">│ ---  ┆ ---        │</span>
+<span class="go">│ str  ┆ u32        │</span>
+<span class="go">╞══════╪════════════╡</span>
+<span class="go">│ ab   ┆ 2          │</span>
+<span class="go">│ 再   ┆ 3          │</span>
+<span class="go">│ null ┆ null       │</span>
+<span class="go">└──────┴────────────┘</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tabsdata.tableframe.expr.string.TdExprStringNameSpace.len_chars">
+<span class="sig-name descname"><span class="pre">len_chars</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="tableframe.html#tabsdata.Expr" title="tabsdata.TdExpr"><span class="pre">TdExpr</span></a></span></span><a class="reference external" href="https://github.com/tabsdata/tabsdata/tree/main/client/td-sdk/tabsdata/string.py#L180"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tabsdata.tableframe.expr.string.TdExprStringNameSpace.len_chars" title="Link to this definition">#</a></dt>
+<dd><p>Return number of chars (not bytes) of a string.</p>
+<p>Example:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span><span class="w"> </span><span class="nn">tabsdata</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">td</span>
+<span class="gp">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">tf</span><span class="p">:</span> <span class="n">td</span><span class="o">.</span><span class="n">TableFrame</span> <span class="o">...</span>
+<span class="gp">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">tf</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="n">td</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;a&quot;</span><span class="p">),</span> <span class="n">td</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;a&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">len_chars</span><span class="p">()</span><span class="o">.</span><span class="n">alias</span><span class="p">(</span><span class="s2">&quot;len_chars&quot;</span><span class="p">))</span>
+<span class="gp">&gt;&gt;&gt;</span>
+<span class="go">┌──────┬────────────┐</span>
+<span class="go">│ a    ┆ to_decimal │</span>
+<span class="go">│ ---  ┆ ---        │</span>
+<span class="go">│ str  ┆ u32        │</span>
+<span class="go">╞══════╪════════════╡</span>
+<span class="go">│ ab   ┆ 2          │</span>
+<span class="go">│ 再   ┆ 3          │</span>
+<span class="go">│ null ┆ null       │</span>
+<span class="go">└──────┴────────────┘</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tabsdata.tableframe.expr.string.TdExprStringNameSpace.pad_end">
+<span class="sig-name descname"><span class="pre">pad_end</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">length</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><span class="pre">int</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">fill_char</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><span class="pre">str</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'</span> <span class="pre">'</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="tableframe.html#tabsdata.Expr" title="tabsdata.TdExpr"><span class="pre">TdExpr</span></a></span></span><a class="reference external" href="https://github.com/tabsdata/tabsdata/tree/main/client/td-sdk/tabsdata/string.py#L468"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tabsdata.tableframe.expr.string.TdExprStringNameSpace.pad_end" title="Link to this definition">#</a></dt>
+<dd><p>Pad string values at the end to the given length using the given
+fill character.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>length</strong> – The length to end pad the string to.</p></li>
+<li><p><strong>fill_char</strong> – The character to use for padding.</p></li>
+</ul>
+</dd>
+</dl>
+<p>Example:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span><span class="w"> </span><span class="nn">tabsdata</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">td</span>
+<span class="gp">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">tf</span><span class="p">:</span> <span class="n">td</span><span class="o">.</span><span class="n">TableFrame</span> <span class="o">...</span>
+<span class="gp">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">tf</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="n">td</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;a&quot;</span><span class="p">),</span> <span class="n">td</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;a&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">pad_end</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="s2">&quot;-&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">alias</span><span class="p">(</span><span class="s2">&quot;pad_end&quot;</span><span class="p">))</span>
+<span class="gp">&gt;&gt;&gt;</span>
+<span class="go">┌────────┬─────────┐</span>
+<span class="go">│ a      ┆ pad_end │</span>
+<span class="go">│ ---    ┆ ---     │</span>
+<span class="go">│ str    ┆ str     │</span>
+<span class="go">╞════════╪═════════╡</span>
+<span class="go">│ abc    ┆ abc---  │</span>
+<span class="go">│    def ┆    def  │</span>
+<span class="go">│ null   ┆ null    │</span>
+<span class="go">└────────┴─────────┘</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tabsdata.tableframe.expr.string.TdExprStringNameSpace.pad_start">
+<span class="sig-name descname"><span class="pre">pad_start</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">length</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><span class="pre">int</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">fill_char</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><span class="pre">str</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'</span> <span class="pre">'</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="tableframe.html#tabsdata.Expr" title="tabsdata.TdExpr"><span class="pre">TdExpr</span></a></span></span><a class="reference external" href="https://github.com/tabsdata/tabsdata/tree/main/client/td-sdk/tabsdata/string.py#L439"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tabsdata.tableframe.expr.string.TdExprStringNameSpace.pad_start" title="Link to this definition">#</a></dt>
+<dd><p>Pad string values at the front to the given length using the given
+fill character.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>length</strong> – The length to front pad the string to.</p></li>
+<li><p><strong>fill_char</strong> – The character to use for padding.</p></li>
+</ul>
+</dd>
+</dl>
+<p>Example:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span><span class="w"> </span><span class="nn">tabsdata</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">td</span>
+<span class="gp">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">tf</span><span class="p">:</span> <span class="n">td</span><span class="o">.</span><span class="n">TableFrame</span> <span class="o">...</span>
+<span class="gp">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">tf</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="n">td</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;a&quot;</span><span class="p">),</span> <span class="n">td</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;a&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">pad_start</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="s2">&quot;-&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">alias</span><span class="p">(</span><span class="s2">&quot;pad_start&quot;</span><span class="p">))</span>
+<span class="gp">&gt;&gt;&gt;</span>
+<span class="go">┌────────┬───────────┐</span>
+<span class="go">│ a      ┆ pad_start │</span>
+<span class="go">│ ---    ┆ ---       │</span>
+<span class="go">│ str    ┆ str       │</span>
+<span class="go">╞════════╪═══════════╡</span>
+<span class="go">│ abc    ┆ ---abc    │</span>
+<span class="go">│    def ┆    def    │</span>
+<span class="go">│ null   ┆ null      │</span>
+<span class="go">└────────┴───────────┘</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tabsdata.tableframe.expr.string.TdExprStringNameSpace.replace">
+<span class="sig-name descname"><span class="pre">replace</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pattern</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><span class="pre">str</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference internal" href="tableframe.html#tabsdata.Expr" title="tabsdata.TdExpr"><span class="pre">TdExpr</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">value</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><span class="pre">str</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference internal" href="tableframe.html#tabsdata.Expr" title="tabsdata.TdExpr"><span class="pre">TdExpr</span></a></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">literal</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)"><span class="pre">bool</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><span class="pre">int</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="tableframe.html#tabsdata.Expr" title="tabsdata.TdExpr"><span class="pre">TdExpr</span></a></span></span><a class="reference external" href="https://github.com/tabsdata/tabsdata/tree/main/client/td-sdk/tabsdata/string.py#L750"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tabsdata.tableframe.expr.string.TdExprStringNameSpace.replace" title="Link to this definition">#</a></dt>
+<dd><p>Replace the first occurence of a pattern with the given string.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>pattern</strong> – The pattern to replace.</p></li>
+<li><p><strong>value</strong> – The value to replace the pattern with.</p></li>
+<li><p><strong>literal</strong> – Take the pattern as a literal string (not a regex).</p></li>
+<li><p><strong>n</strong> – Number of matches to replace.</p></li>
+</ul>
+</dd>
+</dl>
+<p>Example:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span><span class="w"> </span><span class="nn">tabsdata</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">td</span>
+<span class="gp">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">tf</span><span class="p">:</span> <span class="n">td</span><span class="o">.</span><span class="n">TableFrame</span> <span class="o">...</span>
+<span class="gp">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">tf</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="n">td</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;a&quot;</span><span class="p">),</span> <span class="n">td</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;a&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;b&quot;</span><span class="p">,</span> <span class="s2">&quot;X&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">alias</span><span class="p">(</span><span class="s2">&quot;replace&quot;</span><span class="p">))</span>
+<span class="gp">&gt;&gt;&gt;</span>
+<span class="go">┌───────────┬───────────┐</span>
+<span class="go">│ a         ┆ replace   │</span>
+<span class="go">│ ---       ┆ ---       │</span>
+<span class="go">│ str       ┆ str       │</span>
+<span class="go">╞═══════════╪═══════════╡</span>
+<span class="go">│ a bAb c d ┆ a XAb c d │</span>
+<span class="go">│ bCbb c d  ┆ XCbb c d  │</span>
+<span class="go">│ bb        ┆ Xb        │</span>
+<span class="go">│ b         ┆ X         │</span>
+<span class="go">│ a         ┆ a         │</span>
+<span class="go">│ null      ┆ null      │</span>
+<span class="go">└───────────┴───────────┘</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tabsdata.tableframe.expr.string.TdExprStringNameSpace.replace_all">
+<span class="sig-name descname"><span class="pre">replace_all</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pattern</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><span class="pre">str</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference internal" href="tableframe.html#tabsdata.Expr" title="tabsdata.TdExpr"><span class="pre">TdExpr</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">value</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><span class="pre">str</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference internal" href="tableframe.html#tabsdata.Expr" title="tabsdata.TdExpr"><span class="pre">TdExpr</span></a></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">literal</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)"><span class="pre">bool</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="tableframe.html#tabsdata.Expr" title="tabsdata.TdExpr"><span class="pre">TdExpr</span></a></span></span><a class="reference external" href="https://github.com/tabsdata/tabsdata/tree/main/client/td-sdk/tabsdata/string.py#L797"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tabsdata.tableframe.expr.string.TdExprStringNameSpace.replace_all" title="Link to this definition">#</a></dt>
+<dd><p>Replace the all occurences of a pattern with the given string.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>pattern</strong> – The pattern to replace.</p></li>
+<li><p><strong>value</strong> – The value to replace the pattern with.</p></li>
+<li><p><strong>literal</strong> – Take the pattern as a literal string (not a regex).</p></li>
+</ul>
+</dd>
+</dl>
+<p>Example:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span><span class="w"> </span><span class="nn">tabsdata</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">td</span>
+<span class="gp">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">tf</span><span class="p">:</span> <span class="n">td</span><span class="o">.</span><span class="n">TableFrame</span> <span class="o">...</span>
+<span class="gp">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">tf</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="n">td</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;a&quot;</span><span class="p">),</span> <span class="n">td</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;a&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;b&quot;</span><span class="p">,</span> <span class="s2">&quot;X&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">alias</span><span class="p">(</span><span class="s2">&quot;replace&quot;</span><span class="p">))</span>
+<span class="gp">&gt;&gt;&gt;</span>
+<span class="go">┌───────────┬─────────────┐</span>
+<span class="go">│ a         ┆ replace_all │</span>
+<span class="go">│ ---       ┆ ---         │</span>
+<span class="go">│ str       ┆ str         │</span>
+<span class="go">╞═══════════╪═════════════╡</span>
+<span class="go">│ a bAb c d ┆ a XAX c d   │</span>
+<span class="go">│ bCbb c d  ┆ XCXX c d    │</span>
+<span class="go">│ bb        ┆ XX          │</span>
+<span class="go">│ b         ┆ X           │</span>
+<span class="go">│ a         ┆ a           │</span>
+<span class="go">│ null      ┆ null        │</span>
+<span class="go">└───────────┴─────────────┘</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tabsdata.tableframe.expr.string.TdExprStringNameSpace.replace_many">
+<span class="sig-name descname"><span class="pre">replace_many</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">patterns:</span> <span class="pre">td_expr.IntoTdExpr</span> <span class="pre">|</span> <span class="pre">Mapping[str,</span> <span class="pre">str],</span> <span class="pre">replace_with:</span> <span class="pre">td_expr.IntoTdExpr</span> <span class="pre">|</span> <span class="pre">NoDefault</span> <span class="pre">=</span> <span class="pre">&lt;no_default&gt;,</span> <span class="pre">*,</span> <span class="pre">ascii_case_insensitive:</span> <span class="pre">bool</span> <span class="pre">=</span> <span class="pre">False</span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">td_expr.TdExpr</span></span></span><a class="reference external" href="https://github.com/tabsdata/tabsdata/tree/main/client/td-sdk/tabsdata/string.py#L1035"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tabsdata.tableframe.expr.string.TdExprStringNameSpace.replace_many" title="Link to this definition">#</a></dt>
+<dd><p>Replace the all occurences of any the given patterns with the given string.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>patterns</strong> – The patterns to replace.</p></li>
+<li><p><strong>replace_with</strong> – The value to replace the pattern with.</p></li>
+<li><p><strong>ascii_case_insensitive</strong> – If true, the search is case-insensitive.</p></li>
+</ul>
+</dd>
+</dl>
+<p>Example:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span><span class="w"> </span><span class="nn">tabsdata</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">td</span>
+<span class="gp">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">tf</span><span class="p">:</span> <span class="n">td</span><span class="o">.</span><span class="n">TableFrame</span> <span class="o">...</span>
+<span class="gp">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">tf</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="n">td</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;a&quot;</span><span class="p">),</span> <span class="n">td</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;a&quot;</span><span class="p">)</span>
+<span class="go">      .str.replace_many([&quot;a&quot;, &quot;b&quot;], &quot;X&quot;).alias(&quot;replace_many&quot;))</span>
+<span class="gp">&gt;&gt;&gt;</span>
+<span class="go">┌──────┬──────────────┐</span>
+<span class="go">│ a    ┆ replace_many │</span>
+<span class="go">│ ---  ┆ ---          │</span>
+<span class="go">│ str  ┆ str          │</span>
+<span class="go">╞══════╪══════════════╡</span>
+<span class="go">│ abc  ┆ XXc          │</span>
+<span class="go">│ axy  ┆ Xxy          │</span>
+<span class="go">│ xyb  ┆ xyX          │</span>
+<span class="go">│ xyz  ┆ xyz          │</span>
+<span class="go">│ null ┆ null         │</span>
+<span class="go">└──────┴──────────────┘</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tabsdata.tableframe.expr.string.TdExprStringNameSpace.reverse">
+<span class="sig-name descname"><span class="pre">reverse</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="tableframe.html#tabsdata.Expr" title="tabsdata.TdExpr"><span class="pre">TdExpr</span></a></span></span><a class="reference external" href="https://github.com/tabsdata/tabsdata/tree/main/client/td-sdk/tabsdata/string.py#L842"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tabsdata.tableframe.expr.string.TdExprStringNameSpace.reverse" title="Link to this definition">#</a></dt>
+<dd><p>Reverse the string.</p>
+<p>Example:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span><span class="w"> </span><span class="nn">tabsdata</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">td</span>
+<span class="gp">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">tf</span><span class="p">:</span> <span class="n">td</span><span class="o">.</span><span class="n">TableFrame</span> <span class="o">...</span>
+<span class="gp">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">tf</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="n">td</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;a&quot;</span><span class="p">),</span> <span class="n">td</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;a&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">reverse</span><span class="p">()</span><span class="o">.</span><span class="n">alias</span><span class="p">(</span><span class="s2">&quot;reverse&quot;</span><span class="p">))</span>
+<span class="gp">&gt;&gt;&gt;</span>
+<span class="go">┌──────┬─────────┐</span>
+<span class="go">│ a    ┆ reverse │</span>
+<span class="go">│ ---  ┆ ---     │</span>
+<span class="go">│ str  ┆ str     │</span>
+<span class="go">╞══════╪═════════╡</span>
+<span class="go">│ abc  ┆ cba     │</span>
+<span class="go">│ a    ┆ a       │</span>
+<span class="go">│ null ┆ null    │</span>
+<span class="go">└──────┴─────────┘</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tabsdata.tableframe.expr.string.TdExprStringNameSpace.slice">
+<span class="sig-name descname"><span class="pre">slice</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">offset</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><span class="pre">int</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference internal" href="tableframe.html#tabsdata.Expr" title="tabsdata.TdExpr"><span class="pre">TdExpr</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">Series</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><span class="pre">str</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">length</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><span class="pre">int</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference internal" href="tableframe.html#tabsdata.Expr" title="tabsdata.TdExpr"><span class="pre">TdExpr</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">Series</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><span class="pre">str</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.13)"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="tableframe.html#tabsdata.Expr" title="tabsdata.TdExpr"><span class="pre">TdExpr</span></a></span></span><a class="reference external" href="https://github.com/tabsdata/tabsdata/tree/main/client/td-sdk/tabsdata/string.py#L866"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tabsdata.tableframe.expr.string.TdExprStringNameSpace.slice" title="Link to this definition">#</a></dt>
+<dd><p>Extract the substring at the given offset for the given length.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>offset</strong> – The offset to start the slice.</p></li>
+<li><p><strong>length</strong> – The length of the slice. If None, slice until the end of the string.</p></li>
+</ul>
+</dd>
+</dl>
+<p>Example:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span><span class="w"> </span><span class="nn">tabsdata</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">td</span>
+<span class="gp">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">tf</span><span class="p">:</span> <span class="n">td</span><span class="o">.</span><span class="n">TableFrame</span> <span class="o">...</span>
+<span class="gp">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">tf</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="n">td</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;a&quot;</span><span class="p">),</span> <span class="n">td</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;a&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">slice</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">alias</span><span class="p">(</span><span class="s2">&quot;slice&quot;</span><span class="p">))</span>
+<span class="gp">&gt;&gt;&gt;</span>
+<span class="go">┌──────┬───────┐</span>
+<span class="go">│ a    ┆ slice │</span>
+<span class="go">│ ---  ┆ ---   │</span>
+<span class="go">│ str  ┆ str   │</span>
+<span class="go">╞══════╪═══════╡</span>
+<span class="go">│ abc  ┆ b     │</span>
+<span class="go">│ a    ┆       │</span>
+<span class="go">│ null ┆ null  │</span>
+<span class="go">└──────┴───────┘</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tabsdata.tableframe.expr.string.TdExprStringNameSpace.starts_with">
+<span class="sig-name descname"><span class="pre">starts_with</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">prefix</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><span class="pre">str</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference internal" href="tableframe.html#tabsdata.Expr" title="tabsdata.TdExpr"><span class="pre">TdExpr</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="tableframe.html#tabsdata.Expr" title="tabsdata.TdExpr"><span class="pre">TdExpr</span></a></span></span><a class="reference external" href="https://github.com/tabsdata/tabsdata/tree/main/client/td-sdk/tabsdata/string.py#L642"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tabsdata.tableframe.expr.string.TdExprStringNameSpace.starts_with" title="Link to this definition">#</a></dt>
+<dd><p>Evaluate if the string start with.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>prefix</strong> – The suffix to search for.</p>
+</dd>
+</dl>
+<p>Example:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span><span class="w"> </span><span class="nn">tabsdata</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">td</span>
+<span class="gp">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">tf</span><span class="p">:</span> <span class="n">td</span><span class="o">.</span><span class="n">TableFrame</span> <span class="o">...</span>
+<span class="gp">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">tf</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="n">td</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;a&quot;</span><span class="p">),</span> <span class="n">td</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;a&quot;</span><span class="p">)</span>
+<span class="go">      .str.starts_with(&quot;a&quot;).alias(&quot;starts_with&quot;))</span>
+<span class="gp">&gt;&gt;&gt;</span>
+<span class="go">┌──────┬────────────┐</span>
+<span class="go">│ a    ┆ start_with │</span>
+<span class="go">│ ---  ┆ ---        │</span>
+<span class="go">│ str  ┆ bool       │</span>
+<span class="go">╞══════╪════════════╡</span>
+<span class="go">│ a    ┆ true       │</span>
+<span class="go">│ ab   ┆ true       │</span>
+<span class="go">│ b    ┆ false      │</span>
+<span class="go">│ xaby ┆ false      │</span>
+<span class="go">│ null ┆ null       │</span>
+<span class="go">└──────┴────────────┘</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tabsdata.tableframe.expr.string.TdExprStringNameSpace.strip_chars">
+<span class="sig-name descname"><span class="pre">strip_chars</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">characters</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">td_expr.IntoTdExpr</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">td_expr.TdExpr</span></span></span><a class="reference external" href="https://github.com/tabsdata/tabsdata/tree/main/client/td-sdk/tabsdata/string.py#L276"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tabsdata.tableframe.expr.string.TdExprStringNameSpace.strip_chars" title="Link to this definition">#</a></dt>
+<dd><p>Trim string values.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>characters</strong> – Characters to trim from start and end of the string.
+All characteres in the given string are removed,
+regardless the order. Default is whitespace.</p>
+</dd>
+</dl>
+<p>Example:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span><span class="w"> </span><span class="nn">tabsdata</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">td</span>
+<span class="gp">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">tf</span><span class="p">:</span> <span class="n">td</span><span class="o">.</span><span class="n">TableFrame</span> <span class="o">...</span>
+<span class="gp">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">tf</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="n">td</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;a&quot;</span><span class="p">),</span> <span class="n">td</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;a&quot;</span><span class="p">)</span>
+<span class="go">      .str.strip_chars(&quot;a &quot;).alias(&quot;strip_chars&quot;))</span>
+<span class="gp">&gt;&gt;&gt;</span>
+<span class="go">┌─────────────────────────────────┬─────────────┐</span>
+<span class="go">│ a                               ┆ strip_chars │</span>
+<span class="go">│ ---                             ┆ ---         │</span>
+<span class="go">│ str                             ┆ str         │</span>
+<span class="go">╞═════════════════════════════════╪═════════════╡</span>
+<span class="go">│ acba cda                      … ┆ cba cd      │</span>
+<span class="go">│    xy z                         ┆ xy z        │</span>
+<span class="go">│ null                            ┆ null        │</span>
+<span class="go">└─────────────────────────────────┴─────────────┘</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tabsdata.tableframe.expr.string.TdExprStringNameSpace.strip_chars_end">
+<span class="sig-name descname"><span class="pre">strip_chars_end</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">characters</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">td_expr.IntoTdExpr</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">td_expr.TdExpr</span></span></span><a class="reference external" href="https://github.com/tabsdata/tabsdata/tree/main/client/td-sdk/tabsdata/string.py#L348"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tabsdata.tableframe.expr.string.TdExprStringNameSpace.strip_chars_end" title="Link to this definition">#</a></dt>
+<dd><p>Trim string values from the end of the string.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>characters</strong> – Characters to trim from start of the string.
+All ending characteres in the given string are removed,
+regardless the order. Default is whitespace.</p>
+</dd>
+</dl>
+<p>Example:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span><span class="w"> </span><span class="nn">tabsdata</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">td</span>
+<span class="gp">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">tf</span><span class="p">:</span> <span class="n">td</span><span class="o">.</span><span class="n">TableFrame</span> <span class="o">...</span>
+<span class="gp">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">tf</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="n">td</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;a&quot;</span><span class="p">),</span> <span class="n">td</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;a&quot;</span><span class="p">)</span>
+<span class="go">      .str.strip_chars_end(&quot;dc &quot;).alias(&quot;strip_chars_end&quot;))</span>
+<span class="gp">&gt;&gt;&gt;</span>
+<span class="go">┌───────────────────────────────┬─────────────────┐</span>
+<span class="go">│ a                             ┆ strip_chars_end │</span>
+<span class="go">│ ---                           ┆ ---             │</span>
+<span class="go">│ str                           ┆ str             │</span>
+<span class="go">╞═══════════════════════════════╪═════════════════╡</span>
+<span class="go">│ cba cd                        ┆ cba             │</span>
+<span class="go">│    xy z                       ┆    xy z         │</span>
+<span class="go">│ null                          ┆ null            │</span>
+<span class="go">└───────────────────────────────┴─────────────────┘</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tabsdata.tableframe.expr.string.TdExprStringNameSpace.strip_chars_start">
+<span class="sig-name descname"><span class="pre">strip_chars_start</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">characters</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">td_expr.IntoTdExpr</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">td_expr.TdExpr</span></span></span><a class="reference external" href="https://github.com/tabsdata/tabsdata/tree/main/client/td-sdk/tabsdata/string.py#L311"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tabsdata.tableframe.expr.string.TdExprStringNameSpace.strip_chars_start" title="Link to this definition">#</a></dt>
+<dd><p>Trim string values from the start of the string.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>characters</strong> – Characters to trim from start of the string.
+All starting characteres in the given string are removed,
+regardless the order. Default is whitespace.</p>
+</dd>
+</dl>
+<p>Example:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span><span class="w"> </span><span class="nn">tabsdata</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">td</span>
+<span class="gp">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">tf</span><span class="p">:</span> <span class="n">td</span><span class="o">.</span><span class="n">TableFrame</span> <span class="o">...</span>
+<span class="gp">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">tf</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="n">td</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;a&quot;</span><span class="p">),</span> <span class="n">td</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;a&quot;</span><span class="p">)</span>
+<span class="go">      .str.strip_chars_start(&quot;abc&quot;).alias(&quot;strip_chars_start&quot;))</span>
+<span class="gp">&gt;&gt;&gt;</span>
+<span class="go">┌───────────────────────────────┬────────────────────────────┐</span>
+<span class="go">│ a                             ┆ strip_chars_start          │</span>
+<span class="go">│ ---                           ┆ ---                        │</span>
+<span class="go">│ str                           ┆ str                        │</span>
+<span class="go">╞═══════════════════════════════╪════════════════════════════╡</span>
+<span class="go">│ cba cd                        ┆  cd                        │</span>
+<span class="go">│    xy z                       ┆    xy z                    │</span>
+<span class="go">│ null                          ┆ null                       │</span>
+<span class="go">└───────────────────────────────┴────────────────────────────┘</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tabsdata.tableframe.expr.string.TdExprStringNameSpace.strip_prefix">
+<span class="sig-name descname"><span class="pre">strip_prefix</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">prefix</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">td_expr.IntoTdExpr</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">td_expr.TdExpr</span></span></span><a class="reference external" href="https://github.com/tabsdata/tabsdata/tree/main/client/td-sdk/tabsdata/string.py#L383"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tabsdata.tableframe.expr.string.TdExprStringNameSpace.strip_prefix" title="Link to this definition">#</a></dt>
+<dd><p>Trim string values removing the given prefix</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>prefix</strong> – Prefix to remove from the string.</p>
+</dd>
+</dl>
+<p>Example:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span><span class="w"> </span><span class="nn">tabsdata</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">td</span>
+<span class="gp">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">tf</span><span class="p">:</span> <span class="n">td</span><span class="o">.</span><span class="n">TableFrame</span> <span class="o">...</span>
+<span class="gp">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">tf</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="n">td</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;a&quot;</span><span class="p">),</span> <span class="n">td</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;a&quot;</span><span class="p">)</span>
+<span class="go">      .str.strip_prefix(&quot;cb&quot;).alias(&quot;strip_prefix&quot;))</span>
+<span class="gp">&gt;&gt;&gt;</span>
+<span class="go">┌───────────────────────────────┬─────────────────┐</span>
+<span class="go">│ a                             ┆ strip_prefix    │</span>
+<span class="go">│ ---                           ┆ ---             │</span>
+<span class="go">│ str                           ┆ str             │</span>
+<span class="go">╞═══════════════════════════════╪═════════════════╡</span>
+<span class="go">│ cba cd                        ┆ a cd            │</span>
+<span class="go">│ bx                            ┆ bx              │</span>
+<span class="go">│ null                          ┆ null            │</span>
+<span class="go">└───────────────────────────────┴─────────────────┘</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tabsdata.tableframe.expr.string.TdExprStringNameSpace.strip_suffix">
+<span class="sig-name descname"><span class="pre">strip_suffix</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">suffix</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">td_expr.IntoTdExpr</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">td_expr.TdExpr</span></span></span><a class="reference external" href="https://github.com/tabsdata/tabsdata/tree/main/client/td-sdk/tabsdata/string.py#L411"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tabsdata.tableframe.expr.string.TdExprStringNameSpace.strip_suffix" title="Link to this definition">#</a></dt>
+<dd><p>Trim string values removing the given suffix</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>suffix</strong> – Suffix to remove from the string.</p>
+</dd>
+</dl>
+<p>Example:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span><span class="w"> </span><span class="nn">tabsdata</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">td</span>
+<span class="gp">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">tf</span><span class="p">:</span> <span class="n">td</span><span class="o">.</span><span class="n">TableFrame</span> <span class="o">...</span>
+<span class="gp">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">tf</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="n">td</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;a&quot;</span><span class="p">),</span> <span class="n">td</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;a&quot;</span><span class="p">)</span>
+<span class="go">      .str.strip_suffix(&quot;cd&quot;).alias(&quot;strip_suffix&quot;))</span>
+<span class="gp">&gt;&gt;&gt;</span>
+<span class="go">┌───────────────────────────────┬─────────────────┐</span>
+<span class="go">│ a                             ┆ strip_suffix    │</span>
+<span class="go">│ ---                           ┆ ---             │</span>
+<span class="go">│ str                           ┆ str             │</span>
+<span class="go">╞═══════════════════════════════╪═════════════════╡</span>
+<span class="go">│ cba cd                        ┆ cba             │</span>
+<span class="go">│ bx                            ┆ bx              │</span>
+<span class="go">│ null                          ┆ null            │</span>
+<span class="go">└───────────────────────────────┴─────────────────┘</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tabsdata.tableframe.expr.string.TdExprStringNameSpace.tail">
+<span class="sig-name descname"><span class="pre">tail</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">n</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><span class="pre">int</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference internal" href="tableframe.html#tabsdata.Expr" title="tabsdata.TdExpr"><span class="pre">TdExpr</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">Series</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><span class="pre">str</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="tableframe.html#tabsdata.Expr" title="tabsdata.TdExpr"><span class="pre">TdExpr</span></a></span></span><a class="reference external" href="https://github.com/tabsdata/tabsdata/tree/main/client/td-sdk/tabsdata/string.py#L932"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tabsdata.tableframe.expr.string.TdExprStringNameSpace.tail" title="Link to this definition">#</a></dt>
+<dd><p>Extract the end of the string up to the given length.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>n</strong> – The length of the tail.</p>
+</dd>
+</dl>
+<p>Example:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span><span class="w"> </span><span class="nn">tabsdata</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">td</span>
+<span class="gp">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">tf</span><span class="p">:</span> <span class="n">td</span><span class="o">.</span><span class="n">TableFrame</span> <span class="o">...</span>
+<span class="gp">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">tf</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="n">td</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;a&quot;</span><span class="p">),</span> <span class="n">td</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;a&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">tail</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="n">alias</span><span class="p">(</span><span class="s2">&quot;tail&quot;</span><span class="p">))</span>
+<span class="gp">&gt;&gt;&gt;</span>
+<span class="go">┌──────┬──────┐</span>
+<span class="go">│ a    ┆ tail │</span>
+<span class="go">│ ---  ┆ ---  │</span>
+<span class="go">│ str  ┆ str  │</span>
+<span class="go">╞══════╪══════╡</span>
+<span class="go">│ abc  ┆ bc   │</span>
+<span class="go">│ a    ┆ a    │</span>
+<span class="go">│ null ┆ null │</span>
+<span class="go">└──────┴──────┘</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tabsdata.tableframe.expr.string.TdExprStringNameSpace.to_date">
+<span class="sig-name descname"><span class="pre">to_date</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fmt</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><span class="pre">str</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.13)"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">strict</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)"><span class="pre">bool</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="tableframe.html#tabsdata.Expr" title="tabsdata.TdExpr"><span class="pre">TdExpr</span></a></span></span><a class="reference external" href="https://github.com/tabsdata/tabsdata/tree/main/client/td-sdk/tabsdata/string.py#L33"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tabsdata.tableframe.expr.string.TdExprStringNameSpace.to_date" title="Link to this definition">#</a></dt>
+<dd><p>Convert the string to a date.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>fmt</strong> – <dl class="simple">
+<dt>The date format string (default %Y-%m-%d)</dt><dd><p>[formats]</p>
+</dd>
+</dl>
+<p>(<a class="reference external" href="https://docs.rs/chrono/0.4.19/chrono/format/strftime/index.html">https://docs.rs/chrono/0.4.19/chrono/format/strftime/index.html</a>).</p>
+</p></li>
+<li><p><strong>strict</strong> – Whether to parse the date strictly.</p></li>
+</ul>
+</dd>
+</dl>
+<p>Example:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span><span class="w"> </span><span class="nn">tabsdata</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">td</span>
+<span class="gp">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">tf</span><span class="p">:</span> <span class="n">td</span><span class="o">.</span><span class="n">TableFrame</span> <span class="o">...</span>
+<span class="gp">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">tf</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="n">td</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;a&quot;</span><span class="p">),</span> <span class="n">td</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;a&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">to_date</span><span class="p">()</span><span class="o">.</span><span class="n">alias</span><span class="p">(</span><span class="s2">&quot;to_date&quot;</span><span class="p">))</span>
+<span class="gp">&gt;&gt;&gt;</span>
+<span class="go">┌────────────┬────────────┐</span>
+<span class="go">│ a          ┆ to_date    │</span>
+<span class="go">│ ---        ┆ ---        │</span>
+<span class="go">│ str        ┆ date       │</span>
+<span class="go">╞════════════╪════════════╡</span>
+<span class="go">│ 2024-12-13 ┆ 2024-12-13 │</span>
+<span class="go">│ 2024-12-15 ┆ 2024-12-15 │</span>
+<span class="go">│ null       ┆ null       │</span>
+<span class="go">└────────────┴────────────┘</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tabsdata.tableframe.expr.string.TdExprStringNameSpace.to_datetime">
+<span class="sig-name descname"><span class="pre">to_datetime</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fmt</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><span class="pre">str</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.13)"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">time_unit</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Literal" title="(in Python v3.13)"><span class="pre">Literal</span></a><span class="p"><span class="pre">[</span></span><span class="s"><span class="pre">'ns'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'us'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'ms'</span></span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.13)"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">time_zone</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><span class="pre">str</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.13)"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">strict</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)"><span class="pre">bool</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ambiguous</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Literal" title="(in Python v3.13)"><span class="pre">Literal</span></a><span class="p"><span class="pre">[</span></span><span class="s"><span class="pre">'earliest'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'latest'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'raise'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'null'</span></span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference internal" href="tableframe.html#tabsdata.Expr" title="tabsdata.TdExpr"><span class="pre">TdExpr</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'raise'</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="tableframe.html#tabsdata.Expr" title="tabsdata.TdExpr"><span class="pre">TdExpr</span></a></span></span><a class="reference external" href="https://github.com/tabsdata/tabsdata/tree/main/client/td-sdk/tabsdata/string.py#L69"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tabsdata.tableframe.expr.string.TdExprStringNameSpace.to_datetime" title="Link to this definition">#</a></dt>
+<dd><p>Convert the string to a datetime.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>fmt</strong> – <dl class="simple">
+<dt>The datetime format string (default %Y-%m-%d %H:%M:%S)</dt><dd><p>[formats]</p>
+</dd>
+</dl>
+<p>(<a class="reference external" href="https://docs.rs/chrono/0.4.19/chrono/format/strftime/index.html">https://docs.rs/chrono/0.4.19/chrono/format/strftime/index.html</a>).</p>
+</p></li>
+<li><p><strong>time_unit</strong> – {None, ‘us’, ‘ns’, ‘ms’}
+If None (default), it inferred from the format string</p></li>
+<li><p><strong>time_zone</strong> – Time zone for the resulting value.</p></li>
+<li><p><strong>strict</strong> – If the conversion fails an error will be raised.</p></li>
+<li><p><strong>ambiguous</strong> – Policy to apply on ambiguos Datetimes:
+‘raise’: saises an error
+‘earliest’: use the earliest datetime
+‘latest’: use the latest datetime
+‘null’: set to null</p></li>
+</ul>
+</dd>
+</dl>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span><span class="w"> </span><span class="nn">tabsdata</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">td</span>
+<span class="gp">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">tf</span><span class="p">:</span> <span class="n">td</span><span class="o">.</span><span class="n">TableFrame</span> <span class="o">...</span>
+<span class="gp">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">tf</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="n">td</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;a&quot;</span><span class="p">),</span> <span class="n">td</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;a&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">()</span><span class="o">.</span><span class="n">alias</span><span class="p">(</span><span class="s2">&quot;to_datetime&quot;</span><span class="p">))</span>
+<span class="gp">&gt;&gt;&gt;</span>
+<span class="go">┌─────────────────────┬─────────────────────┐</span>
+<span class="go">│ a                   ┆ to_datetime         │</span>
+<span class="go">│ ---                 ┆ ---                 │</span>
+<span class="go">│ str                 ┆ datetime[μs]        │</span>
+<span class="go">╞═════════════════════╪═════════════════════╡</span>
+<span class="go">│ 2024-12-13 08:45:34 ┆ 2024-12-13 08:45:34 │</span>
+<span class="go">│ 2024-12-15 18:33:00 ┆ 2024-12-15 18:33:00 │</span>
+<span class="go">│ null                ┆ null                │</span>
+<span class="go">└─────────────────────┴─────────────────────┘</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tabsdata.tableframe.expr.string.TdExprStringNameSpace.to_integer">
+<span class="sig-name descname"><span class="pre">to_integer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">base</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><span class="pre">int</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference internal" href="tableframe.html#tabsdata.Expr" title="tabsdata.TdExpr"><span class="pre">TdExpr</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">Series</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><span class="pre">str</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">10</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">strict</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)"><span class="pre">bool</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="tableframe.html#tabsdata.Expr" title="tabsdata.TdExpr"><span class="pre">TdExpr</span></a></span></span><a class="reference external" href="https://github.com/tabsdata/tabsdata/tree/main/client/td-sdk/tabsdata/string.py#L960"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tabsdata.tableframe.expr.string.TdExprStringNameSpace.to_integer" title="Link to this definition">#</a></dt>
+<dd><p>Covert a string to integer.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>base</strong> – The base of the integer.</p></li>
+<li><p><strong>strict</strong> – If true, raise an error if the string is not a valid integer.</p></li>
+</ul>
+</dd>
+</dl>
+<p>Example:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span><span class="w"> </span><span class="nn">tabsdata</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">td</span>
+<span class="gp">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">tf</span><span class="p">:</span> <span class="n">td</span><span class="o">.</span><span class="n">TableFrame</span> <span class="o">...</span>
+<span class="gp">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">tf</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="n">td</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;a&quot;</span><span class="p">),</span> <span class="n">td</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;a&quot;</span><span class="p">)</span>
+<span class="go">      .str.to_integer(strict=False).alias(&quot;to_integer&quot;))</span>
+<span class="gp">&gt;&gt;&gt;</span>
+<span class="go">┌──────┬────────────┐</span>
+<span class="go">│ a    ┆ to_integer │</span>
+<span class="go">│ ---  ┆ ---        │</span>
+<span class="go">│ str  ┆ i64        │</span>
+<span class="go">╞══════╪════════════╡</span>
+<span class="go">│ 1    ┆ 1          │</span>
+<span class="go">│ 2.2  ┆ null       │</span>
+<span class="go">│ a    ┆ null       │</span>
+<span class="go">│ null ┆ null       │</span>
+<span class="go">└──────┴────────────┘</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tabsdata.tableframe.expr.string.TdExprStringNameSpace.to_lowercase">
+<span class="sig-name descname"><span class="pre">to_lowercase</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="tableframe.html#tabsdata.Expr" title="tabsdata.TdExpr"><span class="pre">TdExpr</span></a></span></span><a class="reference external" href="https://github.com/tabsdata/tabsdata/tree/main/client/td-sdk/tabsdata/string.py#L227"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tabsdata.tableframe.expr.string.TdExprStringNameSpace.to_lowercase" title="Link to this definition">#</a></dt>
+<dd><p>Return the lowercase of a string.</p>
+<p>Example:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span><span class="w"> </span><span class="nn">tabsdata</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">td</span>
+<span class="gp">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">tf</span><span class="p">:</span> <span class="n">td</span><span class="o">.</span><span class="n">TableFrame</span> <span class="o">...</span>
+<span class="gp">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">tf</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="n">td</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;a&quot;</span><span class="p">),</span> <span class="n">td</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;a&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">to_lowercase</span><span class="p">()</span><span class="o">.</span><span class="n">alias</span><span class="p">(</span><span class="s2">&quot;to_lowercase&quot;</span><span class="p">))</span>
+<span class="gp">&gt;&gt;&gt;</span>
+<span class="go">┌──────┬───────────────┐</span>
+<span class="go">│ a    ┆ to_lowerrcase │</span>
+<span class="go">│ ---  ┆ ---           │</span>
+<span class="go">│ str  ┆ u32           │</span>
+<span class="go">╞══════╪═══════════════╡</span>
+<span class="go">│ aB   ┆ ab            │</span>
+<span class="go">│ null ┆ null          │</span>
+<span class="go">└──────┴───────────────┘</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tabsdata.tableframe.expr.string.TdExprStringNameSpace.to_time">
+<span class="sig-name descname"><span class="pre">to_time</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fmt</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><span class="pre">str</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.13)"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">strict</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)"><span class="pre">bool</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cache</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)"><span class="pre">bool</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="tableframe.html#tabsdata.Expr" title="tabsdata.TdExpr"><span class="pre">TdExpr</span></a></span></span><a class="reference external" href="https://github.com/tabsdata/tabsdata/tree/main/client/td-sdk/tabsdata/string.py#L124"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tabsdata.tableframe.expr.string.TdExprStringNameSpace.to_time" title="Link to this definition">#</a></dt>
+<dd><p>Convert the string to a time.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>fmt</strong> – <dl class="simple">
+<dt>The time format string (default %H:%M:%S)</dt><dd><p>[formats]</p>
+</dd>
+</dl>
+<p>(<a class="reference external" href="https://docs.rs/chrono/0.4.19/chrono/format/strftime/index.html">https://docs.rs/chrono/0.4.19/chrono/format/strftime/index.html</a>).</p>
+</p></li>
+<li><p><strong>strict</strong> – Whether to parse the date strictly.</p></li>
+<li><p><strong>cache</strong> – Whether to cache the date.</p></li>
+</ul>
+</dd>
+</dl>
+<p>Example:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span><span class="w"> </span><span class="nn">tabsdata</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">td</span>
+<span class="gp">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">tf</span><span class="p">:</span> <span class="n">td</span><span class="o">.</span><span class="n">TableFrame</span> <span class="o">...</span>
+<span class="gp">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">tf</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="n">td</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;a&quot;</span><span class="p">),</span> <span class="n">td</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;a&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">to_time</span><span class="p">()</span><span class="o">.</span><span class="n">alias</span><span class="p">(</span><span class="s2">&quot;to_time&quot;</span><span class="p">))</span>
+<span class="gp">&gt;&gt;&gt;</span>
+<span class="go">┌─────────────────────┬─────────────────────┐</span>
+<span class="go">│ a                   ┆ to_datetime         │</span>
+<span class="go">│ ---                 ┆ ---                 │</span>
+<span class="go">│ str                 ┆ datetime[μs]        │</span>
+<span class="go">╞═════════════════════╪═════════════════════╡</span>
+<span class="go">│ 2024-12-13 08:45:34 ┆ 2024-12-13 08:45:34 │</span>
+<span class="go">│ 2024-12-15 18:33:00 ┆ 2024-12-15 18:33:00 │</span>
+<span class="go">│ null                ┆ null                │</span>
+<span class="go">└─────────────────────┴─────────────────────┘</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tabsdata.tableframe.expr.string.TdExprStringNameSpace.to_titlecase">
+<span class="sig-name descname"><span class="pre">to_titlecase</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="tableframe.html#tabsdata.Expr" title="tabsdata.TdExpr"><span class="pre">TdExpr</span></a></span></span><a class="reference external" href="https://github.com/tabsdata/tabsdata/tree/main/client/td-sdk/tabsdata/string.py#L250"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tabsdata.tableframe.expr.string.TdExprStringNameSpace.to_titlecase" title="Link to this definition">#</a></dt>
+<dd><p>Uppercase the first character and lowercase all the others ones of a string.</p>
+<p>Example:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span><span class="w"> </span><span class="nn">tabsdata</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">td</span>
+<span class="gp">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">tf</span><span class="p">:</span> <span class="n">td</span><span class="o">.</span><span class="n">TableFrame</span> <span class="o">...</span>
+<span class="gp">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">tf</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="n">td</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;a&quot;</span><span class="p">),</span> <span class="n">td</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;a&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">to_titlecase</span><span class="p">()</span><span class="o">.</span><span class="n">alias</span><span class="p">(</span><span class="s2">&quot;titlecase&quot;</span><span class="p">))</span>
+<span class="gp">&gt;&gt;&gt;</span>
+<span class="go">┌──────┬───────────┐</span>
+<span class="go">│ a    ┆ titlecase │</span>
+<span class="go">│ ---  ┆ ---       │</span>
+<span class="go">│ str  ┆ str       │</span>
+<span class="go">╞══════╪═══════════╡</span>
+<span class="go">│ ab   ┆ Ab        │</span>
+<span class="go">│ Ab   ┆ Ab        │</span>
+<span class="go">│ AB   ┆ Ab        │</span>
+<span class="go">│ aB   ┆ Ab        │</span>
+<span class="go">│ null ┆ null      │</span>
+<span class="go">└──────┴───────────┘</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tabsdata.tableframe.expr.string.TdExprStringNameSpace.to_uppercase">
+<span class="sig-name descname"><span class="pre">to_uppercase</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="tableframe.html#tabsdata.Expr" title="tabsdata.TdExpr"><span class="pre">TdExpr</span></a></span></span><a class="reference external" href="https://github.com/tabsdata/tabsdata/tree/main/client/td-sdk/tabsdata/string.py#L204"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tabsdata.tableframe.expr.string.TdExprStringNameSpace.to_uppercase" title="Link to this definition">#</a></dt>
+<dd><p>Return the uppercase of a string.</p>
+<p>Example:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span><span class="w"> </span><span class="nn">tabsdata</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">td</span>
+<span class="gp">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">tf</span><span class="p">:</span> <span class="n">td</span><span class="o">.</span><span class="n">TableFrame</span> <span class="o">...</span>
+<span class="gp">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">tf</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="n">td</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;a&quot;</span><span class="p">),</span> <span class="n">td</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;a&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">to_uppercase</span><span class="p">()</span><span class="o">.</span><span class="n">alias</span><span class="p">(</span><span class="s2">&quot;to_uppercase&quot;</span><span class="p">))</span>
+<span class="gp">&gt;&gt;&gt;</span>
+<span class="go">┌──────┬──────────────┐</span>
+<span class="go">│ a    ┆ to_uppercase │</span>
+<span class="go">│ ---  ┆ ---          │</span>
+<span class="go">│ str  ┆ u32          │</span>
+<span class="go">╞══════╪══════════════╡</span>
+<span class="go">│ aB   ┆ AB           │</span>
+<span class="go">│ null ┆ null         │</span>
+<span class="go">└──────┴──────────────┘</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tabsdata.tableframe.expr.string.TdExprStringNameSpace.zfill">
+<span class="sig-name descname"><span class="pre">zfill</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">length</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><span class="pre">int</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference internal" href="tableframe.html#tabsdata.Expr" title="tabsdata.TdExpr"><span class="pre">TdExpr</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">Series</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><span class="pre">str</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="tableframe.html#tabsdata.Expr" title="tabsdata.TdExpr"><span class="pre">TdExpr</span></a></span></span><a class="reference external" href="https://github.com/tabsdata/tabsdata/tree/main/client/td-sdk/tabsdata/string.py#L497"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tabsdata.tableframe.expr.string.TdExprStringNameSpace.zfill" title="Link to this definition">#</a></dt>
+<dd><p>Pad numeric string values at the start to the given length using zeros.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>length</strong> – The length to end pad the string to.</p>
+</dd>
+</dl>
+<p>Example:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span><span class="w"> </span><span class="nn">tabsdata</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">td</span>
+<span class="gp">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">tf</span><span class="p">:</span> <span class="n">td</span><span class="o">.</span><span class="n">TableFrame</span> <span class="o">...</span>
+<span class="gp">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">tf</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="n">td</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;a&quot;</span><span class="p">),</span> <span class="n">td</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;a&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">zfill</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="n">alias</span><span class="p">(</span><span class="s2">&quot;zfill&quot;</span><span class="p">))</span>
+<span class="gp">&gt;&gt;&gt;</span>
+<span class="go">┌──────┬───────┐</span>
+<span class="go">│ a    ┆ zfill │</span>
+<span class="go">│ ---  ┆ ---   │</span>
+<span class="go">│ str  ┆ str   │</span>
+<span class="go">╞══════╪═══════╡</span>
+<span class="go">│ 0    ┆ 00    │</span>
+<span class="go">│ 1    ┆ 01    │</span>
+<span class="go">│ 1000 ┆ 1000  │</span>
+<span class="go">│ null ┆ null  │</span>
+<span class="go">└──────┴───────┘</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="tabsdata.tableframe.expr.string.to_tdexpr">
+<span class="sig-name descname"><span class="pre">to_tdexpr</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">expr</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Expr</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="tableframe.html#tabsdata.Expr" title="tabsdata.TdExpr"><span class="pre">TdExpr</span></a></span></span><a class="reference external" href="https://github.com/tabsdata/tabsdata/tree/main/client/td-sdk/tabsdata/string.py#L24"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tabsdata.tableframe.expr.string.to_tdexpr" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+</section>
+</section>
+
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+<div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-tabsdata.tableframe.expr.expr">TableFrame Expr</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-tabsdata.tableframe.expr.string">TableFrame String</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tabsdata.tableframe.expr.string.TdExprStringNameSpace"><code class="docutils literal notranslate"><span class="pre">TdExprStringNameSpace</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#tabsdata.tableframe.expr.string.TdExprStringNameSpace.contains"><code class="docutils literal notranslate"><span class="pre">TdExprStringNameSpace.contains()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#tabsdata.tableframe.expr.string.TdExprStringNameSpace.contains_any"><code class="docutils literal notranslate"><span class="pre">TdExprStringNameSpace.contains_any()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#tabsdata.tableframe.expr.string.TdExprStringNameSpace.count_matches"><code class="docutils literal notranslate"><span class="pre">TdExprStringNameSpace.count_matches()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#tabsdata.tableframe.expr.string.TdExprStringNameSpace.ends_with"><code class="docutils literal notranslate"><span class="pre">TdExprStringNameSpace.ends_with()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#tabsdata.tableframe.expr.string.TdExprStringNameSpace.extract"><code class="docutils literal notranslate"><span class="pre">TdExprStringNameSpace.extract()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#tabsdata.tableframe.expr.string.TdExprStringNameSpace.find"><code class="docutils literal notranslate"><span class="pre">TdExprStringNameSpace.find()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#tabsdata.tableframe.expr.string.TdExprStringNameSpace.head"><code class="docutils literal notranslate"><span class="pre">TdExprStringNameSpace.head()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#tabsdata.tableframe.expr.string.TdExprStringNameSpace.len_bytes"><code class="docutils literal notranslate"><span class="pre">TdExprStringNameSpace.len_bytes()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#tabsdata.tableframe.expr.string.TdExprStringNameSpace.len_chars"><code class="docutils literal notranslate"><span class="pre">TdExprStringNameSpace.len_chars()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#tabsdata.tableframe.expr.string.TdExprStringNameSpace.pad_end"><code class="docutils literal notranslate"><span class="pre">TdExprStringNameSpace.pad_end()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#tabsdata.tableframe.expr.string.TdExprStringNameSpace.pad_start"><code class="docutils literal notranslate"><span class="pre">TdExprStringNameSpace.pad_start()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#tabsdata.tableframe.expr.string.TdExprStringNameSpace.replace"><code class="docutils literal notranslate"><span class="pre">TdExprStringNameSpace.replace()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#tabsdata.tableframe.expr.string.TdExprStringNameSpace.replace_all"><code class="docutils literal notranslate"><span class="pre">TdExprStringNameSpace.replace_all()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#tabsdata.tableframe.expr.string.TdExprStringNameSpace.replace_many"><code class="docutils literal notranslate"><span class="pre">TdExprStringNameSpace.replace_many()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#tabsdata.tableframe.expr.string.TdExprStringNameSpace.reverse"><code class="docutils literal notranslate"><span class="pre">TdExprStringNameSpace.reverse()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#tabsdata.tableframe.expr.string.TdExprStringNameSpace.slice"><code class="docutils literal notranslate"><span class="pre">TdExprStringNameSpace.slice()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#tabsdata.tableframe.expr.string.TdExprStringNameSpace.starts_with"><code class="docutils literal notranslate"><span class="pre">TdExprStringNameSpace.starts_with()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#tabsdata.tableframe.expr.string.TdExprStringNameSpace.strip_chars"><code class="docutils literal notranslate"><span class="pre">TdExprStringNameSpace.strip_chars()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#tabsdata.tableframe.expr.string.TdExprStringNameSpace.strip_chars_end"><code class="docutils literal notranslate"><span class="pre">TdExprStringNameSpace.strip_chars_end()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#tabsdata.tableframe.expr.string.TdExprStringNameSpace.strip_chars_start"><code class="docutils literal notranslate"><span class="pre">TdExprStringNameSpace.strip_chars_start()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#tabsdata.tableframe.expr.string.TdExprStringNameSpace.strip_prefix"><code class="docutils literal notranslate"><span class="pre">TdExprStringNameSpace.strip_prefix()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#tabsdata.tableframe.expr.string.TdExprStringNameSpace.strip_suffix"><code class="docutils literal notranslate"><span class="pre">TdExprStringNameSpace.strip_suffix()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#tabsdata.tableframe.expr.string.TdExprStringNameSpace.tail"><code class="docutils literal notranslate"><span class="pre">TdExprStringNameSpace.tail()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#tabsdata.tableframe.expr.string.TdExprStringNameSpace.to_date"><code class="docutils literal notranslate"><span class="pre">TdExprStringNameSpace.to_date()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#tabsdata.tableframe.expr.string.TdExprStringNameSpace.to_datetime"><code class="docutils literal notranslate"><span class="pre">TdExprStringNameSpace.to_datetime()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#tabsdata.tableframe.expr.string.TdExprStringNameSpace.to_integer"><code class="docutils literal notranslate"><span class="pre">TdExprStringNameSpace.to_integer()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#tabsdata.tableframe.expr.string.TdExprStringNameSpace.to_lowercase"><code class="docutils literal notranslate"><span class="pre">TdExprStringNameSpace.to_lowercase()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#tabsdata.tableframe.expr.string.TdExprStringNameSpace.to_time"><code class="docutils literal notranslate"><span class="pre">TdExprStringNameSpace.to_time()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#tabsdata.tableframe.expr.string.TdExprStringNameSpace.to_titlecase"><code class="docutils literal notranslate"><span class="pre">TdExprStringNameSpace.to_titlecase()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#tabsdata.tableframe.expr.string.TdExprStringNameSpace.to_uppercase"><code class="docutils literal notranslate"><span class="pre">TdExprStringNameSpace.to_uppercase()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#tabsdata.tableframe.expr.string.TdExprStringNameSpace.zfill"><code class="docutils literal notranslate"><span class="pre">TdExprStringNameSpace.zfill()</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tabsdata.tableframe.expr.string.to_tdexpr"><code class="docutils literal notranslate"><span class="pre">to_tdexpr()</span></code></a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+
+<!-- Your custom footer content here -->
+
+  </body>
+</html>
