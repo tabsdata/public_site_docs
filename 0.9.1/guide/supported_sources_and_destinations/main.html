@@ -17,7 +17,7 @@
         gtag('config', 'G-QEJPE16TH2');
     </script>
     
-    <title>Key Concepts &#8212; Tabsdata  documentation</title>
+    <title>Supported Sources and Destinations &#8212; Tabsdata  documentation</title>
   
   
   
@@ -58,7 +58,7 @@
     <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
     <script src="../../_static/copybutton.js?v=a56c686a"></script>
     <script src="../../_static/design-tabs.js?v=f930bc37"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'guide/03_key_concepts/main';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'guide/supported_sources_and_destinations/main';</script>
     <script>
         DOCUMENTATION_OPTIONS.theme_version = '0.16.1';
         DOCUMENTATION_OPTIONS.theme_switcher_json_url = 'https://docs.tabsdata.com/version.json';
@@ -69,8 +69,8 @@
     <script src="../../_static/custom.js?v=4c20ed59"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="Supported Sources and Destinations" href="../supported_sources_and_destinations/main.html" />
-    <link rel="prev" title="Getting Started" href="../02_getting_started/main.html" />
+    <link rel="next" title="Working with Functions" href="../04_working_with_functions/main_1.html" />
+    <link rel="prev" title="Key Concepts" href="../03_key_concepts/main.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   <meta name="docsearch:version" content="0.9.1" />
@@ -324,8 +324,8 @@
   <div class="bd-toc-item navbar-nav"><ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../01_overview/main.html">Overview</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../02_getting_started/main.html">Getting Started</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">Key Concepts</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../supported_sources_and_destinations/main.html">Supported Sources and Destinations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../03_key_concepts/main.html">Key Concepts</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Supported Sources and Destinations</a></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../04_working_with_functions/main_1.html">Working with Functions</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2 has-children"><a class="reference internal" href="../04_working_with_functions/working_with_publishers/main.html">Working with Publishers</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l3 has-children"><a class="reference internal" href="../04_working_with_functions/working_with_publishers/reading_from_file_storage/main.html">Reading from File Storage</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
@@ -416,7 +416,7 @@
     
     <li class="breadcrumb-item"><a href="../intro.html" class="nav-link">User Guide</a></li>
     
-    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">Key Concepts</span></li>
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">Supported Sources and Destinations</span></li>
   </ul>
 </nav>
 </div>
@@ -433,97 +433,40 @@
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section id="key-concepts">
-<span id="id1"></span><h1>Key Concepts<a class="headerlink" href="#key-concepts" title="Link to this heading">#</a></h1>
-<p>Tabsdata is a data integration platform that leverages the publish-subscribe (pub/sub) model to enable seamless and decoupled sharing and access to data within an organization.</p>
-<p>Here’s the basic Tabsdata pub/sub workflow:</p>
+  <section id="supported-sources-and-destinations">
+<h1>Supported Sources and Destinations<a class="headerlink" href="#supported-sources-and-destinations" title="Link to this heading">#</a></h1>
+<p>Below is the list of sources and destinations that are currently supported natively in Tabsdata. Beyond these, you can connect with other external systems as per your need using <a class="reference internal" href="../07_working_with_connector_plugins/main.html#working-with-connector-plugins"><span class="std std-ref">connecton plugins</span></a>.</p>
+<section id="sources">
+<h2>Sources<a class="headerlink" href="#sources" title="Link to this heading">#</a></h2>
+<p><strong>File Storage</strong></p>
 <ul class="simple">
-<li><p>Data producers use a publisher function to read data from an external source system and publish the data to tables in the Tabsdata server. This provides engineers from the data production team a greater control of the data that is disseminated for use and an easy way to provide data to multiple data consumers.</p></li>
-<li><p>In Tabsdata, data engineers can then use the transformer function to perform complex transformations using Python-based APIs, as needed. The results are stored as tables in the Tabsdata server.</p></li>
-<li><p>Data consumers, such as operational and analytics teams, use the subscriber function to subscribe to the Tabsdata tables that they are interested in. Subscribers export data from one or more tables in the Tabsdata server to an external destination system.</p></li>
+<li><p><a class="reference internal" href="../04_working_with_functions/working_with_publishers/reading_from_file_storage/amazon_s3/main.html#amazon-s3"><span class="std std-ref">Amazon S3</span></a></p></li>
+<li><p><a class="reference internal" href="../04_working_with_functions/working_with_publishers/reading_from_file_storage/azure/main.html#azure"><span class="std std-ref">Azure Blob Storage</span></a></p></li>
+<li><p><a class="reference internal" href="../04_working_with_functions/working_with_publishers/reading_from_file_storage/local_file_system/main.html#local-file-system"><span class="std std-ref">Local File System</span></a></p></li>
 </ul>
-<p>The following Tabsdata concepts enable this workflow:</p>
+<p><strong>Database</strong></p>
 <ul class="simple">
-<li><p><a class="reference internal" href="#server"><span class="std std-ref">Tabsdata Server</span></a></p></li>
-<li><p><a class="reference internal" href="#collections"><span class="std std-ref">Collections</span></a></p></li>
-<li><p><a class="reference internal" href="#tables"><span class="std std-ref">Tables</span></a></p></li>
-<li><p><a class="reference internal" href="#functions"><span class="std std-ref">Functions</span></a></p></li>
-<li><p><a class="reference internal" href="#triggers"><span class="std std-ref">Triggers</span></a></p></li>
-</ul>
-<section id="tabsdata-server">
-<span id="server"></span><h2>Tabsdata Server<a class="headerlink" href="#tabsdata-server" title="Link to this heading">#</a></h2>
-<p>The Tabsdata server performs all data processing and stores generated data, such as current and historical writes, as Tabsdata tables. The server also maintains the metadata catalog.</p>
-<p>The Tabsdata server performs processing using Tabsdata <a class="reference internal" href="#tableframes"><span class="std std-ref">TableFrames</span></a>, which are populated using built-in connectors. You can also write your own connectors.</p>
-<p>Since Tabsdata maintains a full history of table data and metadata, it provides clear and accurate lineage and provenance information to aid in troubleshooting and governance.</p>
-</section>
-<section id="collections">
-<span id="id2"></span><h2>Collections<a class="headerlink" href="#collections" title="Link to this heading">#</a></h2>
-<p>A collection is a logical container for Tabsdata tables and functions. A collection normally defines a domain. For example, all tables and functions related to sales might be grouped into a single collection for easier maintenance and control.</p>
-<p>Before you run a function, you must register it with a collection. Registration with a collection affects functions as follows:</p>
-<ul class="simple">
-<li><p>All functions and tables within a collection must have a unique name.</p></li>
-<li><p>Functions that read Tabsdata tables - transformers and subscribers - can read from any collection.</p></li>
-<li><p>Functions that write to Tabsdata tables - publishers and transformers - can write only to the collection they are registered with.</p></li>
+<li><p><a class="reference internal" href="../04_working_with_functions/working_with_publishers/reading_from_database/mysql/main.html#mysql"><span class="std std-ref">MySQL</span></a></p></li>
+<li><p><a class="reference internal" href="../04_working_with_functions/working_with_publishers/reading_from_database/mariadb/main.html#mariadb"><span class="std std-ref">MariaDB</span></a></p></li>
+<li><p><a class="reference internal" href="../04_working_with_functions/working_with_publishers/reading_from_database/oracle/main.html#oracle"><span class="std std-ref">Oracle</span></a></p></li>
+<li><p><a class="reference internal" href="../04_working_with_functions/working_with_publishers/reading_from_database/postgres/main.html#postgres"><span class="std std-ref">Postgres</span></a></p></li>
 </ul>
 </section>
-<section id="tables">
-<span id="id3"></span><h2>Tables<a class="headerlink" href="#tables" title="Link to this heading">#</a></h2>
-<p>A table is the basic unit of operation inside Tabsdata. A Tabsdata table is organized in rows and columns, similar to a database table. Each column has a name and all the values in the column have the same data type.</p>
-<p>Tables are created in Tabsdata by publishers importing external source data as tables in the Tabsdata server or by transformers processing Tabsdata tables to create new tables.</p>
-<section id="table-commits">
-<span id="id4"></span><h3>Table Commits<a class="headerlink" href="#table-commits" title="Link to this heading">#</a></h3>
-<p>A table commit is generated by a successful execution of a publisher or transformer.</p>
-<p>Once created, a table commit is immutable. The Tabsdata server retains previous commits of all tables for auditing and traceability.</p>
-<p>When a function reads a table, it reads the latest commit by default. You can configure functions to read earlier commits when needed.</p>
-<p>When a publisher or transformer writes to multiple output tables, each table receives a commit with the successful execution of the function regardless of whether changes in data or metadata have occurred.</p>
-</section>
-<section id="tableframes">
-<span id="id5"></span><h3>TableFrames<a class="headerlink" href="#tableframes" title="Link to this heading">#</a></h3>
-<p>Based on the Polars DataFrame, the Tabsdata TableFrame is a two-dimensional, labeled data structure, used for data manipulation and analysis by Tabsdata functions. Tables in the Tabsdata server are operated on as TableFrames.</p>
-<p>For more information, see <a class="reference internal" href="../06_working_with_tables/table_frame_1.html#working-with-tables"><span class="std std-ref">Working with Tables</span></a>.</p>
-</section>
-</section>
-<section id="functions">
-<span id="id6"></span><h2>Functions<a class="headerlink" href="#functions" title="Link to this heading">#</a></h2>
-<p>Tabsdata functions process data. Tabsdata provides publisher functions to read data from external systems, transformer functions to modify data, and subscriber functions to write to external systems.</p>
-<p>Tabsdata functions process data as TableFrames using the TableFrame API. The Tabsdata TableFrame is similar to dataframes used in popular data engineering libraries but with added benefits of lineage and provenance.</p>
-<p>For publishers, the TableFrame API uses connectors to populate Tabsdata with data from external systems. Similarly, for subscribers, the TableFrame API writes data from Tabsdata to external systems using connectors.</p>
-<p>The use of our built-in connectors greatly reduces the complexity of accessing external systems.</p>
-<p>Tabsdata provides built-in connectors to connect with following external systems:</p>
+<section id="destination">
+<h2>Destination<a class="headerlink" href="#destination" title="Link to this heading">#</a></h2>
+<p><strong>File Storage</strong></p>
 <ul class="simple">
-<li><p>Local file systems</p></li>
-<li><p>Amazon S3</p></li>
-<li><p>Azure</p></li>
-<li><p>MariaDB</p></li>
-<li><p>MySQL</p></li>
-<li><p>Oracle</p></li>
-<li><p>PostgreSQL</p></li>
+<li><p><a class="reference internal" href="../04_working_with_functions/working_with_subscribers/writing_to_file_storage/amazon_s3/main.html#amazon-s3-subscriber"><span class="std std-ref">Amazon S3</span></a></p></li>
+<li><p><a class="reference internal" href="../04_working_with_functions/working_with_subscribers/writing_to_file_storage/azure/main.html#azure-subscriber"><span class="std std-ref">Azure Blob Storage</span></a></p></li>
+<li><p><a class="reference internal" href="../04_working_with_functions/working_with_subscribers/writing_to_file_storage/local_file_system/main.html#local-file-system-subscriber"><span class="std std-ref">Local File System</span></a></p></li>
 </ul>
-<p>When needed, you can build your own connectors. For details, see <a class="reference internal" href="../07_working_with_connector_plugins/main.html#working-with-connector-plugins"><span class="std std-ref">Working with Connector Plugins</span></a>.</p>
-<section id="publishers">
-<span id="id7"></span><h3>Publishers<a class="headerlink" href="#publishers" title="Link to this heading">#</a></h3>
-<p>A publisher function reads data from an external system and writes the data to one or more tables in the Tabsdata server.</p>
-<p>For example, you might create one publisher to read from Oracle and another from Amazon S3. Both write the data to tables in the Tabsdata server.</p>
-<p>For more information, see <a class="reference internal" href="../04_working_with_functions/working_with_publishers/main.html#working-with-publishers"><span class="std std-ref">Working with Publishers</span></a>.</p>
-</section>
-<section id="transformers">
-<span id="id8"></span><h3>Transformers<a class="headerlink" href="#transformers" title="Link to this heading">#</a></h3>
-<p>A transformer function reads data from one or more tables in the Tabsdata server, transforms data, then writes the transformed data to tables in the Tabsdata server.</p>
-<p>For example, you might use a transformer to join data from two Tabsdata tables and create an output table for further processing or for exporting to external systems.</p>
-<p>For more information, see <a class="reference internal" href="../04_working_with_functions/working_with_transformers/main.html#working-with-transformers"><span class="std std-ref">Working with Transformers</span></a>.</p>
-</section>
-<section id="subscribers">
-<span id="id9"></span><h3>Subscribers<a class="headerlink" href="#subscribers" title="Link to this heading">#</a></h3>
-<p>A subscriber function reads data from tables in the Tabsdata server and writes the data to an external system.</p>
-<p>For example, you create separate subscribers to read from tables in the Tabsdata server and write the data to Amazon S3 and Azure.</p>
-<p>For more information, see <a class="reference internal" href="../04_working_with_functions/working_with_subscribers/main.html#working-with-subscribers"><span class="std std-ref">Working with Subscribers</span></a>.</p>
-</section>
-</section>
-<section id="triggers">
-<span id="id10"></span><h2>Triggers<a class="headerlink" href="#triggers" title="Link to this heading">#</a></h2>
-<p>A trigger executes a function. A trigger can be initiated through a CLI command or by a new commit to its associated table. Consequently, changes on tables can automatically trigger functions, which in turn change other tables, leading to a cascading workflow of updates.</p>
-<p>For example, you can define a trigger to automatically execute a publisher each time there is an update in the sales table in the Tabsdata server. You can also trigger the function manually from CLI.</p>
-<p>For more information, see <a class="reference internal" href="../05_working_with_triggers/main.html#working-with-triggers"><span class="std std-ref">Working with Triggers</span></a>.</p>
+<p><strong>Database</strong></p>
+<ul class="simple">
+<li><p><a class="reference internal" href="../04_working_with_functions/working_with_subscribers/writing_to_database/mysql/main.html#mysql-subscriber"><span class="std std-ref">MySQL</span></a></p></li>
+<li><p><a class="reference internal" href="../04_working_with_functions/working_with_subscribers/writing_to_database/mariadb/main.html#mariadb-subscriber"><span class="std std-ref">MariaDB</span></a></p></li>
+<li><p><a class="reference internal" href="../04_working_with_functions/working_with_subscribers/writing_to_database/oracle/main.html#oracle-subscriber"><span class="std std-ref">Oracle</span></a></p></li>
+<li><p><a class="reference internal" href="../04_working_with_functions/working_with_subscribers/writing_to_database/postgres/main.html#postgres-subscriber"><span class="std std-ref">Postgres</span></a></p></li>
+</ul>
 </section>
 </section>
 
@@ -538,20 +481,20 @@
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="../02_getting_started/main.html"
+       href="../03_key_concepts/main.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Getting Started</p>
+        <p class="prev-next-title">Key Concepts</p>
       </div>
     </a>
     <a class="right-next"
-       href="../supported_sources_and_destinations/main.html"
+       href="../04_working_with_functions/main_1.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Supported Sources and Destinations</p>
+        <p class="prev-next-title">Working with Functions</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -574,20 +517,8 @@
   </div>
   <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tabsdata-server">Tabsdata Server</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#collections">Collections</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tables">Tables</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#table-commits">Table Commits</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tableframes">TableFrames</a></li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#functions">Functions</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#publishers">Publishers</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#transformers">Transformers</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#subscribers">Subscribers</a></li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#triggers">Triggers</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sources">Sources</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#destination">Destination</a></li>
 </ul>
   </nav></div>
 
