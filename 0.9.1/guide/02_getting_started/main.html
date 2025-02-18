@@ -450,8 +450,11 @@
 </ol>
 <section id="install-tabsdata-and-start-the-server">
 <span id="install-tabsdata"></span><h3>Install Tabsdata and Start the Server<a class="headerlink" href="#install-tabsdata-and-start-the-server" title="Link to this heading">#</a></h3>
+<blockquote>
+<div><p><strong>Note:</strong> The following tutorial is meant for CMD shell. You might need to adapt some commands if using PowerShell. You can use <cite>bash</cite> such as MinGW, CygWIn or Bash for Git, and follow the steps for Linux/macOS.</p>
+</div></blockquote>
 <p>While not required, you should install the Tabsdata Python package in a clean virtual environment. You can use <a class="reference external" href="https://docs.python.org/3/library/venv.html">python venv</a>, <a class="reference external" href="https://docs.conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html">conda</a> or other similar tools to create and manage your virtual environment.</p>
-<p><strong>Important</strong>: The virtual environment or alternative installation location must have <strong>Python 3.12</strong>.</p>
+<p><strong>Important</strong>: The virtual environment or alternative installation location must have <strong>Python 3.12 or later</strong>.</p>
 <p>To install Tabsdata, run the following command in your command line interface (CLI):</p>
 <div class="highlight-bash: notranslate"><div class="highlight"><pre><span></span>$ pip install tabsdata
 </pre></div>
@@ -481,8 +484,8 @@ $ touch subscriber.py
 </pre></div>
 </div>
 </div><div aria-labelledby="tab-0-0-1" class="sphinx-tabs-panel" hidden="true" id="panel-0-0-1" name="0-1" role="tabpanel" tabindex="0"><div class="highlight-bash: notranslate"><div class="highlight"><pre><span></span>$ mkdir examples
-$ mkdir examples/input
-$ mkdir examples/output
+$ mkdir examples\input
+$ mkdir examples\output
 $ cd examples
 $ echo. &gt; publisher.py
 $ echo. &gt; transformer.py
@@ -508,7 +511,10 @@ $ echo. &gt; subscriber.py
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
-<p><strong>3. Download the tutorial sample data,</strong> <a class="reference external" href="https://github.com/tabsdata/tabsdata/blob/main/client/td-sdk/tabsdata/examples/input/persons.csv">persons.csv</a>, <strong>from this location to the “input” folder in your `examples` directory.</strong></p>
+<p><strong>3. Download the tutorial sample data</strong></p>
+<blockquote>
+<div><p>Download a sample CSV file, <a class="reference external" href="https://github.com/tabsdata/tabsdata/blob/main/client/td-sdk/tabsdata/examples/input/persons.csv">persons.csv</a>, to the “input” folder in your <cite>examples</cite> directory.</p>
+</div></blockquote>
 </section>
 </section>
 <section id="step-1-log-in-and-create-a-collection">
@@ -696,9 +702,14 @@ def sub(spanish: td.TableFrame, french: td.TableFrame) -&gt; (td.TableFrame, td.
 </div>
 <p><strong>4. Verify subscriber execution.</strong></p>
 <p>You can verify that the spanish.json1 and french.ndjson output files have been created by listing files in the output directory:</p>
-<div class="highlight-bash: notranslate"><div class="highlight"><pre><span></span>$ ls output
+<div class="sphinx-tabs docutils container">
+<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-2-2-0" aria-selected="true" class="sphinx-tabs-tab" id="tab-2-2-0" name="2-0" role="tab" tabindex="0">For Linux or MacOS:</button><button aria-controls="panel-2-2-1" aria-selected="false" class="sphinx-tabs-tab" id="tab-2-2-1" name="2-1" role="tab" tabindex="-1">For Windows:</button></div><div aria-labelledby="tab-2-2-0" class="sphinx-tabs-panel" id="panel-2-2-0" name="2-0" role="tabpanel" tabindex="0"><div class="highlight-bash: notranslate"><div class="highlight"><pre><span></span>$ ls output
 </pre></div>
 </div>
+</div><div aria-labelledby="tab-2-2-1" class="sphinx-tabs-panel" hidden="true" id="panel-2-2-1" name="2-1" role="tabpanel" tabindex="0"><div class="highlight-bash: notranslate"><div class="highlight"><pre><span></span>$ dir output
+</pre></div>
+</div>
+</div></div>
 <p>You can use your favorite editor to view the contents of the files.</p>
 </section>
 <section id="step-5-initiate-automated-triggers">
@@ -710,9 +721,14 @@ def sub(spanish: td.TableFrame, french: td.TableFrame) -&gt; (td.TableFrame, td.
 <p>To see this in action, clear the output folder and test the automated triggers for this tutorial:</p>
 <p><strong>1. Remove the existing files from the output directory.</strong></p>
 <p>You can do this manually or by running the following command:</p>
-<div class="highlight-bash: notranslate"><div class="highlight"><pre><span></span>$ rm output/*
+<div class="sphinx-tabs docutils container">
+<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-3-3-0" aria-selected="true" class="sphinx-tabs-tab" id="tab-3-3-0" name="3-0" role="tab" tabindex="0">For Linux or MacOS:</button><button aria-controls="panel-3-3-1" aria-selected="false" class="sphinx-tabs-tab" id="tab-3-3-1" name="3-1" role="tab" tabindex="-1">For Windows:</button></div><div aria-labelledby="tab-3-3-0" class="sphinx-tabs-panel" id="panel-3-3-0" name="3-0" role="tabpanel" tabindex="0"><div class="highlight-bash: notranslate"><div class="highlight"><pre><span></span>$ rm output/*
 </pre></div>
 </div>
+</div><div aria-labelledby="tab-3-3-1" class="sphinx-tabs-panel" hidden="true" id="panel-3-3-1" name="3-1" role="tabpanel" tabindex="0"><div class="highlight-bash: notranslate"><div class="highlight"><pre><span></span>$ del output\*
+</pre></div>
+</div>
+</div></div>
 <p><strong>2. Execute the publisher.</strong></p>
 <p>To run the entire tutorial workflow, use the following command to manually trigger the publisher:</p>
 <div class="highlight-bash: notranslate"><div class="highlight"><pre><span></span>$ td fn trigger --collection tutorial --name pub
@@ -730,9 +746,14 @@ def sub(spanish: td.TableFrame, french: td.TableFrame) -&gt; (td.TableFrame, td.
 </div>
 <p><strong>4. Verify the output.</strong></p>
 <p>You can verify that the spanish.json1 and french.ndjson files have been written to the output folder with the following command:</p>
-<div class="highlight-bash: notranslate"><div class="highlight"><pre><span></span>$ ls output
+<div class="sphinx-tabs docutils container">
+<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-4-4-0" aria-selected="true" class="sphinx-tabs-tab" id="tab-4-4-0" name="4-0" role="tab" tabindex="0">For Linux or MacOS:</button><button aria-controls="panel-4-4-1" aria-selected="false" class="sphinx-tabs-tab" id="tab-4-4-1" name="4-1" role="tab" tabindex="-1">For Windows:</button></div><div aria-labelledby="tab-4-4-0" class="sphinx-tabs-panel" id="panel-4-4-0" name="4-0" role="tabpanel" tabindex="0"><div class="highlight-bash: notranslate"><div class="highlight"><pre><span></span>$ ls output
 </pre></div>
 </div>
+</div><div aria-labelledby="tab-4-4-1" class="sphinx-tabs-panel" hidden="true" id="panel-4-4-1" name="4-1" role="tabpanel" tabindex="0"><div class="highlight-bash: notranslate"><div class="highlight"><pre><span></span>$ dir output
+</pre></div>
+</div>
+</div></div>
 <p>And you can once again check the contents of those files with your favorite editor.</p>
 </section>
 <section id="next-steps">
