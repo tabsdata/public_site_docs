@@ -1,12 +1,12 @@
 document.addEventListener("DOMContentLoaded", function () {
+    // TOC Update Logic
     function updateTOC() {
         let sections = document.querySelectorAll("section");
         let navLinks = document.querySelectorAll(".bd-toc nav ul li a");
 
-        let scrollPosition = window.scrollY + 150; // Increased offset for better detection
+        let scrollPosition = window.scrollY + 150;
 
         let activeSection = null;
-
         sections.forEach(section => {
             let top = section.offsetTop;
             let height = section.offsetHeight;
@@ -16,7 +16,6 @@ document.addEventListener("DOMContentLoaded", function () {
             }
         });
 
-        // First, remove all active classes
         navLinks.forEach(link => {
             link.classList.remove("active");
             link.parentElement.classList.remove("active");
@@ -28,8 +27,6 @@ document.addEventListener("DOMContentLoaded", function () {
                 let activeLink = document.querySelector(`.bd-toc nav ul li a[href="#${id}"]`);
                 if (activeLink) {
                     activeLink.classList.add("active");
-                    
-                    // Expand all parent sections
                     let parent = activeLink.parentElement;
                     while (parent && parent.tagName !== 'NAV') {
                         if (parent.tagName === 'LI') {
@@ -43,5 +40,15 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     window.addEventListener("scroll", updateTOC);
-    updateTOC(); // Run initially in case page loads at a scrolled position
+    updateTOC();
+
+    // Copy Button Tracking (Using Event Delegation)
+    document.addEventListener('click', function (event) {
+        if (event.target.classList.contains('copybtn')) {
+            gtag('event', 'copy_code', {
+                'event_category': 'interaction',
+                'event_label': window.location.pathname
+            });
+        }
+    });
 });
