@@ -1,0 +1,636 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-QEJPE16TH2"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-QEJPE16TH2');
+    </script>
+    
+    <title>Local File System &#8212; Tabsdata  documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../../../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="../../../../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css?v=8f2a1f02" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/custom.css?v=1e778574" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="../../../../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="../../../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+
+    <script src="../../../../_static/jquery.js?v=5d32c60e"></script>
+    <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+    <script src="../../../../_static/documentation_options.js?v=7f41d439"></script>
+    <script src="../../../../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../../../_static/copybutton.js?v=a56c686a"></script>
+    <script src="../../../../_static/design-tabs.js?v=f930bc37"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'guide/04_01_working_with_publishers/reading_from_file_storage/local_file_system/main';</script>
+    <script>
+        DOCUMENTATION_OPTIONS.theme_version = '0.16.1';
+        DOCUMENTATION_OPTIONS.theme_switcher_json_url = 'https://docs.tabsdata.com/version.json';
+        DOCUMENTATION_OPTIONS.theme_switcher_version_match = '0.9.2';
+        DOCUMENTATION_OPTIONS.show_version_warning_banner =
+            false;
+        </script>
+    <script src="../../../../_static/custom.js?v=89ccd112"></script>
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" />
+    <link rel="next" title="Amazon S3" href="../amazon_s3/main.html" />
+    <link rel="prev" title="Reading from File Storage" href="../main.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="0.9.2" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+
+
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../../../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+     
+  
+
+<a class="navbar-brand logo" href="https://tabsdata.com/">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../../../_static/tabsdata_root.png" class="logo__image only-light" alt="Tabsdata  documentation - Home"/>
+    <img src="../../../../_static/tabsdata_root_light.png" class="logo__image only-dark pst-js-only" alt="Tabsdata  documentation - Home"/>
+  
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="../../../intro.html">
+    Guide
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../../api_ref/index.html">
+    API Reference
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../../tutorials/index.html">
+    Tutorials
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+        <div class="navbar-item">
+<div class="version-switcher__container dropdown pst-js-only">
+  <button id="pst-version-switcher-button-2"
+    type="button"
+    class="version-switcher__button btn btn-sm dropdown-toggle"
+    data-bs-toggle="dropdown"
+    aria-haspopup="listbox"
+    aria-controls="pst-version-switcher-list-2"
+    aria-label="Version switcher list"
+  >
+    Choose version  <!-- this text may get changed later by javascript -->
+    <span class="caret"></span>
+  </button>
+  <div id="pst-version-switcher-list-2"
+    class="version-switcher__menu dropdown-menu list-group-flush py-0"
+    role="listbox" aria-labelledby="pst-version-switcher-button-2">
+    <!-- dropdown will be populated by javascript on page load -->
+  </div>
+</div></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="../../../intro.html">
+    Guide
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../../api_ref/index.html">
+    API Reference
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../../tutorials/index.html">
+    Tutorials
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+<div class="version-switcher__container dropdown pst-js-only">
+  <button id="pst-version-switcher-button-3"
+    type="button"
+    class="version-switcher__button btn btn-sm dropdown-toggle"
+    data-bs-toggle="dropdown"
+    aria-haspopup="listbox"
+    aria-controls="pst-version-switcher-list-3"
+    aria-label="Version switcher list"
+  >
+    Choose version  <!-- this text may get changed later by javascript -->
+    <span class="caret"></span>
+  </button>
+  <div id="pst-version-switcher-list-3"
+    class="version-switcher__menu dropdown-menu list-group-flush py-0"
+    role="listbox" aria-labelledby="pst-version-switcher-button-3">
+    <!-- dropdown will be populated by javascript on page load -->
+  </div>
+</div></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+<nav class="bd-docs-nav bd-links"
+     aria-label="Section Navigation">
+  <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
+  <div class="bd-toc-item navbar-nav"><ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../../01_overview/main.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../02_getting_started/main.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../03_key_concepts/main.html">Key Concepts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../source_connectors/main.html">Source Connectors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../destination_connectors/main.html">Destination Connectors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../04_working_with_functions/main.html">Working with Functions</a></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="../../main.html">Publishers</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2 current active has-children"><a class="reference internal" href="../main.html">Reading from File Storage</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l3 current active"><a class="current reference internal" href="#">Local File System</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../amazon_s3/main.html">Amazon S3</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../azure/main.html">Azure Blob Storage</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../reading_from_database/main.html">Reading from Database</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../reading_from_database/mysql/main.html">MySQL</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../reading_from_database/mariadb/main.html">MariaDB</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../reading_from_database/oracle/main.html">Oracle</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../reading_from_database/postgres/main.html">Postgres</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../reading_from_saas/main.html">Reading from SaaS</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../reading_from_saas/salesforce/main.html">Salesforce</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../04_02_working_with_transformers/main.html">Transformers</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../04_03_working_with_subscribers/main.html">Subscribers</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../04_03_working_with_subscribers/writing_to_file_storage/main.html">Writing to File Storage</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../04_03_working_with_subscribers/writing_to_file_storage/local_file_system/main.html">Local File System</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../04_03_working_with_subscribers/writing_to_file_storage/amazon_s3/main.html">Amazon S3</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../04_03_working_with_subscribers/writing_to_file_storage/azure/main.html">Azure Blob Storage</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../04_03_working_with_subscribers/writing_to_database/main.html">Writing to Database</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../04_03_working_with_subscribers/writing_to_database/mysql/main.html">MySQL</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../04_03_working_with_subscribers/writing_to_database/mariadb/main.html">MariaDB</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../04_03_working_with_subscribers/writing_to_database/oracle/main.html">Oracle</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../04_03_working_with_subscribers/writing_to_database/postgres/main.html">Postgres</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../05_working_with_triggers/main.html">Working with Triggers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../06_working_with_tables/table_frame.html">Working with Tables</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../07_working_with_connector_plugins/main.html">Working with Plugins</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../08_best_practices/main.html">Best Practices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../09_contact_support/main.html">Contact Us</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../10_appendix/main.html">Appendix</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../10_appendix/cli_commands.html">Tabsdata Server Configuration</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="../../../10_appendix/troubleshooting.html">Troubleshooting</a></li>
+</ul>
+</details></li>
+</ul>
+</div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../../../../index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    
+    <li class="breadcrumb-item"><a href="../../../intro.html" class="nav-link">User Guide</a></li>
+    
+    
+    <li class="breadcrumb-item"><a href="../../main.html" class="nav-link">Publishers</a></li>
+    
+    
+    <li class="breadcrumb-item"><a href="../main.html" class="nav-link">Reading from File Storage</a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">Local File System</span></li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="local-file-system">
+<span id="id1"></span><h1>Local File System<a class="headerlink" href="#local-file-system" title="Link to this heading">#</a></h1>
+<p>You can use a publisher to read files from a local file system to the Tabsdata server. Publishers can read the following file formats: CSV, jsonl, ndjson, parquet, and log.</p>
+<section id="example-publisher-local-file-system">
+<span id="id2"></span><h2>Example (Publisher - Local File System)<a class="headerlink" href="#example-publisher-local-file-system" title="Link to this heading">#</a></h2>
+<p>Here is an example publisher named <code class="docutils literal notranslate"><span class="pre">read_employees</span></code>. It reads departments table and multiple employees tables, with their file names starting from <code class="docutils literal notranslate"><span class="pre">employees_</span></code>, from the HR folder. It checks that last modified dates for the files, which should be after the date defined in <code class="docutils literal notranslate"><span class="pre">initial_last_modified</span></code>. Subsequently, it writes the departments and first two employees files to the Tabsdata tables. This publisher executes automatically as soon as a <a class="reference internal" href="../../../06_working_with_tables/table_frame.html#working-with-table-commits"><span class="std std-ref">new commit</span></a> occurs on the <code class="docutils literal notranslate"><span class="pre">jobs_closed</span></code> table:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>    <span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">List</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">tabsdata</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">td</span>
+
+
+<span class="nd">@td</span><span class="o">.</span><span class="n">publisher</span><span class="p">(</span>
+    <span class="n">source</span><span class="o">=</span><span class="n">td</span><span class="o">.</span><span class="n">LocalFileSource</span><span class="p">(</span>
+        <span class="p">[</span>
+            <span class="p">(</span>
+                <span class="s2">&quot;/users/username/opt/hr/departments.csv&quot;</span>
+                <span class="s2">&quot;/users/username/opt/hr/employees_*.csv&quot;</span>
+            <span class="p">),</span>
+        <span class="p">],</span>
+        <span class="n">initial_last_modified</span><span class="o">=</span><span class="s2">&quot;2021-01-01&quot;</span><span class="p">,</span>
+    <span class="p">),</span>
+    <span class="n">tables</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;departments&quot;</span><span class="p">,</span> <span class="s2">&quot;employees_1&quot;</span><span class="p">,</span> <span class="s2">&quot;employees_2&quot;</span><span class="p">],</span>
+    <span class="n">trigger_by</span><span class="o">=</span><span class="s2">&quot;jobs_closed&quot;</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">read_employees</span><span class="p">(</span><span class="n">tf</span><span class="p">:</span> <span class="n">td</span><span class="o">.</span><span class="n">TableFrame</span><span class="p">,</span> <span class="n">tf2</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">td</span><span class="o">.</span><span class="n">TableFrame</span><span class="p">]):</span>
+    <span class="k">return</span> <span class="n">tf</span><span class="p">,</span> <span class="n">tf2</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">tf2</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>Note: After defining the publisher, you need to register it with a Tabsdata collection. For more information, see <a class="reference internal" href="../../../04_working_with_functions/main.html#register-a-function"><span class="std std-ref">Register a Function</span></a>.</p>
+</section>
+<section id="setup-publisher-local-file-system">
+<h2>Setup (Publisher - Local File System)<a class="headerlink" href="#setup-publisher-local-file-system" title="Link to this heading">#</a></h2>
+<p>The following code uses placeholder values for defining a publisher that reads data from local file system and publishes it to Tabsdata tables:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">tabsdata</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">td</span>
+
+
+<span class="nd">@td</span><span class="o">.</span><span class="n">publisher</span><span class="p">(</span>
+    <span class="n">source</span><span class="o">=</span><span class="n">td</span><span class="o">.</span><span class="n">LocalFileSource</span><span class="p">(</span>
+        <span class="p">[</span><span class="s2">&quot;&lt;path_to_file1&gt;&quot;</span><span class="p">,</span> <span class="s2">&quot;&lt;path_to_file2&gt;&quot;</span><span class="p">],</span> <span class="n">initial_last_modified</span><span class="o">=</span><span class="s2">&quot;&lt;date_time&gt;&quot;</span>
+    <span class="p">),</span>
+    <span class="n">tables</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;&lt;output_table1&gt;&quot;</span><span class="p">,</span> <span class="s2">&quot;&lt;output_table2&gt;&quot;</span><span class="p">],</span>
+    <span class="n">trigger_by</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;&lt;trigger_table1&gt;&quot;</span><span class="p">,</span> <span class="s2">&quot;&lt;trigger_table2&gt;&quot;</span><span class="p">],</span>
+<span class="p">)</span>
+<span class="k">def</span><span class="w"> </span><span class="o">&lt;</span><span class="n">publisher_name</span><span class="o">&gt;</span><span class="p">(</span><span class="o">&lt;</span><span class="n">table_frame1</span><span class="o">&gt;</span><span class="p">:</span> <span class="n">td</span><span class="o">.</span><span class="n">TableFrame</span><span class="p">,</span> <span class="o">&lt;</span><span class="n">table_frame2</span><span class="o">&gt;</span><span class="p">:</span> <span class="n">td</span><span class="o">.</span><span class="n">TableFrame</span><span class="p">):</span>
+    <span class="o">&lt;</span><span class="n">function_logic</span><span class="o">&gt;</span>
+    <span class="k">return</span> <span class="o">&lt;</span><span class="n">table_frame_output1</span><span class="o">&gt;</span><span class="p">,</span> <span class="o">&lt;</span><span class="n">table_frame_output2</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<p><strong>Note:</strong> After defining the publisher, you need to register it with a Tabsdata collection. For more information, see <a class="reference internal" href="../../../04_working_with_functions/main.html#register-a-function"><span class="std std-ref">Register a Function</span></a>.</p>
+<p>Following properties are defined in the setup code above:</p>
+<section id="source">
+<h3>Source<a class="headerlink" href="#source" title="Link to this heading">#</a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">&lt;path_to_file1&gt;</span></code>, <code class="docutils literal notranslate"><span class="pre">&lt;path_to_file2&gt;</span></code>… are the full system directory paths to the files to read. They are usually of the format <code class="docutils literal notranslate"><span class="pre">/users/username/...</span></code>.</p>
+<p>All the source files in a publisher need to be have the same extension. Following file formats are supported currently: CSV, jsonl, ndjson, parquet, and log.</p>
+<p>You must use the absolute system path <code class="docutils literal notranslate"><span class="pre">(e.g.,</span> <span class="pre">/user/username/project/employees.csv)</span></code> in the code instead of the relative one <code class="docutils literal notranslate"><span class="pre">(e.g.,</span> <span class="pre">./employees.csv)</span></code>. Since these functions will be registered in the Tabsdata server, an absolute path is necessary to ensure proper access to the required files.</p>
+<p>You can specify as many file paths as needed. You can also use the <code class="docutils literal notranslate"><span class="pre">asterisk</span> <span class="pre">(*)</span></code> wildcard in file names to read multiple files with similar names. When using a wildcard, the resultant output is a list of TableFrames, if the number of files matching the pattern are more than one. You can work with the List in the same way as an array and use index to access specific TableFrames as shown in the example <a class="reference internal" href="#example-publisher-local-file-system"><span class="std std-ref">here</span></a>.</p>
+<p>You can define the source files in the following ways:</p>
+<p><strong>File Path</strong></p>
+<p>To read by file path where the file extension is included as part of the file path, define the source as follows:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">source</span><span class="o">=</span><span class="n">td</span><span class="o">.</span><span class="n">LocalFileSource</span><span class="p">([</span>
+        <span class="s2">&quot;&lt;path_to_file1.ext&gt;&quot;</span><span class="p">,</span><span class="s2">&quot;&lt;path_to_file2.ext&gt;&quot;</span>
+        <span class="p">]),</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">&lt;path_to_file1.ext&gt;</span></code>, <code class="docutils literal notranslate"><span class="pre">&lt;path_to_file2.ext&gt;</span></code>… are paths to files with extensions of the file included in the file name.</p>
+<p><strong>File Format</strong></p>
+<p>To read files by file format where the format is declared separately and not in the file name, define the source as follows:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">source</span><span class="o">=</span><span class="n">td</span><span class="o">.</span><span class="n">LocalFileSource</span><span class="p">([</span>
+        <span class="s2">&quot;&lt;path_to_file1_no_extension&gt;&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;&lt;path_to_file2_no_extension&gt;&quot;</span><span class="p">,</span>
+        <span class="p">],</span> <span class="nb">format</span><span class="o">=</span><span class="s2">&quot;&lt;format_name&gt;&quot;</span><span class="p">),</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">&quot;&lt;path_to_file1_no_extension&gt;&quot;</span></code>, <code class="docutils literal notranslate"><span class="pre">&quot;&lt;path_to_file2_no_extension&gt;&quot;</span></code>… are paths to files with extensions of the file not included in the file name. The extension is to all files is mentioned separately in <code class="docutils literal notranslate"><span class="pre">format</span></code>.</p>
+<p><strong>Custom delimiter for CSV</strong></p>
+<p>To define a custom delimiter for reading a CSV file, define the source as follows:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">source</span><span class="o">=</span><span class="n">td</span><span class="o">.</span><span class="n">LocalFileSource</span><span class="p">([</span>
+        <span class="s2">&quot;&lt;path_to_file1_no_extension&gt;&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;&lt;path_to_file2_no_extension&gt;&quot;</span><span class="p">,</span>
+        <span class="p">],</span> <span class="nb">format</span><span class="o">=</span><span class="n">td</span><span class="o">.</span><span class="n">CSVFormat</span><span class="p">(</span><span class="n">separator</span><span class="o">=</span><span class="s2">&quot;&lt;separator_character&gt;&quot;</span><span class="p">)),</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">&quot;&lt;path_to_file1_no_extension&gt;&quot;</span></code>, <code class="docutils literal notranslate"><span class="pre">&quot;&lt;path_to_file2_no_extension&gt;&quot;</span></code>… are paths to CSV files with a custom delimiter, with extensions of the file not included in the file name. The delimiter is a single byte character such as colon (:), semicolon (;), and period (.) that separate the fields in the given file instead of a comma(,). You define the character in <code class="docutils literal notranslate"><span class="pre">separator</span></code>.</p>
+</section>
+<section id="initial-last-modified">
+<h3>Initial Last Modified<a class="headerlink" href="#initial-last-modified" title="Link to this heading">#</a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">&lt;date_time&gt;</span></code> is a date time string in the <a class="reference external" href="https://en.wikipedia.org/wiki/ISO_8601">ISO 8601 format</a> format (e.g. 2025-02-05 or 2025-02-05T03:12:36Z). If provided, only the files modified after this date and time will be considered to be read by the publisher. If no timezone is provided, UTC will be assumed.</p>
+</section>
+<section id="tables">
+<h3>Tables<a class="headerlink" href="#tables" title="Link to this heading">#</a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">&lt;output_table1&gt;</span></code>, <code class="docutils literal notranslate"><span class="pre">&lt;output_table2&gt;</span></code>… are the names of the Tabsdata tables to publish to.</p>
+</section>
+<section id="triggers">
+<h3>Triggers<a class="headerlink" href="#triggers" title="Link to this heading">#</a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">&lt;trigger_table1&gt;</span></code>, <code class="docutils literal notranslate"><span class="pre">&lt;trigger_table2&gt;</span></code>… are the names of the tables in the Tabsdata server. A new commit to any of these tables triggers the publisher. This can be relevant in cases where you want to import a data if something else in the organization changes. e.g trigger the import of latest manufacturing data in the company if a new supplier get added added. While a new supplier would not be a direct input to the publisher importing manufacturing data, it can still trigger the function.</p>
+<p>All listed trigger tables must exist in the server before registering the publisher.</p>
+<p>Defining trigger tables is optional. If you don’t define the <code class="docutils literal notranslate"><span class="pre">trigger_by</span></code> property, the publisher can only be triggered manually.</p>
+<p>For more information, see <a class="reference internal" href="../../../05_working_with_triggers/main.html#working-with-triggers"><span class="std std-ref">Working with Triggers</span></a>.</p>
+</section>
+<section id="name">
+<h3>Name<a class="headerlink" href="#name" title="Link to this heading">#</a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">&lt;publisher_name&gt;</span></code> is the name for the publisher that you are configuring.</p>
+</section>
+<section id="function-logic">
+<h3>Function Logic<a class="headerlink" href="#function-logic" title="Link to this heading">#</a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">&lt;function_logic&gt;</span></code> governs the processing performed by the publisher. You can specify function logic to be a simple write or to perform additional processing, such as dropping nulls, before writing data to output tables. For more information about the function logic that you can include, see <a class="reference internal" href="../../../06_working_with_tables/table_frame.html#working-with-tables"><span class="std std-ref">Working with Tables</span></a>.</p>
+<p><code class="docutils literal notranslate"><span class="pre">&lt;table_frame1&gt;</span></code>, <code class="docutils literal notranslate"><span class="pre">&lt;table_frame2&gt;</span></code>… are the names for the variables that temporarily store source data for processing.</p>
+<p><code class="docutils literal notranslate"><span class="pre">&lt;table_frame_output1&gt;</span></code>, <code class="docutils literal notranslate"><span class="pre">&lt;table_frame_output2&gt;</span></code>… are the output from the function that are stored as Tabsdata tables with names as defined in the <code class="docutils literal notranslate"><span class="pre">tables</span></code> property. Consequently, the number of tables returned from the function have to exactly match the number of tables defined in the <code class="docutils literal notranslate"><span class="pre">tables</span></code> property.</p>
+</section>
+</section>
+</section>
+
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="../main.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Reading from File Storage</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="../amazon_s3/main.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Amazon S3</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+<div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-publisher-local-file-system">Example (Publisher - Local File System)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#setup-publisher-local-file-system">Setup (Publisher - Local File System)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#source">Source</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#initial-last-modified">Initial Last Modified</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tables">Tables</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#triggers">Triggers</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#name">Name</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#function-logic">Function Logic</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../../../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="../../../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+
+<!-- Your custom footer content here -->
+
+  </body>
+</html>
