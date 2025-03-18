@@ -434,8 +434,6 @@
                   
   <section id="publishers">
 <span id="working-with-publishers"></span><h1>Publishers<a class="headerlink" href="#publishers" title="Link to this heading">#</a></h1>
-<div class="toctree-wrapper compound">
-</div>
 <p>A publisher is a Tabsdata <a class="reference internal" href="../04_working_with_functions/main.html#working-with-functions"><span class="std std-ref">function</span></a> that reads data from an external source, such as file system or database, and writes the data to one or more tables in the Tabsdata server.</p>
 <p>Here is an example publisher named <code class="docutils literal notranslate"><span class="pre">read_sales</span></code>. It reads three sales csv files, checks if their last modified date is after 1st Jan 2021, and writes them to the Tabsdata tables of the same name. This publisher executes automatically as soon as a <a class="reference internal" href="../06_working_with_tables/table_frame.html#working-with-table-commits"><span class="std std-ref">new commit</span></a> occurs on the <code class="docutils literal notranslate"><span class="pre">new_customer</span></code> table:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">tabsdata</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">td</span>
@@ -464,6 +462,14 @@
 <li><p><strong>Register the publisher</strong> - Register the publisher with a Tabsdata collection. A publisher can only write output tables to the collection that it is registered with. For information about registering functions, see <a class="reference internal" href="../04_working_with_functions/main.html#register-a-function"><span class="std std-ref">here</span></a>.</p></li>
 <li><p><strong>Execute the publisher</strong> - Execute the publisher by initiating a trigger. Once executed, the publisher takes the input data, processes it as defined in the function logic, and writes the output tables in the Tabsdata server. By default, publishers do not have any triggers. For more information about executing a function, see <a class="reference internal" href="../04_working_with_functions/main.html#execute-a-function"><span class="std std-ref">here</span></a>.</p></li>
 </ul>
+<p>For more information on external sources to publish from, explore the following:</p>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="reading_from_file_storage/main.html">Reading from File Storage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="reading_from_database/main.html">Reading from Database</a></li>
+<li class="toctree-l1"><a class="reference internal" href="reading_from_saas/main.html">Reading from SaaS</a></li>
+</ul>
+</div>
 </section>
 
 
