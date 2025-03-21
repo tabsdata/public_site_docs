@@ -447,6 +447,7 @@
 <p>You can use a subscriber to write to a MySQL database.</p>
 <section id="example-subscriber-mysql">
 <h2>Example (Subscriber - MySQL)<a class="headerlink" href="#example-subscriber-mysql" title="Link to this heading">#</a></h2>
+<p>The following example creates a subscriber named <code class="docutils literal notranslate"><span class="pre">write_sales</span></code>. It writes two Tabsdata tables to the database. The subscriber is automatically triggered by a <a class="reference internal" href="../../../06_working_with_tables/table_frame.html#working-with-table-commits"><span class="std std-ref">new commit</span></a> to any of its input tables, and writes data to the database without any modification.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">tabsdata</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">td</span>
 
 
@@ -490,6 +491,35 @@
     <span class="k">return</span> <span class="o">&lt;</span><span class="n">table_frame_output1</span><span class="o">&gt;</span><span class="p">,</span> <span class="o">&lt;</span><span class="n">table_frame_output2</span><span class="o">&gt;</span>
 </pre></div>
 </div>
+<p><strong>Note:</strong> After defining the subscriber, you need to register it with a Tabsdata collection. For more information, see <a class="reference internal" href="../../../04_working_with_functions/main.html#register-a-function"><span class="std std-ref">Register a Function</span></a>.</p>
+<p>Following properties are defined in the code above:</p>
+<section id="destination">
+<h3>Destination<a class="headerlink" href="#destination" title="Link to this heading">#</a></h3>
+<p><strong>Database URI</strong>: <code class="docutils literal notranslate"><span class="pre">&lt;path_to_db&gt;</span></code> is the URI to the database.</p>
+<p><strong>Destination tables</strong>: <code class="docutils literal notranslate"><span class="pre">&lt;table1&gt;</span></code>,``&lt;table2&gt;`` are the tables to create in the database.</p>
+<p><strong>Database Credentials</strong>: <code class="docutils literal notranslate"><span class="pre">&lt;db_username&gt;</span></code> and <code class="docutils literal notranslate"><span class="pre">&lt;db_password&gt;</span></code> are the username and password to log in to the database respectively.</p>
+<p><code class="docutils literal notranslate"><span class="pre">if_table_exists</span></code>: This is an optional property to define the strategy to follow when the table already exists. ‘replace’ will create a new database table, overwriting the existing one, and ‘append’ will append to the existing data in the table. Defaults to ‘append’.</p>
+</section>
+<section id="tables">
+<h3>Tables<a class="headerlink" href="#tables" title="Link to this heading">#</a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">&lt;output_table1&gt;</span></code>, <code class="docutils literal notranslate"><span class="pre">&lt;output_table2&gt;</span></code>… are the names of the Tabsdata tables to be written to the external system.</p>
+</section>
+<section id="triggers">
+<h3>Triggers<a class="headerlink" href="#triggers" title="Link to this heading">#</a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">&lt;trigger_table1&gt;</span></code>, <code class="docutils literal notranslate"><span class="pre">&lt;trigger_table2&gt;</span></code>… are the names of the tables in the Tabsdata server. A new commit to any of these tables triggers the subscriber. All listed trigger tables must exist in the server before registering the subscriber.</p>
+<p>Defining trigger tables is optional. If you don’t define the <code class="docutils literal notranslate"><span class="pre">trigger_by</span></code> property, the subscriber will be triggered by any of its input tables. If you define the <code class="docutils literal notranslate"><span class="pre">trigger_by</span></code> property, then only those tables listed in the property can automatically trigger the subscriber.</p>
+<p>For more information, see <a class="reference internal" href="../../../05_working_with_triggers/main.html#working-with-triggers"><span class="std std-ref">Working with Triggers</span></a>.</p>
+</section>
+<section id="name">
+<h3>Name<a class="headerlink" href="#name" title="Link to this heading">#</a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">&lt;subscriber_name&gt;</span></code> is the name for the subscriber that you are configuring.</p>
+</section>
+<section id="function-logic">
+<h3>Function Logic<a class="headerlink" href="#function-logic" title="Link to this heading">#</a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">&lt;function_logic&gt;</span></code> governs the processing performed by the subscriber. You can specify function logic to be a simple write or to perform additional processing as needed. For more information about the function logic that you can include, see <a class="reference internal" href="../../../06_working_with_tables/table_frame.html#working-with-tables"><span class="std std-ref">Working with Tables</span></a>.</p>
+<p><code class="docutils literal notranslate"><span class="pre">&lt;table_frame1&gt;</span></code>, <code class="docutils literal notranslate"><span class="pre">&lt;table_frame2&gt;</span></code>… are the names for the variables that temporarily store source data for processing.</p>
+<p><code class="docutils literal notranslate"><span class="pre">&lt;table_frame_output1&gt;</span></code>, <code class="docutils literal notranslate"><span class="pre">&lt;table_frame_output2&gt;</span></code>… are the output from the function that are written to the external system.</p>
+</section>
 </section>
 </section>
 
@@ -541,7 +571,14 @@
   <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-subscriber-mysql">Example (Subscriber - MySQL)</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#setup-subscriber-mysql">Setup (Subscriber - MySQL)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#setup-subscriber-mysql">Setup (Subscriber - MySQL)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#destination">Destination</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tables">Tables</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#triggers">Triggers</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#name">Name</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#function-logic">Function Logic</a></li>
+</ul>
+</li>
 </ul>
   </nav></div>
 

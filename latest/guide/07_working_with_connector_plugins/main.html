@@ -439,8 +439,8 @@
   <section id="working-with-plugins">
 <span id="working-with-connector-plugins"></span><h1>Working with Plugins<a class="headerlink" href="#working-with-plugins" title="Link to this heading">#</a></h1>
 <p>To connect with sources and destinations that are not currently supported natively in Tabsdata, you can use these connector plugins.</p>
-<section id="working-with-source-plugin">
-<h2>Working with Source Plugin<a class="headerlink" href="#working-with-source-plugin" title="Link to this heading">#</a></h2>
+<section id="source-plugin">
+<h2>Source Plugin<a class="headerlink" href="#source-plugin" title="Link to this heading">#</a></h2>
 <p>The <code class="docutils literal notranslate"><span class="pre">SourcePlugin</span></code> class enables reading from sources which do not have built-in support in Tabsdata.</p>
 <p>Here is an example of the <code class="docutils literal notranslate"><span class="pre">SourcePlugin</span></code> class in use.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
@@ -483,8 +483,8 @@
 <p>In the above example, you create a <code class="docutils literal notranslate"><span class="pre">PyPIPkgStatsSource</span></code> class that inherits from the <code class="docutils literal notranslate"><span class="pre">SourcePlugin</span></code> class.</p>
 <p>The <code class="docutils literal notranslate"><span class="pre">PyPIPkgStatsSource</span></code> class takes a Python package name as an input, retrieves the statistics related to the package, stores the data in a file on the server, and returns that file to the publisher. You use the <code class="docutils literal notranslate"><span class="pre">PyPIPkgStatsSource</span></code> class while defining the source property of the publisher.</p>
 </section>
-<section id="working-with-destination-plugin">
-<h2>Working with Destination Plugin<a class="headerlink" href="#working-with-destination-plugin" title="Link to this heading">#</a></h2>
+<section id="destination-plugin">
+<h2>Destination Plugin<a class="headerlink" href="#destination-plugin" title="Link to this heading">#</a></h2>
 <p>The <code class="docutils literal notranslate"><span class="pre">DestinationPlugin</span></code> class enables writing to destinations which do not have built-in support in Tabsdata.</p>
 <p>Here is an example of the <code class="docutils literal notranslate"><span class="pre">DestinationPlugin</span></code> class in use.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
@@ -583,8 +583,8 @@
   </div>
   <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#working-with-source-plugin">Working with Source Plugin</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#working-with-destination-plugin">Working with Destination Plugin</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#source-plugin">Source Plugin</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#destination-plugin">Destination Plugin</a></li>
 </ul>
   </nav></div>
 

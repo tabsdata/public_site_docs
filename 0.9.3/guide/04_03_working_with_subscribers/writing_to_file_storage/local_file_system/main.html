@@ -444,11 +444,11 @@
                   
   <section id="local-file-system">
 <span id="local-file-system-subscriber"></span><h1>Local File System<a class="headerlink" href="#local-file-system" title="Link to this heading">#</a></h1>
-<p>You can use a subscriber to write tables to a local file system from the Tabsdata server. Subscribers can write in following file formats: <a href="#id2"><span class="problematic" id="id3">|extensions_list_sub|</span></a>.</p>
+<p>You can use a subscriber to write tables to a local file system from the Tabsdata server. Subscribers can write in following file formats: CSV, jsonl, ndjson, and parquet.</p>
 <section id="example-subscriber-local-file-system">
 <span id="id1"></span><h2>Example (Subscriber - Local File System)<a class="headerlink" href="#example-subscriber-local-file-system" title="Link to this heading">#</a></h2>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>    <span class="kn">import</span><span class="w"> </span><span class="nn">tabsdata</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">td</span>
-
+<p>Here is an example subscriber named <code class="docutils literal notranslate"><span class="pre">write_employees</span></code>. It reads departments table and multiple employees tables from Tabsdata. Subsequently, it writes the tables to the output HR folder. This subscriber executes automatically as soon as a <a class="reference internal" href="../../../06_working_with_tables/table_frame.html#working-with-table-commits"><span class="std std-ref">new commit</span></a> occurs on any of its input tables.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">tabsdata</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">td</span>
 
 <span class="nd">@td</span><span class="o">.</span><span class="n">subscriber</span><span class="p">(</span>
     <span class="n">tables</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;departments&quot;</span><span class="p">,</span> <span class="s2">&quot;employees_1&quot;</span><span class="p">,</span> <span class="s2">&quot;employees_2&quot;</span><span class="p">],</span>
@@ -471,7 +471,6 @@
 <p>The following code uses placeholder values for defining a subscriber that reads data from the Tabsdata server and writes it to the Local File System:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span>    <span class="kn">import</span><span class="w"> </span><span class="nn">tabsdata</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">td</span>
 
-
 <span class="nd">@td</span><span class="o">.</span><span class="n">subscriber</span><span class="p">(</span>
     <span class="n">tables</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;&lt;output_table1&gt;&quot;</span><span class="p">,</span> <span class="s2">&quot;&lt;output_table2&gt;&quot;</span><span class="p">],</span>
     <span class="n">destination</span><span class="o">=</span><span class="n">td</span><span class="o">.</span><span class="n">LocalFileDestination</span><span class="p">([</span><span class="s2">&quot;&lt;path_to_file1&gt;&quot;</span><span class="p">,</span> <span class="s2">&quot;&lt;path_to_file2&gt;&quot;</span><span class="p">]),</span>
@@ -487,7 +486,7 @@
 <section id="destination">
 <h3>Destination<a class="headerlink" href="#destination" title="Link to this heading">#</a></h3>
 <p><code class="docutils literal notranslate"><span class="pre">&lt;path_to_file1&gt;</span></code>, <code class="docutils literal notranslate"><span class="pre">&lt;path_to_file2&gt;</span></code>… are the full system directory paths to write the files to. They are usually of the format <code class="docutils literal notranslate"><span class="pre">/users/username/...</span></code>.</p>
-<p>All the destination files in a subscriber need to be have the same extension. Following file formats are supported currently: <a href="#id4"><span class="problematic" id="id5">|extensions_list_sub|</span></a>.</p>
+<p>All the destination files in a subscriber need to be have the same extension. Following file formats are supported currently: CSV, jsonl, ndjson, and parquet.</p>
 <p>You must use the absolute system path <code class="docutils literal notranslate"><span class="pre">(e.g.,</span> <span class="pre">/user/username/project/employees.csv)</span></code> in the code instead of the relative one <code class="docutils literal notranslate"><span class="pre">(e.g.,</span> <span class="pre">./employees.csv)</span></code>. Since these functions will be registered in the Tabsdata server, an absolute path is necessary to ensure proper access to the destination.</p>
 <p>You can specify as many file paths as needed.</p>
 <p>You can define the destination files in the following ways:</p>
@@ -517,6 +516,26 @@
 </pre></div>
 </div>
 <p><code class="docutils literal notranslate"><span class="pre">&quot;&lt;path_to_file1_no_extension&gt;&quot;</span></code>, <code class="docutils literal notranslate"><span class="pre">&quot;&lt;path_to_file2_no_extension&gt;&quot;</span></code>… are paths to CSV files with a custom delimiter, with extensions of the file not included in the file name. The delimiter is a single byte character such as colon (:), semicolon (;), and period (.) that separate the fields in the given file instead of a comma(,). You define the character in <code class="docutils literal notranslate"><span class="pre">separator</span></code>.</p>
+</section>
+<section id="tables">
+<h3>Tables<a class="headerlink" href="#tables" title="Link to this heading">#</a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">&lt;output_table1&gt;</span></code>, <code class="docutils literal notranslate"><span class="pre">&lt;output_table2&gt;</span></code>… are the names of the Tabsdata tables to be written to the external system.</p>
+</section>
+<section id="triggers">
+<h3>Triggers<a class="headerlink" href="#triggers" title="Link to this heading">#</a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">&lt;trigger_table1&gt;</span></code>, <code class="docutils literal notranslate"><span class="pre">&lt;trigger_table2&gt;</span></code>… are the names of the tables in the Tabsdata server. A new commit to any of these tables triggers the subscriber. All listed trigger tables must exist in the server before registering the subscriber.</p>
+<p>Defining trigger tables is optional. If you don’t define the <code class="docutils literal notranslate"><span class="pre">trigger_by</span></code> property, the subscriber will be triggered by any of its input tables. If you define the <code class="docutils literal notranslate"><span class="pre">trigger_by</span></code> property, then only those tables listed in the property can automatically trigger the subscriber.</p>
+<p>For more information, see <a class="reference internal" href="../../../05_working_with_triggers/main.html#working-with-triggers"><span class="std std-ref">Working with Triggers</span></a>.</p>
+</section>
+<section id="name">
+<h3>Name<a class="headerlink" href="#name" title="Link to this heading">#</a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">&lt;subscriber_name&gt;</span></code> is the name for the subscriber that you are configuring.</p>
+</section>
+<section id="function-logic">
+<h3>Function Logic<a class="headerlink" href="#function-logic" title="Link to this heading">#</a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">&lt;function_logic&gt;</span></code> governs the processing performed by the subscriber. You can specify function logic to be a simple write or to perform additional processing as needed. For more information about the function logic that you can include, see <a class="reference internal" href="../../../06_working_with_tables/table_frame.html#working-with-tables"><span class="std std-ref">Working with Tables</span></a>.</p>
+<p><code class="docutils literal notranslate"><span class="pre">&lt;table_frame1&gt;</span></code>, <code class="docutils literal notranslate"><span class="pre">&lt;table_frame2&gt;</span></code>… are the names for the variables that temporarily store source data for processing.</p>
+<p><code class="docutils literal notranslate"><span class="pre">&lt;table_frame_output1&gt;</span></code>, <code class="docutils literal notranslate"><span class="pre">&lt;table_frame_output2&gt;</span></code>… are the output from the function that are written to the external system.</p>
 </section>
 </section>
 </section>
@@ -571,6 +590,10 @@
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-subscriber-local-file-system">Example (Subscriber - Local File System)</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#setup-subscriber-local-file-system">Setup (Subscriber - Local File System)</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#destination">Destination</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tables">Tables</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#triggers">Triggers</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#name">Name</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#function-logic">Function Logic</a></li>
 </ul>
 </li>
 </ul>
