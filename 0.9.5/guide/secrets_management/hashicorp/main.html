@@ -446,8 +446,11 @@
 <p><strong>path</strong>: <code class="docutils literal notranslate"><span class="pre">&lt;path_to_the_username_secret&gt;</span></code> and <code class="docutils literal notranslate"><span class="pre">&lt;path_to_the_password_secret&gt;</span></code> represent the path of the secret in the HashiCorp Vault. This is different from the API path that’s available to copy directly from the HashiCorp Vault’s dahsboard.</p>
 <img alt="../../../_images/hashicorp_path.png" src="../../../_images/hashicorp_path.png" />
 <p>In the image above, the path would be <code class="docutils literal notranslate"><span class="pre">td-pg</span></code>. As mentioned earlier, do not use the API path value.</p>
-<p>Currently, we support the credentials stored in the default <code class="docutils literal notranslate"><span class="pre">secret</span></code> secret engine (mount) in HashiCorp as seen in the image below. We’ll soon be supporting the storage of credentials in other msecret engines.</p>
+<p>Currently, we support the credentials stored in the default <code class="docutils literal notranslate"><span class="pre">secret</span></code> secret engine in HashiCorp as seen in the image below. We’ll soon be supporting the storage of credentials in other secret engines.</p>
 <img alt="../../../_images/mounts.png" src="../../../_images/mounts.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
 <p><strong>name</strong>: <code class="docutils literal notranslate"><span class="pre">&lt;name_of_the_username_secret&gt;</span></code> and <code class="docutils literal notranslate"><span class="pre">&lt;name_of_the_password_secret&gt;</span></code> are the names of the specific secret whose value you want to access.</p>
 <img alt="../../../_images/hashicorp_secret.png" src="../../../_images/hashicorp_secret.png" />
 <p>In the screenshot above, the secret names would be <code class="docutils literal notranslate"><span class="pre">PG_PASSWORD</span></code> and <code class="docutils literal notranslate"><span class="pre">PG_USERNAME</span></code>.</p>
@@ -459,14 +462,14 @@
 <p><strong>TDS_{VAULT_NAME}_TOKEN:</strong> this environment variable holds the TOKEN needed to access the HashiCorp vault.</p>
 <p><strong>TDS_{VAULT_NAME}_NAMESPACE:</strong> this environment variable holds the namespace from which you are accessing the HashiCorp vault.</p>
 <p>The above variables need to correspond to the role that has the permissions to access the secrets needed. For testing purposes you can use the “admin” token and namespace.</p>
-<p>In the default case, when no vault name is provided, these environment variables will be <code class="docutils literal notranslate"><span class="pre">TDS_HASHICORP_URL</span></code>, <code class="docutils literal notranslate"><span class="pre">TDS_HASHICORP_TOKEN</span></code> and <code class="docutils literal notranslate"><span class="pre">TDS_HASHICORP_NAMESPACE</span></code>.</p>
+<p>In the default case, when no vault name is provided in the Python code, these environment variables will be <code class="docutils literal notranslate"><span class="pre">TDS_HASHICORP_URL</span></code>, <code class="docutils literal notranslate"><span class="pre">TDS_HASHICORP_TOKEN</span></code> and <code class="docutils literal notranslate"><span class="pre">TDS_HASHICORP_NAMESPACE</span></code>.</p>
 <p>As an alternate, let’s take an example of a user who wants to access the following secret:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">tabsdata</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">td</span>
 <span class="n">secret</span> <span class="o">=</span> <span class="n">td</span><span class="o">.</span><span class="n">HashiCorpSecret</span><span class="p">(</span><span class="err">“</span><span class="n">path_to_the_secret</span><span class="err">”</span><span class="p">,</span> <span class="err">“</span><span class="n">name_of_the_secret</span><span class="err">”</span><span class="p">,</span> <span class="n">vault</span><span class="o">=</span><span class="err">”</span><span class="n">DEV_VAULT</span><span class="err">”</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>To access the secrets stored in DEV_VAULT, the environment variables stored should be <code class="docutils literal notranslate"><span class="pre">TDS_DEV_VAULT_URL</span></code>, <code class="docutils literal notranslate"><span class="pre">TDS_DEV_VAULT_TOKEN</span></code> and <code class="docutils literal notranslate"><span class="pre">TDS_DEV_VAULT_NAMESPACE</span></code>. With vault names, it is possible for a multiple vaults to exist for better management within Tabsdata.</p>
-<p><strong>Note</strong>: You can check if the <code class="docutils literal notranslate"><span class="pre">secret</span></code> is storing the correct value by using the <code class="docutils literal notranslate"><span class="pre">secret.secret_value</span></code> attribute.</p>
+<p><strong>Note</strong>: You can check if the <code class="docutils literal notranslate"><span class="pre">secret</span></code> is storing the correct value by printing the <code class="docutils literal notranslate"><span class="pre">secret.secret_value</span></code> attribute.</p>
 </section>
 </section>
 
