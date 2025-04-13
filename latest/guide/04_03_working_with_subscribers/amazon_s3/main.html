@@ -355,7 +355,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../../07_working_with_connector_plugins/main.html">Working with Plugins</a></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../../secrets_management/main.html">Secrets Management</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference internal" href="../../secrets_management/env_variables/main.html">Environment Variables</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../secrets_management/hashicorp/main.html">Hashicorp Secret</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../secrets_management/hashicorp/main.html">HashiCorp Secret</a></li>
 </ul>
 </details></li>
 <li class="toctree-l1"><a class="reference internal" href="../../08_best_practices/main.html">Best Practices</a></li>
@@ -449,7 +449,7 @@
             <span class="s2">&quot;s3://opt/hr/departments.csv&quot;</span><span class="p">,</span>
             <span class="s2">&quot;s3://opt/hr/employees_*.csv&quot;</span><span class="p">,</span>
         <span class="p">],</span>
-        <span class="n">s3_credentials</span><span class="p">,</span>
+        <span class="n">credentials</span> <span class="o">=</span> <span class="n">s3_credentials</span><span class="p">,</span>
         <span class="n">region</span> <span class="o">=</span> <span class="s2">&quot;us-east-2&quot;</span><span class="p">,</span>
     <span class="p">),</span>
 <span class="p">)</span>
@@ -474,7 +474,7 @@
 <span class="nd">@td</span><span class="o">.</span><span class="n">subscriber</span><span class="p">(</span>
     <span class="n">tables</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;&lt;input_table1&gt;&quot;</span><span class="p">,</span> <span class="s2">&quot;&lt;input_table2&gt;&quot;</span><span class="p">],</span>
     <span class="n">destination</span><span class="o">=</span><span class="n">td</span><span class="o">.</span><span class="n">S3Destination</span><span class="p">(</span>
-        <span class="p">[</span><span class="s2">&quot;s3://&lt;path_to_file1&gt;&quot;</span><span class="p">,</span> <span class="s2">&quot;s3://&lt;path_to_file2&gt;&quot;</span><span class="p">],</span> <span class="n">s3_credentials</span><span class="p">,</span> <span class="n">region</span> <span class="o">=</span> <span class="s2">&quot;&lt;region_name&gt;&quot;</span><span class="p">,</span>
+        <span class="p">[</span><span class="s2">&quot;s3://&lt;path_to_file1&gt;&quot;</span><span class="p">,</span> <span class="s2">&quot;s3://&lt;path_to_file2&gt;&quot;</span><span class="p">],</span> <span class="n">credentials</span> <span class="o">=</span> <span class="n">s3_credentials</span><span class="p">,</span> <span class="n">region</span> <span class="o">=</span> <span class="s2">&quot;&lt;region_name&gt;&quot;</span><span class="p">,</span>
     <span class="p">),</span>
     <span class="n">trigger_by</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;&lt;trigger_table1&gt;&quot;</span><span class="p">,</span> <span class="s2">&quot;&lt;trigger_table2&gt;&quot;</span><span class="p">],</span>
 <span class="p">)</span>
@@ -519,12 +519,13 @@
 </pre></div>
 </div>
 <p><code class="docutils literal notranslate"><span class="pre">&quot;&lt;path_to_file1_no_extension&gt;&quot;</span></code>, <code class="docutils literal notranslate"><span class="pre">&quot;&lt;path_to_file2_no_extension&gt;&quot;</span></code>… are paths to CSV files with a custom delimiter, with extensions of the file not included in the file name. The delimiter is a single byte character such as colon (:), semicolon (;), and period (.) that separate the fields in the given file instead of a comma(,). You define the character in <code class="docutils literal notranslate"><span class="pre">separator</span></code>.</p>
-<section id="s3-credentials">
-<h4>s3_credentials<a class="headerlink" href="#s3-credentials" title="Link to this heading">#</a></h4>
+<section id="credentials">
+<h4>credentials<a class="headerlink" href="#credentials" title="Link to this heading">#</a></h4>
 <p>A subscriber needs credentials to write files from Amazon S3. Here the value is defined using a variable <strong>s3_credentials</strong>. The variable is an object of class <code class="docutils literal notranslate"><span class="pre">S3AccessKeyCredentials</span></code> with following values.</p>
 <p><code class="docutils literal notranslate"><span class="pre">S3_ACCESS_KEY</span></code> is the value of your Amazon S3 access key.</p>
 <p><code class="docutils literal notranslate"><span class="pre">S3_SECRET_KEY</span></code> is the value of your Amazon S3 secret key.</p>
-<p><code class="docutils literal notranslate"><span class="pre">path-to-secret</span></code> is the name of the default key value store in Hashicorp where the credential values are required to be stored.</p>
+<p><code class="docutils literal notranslate"><span class="pre">path-to-secret</span></code> is the name of the default key value store in HashiCorp where the credential values are required to be stored.</p>
+<p>You can use different ways to store the credentials which are highlighted <a class="reference internal" href="../../secrets_management/main.html#credentials"><span class="std std-ref">here</span></a> in the documentation.</p>
 </section>
 </section>
 <section id="region">
@@ -601,7 +602,7 @@
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#setup-subscriber-amazon-s3">Setup (Subscriber - Amazon S3)</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tables">tables</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#destination">destination</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#s3-credentials">s3_credentials</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#credentials">credentials</a></li>
 </ul>
 </li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#region">region</a></li>

@@ -355,7 +355,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../../07_working_with_connector_plugins/main.html">Working with Plugins</a></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../../secrets_management/main.html">Secrets Management</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference internal" href="../../secrets_management/env_variables/main.html">Environment Variables</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../secrets_management/hashicorp/main.html">Hashicorp Secret</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../secrets_management/hashicorp/main.html">HashiCorp Secret</a></li>
 </ul>
 </details></li>
 <li class="toctree-l1"><a class="reference internal" href="../../08_best_practices/main.html">Best Practices</a></li>
@@ -438,8 +438,8 @@
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">tabsdata</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">td</span>
 
 <span class="n">azure_credentials</span> <span class="o">=</span> <span class="n">td</span><span class="o">.</span><span class="n">AzureAccountKeyCredentials</span><span class="p">(</span>
-    <span class="n">account_name</span><span class="o">=</span><span class="n">td</span><span class="o">.</span><span class="n">DirectSecret</span><span class="p">(</span><span class="s2">&quot;AZURE_ACCOUNT_NAME&quot;</span><span class="p">),</span>
-    <span class="n">account_key</span><span class="o">=</span><span class="n">td</span><span class="o">.</span><span class="n">DirectSecret</span><span class="p">(</span><span class="s2">&quot;AZURE_ACCOUNT_KEY&quot;</span><span class="p">),</span>
+    <span class="n">account_name</span><span class="o">=</span><span class="n">td</span><span class="o">.</span><span class="n">HashiCorpSecret</span><span class="p">(</span><span class="s2">&quot;path-to-secret&quot;</span><span class="p">,</span><span class="s2">&quot;AZURE_ACCOUNT_NAME&quot;</span><span class="p">),</span>
+    <span class="n">account_key</span><span class="o">=</span><span class="n">td</span><span class="o">.</span><span class="n">HashiCorpSecret</span><span class="p">(</span><span class="s2">&quot;path-to-secret&quot;</span><span class="p">,</span><span class="s2">&quot;AZURE_ACCOUNT_KEY&quot;</span><span class="p">),</span>
 <span class="p">)</span>
 
 <span class="nd">@td</span><span class="o">.</span><span class="n">subscriber</span><span class="p">(</span>
@@ -450,7 +450,7 @@
             <span class="s2">&quot;az://opt/hr/employees_1.csv&quot;</span><span class="p">,</span>
             <span class="s2">&quot;az://opt/hr/employees_2.csv&quot;</span><span class="p">,</span>
         <span class="p">],</span>
-        <span class="n">azure_credentials</span><span class="p">,</span>
+        <span class="n">credentials</span> <span class="o">=</span> <span class="n">azure_credentials</span><span class="p">,</span>
     <span class="p">),</span>
 <span class="p">)</span>
 <span class="k">def</span><span class="w"> </span><span class="nf">write_employees</span><span class="p">(</span><span class="n">tf1</span><span class="p">:</span> <span class="n">td</span><span class="o">.</span><span class="n">TableFrame</span><span class="p">,</span> <span class="n">tf2</span><span class="p">:</span> <span class="n">td</span><span class="o">.</span><span class="n">TableFrame</span><span class="p">,</span> <span class="n">tf3</span><span class="p">:</span> <span class="n">td</span><span class="o">.</span><span class="n">TableFrame</span><span class="p">):</span>
@@ -468,8 +468,8 @@
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">tabsdata</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">td</span>
 
 <span class="n">azure_credentials</span> <span class="o">=</span> <span class="n">td</span><span class="o">.</span><span class="n">AzureAccountKeyCredentials</span><span class="p">(</span>
-    <span class="n">account_name</span><span class="o">=</span><span class="n">td</span><span class="o">.</span><span class="n">DirectSecret</span><span class="p">(</span><span class="s2">&quot;AZURE_ACCOUNT_NAME&quot;</span><span class="p">),</span>
-    <span class="n">account_key</span><span class="o">=</span><span class="n">td</span><span class="o">.</span><span class="n">DirectSecret</span><span class="p">(</span><span class="s2">&quot;AZURE_ACCOUNT_KEY&quot;</span><span class="p">),</span>
+    <span class="n">account_name</span><span class="o">=</span><span class="n">td</span><span class="o">.</span><span class="n">HashiCorpSecret</span><span class="p">(</span><span class="s2">&quot;path-to-secret&quot;</span><span class="p">,</span><span class="s2">&quot;AZURE_ACCOUNT_NAME&quot;</span><span class="p">),</span>
+    <span class="n">account_key</span><span class="o">=</span><span class="n">td</span><span class="o">.</span><span class="n">HashiCorpSecret</span><span class="p">(</span><span class="s2">&quot;path-to-secret&quot;</span><span class="p">,</span><span class="s2">&quot;AZURE_ACCOUNT_KEY&quot;</span><span class="p">),</span>
 <span class="p">)</span>
 
 
@@ -487,15 +487,12 @@
 </div>
 <p><strong>Note:</strong> After defining the function, you need to register it with a Tabsdata collection. For more information, see here <a class="reference internal" href="../../04_working_with_functions/main.html#register-a-function"><span class="std std-ref">here</span></a>.</p>
 <p>Following properties are defined in the setup code above:</p>
-<section id="credentials">
-<h3>Credentials<a class="headerlink" href="#credentials" title="Link to this heading">#</a></h3>
-<p>A subscriber needs credentials to write files to Azure Blob Storage.</p>
-<p><code class="docutils literal notranslate"><span class="pre">AZURE_ACCOUNT_NAME</span></code> is your Azure account name.</p>
-<p><code class="docutils literal notranslate"><span class="pre">AZURE_ACCOUNT_KEY</span></code> is the value of your Azure account key.</p>
-<p>The support to store key values directly in Tabsdata server as environmental variables is going to be coming soon in the forthcoming releases.</p>
+<section id="tables">
+<h3>tables<a class="headerlink" href="#tables" title="Link to this heading">#</a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">&lt;input_table1&gt;</span></code>, <code class="docutils literal notranslate"><span class="pre">&lt;input_table2&gt;</span></code>… are the names of the Tabsdata tables to be written to the external system.</p>
 </section>
 <section id="destination">
-<h3>Destination<a class="headerlink" href="#destination" title="Link to this heading">#</a></h3>
+<h3>destination<a class="headerlink" href="#destination" title="Link to this heading">#</a></h3>
 <p><code class="docutils literal notranslate"><span class="pre">&lt;path_to_file1&gt;</span></code>, <code class="docutils literal notranslate"><span class="pre">&lt;path_to_file2&gt;</span></code>… are the full system directory paths to write the files to.</p>
 <p>All the destination files in a subscriber need to have the same extension. Following file formats are supported currently: CSV, jsonl, ndjson, and parquet.</p>
 <p>You can specify as many file paths as needed.</p>
@@ -524,6 +521,13 @@
 </pre></div>
 </div>
 <p><code class="docutils literal notranslate"><span class="pre">&quot;&lt;path_to_file1_no_extension&gt;&quot;</span></code>, <code class="docutils literal notranslate"><span class="pre">&quot;&lt;path_to_file2_no_extension&gt;&quot;</span></code>… are paths to CSV files with a custom delimiter, with extensions of the file not included in the file name. The delimiter is a single byte character such as colon (:), semicolon (;), and period (.) that separate the fields in the given file instead of a comma(,). You define the character in <code class="docutils literal notranslate"><span class="pre">separator</span></code>.</p>
+<section id="credentials">
+<h4>credentials<a class="headerlink" href="#credentials" title="Link to this heading">#</a></h4>
+<p>A subscriber needs credentials to write files to Azure Blob Storage. Here the value is defined using a variable <strong>azure_credentials</strong>. The variable is an object of class <code class="docutils literal notranslate"><span class="pre">AzureAccountKeyCredentials</span></code> with following values.</p>
+<p><code class="docutils literal notranslate"><span class="pre">AZURE_ACCOUNT_NAME</span></code> is your Azure account name.</p>
+<p><code class="docutils literal notranslate"><span class="pre">AZURE_ACCOUNT_KEY</span></code> is the value of your Azure account key.</p>
+<p>You can use different ways to store the credentials which are highlighted <a class="reference internal" href="../../secrets_management/main.html#credentials"><span class="std std-ref">here</span></a> in the documentation.</p>
+</section>
 </section>
 <section id="trigger-by">
 <h3>trigger_by<a class="headerlink" href="#trigger-by" title="Link to this heading">#</a></h3>
@@ -593,8 +597,11 @@
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-subscriber-azure-blob-storage">Example (Subscriber - Azure Blob Storage)</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#setup-subscriber-azure-blob-storage">Setup (Subscriber - Azure Blob Storage)</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#credentials">Credentials</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#destination">Destination</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tables">tables</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#destination">destination</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#credentials">credentials</a></li>
+</ul>
+</li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#trigger-by">trigger_by</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#subscriber-name">&lt;subscriber_name&gt;</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#function-logic">&lt;function_logic&gt;</a></li>
