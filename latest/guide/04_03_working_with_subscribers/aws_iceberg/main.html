@@ -496,12 +496,12 @@
         <span class="n">credentials</span> <span class="o">=</span> <span class="n">s3_credentials</span><span class="p">,</span>
         <span class="n">region</span> <span class="o">=</span> <span class="s2">&quot;&lt;region_name&gt;&quot;</span><span class="p">,</span>
         <span class="n">catalog</span> <span class="o">=</span> <span class="n">td</span><span class="o">.</span><span class="n">AWSGlue</span><span class="p">(</span>
-                <span class="n">definition</span><span class="p">:</span> <span class="nb">dict</span> <span class="o">=</span> <span class="s2">&quot;&lt;definition&gt;&quot;</span><span class="p">,</span>
-                <span class="n">tables</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;&lt;table_1&gt;&quot;</span><span class="p">,</span><span class="s2">&quot;&lt;table_2&gt;&quot;</span><span class="p">],</span>
-                <span class="n">auto_create_at</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span><span class="p">]</span> <span class="o">|</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;&lt;auto_create_1&gt;&quot;</span><span class="p">,</span><span class="s2">&quot;&lt;auto_create_2&gt;&quot;</span><span class="p">],</span>
-                <span class="n">if_table_exists</span><span class="p">:</span> <span class="n">Literal</span><span class="p">[</span><span class="s2">&quot;append&quot;</span><span class="p">,</span> <span class="s2">&quot;replace&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;&lt;if_table_exists_append_replace&gt;&quot;</span><span class="p">,</span>
-                <span class="n">partitioned_table</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="s2">&quot;&lt;partitioned_table_bool&gt;&quot;</span><span class="p">,</span>
-                <span class="n">schema_strategy</span><span class="p">:</span> <span class="n">Literal</span><span class="p">[</span><span class="s2">&quot;update&quot;</span><span class="p">,</span> <span class="s2">&quot;strict&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;&lt;schema_strategy_update_strict&gt;&quot;</span><span class="p">,</span>
+                <span class="n">definition</span> <span class="o">=</span> <span class="s2">&quot;&lt;definition&gt;&quot;</span><span class="p">,</span>
+                <span class="n">tables</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;&lt;table_1&gt;&quot;</span><span class="p">,</span><span class="s2">&quot;&lt;table_2&gt;&quot;</span><span class="p">],</span>
+                <span class="n">auto_create_at</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;&lt;auto_create_1&gt;&quot;</span><span class="p">,</span><span class="s2">&quot;&lt;auto_create_2&gt;&quot;</span><span class="p">],</span>
+                <span class="n">if_table_exists</span> <span class="o">=</span> <span class="s2">&quot;&lt;if_table_exists_append_replace&gt;&quot;</span><span class="p">,</span>
+                <span class="n">partitioned_table</span> <span class="o">=</span> <span class="s2">&quot;&lt;partitioned_table_bool&gt;&quot;</span><span class="p">,</span>
+                <span class="n">schema_strategy</span> <span class="o">=</span> <span class="s2">&quot;&lt;schema_strategy_update_strict&gt;&quot;</span><span class="p">,</span>
                 <span class="p">),</span>
                 <span class="p">),</span>
     <span class="n">trigger_by</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;&lt;trigger_table1&gt;&quot;</span><span class="p">,</span> <span class="s2">&quot;&lt;trigger_table2&gt;&quot;</span><span class="p">]),</span>
@@ -547,19 +547,19 @@
 <p>You can use different ways to store the credentials which are highlighted <a class="reference internal" href="../../secrets_management/main.html#credentials"><span class="std std-ref">here</span></a> in the documentation.</p>
 </section>
 <section id="region">
-<h4>region<a class="headerlink" href="#region" title="Link to this heading">#</a></h4>
-<p><code class="docutils literal notranslate"><span class="pre">&quot;&lt;region_name&gt;&quot;</span></code> is where you have your S3 bucket is located.</p>
+<h4><code class="docutils literal notranslate"><span class="pre">region</span></code><a class="headerlink" href="#region" title="Link to this heading">#</a></h4>
+<p><code class="docutils literal notranslate"><span class="pre">&quot;&lt;region_name&gt;&quot;</span></code> is where your S3 bucket is located.</p>
 </section>
 <section id="catalog">
-<h4>catalog<a class="headerlink" href="#catalog" title="Link to this heading">#</a></h4>
+<h4><code class="docutils literal notranslate"><span class="pre">catalog</span></code><a class="headerlink" href="#catalog" title="Link to this heading">#</a></h4>
 <p>This property is used to define the properties of your catalog.</p>
 <section id="definition">
 <h5><code class="docutils literal notranslate"><span class="pre">definition</span></code><a class="headerlink" href="#definition" title="Link to this heading">#</a></h5>
-<p>This defines the catalog. It matches the <a class="reference external" href="https://py.iceberg.apache.org/configuration/#catalogs">pyiceberg catalog definition</a> and the value is simply passed through.</p>
+<p>This property defines the catalog. It is of dictionary format, and matches the <a class="reference external" href="https://py.iceberg.apache.org/configuration/#catalogs">pyiceberg catalog definition</a>. The value is simply passed through.</p>
 </section>
 <section id="id1">
 <h5><code class="docutils literal notranslate"><span class="pre">tables</span></code><a class="headerlink" href="#id1" title="Link to this heading">#</a></h5>
-<p>These are the Iceberg tables we want to add the parquet files to. They need to have the same number as the parquet files being created in S3.</p>
+<p>These are the names of the Iceberg tables we want to add the parquet files to. They need to have the same number as the parquet files being created in S3.</p>
 </section>
 <section id="auto-create-at">
 <h5><code class="docutils literal notranslate"><span class="pre">auto_create_at</span></code><a class="headerlink" href="#auto-create-at" title="Link to this heading">#</a></h5>
@@ -662,8 +662,8 @@
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#destination">destination</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#path-to-files">&lt;path_to_files&gt;</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#s3-credentials">s3_credentials</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#region">region</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#catalog">catalog</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#region"><code class="docutils literal notranslate"><span class="pre">region</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#catalog"><code class="docutils literal notranslate"><span class="pre">catalog</span></code></a><ul class="nav section-nav flex-column">
 <li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#definition"><code class="docutils literal notranslate"><span class="pre">definition</span></code></a></li>
 <li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#id1"><code class="docutils literal notranslate"><span class="pre">tables</span></code></a></li>
 <li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#auto-create-at"><code class="docutils literal notranslate"><span class="pre">auto_create_at</span></code></a></li>
