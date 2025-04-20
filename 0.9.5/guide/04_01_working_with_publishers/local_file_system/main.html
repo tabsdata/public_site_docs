@@ -359,13 +359,9 @@
 </ul>
 </details></li>
 <li class="toctree-l1"><a class="reference internal" href="../../08_best_practices/main.html">Best Practices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../10_troubleshooting/main.html">Troubleshooting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../11_cli_commands/main.html">CLI Reference</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../09_contact_support/main.html">Contact Us</a></li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../../10_appendix/main.html">Appendix</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l2"><a class="reference internal" href="../../10_appendix/cli_commands.html">Tabsdata Server Configuration</a></li>
-
-<li class="toctree-l2"><a class="reference internal" href="../../10_appendix/troubleshooting.html">Troubleshooting</a></li>
-</ul>
-</details></li>
 </ul>
 </div>
 </nav></div>
@@ -506,12 +502,12 @@
 <p><strong>Custom delimiter for CSV</strong></p>
 <p>To define a custom delimiter for reading a CSV file, define the source as follows:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">source</span><span class="o">=</span><span class="n">td</span><span class="o">.</span><span class="n">LocalFileSource</span><span class="p">([</span>
-        <span class="s2">&quot;&lt;path_to_file1_no_extension&gt;&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;&lt;path_to_file2_no_extension&gt;&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;&lt;path_to_file1.csv&gt;&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;&lt;path_to_file2.csv&gt;&quot;</span><span class="p">,</span>
         <span class="p">],</span> <span class="nb">format</span><span class="o">=</span><span class="n">td</span><span class="o">.</span><span class="n">CSVFormat</span><span class="p">(</span><span class="n">separator</span><span class="o">=</span><span class="s2">&quot;&lt;separator_character&gt;&quot;</span><span class="p">)),</span>
 </pre></div>
 </div>
-<p><code class="docutils literal notranslate"><span class="pre">&quot;&lt;path_to_file1_no_extension&gt;&quot;</span></code>, <code class="docutils literal notranslate"><span class="pre">&quot;&lt;path_to_file2_no_extension&gt;&quot;</span></code>… are paths to CSV files with a custom delimiter, with extensions of the file not included in the file name. The delimiter is a single byte character such as colon (:), semicolon (;), and period (.) that separate the fields in the given file instead of a comma(,). You define the character in <code class="docutils literal notranslate"><span class="pre">separator</span></code>.</p>
+<p><code class="docutils literal notranslate"><span class="pre">&quot;&lt;path_to_file1.csv&gt;&quot;</span></code>, <code class="docutils literal notranslate"><span class="pre">&quot;&lt;path_to_file2.csv&gt;&quot;</span></code>… are paths to CSV files with a custom delimiter, with csv extension. The delimiter is a single byte character such as colon (:), semicolon (;), and period (.) that separate the fields in the given file instead of a comma(,). You define the character in <code class="docutils literal notranslate"><span class="pre">separator</span></code>.</p>
 </section>
 <section id="initial-last-modified">
 <h3><code class="docutils literal notranslate"><span class="pre">initial_last_modified</span></code><a class="headerlink" href="#initial-last-modified" title="Link to this heading">#</a></h3>

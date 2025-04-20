@@ -58,7 +58,7 @@
     <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
     <script src="../../_static/copybutton.js?v=a56c686a"></script>
     <script src="../../_static/design-tabs.js?v=f930bc37"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'guide/10_appendix/troubleshooting';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'guide/10_troubleshooting/main';</script>
     <script>
         DOCUMENTATION_OPTIONS.theme_version = '0.16.1';
         DOCUMENTATION_OPTIONS.theme_switcher_json_url = 'https://docs.tabsdata.com/version.json';
@@ -69,8 +69,8 @@
     <script src="../../_static/custom.js?v=89ccd112"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="Tabsdata API Reference" href="../../api_ref/index.html" />
-    <link rel="prev" title="Tabsdata Server Configuration" href="cli_commands.html" />
+    <link rel="next" title="CLI Reference" href="../11_cli_commands/main.html" />
+    <link rel="prev" title="Best Practices" href="../08_best_practices/main.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   <meta name="docsearch:version" content="0.9.5" />
@@ -359,13 +359,9 @@
 </ul>
 </details></li>
 <li class="toctree-l1"><a class="reference internal" href="../08_best_practices/main.html">Best Practices</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Troubleshooting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cli_commands/main.html">CLI Reference</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../09_contact_support/main.html">Contact Us</a></li>
-<li class="toctree-l1 current active has-children"><a class="reference internal" href="main.html">Appendix</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="cli_commands.html">Tabsdata Server Configuration</a></li>
-
-<li class="toctree-l2 current active"><a class="current reference internal" href="#">Troubleshooting</a></li>
-</ul>
-</details></li>
 </ul>
 </div>
 </nav></div>
@@ -409,9 +405,6 @@
     
     <li class="breadcrumb-item"><a href="../intro.html" class="nav-link">User Guide</a></li>
     
-    
-    <li class="breadcrumb-item"><a href="main.html" class="nav-link">Appendix</a></li>
-    
     <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">Troubleshooting</span></li>
   </ul>
 </nav>
@@ -431,64 +424,6 @@
                   
   <section id="troubleshooting">
 <span id="id1"></span><h1>Troubleshooting<a class="headerlink" href="#troubleshooting" title="Link to this heading">#</a></h1>
-<section id="check-the-server-status">
-<h2>Check the Server Status<a class="headerlink" href="#check-the-server-status" title="Link to this heading">#</a></h2>
-<p>Use the <code class="docutils literal notranslate"><span class="pre">tdserver</span> <span class="pre">status</span></code> command to check the status of the
-<code class="docutils literal notranslate"><span class="pre">TabsData</span></code> server.</p>
-<p><em>Sample output when running:</em></p>
-<a class="reference external image-reference" href="https://docs.tabsdata.com/latest/_images/image1.png"><img alt="../../_images/image1.png" src="../../_images/image1.png" />
-</a>
-<p><em>Sample output when not running:</em></p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="err">$</span> <span class="n">tdserver</span> <span class="n">status</span>
-<span class="mi">2025</span><span class="o">-</span><span class="mi">02</span><span class="o">-</span><span class="mi">02</span><span class="n">T21</span><span class="p">:</span><span class="mi">34</span><span class="p">:</span><span class="mf">16.330213</span><span class="n">Z</span>  <span class="n">WARN</span> <span class="n">tabsdatalib</span><span class="p">::</span><span class="nb">bin</span><span class="p">::</span><span class="n">tdserver</span><span class="p">:</span> <span class="err">✅</span> <span class="err">✅</span> <span class="err">✅</span> <span class="n">Activated</span> <span class="n">tabsdata</span> <span class="n">enterprise</span> <span class="ow">in</span> <span class="n">production</span> <span class="n">mode</span>
-<span class="mi">2025</span><span class="o">-</span><span class="mi">02</span><span class="o">-</span><span class="mi">02</span><span class="n">T21</span><span class="p">:</span><span class="mi">34</span><span class="p">:</span><span class="mf">16.348513</span><span class="n">Z</span>  <span class="n">WARN</span> <span class="n">tabsdatalib</span><span class="p">::</span><span class="nb">bin</span><span class="p">::</span><span class="n">tdserver</span><span class="p">:</span> <span class="n">TabsData</span> <span class="n">instance</span> <span class="s1">&#39;/Users/foo/.tabsdata/instances/tabsdata/workspace&#39;</span> <span class="ow">not</span> <span class="n">running</span><span class="p">:</span> <span class="s1">&#39;NotRunning { pid: 90788 }&#39;</span>
-</pre></div>
-</div>
-</section>
-<section id="check-the-server-logs">
-<h2>Check the Server Logs<a class="headerlink" href="#check-the-server-logs" title="Link to this heading">#</a></h2>
-<p>Use the <code class="docutils literal notranslate"><span class="pre">tdserver</span> <span class="pre">log</span></code> command to check the logs of the <code class="docutils literal notranslate"><span class="pre">TabsData</span></code>
-server. It will print (continuously) the logs of the server. Press
-<code class="docutils literal notranslate"><span class="pre">Ctrl+C</span></code> to stop.</p>
-<p><em>For example:</em></p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="err">$</span> <span class="n">tdserver</span> <span class="n">log</span>
-<span class="o">...</span>
-<span class="n">Source</span><span class="p">:</span> <span class="o">/</span><span class="n">Users</span><span class="o">/</span><span class="n">foo</span><span class="o">/.</span><span class="n">tabsdata</span><span class="o">/</span><span class="n">instances</span><span class="o">/</span><span class="n">tabsdata</span><span class="o">/</span><span class="n">workspace</span><span class="o">/</span><span class="n">work</span><span class="o">/</span><span class="n">proc</span><span class="o">/</span><span class="n">regular</span><span class="o">/</span><span class="n">apisrv</span><span class="o">/</span><span class="n">work</span><span class="o">/</span><span class="n">log</span><span class="o">/</span><span class="n">td</span><span class="o">.</span><span class="n">log</span> <span class="o">-</span> <span class="n">Line</span><span class="p">:</span> <span class="mi">2025</span><span class="o">-</span><span class="mi">02</span><span class="o">-</span><span class="mi">02</span><span class="n">T22</span><span class="p">:</span><span class="mi">12</span><span class="p">:</span><span class="mf">10.370237</span><span class="n">Z</span> <span class="n">DEBUG</span> <span class="n">tower</span><span class="p">::</span><span class="n">buffer</span><span class="p">::</span><span class="n">worker</span><span class="p">:</span> <span class="n">service</span><span class="o">.</span><span class="n">ready</span><span class="o">=</span><span class="n">true</span> <span class="n">processing</span> <span class="n">request</span>
-<span class="n">Source</span><span class="p">:</span> <span class="o">/</span><span class="n">Users</span><span class="o">/</span><span class="n">foo</span><span class="o">/.</span><span class="n">tabsdata</span><span class="o">/</span><span class="n">instances</span><span class="o">/</span><span class="n">tabsdata</span><span class="o">/</span><span class="n">workspace</span><span class="o">/</span><span class="n">work</span><span class="o">/</span><span class="n">proc</span><span class="o">/</span><span class="n">regular</span><span class="o">/</span><span class="n">apisrv</span><span class="o">/</span><span class="n">work</span><span class="o">/</span><span class="n">log</span><span class="o">/</span><span class="n">td</span><span class="o">.</span><span class="n">log</span> <span class="o">-</span> <span class="n">Line</span><span class="p">:</span> <span class="mi">2025</span><span class="o">-</span><span class="mi">02</span><span class="o">-</span><span class="mi">02</span><span class="n">T22</span><span class="p">:</span><span class="mi">12</span><span class="p">:</span><span class="mf">10.370237</span><span class="n">Z</span> <span class="n">DEBUG</span> <span class="n">tower</span><span class="p">::</span><span class="n">buffer</span><span class="p">::</span><span class="n">worker</span><span class="p">:</span> <span class="n">service</span><span class="o">.</span><span class="n">ready</span><span class="o">=</span><span class="n">true</span> <span class="n">processing</span> <span class="n">request</span>
-<span class="n">Source</span><span class="p">:</span> <span class="o">/</span><span class="n">Users</span><span class="o">/</span><span class="n">foo</span><span class="o">/.</span><span class="n">tabsdata</span><span class="o">/</span><span class="n">instances</span><span class="o">/</span><span class="n">tabsdata</span><span class="o">/</span><span class="n">workspace</span><span class="o">/</span><span class="n">work</span><span class="o">/</span><span class="n">log</span><span class="o">/</span><span class="n">td</span><span class="o">.</span><span class="n">log</span> <span class="o">-</span> <span class="n">Line</span><span class="p">:</span> <span class="mi">2025</span><span class="o">-</span><span class="mi">02</span><span class="o">-</span><span class="mi">02</span><span class="n">T22</span><span class="p">:</span><span class="mi">12</span><span class="p">:</span><span class="mf">10.746806</span><span class="n">Z</span> <span class="n">DEBUG</span> <span class="n">td_common</span><span class="p">::</span><span class="n">monitor</span><span class="p">:</span>
-<span class="n">Source</span><span class="p">:</span> <span class="o">/</span><span class="n">Users</span><span class="o">/</span><span class="n">foo</span><span class="o">/.</span><span class="n">tabsdata</span><span class="o">/</span><span class="n">instances</span><span class="o">/</span><span class="n">tabsdata</span><span class="o">/</span><span class="n">workspace</span><span class="o">/</span><span class="n">work</span><span class="o">/</span><span class="n">log</span><span class="o">/</span><span class="n">td</span><span class="o">.</span><span class="n">log</span> <span class="o">-</span> <span class="n">Line</span><span class="p">:</span> <span class="o">-</span> <span class="n">Process</span> <span class="n">PID</span><span class="o">...</span><span class="p">:</span> <span class="mi">11056</span>
-<span class="n">Source</span><span class="p">:</span> <span class="o">/</span><span class="n">Users</span><span class="o">/</span><span class="n">foo</span><span class="o">/.</span><span class="n">tabsdata</span><span class="o">/</span><span class="n">instances</span><span class="o">/</span><span class="n">tabsdata</span><span class="o">/</span><span class="n">workspace</span><span class="o">/</span><span class="n">work</span><span class="o">/</span><span class="n">log</span><span class="o">/</span><span class="n">td</span><span class="o">.</span><span class="n">log</span> <span class="o">-</span> <span class="n">Line</span><span class="p">:</span> <span class="o">-</span> <span class="n">Process</span> <span class="n">Physical</span> <span class="n">Memory</span><span class="p">:</span> <span class="mi">30</span> <span class="n">mb</span>
-<span class="n">Source</span><span class="p">:</span> <span class="o">/</span><span class="n">Users</span><span class="o">/</span><span class="n">foo</span><span class="o">/.</span><span class="n">tabsdata</span><span class="o">/</span><span class="n">instances</span><span class="o">/</span><span class="n">tabsdata</span><span class="o">/</span><span class="n">workspace</span><span class="o">/</span><span class="n">work</span><span class="o">/</span><span class="n">log</span><span class="o">/</span><span class="n">td</span><span class="o">.</span><span class="n">log</span> <span class="o">-</span> <span class="n">Line</span><span class="p">:</span> <span class="o">-</span> <span class="n">Process</span> <span class="n">Virtual</span> <span class="n">Memory</span><span class="o">.</span><span class="p">:</span> <span class="mi">402</span><span class="p">,</span><span class="mi">494</span> <span class="n">mb</span>
-<span class="n">Source</span><span class="p">:</span> <span class="o">/</span><span class="n">Users</span><span class="o">/</span><span class="n">foo</span><span class="o">/.</span><span class="n">tabsdata</span><span class="o">/</span><span class="n">instances</span><span class="o">/</span><span class="n">tabsdata</span><span class="o">/</span><span class="n">workspace</span><span class="o">/</span><span class="n">work</span><span class="o">/</span><span class="n">log</span><span class="o">/</span><span class="n">td</span><span class="o">.</span><span class="n">log</span> <span class="o">-</span> <span class="n">Line</span><span class="p">:</span> <span class="o">-</span> <span class="n">System</span> <span class="n">Total</span> <span class="n">Memory</span><span class="o">....</span><span class="p">:</span> <span class="mi">131</span><span class="p">,</span><span class="mi">072</span> <span class="n">mb</span>
-<span class="n">Source</span><span class="p">:</span> <span class="o">/</span><span class="n">Users</span><span class="o">/</span><span class="n">foo</span><span class="o">/.</span><span class="n">tabsdata</span><span class="o">/</span><span class="n">instances</span><span class="o">/</span><span class="n">tabsdata</span><span class="o">/</span><span class="n">workspace</span><span class="o">/</span><span class="n">work</span><span class="o">/</span><span class="n">log</span><span class="o">/</span><span class="n">td</span><span class="o">.</span><span class="n">log</span> <span class="o">-</span> <span class="n">Line</span><span class="p">:</span> <span class="o">-</span> <span class="n">System</span> <span class="n">Used</span> <span class="n">Memory</span><span class="o">.....</span><span class="p">:</span> <span class="mi">56</span><span class="p">,</span><span class="mi">216</span> <span class="n">mb</span>
-<span class="n">Source</span><span class="p">:</span> <span class="o">/</span><span class="n">Users</span><span class="o">/</span><span class="n">foo</span><span class="o">/.</span><span class="n">tabsdata</span><span class="o">/</span><span class="n">instances</span><span class="o">/</span><span class="n">tabsdata</span><span class="o">/</span><span class="n">workspace</span><span class="o">/</span><span class="n">work</span><span class="o">/</span><span class="n">log</span><span class="o">/</span><span class="n">td</span><span class="o">.</span><span class="n">log</span> <span class="o">-</span> <span class="n">Line</span><span class="p">:</span> <span class="o">-</span> <span class="n">System</span> <span class="n">Free</span> <span class="n">Memory</span><span class="o">.....</span><span class="p">:</span> <span class="mi">36</span><span class="p">,</span><span class="mi">798</span> <span class="n">mb</span>
-<span class="n">Source</span><span class="p">:</span> <span class="o">/</span><span class="n">Users</span><span class="o">/</span><span class="n">foo</span><span class="o">/.</span><span class="n">tabsdata</span><span class="o">/</span><span class="n">instances</span><span class="o">/</span><span class="n">tabsdata</span><span class="o">/</span><span class="n">workspace</span><span class="o">/</span><span class="n">work</span><span class="o">/</span><span class="n">proc</span><span class="o">/</span><span class="n">regular</span><span class="o">/</span><span class="n">apisrv</span><span class="o">/</span><span class="n">work</span><span class="o">/</span><span class="n">log</span><span class="o">/</span><span class="n">td</span><span class="o">.</span><span class="n">log</span> <span class="o">-</span> <span class="n">Line</span><span class="p">:</span> <span class="mi">2025</span><span class="o">-</span><span class="mi">02</span><span class="o">-</span><span class="mi">02</span><span class="n">T22</span><span class="p">:</span><span class="mi">12</span><span class="p">:</span><span class="mf">10.872019</span><span class="n">Z</span> <span class="n">DEBUG</span> <span class="n">tower</span><span class="p">::</span><span class="n">buffer</span><span class="p">::</span><span class="n">worker</span><span class="p">:</span> <span class="n">service</span><span class="o">.</span><span class="n">ready</span><span class="o">=</span><span class="n">true</span> <span class="n">processing</span> <span class="n">request</span>
-<span class="n">S</span>
-<span class="o">...</span>
-</pre></div>
-</div>
-</section>
-<section id="check-the-server-status-using-the-client-command-line-tool">
-<h2>Check the Server Status using the Client Command-Line Tool<a class="headerlink" href="#check-the-server-status-using-the-client-command-line-tool" title="Link to this heading">#</a></h2>
-<p>Use the <code class="docutils literal notranslate"><span class="pre">td</span> <span class="pre">status</span></code> command to check the status of the <code class="docutils literal notranslate"><span class="pre">TabsData</span></code>
-server. You must be logged in to the server to use the <code class="docutils literal notranslate"><span class="pre">td</span></code>
-command-line tool.</p>
-<p><em>Sample output when logged in:</em></p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="err">$</span> <span class="n">td</span> <span class="n">status</span>
-<span class="n">Obtaining</span> <span class="n">server</span> <span class="n">status</span>
-<span class="o">----------</span>
-<span class="n">Status</span><span class="p">:</span> <span class="s1">&#39;OK&#39;</span><span class="p">,</span> <span class="n">latency_as_nanos</span><span class="p">:</span> <span class="mi">24333</span>
-</pre></div>
-</div>
-<p><em>Sample output when not logged in:</em></p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="err">$</span> <span class="n">td</span> <span class="n">status</span>
-<span class="n">No</span> <span class="n">credentials</span> <span class="n">found</span><span class="o">.</span> <span class="n">Please</span> <span class="n">login</span> <span class="n">first</span><span class="o">.</span>
-</pre></div>
-</div>
-<p><em>Sample output when ``Tabsdata`` server is not running:</em></p>
-<a class="reference external image-reference" href="https://docs.tabsdata.com/latest/_images/image6_2.png"><img alt="../../_images/image6_2.png" src="../../_images/image6_2.png" />
-</a>
-</section>
 <section id="the-execution-of-a-function-failed">
 <h2>The Execution of a Function Failed<a class="headerlink" href="#the-execution-of-a-function-failed" title="Link to this heading">#</a></h2>
 <p>After triggering a function, the <code class="docutils literal notranslate"><span class="pre">td</span> <span class="pre">exec</span> <span class="pre">list-trxs</span></code> reports the
@@ -498,13 +433,13 @@ transaction as failed.</p>
 </a>
 <p>If a transaction is in <code class="docutils literal notranslate"><span class="pre">Failed</span></code> status, all functions that did not
 complete successfully yet are either in <code class="docutils literal notranslate"><span class="pre">Failed</span></code> status or on
-<code class="docutils literal notranslate"><span class="pre">Hold</span></code>. An all functions from all transactions that depend on the
+<code class="docutils literal notranslate"><span class="pre">Hold</span></code>. All functions from all transactions that depend on the
 failed transaction will also be on <code class="docutils literal notranslate"><span class="pre">Hold</span></code> status if they didn’t
 execute yet.</p>
 <section id="find-the-workers-of-the-failed-transaction-that-already-executed">
 <h3>Find the Workers of the Failed Transaction that Already Executed<a class="headerlink" href="#find-the-workers-of-the-failed-transaction-that-already-executed" title="Link to this heading">#</a></h3>
-<p>To find the workers of the failed transaction that already executed, use
-the <code class="docutils literal notranslate"><span class="pre">td</span> <span class="pre">exec</span> <span class="pre">list-workers</span></code> command with one of the following 3
+<p>To know the exact reason for fialure, you will need to access the constituent workers of a transaction.
+To find the workers of the failed transaction, use the <code class="docutils literal notranslate"><span class="pre">td</span> <span class="pre">exec</span> <span class="pre">list-workers</span></code> command with one of the following 3
 options:</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">--trx</span> <span class="pre">&lt;TRX_ID&gt;</span></code> to list workers of a specific transaction (the
@@ -587,6 +522,93 @@ dependent transactions.</p>
 </div>
 </section>
 </section>
+<section id="server-related-issues">
+<h2>Server Related Issues<a class="headerlink" href="#server-related-issues" title="Link to this heading">#</a></h2>
+<section id="check-the-server-status">
+<h3>Check the Server Status<a class="headerlink" href="#check-the-server-status" title="Link to this heading">#</a></h3>
+<p>Use the <code class="docutils literal notranslate"><span class="pre">tdserver</span> <span class="pre">status</span></code> command to check the status of the
+<code class="docutils literal notranslate"><span class="pre">TabsData</span></code> server.</p>
+<p><em>Sample output when running:</em></p>
+<a class="reference external image-reference" href="https://docs.tabsdata.com/latest/_images/image1.png"><img alt="../../_images/image1.png" src="../../_images/image1.png" />
+</a>
+<p><em>Sample output when not running:</em></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="err">$</span> <span class="n">tdserver</span> <span class="n">status</span>
+<span class="mi">2025</span><span class="o">-</span><span class="mi">02</span><span class="o">-</span><span class="mi">02</span><span class="n">T21</span><span class="p">:</span><span class="mi">34</span><span class="p">:</span><span class="mf">16.330213</span><span class="n">Z</span>  <span class="n">WARN</span> <span class="n">tabsdatalib</span><span class="p">::</span><span class="nb">bin</span><span class="p">::</span><span class="n">tdserver</span><span class="p">:</span> <span class="err">✅</span> <span class="err">✅</span> <span class="err">✅</span> <span class="n">Activated</span> <span class="n">tabsdata</span> <span class="n">enterprise</span> <span class="ow">in</span> <span class="n">production</span> <span class="n">mode</span>
+<span class="mi">2025</span><span class="o">-</span><span class="mi">02</span><span class="o">-</span><span class="mi">02</span><span class="n">T21</span><span class="p">:</span><span class="mi">34</span><span class="p">:</span><span class="mf">16.348513</span><span class="n">Z</span>  <span class="n">WARN</span> <span class="n">tabsdatalib</span><span class="p">::</span><span class="nb">bin</span><span class="p">::</span><span class="n">tdserver</span><span class="p">:</span> <span class="n">TabsData</span> <span class="n">instance</span> <span class="s1">&#39;/Users/foo/.tabsdata/instances/tabsdata/workspace&#39;</span> <span class="ow">not</span> <span class="n">running</span><span class="p">:</span> <span class="s1">&#39;NotRunning { pid: 90788 }&#39;</span>
+</pre></div>
+</div>
+</section>
+<section id="check-the-server-logs">
+<h3>Check the Server Logs<a class="headerlink" href="#check-the-server-logs" title="Link to this heading">#</a></h3>
+<p>Use the <code class="docutils literal notranslate"><span class="pre">tdserver</span> <span class="pre">log</span></code> command to check the logs of the <code class="docutils literal notranslate"><span class="pre">TabsData</span></code>
+server. It will print (continuously) the logs of the server. Press
+<code class="docutils literal notranslate"><span class="pre">Ctrl+C</span></code> to stop.</p>
+<p><em>For example:</em></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="err">$</span> <span class="n">tdserver</span> <span class="n">log</span>
+<span class="o">...</span>
+<span class="n">Source</span><span class="p">:</span> <span class="o">/</span><span class="n">Users</span><span class="o">/</span><span class="n">foo</span><span class="o">/.</span><span class="n">tabsdata</span><span class="o">/</span><span class="n">instances</span><span class="o">/</span><span class="n">tabsdata</span><span class="o">/</span><span class="n">workspace</span><span class="o">/</span><span class="n">work</span><span class="o">/</span><span class="n">proc</span><span class="o">/</span><span class="n">regular</span><span class="o">/</span><span class="n">apisrv</span><span class="o">/</span><span class="n">work</span><span class="o">/</span><span class="n">log</span><span class="o">/</span><span class="n">td</span><span class="o">.</span><span class="n">log</span> <span class="o">-</span> <span class="n">Line</span><span class="p">:</span> <span class="mi">2025</span><span class="o">-</span><span class="mi">02</span><span class="o">-</span><span class="mi">02</span><span class="n">T22</span><span class="p">:</span><span class="mi">12</span><span class="p">:</span><span class="mf">10.370237</span><span class="n">Z</span> <span class="n">DEBUG</span> <span class="n">tower</span><span class="p">::</span><span class="n">buffer</span><span class="p">::</span><span class="n">worker</span><span class="p">:</span> <span class="n">service</span><span class="o">.</span><span class="n">ready</span><span class="o">=</span><span class="n">true</span> <span class="n">processing</span> <span class="n">request</span>
+<span class="n">Source</span><span class="p">:</span> <span class="o">/</span><span class="n">Users</span><span class="o">/</span><span class="n">foo</span><span class="o">/.</span><span class="n">tabsdata</span><span class="o">/</span><span class="n">instances</span><span class="o">/</span><span class="n">tabsdata</span><span class="o">/</span><span class="n">workspace</span><span class="o">/</span><span class="n">work</span><span class="o">/</span><span class="n">proc</span><span class="o">/</span><span class="n">regular</span><span class="o">/</span><span class="n">apisrv</span><span class="o">/</span><span class="n">work</span><span class="o">/</span><span class="n">log</span><span class="o">/</span><span class="n">td</span><span class="o">.</span><span class="n">log</span> <span class="o">-</span> <span class="n">Line</span><span class="p">:</span> <span class="mi">2025</span><span class="o">-</span><span class="mi">02</span><span class="o">-</span><span class="mi">02</span><span class="n">T22</span><span class="p">:</span><span class="mi">12</span><span class="p">:</span><span class="mf">10.370237</span><span class="n">Z</span> <span class="n">DEBUG</span> <span class="n">tower</span><span class="p">::</span><span class="n">buffer</span><span class="p">::</span><span class="n">worker</span><span class="p">:</span> <span class="n">service</span><span class="o">.</span><span class="n">ready</span><span class="o">=</span><span class="n">true</span> <span class="n">processing</span> <span class="n">request</span>
+<span class="n">Source</span><span class="p">:</span> <span class="o">/</span><span class="n">Users</span><span class="o">/</span><span class="n">foo</span><span class="o">/.</span><span class="n">tabsdata</span><span class="o">/</span><span class="n">instances</span><span class="o">/</span><span class="n">tabsdata</span><span class="o">/</span><span class="n">workspace</span><span class="o">/</span><span class="n">work</span><span class="o">/</span><span class="n">log</span><span class="o">/</span><span class="n">td</span><span class="o">.</span><span class="n">log</span> <span class="o">-</span> <span class="n">Line</span><span class="p">:</span> <span class="mi">2025</span><span class="o">-</span><span class="mi">02</span><span class="o">-</span><span class="mi">02</span><span class="n">T22</span><span class="p">:</span><span class="mi">12</span><span class="p">:</span><span class="mf">10.746806</span><span class="n">Z</span> <span class="n">DEBUG</span> <span class="n">td_common</span><span class="p">::</span><span class="n">monitor</span><span class="p">:</span>
+<span class="n">Source</span><span class="p">:</span> <span class="o">/</span><span class="n">Users</span><span class="o">/</span><span class="n">foo</span><span class="o">/.</span><span class="n">tabsdata</span><span class="o">/</span><span class="n">instances</span><span class="o">/</span><span class="n">tabsdata</span><span class="o">/</span><span class="n">workspace</span><span class="o">/</span><span class="n">work</span><span class="o">/</span><span class="n">log</span><span class="o">/</span><span class="n">td</span><span class="o">.</span><span class="n">log</span> <span class="o">-</span> <span class="n">Line</span><span class="p">:</span> <span class="o">-</span> <span class="n">Process</span> <span class="n">PID</span><span class="o">...</span><span class="p">:</span> <span class="mi">11056</span>
+<span class="n">Source</span><span class="p">:</span> <span class="o">/</span><span class="n">Users</span><span class="o">/</span><span class="n">foo</span><span class="o">/.</span><span class="n">tabsdata</span><span class="o">/</span><span class="n">instances</span><span class="o">/</span><span class="n">tabsdata</span><span class="o">/</span><span class="n">workspace</span><span class="o">/</span><span class="n">work</span><span class="o">/</span><span class="n">log</span><span class="o">/</span><span class="n">td</span><span class="o">.</span><span class="n">log</span> <span class="o">-</span> <span class="n">Line</span><span class="p">:</span> <span class="o">-</span> <span class="n">Process</span> <span class="n">Physical</span> <span class="n">Memory</span><span class="p">:</span> <span class="mi">30</span> <span class="n">mb</span>
+<span class="n">Source</span><span class="p">:</span> <span class="o">/</span><span class="n">Users</span><span class="o">/</span><span class="n">foo</span><span class="o">/.</span><span class="n">tabsdata</span><span class="o">/</span><span class="n">instances</span><span class="o">/</span><span class="n">tabsdata</span><span class="o">/</span><span class="n">workspace</span><span class="o">/</span><span class="n">work</span><span class="o">/</span><span class="n">log</span><span class="o">/</span><span class="n">td</span><span class="o">.</span><span class="n">log</span> <span class="o">-</span> <span class="n">Line</span><span class="p">:</span> <span class="o">-</span> <span class="n">Process</span> <span class="n">Virtual</span> <span class="n">Memory</span><span class="o">.</span><span class="p">:</span> <span class="mi">402</span><span class="p">,</span><span class="mi">494</span> <span class="n">mb</span>
+<span class="n">Source</span><span class="p">:</span> <span class="o">/</span><span class="n">Users</span><span class="o">/</span><span class="n">foo</span><span class="o">/.</span><span class="n">tabsdata</span><span class="o">/</span><span class="n">instances</span><span class="o">/</span><span class="n">tabsdata</span><span class="o">/</span><span class="n">workspace</span><span class="o">/</span><span class="n">work</span><span class="o">/</span><span class="n">log</span><span class="o">/</span><span class="n">td</span><span class="o">.</span><span class="n">log</span> <span class="o">-</span> <span class="n">Line</span><span class="p">:</span> <span class="o">-</span> <span class="n">System</span> <span class="n">Total</span> <span class="n">Memory</span><span class="o">....</span><span class="p">:</span> <span class="mi">131</span><span class="p">,</span><span class="mi">072</span> <span class="n">mb</span>
+<span class="n">Source</span><span class="p">:</span> <span class="o">/</span><span class="n">Users</span><span class="o">/</span><span class="n">foo</span><span class="o">/.</span><span class="n">tabsdata</span><span class="o">/</span><span class="n">instances</span><span class="o">/</span><span class="n">tabsdata</span><span class="o">/</span><span class="n">workspace</span><span class="o">/</span><span class="n">work</span><span class="o">/</span><span class="n">log</span><span class="o">/</span><span class="n">td</span><span class="o">.</span><span class="n">log</span> <span class="o">-</span> <span class="n">Line</span><span class="p">:</span> <span class="o">-</span> <span class="n">System</span> <span class="n">Used</span> <span class="n">Memory</span><span class="o">.....</span><span class="p">:</span> <span class="mi">56</span><span class="p">,</span><span class="mi">216</span> <span class="n">mb</span>
+<span class="n">Source</span><span class="p">:</span> <span class="o">/</span><span class="n">Users</span><span class="o">/</span><span class="n">foo</span><span class="o">/.</span><span class="n">tabsdata</span><span class="o">/</span><span class="n">instances</span><span class="o">/</span><span class="n">tabsdata</span><span class="o">/</span><span class="n">workspace</span><span class="o">/</span><span class="n">work</span><span class="o">/</span><span class="n">log</span><span class="o">/</span><span class="n">td</span><span class="o">.</span><span class="n">log</span> <span class="o">-</span> <span class="n">Line</span><span class="p">:</span> <span class="o">-</span> <span class="n">System</span> <span class="n">Free</span> <span class="n">Memory</span><span class="o">.....</span><span class="p">:</span> <span class="mi">36</span><span class="p">,</span><span class="mi">798</span> <span class="n">mb</span>
+<span class="n">Source</span><span class="p">:</span> <span class="o">/</span><span class="n">Users</span><span class="o">/</span><span class="n">foo</span><span class="o">/.</span><span class="n">tabsdata</span><span class="o">/</span><span class="n">instances</span><span class="o">/</span><span class="n">tabsdata</span><span class="o">/</span><span class="n">workspace</span><span class="o">/</span><span class="n">work</span><span class="o">/</span><span class="n">proc</span><span class="o">/</span><span class="n">regular</span><span class="o">/</span><span class="n">apisrv</span><span class="o">/</span><span class="n">work</span><span class="o">/</span><span class="n">log</span><span class="o">/</span><span class="n">td</span><span class="o">.</span><span class="n">log</span> <span class="o">-</span> <span class="n">Line</span><span class="p">:</span> <span class="mi">2025</span><span class="o">-</span><span class="mi">02</span><span class="o">-</span><span class="mi">02</span><span class="n">T22</span><span class="p">:</span><span class="mi">12</span><span class="p">:</span><span class="mf">10.872019</span><span class="n">Z</span> <span class="n">DEBUG</span> <span class="n">tower</span><span class="p">::</span><span class="n">buffer</span><span class="p">::</span><span class="n">worker</span><span class="p">:</span> <span class="n">service</span><span class="o">.</span><span class="n">ready</span><span class="o">=</span><span class="n">true</span> <span class="n">processing</span> <span class="n">request</span>
+<span class="n">S</span>
+<span class="o">...</span>
+</pre></div>
+</div>
+</section>
+<section id="check-the-server-status-using-the-client-command-line-tool">
+<h3>Check the Server Status using the Client Command-Line Tool<a class="headerlink" href="#check-the-server-status-using-the-client-command-line-tool" title="Link to this heading">#</a></h3>
+<p>Use the <code class="docutils literal notranslate"><span class="pre">td</span> <span class="pre">status</span></code> command to check the status of the <code class="docutils literal notranslate"><span class="pre">TabsData</span></code>
+server. You must be logged in to the server to use the <code class="docutils literal notranslate"><span class="pre">td</span></code>
+command-line tool.</p>
+<p><em>Sample output when logged in:</em></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="err">$</span> <span class="n">td</span> <span class="n">status</span>
+<span class="n">Obtaining</span> <span class="n">server</span> <span class="n">status</span>
+<span class="o">----------</span>
+<span class="n">Status</span><span class="p">:</span> <span class="s1">&#39;OK&#39;</span><span class="p">,</span> <span class="n">latency_as_nanos</span><span class="p">:</span> <span class="mi">24333</span>
+</pre></div>
+</div>
+<p><em>Sample output when not logged in:</em></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="err">$</span> <span class="n">td</span> <span class="n">status</span>
+<span class="n">No</span> <span class="n">credentials</span> <span class="n">found</span><span class="o">.</span> <span class="n">Please</span> <span class="n">login</span> <span class="n">first</span><span class="o">.</span>
+</pre></div>
+</div>
+<p><em>Sample output when ``Tabsdata`` server is not running:</em></p>
+<a class="reference external image-reference" href="https://docs.tabsdata.com/latest/_images/image6_2.png"><img alt="../../_images/image6_2.png" src="../../_images/image6_2.png" />
+</a>
+</section>
+</section>
+<section id="hard-reset">
+<h2>Hard Reset<a class="headerlink" href="#hard-reset" title="Link to this heading">#</a></h2>
+<section id="remove-tabsdata-instance">
+<h3>Remove tabsdata instance<a class="headerlink" href="#remove-tabsdata-instance" title="Link to this heading">#</a></h3>
+<p>All the information related to Tabsdata server is stored in instances. By default instances are created in the root folder.
+You can run the following command to delete the instance and start the process from scratch with <code class="docutils literal notranslate"><span class="pre">tdserver</span> <span class="pre">start</span></code>.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="err">$</span> <span class="n">rs</span> <span class="o">-</span><span class="n">rf</span> <span class="o">~/.</span><span class="n">tabsdata</span>
+</pre></div>
+</div>
+<p>Clean the pip and uv cache:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="err">$</span> <span class="n">pip</span> <span class="n">cache</span> <span class="n">purge</span>
+<span class="err">$</span> <span class="n">uv</span> <span class="n">cache</span> <span class="n">clean</span>
+</pre></div>
+</div>
+<p>There may be also be a stray Tabsdata server running in the background. To delete that server, you can use <cite>btop</cite> the details of which you can here in <a class="reference external" href="https://github.com/aristocratos/btop">btop github</a>.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="err">$</span> <span class="n">brew</span> <span class="n">install</span> <span class="n">btop</span>
+<span class="err">$</span> <span class="n">btop</span>
+</pre></div>
+</div>
+<p>Click on filter and type tabsdata.</p>
+<img alt="../../_images/btop_output.png" src="../../_images/btop_output.png" />
+<p>Use your arrow keys to navigate to the apiserv.</p>
+<p>Press <cite>k</cite> to kill the server.</p>
+<img alt="../../_images/btop_kill.png" src="../../_images/btop_kill.png" />
+</section>
+</section>
 </section>
 
 
@@ -600,20 +622,20 @@ dependent transactions.</p>
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="cli_commands.html"
+       href="../08_best_practices/main.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Tabsdata Server Configuration</p>
+        <p class="prev-next-title">Best Practices</p>
       </div>
     </a>
     <a class="right-next"
-       href="../../api_ref/index.html"
+       href="../11_cli_commands/main.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Tabsdata API Reference</p>
+        <p class="prev-next-title">CLI Reference</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -636,14 +658,21 @@ dependent transactions.</p>
   </div>
   <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#check-the-server-status">Check the Server Status</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#check-the-server-logs">Check the Server Logs</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#check-the-server-status-using-the-client-command-line-tool">Check the Server Status using the Client Command-Line Tool</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-execution-of-a-function-failed">The Execution of a Function Failed</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#find-the-workers-of-the-failed-transaction-that-already-executed">Find the Workers of the Failed Transaction that Already Executed</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#fetch-the-logs-of-a-worker">Fetch the logs of a Worker</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#recover-the-transaction">Recover the Transaction</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cancel-the-transaction">Cancel the Transaction</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#server-related-issues">Server Related Issues</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#check-the-server-status">Check the Server Status</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#check-the-server-logs">Check the Server Logs</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#check-the-server-status-using-the-client-command-line-tool">Check the Server Status using the Client Command-Line Tool</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hard-reset">Hard Reset</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#remove-tabsdata-instance">Remove tabsdata instance</a></li>
 </ul>
 </li>
 </ul>
