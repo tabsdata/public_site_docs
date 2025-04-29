@@ -46,12 +46,18 @@ document.addEventListener("DOMContentLoaded", function () {
     updateTOC(); // Run initially in case page loads at a scrolled position
 });
 
-document.addEventListener('click', function (event) {
-    if (event.target.classList.contains('copybtn')) {
-        console.log('Copy button clicked! Sending event to GA...');
-        gtag('event', 'copy_code', {
-            'event_category': 'interaction',
-            'event_label': window.location.pathname
-        });
-    }
-});
+if (window.location.hostname === "docs.tabsdata.com") {
+    // Insert your GTag snippet here
+    (function() {
+      var gtagScript = document.createElement('script');
+      gtagScript.async = true;
+      gtagScript.src = 'https://www.googletagmanager.com/gtag/js?id=G-QEJPE16TH2';
+      document.head.appendChild(gtagScript);
+  
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      window.gtag = gtag;
+      gtag('js', new Date());
+      gtag('config', 'G-QEJPE16TH2');
+    })();
+  }
