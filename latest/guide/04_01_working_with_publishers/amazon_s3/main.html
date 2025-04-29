@@ -8,16 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-QEJPE16TH2"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-        gtag('config', 'G-QEJPE16TH2');
-    </script>
-    
-    <title>AWS S3 &#8212; Tabsdata  documentation</title>
+    <title>Amazon S3 &#8212; Tabsdata  documentation</title>
   
   
   
@@ -66,7 +57,7 @@
         DOCUMENTATION_OPTIONS.show_version_warning_banner =
             false;
         </script>
-    <script src="../../../_static/custom.js?v=89ccd112"></script>
+    <script src="../../../_static/custom.js?v=ac098f57"></script>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
     <link rel="next" title="Azure Blob Storage" href="../azure/main.html" />
@@ -328,7 +319,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../../04_working_with_functions/main.html">Working with Functions</a></li>
 <li class="toctree-l1 current active has-children"><a class="reference internal" href="../main.html">Publishers</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="../local_file_system/main.html">Local File System</a></li>
-<li class="toctree-l2 current active"><a class="current reference internal" href="#">AWS S3</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Amazon S3</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../azure/main.html">Azure Blob Storage</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../salesforce/main.html">Salesforce</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../mysql/main.html">MySQL</a></li>
@@ -408,7 +399,7 @@
     
     <li class="breadcrumb-item"><a href="../main.html" class="nav-link">Publishers</a></li>
     
-    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">AWS S3</span></li>
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">Amazon S3</span></li>
   </ul>
 </nav>
 </div>
@@ -425,11 +416,11 @@
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section id="aws-s3">
-<span id="amazon-s3"></span><h1>AWS S3<a class="headerlink" href="#aws-s3" title="Link to this heading">#</a></h1>
-<p>You can use a publisher to read files from AWS S3 to the Tabsdata server. Publishers can read the following file formats: CSV, jsonl, ndjson, parquet, and log.</p>
-<section id="example-publisher-aws-s3">
-<span id="example-publisher-amazon-s3"></span><h2>Example (Publisher - AWS S3)<a class="headerlink" href="#example-publisher-aws-s3" title="Link to this heading">#</a></h2>
+  <section id="amazon-s3">
+<span id="id1"></span><h1>Amazon S3<a class="headerlink" href="#amazon-s3" title="Link to this heading">#</a></h1>
+<p>You can use a publisher to read files from Amazon S3 to the Tabsdata server. Publishers can read the following file formats: CSV, jsonl, ndjson, parquet, and log.</p>
+<section id="example-publisher-amazon-s3">
+<span id="id2"></span><h2>Example (Publisher - Amazon S3)<a class="headerlink" href="#example-publisher-amazon-s3" title="Link to this heading">#</a></h2>
 <p>Here is an example publisher named <code class="docutils literal notranslate"><span class="pre">read_employees</span></code>. It reads departments table and multiple employees tables, with their file names starting from <code class="docutils literal notranslate"><span class="pre">employees_</span></code>, from the HR folder. It checks that last modified dates for the files, which should be after the date defined in <code class="docutils literal notranslate"><span class="pre">initial_last_modified</span></code>. Subsequently, it writes the departments and first two employees files to the Tabsdata tables. This publisher executes automatically as soon as a <a class="reference internal" href="../../06_working_with_tables/table_frame.html#working-with-table-commits"><span class="std std-ref">new commit</span></a> occurs on the <code class="docutils literal notranslate"><span class="pre">jobs_closed</span></code> table:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">List</span>
 
@@ -458,13 +449,13 @@
 </pre></div>
 </div>
 <p>Where:</p>
-<p><code class="docutils literal notranslate"><span class="pre">S3_ACCESS_KEY</span></code> is the value of your AWS S3 access key.</p>
-<p><code class="docutils literal notranslate"><span class="pre">S3_SECRET_KEY</span></code> is the value of your AWS S3 secret key.</p>
+<p><code class="docutils literal notranslate"><span class="pre">S3_ACCESS_KEY</span></code> is the value of your Amazon S3 access key.</p>
+<p><code class="docutils literal notranslate"><span class="pre">S3_SECRET_KEY</span></code> is the value of your Amazon S3 secret key.</p>
 <p><strong>Note:</strong> After defining the function, you need to register it with a Tabsdata collection. For more information, see <a class="reference internal" href="../../04_working_with_functions/main.html#register-a-function"><span class="std std-ref">here</span></a>.</p>
 </section>
-<section id="setup-publisher-aws-s3">
-<h2>Setup (Publisher - AWS S3)<a class="headerlink" href="#setup-publisher-aws-s3" title="Link to this heading">#</a></h2>
-<p>The following code uses placeholder values for defining a publisher that reads data from AWS S3 and publishes it to Tabsdata tables:</p>
+<section id="setup-publisher-amazon-s3">
+<h2>Setup (Publisher - Amazon S3)<a class="headerlink" href="#setup-publisher-amazon-s3" title="Link to this heading">#</a></h2>
+<p>The following code uses placeholder values for defining a publisher that reads data from Amazon S3 and publishes it to Tabsdata tables:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">tabsdata</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">td</span>
 
 <span class="n">s3_credentials</span> <span class="o">=</span> <span class="n">td</span><span class="o">.</span><span class="n">S3AccessKeyCredentials</span><span class="p">(</span>
@@ -491,9 +482,9 @@
 <p>Following properties are defined in the setup code above:</p>
 <section id="credentials">
 <h3>credentials<a class="headerlink" href="#credentials" title="Link to this heading">#</a></h3>
-<p>A publisher needs credentials to read files from AWS S3.</p>
-<p><code class="docutils literal notranslate"><span class="pre">S3_ACCESS_KEY</span></code> is the value of your AWS S3 access key.</p>
-<p><code class="docutils literal notranslate"><span class="pre">S3_SECRET_KEY</span></code> is the value of your AWS S3 secret key.</p>
+<p>A publisher needs credentials to read files from Amazon S3.</p>
+<p><code class="docutils literal notranslate"><span class="pre">S3_ACCESS_KEY</span></code> is the value of your Amazon S3 access key.</p>
+<p><code class="docutils literal notranslate"><span class="pre">S3_SECRET_KEY</span></code> is the value of your Amazon S3 secret key.</p>
 <p>You can use different ways to store the credentials which are highlighted <a class="reference internal" href="../../secrets_management/main.html#credentials"><span class="std std-ref">here</span></a> in the documentation.</p>
 </section>
 <section id="source">
@@ -606,8 +597,8 @@
   </div>
   <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-publisher-aws-s3">Example (Publisher - AWS S3)</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#setup-publisher-aws-s3">Setup (Publisher - AWS S3)</a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-publisher-amazon-s3">Example (Publisher - Amazon S3)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#setup-publisher-amazon-s3">Setup (Publisher - Amazon S3)</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#credentials">credentials</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#source">source</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#initial-last-modified"><code class="docutils literal notranslate"><span class="pre">initial_last_modified</span></code></a></li>
