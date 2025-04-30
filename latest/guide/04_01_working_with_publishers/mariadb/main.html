@@ -419,6 +419,17 @@
   <section id="mariadb">
 <span id="id1"></span><h1>MariaDB<a class="headerlink" href="#mariadb" title="Link to this heading">#</a></h1>
 <p>You can use a publisher to read from a MariaDB database.</p>
+<section id="installing-the-connector-dependencies">
+<h2>Installing the connector dependencies<a class="headerlink" href="#installing-the-connector-dependencies" title="Link to this heading">#</a></h2>
+<p>To work with the MariaDB connector you are required to install the dependencies separately which can be done by running the following command.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>tabsdata<span class="o">[</span>“salesforce”<span class="o">]</span>
+</pre></div>
+</div>
+<p>or,</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span><span class="s1">&#39;tabsdata[&#39;</span>salesforce<span class="s1">&#39;]&#39;</span>
+</pre></div>
+</div>
+</section>
 <section id="example-publisher-mariadb">
 <h2>Example (Publisher - MariaDB)<a class="headerlink" href="#example-publisher-mariadb" title="Link to this heading">#</a></h2>
 <p>The following example creates a publisher named <code class="docutils literal notranslate"><span class="pre">read_sales</span></code>. This publisher runs two queries to the database at the specified URL. It writes the results of the queries to two Tabsdata tables. The publisher is triggered by each <a class="reference internal" href="../../06_working_with_tables/table_frame.html#working-with-table-commits"><span class="std std-ref">new commit</span></a> to the <code class="docutils literal notranslate"><span class="pre">new_customer</span></code> table, and writes data to the output tables in the Tabsdata server without any modification.</p>
@@ -557,6 +568,7 @@
   </div>
   <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
     <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#installing-the-connector-dependencies">Installing the connector dependencies</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-publisher-mariadb">Example (Publisher - MariaDB)</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#setup-publisher-mariadb">Setup (Publisher - MariaDB)</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#source">Source</a></li>
