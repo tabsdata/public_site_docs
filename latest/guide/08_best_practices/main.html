@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Best Practices &#8212; Tabsdata  documentation</title>
+    <title>Testing &#8212; Tabsdata  documentation</title>
   
   
   
@@ -223,10 +223,6 @@
   
 
   
-    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
-      <span class="fa-solid fa-outdent"></span>
-    </button>
-  
 </div>
 
     </header>
@@ -349,7 +345,7 @@
 <li class="toctree-l2"><a class="reference internal" href="../secrets_management/hashicorp/main.html">HashiCorp Secret</a></li>
 </ul>
 </details></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">Best Practices</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Testing</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../10_troubleshooting/main.html">Troubleshooting</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../11_cli_commands/main.html">CLI Reference</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../09_contact_support/main.html">Contact Us</a></li>
@@ -396,7 +392,7 @@
     
     <li class="breadcrumb-item"><a href="../intro.html" class="nav-link">User Guide</a></li>
     
-    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">Best Practices</span></li>
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">Testing</span></li>
   </ul>
 </nav>
 </div>
@@ -413,10 +409,8 @@
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section id="best-practices">
-<h1>Best Practices<a class="headerlink" href="#best-practices" title="Link to this heading">#</a></h1>
-<section id="testing">
-<h2>Testing<a class="headerlink" href="#testing" title="Link to this heading">#</a></h2>
+  <section id="testing">
+<h1>Testing<a class="headerlink" href="#testing" title="Link to this heading">#</a></h1>
 <p>You can use the <a class="reference external" href="https://docs.pola.rs/">polars</a> or <a class="reference external" href="https://pandas.pydata.org/docs/index.html">pandas</a> Python package to test out your function logic before registering and executing your functions on the server.</p>
 <p>Let’s take the function logic of the transformer code from the Getting Started section <a class="reference internal" href="../02_getting_started/main.html#getting-started-transformer"><span class="std std-ref">here</span></a>. You can test the function logic using the following code:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">polars</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pl</span>
@@ -461,7 +455,6 @@
 <p>In the <code class="docutils literal notranslate"><span class="pre">test_tfr</span></code> function, <code class="docutils literal notranslate"><span class="pre">pl.read_csv</span></code> is used to read the csv file and store the resultant Polars dataframe in a variable called <code class="docutils literal notranslate"><span class="pre">tf</span></code>. This tf dataframe is passed to the <code class="docutils literal notranslate"><span class="pre">tfr</span></code> function as input, and the resultant output tables from the function are stored as s,f and g variables. They are subsequently tested for correctness.</p>
 <p>You can run <code class="docutils literal notranslate"><span class="pre">test_tfr</span></code> to understand if the function logic is performing as expected.</p>
 </section>
-</section>
 
 
                 </article>
@@ -497,24 +490,6 @@
             </div>
             
             
-              
-                <dialog id="pst-secondary-sidebar-modal"></dialog>
-                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
-
-
-  <div class="sidebar-secondary-item">
-<div
-    id="pst-page-navigation-heading-2"
-    class="page-toc tocsection onthispage">
-    <i class="fa-solid fa-list"></i> On this page
-  </div>
-  <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
-    <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#testing">Testing</a></li>
-</ul>
-  </nav></div>
-
-</div></div>
               
             
           </div>
