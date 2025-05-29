@@ -371,15 +371,23 @@
 <h1>Tutorials<a class="headerlink" href="#tutorials" title="Link to this heading">#</a></h1>
 <p>Welcome to Tabsdata Tutorials! Explore different examples to take inspiration from.</p>
 <section id="id1">
-<h2><a class="reference external" href="https://github.com/tabsdata/tutorials/tree/main/t02_postgres_pub_sub">2. Publishing and Subscribing a PostgreSQL Table!</a><a class="headerlink" href="#id1" title="Link to this heading">#</a></h2>
+<h2><a class="reference external" href="https://github.com/tabsdata/tutorials/tree/main/t03_csv_iceberg_pub_sub">3. Pre-processing, Publishing and Subscribing a CSV to AWS Glue Iceberg!</a><a class="headerlink" href="#id1" title="Link to this heading">#</a></h2>
+<p>In this tutorial, we’ll explore how Tabsdata enables exporting CSV data from local file system as an Iceberg table to AWS.</p>
+<p>We will start by setting up Tabsdata and registering a publisher that reads data from a CSV file, selects some aspects of it, and publishes it as a table within Tabsdata.</p>
+<p>Following that, we will register a subscriber that subscribes to this published table, and exports it as an Iceberg Table to AWS.</p>
+<p>We will then demonstrate that when the publisher is rerun to load new data, the subscriber automatically writes it to the external system.</p>
+<p><a class="reference external" href="https://github.com/tabsdata/tutorials/tree/main/t03_csv_iceberg_pub_sub">Link</a> to the Github repo.</p>
+</section>
+<section id="id2">
+<h2><a class="reference external" href="https://github.com/tabsdata/tutorials/tree/main/t02_postgres_pub_sub">2. Publishing and Subscribing a PostgreSQL Table!</a><a class="headerlink" href="#id2" title="Link to this heading">#</a></h2>
 <p>In this tutorial, we’ll explore how Tabsdata enables Pub/Sub for Tables with source and destination data being a locally hosted PostgreSQL database.</p>
 <p>We will start by setting up Tabsdata, and PostgreSQL. Then we register and run a publisher that reads data from PostgreSQL, and publishes that as a table to Tabsdata.</p>
 <p>Following that, we will register a subscriber that subscribes to this published table, filters some data, and exports it to PostgreSQL.</p>
 <p>We will then demonstrate that when the publisher is re-run to load new data, the subscriber automatically writes it to Postgres.</p>
 <p><a class="reference external" href="https://github.com/tabsdata/tutorials/tree/main/t02_postgres_pub_sub">Link</a> to the Github repo.</p>
 </section>
-<section id="id2">
-<h2><a class="reference external" href="https://github.com/tabsdata/tutorials/tree/main/t01_csv_pub_sub">1. Pre-processing, Publishing and Subscribing a CSV!</a><a class="headerlink" href="#id2" title="Link to this heading">#</a></h2>
+<section id="id4">
+<h2><a class="reference external" href="https://github.com/tabsdata/tutorials/tree/main/t01_csv_pub_sub">1. Pre-processing, Publishing and Subscribing a CSV!</a><a class="headerlink" href="#id4" title="Link to this heading">#</a></h2>
 <p>In this first tutorial, we’ll explore how Tabsdata enables Pub/Sub for Tables using a CSV file input.</p>
 <p>We will start by setting up Tabsdata and registering a publisher that reads data from a CSV file, selects
 some aspects of it, and publishes it as a table within the system.</p>
@@ -427,8 +435,9 @@ some aspects of it, and publishes it as a table within the system.</p>
   </div>
   <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">2. Publishing and Subscribing a PostgreSQL Table!</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">1. Pre-processing, Publishing and Subscribing a CSV!</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">3. Pre-processing, Publishing and Subscribing a CSV to AWS Glue Iceberg!</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">2. Publishing and Subscribing a PostgreSQL Table!</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">1. Pre-processing, Publishing and Subscribing a CSV!</a></li>
 </ul>
   </nav></div>
 

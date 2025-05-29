@@ -440,11 +440,8 @@
 <p>By default, the <code class="docutils literal notranslate"><span class="pre">td</span></code> CLI enters interactive mode if there is a required option that is missing.</p>
 <p>To disable interactive mode, use the <code class="docutils literal notranslate"><span class="pre">--no-prompt</span></code> option immediately after the <code class="docutils literal notranslate"><span class="pre">td</span></code> command.</p>
 </section>
-<section id="server-status">
-<span id="login-cli"></span><h3>Server Status<a class="headerlink" href="#server-status" title="Link to this heading">#</a></h3>
-</section>
-<section id="login">
-<h3>Login<a class="headerlink" href="#login" title="Link to this heading">#</a></h3>
+<section id="login-to-server">
+<span id="login-cli"></span><h3>Login to Server<a class="headerlink" href="#login-to-server" title="Link to this heading">#</a></h3>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span>
 <span class="n">td</span> <span class="n">login</span> <span class="n">localhost</span><span class="p">:</span><span class="mi">2457</span> <span class="o">--</span><span class="n">username</span> <span class="o">&lt;</span><span class="n">USER</span><span class="o">&gt;</span> <span class="o">--</span><span class="n">password</span> <span class="o">&lt;</span><span class="n">PASSWORD</span><span class="o">&gt;</span>
 
@@ -456,8 +453,8 @@
 <p>After a successful login, the user remains logged in until the <code class="docutils literal notranslate"><span class="pre">td</span> <span class="pre">logout</span></code> command is executed or</p>
 <p>until the session expires (2 hours after login)</p>
 </section>
-<section id="logout">
-<h3>Logout<a class="headerlink" href="#logout" title="Link to this heading">#</a></h3>
+<section id="logout-from-server">
+<h3>Logout from Server<a class="headerlink" href="#logout-from-server" title="Link to this heading">#</a></h3>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span>
 <span class="n">td</span> <span class="n">logout</span>
 
@@ -765,9 +762,8 @@
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tabsdata-server-cli-tdserver">Tabsdata Server CLI <code class="docutils literal notranslate"><span class="pre">tdserver</span></code></a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tabsdata-client-cli-td">Tabsdata Client CLI <code class="docutils literal notranslate"><span class="pre">td</span></code></a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#interactive-mode">Interactive Mode</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#server-status">Server Status</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#login">Login</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#logout">Logout</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#login-to-server">Login to Server</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#logout-from-server">Logout from Server</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#user-sub-commands">User Sub-Commands</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#create-a-user">Create a User</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#show-user-info">Show User Info</a></li>

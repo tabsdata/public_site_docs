@@ -518,7 +518,7 @@ dependent transactions.</p>
 <section id="check-the-server-status">
 <h3>Check the Server Status<a class="headerlink" href="#check-the-server-status" title="Link to this heading">#</a></h3>
 <p>Use the <code class="docutils literal notranslate"><span class="pre">tdserver</span> <span class="pre">status</span></code> command to check the status of the
-<code class="docutils literal notranslate"><span class="pre">TabsData</span></code> server.</p>
+Tabsdata server.</p>
 <p><em>Sample output when running:</em></p>
 <a class="reference external image-reference" href="https://docs.tabsdata.com/latest/_images/image1.png"><img alt="../../_images/image1.png" src="../../_images/image1.png" />
 </a>
@@ -531,7 +531,7 @@ dependent transactions.</p>
 </section>
 <section id="check-the-server-logs">
 <h3>Check the Server Logs<a class="headerlink" href="#check-the-server-logs" title="Link to this heading">#</a></h3>
-<p>Use the <code class="docutils literal notranslate"><span class="pre">tdserver</span> <span class="pre">log</span></code> command to check the logs of the <code class="docutils literal notranslate"><span class="pre">TabsData</span></code>
+<p>Use the <code class="docutils literal notranslate"><span class="pre">tdserver</span> <span class="pre">log</span></code> command to check the logs of the Tabsdata
 server. It will print (continuously) the logs of the server. Press
 <code class="docutils literal notranslate"><span class="pre">Ctrl+C</span></code> to stop.</p>
 <p><em>For example:</em></p>
@@ -554,7 +554,7 @@ server. It will print (continuously) the logs of the server. Press
 </section>
 <section id="check-the-server-status-using-the-client-command-line-tool">
 <h3>Check the Server Status using the Client Command-Line Tool<a class="headerlink" href="#check-the-server-status-using-the-client-command-line-tool" title="Link to this heading">#</a></h3>
-<p>Use the <code class="docutils literal notranslate"><span class="pre">td</span> <span class="pre">status</span></code> command to check the status of the <code class="docutils literal notranslate"><span class="pre">TabsData</span></code>
+<p>Use the <code class="docutils literal notranslate"><span class="pre">td</span> <span class="pre">status</span></code> command to check the status of the Tabsdata
 server. You must be logged in to the server to use the <code class="docutils literal notranslate"><span class="pre">td</span></code>
 command-line tool.</p>
 <p><em>Sample output when logged in:</em></p>
@@ -569,7 +569,7 @@ command-line tool.</p>
 <span class="n">No</span> <span class="n">credentials</span> <span class="n">found</span><span class="o">.</span> <span class="n">Please</span> <span class="n">login</span> <span class="n">first</span><span class="o">.</span>
 </pre></div>
 </div>
-<p><em>Sample output when ``Tabsdata`` server is not running:</em></p>
+<p><em>Sample output when Tabsdata server is not running:</em></p>
 <a class="reference external image-reference" href="https://docs.tabsdata.com/latest/_images/image6_2.png"><img alt="../../_images/image6_2.png" src="../../_images/image6_2.png" />
 </a>
 </section>
@@ -577,7 +577,7 @@ command-line tool.</p>
 <section id="hard-reset">
 <h2>Hard Reset<a class="headerlink" href="#hard-reset" title="Link to this heading">#</a></h2>
 <section id="remove-tabsdata-instance">
-<h3>Remove tabsdata instance<a class="headerlink" href="#remove-tabsdata-instance" title="Link to this heading">#</a></h3>
+<h3>Remove Tabsdata instance<a class="headerlink" href="#remove-tabsdata-instance" title="Link to this heading">#</a></h3>
 <p>All the information related to Tabsdata server is stored in instances. By default instances are created in the root folder.
 You can run the following command to delete the instance and start the process from scratch with <code class="docutils literal notranslate"><span class="pre">tdserver</span> <span class="pre">start</span></code>.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="err">$</span> <span class="n">rs</span> <span class="o">-</span><span class="n">rf</span> <span class="o">~/.</span><span class="n">tabsdata</span>
@@ -588,7 +588,21 @@ You can run the following command to delete the instance and start the process f
 <span class="err">$</span> <span class="n">uv</span> <span class="n">cache</span> <span class="n">clean</span>
 </pre></div>
 </div>
-<p>There may be also be a stray Tabsdata server running in the background. To delete that server, you can use <cite>btop</cite> the details of which you can here in <a class="reference external" href="https://github.com/aristocratos/btop">btop github</a>.</p>
+</section>
+<section id="delete-stray-servers">
+<h3>Delete stray Servers<a class="headerlink" href="#delete-stray-servers" title="Link to this heading">#</a></h3>
+<p>There may be also be a stray Tabsdata server (supervisor and/or apiserver) running in the background.</p>
+<p>You can delete the servers using the methods below:</p>
+<section id="searching-through-processes">
+<h4>Searching through processes<a class="headerlink" href="#searching-through-processes" title="Link to this heading">#</a></h4>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="err">$</span> <span class="n">ps</span> <span class="o">-</span><span class="n">ef</span> <span class="o">|</span> <span class="n">grep</span> <span class="n">tabsdata</span>
+<span class="err">$</span> <span class="n">kill</span> <span class="o">&lt;</span><span class="n">PID</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+</section>
+<section id="using-btop">
+<h4>Using <cite>btop</cite><a class="headerlink" href="#using-btop" title="Link to this heading">#</a></h4>
+<p>You can use <cite>btop</cite> (Read more about the tool on <a class="reference external" href="https://github.com/aristocratos/btop">btop github</a>).</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="err">$</span> <span class="n">brew</span> <span class="n">install</span> <span class="n">btop</span>
 <span class="err">$</span> <span class="n">btop</span>
 </pre></div>
@@ -598,6 +612,7 @@ You can run the following command to delete the instance and start the process f
 <p>Use your arrow keys to navigate to the apiserv.</p>
 <p>Press <cite>k</cite> to kill the server.</p>
 <img alt="../../_images/btop_kill.png" src="../../_images/btop_kill.png" />
+</section>
 </section>
 </section>
 </section>
@@ -663,7 +678,12 @@ You can run the following command to delete the instance and start the process f
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hard-reset">Hard Reset</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#remove-tabsdata-instance">Remove tabsdata instance</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#remove-tabsdata-instance">Remove Tabsdata instance</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#delete-stray-servers">Delete stray Servers</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#searching-through-processes">Searching through processes</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#using-btop">Using <cite>btop</cite></a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
