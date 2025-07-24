@@ -39,11 +39,6 @@
     display: none !important;
 } */
 
-/* Hide the dark-light mode toggle button */
-.theme-switch-buttons {
-    display: none !important;
-}
-
 /* Hide the settings, download, and fullscreen icons */
 .navbar-icon-links {
     display: none !important;
@@ -54,6 +49,15 @@
     display: none !important;
 }
 
+html[data-theme="dark"] {
+    .sphinx-tabs-panel {
+        background: none !important;
+    }
+    .sphinx-tabs-tab {
+        color: #fff !important;
+        background: none !important;
+    }
+}
 
 /* Ensure vertical stacking of navbars */
 .navbar-container {

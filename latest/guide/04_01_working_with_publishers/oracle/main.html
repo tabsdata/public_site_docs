@@ -34,7 +34,7 @@
     <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
     <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-design.min.css?v=95c83b7e" />
     <link rel="stylesheet" type="text/css" href="../../../_static/tabs.css?v=a5c4661c" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/custom.css?v=5208da35" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/custom.css?v=5a027c77" />
   
   <!-- So that users can add custom icons -->
   <script src="../../../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
@@ -209,6 +209,14 @@
   </div>
 </div></div>
       
+        <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+      
     </div>
     
   </div>
@@ -304,6 +312,14 @@
     <!-- dropdown will be populated by javascript on page load -->
   </div>
 </div></div>
+        
+          <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
         
       </div>
     
@@ -439,7 +455,40 @@ $<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </sp
 </div>
 <p>After installing the dependencies, you also need to set up the Oracle Instant Client Libraries on your system.</p>
 <div class="sphinx-tabs docutils container">
-<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-0-0-0" aria-selected="true" class="sphinx-tabs-tab" id="tab-0-0-0" name="0-0" role="tab" tabindex="0">For Linux or macOS:</button><button aria-controls="panel-0-0-1" aria-selected="false" class="sphinx-tabs-tab" id="tab-0-0-1" name="0-1" role="tab" tabindex="-1">For Windows (CMD):</button></div><div aria-labelledby="tab-0-0-0" class="sphinx-tabs-panel" id="panel-0-0-0" name="0-0" role="tabpanel" tabindex="0"><ol class="arabic simple">
+<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-0-0-0" aria-selected="true" class="sphinx-tabs-tab" id="tab-0-0-0" name="0-0" role="tab" tabindex="0">For Linux:</button><button aria-controls="panel-0-0-1" aria-selected="false" class="sphinx-tabs-tab" id="tab-0-0-1" name="0-1" role="tab" tabindex="-1">For macOS:</button><button aria-controls="panel-0-0-2" aria-selected="false" class="sphinx-tabs-tab" id="tab-0-0-2" name="0-2" role="tab" tabindex="-1">For Windows (CMD):</button></div><div aria-labelledby="tab-0-0-0" class="sphinx-tabs-panel" id="panel-0-0-0" name="0-0" role="tabpanel" tabindex="0"><ol class="arabic simple">
+<li><p>Install and configure necessary dependencies (liabio). Instructions below are for Ubuntu 24.04.2.  You will need diferent procedures for earlier versions of other Linux distributions.</p></li>
+</ol>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>sudo<span class="w"> </span>apt-get<span class="w"> </span>install<span class="w"> </span>libaio1t64<span class="w"> </span>-y
+$<span class="w"> </span>sudo<span class="w"> </span>apt-get<span class="w"> </span>install<span class="w"> </span>libaio-dev<span class="w"> </span>-y
+$<span class="w"> </span>sudo<span class="w"> </span>ln<span class="w"> </span>-sf<span class="w"> </span>/lib/x86_64-linux-gnu/libaio.so.1t64<span class="w"> </span>/lib/x86_64-linux-gnu/libaio.so.1
+</pre></div>
+</div>
+<ol class="arabic simple" start="2">
+<li><p>Download <a class="reference external" href="https://download.oracle.com/otn_software/linux/instantclient/instantclient-basic-linuxx64.zip">instantclient-basic-linuxx64.zip</a> from the Oracle website.</p></li>
+<li><p>Extract the downloaded .zip file. Navigate to its directory in a terminal window.</p></li>
+</ol>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span><span class="nb">cd</span><span class="w"> </span>~/Downloads/instantclient_23_3
+</pre></div>
+</div>
+<ol class="arabic simple" start="4">
+<li><p>Run the following terminal commands:</p></li>
+</ol>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>mkdir<span class="w"> </span>lib
+$<span class="w"> </span><span class="nb">cd</span><span class="w"> </span>lib
+$<span class="w"> </span>ln<span class="w"> </span>-s<span class="w"> </span>../libclntsh.so<span class="w"> </span>libclntsh.so
+</pre></div>
+</div>
+<ol class="arabic simple" start="5">
+<li><p>Set Environment Variables for Tabsdata (adjust the folder Downloads if you switched to a different one)</p></li>
+</ol>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span><span class="nb">export</span><span class="w"> </span><span class="nv">PATH</span><span class="o">=</span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">PATH</span><span class="si">}</span><span class="s2">:/Users/</span><span class="nv">$USER</span><span class="s2">/Downloads/instantclient_23_3&quot;</span>
+$<span class="w"> </span><span class="nb">export</span><span class="w"> </span><span class="nv">LD_LIBRARY_PATH</span><span class="o">=</span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">LD_LIBRARY_PATH</span><span class="si">}</span><span class="s2">:/Users/</span><span class="nv">$USER</span><span class="s2">/Downloads/instantclient_23_3&quot;</span>
+$<span class="w"> </span><span class="nb">export</span><span class="w"> </span><span class="nv">TNS_ADMIN</span><span class="o">=</span>/Users/<span class="nv">$USER</span>/Downloads/instantclient_23_3
+$<span class="w"> </span><span class="nb">export</span><span class="w"> </span><span class="nv">ORACLE_HOME</span><span class="o">=</span>/Users/<span class="nv">$USER</span>/Downloads/instantclient_23_3
+</pre></div>
+</div>
+<p>Note: You will need to edit your shell profile scripts to make these changes permanent.</p>
+</div><div aria-labelledby="tab-0-0-1" class="sphinx-tabs-panel" hidden="true" id="panel-0-0-1" name="0-1" role="tabpanel" tabindex="0"><ol class="arabic simple">
 <li><p>Download <a class="reference external" href="https://download.oracle.com/otn_software/mac/instantclient/instantclient-basic-macos-arm64.dmg">instantclient-basic-macos-arm64.dmg</a> from the Oracle website.</p></li>
 <li><p>Mount the disk image and navigate to its directory in a terminal window.</p></li>
 </ol>
@@ -447,7 +496,7 @@ $<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </sp
 </pre></div>
 </div>
 <ol class="arabic simple" start="3">
-<li><p>Run the install_ic.sh script:</p></li>
+<li><p>Run the install_ic.sh script and create a symbolic link for the <cite>libclntsh.dylib</cite> file:</p></li>
 </ol>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>sh<span class="w"> </span>./install_ic.sh
 $<span class="w"> </span><span class="nb">cd</span><span class="w"> </span>/Users/<span class="nv">$USER</span>/Downloads/instantclient_23_3
@@ -456,39 +505,20 @@ $<span class="w"> </span><span class="nb">cd</span><span class="w"> </span>lib
 $<span class="w"> </span>ln<span class="w"> </span>-s<span class="w"> </span>../libclntsh.dylib<span class="w"> </span>libclntsh.dylib
 </pre></div>
 </div>
-<ol class="arabic simple" start="7">
+<ol class="arabic simple" start="4">
 <li><p>Set Environmental Variables for Tabsdata</p></li>
 </ol>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">export</span><span class="w"> </span><span class="nv">PATH</span><span class="o">=</span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">PATH</span><span class="si">}</span><span class="s2">:/Users/</span><span class="nv">$USER</span><span class="s2">/Downloads/instantclient_23_3&quot;</span>
-<span class="nb">export</span><span class="w"> </span><span class="nv">LD_LIBRARY_PATH</span><span class="o">=</span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">LD_LIBRARY_PATH</span><span class="si">}</span><span class="s2">:/Users/</span><span class="nv">$USER</span><span class="s2">/Downloads/instantclient_23_3&quot;</span>
-<span class="nb">export</span><span class="w"> </span><span class="nv">DYLD_LIBRARY_PATH</span><span class="o">=</span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">DYLD_LIBRARY_PATH</span><span class="si">}</span><span class="s2">:/Users/</span><span class="nv">$USER</span><span class="s2">/Downloads/instantclient_23_3&quot;</span>
-<span class="nb">export</span><span class="w"> </span><span class="nv">TNS_ADMIN</span><span class="o">=</span>/Users/<span class="nv">$USER</span>/Downloads/instantclient_23_3
-<span class="nb">export</span><span class="w"> </span><span class="nv">ORACLE_HOME</span><span class="o">=</span>/Users/<span class="nv">$USER</span>/Downloads/instantclient_23_3
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span><span class="nb">export</span><span class="w"> </span><span class="nv">PATH</span><span class="o">=</span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">PATH</span><span class="si">}</span><span class="s2">:/Users/</span><span class="nv">$USER</span><span class="s2">/Downloads/instantclient_23_3&quot;</span>
+$<span class="w"> </span><span class="nb">export</span><span class="w"> </span><span class="nv">DYLD_LIBRARY_PATH</span><span class="o">=</span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">DYLD_LIBRARY_PATH</span><span class="si">}</span><span class="s2">:/Users/</span><span class="nv">$USER</span><span class="s2">/Downloads/instantclient_23_3&quot;</span>
+$<span class="w"> </span><span class="nb">export</span><span class="w"> </span><span class="nv">TNS_ADMIN</span><span class="o">=</span>/Users/<span class="nv">$USER</span>/Downloads/instantclient_23_3
+$<span class="w"> </span><span class="nb">export</span><span class="w"> </span><span class="nv">ORACLE_HOME</span><span class="o">=</span>/Users/<span class="nv">$USER</span>/Downloads/instantclient_23_3
 </pre></div>
 </div>
-</div><div aria-labelledby="tab-0-0-1" class="sphinx-tabs-panel" hidden="true" id="panel-0-0-1" name="0-1" role="tabpanel" tabindex="0"><ol class="arabic simple">
+</div><div aria-labelledby="tab-0-0-2" class="sphinx-tabs-panel" hidden="true" id="panel-0-0-2" name="0-2" role="tabpanel" tabindex="0"><ol class="arabic simple">
 <li><p>Download the <a class="reference external" href="https://download.oracle.com/otn_software/nt/instantclient/instantclient-basic-windows.zip">instantclient-basic-windows.x64.zip</a> archive for your desired version.</p></li>
-<li><p>Extract the downloaded .zip file to a preferred location. Navigate to its directory in a terminal window.</p></li>
-</ol>
-<div class="highlight-batch notranslate"><div class="highlight"><pre><span></span><span class="k">cd</span> C:\Users\<span class="nv">%USERNAME%</span>\Downloads\instantclient_23_3
-</pre></div>
-</div>
-<ol class="arabic simple" start="3">
-<li><p>Run the following terminal commands:</p></li>
-</ol>
-<div class="highlight-batch notranslate"><div class="highlight"><pre><span></span><span class="k">mkdir</span> lib
-<span class="k">cd</span> lib
-<span class="k">mklink</span> libclntsh.dll ..\oci.dll
-</pre></div>
-</div>
-<ol class="arabic simple" start="4">
-<li><p>Set environmental variables for Tabsdata:</p></li>
+<li><p>Set environmental variable for Tabsdata:</p></li>
 </ol>
 <div class="highlight-batch notranslate"><div class="highlight"><pre><span></span><span class="k">set</span> <span class="nv">PATH</span><span class="p">=</span><span class="nv">%PATH%</span>;C:\Users\<span class="nv">%USERNAME%</span>\Downloads\instantclient_23_3
-<span class="k">set</span> <span class="nv">LD_LIBRARY_PATH</span><span class="p">=</span><span class="nv">%LD_LIBRARY_PATH%</span>;C:\Users\<span class="nv">%USERNAME%</span>\Downloads\instantclient_23_3
-<span class="k">set</span> <span class="nv">DYLD_LIBRARY_PATH</span><span class="p">=</span><span class="nv">%DYLD_LIBRARY_PATH%</span>;C:\Users\<span class="nv">%USERNAME%</span>\Downloads\instantclient_23_3
-<span class="k">set</span> <span class="nv">TNS_ADMIN</span><span class="p">=</span>C:\Users\<span class="nv">%USERNAME%</span>\Downloads\instantclient_23_3
-<span class="k">set</span> <span class="nv">ORACLE_HOME</span><span class="p">=</span>C:\Users\<span class="nv">%USERNAME%</span>\Downloads\instantclient_23_3
 </pre></div>
 </div>
 </div></div>

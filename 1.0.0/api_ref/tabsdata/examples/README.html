@@ -33,7 +33,7 @@
     <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=8f2a1f02" />
     <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
     <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-design.min.css?v=95c83b7e" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/custom.css?v=5208da35" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/custom.css?v=5a027c77" />
   
   <!-- So that users can add custom icons -->
   <script src="../../../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
@@ -205,6 +205,14 @@
   </div>
 </div></div>
       
+        <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+      
     </div>
     
   </div>
@@ -303,6 +311,14 @@
   </div>
 </div></div>
         
+          <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+        
       </div>
     
   </div>
@@ -369,7 +385,7 @@
 <p>This example assumes that:</p>
 <ul class="simple">
 <li><p>You are in a command shell within the <code class="docutils literal notranslate"><span class="pre">examples</span></code> directory
-created by the <code class="docutils literal notranslate"><span class="pre">td</span> <span class="pre">example</span></code> command.</p></li>
+created by the <code class="docutils literal notranslate"><span class="pre">td</span> <span class="pre">examples</span></code> command.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">Tabsdata</span></code> server is installed locally in the current
 Python environment.</p></li>
 </ul>
@@ -380,24 +396,8 @@ Python environment.</p></li>
 <span class="n">tdserver</span> <span class="n">status</span>
 </pre></div>
 </div>
-</section>
-<section id="set-up-the-example-directory-in-an-environment-variable">
-<h2>Set Up the Example Directory in an Environment Variable<a class="headerlink" href="#set-up-the-example-directory-in-an-environment-variable" title="Link to this heading">#</a></h2>
-<p><strong>NOTE:</strong> This is required for the Publisher and Subscriber to determine the
-input and output directories (It has been done this way to make the example
-simpler).</p>
-<section id="for-linux-osx">
-<h3>For Linux/OSX<a class="headerlink" href="#for-linux-osx" title="Link to this heading">#</a></h3>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">export</span> <span class="n">TDX</span><span class="o">=</span><span class="err">`</span><span class="n">pwd</span><span class="err">`</span>
-</pre></div>
-</div>
-</section>
-<section id="for-windows">
-<h3>For Windows<a class="headerlink" href="#for-windows" title="Link to this heading">#</a></h3>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nb">set</span> <span class="n">TDX</span><span class="o">=%</span><span class="n">cd</span><span class="o">%</span>
-</pre></div>
-</div>
-</section>
+<p><strong>NOTE:</strong> It is required that <code class="docutils literal notranslate"><span class="pre">tdserver</span></code> and <code class="docutils literal notranslate"><span class="pre">td</span></code> commands
+are run in the same host to make this example work out of the box.</p>
 </section>
 <section id="start-tabsdata-server-and-check-its-status">
 <h2>Start <code class="docutils literal notranslate"><span class="pre">Tabsdata</span></code> Server and Check Its Status<a class="headerlink" href="#start-tabsdata-server-and-check-its-status" title="Link to this heading">#</a></h2>
@@ -422,7 +422,7 @@ simpler).</p>
 <h2>Create and Test the Publisher<a class="headerlink" href="#create-and-test-the-publisher" title="Link to this heading">#</a></h2>
 <section id="register-the-publisher">
 <h3>Register the Publisher<a class="headerlink" href="#register-the-publisher" title="Link to this heading">#</a></h3>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">td</span> <span class="n">fn</span> <span class="n">create</span> <span class="o">--</span><span class="n">coll</span> <span class="n">examples</span> <span class="o">--</span><span class="n">path</span> <span class="n">publisher</span><span class="o">.</span><span class="n">py</span><span class="p">::</span><span class="n">pub</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">td</span> <span class="n">fn</span> <span class="n">register</span> <span class="o">--</span><span class="n">coll</span> <span class="n">examples</span> <span class="o">--</span><span class="n">path</span> <span class="n">publisher</span><span class="o">.</span><span class="n">py</span><span class="p">::</span><span class="n">pub</span>
 </pre></div>
 </div>
 </section>
@@ -443,7 +443,7 @@ simpler).</p>
 <h2>Create and Test the Transformer<a class="headerlink" href="#create-and-test-the-transformer" title="Link to this heading">#</a></h2>
 <section id="register-the-transformer">
 <h3>Register the Transformer<a class="headerlink" href="#register-the-transformer" title="Link to this heading">#</a></h3>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">td</span> <span class="n">fn</span> <span class="n">create</span> <span class="o">--</span><span class="n">coll</span> <span class="n">examples</span> <span class="o">--</span><span class="n">path</span> <span class="n">transformer</span><span class="o">.</span><span class="n">py</span><span class="p">::</span><span class="n">tfr</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">td</span> <span class="n">fn</span> <span class="n">register</span> <span class="o">--</span><span class="n">coll</span> <span class="n">examples</span> <span class="o">--</span><span class="n">path</span> <span class="n">transformer</span><span class="o">.</span><span class="n">py</span><span class="p">::</span><span class="n">tfr</span>
 </pre></div>
 </div>
 </section>
@@ -464,7 +464,7 @@ simpler).</p>
 <h2>Create and Test the Subscriber<a class="headerlink" href="#create-and-test-the-subscriber" title="Link to this heading">#</a></h2>
 <section id="register-the-subscriber">
 <h3>Register the Subscriber<a class="headerlink" href="#register-the-subscriber" title="Link to this heading">#</a></h3>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">td</span> <span class="n">fn</span> <span class="n">create</span> <span class="o">--</span><span class="n">coll</span> <span class="n">examples</span> <span class="o">--</span><span class="n">path</span> <span class="n">subscriber</span><span class="o">.</span><span class="n">py</span><span class="p">::</span><span class="n">sub</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">td</span> <span class="n">fn</span> <span class="n">register</span> <span class="o">--</span><span class="n">coll</span> <span class="n">examples</span> <span class="o">--</span><span class="n">path</span> <span class="n">subscriber</span><span class="o">.</span><span class="n">py</span><span class="p">::</span><span class="n">sub</span>
 </pre></div>
 </div>
 </section>
@@ -476,14 +476,14 @@ simpler).</p>
 </section>
 <section id="see-the-files-exported-by-the-subscriber">
 <h3>See the Files Exported by the Subscriber<a class="headerlink" href="#see-the-files-exported-by-the-subscriber" title="Link to this heading">#</a></h3>
-<section id="id1">
-<h4>For Linux/OSX<a class="headerlink" href="#id1" title="Link to this heading">#</a></h4>
+<section id="for-linux-osx">
+<h4>For Linux/OSX<a class="headerlink" href="#for-linux-osx" title="Link to this heading">#</a></h4>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">ls</span> <span class="n">output</span><span class="o">/*</span>
 </pre></div>
 </div>
 </section>
-<section id="id2">
-<h4>For Windows<a class="headerlink" href="#id2" title="Link to this heading">#</a></h4>
+<section id="for-windows">
+<h4>For Windows<a class="headerlink" href="#for-windows" title="Link to this heading">#</a></h4>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nb">dir</span> <span class="n">output</span>\<span class="o">*</span>
 </pre></div>
 </div>
@@ -494,21 +494,21 @@ simpler).</p>
 <h2>Trigger the Execution of the Publisher, Transformer and Subscriber<a class="headerlink" href="#trigger-the-execution-of-the-publisher-transformer-and-subscriber" title="Link to this heading">#</a></h2>
 <section id="delete-the-output-files">
 <h3>Delete the Output Files<a class="headerlink" href="#delete-the-output-files" title="Link to this heading">#</a></h3>
-<section id="id3">
-<h4>For Linux/OSX<a class="headerlink" href="#id3" title="Link to this heading">#</a></h4>
+<section id="id1">
+<h4>For Linux/OSX<a class="headerlink" href="#id1" title="Link to this heading">#</a></h4>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">rm</span> <span class="n">output</span><span class="o">/*</span>
 </pre></div>
 </div>
 </section>
-<section id="id4">
-<h4>For Windows<a class="headerlink" href="#id4" title="Link to this heading">#</a></h4>
+<section id="id2">
+<h4>For Windows<a class="headerlink" href="#id2" title="Link to this heading">#</a></h4>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">del</span> <span class="n">output</span>\<span class="o">*</span>
 </pre></div>
 </div>
 </section>
 </section>
-<section id="id5">
-<h3>Trigger the Publisher<a class="headerlink" href="#id5" title="Link to this heading">#</a></h3>
+<section id="id3">
+<h3>Trigger the Publisher<a class="headerlink" href="#id3" title="Link to this heading">#</a></h3>
 <p>With the Publisher, Transformer and Subscriber registered, triggering
 the Publisher will trigger the execution of the 3 in order
 (the whole trigger graph).</p>
@@ -516,16 +516,16 @@ the Publisher will trigger the execution of the 3 in order
 </pre></div>
 </div>
 </section>
-<section id="id6">
-<h3>See the Files Exported by the Subscriber<a class="headerlink" href="#id6" title="Link to this heading">#</a></h3>
-<section id="id7">
-<h4>For Linux/OSX<a class="headerlink" href="#id7" title="Link to this heading">#</a></h4>
+<section id="id4">
+<h3>See the Files Exported by the Subscriber<a class="headerlink" href="#id4" title="Link to this heading">#</a></h3>
+<section id="id5">
+<h4>For Linux/OSX<a class="headerlink" href="#id5" title="Link to this heading">#</a></h4>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">ls</span> <span class="n">output</span><span class="o">/*</span>
 </pre></div>
 </div>
 </section>
-<section id="id8">
-<h4>For Windows<a class="headerlink" href="#id8" title="Link to this heading">#</a></h4>
+<section id="id6">
+<h4>For Windows<a class="headerlink" href="#id6" title="Link to this heading">#</a></h4>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nb">dir</span> <span class="n">output</span>\<span class="o">*</span>
 </pre></div>
 </div>
@@ -565,11 +565,6 @@ the Publisher will trigger the execution of the 3 in order
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#setting-up-the-environment-to-run-the-example">Setting Up the Environment to Run the Example</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#stop-tabsdata-server-and-check-its-status">Stop <code class="docutils literal notranslate"><span class="pre">Tabsdata</span></code> Server and Check Its Status</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#set-up-the-example-directory-in-an-environment-variable">Set Up the Example Directory in an Environment Variable</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#for-linux-osx">For Linux/OSX</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#for-windows">For Windows</a></li>
-</ul>
-</li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#start-tabsdata-server-and-check-its-status">Start <code class="docutils literal notranslate"><span class="pre">Tabsdata</span></code> Server and Check Its Status</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#login">Login</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#create-a-collection">Create a Collection</a></li>
@@ -589,22 +584,22 @@ the Publisher will trigger the execution of the 3 in order
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#register-the-subscriber">Register the Subscriber</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#trigger-the-subscriber">Trigger the Subscriber</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#see-the-files-exported-by-the-subscriber">See the Files Exported by the Subscriber</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">For Linux/OSX</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">For Windows</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#for-linux-osx">For Linux/OSX</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#for-windows">For Windows</a></li>
 </ul>
 </li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#trigger-the-execution-of-the-publisher-transformer-and-subscriber">Trigger the Execution of the Publisher, Transformer and Subscriber</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#delete-the-output-files">Delete the Output Files</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">For Linux/OSX</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">For Windows</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">For Linux/OSX</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">For Windows</a></li>
 </ul>
 </li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">Trigger the Publisher</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">See the Files Exported by the Subscriber</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">For Linux/OSX</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">For Windows</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">Trigger the Publisher</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">See the Files Exported by the Subscriber</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">For Linux/OSX</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">For Windows</a></li>
 </ul>
 </li>
 </ul>

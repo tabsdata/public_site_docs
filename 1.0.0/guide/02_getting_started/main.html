@@ -34,7 +34,7 @@
     <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
     <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
     <link rel="stylesheet" type="text/css" href="../../_static/tabs.css?v=a5c4661c" />
-    <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=5208da35" />
+    <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=5a027c77" />
   
   <!-- So that users can add custom icons -->
   <script src="../../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
@@ -209,6 +209,14 @@
   </div>
 </div></div>
       
+        <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+      
     </div>
     
   </div>
@@ -304,6 +312,14 @@
     <!-- dropdown will be populated by javascript on page load -->
   </div>
 </div></div>
+        
+          <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
         
       </div>
     
@@ -437,7 +453,7 @@
 <p>The commands in this tutorial assume that the user is running the tabsdata server in the same machine as the one in which doing the tutorial.</p>
 <p><strong>Important</strong>: The virtual environment or alternative installation location must have <strong>Python 3.12 or later</strong>.</p>
 <p>To install Tabsdata, run the following command in your command line interface (CLI):</p>
-<div class="highlight-bash: notranslate"><div class="highlight"><pre><span></span>$ pip install tabsdata
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>tabsdata
 </pre></div>
 </div>
 <p>Tabsdata installation can be done as an ‘all’ installation or as an ‘only what you need’ installation.</p>
@@ -449,19 +465,19 @@
 <p>In case you have started the Tabsdata server earlier, it is suggested that you remove the older Tabsdata instance. This enables you to start from scratch, reducing the possibilities of error or conflicts.</p>
 <p><strong>Clearing the old Tabsdata instance</strong> [Only if you have started a Tabsdata server before]</p>
 <p>Run the following commands in your CLI, to stop the Tabsdata server and clear the instance:</p>
-<div class="highlight-bash: notranslate"><div class="highlight"><pre><span></span>$ tdserver stop
-$ tdserver clean
-$ tdserver delete
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>tdserver<span class="w"> </span>stop
+$<span class="w"> </span>tdserver<span class="w"> </span>clean
+$<span class="w"> </span>tdserver<span class="w"> </span>delete
 </pre></div>
 </div>
 <p><strong>Starting the server</strong></p>
 <p>To start the Tabsdata server, use the following command:</p>
-<div class="highlight-bash: notranslate"><div class="highlight"><pre><span></span>$ tdserver start
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>tdserver<span class="w"> </span>start
 </pre></div>
 </div>
 <p>The command will run until all the required components are running. You can also stop the monitoring and check the status using the command below.</p>
 <p>To verify that the Tabsdata server instance is running:</p>
-<div class="highlight-bash: notranslate"><div class="highlight"><pre><span></span>$ tdserver status
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>tdserver<span class="w"> </span>status
 </pre></div>
 </div>
 <p>Output:</p>
@@ -471,8 +487,8 @@ $ tdserver delete
 <span id="setup-tutorial"></span><h2>Step 3. Setup Tutorial<a class="headerlink" href="#step-3-setup-tutorial" title="Link to this heading">#</a></h2>
 <p>TO setup the tutorial run the following commands in your CLI from your desired directory.</p>
 <p>The <code class="docutils literal notranslate"><span class="pre">td</span> <span class="pre">examples</span> <span class="pre">--dir</span> <span class="pre">examples</span></code> command creates the <code class="docutils literal notranslate"><span class="pre">examples</span></code> directory, <code class="docutils literal notranslate"><span class="pre">input</span></code> and <code class="docutils literal notranslate"><span class="pre">output</span></code> directories and create the function configuration files called <code class="docutils literal notranslate"><span class="pre">publisher.py</span></code>, <code class="docutils literal notranslate"><span class="pre">tranformer.py</span></code>, and <code class="docutils literal notranslate"><span class="pre">subscriber.py</span></code> for the tutorial. This step is needed only in the context of this tutorial. You can choose a different setup for your own projects. The <code class="docutils literal notranslate"><span class="pre">--dir</span></code> flag specifies the directory where the examples will be created. You can change the directory name to your preference.</p>
-<div class="highlight-bash: notranslate"><div class="highlight"><pre><span></span>$ td examples --dir examples
-$ cd examples
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>td<span class="w"> </span>examples<span class="w"> </span>--dir<span class="w"> </span>examples
+$<span class="w"> </span><span class="nb">cd</span><span class="w"> </span>examples
 </pre></div>
 </div>
 </section>
@@ -483,13 +499,13 @@ $ cd examples
 <ol class="arabic simple">
 <li><p>If you are not logged in, use the following command to log in to Tabsdata:</p></li>
 </ol>
-<div class="highlight-bash: notranslate"><div class="highlight"><pre><span></span>$ td login --server localhost --user admin --role sys_admin --password tabsdata
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>td<span class="w"> </span>login<span class="w"> </span>--server<span class="w"> </span>localhost<span class="w"> </span>--user<span class="w"> </span>admin<span class="w"> </span>--role<span class="w"> </span>sys_admin<span class="w"> </span>--password<span class="w"> </span>tabsdata
 </pre></div>
 </div>
 <ol class="arabic simple" start="2">
 <li><p>To create a collection called tutorial, run the following command:</p></li>
 </ol>
-<div class="highlight-bash: notranslate"><div class="highlight"><pre><span></span>$ td collection create --name tutorial
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>td<span class="w"> </span>collection<span class="w"> </span>create<span class="w"> </span>--name<span class="w"> </span>tutorial
 </pre></div>
 </div>
 <p>Now that you have created a collection, you’re ready to implement a publisher.</p>
@@ -517,12 +533,12 @@ def pub(persons: td.TableFrame):
 <p><strong>2. Register the publisher.</strong></p>
 <p>Before you execute a publisher, you need to register it with a collection. Publishers write all of their output tables to the collection that they are registered with.</p>
 <p>Use the following command to register your pub publisher with the tutorial collection:</p>
-<div class="highlight-bash: notranslate"><div class="highlight"><pre><span></span>$ td fn register --coll tutorial --path publisher.py::pub
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>td<span class="w"> </span>fn<span class="w"> </span>register<span class="w"> </span>--coll<span class="w"> </span>tutorial<span class="w"> </span>--path<span class="w"> </span>publisher.py::pub
 </pre></div>
 </div>
 <p><strong>3. Execute the publisher.</strong></p>
 <p>Use the following command to manually trigger the publisher to execute:</p>
-<div class="highlight-bash: notranslate"><div class="highlight"><pre><span></span>$ td fn trigger --coll tutorial --name pub
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>td<span class="w"> </span>fn<span class="w"> </span>trigger<span class="w"> </span>--coll<span class="w"> </span>tutorial<span class="w"> </span>--name<span class="w"> </span>pub
 </pre></div>
 </div>
 <p>The command triggers the function and polls the transaction status. Once successful, the polling returns the following transaction data:</p>
@@ -530,7 +546,7 @@ def pub(persons: td.TableFrame):
 <p>.</p>
 <p><strong>4. View the new persons Tabsdata table.</strong></p>
 <p>To view the schema of the new persons table, run the following command:</p>
-<div class="highlight-bash: notranslate"><div class="highlight"><pre><span></span>$ td table schema --coll tutorial --name persons
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>td<span class="w"> </span>table<span class="w"> </span>schema<span class="w"> </span>--coll<span class="w"> </span>tutorial<span class="w"> </span>--name<span class="w"> </span>persons
 </pre></div>
 </div>
 <p>The results should look like this:</p>
@@ -576,12 +592,12 @@ def tfr(persons: td.TableFrame):
 <p><strong>2. Register the transformer with a Tabsdata collection.</strong></p>
 <p>Before you execute a transformer, you need to register it with a collection. Transformers can read data from any Tabsdata collection. And like publishers, they write all of their output tables to the collection that they are registered with.</p>
 <p>Use the following command to register the <code class="docutils literal notranslate"><span class="pre">tfr</span></code> transformer with the <code class="docutils literal notranslate"><span class="pre">tutorial</span></code> collection:</p>
-<div class="highlight-bash: notranslate"><div class="highlight"><pre><span></span>$ td fn register --coll tutorial --path transformer.py::tfr
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>td<span class="w"> </span>fn<span class="w"> </span>register<span class="w"> </span>--coll<span class="w"> </span>tutorial<span class="w"> </span>--path<span class="w"> </span>transformer.py::tfr
 </pre></div>
 </div>
 <p><strong>3. Execute the transformer.</strong></p>
 <p>Use the trigger command to manually trigger the transformer to execute. The command syntax is the same for all Tabsdata functions:</p>
-<div class="highlight-bash: notranslate"><div class="highlight"><pre><span></span>$ td fn trigger --coll tutorial --name tfr
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>td<span class="w"> </span>fn<span class="w"> </span>trigger<span class="w"> </span>--coll<span class="w"> </span>tutorial<span class="w"> </span>--name<span class="w"> </span>tfr
 </pre></div>
 </div>
 <p>The command triggers the function and polls the transaction status. Once successful, the polling returns the transaction data such as the following:</p>
@@ -589,7 +605,7 @@ def tfr(persons: td.TableFrame):
 <p>If you face any issues, make sure to check out the <a class="reference internal" href="../10_troubleshooting/main.html#troubleshooting"><span class="std std-ref">Troubleshooting guide</span></a>.</p>
 <p><strong>4. View the output tables.</strong></p>
 <p>To view the schema of the spanish output table, run the following command:</p>
-<div class="highlight-bash: notranslate"><div class="highlight"><pre><span></span>$ td table schema --coll tutorial --name spanish
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>td<span class="w"> </span>table<span class="w"> </span>schema<span class="w"> </span>--coll<span class="w"> </span>tutorial<span class="w"> </span>--name<span class="w"> </span>spanish
 </pre></div>
 </div>
 <p>The results should look like this:</p>
@@ -597,7 +613,7 @@ def tfr(persons: td.TableFrame):
 </a>
 <p>If you like, you can use the command to check the schema for all of the new tables.</p>
 <p>To view the data in the table, use the following command:</p>
-<div class="highlight-bash: notranslate"><div class="highlight"><pre><span></span>$ td table sample --coll tutorial --name spanish
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>td<span class="w"> </span>table<span class="w"> </span>sample<span class="w"> </span>--coll<span class="w"> </span>tutorial<span class="w"> </span>--name<span class="w"> </span>spanish
 </pre></div>
 </div>
 <p>The results should look like this:</p>
@@ -633,12 +649,12 @@ def sub(spanish: td.TableFrame, french: td.TableFrame) -&gt; (td.TableFrame, td.
 <p><strong>2. Register the subscriber.</strong></p>
 <p>Before you execute a subscriber, you need to register it with a collection. Subscribers can read data from any Tabsdata collection.</p>
 <p>Use the following command to register the sub subscriber with the tutorial collection:</p>
-<div class="highlight-bash: notranslate"><div class="highlight"><pre><span></span>$ td fn register --coll tutorial --path subscriber.py::sub
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>td<span class="w"> </span>fn<span class="w"> </span>register<span class="w"> </span>--coll<span class="w"> </span>tutorial<span class="w"> </span>--path<span class="w"> </span>subscriber.py::sub
 </pre></div>
 </div>
 <p><strong>3. Execute the subscriber.</strong></p>
 <p>Use the trigger command to manually trigger the subscriber:</p>
-<div class="highlight-bash: notranslate"><div class="highlight"><pre><span></span>$ td fn trigger --coll tutorial --name sub
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>td<span class="w"> </span>fn<span class="w"> </span>trigger<span class="w"> </span>--coll<span class="w"> </span>tutorial<span class="w"> </span>--name<span class="w"> </span>sub
 </pre></div>
 </div>
 <p>The command triggers the function and polls the transaction status. Once successful, the polling returns the transaction data such as the following:</p>
@@ -647,10 +663,10 @@ def sub(spanish: td.TableFrame, french: td.TableFrame) -&gt; (td.TableFrame, td.
 <p><strong>4. Verify subscriber execution.</strong></p>
 <p>You can verify that the spanish.json1 and french.ndjson output files have been created by listing files in the output directory:</p>
 <div class="sphinx-tabs docutils container">
-<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-0-0-0" aria-selected="true" class="sphinx-tabs-tab" id="tab-0-0-0" name="0-0" role="tab" tabindex="0">For Linux or macOS:</button><button aria-controls="panel-0-0-1" aria-selected="false" class="sphinx-tabs-tab" id="tab-0-0-1" name="0-1" role="tab" tabindex="-1">For Windows (CMD):</button></div><div aria-labelledby="tab-0-0-0" class="sphinx-tabs-panel" id="panel-0-0-0" name="0-0" role="tabpanel" tabindex="0"><div class="highlight-bash: notranslate"><div class="highlight"><pre><span></span>$ ls output
+<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-0-0-0" aria-selected="true" class="sphinx-tabs-tab" id="tab-0-0-0" name="0-0" role="tab" tabindex="0">For Linux or macOS:</button><button aria-controls="panel-0-0-1" aria-selected="false" class="sphinx-tabs-tab" id="tab-0-0-1" name="0-1" role="tab" tabindex="-1">For Windows (CMD):</button></div><div aria-labelledby="tab-0-0-0" class="sphinx-tabs-panel" id="panel-0-0-0" name="0-0" role="tabpanel" tabindex="0"><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>ls<span class="w"> </span>output
 </pre></div>
 </div>
-</div><div aria-labelledby="tab-0-0-1" class="sphinx-tabs-panel" hidden="true" id="panel-0-0-1" name="0-1" role="tabpanel" tabindex="0"><div class="highlight-bash: notranslate"><div class="highlight"><pre><span></span>$ dir output
+</div><div aria-labelledby="tab-0-0-1" class="sphinx-tabs-panel" hidden="true" id="panel-0-0-1" name="0-1" role="tabpanel" tabindex="0"><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>dir<span class="w"> </span>output
 </pre></div>
 </div>
 </div></div>
@@ -666,16 +682,16 @@ def sub(spanish: td.TableFrame, french: td.TableFrame) -&gt; (td.TableFrame, td.
 <p><strong>1. Remove the existing files from the output directory.</strong></p>
 <p>You can do this manually or by running the following command:</p>
 <div class="sphinx-tabs docutils container">
-<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-1-1-0" aria-selected="true" class="sphinx-tabs-tab" id="tab-1-1-0" name="1-0" role="tab" tabindex="0">For Linux or macOS:</button><button aria-controls="panel-1-1-1" aria-selected="false" class="sphinx-tabs-tab" id="tab-1-1-1" name="1-1" role="tab" tabindex="-1">For Windows (CMD):</button></div><div aria-labelledby="tab-1-1-0" class="sphinx-tabs-panel" id="panel-1-1-0" name="1-0" role="tabpanel" tabindex="0"><div class="highlight-bash: notranslate"><div class="highlight"><pre><span></span>$ rm output/*
+<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-1-1-0" aria-selected="true" class="sphinx-tabs-tab" id="tab-1-1-0" name="1-0" role="tab" tabindex="0">For Linux or macOS:</button><button aria-controls="panel-1-1-1" aria-selected="false" class="sphinx-tabs-tab" id="tab-1-1-1" name="1-1" role="tab" tabindex="-1">For Windows (CMD):</button></div><div aria-labelledby="tab-1-1-0" class="sphinx-tabs-panel" id="panel-1-1-0" name="1-0" role="tabpanel" tabindex="0"><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>rm<span class="w"> </span>output/*
 </pre></div>
 </div>
-</div><div aria-labelledby="tab-1-1-1" class="sphinx-tabs-panel" hidden="true" id="panel-1-1-1" name="1-1" role="tabpanel" tabindex="0"><div class="highlight-bash: notranslate"><div class="highlight"><pre><span></span>$ del output\*
+</div><div aria-labelledby="tab-1-1-1" class="sphinx-tabs-panel" hidden="true" id="panel-1-1-1" name="1-1" role="tabpanel" tabindex="0"><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>del<span class="w"> </span>output<span class="se">\*</span>
 </pre></div>
 </div>
 </div></div>
 <p><strong>2. Execute the publisher.</strong></p>
 <p>To run the entire tutorial workflow, use the following command to manually trigger the publisher:</p>
-<div class="highlight-bash: notranslate"><div class="highlight"><pre><span></span>$ td fn trigger --coll tutorial --name pub
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>td<span class="w"> </span>fn<span class="w"> </span>trigger<span class="w"> </span>--coll<span class="w"> </span>tutorial<span class="w"> </span>--name<span class="w"> </span>pub
 </pre></div>
 </div>
 <p><strong>3. View the list of functions related to the manual trigger of the publisher.</strong></p>
@@ -684,10 +700,10 @@ def sub(spanish: td.TableFrame, french: td.TableFrame) -&gt; (td.TableFrame, td.
 <p><strong>4. Verify the output.</strong></p>
 <p>You can verify that the spanish.json1 and french.ndjson files have been written to the output folder with the following command:</p>
 <div class="sphinx-tabs docutils container">
-<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-2-2-0" aria-selected="true" class="sphinx-tabs-tab" id="tab-2-2-0" name="2-0" role="tab" tabindex="0">For Linux or macOS:</button><button aria-controls="panel-2-2-1" aria-selected="false" class="sphinx-tabs-tab" id="tab-2-2-1" name="2-1" role="tab" tabindex="-1">For Windows (CMD):</button></div><div aria-labelledby="tab-2-2-0" class="sphinx-tabs-panel" id="panel-2-2-0" name="2-0" role="tabpanel" tabindex="0"><div class="highlight-bash: notranslate"><div class="highlight"><pre><span></span>$ ls output
+<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-2-2-0" aria-selected="true" class="sphinx-tabs-tab" id="tab-2-2-0" name="2-0" role="tab" tabindex="0">For Linux or macOS:</button><button aria-controls="panel-2-2-1" aria-selected="false" class="sphinx-tabs-tab" id="tab-2-2-1" name="2-1" role="tab" tabindex="-1">For Windows (CMD):</button></div><div aria-labelledby="tab-2-2-0" class="sphinx-tabs-panel" id="panel-2-2-0" name="2-0" role="tabpanel" tabindex="0"><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>ls<span class="w"> </span>output
 </pre></div>
 </div>
-</div><div aria-labelledby="tab-2-2-1" class="sphinx-tabs-panel" hidden="true" id="panel-2-2-1" name="2-1" role="tabpanel" tabindex="0"><div class="highlight-bash: notranslate"><div class="highlight"><pre><span></span>$ dir output
+</div><div aria-labelledby="tab-2-2-1" class="sphinx-tabs-panel" hidden="true" id="panel-2-2-1" name="2-1" role="tabpanel" tabindex="0"><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>dir<span class="w"> </span>output
 </pre></div>
 </div>
 </div></div>
