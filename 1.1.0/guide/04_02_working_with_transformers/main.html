@@ -64,7 +64,7 @@
     <link rel="prev" title="Salesforce" href="../04_01_working_with_publishers/salesforce/main.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
-  <meta name="docsearch:version" content="1.0.0" />
+  <meta name="docsearch:version" content="1.1.0" />
   </head>
   
   
@@ -495,6 +495,13 @@
 <h3>Output Tables<a class="headerlink" href="#output-tables" title="Link to this heading">#</a></h3>
 <p><code class="docutils literal notranslate"><span class="pre">&lt;output_table1&gt;</span></code>, <code class="docutils literal notranslate"><span class="pre">&lt;output_table2&gt;</span></code>… are the names of the Tabsdata tables to publish to.</p>
 </section>
+<section id="none-as-an-input">
+<h3><code class="docutils literal notranslate"><span class="pre">None</span></code> as an input<a class="headerlink" href="#none-as-an-input" title="Link to this heading">#</a></h3>
+<p>A transformer may receive and return a <code class="docutils literal notranslate"><span class="pre">None</span></code> value instead a TableFrame parameter or return value.</p>
+<p>When a transformer receives a <code class="docutils literal notranslate"><span class="pre">None</span></code> value instead of a TableFrame it means that the requested table dependency version does not exist.</p>
+<p>For example, a transformer that has a dependency on the previous version of one the tables it produces, has a <code class="docutils literal notranslate"><span class="pre">None</span></code> value as an input on its first execution since the input table doesn;t exist yet.</p>
+<p>When a transformer returns a <code class="docutils literal notranslate"><span class="pre">None</span></code> value instead of a TableFrame it means that the associated table will preserve the existing data from the previous commit. This helps in avoiding the creation of multiple copies of the same data.</p>
+</section>
 <section id="triggers">
 <h3>Triggers<a class="headerlink" href="#triggers" title="Link to this heading">#</a></h3>
 <p><code class="docutils literal notranslate"><span class="pre">&lt;trigger_table1&gt;</span></code>, <code class="docutils literal notranslate"><span class="pre">&lt;trigger_table2&gt;</span></code>… are the names of the tables in the Tabsdata server. A new commit to any of these tables triggers the publisher. All listed trigger tables must exist in the server before registering the publisher.</p>
@@ -565,6 +572,7 @@
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#setup-transformer">Setup (Transformer)</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#input-tables">Input Tables</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#output-tables">Output Tables</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#none-as-an-input"><code class="docutils literal notranslate"><span class="pre">None</span></code> as an input</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#triggers">Triggers</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#name">Name</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#function-logic">Function Logic</a></li>

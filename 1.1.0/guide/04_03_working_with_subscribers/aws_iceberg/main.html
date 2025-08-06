@@ -64,7 +64,7 @@
     <link rel="prev" title="Local File System" href="../local_file_system/main.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
-  <meta name="docsearch:version" content="1.0.0" />
+  <meta name="docsearch:version" content="1.1.0" />
   </head>
   
   
@@ -579,8 +579,8 @@
 <h5><code class="docutils literal notranslate"><span class="pre">auto_create_at</span></code><a class="headerlink" href="#auto-create-at" title="Link to this heading">#</a></h5>
 <p>If you don’t specify <code class="docutils literal notranslate"><span class="pre">auto_create_at</span></code> the table must exist in the Iceberg catalog. If you want the publisher to create the table if it does not exists, in the <code class="docutils literal notranslate"><span class="pre">auto_create_at</span></code> you have to provide an S3 URI where the entry point of Iceberg metadata of the table will be created. Typically you would put the base path where you write the parquet files.</p>
 </section>
-<section id="if-table-exists">
-<h5><code class="docutils literal notranslate"><span class="pre">if_table_exists</span></code><a class="headerlink" href="#if-table-exists" title="Link to this heading">#</a></h5>
+<section id="optional-if-table-exists">
+<h5>[Optional] <code class="docutils literal notranslate"><span class="pre">if_table_exists</span></code><a class="headerlink" href="#optional-if-table-exists" title="Link to this heading">#</a></h5>
 <p>This is an optional property to define the strategy to follow when the table already exists. <code class="docutils literal notranslate"><span class="pre">replace</span></code> will create a new table in Iceberg, overwriting the existing one, and <code class="docutils literal notranslate"><span class="pre">append</span></code> will append to the existing data in the table. Defaults to <code class="docutils literal notranslate"><span class="pre">append</span></code>.</p>
 </section>
 <section id="partitioned-table">
@@ -681,7 +681,7 @@
 <li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#definition"><code class="docutils literal notranslate"><span class="pre">definition</span></code></a></li>
 <li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#id1"><code class="docutils literal notranslate"><span class="pre">tables</span></code></a></li>
 <li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#auto-create-at"><code class="docutils literal notranslate"><span class="pre">auto_create_at</span></code></a></li>
-<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#if-table-exists"><code class="docutils literal notranslate"><span class="pre">if_table_exists</span></code></a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#optional-if-table-exists">[Optional] <code class="docutils literal notranslate"><span class="pre">if_table_exists</span></code></a></li>
 <li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#partitioned-table"><code class="docutils literal notranslate"><span class="pre">partitioned_table</span></code></a></li>
 <li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#schema-strategy"><code class="docutils literal notranslate"><span class="pre">schema_strategy</span></code></a></li>
 </ul>

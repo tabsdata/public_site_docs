@@ -64,7 +64,7 @@
     <link rel="prev" title="Publishers" href="../main.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
-  <meta name="docsearch:version" content="1.0.0" />
+  <meta name="docsearch:version" content="1.1.0" />
   </head>
   
   
@@ -526,10 +526,16 @@
 </pre></div>
 </div>
 <p><code class="docutils literal notranslate"><span class="pre">&quot;&lt;path_to_file1.csv&gt;&quot;</span></code>, <code class="docutils literal notranslate"><span class="pre">&quot;&lt;path_to_file2.csv&gt;&quot;</span></code>… are paths to CSV files with a custom delimiter, with csv extension. The delimiter is a single byte character such as colon (:), semicolon (;), and period (.) that separate the fields in the given file instead of a comma(,). You define the character in <code class="docutils literal notranslate"><span class="pre">separator</span></code>.</p>
+<section id="none-as-an-input">
+<h5><code class="docutils literal notranslate"><span class="pre">None</span></code> as an input<a class="headerlink" href="#none-as-an-input" title="Link to this heading">#</a></h5>
+<p>A publisher may receive and return a <code class="docutils literal notranslate"><span class="pre">None</span></code> value instead a TableFrame parameter or return value.</p>
+<p>When a publisher <strong>receives</strong> a <code class="docutils literal notranslate"><span class="pre">None</span></code> value instead of a TableFrame it means the absence of input data. For example, the system didn’t return any results because of the file being absent or query returning empty results.</p>
+<p>When a publisher <strong>returns</strong> a <code class="docutils literal notranslate"><span class="pre">None</span></code> value instead of a TableFrame it means that the associated table will preserve the existing data from the previous commit. This helps in avoiding the creation of multiple copies of the same data.</p>
 </section>
-<section id="initial-last-modified">
-<h4>initial_last_modified<a class="headerlink" href="#initial-last-modified" title="Link to this heading">#</a></h4>
-<p>[optional] <code class="docutils literal notranslate"><span class="pre">&lt;date_time&gt;</span></code> is a date time string in the <a class="reference external" href="https://en.wikipedia.org/wiki/ISO_8601">ISO 8601 format</a> format (e.g. 2025-02-05 or 2025-02-05T03:12:36Z). If provided, only the files modified after this date and time will be considered to be read by the publisher. If no timezone is provided, UTC will be assumed.</p>
+</section>
+<section id="optional-initial-last-modified">
+<h4>[Optional] initial_last_modified<a class="headerlink" href="#optional-initial-last-modified" title="Link to this heading">#</a></h4>
+<p><code class="docutils literal notranslate"><span class="pre">&lt;date_time&gt;</span></code> is a date time string in the <a class="reference external" href="https://en.wikipedia.org/wiki/ISO_8601">ISO 8601 format</a> format (e.g. 2025-02-05 or 2025-02-05T03:12:36Z). If provided, only the files modified after this date and time will be considered to be read by the publisher. If no timezone is provided, UTC will be assumed.</p>
 </section>
 </section>
 <section id="tables">
@@ -606,8 +612,11 @@
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-publisher-local-file-system">Example (Publisher - Local File System)</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#setup-publisher-local-file-system">Setup (Publisher - Local File System)</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#source">source</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#path-to-files">&lt;path_to_files&gt;</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#initial-last-modified">initial_last_modified</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#path-to-files">&lt;path_to_files&gt;</a><ul class="nav section-nav flex-column">
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#none-as-an-input"><code class="docutils literal notranslate"><span class="pre">None</span></code> as an input</a></li>
+</ul>
+</li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#optional-initial-last-modified">[Optional] initial_last_modified</a></li>
 </ul>
 </li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tables">tables</a></li>
