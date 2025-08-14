@@ -1,9 +1,14 @@
 [
     {
+        "version": "1.2.0",
+        "url": "https://docs.tabsdata.com/1.2.0/index.html",
+        "name": "1.2.0(Latest)",
+        "preferred": true
+    },
+    {
         "version": "1.1.0",
         "url": "https://docs.tabsdata.com/1.1.0/index.html",
-        "name": "1.1.0(Latest)",
-        "preferred": true
+        "name": "1.1.0"
     },
     {
         "version": "1.0.0",
