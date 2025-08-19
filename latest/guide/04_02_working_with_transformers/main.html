@@ -338,6 +338,7 @@
 <li class="toctree-l2"><a class="reference internal" href="../04_01_working_with_publishers/amazon_s3/main.html">Amazon S3</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../04_01_working_with_publishers/azure/main.html">Azure Blob Storage</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../04_01_working_with_publishers/mariadb/main.html">MariaDB</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../04_01_working_with_publishers/mssql/main.html">Microsoft SQL Server</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../04_01_working_with_publishers/mysql/main.html">MySQL</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../04_01_working_with_publishers/oracle/main.html">Oracle</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../04_01_working_with_publishers/postgres/main.html">Postgres</a></li>
@@ -353,6 +354,7 @@
 <li class="toctree-l2"><a class="reference internal" href="../04_03_working_with_subscribers/databricks/main.html">Databricks</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../04_03_working_with_subscribers/mariadb/main.html">MariaDB</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../04_03_working_with_subscribers/mongodb/main.html">MongoDB</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../04_03_working_with_subscribers/mssql/main.html">Microsoft SQL Server</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../04_03_working_with_subscribers/mysql/main.html">MySQL</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../04_03_working_with_subscribers/oracle/main.html">Oracle</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../04_03_working_with_subscribers/postgres/main.html">Postgres</a></li>
@@ -495,11 +497,11 @@
 <h3>Output Tables<a class="headerlink" href="#output-tables" title="Link to this heading">#</a></h3>
 <p><code class="docutils literal notranslate"><span class="pre">&lt;output_table1&gt;</span></code>, <code class="docutils literal notranslate"><span class="pre">&lt;output_table2&gt;</span></code>… are the names of the Tabsdata tables to publish to.</p>
 </section>
-<section id="none-as-an-input">
-<h3><code class="docutils literal notranslate"><span class="pre">None</span></code> as an input<a class="headerlink" href="#none-as-an-input" title="Link to this heading">#</a></h3>
+<section id="none-as-an-input-and-output">
+<h3><code class="docutils literal notranslate"><span class="pre">None</span></code> as an input and output<a class="headerlink" href="#none-as-an-input-and-output" title="Link to this heading">#</a></h3>
 <p>A transformer may receive and return a <code class="docutils literal notranslate"><span class="pre">None</span></code> value instead of a TableFrame parameter or return value.</p>
 <p>When a transformer receives a <code class="docutils literal notranslate"><span class="pre">None</span></code> value instead of a TableFrame it means that the requested table dependency version does not exist.</p>
-<p>For example, a transformer that has a dependency on the previous version of one the tables it produces, has a <code class="docutils literal notranslate"><span class="pre">None</span></code> value as an input on its first execution since the input table doesn;t exist yet.</p>
+<p>For example, a transformer that has a dependency on the previous version of one the tables it produces, has a <code class="docutils literal notranslate"><span class="pre">None</span></code> value as an input on its first execution since the input table doesn’t exist yet.</p>
 <p>When a transformer returns a <code class="docutils literal notranslate"><span class="pre">None</span></code> value instead of a TableFrame it means that the associated table will preserve the existing data from the previous commit. This helps in avoiding the creation of multiple copies of the same data.</p>
 </section>
 <section id="triggers">
@@ -572,7 +574,7 @@
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#setup-transformer">Setup (Transformer)</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#input-tables">Input Tables</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#output-tables">Output Tables</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#none-as-an-input"><code class="docutils literal notranslate"><span class="pre">None</span></code> as an input</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#none-as-an-input-and-output"><code class="docutils literal notranslate"><span class="pre">None</span></code> as an input and output</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#triggers">Triggers</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#name">Name</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#function-logic">Function Logic</a></li>

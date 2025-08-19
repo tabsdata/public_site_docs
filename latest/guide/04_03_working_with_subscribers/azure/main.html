@@ -338,6 +338,7 @@
 <li class="toctree-l2"><a class="reference internal" href="../../04_01_working_with_publishers/amazon_s3/main.html">Amazon S3</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../04_01_working_with_publishers/azure/main.html">Azure Blob Storage</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../04_01_working_with_publishers/mariadb/main.html">MariaDB</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../04_01_working_with_publishers/mssql/main.html">Microsoft SQL Server</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../04_01_working_with_publishers/mysql/main.html">MySQL</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../04_01_working_with_publishers/oracle/main.html">Oracle</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../04_01_working_with_publishers/postgres/main.html">Postgres</a></li>
@@ -353,6 +354,7 @@
 <li class="toctree-l2"><a class="reference internal" href="../databricks/main.html">Databricks</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../mariadb/main.html">MariaDB</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../mongodb/main.html">MongoDB</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../mssql/main.html">Microsoft SQL Server</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../mysql/main.html">MySQL</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../oracle/main.html">Oracle</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../postgres/main.html">Postgres</a></li>
@@ -547,6 +549,12 @@
 <p>You can use different ways to store the credentials which are highlighted <a class="reference internal" href="../../secrets_management/main.html#credentials"><span class="std std-ref">here</span></a> in the documentation.</p>
 </section>
 </section>
+<section id="none-as-an-input-and-output">
+<h3><code class="docutils literal notranslate"><span class="pre">None</span></code> as an input and output<a class="headerlink" href="#none-as-an-input-and-output" title="Link to this heading">#</a></h3>
+<p>A subscriber may receive and return a <code class="docutils literal notranslate"><span class="pre">None</span></code> value instead of TableFrames.</p>
+<p>When a subscriber receives a <code class="docutils literal notranslate"><span class="pre">None</span></code> value instead of a TableFrame it means that the requested table dependency version does not exist.</p>
+<p>When a subscriber returns a <code class="docutils literal notranslate"><span class="pre">None</span></code> value instead of a TableFrame it means there is no new data to write to the external system. This helps in avoiding the creation of multiple copies of the same data.</p>
+</section>
 <section id="optional-trigger-by">
 <h3>[Optional] trigger_by<a class="headerlink" href="#optional-trigger-by" title="Link to this heading">#</a></h3>
 <p><code class="docutils literal notranslate"><span class="pre">&lt;trigger_table1&gt;</span></code>, <code class="docutils literal notranslate"><span class="pre">&lt;trigger_table2&gt;</span></code>… are the names of the tables in the Tabsdata server. A new commit to any of these tables triggers the subscriber. All listed trigger tables must exist in the server before registering the subscriber.</p>
@@ -621,6 +629,7 @@
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#credentials">credentials</a></li>
 </ul>
 </li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#none-as-an-input-and-output"><code class="docutils literal notranslate"><span class="pre">None</span></code> as an input and output</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#optional-trigger-by">[Optional] trigger_by</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#subscriber-name">&lt;subscriber_name&gt;</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#function-logic">&lt;function_logic&gt;</a></li>

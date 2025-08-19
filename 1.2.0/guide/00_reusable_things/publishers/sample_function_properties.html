@@ -379,6 +379,12 @@
 <h1>tables<a class="headerlink" href="#tables" title="Link to this heading">#</a></h1>
 <p><code class="docutils literal notranslate"><span class="pre">&lt;output_table1&gt;</span></code>, <code class="docutils literal notranslate"><span class="pre">&lt;output_table2&gt;</span></code>… are the names of the Tabsdata tables to publish to.</p>
 </section>
+<section id="none-as-an-input-and-output">
+<h1><code class="docutils literal notranslate"><span class="pre">None</span></code> as an input and output<a class="headerlink" href="#none-as-an-input-and-output" title="Link to this heading">#</a></h1>
+<p>A publisher may receive and return a <code class="docutils literal notranslate"><span class="pre">None</span></code> value instead of a TableFrame parameter or return value.</p>
+<p>When a publisher <strong>receives</strong> a <code class="docutils literal notranslate"><span class="pre">None</span></code> value instead of a TableFrame it means the absence of input data. For example, the system didn’t return any results because of the file being absent or query returning empty results.</p>
+<p>When a publisher <strong>returns</strong> a <code class="docutils literal notranslate"><span class="pre">None</span></code> value instead of a TableFrame it means that the associated table will preserve the existing data from the previous commit. This helps in avoiding the creation of multiple copies of the same data.</p>
+</section>
 <section id="optional-trigger-by">
 <h1>[Optional] trigger_by<a class="headerlink" href="#optional-trigger-by" title="Link to this heading">#</a></h1>
 <p><code class="docutils literal notranslate"><span class="pre">&lt;trigger_table1&gt;</span></code>, <code class="docutils literal notranslate"><span class="pre">&lt;trigger_table2&gt;</span></code>… are the names of the tables in the Tabsdata server. A new commit to any of these tables triggers the publisher. This can be relevant in cases where you want to import a data if something else in the organization changes. e.g trigger the import of latest manufacturing data in the company if a new supplier get added added. While a new supplier would not be a direct input to the publisher importing manufacturing data, it can still trigger the function.</p>
@@ -427,6 +433,7 @@
   <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">tables</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#none-as-an-input-and-output"><code class="docutils literal notranslate"><span class="pre">None</span></code> as an input and output</a></li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#optional-trigger-by">[Optional] trigger_by</a></li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#publisher-name">&lt;publisher_name&gt;</a></li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#function-logic">&lt;function_logic&gt;</a></li>

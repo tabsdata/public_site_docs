@@ -338,6 +338,7 @@
 <li class="toctree-l2 current active"><a class="current reference internal" href="#">Amazon S3</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../azure/main.html">Azure Blob Storage</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../mariadb/main.html">MariaDB</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../mssql/main.html">Microsoft SQL Server</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../mysql/main.html">MySQL</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../oracle/main.html">Oracle</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../postgres/main.html">Postgres</a></li>
@@ -353,6 +354,7 @@
 <li class="toctree-l2"><a class="reference internal" href="../../04_03_working_with_subscribers/databricks/main.html">Databricks</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../04_03_working_with_subscribers/mariadb/main.html">MariaDB</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../04_03_working_with_subscribers/mongodb/main.html">MongoDB</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../04_03_working_with_subscribers/mssql/main.html">Microsoft SQL Server</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../04_03_working_with_subscribers/mysql/main.html">MySQL</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../04_03_working_with_subscribers/oracle/main.html">Oracle</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../04_03_working_with_subscribers/postgres/main.html">Postgres</a></li>
@@ -544,12 +546,6 @@
 <p><code class="docutils literal notranslate"><span class="pre">S3_ACCESS_KEY</span></code> is the value of your Amazon S3 access key.</p>
 <p><code class="docutils literal notranslate"><span class="pre">S3_SECRET_KEY</span></code> is the value of your Amazon S3 secret key.</p>
 <p>You can use different ways to store the credentials which are highlighted <a class="reference internal" href="../../secrets_management/main.html#credentials"><span class="std std-ref">here</span></a> in the documentation.</p>
-<section id="none-as-an-input">
-<h5><code class="docutils literal notranslate"><span class="pre">None</span></code> as an input<a class="headerlink" href="#none-as-an-input" title="Link to this heading">#</a></h5>
-<p>A publisher may receive and return a <code class="docutils literal notranslate"><span class="pre">None</span></code> value instead of a TableFrame parameter or return value.</p>
-<p>When a publisher <strong>receives</strong> a <code class="docutils literal notranslate"><span class="pre">None</span></code> value instead of a TableFrame it means the absence of input data. For example, the system didn’t return any results because of the file being absent or query returning empty results.</p>
-<p>When a publisher <strong>returns</strong> a <code class="docutils literal notranslate"><span class="pre">None</span></code> value instead of a TableFrame it means that the associated table will preserve the existing data from the previous commit. This helps in avoiding the creation of multiple copies of the same data.</p>
-</section>
 </section>
 <section id="optional-initial-last-modified">
 <h4>[Optional] initial_last_modified<a class="headerlink" href="#optional-initial-last-modified" title="Link to this heading">#</a></h4>
@@ -563,6 +559,12 @@
 <section id="tables">
 <h3>tables<a class="headerlink" href="#tables" title="Link to this heading">#</a></h3>
 <p><code class="docutils literal notranslate"><span class="pre">&lt;output_table1&gt;</span></code>, <code class="docutils literal notranslate"><span class="pre">&lt;output_table2&gt;</span></code>… are the names of the Tabsdata tables to publish to.</p>
+</section>
+<section id="none-as-an-input-and-output">
+<h3><code class="docutils literal notranslate"><span class="pre">None</span></code> as an input and output<a class="headerlink" href="#none-as-an-input-and-output" title="Link to this heading">#</a></h3>
+<p>A publisher may receive and return a <code class="docutils literal notranslate"><span class="pre">None</span></code> value instead of a TableFrame parameter or return value.</p>
+<p>When a publisher <strong>receives</strong> a <code class="docutils literal notranslate"><span class="pre">None</span></code> value instead of a TableFrame it means the absence of input data. For example, the system didn’t return any results because of the file being absent or query returning empty results.</p>
+<p>When a publisher <strong>returns</strong> a <code class="docutils literal notranslate"><span class="pre">None</span></code> value instead of a TableFrame it means that the associated table will preserve the existing data from the previous commit. This helps in avoiding the creation of multiple copies of the same data.</p>
 </section>
 <section id="optional-trigger-by">
 <h3>[Optional] trigger_by<a class="headerlink" href="#optional-trigger-by" title="Link to this heading">#</a></h3>
@@ -635,15 +637,13 @@
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#setup-publisher-amazon-s3">Setup (Publisher - Amazon S3)</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#source">source</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#path-to-files">&lt;path_to_files&gt;</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#credentials">credentials</a><ul class="nav section-nav flex-column">
-<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#none-as-an-input"><code class="docutils literal notranslate"><span class="pre">None</span></code> as an input</a></li>
-</ul>
-</li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#credentials">credentials</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#optional-initial-last-modified">[Optional] initial_last_modified</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#region">region</a></li>
 </ul>
 </li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tables">tables</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#none-as-an-input-and-output"><code class="docutils literal notranslate"><span class="pre">None</span></code> as an input and output</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#optional-trigger-by">[Optional] trigger_by</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#publisher-name">&lt;publisher_name&gt;</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#function-logic">&lt;function_logic&gt;</a></li>
