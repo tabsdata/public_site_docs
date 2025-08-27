@@ -558,6 +558,14 @@
 <p><code class="docutils literal notranslate"><span class="pre">&lt;table_frame1&gt;</span></code>, <code class="docutils literal notranslate"><span class="pre">&lt;table_frame2&gt;</span></code>… are the names for the variables that temporarily store source data for processing.</p>
 <p><code class="docutils literal notranslate"><span class="pre">&lt;table_frame_output1&gt;</span></code>, <code class="docutils literal notranslate"><span class="pre">&lt;table_frame_output2&gt;</span></code>… are the output from the function that are written to the external system.</p>
 </section>
+<section id="data-drift-support">
+<h3>Data Drift Support<a class="headerlink" href="#data-drift-support" title="Link to this heading">#</a></h3>
+<p>This section talks about how Tabsdata handles data drift in the output data for this Subscriber connector.</p>
+<p>The behaviour depends on how <code class="docutils literal notranslate"><span class="pre">if_table_exists</span></code> and <code class="docutils literal notranslate"><span class="pre">schema_strategy</span></code> are configured in the subscriber.</p>
+<p>For a Databricks subscriber with <code class="docutils literal notranslate"><span class="pre">if_table_exists=replace</span></code> (<code class="docutils literal notranslate"><span class="pre">schema_strategy</span></code> is ignored), the table is dropped and recreated on each execution. The resulting schema exactly matches the newly exported data, and type changes are fully reflected in the new table schema.</p>
+<p>For a Databricks subscriber with <code class="docutils literal notranslate"><span class="pre">if_table_exists=append</span></code> and <code class="docutils literal notranslate"><span class="pre">schema_strategy=update</span></code>, the existing table schema is augmented to include new columns. Columns that are no longer present in the source remain in the table.</p>
+<p>For a Databricks subscriber with <code class="docutils literal notranslate"><span class="pre">if_table_exists=append</span></code> and <code class="docutils literal notranslate"><span class="pre">schema_strategy=strict</span></code>, any schema changes (added, removed, or modified columns) will cause execution to fail.</p>
+</section>
 </section>
 </section>
 
@@ -617,6 +625,7 @@
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#optional-trigger-by">[Optional] trigger_by</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#subscriber-name">&lt;subscriber_name&gt;</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#function-logic">&lt;function_logic&gt;</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#data-drift-support">Data Drift Support</a></li>
 </ul>
 </li>
 </ul>

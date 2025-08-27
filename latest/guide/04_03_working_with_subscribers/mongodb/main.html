@@ -549,6 +549,11 @@ Note that since this parameter indicates the amount of documents inserted in eac
 <p><code class="docutils literal notranslate"><span class="pre">&lt;table_frame1&gt;</span></code>, <code class="docutils literal notranslate"><span class="pre">&lt;table_frame2&gt;</span></code>… are the names for the variables that temporarily store source data for processing.</p>
 <p><code class="docutils literal notranslate"><span class="pre">&lt;table_frame_output1&gt;</span></code>, <code class="docutils literal notranslate"><span class="pre">&lt;table_frame_output2&gt;</span></code>… are the output from the function that are written to the external system.</p>
 </section>
+<section id="data-drift-support">
+<h3>Data Drift Support<a class="headerlink" href="#data-drift-support" title="Link to this heading">#</a></h3>
+<p>For a MongoDB subscriber configured with <code class="docutils literal notranslate"><span class="pre">if_collection_exists=replace</span></code>, the collection is dropped and recreated during each execution. The resulting schema exactly matches the newly exported data.</p>
+<p>For a MongoDB subscriber configured with <code class="docutils literal notranslate"><span class="pre">if_collection_exists=append</span></code>, the existing collection schema is augmented with any new fields introduced in the data. Fields that are no longer present in the source remain in the collection.</p>
+</section>
 </section>
 </section>
 
@@ -608,6 +613,7 @@ Note that since this parameter indicates the amount of documents inserted in eac
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#optional-trigger-by">[Optional] trigger_by</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#subscriber-name">&lt;subscriber_name&gt;</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#function-logic">&lt;function_logic&gt;</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#data-drift-support">Data Drift Support</a></li>
 </ul>
 </li>
 </ul>

@@ -565,6 +565,14 @@ TrustServerCertificate: Either of &lt;yes/no&gt; to be provided on whether to tr
 <p><code class="docutils literal notranslate"><span class="pre">&lt;table_frame1&gt;</span></code>, <code class="docutils literal notranslate"><span class="pre">&lt;table_frame2&gt;</span></code>… are the names for the variables that temporarily store source data for processing.</p>
 <p><code class="docutils literal notranslate"><span class="pre">&lt;table_frame_output1&gt;</span></code>, <code class="docutils literal notranslate"><span class="pre">&lt;table_frame_output2&gt;</span></code>… are the output from the function that are written to the external system.</p>
 </section>
+<section id="data-drift-support">
+<h3>Data Drift Support<a class="headerlink" href="#data-drift-support" title="Link to this heading">#</a></h3>
+<p>This section talks about how Tabsdata handles data drift in the input data for this Subscriber connector.</p>
+<p>The behaviour depends on how <code class="docutils literal notranslate"><span class="pre">if_table_exists</span></code> is configured in the subscriber.</p>
+<p>When <code class="docutils literal notranslate"><span class="pre">if_table_exists=replace</span></code> is configured, the existing database table is dropped and recreated during each execution. This ensures that the table schema always matches the latest exported data, including any type changes.</p>
+<p>When <code class="docutils literal notranslate"><span class="pre">if_table_exists=append</span></code> is configured, the subscriber does not modify the existing schema. Any schema changes (added, removed, or modified columns) will cause execution to fail. In this mode, the subscriber function must ensure consistent column definitions across executions e.g., by explicitly specifying the columns to export.</p>
+<p>Also, this applies only if the subscriber function does not contain schema-dependent logic. If such logic exists, changes in the schema may conflict with the function’s expectations, leading to execution errors irrespective of the configuration of <code class="docutils literal notranslate"><span class="pre">if_table_exists</span></code>.</p>
+</section>
 </section>
 </section>
 
@@ -635,6 +643,7 @@ TrustServerCertificate: Either of &lt;yes/no&gt; to be provided on whether to tr
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#optional-trigger-by">[Optional] trigger_by</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#subscriber-name">&lt;subscriber_name&gt;</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#function-logic">&lt;function_logic&gt;</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#data-drift-support">Data Drift Support</a></li>
 </ul>
 </li>
 </ul>
