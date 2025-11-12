@@ -459,18 +459,18 @@
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">tabsdata</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">td</span>
 
 <span class="n">s3_credentials</span> <span class="o">=</span> <span class="n">td</span><span class="o">.</span><span class="n">S3AccessKeyCredentials</span><span class="p">(</span>
+    <span class="c1"># HashiCorp is a type of secret store, ideal for production use cases.</span>
+    <span class="c1"># For rapid testing, you can refer to the credential values directly. You can also use environment variables as detailed here: https://docs.tabsdata.com/latest/guide/secrets_management/env_variables/main.html.</span>
     <span class="n">aws_access_key_id</span><span class="o">=</span><span class="n">td</span><span class="o">.</span><span class="n">HashiCorpSecret</span><span class="p">(</span><span class="s2">&quot;path-to-secret&quot;</span><span class="p">,</span><span class="s2">&quot;S3_ACCESS_KEY&quot;</span><span class="p">),</span>
     <span class="n">aws_secret_access_key</span><span class="o">=</span><span class="n">td</span><span class="o">.</span><span class="n">HashiCorpSecret</span><span class="p">(</span><span class="s2">&quot;path-to-secret&quot;</span><span class="p">,</span><span class="s2">&quot;S3_SECRET_KEY&quot;</span><span class="p">),</span>
 <span class="p">)</span>
 
 <span class="n">catalog_definition</span> <span class="o">=</span>
-<span class="p">[</span>
     <span class="p">{</span>
     <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;default&quot;</span><span class="p">,</span>
     <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;glue&quot;</span><span class="p">,</span>
     <span class="s2">&quot;client.region&quot;</span><span class="p">:</span> <span class="s2">&quot;us-east-1&quot;</span><span class="p">,</span>
     <span class="p">}</span>
-<span class="p">]</span>
 
 <span class="nd">@td</span><span class="o">.</span><span class="n">subscriber</span><span class="p">(</span>
     <span class="n">tables</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;departments&quot;</span><span class="p">,</span> <span class="s2">&quot;employees_1&quot;</span><span class="p">,</span> <span class="s2">&quot;employees_2&quot;</span><span class="p">],</span>
@@ -484,15 +484,16 @@
         <span class="n">catalog</span> <span class="o">=</span> <span class="n">td</span><span class="o">.</span><span class="n">AWSGlue</span><span class="p">(</span>
             <span class="n">definition</span><span class="o">=</span><span class="n">catalog_definition</span><span class="p">,</span>
             <span class="n">tables</span><span class="o">=</span><span class="p">[</span>
-                <span class="s2">&quot;iceberg_namespace.table&quot;</span><span class="p">,</span>
-                <span class="s2">&quot;iceberg_namespace_2.table&quot;</span><span class="p">,</span>
-                <span class="s2">&quot;iceberg_namespace_3.table&quot;</span><span class="p">,</span>
-            <span class="p">],</span>
-        <span class="n">credentials</span> <span class="o">=</span> <span class="n">s3_credentials</span><span class="p">,</span>
-        <span class="o">....</span>
-    <span class="p">),</span>
-    <span class="p">),</span>
-<span class="p">)</span>
+                <span class="s2">&quot;glue_dbname.table&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;glue_dbname.table&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;glue_dbname.table&quot;</span><span class="p">,</span>
+              <span class="p">],</span>
+            <span class="n">credentials</span> <span class="o">=</span> <span class="n">s3_credentials</span><span class="p">,</span>
+            <span class="o">....</span>
+          <span class="p">),</span>
+          <span class="p">),</span>
+        <span class="n">trigger_by</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;&lt;trigger_table1&gt;&quot;</span><span class="p">,</span> <span class="s2">&quot;&lt;trigger_table2&gt;&quot;</span><span class="p">]</span>
+  <span class="p">),</span>
 <span class="k">def</span><span class="w"> </span><span class="nf">write_employees</span><span class="p">(</span><span class="n">tf1</span><span class="p">:</span> <span class="n">td</span><span class="o">.</span><span class="n">TableFrame</span><span class="p">,</span> <span class="n">tf2</span><span class="p">:</span> <span class="n">td</span><span class="o">.</span><span class="n">TableFrame</span><span class="p">,</span> <span class="n">tf3</span><span class="p">:</span> <span class="n">td</span><span class="o">.</span><span class="n">TableFrame</span><span class="p">):</span>
     <span class="k">return</span> <span class="n">tf1</span><span class="p">,</span> <span class="n">tf2</span><span class="p">,</span> <span class="n">tf3</span>
 </pre></div>
@@ -512,6 +513,13 @@
     <span class="n">aws_secret_access_key</span><span class="o">=</span><span class="n">td</span><span class="o">.</span><span class="n">HashiCorpSecret</span><span class="p">(</span><span class="s2">&quot;path-to-secret&quot;</span><span class="p">,</span><span class="s2">&quot;S3_SECRET_KEY&quot;</span><span class="p">),</span>
 <span class="p">)</span>
 
+<span class="n">catalog_definition</span> <span class="o">=</span>
+    <span class="p">{</span>
+    <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;default&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;glue&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;client.region&quot;</span><span class="p">:</span> <span class="s2">&quot;&lt;region_name&gt;&quot;</span><span class="p">,</span>
+    <span class="p">}</span>
+
 <span class="nd">@td</span><span class="o">.</span><span class="n">subscriber</span><span class="p">(</span>
     <span class="n">tables</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;&lt;input_table1&gt;&quot;</span><span class="p">,</span> <span class="s2">&quot;&lt;input_table2&gt;&quot;</span><span class="p">],</span>
     <span class="n">destination</span><span class="o">=</span><span class="n">td</span><span class="o">.</span><span class="n">S3Destination</span><span class="p">(</span>
@@ -519,7 +527,7 @@
         <span class="n">credentials</span> <span class="o">=</span> <span class="n">s3_credentials</span><span class="p">,</span>
         <span class="n">region</span> <span class="o">=</span> <span class="s2">&quot;&lt;region_name&gt;&quot;</span><span class="p">,</span>
         <span class="n">catalog</span> <span class="o">=</span> <span class="n">td</span><span class="o">.</span><span class="n">AWSGlue</span><span class="p">(</span>
-                <span class="n">definition</span> <span class="o">=</span> <span class="s2">&quot;&lt;definition&gt;&quot;</span><span class="p">,</span>
+                <span class="n">definition</span> <span class="o">=</span> <span class="n">catalog_definition</span><span class="p">,</span>
                 <span class="n">tables</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;&lt;table_1&gt;&quot;</span><span class="p">,</span><span class="s2">&quot;&lt;table_2&gt;&quot;</span><span class="p">],</span>
                 <span class="n">credentials</span> <span class="o">=</span> <span class="n">s3_credentials</span><span class="p">,</span>
                 <span class="n">auto_create_at</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;&lt;auto_create_1&gt;&quot;</span><span class="p">,</span><span class="s2">&quot;&lt;auto_create_2&gt;&quot;</span><span class="p">],</span>
@@ -622,7 +630,7 @@
 </section>
 <section id="auto-create-at">
 <h5><code class="docutils literal notranslate"><span class="pre">auto_create_at</span></code><a class="headerlink" href="#auto-create-at" title="Link to this heading">#</a></h5>
-<p>If you don’t specify <code class="docutils literal notranslate"><span class="pre">auto_create_at</span></code> the table must exist in the Iceberg catalog. If you want the publisher to create the table if it does not exists, in the <code class="docutils literal notranslate"><span class="pre">auto_create_at</span></code> you have to provide an S3 URI where the entry point of Iceberg metadata of the table will be created. Typically you would put the base path where you write the parquet files.</p>
+<p>If you don’t specify <code class="docutils literal notranslate"><span class="pre">auto_create_at</span></code> the table must exist in the Iceberg catalog. If you want the publisher to create the table if it does not exist, in the <code class="docutils literal notranslate"><span class="pre">auto_create_at</span></code> you have to provide an S3 URI where the entry point of Iceberg metadata of the table will be created. Typically you would put the base path where you write the parquet files. e.g. the path would look like: <cite>s3://&lt;path_to_file1&gt;</cite>.</p>
 </section>
 <section id="optional-if-table-exists">
 <h5>[Optional] <code class="docutils literal notranslate"><span class="pre">if_table_exists</span></code><a class="headerlink" href="#optional-if-table-exists" title="Link to this heading">#</a></h5>

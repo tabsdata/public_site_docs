@@ -458,11 +458,19 @@ transaction as failed.</p>
 </a>
 <p>If a transaction is in <code class="docutils literal notranslate"><span class="pre">Stalled</span></code> status, all functions that did not
 complete successfully yet are either in <code class="docutils literal notranslate"><span class="pre">Failed</span></code> status or on
-<code class="docutils literal notranslate"><span class="pre">Hold</span></code>. All functions from all transactions that depend on the
-failed transaction will also be on <code class="docutils literal notranslate"><span class="pre">Scheduled</span></code> status if they didn’t
-execute yet.</p>
+<code class="docutils literal notranslate"><span class="pre">Hold</span></code>. Any other execution depending on the failed transaction will also be on <code class="docutils literal notranslate"><span class="pre">Scheduled</span></code> status.</p>
+<p>If this is the case, you need to:</p>
+<ol class="arabic simple">
+<li><p>Check the logs for issues.</p></li>
+<li><p>Cancel the failed transaction.</p></li>
+<li><p>Fix the issue in the code.</p></li>
+<li><p>Update the function body in the Tabsdata server.</p></li>
+<li><p>Re-trigger the function that started the cancelled transaction.</p></li>
+</ol>
+<section id="check-the-logs-for-issues">
+<h3>Check the logs for issues<a class="headerlink" href="#check-the-logs-for-issues" title="Link to this heading">#</a></h3>
 <section id="find-the-workers-of-the-failed-transaction-that-already-executed">
-<h3>Find the Workers of the Failed Transaction that Already Executed<a class="headerlink" href="#find-the-workers-of-the-failed-transaction-that-already-executed" title="Link to this heading">#</a></h3>
+<h4>Find the Workers of the Failed Transaction that Already Executed<a class="headerlink" href="#find-the-workers-of-the-failed-transaction-that-already-executed" title="Link to this heading">#</a></h4>
 <p>To know the exact reason for fialure, you will need to access the constituent workers of a transaction.
 To find the workers of the stalled transaction, use the <code class="docutils literal notranslate"><span class="pre">td</span> <span class="pre">exe</span> <span class="pre">list-worker</span></code> command with one of the following 3
 options:</p>
@@ -475,10 +483,10 @@ options:</p>
 </a>
 </section>
 <section id="fetch-the-logs-of-a-worker">
-<h3>Fetch the logs of a Worker<a class="headerlink" href="#fetch-the-logs-of-a-worker" title="Link to this heading">#</a></h3>
+<h4>Fetch the logs of a Worker<a class="headerlink" href="#fetch-the-logs-of-a-worker" title="Link to this heading">#</a></h4>
 <p>To fetch the logs of a worker, use the
 <code class="docutils literal notranslate"><span class="pre">td</span> <span class="pre">exe</span> <span class="pre">logs</span> <span class="pre">--worker</span> <span class="pre">&lt;WORKER_ID&gt;</span></code> command.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">td</span> <span class="n">exe</span> <span class="n">logs</span> <span class="o">--</span><span class="n">worker</span> <span class="mi">06</span><span class="n">ACHMC505VC10HMF7NI1D9RUG</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="err">$</span> <span class="n">td</span> <span class="n">exe</span> <span class="n">logs</span> <span class="o">--</span><span class="n">worker</span> <span class="mi">06</span><span class="n">ACHMC505VC10HMF7NI1D9RUG</span>
 <span class="n">Logs</span> <span class="kn">from</span><span class="w"> </span><span class="nn">worker</span> <span class="s1">&#39;06ACHMC505VC10HMF7NI1D9RUG&#39;</span><span class="p">:</span>
 <span class="o">********************</span>
 <span class="o">/</span><span class="n">Users</span><span class="o">/</span><span class="n">foo</span><span class="o">/.</span><span class="n">tabsdata</span><span class="o">/</span><span class="n">instances</span><span class="o">/</span><span class="n">tabsdata</span><span class="o">/</span><span class="n">workspace</span><span class="o">/</span><span class="n">work</span><span class="o">/</span><span class="n">proc</span><span class="o">/</span><span class="n">ephemeral</span><span class="o">/</span><span class="n">function</span><span class="o">/</span><span class="n">work</span><span class="o">/</span><span class="n">cast</span><span class="o">/</span><span class="mi">06</span><span class="n">ACHMC505VC10HMF7NI1D9RUG_1</span><span class="o">/</span><span class="n">work</span><span class="o">/</span><span class="n">log</span><span class="o">/</span><span class="n">err</span><span class="o">.</span><span class="n">log</span>
@@ -511,37 +519,48 @@ options:</p>
 </div>
 <p>Depending on the type of error, you may need to retry the transaction or
 cancel it.</p>
-<p>If there is an error in your function code, you need cancel the
-transaction, fix the issue in the code, update the function and
-re-trigger the function that started the cancelled transaction.</p>
 </section>
+<section id="cancel-the-transaction">
+<h4>Cancel the Transaction<a class="headerlink" href="#cancel-the-transaction" title="Link to this heading">#</a></h4>
+<p>To cancel the transaction use the <code class="docutils literal notranslate"><span class="pre">td</span> <span class="pre">exe</span> <span class="pre">cancel</span> <span class="pre">--trx</span> <span class="pre">&lt;TRX_ID&gt;</span></code>
+command. It will cancel all workers of the transaction, including the
+ones that finished successfully. The cancel also applies to all the
+dependent transactions.</p>
+<p>For example:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="err">$</span> <span class="n">td</span> <span class="n">exe</span> <span class="n">cancel</span> <span class="o">--</span><span class="n">trx</span> <span class="mi">06</span><span class="n">ACE0ME7TV95DKETOAMVB88DK</span>
+<span class="n">Canceling</span> <span class="n">transaction</span> <span class="k">with</span> <span class="n">ID</span> <span class="s1">&#39;06ACHMC4H1QJ3E7VS99VSRES4K&#39;</span>
+<span class="o">----------</span>
+<span class="n">Execution</span> <span class="n">plan</span> <span class="n">canceled</span> <span class="n">successfully</span>
+</pre></div>
+</div>
 <section id="recover-the-transaction">
-<h3>Recover the Transaction<a class="headerlink" href="#recover-the-transaction" title="Link to this heading">#</a></h3>
+<h5>Recover the Transaction<a class="headerlink" href="#recover-the-transaction" title="Link to this heading">#</a></h5>
 <p>To recover the transaction use the <code class="docutils literal notranslate"><span class="pre">td</span> <span class="pre">exe</span> <span class="pre">recover</span> <span class="pre">--trx</span> <span class="pre">&lt;TRX_ID&gt;</span></code>
 command. It will retry all workers that failed and reschedule all
 workers that were on hold. The recover also applies to all the dependent
 transactions.</p>
 <p>For example:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">td</span> <span class="n">exe</span> <span class="n">recover</span> <span class="o">--</span><span class="n">trx</span> <span class="mi">06</span><span class="n">ACE0ME7TV95DKETOAMVB88DK</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="err">$</span> <span class="n">td</span> <span class="n">exe</span> <span class="n">recover</span> <span class="o">--</span><span class="n">trx</span> <span class="mi">06</span><span class="n">ACE0ME7TV95DKETOAMVB88DK</span>
 <span class="n">Recovering</span> <span class="n">transaction</span> <span class="k">with</span> <span class="n">ID</span> <span class="s1">&#39;06ACHMC4H1QJ3E7VS99VSRES4K&#39;</span>
 <span class="o">----------</span>
 <span class="n">Execution</span> <span class="n">plan</span> <span class="n">recovered</span> <span class="n">successfully</span>
 </pre></div>
 </div>
 </section>
-<section id="cancel-the-transaction">
-<h3>Cancel the Transaction<a class="headerlink" href="#cancel-the-transaction" title="Link to this heading">#</a></h3>
-<p>To cancel the transaction use the <code class="docutils literal notranslate"><span class="pre">td</span> <span class="pre">exe</span> <span class="pre">cancel</span> <span class="pre">--trx</span> <span class="pre">&lt;TRX_ID&gt;</span></code>
-command. It will cancel all workers of the transaction, including the
-ones that finished successfully. The cancel also applies to all the
-dependent transactions.</p>
-<p>For example:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">td</span> <span class="n">exe</span> <span class="n">cancel</span> <span class="o">--</span><span class="n">trx</span> <span class="mi">06</span><span class="n">ACE0ME7TV95DKETOAMVB88DK</span>
-<span class="n">Canceling</span> <span class="n">transaction</span> <span class="k">with</span> <span class="n">ID</span> <span class="s1">&#39;06ACHMC4H1QJ3E7VS99VSRES4K&#39;</span>
-<span class="o">----------</span>
-<span class="n">Execution</span> <span class="n">plan</span> <span class="n">canceled</span> <span class="n">successfully</span>
+</section>
+<section id="update-the-function-body-in-the-tabsdata-server">
+<h4>Update the function body in the Tabsdata server<a class="headerlink" href="#update-the-function-body-in-the-tabsdata-server" title="Link to this heading">#</a></h4>
+<p>The function changes you made are still in your local and need to be moved to the Tabsdata server. To do that, use the below command and modify as needed.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="err">$</span> <span class="n">td</span> <span class="n">fn</span> <span class="n">update</span> <span class="o">--</span><span class="n">coll</span> <span class="n">examples</span> <span class="o">--</span><span class="n">name</span> <span class="o">&lt;</span><span class="n">FUNCTION</span><span class="o">&gt;</span>
+
+            <span class="o">--</span><span class="n">path</span> <span class="o">&lt;</span><span class="n">PYTHON_FILE</span><span class="o">&gt;</span><span class="p">::</span><span class="o">&lt;</span><span class="n">PYTHON_FUNCTION</span><span class="o">&gt;</span>
+
+            <span class="o">--</span><span class="n">description</span> <span class="o">&lt;</span><span class="n">DESCRIPTION</span><span class="o">&gt;</span> <span class="o">--</span><span class="n">local</span><span class="o">-</span><span class="n">pkg</span> <span class="o">&lt;</span><span class="n">LOCAL_PACKAGE_PATH</span><span class="o">&gt;</span>
+
+            <span class="o">--</span><span class="n">requirements</span> <span class="o">&lt;</span><span class="n">REQUIREMENTS_TXT_PATH</span><span class="o">&gt;</span>
 </pre></div>
 </div>
+</section>
 </section>
 </section>
 <section id="server-related-issues">
@@ -735,10 +754,16 @@ You can run the following command to delete the instance and start the process f
   <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-execution-of-a-function-failed">The Execution of a Function Failed</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#find-the-workers-of-the-failed-transaction-that-already-executed">Find the Workers of the Failed Transaction that Already Executed</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#fetch-the-logs-of-a-worker">Fetch the logs of a Worker</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#recover-the-transaction">Recover the Transaction</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cancel-the-transaction">Cancel the Transaction</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#check-the-logs-for-issues">Check the logs for issues</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#find-the-workers-of-the-failed-transaction-that-already-executed">Find the Workers of the Failed Transaction that Already Executed</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#fetch-the-logs-of-a-worker">Fetch the logs of a Worker</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#cancel-the-transaction">Cancel the Transaction</a><ul class="nav section-nav flex-column">
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#recover-the-transaction">Recover the Transaction</a></li>
+</ul>
+</li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#update-the-function-body-in-the-tabsdata-server">Update the function body in the Tabsdata server</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#server-related-issues">Server Related Issues</a><ul class="nav section-nav flex-column">

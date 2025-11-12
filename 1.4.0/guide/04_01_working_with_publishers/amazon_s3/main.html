@@ -461,6 +461,8 @@
 <span class="kn">import</span><span class="w"> </span><span class="nn">tabsdata</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">td</span>
 
 <span class="n">s3_credentials</span> <span class="o">=</span> <span class="n">td</span><span class="o">.</span><span class="n">S3AccessKeyCredentials</span><span class="p">(</span>
+    <span class="c1"># HashiCorp is a type of secret store, ideal for production use cases.</span>
+    <span class="c1"># For rapid testing, you can refer to the credential values directly. You can also use environment variables as detailed here: https://docs.tabsdata.com/latest/guide/secrets_management/env_variables/main.html.</span>
     <span class="n">aws_access_key_id</span><span class="o">=</span><span class="n">td</span><span class="o">.</span><span class="n">HashiCorpSecret</span><span class="p">(</span><span class="s2">&quot;path-to-secret&quot;</span><span class="p">,</span><span class="s2">&quot;S3_ACCESS_KEY&quot;</span><span class="p">),</span>
     <span class="n">aws_secret_access_key</span><span class="o">=</span><span class="n">td</span><span class="o">.</span><span class="n">HashiCorpSecret</span><span class="p">(</span><span class="s2">&quot;path-to-secret&quot;</span><span class="p">,</span><span class="s2">&quot;S3_SECRET_KEY&quot;</span><span class="p">),</span>
 <span class="p">)</span>
@@ -493,6 +495,8 @@
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">tabsdata</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">td</span>
 
 <span class="n">s3_credentials</span> <span class="o">=</span> <span class="n">td</span><span class="o">.</span><span class="n">S3AccessKeyCredentials</span><span class="p">(</span>
+    <span class="c1"># HashiCorp is a type of secret store, ideal for production use cases.</span>
+    <span class="c1"># For rapid testing, you can refer to the credential values directly. You can also use environment variables as detailed here: https://docs.tabsdata.com/latest/guide/secrets_management/env_variables/main.html.</span>
     <span class="n">aws_access_key_id</span><span class="o">=</span><span class="n">td</span><span class="o">.</span><span class="n">HashiCorpSecret</span><span class="p">(</span><span class="s2">&quot;path-to-secret&quot;</span><span class="p">,</span><span class="s2">&quot;S3_ACCESS_KEY&quot;</span><span class="p">),</span>
     <span class="n">aws_secret_access_key</span><span class="o">=</span><span class="n">td</span><span class="o">.</span><span class="n">HashiCorpSecret</span><span class="p">(</span><span class="s2">&quot;path-to-secret&quot;</span><span class="p">,</span><span class="s2">&quot;S3_SECRET_KEY&quot;</span><span class="p">),</span>
 <span class="p">)</span>

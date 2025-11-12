@@ -460,7 +460,11 @@
 
 <span class="kn">import</span><span class="w"> </span><span class="nn">tabsdata</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">td</span>
 
-<span class="n">gcp_credentials</span> <span class="o">=</span> <span class="n">td</span><span class="o">.</span><span class="n">GCPServiceAccountKeyCredentials</span><span class="p">(</span><span class="n">td</span><span class="o">.</span><span class="n">HashiCorpSecret</span><span class="p">(</span><span class="s2">&quot;path-to-secret&quot;</span><span class="p">,</span><span class="s2">&quot;GCP_SERVICE_ACCOUNT_KEY&quot;</span><span class="p">),)</span>
+<span class="n">gcp_credentials</span> <span class="o">=</span> <span class="n">td</span><span class="o">.</span><span class="n">GCPServiceAccountKeyCredentials</span><span class="p">(</span>
+    <span class="c1"># HashiCorp is a type of secret store, ideal for production use cases.</span>
+    <span class="c1"># For rapid testing, you can refer to the credential values directly. You can also use environment variables as detailed here: https://docs.tabsdata.com/latest/guide/secrets_management/env_variables/main.html.</span>
+    <span class="n">account_name</span><span class="o">=</span><span class="n">td</span><span class="o">.</span><span class="n">HashiCorpSecret</span><span class="p">(</span><span class="s2">&quot;path-to-secret&quot;</span><span class="p">,</span><span class="s2">&quot;GCP_SERVICE_ACCOUNT_KEY&quot;</span><span class="p">),</span>
+    <span class="p">)</span>
 
 <span class="nd">@td</span><span class="o">.</span><span class="n">publisher</span><span class="p">(</span>
     <span class="n">source</span><span class="o">=</span><span class="n">td</span><span class="o">.</span><span class="n">GCSSource</span><span class="p">(</span>
@@ -487,7 +491,10 @@
 <p>The following code uses placeholder values for defining a publisher that reads data from Google Cloud Storage and publishes it to Tabsdata tables:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">tabsdata</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">td</span>
 
-<span class="n">gcp_credentials</span> <span class="o">=</span> <span class="n">td</span><span class="o">.</span><span class="n">GCPServiceAccountKeyCredentials</span><span class="p">(</span><span class="n">account_name</span><span class="o">=</span><span class="n">td</span><span class="o">.</span><span class="n">HashiCorpSecret</span><span class="p">(</span><span class="s2">&quot;path-to-secret&quot;</span><span class="p">,</span><span class="s2">&quot;GCP_SERVICE_ACCOUNT_KEY&quot;</span><span class="p">),)</span>
+<span class="n">gcp_credentials</span> <span class="o">=</span> <span class="n">td</span><span class="o">.</span><span class="n">GCPServiceAccountKeyCredentials</span><span class="p">(</span>
+    <span class="c1"># HashiCorp is a type of secret store, ideal for production use cases.</span>
+    <span class="c1"># For rapid testing, you can refer to the credential values directly. You can also use environment variables as detailed here: https://docs.tabsdata.com/latest/guide/secrets_management/env_variables/main.html.</span>
+    <span class="n">account_name</span><span class="o">=</span><span class="n">td</span><span class="o">.</span><span class="n">HashiCorpSecret</span><span class="p">(</span><span class="s2">&quot;path-to-secret&quot;</span><span class="p">,</span><span class="s2">&quot;GCP_SERVICE_ACCOUNT_KEY&quot;</span><span class="p">),)</span>
 
 <span class="nd">@td</span><span class="o">.</span><span class="n">publisher</span><span class="p">(</span>
     <span class="n">source</span><span class="o">=</span><span class="n">td</span><span class="o">.</span><span class="n">GCSSource</span><span class="p">(</span>
