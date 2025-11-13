@@ -53,7 +53,7 @@
     <script>
         DOCUMENTATION_OPTIONS.theme_version = '0.16.1';
         DOCUMENTATION_OPTIONS.theme_switcher_json_url = 'https://docs.tabsdata.com/version.json';
-        DOCUMENTATION_OPTIONS.theme_switcher_version_match = '1.4.0';
+        DOCUMENTATION_OPTIONS.theme_switcher_version_match = '1.5.0';
         DOCUMENTATION_OPTIONS.show_version_warning_banner =
             false;
         </script>
@@ -64,7 +64,7 @@
     <link rel="prev" title="Key Concepts" href="../03_key_concepts/main.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
-  <meta name="docsearch:version" content="1.4.0" />
+  <meta name="docsearch:version" content="1.5.0" />
   </head>
   
   
@@ -486,7 +486,7 @@
 <span id="id3"></span><h2>Register a Function<a class="headerlink" href="#register-a-function" title="Link to this heading">#</a></h2>
 <p>After you define a Tabsdata function, you register it with a collection in the Tabsdata server. A <a class="reference internal" href="../03_key_concepts/main.html#collections"><span class="std std-ref">collection</span></a> is the logical container where the Tabsdata server organizes tables and functions.</p>
 <p>To register a function, use the following command in a CLI:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>td<span class="w"> </span>fn<span class="w"> </span>register<span class="w"> </span>--coll<span class="w"> </span>&lt;collection_name&gt;<span class="w"> </span>--path<span class="w"> </span>&lt;path_to_python_file&gt;::&lt;function_name&gt;
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>td<span class="w"> </span>fn<span class="w"> </span>register<span class="w"> </span>--coll<span class="w"> </span>&lt;collection_name&gt;<span class="w"> </span>--path<span class="w"> </span>&lt;path_to_python_file&gt;::&lt;function_name&gt;<span class="w"> </span>--update
 </pre></div>
 </div>
 <p>Where:</p>
@@ -494,6 +494,7 @@
 <li><p><code class="docutils literal notranslate"><span class="pre">&lt;collection_name&gt;</span></code> is the name of the collection in the Tabsdata server to register the function with.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">&lt;path_to_python_file&gt;</span></code> is the path to the Python file containing the function. It can be absolute system path or relative to the CLI directory from which the comannd is run.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">&lt;function_name&gt;</span></code> is the name of the function as defined in the Python file.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">--update</span></code> flag enables updation of the function if the function with the same name already exists.</p></li>
 </ul>
 </section>
 <section id="execute-a-function">

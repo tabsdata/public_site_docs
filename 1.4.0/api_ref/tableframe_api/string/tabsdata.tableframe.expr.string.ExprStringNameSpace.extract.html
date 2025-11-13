@@ -53,7 +53,7 @@
     <script>
         DOCUMENTATION_OPTIONS.theme_version = '0.16.1';
         DOCUMENTATION_OPTIONS.theme_switcher_json_url = 'https://docs.tabsdata.com/version.json';
-        DOCUMENTATION_OPTIONS.theme_switcher_version_match = '1.4.0';
+        DOCUMENTATION_OPTIONS.theme_switcher_version_match = '1.5.0';
         DOCUMENTATION_OPTIONS.show_version_warning_banner =
             false;
         </script>
@@ -64,7 +64,7 @@
     <link rel="prev" title="tabsdata.tableframe.expr.string.ExprStringNameSpace.ends_with" href="tabsdata.tableframe.expr.string.ExprStringNameSpace.ends_with.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
-  <meta name="docsearch:version" content="1.4.0" />
+  <meta name="docsearch:version" content="1.5.0" />
   </head>
   
   
@@ -751,7 +751,14 @@
 <h1>tabsdata.tableframe.expr.string.ExprStringNameSpace.extract<a class="headerlink" href="#tabsdata-tableframe-expr-string-exprstringnamespace-extract" title="Link to this heading">#</a></h1>
 <dl class="py method">
 <dt class="sig sig-object py" id="tabsdata.tableframe.expr.string.ExprStringNameSpace.extract">
-<span class="sig-prename descclassname"><span class="pre">ExprStringNameSpace.</span></span><span class="sig-name descname"><span class="pre">extract</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pattern</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">td_typing.IntoExprColumn</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">group_index</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">td_expr.Expr</span></span></span><a class="reference external" href="https://github.com/tabsdata/tabsdata/blob/main/client/td-sdk/tabsdata/tableframe/expr/string.py#L700"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tabsdata.tableframe.expr.string.ExprStringNameSpace.extract" title="Link to this definition">#</a></dt>
+<span class="sig-prename descclassname"><span class="pre">ExprStringNameSpace.</span></span><span class="sig-name descname"><span class="pre">extract</span></span><span class="sig-paren">(</span>
+
+<dl>
+<dd><em class="sig-param"><span class="n"><span class="pre">pattern</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">td_typing.IntoExprColumn</span></span></em>,</dd>
+<dd><em class="sig-param"><span class="n"><span class="pre">group_index</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1</span></span></em>,</dd>
+</dl>
+
+<span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">td_expr.Expr</span></span></span><a class="headerlink" href="#tabsdata.tableframe.expr.string.ExprStringNameSpace.extract" title="Link to this definition">#</a></dt>
 <dd><p>Extract a pattern from the string.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>

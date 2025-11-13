@@ -54,7 +54,7 @@
     <script>
         DOCUMENTATION_OPTIONS.theme_version = '0.16.1';
         DOCUMENTATION_OPTIONS.theme_switcher_json_url = 'https://docs.tabsdata.com/version.json';
-        DOCUMENTATION_OPTIONS.theme_switcher_version_match = '1.4.0';
+        DOCUMENTATION_OPTIONS.theme_switcher_version_match = '1.5.0';
         DOCUMENTATION_OPTIONS.show_version_warning_banner =
             false;
         </script>
@@ -66,7 +66,7 @@
     <link rel="prev" title="Overview" href="../01_overview/main.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
-  <meta name="docsearch:version" content="1.4.0" />
+  <meta name="docsearch:version" content="1.5.0" />
   </head>
   
   
@@ -452,7 +452,12 @@
   <section id="getting-started">
 <span id="id1"></span><h1>Getting Started<a class="headerlink" href="#getting-started" title="Link to this heading">#</a></h1>
 <p>This chapter provides a tutorial to walk you through essential Tabsdata operations.</p>
-<p>In this tutorial, you create a collection to store the Tabsdata functions and tables. Then, you implement a publisher to read the data from an external system and write to Tabsdata, a transformer to modify the data, and a subscriber to read the tables from Tabsdata and write the modified data to an external system.</p>
+<p>In this tutorial, you create a collection to store the Tabsdata functions and tables. Then, you implement:</p>
+<ul class="simple">
+<li><p>a publisher to read the data from an external system and write to Tabsdata,</p></li>
+<li><p>a transformer to modify the data, and</p></li>
+<li><p>a subscriber to read the tables from Tabsdata and write the modified data to an external system.</p></li>
+</ul>
 <p>The tutorial shows you how to define, register, and trigger the functions. It also demonstrates how the downstream dependencies are automatically managed by Tabsdata.</p>
 <p>If you encounter any trouble with the tutorial, you might find help in <a class="reference internal" href="../10_troubleshooting/main.html#troubleshooting"><span class="std std-ref">Troubleshooting</span></a>, and reach out to us on <a class="reference external" href="https://join.slack.com/t/tabsdata-community/shared_invite/zt-322toyigx-ZGFioMV2Gbza4bJDAR7wSQ">Slack</a>.</p>
 <section id="step-1-install-tabsdata">
@@ -461,6 +466,18 @@
 <p>While not required, you should install the Tabsdata Python package in a clean virtual environment. You can use <a class="reference external" href="https://docs.python.org/3/library/venv.html">python venv</a>, <a class="reference external" href="https://docs.conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html">conda</a> or other similar tools to create and manage your virtual environment.</p>
 <p>The commands in this tutorial assume that the user is running the tabsdata server in the same machine as the one in which doing the tutorial.</p>
 <p><strong>Important</strong>: The virtual environment or alternative installation location must have <strong>Python 3.12 or later</strong>.</p>
+<p>[Optional and Recommended] Setup virtual environment</p>
+<div class="sphinx-tabs docutils container">
+<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-0-0-0" aria-selected="true" class="sphinx-tabs-tab" id="tab-0-0-0" name="0-0" role="tab" tabindex="0">Conda:</button><button aria-controls="panel-0-0-1" aria-selected="false" class="sphinx-tabs-tab" id="tab-0-0-1" name="0-1" role="tab" tabindex="-1">Python:</button></div><div aria-labelledby="tab-0-0-0" class="sphinx-tabs-panel" id="panel-0-0-0" name="0-0" role="tabpanel" tabindex="0"><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>conda<span class="w"> </span>create<span class="w"> </span>--name<span class="w"> </span>tabsdata_env<span class="w"> </span><span class="nv">python</span><span class="o">=</span><span class="m">3</span>.12
+$<span class="w"> </span>conda<span class="w"> </span>activate<span class="w"> </span>tabsdata_env
+</pre></div>
+</div>
+</div><div aria-labelledby="tab-0-0-1" class="sphinx-tabs-panel" hidden="true" id="panel-0-0-1" name="0-1" role="tabpanel" tabindex="0"><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>python3.12<span class="w"> </span>-m<span class="w"> </span>venv<span class="w"> </span>.venv
+$<span class="w"> </span><span class="nb">source</span><span class="w"> </span>.venv/bin/activate<span class="w">    </span><span class="c1"># On Linux/Mac</span>
+$<span class="w"> </span>.<span class="se">\.</span>venv<span class="se">\S</span>cripts<span class="se">\a</span>ctivate<span class="w">     </span><span class="c1"># On Windows</span>
+</pre></div>
+</div>
+</div></div>
 <p>To install Tabsdata, run the following command in your command line interface (CLI):</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>tabsdata
 </pre></div>
@@ -525,16 +542,16 @@ $<span class="w"> </span><span class="nb">cd</span><span class="w"> </span>examp
 <p>Use the following steps to create a publisher that reads the sample data from local system, register the publisher in the tutorial collection, and manually trigger the publisher to execute.</p>
 <p><strong>1. Define the publisher.</strong></p>
 <p>In the <code class="docutils literal notranslate"><span class="pre">publisher.py</span></code> file in your <cite>examples</cite> directory, the following code is used to define a publisher.</p>
-<div class="highlight-python: notranslate"><div class="highlight"><pre><span></span>import os
-import tabsdata as td
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">tabsdata</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">td</span>
 
-@td.publisher(
-    source = td.LocalFileSource(os.path.join(os.getcwd(), &quot;input&quot;, &quot;persons.csv&quot;)),
-    tables = [&quot;persons&quot;]
-)
+<span class="nd">@td</span><span class="o">.</span><span class="n">publisher</span><span class="p">(</span>
+    <span class="n">source</span> <span class="o">=</span> <span class="n">td</span><span class="o">.</span><span class="n">LocalFileSource</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">(),</span> <span class="s2">&quot;input&quot;</span><span class="p">,</span> <span class="s2">&quot;persons.csv&quot;</span><span class="p">)),</span>
+    <span class="n">tables</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;persons&quot;</span><span class="p">]</span>
+<span class="p">)</span>
 
-def pub(persons: td.TableFrame):
-    return persons
+<span class="k">def</span><span class="w"> </span><span class="nf">pub</span><span class="p">(</span><span class="n">persons</span><span class="p">:</span> <span class="n">td</span><span class="o">.</span><span class="n">TableFrame</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">persons</span>
 </pre></div>
 </div>
 <p>This publisher, named <code class="docutils literal notranslate"><span class="pre">pub</span></code>, reads the “persons.csv” file in the input folder and writes it to the Tabsdata server as a table called <code class="docutils literal notranslate"><span class="pre">persons</span></code>.</p>
@@ -562,7 +579,7 @@ def pub(persons: td.TableFrame):
 <a class="reference internal image-reference" href="../../_images/pub_schema.png"><img alt="../../_images/pub_schema.png" src="../../_images/pub_schema.png" style="width: 50%;" />
 </a>
 <p>To view the data in the table, use the following command:</p>
-<div class="highlight-python: notranslate"><div class="highlight"><pre><span></span>$ td table sample --coll tutorial --name persons
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>td<span class="w"> </span>table<span class="w"> </span>sample<span class="w"> </span>--coll<span class="w"> </span>tutorial<span class="w"> </span>--name<span class="w"> </span>persons
 </pre></div>
 </div>
 <p>The results should look like this:</p>
@@ -575,19 +592,19 @@ def pub(persons: td.TableFrame):
 <p>Use the following steps to create a transformer that modifies the tutorial data and writes the results to new tables, register the transformer with the tutorial collection, and manually trigger the transformer to execute.</p>
 <p><strong>1. Define a transformer.</strong></p>
 <p>In the <code class="docutils literal notranslate"><span class="pre">transformer.py</span></code> file in your <cite>examples</cite> directory, the following code defines a transformer.</p>
-<div class="highlight-python: notranslate"><div class="highlight"><pre><span></span>import tabsdata as td
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">tabsdata</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">td</span>
 
-@td.transformer(
-    input_tables=[&quot;persons&quot;],
-    output_tables=[&quot;spanish&quot;, &quot;french&quot;, &quot;german&quot;]
-)
+<span class="nd">@td</span><span class="o">.</span><span class="n">transformer</span><span class="p">(</span>
+    <span class="n">input_tables</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;persons&quot;</span><span class="p">],</span>
+    <span class="n">output_tables</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;spanish&quot;</span><span class="p">,</span> <span class="s2">&quot;french&quot;</span><span class="p">,</span> <span class="s2">&quot;german&quot;</span><span class="p">]</span>
+<span class="p">)</span>
 
-def tfr(persons: td.TableFrame):
-    persons = persons.select([&quot;identifier&quot;, &quot;name&quot;, &quot;surname&quot;, &quot;nationality&quot;, &quot;language&quot;])
-    res = {}
-    for nationality in [&quot;Spanish&quot;, &quot;French&quot;, &quot;German&quot;]:
-        res[nationality] = persons.filter(td.col(&quot;nationality&quot;).eq(nationality)).drop([&quot;nationality&quot;])
-    return res[&quot;Spanish&quot;], res[&quot;French&quot;], res[&quot;German&quot;]
+<span class="k">def</span><span class="w"> </span><span class="nf">tfr</span><span class="p">(</span><span class="n">persons</span><span class="p">:</span> <span class="n">td</span><span class="o">.</span><span class="n">TableFrame</span><span class="p">):</span>
+    <span class="n">persons</span> <span class="o">=</span> <span class="n">persons</span><span class="o">.</span><span class="n">select</span><span class="p">([</span><span class="s2">&quot;identifier&quot;</span><span class="p">,</span> <span class="s2">&quot;name&quot;</span><span class="p">,</span> <span class="s2">&quot;surname&quot;</span><span class="p">,</span> <span class="s2">&quot;nationality&quot;</span><span class="p">,</span> <span class="s2">&quot;language&quot;</span><span class="p">])</span>
+    <span class="n">res</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="k">for</span> <span class="n">nationality</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;Spanish&quot;</span><span class="p">,</span> <span class="s2">&quot;French&quot;</span><span class="p">,</span> <span class="s2">&quot;German&quot;</span><span class="p">]:</span>
+        <span class="n">res</span><span class="p">[</span><span class="n">nationality</span><span class="p">]</span> <span class="o">=</span> <span class="n">persons</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">td</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;nationality&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">eq</span><span class="p">(</span><span class="n">nationality</span><span class="p">))</span><span class="o">.</span><span class="n">drop</span><span class="p">([</span><span class="s2">&quot;nationality&quot;</span><span class="p">])</span>
+    <span class="k">return</span> <span class="n">res</span><span class="p">[</span><span class="s2">&quot;Spanish&quot;</span><span class="p">],</span> <span class="n">res</span><span class="p">[</span><span class="s2">&quot;French&quot;</span><span class="p">],</span> <span class="n">res</span><span class="p">[</span><span class="s2">&quot;German&quot;</span><span class="p">]</span>
 </pre></div>
 </div>
 <p>This transformer, named <code class="docutils literal notranslate"><span class="pre">tfr</span></code>, reads data from the persons Tabsdata table, transforms it, and writes the results to three output tables. The transformer performs the following processing:</p>
@@ -635,21 +652,21 @@ def tfr(persons: td.TableFrame):
 <p>Use the following steps to create a subscriber that exports the tutorial tables, register the subscriber with the tutorial collection, and manually trigger the subscriber to execute.</p>
 <p><strong>1. Define a subscriber.</strong></p>
 <p>In the subscriber.py file in your <cite>examples</cite> directory, the following code defines a subscriber.</p>
-<div class="highlight-python: notranslate"><div class="highlight"><pre><span></span>import os
-import tabsdata as td
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">tabsdata</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">td</span>
 
-@td.subscriber(
-    [&quot;spanish&quot;, &quot;french&quot;],
-    td.LocalFileDestination(
-        [
-            os.path.join(os.getcwd(), &quot;output&quot;, &quot;spanish.jsonl&quot;),
-            os.path.join(os.getcwd(), &quot;output&quot;, &quot;french.jsonl&quot;)`
-        ]
-    )
-)
+<span class="nd">@td</span><span class="o">.</span><span class="n">subscriber</span><span class="p">(</span>
+    <span class="p">[</span><span class="s2">&quot;spanish&quot;</span><span class="p">,</span> <span class="s2">&quot;french&quot;</span><span class="p">],</span>
+    <span class="n">td</span><span class="o">.</span><span class="n">LocalFileDestination</span><span class="p">(</span>
+        <span class="p">[</span>
+            <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">(),</span> <span class="s2">&quot;output&quot;</span><span class="p">,</span> <span class="s2">&quot;spanish.jsonl&quot;</span><span class="p">),</span>
+            <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">(),</span> <span class="s2">&quot;output&quot;</span><span class="p">,</span> <span class="s2">&quot;french.jsonl&quot;</span><span class="p">)</span><span class="err">`</span>
+        <span class="p">]</span>
+    <span class="p">)</span>
+<span class="p">)</span>
 
-def sub(spanish: td.TableFrame, french: td.TableFrame) -&gt; (td.TableFrame, td.TableFrame):
-    return spanish, french
+<span class="k">def</span><span class="w"> </span><span class="nf">sub</span><span class="p">(</span><span class="n">spanish</span><span class="p">:</span> <span class="n">td</span><span class="o">.</span><span class="n">TableFrame</span><span class="p">,</span> <span class="n">french</span><span class="p">:</span> <span class="n">td</span><span class="o">.</span><span class="n">TableFrame</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="p">(</span><span class="n">td</span><span class="o">.</span><span class="n">TableFrame</span><span class="p">,</span> <span class="n">td</span><span class="o">.</span><span class="n">TableFrame</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">spanish</span><span class="p">,</span> <span class="n">french</span>
 </pre></div>
 </div>
 <p>This subscriber, named sub, reads data from the spanish and french tables in the Tabsdata server and writes the output files spanish.json1 and french.ndjson to the output folder in the <cite>examples</cite> directory.</p>
@@ -672,10 +689,10 @@ def sub(spanish: td.TableFrame, french: td.TableFrame) -&gt; (td.TableFrame, td.
 <p><strong>4. Verify subscriber execution.</strong></p>
 <p>You can verify that the spanish.json1 and french.ndjson output files have been created by listing files in the output directory:</p>
 <div class="sphinx-tabs docutils container">
-<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-0-0-0" aria-selected="true" class="sphinx-tabs-tab" id="tab-0-0-0" name="0-0" role="tab" tabindex="0">For Linux or macOS:</button><button aria-controls="panel-0-0-1" aria-selected="false" class="sphinx-tabs-tab" id="tab-0-0-1" name="0-1" role="tab" tabindex="-1">For Windows (CMD):</button></div><div aria-labelledby="tab-0-0-0" class="sphinx-tabs-panel" id="panel-0-0-0" name="0-0" role="tabpanel" tabindex="0"><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>ls<span class="w"> </span>output
+<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-1-1-0" aria-selected="true" class="sphinx-tabs-tab" id="tab-1-1-0" name="1-0" role="tab" tabindex="0">For Linux or macOS:</button><button aria-controls="panel-1-1-1" aria-selected="false" class="sphinx-tabs-tab" id="tab-1-1-1" name="1-1" role="tab" tabindex="-1">For Windows (CMD):</button></div><div aria-labelledby="tab-1-1-0" class="sphinx-tabs-panel" id="panel-1-1-0" name="1-0" role="tabpanel" tabindex="0"><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>ls<span class="w"> </span>output
 </pre></div>
 </div>
-</div><div aria-labelledby="tab-0-0-1" class="sphinx-tabs-panel" hidden="true" id="panel-0-0-1" name="0-1" role="tabpanel" tabindex="0"><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>dir<span class="w"> </span>output
+</div><div aria-labelledby="tab-1-1-1" class="sphinx-tabs-panel" hidden="true" id="panel-1-1-1" name="1-1" role="tabpanel" tabindex="0"><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>dir<span class="w"> </span>output
 </pre></div>
 </div>
 </div></div>
@@ -691,10 +708,10 @@ def sub(spanish: td.TableFrame, french: td.TableFrame) -&gt; (td.TableFrame, td.
 <p><strong>1. Remove the existing files from the output directory.</strong></p>
 <p>You can do this manually or by running the following command:</p>
 <div class="sphinx-tabs docutils container">
-<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-1-1-0" aria-selected="true" class="sphinx-tabs-tab" id="tab-1-1-0" name="1-0" role="tab" tabindex="0">For Linux or macOS:</button><button aria-controls="panel-1-1-1" aria-selected="false" class="sphinx-tabs-tab" id="tab-1-1-1" name="1-1" role="tab" tabindex="-1">For Windows (CMD):</button></div><div aria-labelledby="tab-1-1-0" class="sphinx-tabs-panel" id="panel-1-1-0" name="1-0" role="tabpanel" tabindex="0"><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>rm<span class="w"> </span>output/*
+<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-2-2-0" aria-selected="true" class="sphinx-tabs-tab" id="tab-2-2-0" name="2-0" role="tab" tabindex="0">For Linux or macOS:</button><button aria-controls="panel-2-2-1" aria-selected="false" class="sphinx-tabs-tab" id="tab-2-2-1" name="2-1" role="tab" tabindex="-1">For Windows (CMD):</button></div><div aria-labelledby="tab-2-2-0" class="sphinx-tabs-panel" id="panel-2-2-0" name="2-0" role="tabpanel" tabindex="0"><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>rm<span class="w"> </span>output/*
 </pre></div>
 </div>
-</div><div aria-labelledby="tab-1-1-1" class="sphinx-tabs-panel" hidden="true" id="panel-1-1-1" name="1-1" role="tabpanel" tabindex="0"><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>del<span class="w"> </span>output<span class="se">\*</span>
+</div><div aria-labelledby="tab-2-2-1" class="sphinx-tabs-panel" hidden="true" id="panel-2-2-1" name="2-1" role="tabpanel" tabindex="0"><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>del<span class="w"> </span>output<span class="se">\*</span>
 </pre></div>
 </div>
 </div></div>
@@ -709,10 +726,10 @@ def sub(spanish: td.TableFrame, french: td.TableFrame) -&gt; (td.TableFrame, td.
 <p><strong>4. Verify the output.</strong></p>
 <p>You can verify that the spanish.json1 and french.ndjson files have been written to the output folder with the following command:</p>
 <div class="sphinx-tabs docutils container">
-<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-2-2-0" aria-selected="true" class="sphinx-tabs-tab" id="tab-2-2-0" name="2-0" role="tab" tabindex="0">For Linux or macOS:</button><button aria-controls="panel-2-2-1" aria-selected="false" class="sphinx-tabs-tab" id="tab-2-2-1" name="2-1" role="tab" tabindex="-1">For Windows (CMD):</button></div><div aria-labelledby="tab-2-2-0" class="sphinx-tabs-panel" id="panel-2-2-0" name="2-0" role="tabpanel" tabindex="0"><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>ls<span class="w"> </span>output
+<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-3-3-0" aria-selected="true" class="sphinx-tabs-tab" id="tab-3-3-0" name="3-0" role="tab" tabindex="0">For Linux or macOS:</button><button aria-controls="panel-3-3-1" aria-selected="false" class="sphinx-tabs-tab" id="tab-3-3-1" name="3-1" role="tab" tabindex="-1">For Windows (CMD):</button></div><div aria-labelledby="tab-3-3-0" class="sphinx-tabs-panel" id="panel-3-3-0" name="3-0" role="tabpanel" tabindex="0"><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>ls<span class="w"> </span>output
 </pre></div>
 </div>
-</div><div aria-labelledby="tab-2-2-1" class="sphinx-tabs-panel" hidden="true" id="panel-2-2-1" name="2-1" role="tabpanel" tabindex="0"><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>dir<span class="w"> </span>output
+</div><div aria-labelledby="tab-3-3-1" class="sphinx-tabs-panel" hidden="true" id="panel-3-3-1" name="3-1" role="tabpanel" tabindex="0"><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>dir<span class="w"> </span>output
 </pre></div>
 </div>
 </div></div>

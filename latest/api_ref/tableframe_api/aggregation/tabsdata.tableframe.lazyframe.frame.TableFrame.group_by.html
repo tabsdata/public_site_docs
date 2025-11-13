@@ -53,7 +53,7 @@
     <script>
         DOCUMENTATION_OPTIONS.theme_version = '0.16.1';
         DOCUMENTATION_OPTIONS.theme_switcher_json_url = 'https://docs.tabsdata.com/version.json';
-        DOCUMENTATION_OPTIONS.theme_switcher_version_match = '1.4.0';
+        DOCUMENTATION_OPTIONS.theme_switcher_version_match = '1.5.0';
         DOCUMENTATION_OPTIONS.show_version_warning_banner =
             false;
         </script>
@@ -64,7 +64,7 @@
     <link rel="prev" title="tabsdata.tableframe.expr.expr.Expr.sum" href="tabsdata.tableframe.expr.expr.Expr.sum.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
-  <meta name="docsearch:version" content="1.4.0" />
+  <meta name="docsearch:version" content="1.5.0" />
   </head>
   
   
@@ -751,7 +751,13 @@
 <h1>tabsdata.tableframe.lazyframe.frame.TableFrame.group_by<a class="headerlink" href="#tabsdata-tableframe-lazyframe-frame-tableframe-group-by" title="Link to this heading">#</a></h1>
 <dl class="py method">
 <dt class="sig sig-object py" id="tabsdata.tableframe.lazyframe.frame.TableFrame.group_by">
-<span class="sig-prename descclassname"><span class="pre">TableFrame.</span></span><span class="sig-name descname"><span class="pre">group_by</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">by</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">td_typing.IntoExpr</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">Iterable</span><span class="p"><span class="pre">[</span></span><span class="pre">td_typing.IntoExpr</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">td_group_by.TableFrameGroupBy</span></span></span><a class="reference external" href="https://github.com/tabsdata/tabsdata/blob/main/client/td-sdk/tabsdata/tableframe/lazyframe/frame.py#L2062"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tabsdata.tableframe.lazyframe.frame.TableFrame.group_by" title="Link to this definition">#</a></dt>
+<span class="sig-prename descclassname"><span class="pre">TableFrame.</span></span><span class="sig-name descname"><span class="pre">group_by</span></span><span class="sig-paren">(</span>
+
+<dl>
+<dd><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">by</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">td_typing.IntoExpr</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">Iterable</span><span class="p"><span class="pre">[</span></span><span class="pre">td_typing.IntoExpr</span><span class="p"><span class="pre">]</span></span></span></em>,</dd>
+</dl>
+
+<span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">td_group_by.TableFrameGroupBy</span></span></span><a class="headerlink" href="#tabsdata.tableframe.lazyframe.frame.TableFrame.group_by" title="Link to this definition">#</a></dt>
 <dd><p>Perform a group by on the <cite>TableFrame</cite>.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>

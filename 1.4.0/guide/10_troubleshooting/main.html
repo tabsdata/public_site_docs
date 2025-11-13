@@ -53,7 +53,7 @@
     <script>
         DOCUMENTATION_OPTIONS.theme_version = '0.16.1';
         DOCUMENTATION_OPTIONS.theme_switcher_json_url = 'https://docs.tabsdata.com/version.json';
-        DOCUMENTATION_OPTIONS.theme_switcher_version_match = '1.4.0';
+        DOCUMENTATION_OPTIONS.theme_switcher_version_match = '1.5.0';
         DOCUMENTATION_OPTIONS.show_version_warning_banner =
             false;
         </script>
@@ -64,7 +64,7 @@
     <link rel="prev" title="Testing" href="../08_testing/main.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
-  <meta name="docsearch:version" content="1.4.0" />
+  <meta name="docsearch:version" content="1.5.0" />
   </head>
   
   
@@ -519,6 +519,13 @@ options:</p>
 </div>
 <p>Depending on the type of error, you may need to retry the transaction or
 cancel it.</p>
+<section id="if-logs-show-up-empty">
+<h5>If logs show up empty<a class="headerlink" href="#if-logs-show-up-empty" title="Link to this heading">#</a></h5>
+<p>In the rare case that the logs show up empty, follow the path below to find the logs in the server folder. Remember to replace the <cite>06ACHMC505VC10HMF7NI1D9RUG</cite> with the id of your run that you want to check the logs for.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="o">/</span><span class="n">Users</span><span class="o">/</span><span class="n">foo</span><span class="o">/.</span><span class="n">tabsdata</span><span class="o">/</span><span class="n">instances</span><span class="o">/</span><span class="n">tabsdata</span><span class="o">/</span><span class="n">workspace</span><span class="o">/</span><span class="n">work</span><span class="o">/</span><span class="n">proc</span><span class="o">/</span><span class="n">ephemeral</span><span class="o">/</span><span class="n">function</span><span class="o">/</span><span class="n">work</span><span class="o">/</span><span class="n">cast</span><span class="o">/</span><span class="mi">06</span><span class="n">ACHMC505VC10HMF7NI1D9RUG_1</span><span class="o">/</span><span class="n">work</span><span class="o">/</span><span class="n">log</span><span class="o">/</span><span class="n">fn</span><span class="o">.</span><span class="n">log</span>
+</pre></div>
+</div>
+</section>
 </section>
 <section id="cancel-the-transaction">
 <h4>Cancel the Transaction<a class="headerlink" href="#cancel-the-transaction" title="Link to this heading">#</a></h4>
@@ -561,6 +568,26 @@ transactions.</p>
 </pre></div>
 </div>
 </section>
+</section>
+</section>
+<section id="common-error-resolutions">
+<h2>Common Error Resolutions<a class="headerlink" href="#common-error-resolutions" title="Link to this heading">#</a></h2>
+<section id="authentication-failed">
+<h3>Authentication Failed<a class="headerlink" href="#authentication-failed" title="Link to this heading">#</a></h3>
+<img alt="../../_images/authentication_failed.png" src="../../_images/authentication_failed.png" />
+<p>If authentication is failing, try logging back in.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">td</span> <span class="n">login</span> <span class="o">--</span><span class="n">server</span> <span class="n">localhost</span> <span class="o">--</span><span class="n">user</span> <span class="o">&lt;</span><span class="n">USERNAME</span><span class="o">&gt;</span> <span class="o">--</span><span class="n">role</span> <span class="o">&lt;</span><span class="n">ROLE</span><span class="o">&gt;</span> <span class="o">--</span><span class="n">password</span> <span class="o">&lt;</span><span class="n">PASSWORD</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<p><strong>Default:</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">td</span> <span class="n">login</span> <span class="o">--</span><span class="n">server</span> <span class="n">localhost</span><span class="p">:</span><span class="mi">2457</span> <span class="o">--</span><span class="n">username</span> <span class="n">admin</span> <span class="o">--</span><span class="n">role</span> <span class="n">sys_admin</span> <span class="o">--</span><span class="n">password</span> <span class="n">tabsdata</span>
+</pre></div>
+</div>
+</section>
+<section id="empty-table-schema-sample">
+<h3>Empty Table Schema/Sample<a class="headerlink" href="#empty-table-schema-sample" title="Link to this heading">#</a></h3>
+<img alt="../../_images/empty_schema.png" src="../../_images/empty_schema.png" />
+<p>If the table value is empty, check if the path to the input file in the Python code is correct or not. If the path seems correct, you may also want to check the folder from which you are running the function registration CLI command. If you are using <code class="docutils literal notranslate"><span class="pre">os.getcwd()</span></code> in the python code, it is important to remember that this command retrieves the path of the folder from which the function is registered in the CLI.</p>
 </section>
 </section>
 <section id="server-related-issues">
@@ -637,6 +664,7 @@ You can run the following command to delete the instance and start the process f
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="err">$</span> <span class="n">tdserver</span> <span class="n">clean</span>
 </pre></div>
 </div>
+<p><strong>Note:</strong> You can also delete the server by finding the <code class="docutils literal notranslate"><span class="pre">.tabsdata</span></code> folder in your system and deleting it. This folder gets created in the root directory of your system by default.</p>
 </section>
 <section id="delete-stray-servers">
 <h3>Delete stray Servers<a class="headerlink" href="#delete-stray-servers" title="Link to this heading">#</a></h3>
@@ -662,46 +690,6 @@ You can run the following command to delete the instance and start the process f
 <p>Press <cite>k</cite> to kill the server.</p>
 <img alt="../../_images/btop_kill.png" src="../../_images/btop_kill.png" />
 </section>
-</section>
-</section>
-<section id="error-resolutions">
-<h2>Error Resolutions<a class="headerlink" href="#error-resolutions" title="Link to this heading">#</a></h2>
-<section id="authentication-failed">
-<h3>Authentication Failed<a class="headerlink" href="#authentication-failed" title="Link to this heading">#</a></h3>
-<img alt="../../_images/authentication_failed.png" src="../../_images/authentication_failed.png" />
-<p>If authentication is failing, try logging back in.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">td</span> <span class="n">login</span> <span class="o">--</span><span class="n">server</span> <span class="n">localhost</span> <span class="o">--</span><span class="n">user</span> <span class="o">&lt;</span><span class="n">USERNAME</span><span class="o">&gt;</span> <span class="o">--</span><span class="n">role</span> <span class="o">&lt;</span><span class="n">ROLE</span><span class="o">&gt;</span> <span class="o">--</span><span class="n">password</span> <span class="o">&lt;</span><span class="n">PASSWORD</span><span class="o">&gt;</span>
-</pre></div>
-</div>
-</section>
-<section id="trigger-in-loop">
-<h3>Trigger in loop<a class="headerlink" href="#trigger-in-loop" title="Link to this heading">#</a></h3>
-<img alt="../../_images/scheduled_in_loop.png" src="../../_images/scheduled_in_loop.png" />
-<p>If post trigger, the status is stuck in a loop without any progress, then you can interrupt the process with <cite>^ + Z</cite> in Linux/MacOS or <cite>Ctrl + C</cite> for Windows. Note that this only stops the monitoring, not the actual execution of the function. After exiting, you can follow the following steps:</p>
-<section id="check-the-error-logs-of-the-worker">
-<h4>Check the error logs of the worker<a class="headerlink" href="#check-the-error-logs-of-the-worker" title="Link to this heading">#</a></h4>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">td</span> <span class="n">exe</span> <span class="n">logs</span> <span class="o">--</span><span class="n">worker</span> <span class="o">&lt;</span><span class="n">WORKER_ID</span><span class="o">&gt;</span>
-</pre></div>
-</div>
-<p>Checking the logs of failed workers can give you an insight into why any particular function is failing to run.</p>
-</section>
-<section id="id2">
-<h4>Cancel the transaction<a class="headerlink" href="#id2" title="Link to this heading">#</a></h4>
-<p>If you want to rerun a function after it has failed, you need to manually cancel the previous transaction. Without cancelling, your new trigger will not run the function and put it on hold, until all the previous related transactions are either successfully completed or cancelled. This is to maintain consistency and proper state management in complex systems with many depedencies, and multiple transactions running at once.</p>
-<p>You can check the transaction id using</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">td</span> <span class="n">exe</span> <span class="nb">list</span><span class="o">-</span><span class="n">trxs</span>
-</pre></div>
-</div>
-<p>or</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">td</span> <span class="n">exe</span> <span class="nb">list</span><span class="o">-</span><span class="n">fn</span><span class="o">-</span><span class="n">run</span>
-</pre></div>
-</div>
-</section>
-</section>
-<section id="empty-table-schema-sample">
-<h3>Empty Table Schema/Sample<a class="headerlink" href="#empty-table-schema-sample" title="Link to this heading">#</a></h3>
-<img alt="../../_images/empty_schema.png" src="../../_images/empty_schema.png" />
-<p>If the table value is empty, check if the path to the input file in the Python code is correct or not. If the path seems correct, you may also want to check the folder from which you are running the function registration CLI command. If you are using <code class="docutils literal notranslate"><span class="pre">os.getcwd()</span></code> in the python code, it is important to remember that this command retrieves the path of the folder from which the function is registered in the CLI.</p>
 </section>
 </section>
 </section>
@@ -756,7 +744,10 @@ You can run the following command to delete the instance and start the process f
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-execution-of-a-function-failed">The Execution of a Function Failed</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#check-the-logs-for-issues">Check the logs for issues</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#find-the-workers-of-the-failed-transaction-that-already-executed">Find the Workers of the Failed Transaction that Already Executed</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#fetch-the-logs-of-a-worker">Fetch the logs of a Worker</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#fetch-the-logs-of-a-worker">Fetch the logs of a Worker</a><ul class="nav section-nav flex-column">
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#if-logs-show-up-empty">If logs show up empty</a></li>
+</ul>
+</li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#cancel-the-transaction">Cancel the Transaction</a><ul class="nav section-nav flex-column">
 <li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#recover-the-transaction">Recover the Transaction</a></li>
 </ul>
@@ -764,6 +755,11 @@ You can run the following command to delete the instance and start the process f
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#update-the-function-body-in-the-tabsdata-server">Update the function body in the Tabsdata server</a></li>
 </ul>
 </li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#common-error-resolutions">Common Error Resolutions</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#authentication-failed">Authentication Failed</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#empty-table-schema-sample">Empty Table Schema/Sample</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#server-related-issues">Server Related Issues</a><ul class="nav section-nav flex-column">
@@ -779,16 +775,6 @@ You can run the following command to delete the instance and start the process f
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#using-btop">Using <cite>btop</cite></a></li>
 </ul>
 </li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#error-resolutions">Error Resolutions</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#authentication-failed">Authentication Failed</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#trigger-in-loop">Trigger in loop</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#check-the-error-logs-of-the-worker">Check the error logs of the worker</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Cancel the transaction</a></li>
-</ul>
-</li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#empty-table-schema-sample">Empty Table Schema/Sample</a></li>
 </ul>
 </li>
 </ul>
