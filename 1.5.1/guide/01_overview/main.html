@@ -33,7 +33,7 @@
     <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=8f2a1f02" />
     <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
     <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
-    <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=5a027c77" />
+    <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=b7af4508" />
   
   <!-- So that users can add custom icons -->
   <script src="../../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
@@ -449,12 +449,12 @@
                 <article class="bd-article">
                   
   <section id="overview">
-<h1>Overview<a class="headerlink" href="#overview" title="Link to this heading">#</a></h1>
+<h1>Overview</h1>
 <p>Tabsdata is a data integration platform that leverages the publish-subscribe (pub/sub) model to enable seamless and decoupled access to data. Inspired by the success of pub/sub architectures in messaging systems, Tabsdata decouples data producer and consumer teams, eliminating integration complexity.</p>
 <p>Within Tabsdata, data is organized in tables. Tabsdata enables and streamlines the creation of derived tables using data from multiple data sources. This approach enhances semantic cohesion, reduces errors, improves data quality, and facilitates self-service data access across domains. The Tabsdata architecture also supports complete lineage tracking of tables and record-level provenance, enhancing transparency and visibility.</p>
 <p>With Tabsdata, data integration transitions from being a last-mile solution for operations and analytics to becoming a foundational pillar of data-driven organizations, empowering democratization and self-service access to high-quality data.</p>
 <section id="design-and-architecture">
-<h2>Design and Architecture<a class="headerlink" href="#design-and-architecture" title="Link to this heading">#</a></h2>
+<h2>Design and Architecture</h2>
 <p>Tabsdata acts as a staging server between data storage systems. You interact with Tabsdata using Python, the command line interface (CLI) and the browser user interface (UI).</p>
 <p>The three primary components of Tabsdata – publishers, transformers and subscribers – enable the exchange of information at the level of a table, which is the fundamental unit of operation. These components are written as Python functions. Each function is tailored for specific data integration tasks.</p>
 <p>The following image shows the fundamental Tabsdata architecture:</p>
@@ -480,7 +480,7 @@
 <p>A collection is a group of tables and the functions that write to those tables. Tables in a collection typically belong to a business or functional domain.</p>
 </section>
 <section id="advantages">
-<h2>Advantages<a class="headerlink" href="#advantages" title="Link to this heading">#</a></h2>
+<h2>Advantages</h2>
 <p>The Tabsdata architecture provides the following advantages:</p>
 <ul class="simple">
 <li><p><strong>Consistent state</strong> - Tabsdata performs atomic updates on output tables. Each trigger execution produces a complete, consistent update on all tables, or no update at all, eliminating the possibility of partial updates.</p></li>
@@ -491,15 +491,15 @@
 </ul>
 </section>
 <section id="community">
-<h2>Community<a class="headerlink" href="#community" title="Link to this heading">#</a></h2>
+<h2>Community</h2>
 <p>You can join the Tabsdata community here on <a class="reference external" href="https://www.github.com/tabsdata/tabsdata/">Github</a> or <a class="reference external" href="https://join.slack.com/t/tabsdata-community/shared_invite/zt-322toyigx-ZGFioMV2Gbza4bJDAR7wSQ">Slack</a>.</p>
 </section>
 <section id="contributing">
-<h2>Contributing<a class="headerlink" href="#contributing" title="Link to this heading">#</a></h2>
+<h2>Contributing</h2>
 <p>We appreciate all contributions, from reporting bugs to implementing new features. You can access the Tabsdata Github repository <a class="reference external" href="https://www.github.com/tabsdata/tabsdata/">here</a>.</p>
 </section>
 <section id="license">
-<h2>License<a class="headerlink" href="#license" title="Link to this heading">#</a></h2>
+<h2>License</h2>
 <p>For the license information, see on the <a class="reference external" href="https://tabsdata.com/license">Tabsdata website</a>.</p>
 </section>
 </section>

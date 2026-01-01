@@ -33,7 +33,7 @@
     <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=8f2a1f02" />
     <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
     <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-design.min.css?v=95c83b7e" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/custom.css?v=5a027c77" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/custom.css?v=b7af4508" />
   
   <!-- So that users can add custom icons -->
   <script src="../../../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
@@ -452,10 +452,10 @@
                 <article class="bd-article">
                   
   <section id="mongodb">
-<span id="mongodb-subscriber"></span><h1>MongoDB<a class="headerlink" href="#mongodb" title="Link to this heading">#</a></h1>
+<span id="mongodb-subscriber"></span><h1>MongoDB</h1>
 <p>You can use this built-in Tabsdata subscriber to write to a MongoDB database.</p>
 <section id="installing-the-connector">
-<h2>Installing the connector<a class="headerlink" href="#installing-the-connector" title="Link to this heading">#</a></h2>
+<h2>Installing the connector</h2>
 <p>To work with the MongoDB connector you are required to install the dependencies separately. This is to manage the size of the core package. Please run the following command in your terminal to install the dependencies.</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>tabsdata<span class="o">[</span>“mongodb”<span class="o">]</span>
 </pre></div>
@@ -466,7 +466,7 @@
 </div>
 </section>
 <section id="example-subscriber-mongodb">
-<h2>Example (Subscriber - MongoDB)<a class="headerlink" href="#example-subscriber-mongodb" title="Link to this heading">#</a></h2>
+<h2>Example (Subscriber - MongoDB)</h2>
 <p>The following example creates a subscriber named <code class="docutils literal notranslate"><span class="pre">write_sales</span></code>. It writes two Tabsdata tables to the database. The subscriber is automatically triggered by a <a class="reference internal" href="../../06_working_with_tables/table_frame.html#working-with-table-commits"><span class="std std-ref">new commit</span></a> to any of its input tables, and writes data to the database without any modification.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">tabsdata</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">td</span>
 
@@ -489,7 +489,7 @@
 <p><strong>Note:</strong> After defining the function, you need to register it with a Tabsdata collection and execute it. For more information, see <a class="reference internal" href="../../04_working_with_functions/main.html#register-a-function"><span class="std std-ref">Register a Function</span></a> and <a class="reference internal" href="../../04_working_with_functions/main.html#execute-a-function"><span class="std std-ref">Execute a Function</span></a>.</p>
 </section>
 <section id="setup-subscriber-mongodb">
-<h2>Setup (Subscriber - MongoDB)<a class="headerlink" href="#setup-subscriber-mongodb" title="Link to this heading">#</a></h2>
+<h2>Setup (Subscriber - MongoDB)</h2>
 <p>The following code uses placeholder values for defining a subscriber that reads Tabsdata tables and writes to the MongoDB database:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">tabsdata</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">td</span>
 
@@ -516,11 +516,11 @@
 <p><strong>Note:</strong> After defining the function, you need to register it with a Tabsdata collection and execute it. For more information, see <a class="reference internal" href="../../04_working_with_functions/main.html#register-a-function"><span class="std std-ref">Register a Function</span></a> and <a class="reference internal" href="../../04_working_with_functions/main.html#execute-a-function"><span class="std std-ref">Execute a Function</span></a>.</p>
 <p>Following properties are defined in the code above:</p>
 <section id="tables">
-<h3>tables<a class="headerlink" href="#tables" title="Link to this heading">#</a></h3>
+<h3>tables</h3>
 <p><code class="docutils literal notranslate"><span class="pre">&lt;input_table1&gt;</span></code>, <code class="docutils literal notranslate"><span class="pre">&lt;input_table2&gt;</span></code>… are the names of the Tabsdata tables to be written to the external system.</p>
 </section>
 <section id="destination">
-<h3>destination<a class="headerlink" href="#destination" title="Link to this heading">#</a></h3>
+<h3>destination</h3>
 <p><strong>uri</strong>: <code class="docutils literal notranslate"><span class="pre">&lt;path_to_db&gt;</span></code> is the URI to the database. Some parameters can be sent together with the URI, for example the replication set to use, as you would do normally when connecting to the MongoDB database.</p>
 <p><strong>credentials</strong>: <code class="docutils literal notranslate"><span class="pre">&lt;db_username&gt;</span></code> and <code class="docutils literal notranslate"><span class="pre">&lt;db_password&gt;</span></code> are the username and password to log in to the database respectively. You can use different ways to store the credentials which are highlighted <a class="reference internal" href="../../secrets_management/main.html#credentials"><span class="std std-ref">here</span></a> in the documentation.</p>
 <p><strong>collections_with_ids</strong>: In MongoDB, documents (equivalent to tuples in RBMS) are stored in collections (equivalent to tables in RBMS) inside a database, and each document must have a column that acts as a unique identifier. This parameter will take, for each table that we want it to store, a tuple where its first element is a string representing the database plus the collection, as “database_name.collection_name”, and a second element that can be either a column in the table that we want to use as the identifier column (providing the string “column_name” in such a case) or None, in case we want MongoDB to automatically generate the identifier column. In the above example, we have <code class="docutils literal notranslate"><span class="pre">collection_with_ids=[(&quot;database.collection_1&quot;,None),</span> <span class="pre">(&quot;database.collection_2&quot;,&quot;field_name&quot;)]</span></code>. Here the first entry in the array, <code class="docutils literal notranslate"><span class="pre">(&quot;database.collection_1&quot;,None)</span></code> creates a collection that automatically generate the identifier column for all documents inside it. The second entry in the array, <code class="docutils literal notranslate"><span class="pre">(&quot;database.collection_2&quot;,&quot;field_name&quot;)</span></code> creates a collection that uses <code class="docutils literal notranslate"><span class="pre">field_name</span></code> from the document as the identifier.</p>
@@ -536,29 +536,29 @@ Note that since this parameter indicates the amount of documents inserted in eac
 <p>[optional] <strong>log_intermediate_files</strong>: By default, the time taken to store each result in a single collection is logged, as well as the total time taken. The parameter <code class="docutils literal notranslate"><span class="pre">log_intermediate_files</span></code> allows for finer grain logging, generating a log every time a single bulk_write is made or transaction is committed, generating a huge amount of logs but giving more information about the intermediate status of every result storage. If set to True, the logs will be generated, if set to False they will not. Defaults to False.</p>
 </section>
 <section id="none-as-an-input-and-output">
-<h3><code class="docutils literal notranslate"><span class="pre">None</span></code> as an input and output<a class="headerlink" href="#none-as-an-input-and-output" title="Link to this heading">#</a></h3>
+<h3><code class="docutils literal notranslate"><span class="pre">None</span></code> as an input and output</h3>
 <p>A subscriber may receive and return a <code class="docutils literal notranslate"><span class="pre">None</span></code> value instead of TableFrames.</p>
 <p>When a subscriber receives a <code class="docutils literal notranslate"><span class="pre">None</span></code> value instead of a TableFrame it means that the requested table dependency version does not exist.</p>
 <p>When a subscriber returns a <code class="docutils literal notranslate"><span class="pre">None</span></code> value instead of a TableFrame it means there is no new data to write to the external system. This helps in avoiding the creation of multiple copies of the same data.</p>
 </section>
 <section id="optional-trigger-by">
-<h3>[Optional] trigger_by<a class="headerlink" href="#optional-trigger-by" title="Link to this heading">#</a></h3>
+<h3>[Optional] trigger_by</h3>
 <p><code class="docutils literal notranslate"><span class="pre">&lt;trigger_table1&gt;</span></code>, <code class="docutils literal notranslate"><span class="pre">&lt;trigger_table2&gt;</span></code>… are the names of the tables in the Tabsdata server. A new commit to any of these tables triggers the subscriber. All listed trigger tables must exist in the server before registering the subscriber.</p>
 <p>Defining trigger tables is optional. If you don’t define the <code class="docutils literal notranslate"><span class="pre">trigger_by</span></code> property, the subscriber will be triggered by any of its input tables. If you define the <code class="docutils literal notranslate"><span class="pre">trigger_by</span></code> property, then only those tables listed in the property can automatically trigger the subscriber.</p>
 <p>For more information, see <a class="reference internal" href="../../05_working_with_triggers/main.html#working-with-triggers"><span class="std std-ref">Working with Triggers</span></a>.</p>
 </section>
 <section id="subscriber-name">
-<h3>&lt;subscriber_name&gt;<a class="headerlink" href="#subscriber-name" title="Link to this heading">#</a></h3>
+<h3>&lt;subscriber_name&gt;</h3>
 <p><code class="docutils literal notranslate"><span class="pre">&lt;subscriber_name&gt;</span></code> is the name for the subscriber that you are configuring.</p>
 </section>
 <section id="function-logic">
-<h3>&lt;function_logic&gt;<a class="headerlink" href="#function-logic" title="Link to this heading">#</a></h3>
+<h3>&lt;function_logic&gt;</h3>
 <p><code class="docutils literal notranslate"><span class="pre">&lt;function_logic&gt;</span></code> governs the processing performed by the subscriber. You can specify function logic to be a simple write or to perform additional processing as needed. For more information about the function logic that you can include, see <a class="reference internal" href="../../06_working_with_tables/table_frame.html#working-with-tables"><span class="std std-ref">Working with Tables</span></a>.</p>
 <p><code class="docutils literal notranslate"><span class="pre">&lt;table_frame1&gt;</span></code>, <code class="docutils literal notranslate"><span class="pre">&lt;table_frame2&gt;</span></code>… are the names for the variables that temporarily store source data for processing.</p>
 <p><code class="docutils literal notranslate"><span class="pre">&lt;table_frame_output1&gt;</span></code>, <code class="docutils literal notranslate"><span class="pre">&lt;table_frame_output2&gt;</span></code>… are the output from the function that are written to the external system.</p>
 </section>
 <section id="data-drift-support">
-<h3>Data Drift Support<a class="headerlink" href="#data-drift-support" title="Link to this heading">#</a></h3>
+<h3>Data Drift Support</h3>
 <p>For a MongoDB subscriber configured with <code class="docutils literal notranslate"><span class="pre">if_collection_exists=replace</span></code>, the collection is dropped and recreated during each execution. The resulting schema exactly matches the newly exported data.</p>
 <p>For a MongoDB subscriber configured with <code class="docutils literal notranslate"><span class="pre">if_collection_exists=append</span></code>, the existing collection schema is augmented with any new fields introduced in the data. Fields that are no longer present in the source remain in the collection.</p>
 </section>

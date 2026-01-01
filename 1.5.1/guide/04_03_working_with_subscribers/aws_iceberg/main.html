@@ -33,7 +33,7 @@
     <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=8f2a1f02" />
     <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
     <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-design.min.css?v=95c83b7e" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/custom.css?v=5a027c77" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/custom.css?v=b7af4508" />
   
   <!-- So that users can add custom icons -->
   <script src="../../../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
@@ -452,10 +452,10 @@
                 <article class="bd-article">
                   
   <section id="aws-glue-iceberg-tables">
-<span id="amazon-s3-subscriber-iceberg"></span><h1>AWS Glue - Iceberg tables<a class="headerlink" href="#aws-glue-iceberg-tables" title="Link to this heading">#</a></h1>
+<span id="amazon-s3-subscriber-iceberg"></span><h1>AWS Glue - Iceberg tables</h1>
 <p>You can use this built-in Tabsdata subscriber to write tables from the Tabsdata server to Amazon S3 as parquet files and add those files to AWS Glue Iceberg tables.</p>
 <section id="example-subscriber-aws-glue-iceberg-tables">
-<span id="example-subscriber-amazon-s3-iceberg"></span><h2>Example (Subscriber - AWS Glue - Iceberg tables)<a class="headerlink" href="#example-subscriber-aws-glue-iceberg-tables" title="Link to this heading">#</a></h2>
+<span id="example-subscriber-amazon-s3-iceberg"></span><h2>Example (Subscriber - AWS Glue - Iceberg tables)</h2>
 <p>Here is an example subscriber named <code class="docutils literal notranslate"><span class="pre">write_employees</span></code>. It reads departments table and multiple employees tables from Tabsdata. Subsequently, it writes the tables to the output HR folder. This subscriber executes automatically as soon as a <a class="reference internal" href="../../06_working_with_tables/table_frame.html#working-with-table-commits"><span class="std std-ref">new commit</span></a> occurs on any of its input tables.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">tabsdata</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">td</span>
 
@@ -505,7 +505,7 @@
 <p><strong>Note:</strong> After defining the function, you need to register it with a Tabsdata collection and execute it. For more information, see <a class="reference internal" href="../../04_working_with_functions/main.html#register-a-function"><span class="std std-ref">Register a Function</span></a> and <a class="reference internal" href="../../04_working_with_functions/main.html#execute-a-function"><span class="std std-ref">Execute a Function</span></a>.</p>
 </section>
 <section id="setup-subscriber-aws-glue-iceberg-tables">
-<h2>Setup (Subscriber - AWS Glue - Iceberg tables)<a class="headerlink" href="#setup-subscriber-aws-glue-iceberg-tables" title="Link to this heading">#</a></h2>
+<h2>Setup (Subscriber - AWS Glue - Iceberg tables)</h2>
 <p>The following code uses placeholder values for defining a subscriber to write tables from the Tabsdata server to Amazon S3 as parquet files and add those files to AWS Glue Iceberg tables.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">tabsdata</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">td</span>
 
@@ -546,13 +546,13 @@
 <p><strong>Note:</strong> After defining the function, you need to register it with a Tabsdata collection and execute it. For more information, see <a class="reference internal" href="../../04_working_with_functions/main.html#register-a-function"><span class="std std-ref">Register a Function</span></a> and <a class="reference internal" href="../../04_working_with_functions/main.html#execute-a-function"><span class="std std-ref">Execute a Function</span></a>.</p>
 <p>Following properties are defined in the setup code above:</p>
 <section id="tables">
-<h3>tables<a class="headerlink" href="#tables" title="Link to this heading">#</a></h3>
+<h3>tables</h3>
 <p><code class="docutils literal notranslate"><span class="pre">&lt;input_table1&gt;</span></code>, <code class="docutils literal notranslate"><span class="pre">&lt;input_table2&gt;</span></code>… are the names of the Tabsdata tables to be written to the external system.</p>
 </section>
 <section id="destination">
-<h3>destination<a class="headerlink" href="#destination" title="Link to this heading">#</a></h3>
+<h3>destination</h3>
 <section id="path-to-files">
-<h4>&lt;path_to_files&gt;<a class="headerlink" href="#path-to-files" title="Link to this heading">#</a></h4>
+<h4>&lt;path_to_files&gt;</h4>
 <p><code class="docutils literal notranslate"><span class="pre">&lt;path_to_file1&gt;</span></code>, <code class="docutils literal notranslate"><span class="pre">&lt;path_to_file2&gt;</span></code>… are the full system directory paths to the parquet files to write. Please note files must be Parquet files.</p>
 <p>You can specify as many file paths as needed. Additionally, you can use the following variables within path to files to make the files unique or identifiable by a Tabsdata ID. e.g. <cite>td-iceberg/customers-$EXPORT_TIMESTAMP.parquet</cite> as used in <a class="reference external" href="https://github.com/tabsdata/tutorials/blob/main/t03_csv_iceberg_pub_sub/subscriber.py">this Tabsdata tutorial</a>.</p>
 <div class="pst-scrollable-table-container"><table class="table">
@@ -608,7 +608,7 @@
 <p><code class="docutils literal notranslate"><span class="pre">&quot;&lt;path_to_file1_no_extension&gt;&quot;</span></code>, <code class="docutils literal notranslate"><span class="pre">&quot;&lt;path_to_file2_no_extension&gt;&quot;</span></code>… don’t have the extension in the file name. The extension to all files is mentioned separately in <code class="docutils literal notranslate"><span class="pre">format</span></code> property.</p>
 </section>
 <section id="credentials">
-<h4>credentials<a class="headerlink" href="#credentials" title="Link to this heading">#</a></h4>
+<h4>credentials</h4>
 <p>A subscriber needs credentials to write files from Amazon S3. Here the value is defined using a variable <code class="docutils literal notranslate"><span class="pre">s3_credentials</span></code>. The variable is an object of class <code class="docutils literal notranslate"><span class="pre">S3AccessKeyCredentials</span></code> with following values.</p>
 <p><code class="docutils literal notranslate"><span class="pre">S3_ACCESS_KEY</span></code> is the value of your Amazon S3 access key.</p>
 <p><code class="docutils literal notranslate"><span class="pre">S3_SECRET_KEY</span></code> is the value of your Amazon S3 secret key.</p>
@@ -616,41 +616,41 @@
 <p>You can use different ways to store the credentials which are highlighted <a class="reference internal" href="../../secrets_management/main.html#credentials"><span class="std std-ref">here</span></a> in the documentation.</p>
 </section>
 <section id="region">
-<h4>region<a class="headerlink" href="#region" title="Link to this heading">#</a></h4>
+<h4>region</h4>
 <p><code class="docutils literal notranslate"><span class="pre">&lt;region_name&gt;</span></code> is where your S3 bucket is located.</p>
 </section>
 <section id="catalog">
-<h4>catalog<a class="headerlink" href="#catalog" title="Link to this heading">#</a></h4>
+<h4>catalog</h4>
 <p>This property is used to define the properties of your catalog.</p>
 <section id="definition">
-<h5><code class="docutils literal notranslate"><span class="pre">definition</span></code><a class="headerlink" href="#definition" title="Link to this heading">#</a></h5>
+<h5><code class="docutils literal notranslate"><span class="pre">definition</span></code></h5>
 <p>This property defines the catalog. It is of dictionary format, and matches the <a class="reference external" href="https://py.iceberg.apache.org/configuration/#catalogs">pyiceberg catalog definition</a>. The value is simply passed through.</p>
 </section>
 <section id="id1">
-<h5><code class="docutils literal notranslate"><span class="pre">tables</span></code><a class="headerlink" href="#id1" title="Link to this heading">#</a></h5>
+<h5><code class="docutils literal notranslate"><span class="pre">tables</span></code></h5>
 <p>These are the names of the Iceberg tables we want to add the parquet files to. They need to have the same number as the parquet files being created in S3.</p>
 </section>
 <section id="auto-create-at">
-<h5><code class="docutils literal notranslate"><span class="pre">auto_create_at</span></code><a class="headerlink" href="#auto-create-at" title="Link to this heading">#</a></h5>
+<h5><code class="docutils literal notranslate"><span class="pre">auto_create_at</span></code></h5>
 <p>If you don’t specify <code class="docutils literal notranslate"><span class="pre">auto_create_at</span></code> the table must exist in the Iceberg catalog. If you want the publisher to create the table if it does not exist, in the <code class="docutils literal notranslate"><span class="pre">auto_create_at</span></code> you have to provide an S3 URI where the entry point of Iceberg metadata of the table will be created. Typically you would put the base path where you write the parquet files. e.g. the path would look like: <cite>s3://&lt;path_to_file1&gt;</cite>.</p>
 </section>
 <section id="optional-if-table-exists">
-<h5>[Optional] <code class="docutils literal notranslate"><span class="pre">if_table_exists</span></code><a class="headerlink" href="#optional-if-table-exists" title="Link to this heading">#</a></h5>
+<h5>[Optional] <code class="docutils literal notranslate"><span class="pre">if_table_exists</span></code></h5>
 <p>This is an optional property to define the strategy to follow when the table already exists. <code class="docutils literal notranslate"><span class="pre">replace</span></code> will create a new table in Iceberg, overwriting the existing one, and <code class="docutils literal notranslate"><span class="pre">append</span></code> will append to the existing data in the table. Defaults to <code class="docutils literal notranslate"><span class="pre">append</span></code>.</p>
 </section>
 <section id="partitioned-table">
-<h5><code class="docutils literal notranslate"><span class="pre">partitioned_table</span></code><a class="headerlink" href="#partitioned-table" title="Link to this heading">#</a></h5>
+<h5><code class="docutils literal notranslate"><span class="pre">partitioned_table</span></code></h5>
 <p>This option indicates that the Iceberg table definition corresponds to a partitioned table.</p>
 <p>If the Iceberg table is a partitioned table, the subscriber function should return an array of TableFrames with each of those TableFrames containing data for one partition only. It is the responsibility of the user publisher creator to partition the data accordingly before returning it.</p>
 <p>Partition tables can only be used with already existing (and partitioned) Iceberg tables. <code class="docutils literal notranslate"><span class="pre">auto_create_at</span></code> is not supported, and when using partition tables the <code class="docutils literal notranslate"><span class="pre">if_table_exists</span></code> strategy must be <code class="docutils literal notranslate"><span class="pre">append</span></code>.</p>
 </section>
 <section id="schema-strategy">
-<h5><code class="docutils literal notranslate"><span class="pre">schema_strategy</span></code><a class="headerlink" href="#schema-strategy" title="Link to this heading">#</a></h5>
+<h5><code class="docutils literal notranslate"><span class="pre">schema_strategy</span></code></h5>
 <p>Schema strategy indicates if the schema in iceberg will be modified (augmented) if necessary to be compatible with the parquet files being uploaded. If using <code class="docutils literal notranslate"><span class="pre">strict</span></code>, the function will fail if the schemas differ.</p>
 </section>
 </section>
 <section id="important-points-to-note">
-<h4>Important Points to note:<a class="headerlink" href="#important-points-to-note" title="Link to this heading">#</a></h4>
+<h4>Important Points to note:</h4>
 <ul class="simple">
 <li><p>Existing tables in AWS Glue can have their schema updated (augmented) to match the written parquet files.</p></li>
 <li><p>Tables can be automatically created in AWS Glue using Tabsdata table schema.</p></li>
@@ -660,29 +660,29 @@
 </section>
 </section>
 <section id="none-as-an-input-and-output">
-<h3><code class="docutils literal notranslate"><span class="pre">None</span></code> as an input and output<a class="headerlink" href="#none-as-an-input-and-output" title="Link to this heading">#</a></h3>
+<h3><code class="docutils literal notranslate"><span class="pre">None</span></code> as an input and output</h3>
 <p>A subscriber may receive and return a <code class="docutils literal notranslate"><span class="pre">None</span></code> value instead of TableFrames.</p>
 <p>When a subscriber receives a <code class="docutils literal notranslate"><span class="pre">None</span></code> value instead of a TableFrame it means that the requested table dependency version does not exist.</p>
 <p>When a subscriber returns a <code class="docutils literal notranslate"><span class="pre">None</span></code> value instead of a TableFrame it means there is no new data to write to the external system. This helps in avoiding the creation of multiple copies of the same data.</p>
 </section>
 <section id="optional-trigger-by">
-<h3>[Optional] trigger_by<a class="headerlink" href="#optional-trigger-by" title="Link to this heading">#</a></h3>
+<h3>[Optional] trigger_by</h3>
 <p><code class="docutils literal notranslate"><span class="pre">&lt;trigger_table1&gt;</span></code>, <code class="docutils literal notranslate"><span class="pre">&lt;trigger_table2&gt;</span></code>… are the names of the tables in the Tabsdata server. A new commit to any of these tables triggers the subscriber. All listed trigger tables must exist in the server before registering the subscriber.</p>
 <p>Defining trigger tables is optional. If you don’t define the <code class="docutils literal notranslate"><span class="pre">trigger_by</span></code> property, the subscriber will be triggered by any of its input tables. If you define the <code class="docutils literal notranslate"><span class="pre">trigger_by</span></code> property, then only those tables listed in the property can automatically trigger the subscriber.</p>
 <p>For more information, see <a class="reference internal" href="../../05_working_with_triggers/main.html#working-with-triggers"><span class="std std-ref">Working with Triggers</span></a>.</p>
 </section>
 <section id="subscriber-name">
-<h3>&lt;subscriber_name&gt;<a class="headerlink" href="#subscriber-name" title="Link to this heading">#</a></h3>
+<h3>&lt;subscriber_name&gt;</h3>
 <p><code class="docutils literal notranslate"><span class="pre">&lt;subscriber_name&gt;</span></code> is the name for the subscriber that you are configuring.</p>
 </section>
 <section id="function-logic">
-<h3>&lt;function_logic&gt;<a class="headerlink" href="#function-logic" title="Link to this heading">#</a></h3>
+<h3>&lt;function_logic&gt;</h3>
 <p><code class="docutils literal notranslate"><span class="pre">&lt;function_logic&gt;</span></code> governs the processing performed by the subscriber. You can specify function logic to be a simple write or to perform additional processing as needed. For more information about the function logic that you can include, see <a class="reference internal" href="../../06_working_with_tables/table_frame.html#working-with-tables"><span class="std std-ref">Working with Tables</span></a>.</p>
 <p><code class="docutils literal notranslate"><span class="pre">&lt;table_frame1&gt;</span></code>, <code class="docutils literal notranslate"><span class="pre">&lt;table_frame2&gt;</span></code>… are the names for the variables that temporarily store source data for processing.</p>
 <p><code class="docutils literal notranslate"><span class="pre">&lt;table_frame_output1&gt;</span></code>, <code class="docutils literal notranslate"><span class="pre">&lt;table_frame_output2&gt;</span></code>… are the output from the function that are written to the external system.</p>
 </section>
 <section id="data-drift-support">
-<h3>Data Drift Support<a class="headerlink" href="#data-drift-support" title="Link to this heading">#</a></h3>
+<h3>Data Drift Support</h3>
 <p>This section talks about how Tabsdata handles data drift in the output data for this Subscriber connector.</p>
 <p>The behaviour depends on how <code class="docutils literal notranslate"><span class="pre">schema_strategy</span></code> is configured in the subscriber.</p>
 <p>When <code class="docutils literal notranslate"><span class="pre">schema_strategy=update</span></code> is configured, the schema gets updated is the new commit from the subscriber has a different schema form the previous versions.</p>

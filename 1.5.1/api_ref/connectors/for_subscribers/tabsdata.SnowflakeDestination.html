@@ -33,7 +33,7 @@
     <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=8f2a1f02" />
     <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
     <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-design.min.css?v=95c83b7e" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/custom.css?v=5a027c77" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/custom.css?v=b7af4508" />
   
   <!-- So that users can add custom icons -->
   <script src="../../../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
@@ -338,7 +338,7 @@
 </ul>
 <ul class="current nav bd-sidenav">
 <li class="toctree-l1 current active has-children"><a class="reference internal" href="../index.html">Connectors</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
-<li class="toctree-l2 has-children"><a class="reference internal" href="../for_publishers.html">For Publishers</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../for_publishers.html">Publishers</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l3"><a class="reference internal" href="../for_publishers/tabsdata.AzureSource.html">tabsdata.AzureSource</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../for_publishers/tabsdata.GCSSource.html">tabsdata.GCSSource</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../for_publishers/tabsdata.LocalFileSource.html">tabsdata.LocalFileSource</a></li>
@@ -352,11 +352,10 @@
 <li class="toctree-l3"><a class="reference internal" href="../for_publishers/tabsdata.SalesforceSource.html">tabsdata.SalesforceSource</a></li>
 </ul>
 </details></li>
-<li class="toctree-l2 current active has-children"><a class="reference internal" href="../for_subscribers.html">For Subscribers</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2 current active has-children"><a class="reference internal" href="../for_subscribers.html">Subscribers</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
 <li class="toctree-l3"><a class="reference internal" href="tabsdata.AzureDestination.html">tabsdata.AzureDestination</a></li>
-<li class="toctree-l3"><a class="reference internal" href="tabsdata.DatabricksDestination.html">tabsdata.DatabricksDestination</a></li>
-<li class="toctree-l3"><a class="reference internal" href="tabsdata.BigQueryConn.html">tabsdata.BigQueryConn</a></li>
 <li class="toctree-l3"><a class="reference internal" href="tabsdata.BigQueryDest.html">tabsdata.BigQueryDest</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tabsdata.DatabricksDestination.html">tabsdata.DatabricksDestination</a></li>
 <li class="toctree-l3"><a class="reference internal" href="tabsdata.GCSDestination.html">tabsdata.GCSDestination</a></li>
 <li class="toctree-l3"><a class="reference internal" href="tabsdata.LocalFileDestination.html">tabsdata.LocalFileDestination</a></li>
 <li class="toctree-l3"><a class="reference internal" href="tabsdata.MariaDBDestination.html">tabsdata.MariaDBDestination</a></li>
@@ -376,8 +375,9 @@
 </details></li>
 </ul>
 </details></li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../../connector_options/index.html">Connector options</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../connector_options/index.html">Connector Common Options</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2 has-children"><a class="reference internal" href="../../connector_options/file_formats.html">File formats</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../connector_options/file_formats/tabsdata.AvroFormat.html">tabsdata.AvroFormat</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../connector_options/file_formats/tabsdata.CSVFormat.html">tabsdata.CSVFormat</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../connector_options/file_formats/tabsdata.LogFormat.html">tabsdata.LogFormat</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../connector_options/file_formats/tabsdata.NDJSONFormat.html">tabsdata.NDJSONFormat</a></li>
@@ -730,7 +730,7 @@
     <li class="breadcrumb-item"><a href="../index.html" class="nav-link">Connectors</a></li>
     
     
-    <li class="breadcrumb-item"><a href="../for_subscribers.html" class="nav-link">For Subscribers</a></li>
+    <li class="breadcrumb-item"><a href="../for_subscribers.html" class="nav-link">Subscribers</a></li>
     
     <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">tabsdata.SnowflakeDestination</span></li>
   </ul>
@@ -750,7 +750,7 @@
                 <article class="bd-article">
                   
   <section id="tabsdata-snowflakedestination">
-<h1>tabsdata.SnowflakeDestination<a class="headerlink" href="#tabsdata-snowflakedestination" title="Link to this heading">#</a></h1>
+<h1>tabsdata.SnowflakeDestination</h1>
 <dl class="py class">
 <dt class="sig sig-object py" id="tabsdata.SnowflakeDestination">
 <em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">SnowflakeDestination</span></span><span class="sig-paren">(</span>
@@ -763,8 +763,9 @@
 <dd><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em>,</dd>
 </dl>
 
-<span class="sig-paren">)</span><a class="headerlink" href="#tabsdata.SnowflakeDestination" title="Link to this definition">#</a></dt>
+<span class="sig-paren">)</span></dt>
 <dd><p>Bases: <a class="reference internal" href="../plugins/tabsdata.DestinationPlugin.html#tabsdata.DestinationPlugin" title="tabsdata._io.plugin.DestinationPlugin"><code class="xref py py-class docutils literal notranslate"><span class="pre">DestinationPlugin</span></code></a></p>
+<p>Snowflake based data outputs.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="tabsdata.SnowflakeDestination.__init__">
 <span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span>
@@ -777,25 +778,40 @@
 <dd><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em>,</dd>
 </dl>
 
-<span class="sig-paren">)</span><a class="headerlink" href="#tabsdata.SnowflakeDestination.__init__" title="Link to this definition">#</a></dt>
-<dd><dl class="simple">
-<dt>Initializes the SnowflakeDestination with the configuration desired to store</dt><dd><p>the data.</p>
+<span class="sig-paren">)</span></dt>
+<dd><p>Initializes the SnowflakeDestination with the configuration desired to store the data.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>connection_parameters</strong> – <p>Following values are to be defined in connection parameters.</p>
+<p><cite>account</cite>: Snowflake account</p>
+<p><cite>user</cite>: Snowflake user</p>
+<p><cite>password</cite>: Snowflake user’s Personal Access Token (PAT). Password for programmatic access is not
+supported anymore.</p>
+<p><cite>role</cite>: Snowflake role</p>
+<p><cite>database</cite>: Snowflake database</p>
+<p><cite>schema</cite>: Snowflake schema</p>
+<p><cite>warehouse</cite>: Snowflake warehouse</p>
+</p></li>
+<li><p><strong>destination_table</strong> – Names of the destination tables to be created, replaced, or appended in Snowflake.</p></li>
+<li><p><strong>if_table_exists</strong> – This is an optional property to define the strategy to follow when the table already exists. ‘replace’ will create overwrite the existing table, and ‘append’ will append to the existing data in the table. Defaults to ‘append’.</p></li>
+<li><p><strong>stage</strong> – Snowflake stage name. If not provided, a temporary one will be created.</p></li>
+</ul>
 </dd>
 </dl>
-<p>Args:</p>
 </dd></dl>
 
 <p class="rubric">Methods</p>
 <div class="pst-scrollable-table-container"><table class="autosummary longtable table">
 <tbody>
 <tr class="row-odd"><td><p><a class="reference internal" href="#tabsdata.SnowflakeDestination.__init__" title="tabsdata.SnowflakeDestination.__init__"><code class="xref py py-obj docutils literal notranslate"><span class="pre">__init__</span></code></a>(connection_parameters, ...[, ...])</p></td>
-<td><p>Initializes the SnowflakeDestination with the configuration desired to store</p></td>
+<td><p>Initializes the SnowflakeDestination with the configuration desired to store the data.</p></td>
 </tr>
 <tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">chunk</span></code>(working_dir, *results)</p></td>
-<td><p>Trigger the exporting of the data to local parquet chunks. This method will</p></td>
+<td><p>Trigger the exporting of the data to local parquet chunks.</p></td>
 </tr>
 <tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">stream</span></code>(working_dir, *results)</p></td>
-<td><p>Trigger the exporting of the data. This method will receive the resulting data</p></td>
+<td><p>Trigger the exporting of the data.</p></td>
 </tr>
 <tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">write</span></code>(files)</p></td>
 <td><p>This method is used to write the files to the database.</p></td>

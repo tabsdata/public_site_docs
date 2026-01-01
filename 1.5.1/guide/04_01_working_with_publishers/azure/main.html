@@ -33,7 +33,7 @@
     <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=8f2a1f02" />
     <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
     <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-design.min.css?v=95c83b7e" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/custom.css?v=5a027c77" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/custom.css?v=b7af4508" />
   
   <!-- So that users can add custom icons -->
   <script src="../../../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
@@ -452,10 +452,10 @@
                 <article class="bd-article">
                   
   <section id="azure-blob-storage">
-<span id="azure"></span><h1>Azure Blob Storage<a class="headerlink" href="#azure-blob-storage" title="Link to this heading">#</a></h1>
+<span id="azure"></span><h1>Azure Blob Storage</h1>
 <p>You can use this built-in Tabsdata publisher to read files from Azure Blob Storage to the Tabsdata server. Publishers can read the following file formats: CSV, jsonl, ndjson, parquet, AVRO, and log (also read <a class="reference internal" href="../grok_for_log_files/main.html#grok-for-log-files"><span class="std std-ref">Grok for Log Files</span></a>).</p>
 <section id="example-publisher-azure-blob-storage">
-<span id="id1"></span><h2>Example (Publisher - Azure Blob Storage)<a class="headerlink" href="#example-publisher-azure-blob-storage" title="Link to this heading">#</a></h2>
+<span id="id1"></span><h2>Example (Publisher - Azure Blob Storage)</h2>
 <p>Here is an example publisher named <code class="docutils literal notranslate"><span class="pre">read_employees</span></code>. It reads departments table and multiple employees tables, with their file names starting from <code class="docutils literal notranslate"><span class="pre">employees_</span></code>, from the HR folder. It checks that last modified dates for the files, which should be after the date defined in <code class="docutils literal notranslate"><span class="pre">initial_last_modified</span></code>. Subsequently, it writes the departments and first two employees files to the Tabsdata tables. This publisher executes automatically as soon as a <a class="reference internal" href="../../06_working_with_tables/table_frame.html#working-with-table-commits"><span class="std std-ref">new commit</span></a> occurs on the <code class="docutils literal notranslate"><span class="pre">jobs_closed</span></code> table:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">List</span>
 
@@ -491,7 +491,7 @@
 <p><strong>Note:</strong> After defining the function, you need to register it with a Tabsdata collection and execute it. For more information, see <a class="reference internal" href="../../04_working_with_functions/main.html#register-a-function"><span class="std std-ref">Register a Function</span></a> and <a class="reference internal" href="../../04_working_with_functions/main.html#execute-a-function"><span class="std std-ref">Execute a Function</span></a>.</p>
 </section>
 <section id="setup-publisher-azure-blob-storage">
-<h2>Setup (Publisher - Azure Blob Storage)<a class="headerlink" href="#setup-publisher-azure-blob-storage" title="Link to this heading">#</a></h2>
+<h2>Setup (Publisher - Azure Blob Storage)</h2>
 <p>The following code uses placeholder values for defining a publisher that reads data from Azure Blob Storage and publishes it to Tabsdata tables:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">tabsdata</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">td</span>
 
@@ -520,16 +520,16 @@
 <p><strong>Note:</strong> After defining the function, you need to register it with a Tabsdata collection and execute it. For more information, see <a class="reference internal" href="../../04_working_with_functions/main.html#register-a-function"><span class="std std-ref">Register a Function</span></a> and <a class="reference internal" href="../../04_working_with_functions/main.html#execute-a-function"><span class="std std-ref">Execute a Function</span></a>.</p>
 <p>Following properties are defined in the setup code above:</p>
 <section id="credentials">
-<h3>credentials<a class="headerlink" href="#credentials" title="Link to this heading">#</a></h3>
+<h3>credentials</h3>
 <p>A publisher needs credentials to read files from Azure Blob Storage.</p>
 <p><code class="docutils literal notranslate"><span class="pre">AZURE_ACCOUNT_NAME</span></code> is your Azure account name.</p>
 <p><code class="docutils literal notranslate"><span class="pre">AZURE_ACCOUNT_KEY</span></code> is the value of your Azure account key.</p>
 <p>You can use different ways to store the credentials which are highlighted <a class="reference internal" href="../../secrets_management/main.html#credentials"><span class="std std-ref">here</span></a> in the documentation.</p>
 </section>
 <section id="source">
-<h3>source<a class="headerlink" href="#source" title="Link to this heading">#</a></h3>
+<h3>source</h3>
 <section id="path-to-files">
-<h4>&lt;path_to_files&gt;<a class="headerlink" href="#path-to-files" title="Link to this heading">#</a></h4>
+<h4>&lt;path_to_files&gt;</h4>
 <p><code class="docutils literal notranslate"><span class="pre">&lt;path_to_file1&gt;</span></code>, <code class="docutils literal notranslate"><span class="pre">&lt;path_to_file2&gt;</span></code>… are the full system directory paths to the files to read.</p>
 <p>All the source files in a publisher need to be have the same extension. Following file formats are supported currently: CSV, jsonl, ndjson, parquet, AVRO, and log (also read <a class="reference internal" href="../grok_for_log_files/main.html#grok-for-log-files"><span class="std std-ref">Grok for Log Files</span></a>).</p>
 <p>You can specify as many file paths as needed. You can also use the <code class="docutils literal notranslate"><span class="pre">asterisk</span> <span class="pre">(*)</span></code> wildcard in file names to read multiple files with similar names. <strong>When using a wildcard, the resultant output is a list of TableFrames, if the number of files matching the pattern are more than one.</strong> You can work with the List in the same way as an array and use index to access specific TableFrames as shown in the function logic of the example <a class="reference internal" href="#example-publisher-azure-blob-storage"><span class="std std-ref">here</span></a>.</p>
@@ -560,40 +560,40 @@
 <p><code class="docutils literal notranslate"><span class="pre">&quot;&lt;path_to_file1.csv&gt;&quot;</span></code>, <code class="docutils literal notranslate"><span class="pre">&quot;&lt;path_to_file2.csv&gt;&quot;</span></code>… are paths to CSV files with a custom delimiter, with csv extension. The delimiter is a single byte character such as colon (:), semicolon (;), and period (.) that separate the fields in the given file instead of a comma(,). You define the character in <code class="docutils literal notranslate"><span class="pre">separator</span></code>.</p>
 </section>
 <section id="optional-initial-last-modified">
-<h4>[Optional] initial_last_modified<a class="headerlink" href="#optional-initial-last-modified" title="Link to this heading">#</a></h4>
+<h4>[Optional] initial_last_modified</h4>
 <p><code class="docutils literal notranslate"><span class="pre">&lt;date_time&gt;</span></code> is a date time string in the <a class="reference external" href="https://en.wikipedia.org/wiki/ISO_8601">ISO 8601 format</a> format (e.g. 2025-02-05 or 2025-02-05T03:12:36Z). If provided, only the files modified after this date and time will be considered to be read by the publisher. If no timezone is provided, UTC will be assumed.</p>
 </section>
 </section>
 <section id="tables">
-<h3>tables<a class="headerlink" href="#tables" title="Link to this heading">#</a></h3>
+<h3>tables</h3>
 <p><code class="docutils literal notranslate"><span class="pre">&lt;output_table1&gt;</span></code>, <code class="docutils literal notranslate"><span class="pre">&lt;output_table2&gt;</span></code>… are the names of the Tabsdata tables to publish to.</p>
 </section>
 <section id="none-as-an-input-and-output">
-<h3><code class="docutils literal notranslate"><span class="pre">None</span></code> as an input and output<a class="headerlink" href="#none-as-an-input-and-output" title="Link to this heading">#</a></h3>
+<h3><code class="docutils literal notranslate"><span class="pre">None</span></code> as an input and output</h3>
 <p>A publisher may receive and return a <code class="docutils literal notranslate"><span class="pre">None</span></code> value instead of a TableFrame parameter or return value.</p>
 <p>When a publisher <strong>receives</strong> a <code class="docutils literal notranslate"><span class="pre">None</span></code> value instead of a TableFrame it means the absence of input data. For example, the system didn’t return any results because of the file being absent or query returning empty results.</p>
 <p>When a publisher <strong>returns</strong> a <code class="docutils literal notranslate"><span class="pre">None</span></code> value instead of a TableFrame it means that the associated table will preserve the existing data from the previous commit. This helps in avoiding the creation of multiple copies of the same data.</p>
 </section>
 <section id="optional-trigger-by">
-<h3>[Optional] trigger_by<a class="headerlink" href="#optional-trigger-by" title="Link to this heading">#</a></h3>
+<h3>[Optional] trigger_by</h3>
 <p><code class="docutils literal notranslate"><span class="pre">&lt;trigger_table1&gt;</span></code>, <code class="docutils literal notranslate"><span class="pre">&lt;trigger_table2&gt;</span></code>… are the names of the tables in the Tabsdata server. A new commit to any of these tables triggers the publisher. This can be relevant in cases where you want to import a data if something else in the organization changes. e.g trigger the import of latest manufacturing data in the company if a new supplier get added added. While a new supplier would not be a direct input to the publisher importing manufacturing data, it can still trigger the function.</p>
 <p>All listed trigger tables must exist in the server before registering the publisher.</p>
 <p>Defining trigger tables is optional. If you don’t define the <code class="docutils literal notranslate"><span class="pre">trigger_by</span></code> property, the publisher can only be triggered manually.</p>
 <p>For more information, see <a class="reference internal" href="../../05_working_with_triggers/main.html#working-with-triggers"><span class="std std-ref">Working with Triggers</span></a>.</p>
 </section>
 <section id="publisher-name">
-<h3>&lt;publisher_name&gt;<a class="headerlink" href="#publisher-name" title="Link to this heading">#</a></h3>
+<h3>&lt;publisher_name&gt;</h3>
 <p><code class="docutils literal notranslate"><span class="pre">&lt;publisher_name&gt;</span></code> is the name for the publisher that you are configuring.</p>
 </section>
 <section id="function-logic">
-<h3>&lt;function_logic&gt;<a class="headerlink" href="#function-logic" title="Link to this heading">#</a></h3>
+<h3>&lt;function_logic&gt;</h3>
 <p><code class="docutils literal notranslate"><span class="pre">&lt;function_logic&gt;</span></code> governs the processing performed by the publisher. You can specify function logic to be a simple write or to perform additional processing, such as dropping nulls, before writing data to output tables. For more information about the function logic that you can include, see <a class="reference internal" href="../../06_working_with_tables/table_frame.html#working-with-tables"><span class="std std-ref">Working with Tables</span></a>.</p>
 <p><code class="docutils literal notranslate"><span class="pre">&lt;table_frame1&gt;</span></code>, <code class="docutils literal notranslate"><span class="pre">&lt;table_frame2&gt;</span></code>… are the names for the variables that temporarily store source data for processing.</p>
 <p><code class="docutils literal notranslate"><span class="pre">&lt;table_frame_output1&gt;</span></code>, <code class="docutils literal notranslate"><span class="pre">&lt;table_frame_output2&gt;</span></code>… are the output from the function that are stored as Tabsdata tables with names as defined in the <code class="docutils literal notranslate"><span class="pre">tables</span></code> property. Consequently, the number of tables returned from the function have to exactly match the number of tables defined in the <code class="docutils literal notranslate"><span class="pre">tables</span></code> property.</p>
 <p><code class="docutils literal notranslate"><span class="pre">&lt;new_value1&gt;</span></code>, <code class="docutils literal notranslate"><span class="pre">&lt;new_value2&gt;</span></code>.. are the revised values of variable_names as defined in function logic. This enables you to have dynamic allocation of variable values for usage in queries. You can return a new dictionary e.g. <code class="docutils literal notranslate"><span class="pre">{&quot;&lt;variable_name1&gt;&quot;:</span> <span class="pre">&lt;new_value1&gt;,</span> <span class="pre">&quot;&lt;variable_name2&gt;&quot;:</span> <span class="pre">&lt;new_value2&gt;}</span></code> to change the initial values for processing new data, or return <code class="docutils literal notranslate"><span class="pre">SAME</span></code> to keep the current initial values.</p>
 </section>
 <section id="data-drift-support">
-<h3>Data Drift Support<a class="headerlink" href="#data-drift-support" title="Link to this heading">#</a></h3>
+<h3>Data Drift Support</h3>
 <p>This section talks about how Tabsdata handles data drift in the input data for this Publisher connector.</p>
 <p>This connector natively supports data drift as Tabsdata automatically creates a new version of the table with each function execution. Hence, schema changes in the input data won’t cause the function to fail. Any modifications are captured in a newly versioned output table generated by the publisher.</p>
 <p>However, this applies only if the publisher function does not contain schema-dependent logic. If such logic exists, changes in the schema may conflict with the function’s expectations, leading to execution errors.</p>

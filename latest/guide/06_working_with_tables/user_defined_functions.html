@@ -33,7 +33,7 @@
     <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=8f2a1f02" />
     <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
     <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
-    <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=5a027c77" />
+    <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=b7af4508" />
   
   <!-- So that users can add custom icons -->
   <script src="../../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
@@ -449,7 +449,7 @@
                 <article class="bd-article">
                   
   <section id="user-defined-functions-udfs">
-<span id="user-defined-functions"></span><h1>User-defined Functions (UDFs)<a class="headerlink" href="#user-defined-functions-udfs" title="Link to this heading">#</a></h1>
+<span id="user-defined-functions"></span><h1>User-defined Functions (UDFs)</h1>
 <p>Tabsdata TableFrames support UDFs for applying custom logic that cannot be expressed using Tabsdata expressions. Typically they are used for using functionality provided by external libraries or to write logic that would be too cumbersome to write as TableFrame expressions.</p>
 <p>Using UDFs to access external systems is <em>highly discouraged</em>. UDFs functions should be idempotent or produce equivalent results (i.e. random data).</p>
 <p>For example, see the TableFrame below with a ‘zip’ column which has some external, user defined, logic that finds the city corresponding to that zip code coded in a ‘zip_to_city’ UDF. Its use would be:</p>
@@ -483,7 +483,7 @@ tf = tf.udf(&quot;zip&quot;, zip_to_city(upper_case=True))
 <p><strong>IMPORTANT</strong>: While Tabsdata optimizes UDF invocations, they have performance impact when compared with logic done with native TableFrame expressions. UDFs should be used only when strictly necessary.</p>
 <p>Tabsdata UDFs can operate on multiple columns of the table frame and they can return multiple columns as well. They are applied to the TableFrame in streaming mode, being restricted to use column values of the same row only.</p>
 <section id="creating-a-user-defined-function">
-<h2>Creating a User-defined Function<a class="headerlink" href="#creating-a-user-defined-function" title="Link to this heading">#</a></h2>
+<h2>Creating a User-defined Function</h2>
 <p>To create a Tabsdata UDF you need to create a Tabsdata UDF sub class. It must define the default output column names and their types and a method implementing the UDF logic.</p>
 <p>For example, for the ‘zip_to_city’ UDF its class definition would be:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">tabsdata</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">td</span>
@@ -515,7 +515,7 @@ tf = tf.udf(&quot;zip&quot;, zip_to_city(upper_case=True))
 <p>The <code class="docutils literal notranslate"><span class="pre">UDF.on_batch(...)</span></code> input and return list elements are Series values. All series of the input have the same number of elements. All series of the return list must have the same number of elements as the series in the input. The values on the output series at position N must correspond to the input series at position N.</p>
 </section>
 <section id="using-user-defined-functions">
-<h2>Using User-defined Functions<a class="headerlink" href="#using-user-defined-functions" title="Link to this heading">#</a></h2>
+<h2>Using User-defined Functions</h2>
 <p>UDFs can be applied to TableFrames through the <code class="docutils literal notranslate"><span class="pre">udf()</span></code> method. UDFs define a default name and type for its output columns, this can be changed when invoking the UDF. For example:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>tf = tf.udf(&quot;zip&quot;, zip_to_city(upper_case=True).output_columns((&quot;ciudad&quot;, None)))
 

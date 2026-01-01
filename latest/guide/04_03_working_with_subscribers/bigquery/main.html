@@ -33,7 +33,7 @@
     <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=8f2a1f02" />
     <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
     <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-design.min.css?v=95c83b7e" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/custom.css?v=5a027c77" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/custom.css?v=b7af4508" />
   
   <!-- So that users can add custom icons -->
   <script src="../../../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
@@ -452,10 +452,10 @@
                 <article class="bd-article">
                   
   <section id="big-query">
-<span id="bigquery-subscriber"></span><h1>Big Query<a class="headerlink" href="#big-query" title="Link to this heading">#</a></h1>
+<span id="bigquery-subscriber"></span><h1>Big Query</h1>
 <p>You can use this built-in Tabsdata subscriber to write to Big Query by Google.</p>
 <section id="installing-the-connector">
-<h2>Installing the connector<a class="headerlink" href="#installing-the-connector" title="Link to this heading">#</a></h2>
+<h2>Installing the connector</h2>
 <p>To work with the Big Query connector you are required to install the dependencies separately. This is to manage the size of the core package. Please run the following command in your terminal to install the dependencies.</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>tabsdata<span class="o">[</span>“bigquery”<span class="o">]</span>
 </pre></div>
@@ -466,7 +466,7 @@
 </div>
 </section>
 <section id="example-subscriber-big-query">
-<h2>Example (Subscriber - Big Query)<a class="headerlink" href="#example-subscriber-big-query" title="Link to this heading">#</a></h2>
+<h2>Example (Subscriber - Big Query)</h2>
 <p>The following example creates a subscriber named <code class="docutils literal notranslate"><span class="pre">write_sales</span></code>. It writes two Tabsdata tables to the database. The subscriber is automatically triggered by a <a class="reference internal" href="../../06_working_with_tables/table_frame.html#working-with-table-commits"><span class="std std-ref">new commit</span></a> to any of its input tables, and writes data to the database without any modification.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">tabsdata</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">td</span>
 
@@ -492,7 +492,7 @@
 <p><strong>Note:</strong> After defining the function, you need to register it with a Tabsdata collection and execute it. For more information, see <a class="reference internal" href="../../04_working_with_functions/main.html#register-a-function"><span class="std std-ref">Register a Function</span></a> and <a class="reference internal" href="../../04_working_with_functions/main.html#execute-a-function"><span class="std std-ref">Execute a Function</span></a>.</p>
 </section>
 <section id="setup-subscriber-big-query">
-<h2>Setup (Subscriber - Big Query)<a class="headerlink" href="#setup-subscriber-big-query" title="Link to this heading">#</a></h2>
+<h2>Setup (Subscriber - Big Query)</h2>
 <p>The following code uses placeholder values for defining a subscriber that reads Tabsdata tables and writes to Big Query:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">tabsdata</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">td</span>
 
@@ -526,79 +526,79 @@
 <p><strong>Note:</strong> After defining the function, you need to register it with a Tabsdata collection and execute it. For more information, see <a class="reference internal" href="../../04_working_with_functions/main.html#register-a-function"><span class="std std-ref">Register a Function</span></a> and <a class="reference internal" href="../../04_working_with_functions/main.html#execute-a-function"><span class="std std-ref">Execute a Function</span></a>.</p>
 <p>Following properties are defined in the code above:</p>
 <section id="tables">
-<h3>tables<a class="headerlink" href="#tables" title="Link to this heading">#</a></h3>
+<h3>tables</h3>
 <p><code class="docutils literal notranslate"><span class="pre">&lt;input_table1&gt;</span></code>, <code class="docutils literal notranslate"><span class="pre">&lt;input_table2&gt;</span></code>… are the names of the Tabsdata tables to be written to the external system.</p>
 </section>
 <section id="destination">
-<h3>destination<a class="headerlink" href="#destination" title="Link to this heading">#</a></h3>
+<h3>destination</h3>
 <section id="biqqueryconn">
-<h4><code class="docutils literal notranslate"><span class="pre">BiqQueryConn</span></code><a class="headerlink" href="#biqqueryconn" title="Link to this heading">#</a></h4>
+<h4><code class="docutils literal notranslate"><span class="pre">BiqQueryConn</span></code></h4>
 <section id="gcs-folder">
-<h5><code class="docutils literal notranslate"><span class="pre">gcs_folder</span></code><a class="headerlink" href="#gcs-folder" title="Link to this heading">#</a></h5>
+<h5><code class="docutils literal notranslate"><span class="pre">gcs_folder</span></code></h5>
 <p>A gcs:// URI indicating the folder where the table(s) will be staged before being uploaded to BigQuery. After the upload is done, the files created in this folder will be deleted.</p>
 </section>
 <section id="credentials">
-<h5><code class="docutils literal notranslate"><span class="pre">credentials</span></code><a class="headerlink" href="#credentials" title="Link to this heading">#</a></h5>
+<h5><code class="docutils literal notranslate"><span class="pre">credentials</span></code></h5>
 <p>GCP credentials to use for authentication.</p>
 </section>
 <section id="project">
-<h5><code class="docutils literal notranslate"><span class="pre">project</span></code><a class="headerlink" href="#project" title="Link to this heading">#</a></h5>
+<h5><code class="docutils literal notranslate"><span class="pre">project</span></code></h5>
 <p>The default GCP project to use. If not provided, the project must be specified in the table names provided in the destination. Defaults to None.</p>
 </section>
 <section id="dataset">
-<h5><code class="docutils literal notranslate"><span class="pre">dataset</span></code><a class="headerlink" href="#dataset" title="Link to this heading">#</a></h5>
+<h5><code class="docutils literal notranslate"><span class="pre">dataset</span></code></h5>
 <p>The default BigQuery dataset to use. If not provided, the dataset must be specified in the table names provided in the destination. Defaults to None.</p>
 </section>
 <section id="enforce-connection-params">
-<h5><code class="docutils literal notranslate"><span class="pre">enforce_connection_params</span></code><a class="headerlink" href="#enforce-connection-params" title="Link to this heading">#</a></h5>
+<h5><code class="docutils literal notranslate"><span class="pre">enforce_connection_params</span></code></h5>
 <p>If set to True, enforce that project and dataset are used to fully qualify table names in the destination if provided. If set to False, the connection will allow the project and/or dataset to be overriden by the table names provided in the destination. Defaults to True.</p>
 </section>
 <section id="cx-dst-configs-gcs">
-<h5><code class="docutils literal notranslate"><span class="pre">cx_dst_configs_gcs</span></code><a class="headerlink" href="#cx-dst-configs-gcs" title="Link to this heading">#</a></h5>
+<h5><code class="docutils literal notranslate"><span class="pre">cx_dst_configs_gcs</span></code></h5>
 <p>Additional configuration parameters to pass to the GCS client. Passed as a dictionary. Defaults to None.</p>
 </section>
 <section id="cx-dst-configs-bigquery">
-<h5><code class="docutils literal notranslate"><span class="pre">cx_dst_configs_bigquery</span></code><a class="headerlink" href="#cx-dst-configs-bigquery" title="Link to this heading">#</a></h5>
+<h5><code class="docutils literal notranslate"><span class="pre">cx_dst_configs_bigquery</span></code></h5>
 <p>Additional configuration parameters to pass to the BigQuery client. Passed as a dictionary. Defaults to None.</p>
 </section>
 </section>
 <section id="id1">
-<h4><code class="docutils literal notranslate"><span class="pre">tables</span></code><a class="headerlink" href="#id1" title="Link to this heading">#</a></h4>
+<h4><code class="docutils literal notranslate"><span class="pre">tables</span></code></h4>
 <p>The table(s) to store the data in. If multiple tables are provided, they must be provided as a list. If None, the table names will be those of the input tables for the function. Defaults to None.</p>
 </section>
 <section id="if-table-exists">
-<h4><code class="docutils literal notranslate"><span class="pre">if_table_exists</span></code><a class="headerlink" href="#if-table-exists" title="Link to this heading">#</a></h4>
+<h4><code class="docutils literal notranslate"><span class="pre">if_table_exists</span></code></h4>
 <p>This is an optional property to define the strategy to follow when the table already exists. ‘replace’ will create overwrite the existing table, and ‘append’ will append to the existing data in the table. Defaults to ‘append’.</p>
 </section>
 <section id="schema-strategy">
-<h4><code class="docutils literal notranslate"><span class="pre">schema_strategy</span></code><a class="headerlink" href="#schema-strategy" title="Link to this heading">#</a></h4>
+<h4><code class="docutils literal notranslate"><span class="pre">schema_strategy</span></code></h4>
 <p>The is to mention the strategy to follow when appending to a table with an existing schema. ‘update’ will update the schema with the possible new columns that might exist in the TableFrame. ‘strict’ will not modify the schema, and will fail if there is any difference.</p>
 </section>
 </section>
 <section id="none-as-an-input-and-output">
-<h3><code class="docutils literal notranslate"><span class="pre">None</span></code> as an input and output<a class="headerlink" href="#none-as-an-input-and-output" title="Link to this heading">#</a></h3>
+<h3><code class="docutils literal notranslate"><span class="pre">None</span></code> as an input and output</h3>
 <p>A subscriber may receive and return a <code class="docutils literal notranslate"><span class="pre">None</span></code> value instead of TableFrames.</p>
 <p>When a subscriber receives a <code class="docutils literal notranslate"><span class="pre">None</span></code> value instead of a TableFrame it means that the requested table dependency version does not exist.</p>
 <p>When a subscriber returns a <code class="docutils literal notranslate"><span class="pre">None</span></code> value instead of a TableFrame it means there is no new data to write to the external system. This helps in avoiding the creation of multiple copies of the same data.</p>
 </section>
 <section id="optional-trigger-by">
-<h3>[Optional] trigger_by<a class="headerlink" href="#optional-trigger-by" title="Link to this heading">#</a></h3>
+<h3>[Optional] trigger_by</h3>
 <p><code class="docutils literal notranslate"><span class="pre">&lt;trigger_table1&gt;</span></code>, <code class="docutils literal notranslate"><span class="pre">&lt;trigger_table2&gt;</span></code>… are the names of the tables in the Tabsdata server. A new commit to any of these tables triggers the subscriber. All listed trigger tables must exist in the server before registering the subscriber.</p>
 <p>Defining trigger tables is optional. If you don’t define the <code class="docutils literal notranslate"><span class="pre">trigger_by</span></code> property, the subscriber will be triggered by any of its input tables. If you define the <code class="docutils literal notranslate"><span class="pre">trigger_by</span></code> property, then only those tables listed in the property can automatically trigger the subscriber.</p>
 <p>For more information, see <a class="reference internal" href="../../05_working_with_triggers/main.html#working-with-triggers"><span class="std std-ref">Working with Triggers</span></a>.</p>
 </section>
 <section id="subscriber-name">
-<h3>&lt;subscriber_name&gt;<a class="headerlink" href="#subscriber-name" title="Link to this heading">#</a></h3>
+<h3>&lt;subscriber_name&gt;</h3>
 <p><code class="docutils literal notranslate"><span class="pre">&lt;subscriber_name&gt;</span></code> is the name for the subscriber that you are configuring.</p>
 </section>
 <section id="function-logic">
-<h3>&lt;function_logic&gt;<a class="headerlink" href="#function-logic" title="Link to this heading">#</a></h3>
+<h3>&lt;function_logic&gt;</h3>
 <p><code class="docutils literal notranslate"><span class="pre">&lt;function_logic&gt;</span></code> governs the processing performed by the subscriber. You can specify function logic to be a simple write or to perform additional processing as needed. For more information about the function logic that you can include, see <a class="reference internal" href="../../06_working_with_tables/table_frame.html#working-with-tables"><span class="std std-ref">Working with Tables</span></a>.</p>
 <p><code class="docutils literal notranslate"><span class="pre">&lt;table_frame1&gt;</span></code>, <code class="docutils literal notranslate"><span class="pre">&lt;table_frame2&gt;</span></code>… are the names for the variables that temporarily store source data for processing.</p>
 <p><code class="docutils literal notranslate"><span class="pre">&lt;table_frame_output1&gt;</span></code>, <code class="docutils literal notranslate"><span class="pre">&lt;table_frame_output2&gt;</span></code>… are the output from the function that are written to the external system.</p>
 </section>
 <section id="data-drift-support">
-<h3>Data Drift Support<a class="headerlink" href="#data-drift-support" title="Link to this heading">#</a></h3>
+<h3>Data Drift Support</h3>
 <p>This section talks about how Tabsdata handles data drift in the output data for this Subscriber connector.</p>
 <p>The behaviour depends on how <code class="docutils literal notranslate"><span class="pre">if_table_exists</span></code> and <code class="docutils literal notranslate"><span class="pre">schema_strategy</span></code> are configured in the subscriber.</p>
 <p>For a Big Query subscriber with <code class="docutils literal notranslate"><span class="pre">if_table_exists=replace</span></code> (<code class="docutils literal notranslate"><span class="pre">schema_strategy</span></code> is ignored), the table is dropped and recreated on each execution. The resulting schema exactly matches the newly exported data, and type changes are fully reflected in the new table schema.</p>

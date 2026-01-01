@@ -33,7 +33,7 @@
     <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=8f2a1f02" />
     <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
     <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-design.min.css?v=95c83b7e" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/custom.css?v=5a027c77" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/custom.css?v=b7af4508" />
   
   <!-- So that users can add custom icons -->
   <script src="../../../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
@@ -452,7 +452,7 @@
                 <article class="bd-article">
                   
   <section id="grok-for-log-files">
-<span id="id1"></span><h1>Grok for Log Files<a class="headerlink" href="#grok-for-log-files" title="Link to this heading">#</a></h1>
+<span id="id1"></span><h1>Grok for Log Files</h1>
 <p>The grok function is a powerful log parsing tool for TableFrames that extracts structured data from log files and similar text formats. Originally developed for log analysis, it transforms a single text column into multiple typed columns by applying grok patterns with named captures.</p>
 <p>Grok is based on the Elasticsearch implementation and follows the same pattern syntax. For comprehensive pattern documentation, see the official Elasticsearch Grok documentation (<a class="reference external" href="https://www.elastic.co/docs/explore-analyze/scripting/grok">https://www.elastic.co/docs/explore-analyze/scripting/grok</a>) and the predefined pattern library (<a class="github reference external" href="https://github.com/elastic/elasticsearch/tree/main/libs/grok/src/main/resources/patterns">elastic/elasticsearch</a>).</p>
 <p>Grok uses regular expressions with predefined patterns to parse text. Each pattern includes named captures that become columns in your result. The function takes three inputs:</p>
@@ -462,9 +462,9 @@
 <li><p>Schema: A mapping that defines output column names and data types for each capture</p></li>
 </ul>
 <section id="examples">
-<h2>Examples<a class="headerlink" href="#examples" title="Link to this heading">#</a></h2>
+<h2>Examples</h2>
 <section id="basic-log-parsing">
-<h3>Basic Log Parsing<a class="headerlink" href="#basic-log-parsing" title="Link to this heading">#</a></h3>
+<h3>Basic Log Parsing</h3>
 <p>Apache access log parsing. The followig code creates columns: ip_address, http_method, status_code, response_bytes, request_time</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">tabsdata</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">td</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">tabsdata.tableframe</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">tdf</span>
@@ -506,7 +506,7 @@
 </div>
 </section>
 <section id="discovering-pattern-captures">
-<h3>Discovering Pattern Captures<a class="headerlink" href="#discovering-pattern-captures" title="Link to this heading">#</a></h3>
+<h3>Discovering Pattern Captures</h3>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">tabsdata</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">td</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">tabsdata.tableframe</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">tdf</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">tabsdata.expansions.tableframe.features.grok.engine</span><span class="w"> </span><span class="kn">import</span> <span class="n">grok_fields</span>
@@ -525,7 +525,7 @@
 </div>
 </section>
 <section id="simple-key-value-extraction">
-<h3>Simple Key-Value Extraction<a class="headerlink" href="#simple-key-value-extraction" title="Link to this heading">#</a></h3>
+<h3>Simple Key-Value Extraction</h3>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">tabsdata</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">td</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">tabsdata.tableframe</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">tdf</span>
 
@@ -544,7 +544,7 @@
 </section>
 </section>
 <section id="pattern-syntax">
-<h2>Pattern Syntax<a class="headerlink" href="#pattern-syntax" title="Link to this heading">#</a></h2>
+<h2>Pattern Syntax</h2>
 <p>Grok patterns use the format <strong>%{name:alias:extract:definition}</strong> where:</p>
 <ul class="simple">
 <li><p>name: A predefined pattern name (e.g., IPV4, WORD, INT)</p></li>
@@ -560,7 +560,7 @@
 </ul>
 </section>
 <section id="schema-definition">
-<h2>Schema Definition<a class="headerlink" href="#schema-definition" title="Link to this heading">#</a></h2>
+<h2>Schema Definition</h2>
 <p>The schema controls how captures become columns. For each capture name in your pattern, you specify:</p>
 <ul class="simple">
 <li><p>The final column name (optional - defaults to capture name)</p></li>
@@ -568,7 +568,7 @@
 </ul>
 </section>
 <section id="column-generation-rules">
-<h2>Column Generation Rules<a class="headerlink" href="#column-generation-rules" title="Link to this heading">#</a></h2>
+<h2>Column Generation Rules</h2>
 <ul class="simple">
 <li><p>New columns are generated in the order they appear in the schema</p></li>
 <li><p>Only captures defined in the schema become columns</p></li>
@@ -579,7 +579,7 @@
 </ul>
 </section>
 <section id="common-grok-patterns-for-log-analysis">
-<h2>Common Grok Patterns for Log Analysis<a class="headerlink" href="#common-grok-patterns-for-log-analysis" title="Link to this heading">#</a></h2>
+<h2>Common Grok Patterns for Log Analysis</h2>
 <ul class="simple">
 <li><p>%{IPV4:ip} - IPv4 addresses</p></li>
 <li><p>%{WORD:name} - Single words (alphanumeric + underscore)</p></li>
@@ -595,11 +595,11 @@
 </ul>
 </section>
 <section id="development-helper">
-<h2>Development Helper<a class="headerlink" href="#development-helper" title="Link to this heading">#</a></h2>
+<h2>Development Helper</h2>
 <p>During development, use the <strong>grok_fields</strong> in module <strong>tabsdata.expansions.tableframe.features.grok.engine</strong>. This is a function to preview exactly which capture names your pattern will generate. This is especially helpful with complex nested patterns, as it shows the exact names and order that the grok evaluator will produce.</p>
 </section>
 <section id="performance-and-integration">
-<h2>Performance and Integration<a class="headerlink" href="#performance-and-integration" title="Link to this heading">#</a></h2>
+<h2>Performance and Integration</h2>
 <p>Grok is optimized for large datasets and integrates seamlessly with TableFrame operations. Results can be filtered, grouped, joined, and processed like any other TableFrame. The implementation is particularly well-suited for log analysis workflows.</p>
 </section>
 </section>

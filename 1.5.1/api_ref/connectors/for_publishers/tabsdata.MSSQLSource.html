@@ -33,7 +33,7 @@
     <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=8f2a1f02" />
     <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
     <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-design.min.css?v=95c83b7e" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/custom.css?v=5a027c77" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/custom.css?v=b7af4508" />
   
   <!-- So that users can add custom icons -->
   <script src="../../../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
@@ -338,7 +338,7 @@
 </ul>
 <ul class="current nav bd-sidenav">
 <li class="toctree-l1 current active has-children"><a class="reference internal" href="../index.html">Connectors</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
-<li class="toctree-l2 current active has-children"><a class="reference internal" href="../for_publishers.html">For Publishers</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2 current active has-children"><a class="reference internal" href="../for_publishers.html">Publishers</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
 <li class="toctree-l3"><a class="reference internal" href="tabsdata.AzureSource.html">tabsdata.AzureSource</a></li>
 <li class="toctree-l3"><a class="reference internal" href="tabsdata.GCSSource.html">tabsdata.GCSSource</a></li>
 <li class="toctree-l3"><a class="reference internal" href="tabsdata.LocalFileSource.html">tabsdata.LocalFileSource</a></li>
@@ -352,11 +352,10 @@
 <li class="toctree-l3"><a class="reference internal" href="tabsdata.SalesforceSource.html">tabsdata.SalesforceSource</a></li>
 </ul>
 </details></li>
-<li class="toctree-l2 has-children"><a class="reference internal" href="../for_subscribers.html">For Subscribers</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../for_subscribers.html">Subscribers</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l3"><a class="reference internal" href="../for_subscribers/tabsdata.AzureDestination.html">tabsdata.AzureDestination</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../for_subscribers/tabsdata.DatabricksDestination.html">tabsdata.DatabricksDestination</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../for_subscribers/tabsdata.BigQueryConn.html">tabsdata.BigQueryConn</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../for_subscribers/tabsdata.BigQueryDest.html">tabsdata.BigQueryDest</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../for_subscribers/tabsdata.DatabricksDestination.html">tabsdata.DatabricksDestination</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../for_subscribers/tabsdata.GCSDestination.html">tabsdata.GCSDestination</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../for_subscribers/tabsdata.LocalFileDestination.html">tabsdata.LocalFileDestination</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../for_subscribers/tabsdata.MariaDBDestination.html">tabsdata.MariaDBDestination</a></li>
@@ -376,8 +375,9 @@
 </details></li>
 </ul>
 </details></li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../../connector_options/index.html">Connector options</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../connector_options/index.html">Connector Common Options</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2 has-children"><a class="reference internal" href="../../connector_options/file_formats.html">File formats</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../connector_options/file_formats/tabsdata.AvroFormat.html">tabsdata.AvroFormat</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../connector_options/file_formats/tabsdata.CSVFormat.html">tabsdata.CSVFormat</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../connector_options/file_formats/tabsdata.LogFormat.html">tabsdata.LogFormat</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../connector_options/file_formats/tabsdata.NDJSONFormat.html">tabsdata.NDJSONFormat</a></li>
@@ -730,7 +730,7 @@
     <li class="breadcrumb-item"><a href="../index.html" class="nav-link">Connectors</a></li>
     
     
-    <li class="breadcrumb-item"><a href="../for_publishers.html" class="nav-link">For Publishers</a></li>
+    <li class="breadcrumb-item"><a href="../for_publishers.html" class="nav-link">Publishers</a></li>
     
     <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">tabsdata.MSSQLSource</span></li>
   </ul>
@@ -750,7 +750,7 @@
                 <article class="bd-article">
                   
   <section id="tabsdata-mssqlsource">
-<h1>tabsdata.MSSQLSource<a class="headerlink" href="#tabsdata-mssqlsource" title="Link to this heading">#</a></h1>
+<h1>tabsdata.MSSQLSource</h1>
 <dl class="py class">
 <dt class="sig sig-object py" id="tabsdata.MSSQLSource">
 <em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">MSSQLSource</span></span><span class="sig-paren">(</span>
@@ -767,9 +767,9 @@
 <dd><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em>,</dd>
 </dl>
 
-<span class="sig-paren">)</span><a class="headerlink" href="#tabsdata.MSSQLSource" title="Link to this definition">#</a></dt>
+<span class="sig-paren">)</span></dt>
 <dd><p>Bases: <a class="reference internal" href="../plugins/tabsdata.SourcePlugin.html#tabsdata.SourcePlugin" title="tabsdata._io.plugin.SourcePlugin"><code class="xref py py-class docutils literal notranslate"><span class="pre">SourcePlugin</span></code></a></p>
-<p>Source plugin for Microsoft SQL Server.</p>
+<p>Microsoft SQL Server based data inputs.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="tabsdata.MSSQLSource.__init__">
 <span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span>
@@ -786,14 +786,14 @@
 <dd><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em>,</dd>
 </dl>
 
-<span class="sig-paren">)</span><a class="headerlink" href="#tabsdata.MSSQLSource.__init__" title="Link to this definition">#</a></dt>
+<span class="sig-paren">)</span></dt>
 <dd><p>Initialize the MSSQLSource with a connection string and a query.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>connection_string</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a>) – The connection string to connect to the database.</p></li>
-<li><p><strong>query</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a><em> | </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.14)"><em>list</em></a><em>[</em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a><em>]</em>) – The SQL query or queries to execute.</p></li>
-<li><p><strong>chunk_size</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><em>int</em></a>) – The number of rows to fetch in each chunk.
+<li><p><strong>connection_string</strong> – The connection string to connect to the database.</p></li>
+<li><p><strong>query</strong> – The SQL query or queries to execute.</p></li>
+<li><p><strong>chunk_size</strong> – The number of rows to fetch in each chunk.
 Defaults to 50000.</p></li>
 </ul>
 </dd>

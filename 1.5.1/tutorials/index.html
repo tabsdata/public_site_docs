@@ -33,7 +33,7 @@
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=8f2a1f02" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
-    <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=5a027c77" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=b7af4508" />
   
   <!-- So that users can add custom icons -->
   <script src="../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
@@ -384,81 +384,51 @@
                 <article class="bd-article">
                   
   <section id="tutorials">
-<h1>Tutorials<a class="headerlink" href="#tutorials" title="Link to this heading">#</a></h1>
+<h1>Tutorials</h1>
 <p>In the tutorials below, we show how to make the most of Tabsdata, when working with various sources and destinations. We have shown only specific connectors in the tutorials below. However, in a real-world scenario, your data source could be any other database, or file storage location (cloud or on-prem), and the subscriber could write data to various endpoints such as a database or file system. You can check the list of <a class="reference internal" href="../guide/04_01_working_with_publishers/main.html#working-with-publishers"><span class="std std-ref">source</span></a> and <a class="reference internal" href="../guide/04_03_working_with_subscribers/main.html#working-with-subscribers"><span class="std std-ref">destination</span></a> connectors.</p>
 <section id="id1">
-<h2><a class="reference external" href="https://github.com/tabsdata/tutorials/tree/main/t09_salesforce_report_ingestion">9. Publishing and Subscribing Salesforce Reports!</a><a class="headerlink" href="#id1" title="Link to this heading">#</a></h2>
-<p>In this tutorial, we’ll explore how Tabsdata can easily query Salesforce Reports and Subscribe them anywhere.</p>
+<h2><a class="reference external" href="https://github.com/tabsdata/tutorials/tree/main/t09_salesforce_report_ingestion">9. Salesforce Reports -&gt; Snowflake!</a></h2>
+<p>In this tutorial, we’ll explore how Tabsdata can easily query Salesforce Reports and Subscribe them to Snowflake.</p>
 <p><a class="reference external" href="https://github.com/tabsdata/tutorials/tree/main/t09_salesforce_report_ingestion">Link</a> to the Github repo.</p>
 </section>
 <section id="id2">
-<h2><a class="reference external" href="https://github.com/tabsdata/tutorials/tree/main/t08_customer_pii_masking">8. Masking and Subscribing Customer Data with Tabsdata!</a><a class="headerlink" href="#id2" title="Link to this heading">#</a></h2>
+<h2><a class="reference external" href="https://github.com/tabsdata/tutorials/tree/main/t08_customer_pii_masking">8. PII data masking!</a></h2>
 <p>In this tutorial, we’ll explore how Tabsdata can be used to mask and redact PII data from customer datasets.</p>
 <p><a class="reference external" href="https://github.com/tabsdata/tutorials/tree/main/t08_customer_pii_masking">Link</a> to the Github repo.</p>
 </section>
 <section id="id4">
-<h2><a class="reference external" href="https://github.com/tabsdata/tutorials/tree/main/t07_nyc_taxi_weather">7. Publishing and Subscribing NYC Taxi Data into AWS Glue!</a><a class="headerlink" href="#id4" title="Link to this heading">#</a></h2>
+<h2><a class="reference external" href="https://github.com/tabsdata/tutorials/tree/main/t07_nyc_taxi_weather">7. NYC Taxi Data -&gt; AWS Glue!</a></h2>
 <p>In this tutorial, we’ll explore how Tabsdata can connect to non-standard external systems to ingest and transform data. In this tutorial, we ingest NYC Taxi Data from the <a class="reference external" href="https://www.nyc.gov/site/tlc/about/tlc-trip-record-data.page">TLC</a> website and historical NYC weather data from a free weather API called <a class="reference external" href="https://open-meteo.com/">OpenMeteo</a>. Then, we aggregate our raw taxi data into daily metrics (trips per day, average trip duration, etc.) and enrich the aggregated metrics with weather metrics such as temperature, windspeed, and precipitation.</p>
 <p><a class="reference external" href="https://github.com/tabsdata/tutorials/tree/main/t07_nyc_taxi_weather">Link</a> to the Github repo.</p>
 </section>
 <section id="id6">
-<h2><a class="reference external" href="https://github.com/tabsdata/tutorials/tree/main/t06_bordeaux_gmail_extract">6. Ingesting Insurance Claim Data from Gmail into Databricks!</a><a class="headerlink" href="#id6" title="Link to this heading">#</a></h2>
+<h2><a class="reference external" href="https://github.com/tabsdata/tutorials/tree/main/t06_bordeaux_gmail_extract">6. Insurance Claim Data from Gmail -&gt; Databricks!</a></h2>
 <p>In this tutorial, we’ll explore how Tabsdata can collect claim bordereaux files sent to a Gmail inbox, merge them into a running master fact table, enrich the data with policy details, categorize high‑value subsets, and publish the results to Databricks.</p>
 <p><a class="reference external" href="https://github.com/tabsdata/tutorials/tree/main/t06_bordeaux_gmail_extract">Link</a> to the Github repo.</p>
 </section>
 <section id="id8">
-<h2><a class="reference external" href="https://github.com/tabsdata/tutorials/tree/main/t05_oracle_cdc">5. Publishing, and Transforming data from Oracle to create and subscribe a CDC Stream into PostgreSQL and S3!</a><a class="headerlink" href="#id8" title="Link to this heading">#</a></h2>
-<p>In this tutorial, we’ll explore how Tabsdata enables generating a CDC stream from a table in Oracle and subscribe that CDC stream to AWS Iceberg and PostgreSQL. We will do the following steps:</p>
-<ul class="simple">
-<li><p>Set up an Oracle Database in a Docker container</p></li>
-<li><p>Set up Tabsdata</p></li>
-<li><p>Register a publisher function to read customer data from an Oracle table</p></li>
-<li><p>Register a transformer function to capture data changes and store the CDC stream in a new table</p></li>
-<li><p>Register subscriber functions to deliver the CDC stream and customer table to PostgreSQL and AWS Iceberg</p></li>
-</ul>
+<h2><a class="reference external" href="https://github.com/tabsdata/tutorials/tree/main/t05_oracle_cdc">5. Oracle -&gt; CDC Stream -&gt; PostgreSQL and S3!</a></h2>
+<p>In this tutorial, we’ll explore how Tabsdata enables generating a CDC stream from a table in Oracle and subscribe that CDC stream to AWS Iceberg and PostgreSQL.</p>
 <p><a class="reference external" href="https://github.com/tabsdata/tutorials/tree/main/t05_oracle_cdc">Link</a> to the Github repo.</p>
 </section>
 <section id="id10">
-<h2><a class="reference external" href="https://github.com/tabsdata/tutorials/tree/main/t04_gsheet_neon">4. Pre-processing, Publishing and Subscribing a Google Sheet to Neon PostgreSQL!</a><a class="headerlink" href="#id10" title="Link to this heading">#</a></h2>
-<p>In this tutorial, we’ll explore how Tabsdata enables exporting data from Google Sheet to Neon PostgreSQL. We will do the following steps:</p>
-<ul class="simple">
-<li><p>Set up Tabsdata</p></li>
-<li><p>Register a publisher to read from Google Sheet, drop some columns from it, and publish the data as a table into Tabsdata.</p></li>
-<li><p>Register a subscriber that subscribes to this published table, and writes it to PostgreSQL Table in Neon.</p></li>
-</ul>
+<h2><a class="reference external" href="https://github.com/tabsdata/tutorials/tree/main/t04_gsheet_neon">4. Google Sheet -&gt; Neon PostgreSQL!</a></h2>
+<p>In this tutorial, we’ll explore how Tabsdata enables exporting data from Google Sheet to Neon PostgreSQL.</p>
 <p><a class="reference external" href="https://github.com/tabsdata/tutorials/tree/main/t04_gsheet_neon">Link</a> to the Github repo.</p>
 </section>
 <section id="id12">
-<h2><a class="reference external" href="https://github.com/tabsdata/tutorials/tree/main/t03_csv_iceberg_pub_sub">3. Pre-processing, Publishing and Subscribing a CSV to AWS Glue Iceberg!</a><a class="headerlink" href="#id12" title="Link to this heading">#</a></h2>
-<p>In this tutorial, we’ll explore how Tabsdata enables publishing CSV data from local file system and subscribing as an Iceberg table to AWS. We will do the following steps:</p>
-<ul class="simple">
-<li><p>Set up Tabsdata</p></li>
-<li><p>Register a publisher that reads data from a CSV file, selects some aspects of it, and publishes it as a table within Tabsdata.</p></li>
-<li><p>Register a subscriber that subscribes to this published table, and exports it as an Iceberg Table to AWS.</p></li>
-<li><p>Demonstrate that when the publisher is re-run to load new data, the subscriber automatically writes the new data to AWS.</p></li>
-</ul>
+<h2><a class="reference external" href="https://github.com/tabsdata/tutorials/tree/main/t03_csv_iceberg_pub_sub">3. Local File System CSV -&gt; AWS Glue Iceberg!</a></h2>
+<p>In this tutorial, we’ll explore how Tabsdata enables publishing CSV data from local file system and subscribing as an Iceberg table to AWS.</p>
 <p><a class="reference external" href="https://github.com/tabsdata/tutorials/tree/main/t03_csv_iceberg_pub_sub">Link</a> to the Github repo.</p>
 </section>
 <section id="id14">
-<h2><a class="reference external" href="https://github.com/tabsdata/tutorials/tree/main/t02_postgres_pub_sub">2. Publishing and Subscribing a PostgreSQL Table!</a><a class="headerlink" href="#id14" title="Link to this heading">#</a></h2>
-<p>In this tutorial, we’ll explore how Tabsdata enables Pub/Sub for Tables with source and destination data being a locally hosted PostgreSQL database. We will do the following steps:</p>
-<ul class="simple">
-<li><p>Set up Tabsdata</p></li>
-<li><p>Register a publisher that reads data from PostgreSQL, and publishes that as a table to Tabsdata.</p></li>
-<li><p>Register a subscriber that subscribes to this published table, filters some data, and exports it to PostgreSQL.</p></li>
-<li><p>Demonstrate that when the publisher is re-run to load new data, the subscriber automatically writes the new data to PostgreSQL.</p></li>
-</ul>
+<h2><a class="reference external" href="https://github.com/tabsdata/tutorials/tree/main/t02_postgres_pub_sub">2. PostgreSQL -&gt; PostgreSQL!</a></h2>
+<p>In this tutorial, we’ll explore how Tabsdata enables Pub/Sub for Tables with source and destination data being a locally hosted PostgreSQL database.</p>
 <p><a class="reference external" href="https://github.com/tabsdata/tutorials/tree/main/t02_postgres_pub_sub">Link</a> to the Github repo.</p>
 </section>
 <section id="id16">
-<h2><a class="reference external" href="https://github.com/tabsdata/tutorials/tree/main/t01_csv_pub_sub">1. Pre-processing, Publishing and Subscribing a CSV!</a><a class="headerlink" href="#id16" title="Link to this heading">#</a></h2>
-<p>In this first tutorial, we’ll explore how Tabsdata enables Pub/Sub for Tables using a CSV file input. We will do the following steps:</p>
-<ul class="simple">
-<li><p>Set up Tabsdata</p></li>
-<li><p>Register a publisher that reads data from a CSV file, selects some aspects of it, and publishes it as a table within the system.</p></li>
-<li><p>Register a subscriber that subscribes to this published table, and exports it to the file system in a JSON format.</p></li>
-<li><p>Demonstrate that when the publisher is re-run to load new data, the subscriber automatically writes the new data to the CSV in local file system.</p></li>
-</ul>
+<h2><a class="reference external" href="https://github.com/tabsdata/tutorials/tree/main/t01_csv_pub_sub">1. Local File System CSV -&gt; Local File System JSON!</a></h2>
+<p>In this first tutorial, we’ll explore how Tabsdata enables Pub/Sub for Tables using a CSV file input and a JSON file output.</p>
 <p><a class="reference external" href="https://github.com/tabsdata/tutorials/tree/main/t01_csv_pub_sub">Link</a> to the Github repo.</p>
 </section>
 </section>
@@ -501,15 +471,15 @@
   </div>
   <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">9. Publishing and Subscribing Salesforce Reports!</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">8. Masking and Subscribing Customer Data with Tabsdata!</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">7. Publishing and Subscribing NYC Taxi Data into AWS Glue!</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">6. Ingesting Insurance Claim Data from Gmail into Databricks!</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">5. Publishing, and Transforming data from Oracle to create and subscribe a CDC Stream into PostgreSQL and S3!</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id10">4. Pre-processing, Publishing and Subscribing a Google Sheet to Neon PostgreSQL!</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id12">3. Pre-processing, Publishing and Subscribing a CSV to AWS Glue Iceberg!</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id14">2. Publishing and Subscribing a PostgreSQL Table!</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id16">1. Pre-processing, Publishing and Subscribing a CSV!</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">9. Salesforce Reports -&gt; Snowflake!</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">8. PII data masking!</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">7. NYC Taxi Data -&gt; AWS Glue!</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">6. Insurance Claim Data from Gmail -&gt; Databricks!</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">5. Oracle -&gt; CDC Stream -&gt; PostgreSQL and S3!</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id10">4. Google Sheet -&gt; Neon PostgreSQL!</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id12">3. Local File System CSV -&gt; AWS Glue Iceberg!</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id14">2. PostgreSQL -&gt; PostgreSQL!</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id16">1. Local File System CSV -&gt; Local File System JSON!</a></li>
 </ul>
   </nav></div>
 

@@ -33,7 +33,7 @@
     <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=8f2a1f02" />
     <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
     <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
-    <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=5a027c77" />
+    <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=b7af4508" />
   
   <!-- So that users can add custom icons -->
   <script src="../../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
@@ -445,7 +445,7 @@
                 <article class="bd-article">
                   
   <section id="publishers">
-<span id="working-with-publishers"></span><h1>Publishers<a class="headerlink" href="#publishers" title="Link to this heading">#</a></h1>
+<span id="working-with-publishers"></span><h1>Publishers</h1>
 <p>A publisher is a Tabsdata <a class="reference internal" href="../04_working_with_functions/main.html#working-with-functions"><span class="std std-ref">function</span></a> that reads data from an external source, such as file system or database, and writes the data to one or more tables in the Tabsdata server.</p>
 <p>Here is an example publisher named <code class="docutils literal notranslate"><span class="pre">read_sales</span></code>. It reads three sales csv files, checks if their last modified date is after 1st Jan 2021, and writes them to the Tabsdata tables of the same name. This publisher executes automatically as soon as a <a class="reference internal" href="../06_working_with_tables/table_frame.html#working-with-table-commits"><span class="std std-ref">new commit</span></a> occurs on the <code class="docutils literal notranslate"><span class="pre">new_customer</span></code> table:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">tabsdata</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">td</span>

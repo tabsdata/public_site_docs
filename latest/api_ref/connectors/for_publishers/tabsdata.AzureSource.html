@@ -33,7 +33,7 @@
     <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=8f2a1f02" />
     <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
     <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-design.min.css?v=95c83b7e" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/custom.css?v=5a027c77" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/custom.css?v=b7af4508" />
   
   <!-- So that users can add custom icons -->
   <script src="../../../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
@@ -61,7 +61,7 @@
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
     <link rel="next" title="tabsdata.GCSSource" href="tabsdata.GCSSource.html" />
-    <link rel="prev" title="For Publishers" href="../for_publishers.html" />
+    <link rel="prev" title="Publishers" href="../for_publishers.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   <meta name="docsearch:version" content="1.5.1" />
@@ -338,7 +338,7 @@
 </ul>
 <ul class="current nav bd-sidenav">
 <li class="toctree-l1 current active has-children"><a class="reference internal" href="../index.html">Connectors</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
-<li class="toctree-l2 current active has-children"><a class="reference internal" href="../for_publishers.html">For Publishers</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2 current active has-children"><a class="reference internal" href="../for_publishers.html">Publishers</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
 <li class="toctree-l3 current active"><a class="current reference internal" href="#">tabsdata.AzureSource</a></li>
 <li class="toctree-l3"><a class="reference internal" href="tabsdata.GCSSource.html">tabsdata.GCSSource</a></li>
 <li class="toctree-l3"><a class="reference internal" href="tabsdata.LocalFileSource.html">tabsdata.LocalFileSource</a></li>
@@ -352,11 +352,10 @@
 <li class="toctree-l3"><a class="reference internal" href="tabsdata.SalesforceSource.html">tabsdata.SalesforceSource</a></li>
 </ul>
 </details></li>
-<li class="toctree-l2 has-children"><a class="reference internal" href="../for_subscribers.html">For Subscribers</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../for_subscribers.html">Subscribers</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l3"><a class="reference internal" href="../for_subscribers/tabsdata.AzureDestination.html">tabsdata.AzureDestination</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../for_subscribers/tabsdata.DatabricksDestination.html">tabsdata.DatabricksDestination</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../for_subscribers/tabsdata.BigQueryConn.html">tabsdata.BigQueryConn</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../for_subscribers/tabsdata.BigQueryDest.html">tabsdata.BigQueryDest</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../for_subscribers/tabsdata.DatabricksDestination.html">tabsdata.DatabricksDestination</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../for_subscribers/tabsdata.GCSDestination.html">tabsdata.GCSDestination</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../for_subscribers/tabsdata.LocalFileDestination.html">tabsdata.LocalFileDestination</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../for_subscribers/tabsdata.MariaDBDestination.html">tabsdata.MariaDBDestination</a></li>
@@ -376,8 +375,9 @@
 </details></li>
 </ul>
 </details></li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../../connector_options/index.html">Connector options</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../connector_options/index.html">Connector Common Options</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2 has-children"><a class="reference internal" href="../../connector_options/file_formats.html">File formats</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../connector_options/file_formats/tabsdata.AvroFormat.html">tabsdata.AvroFormat</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../connector_options/file_formats/tabsdata.CSVFormat.html">tabsdata.CSVFormat</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../connector_options/file_formats/tabsdata.LogFormat.html">tabsdata.LogFormat</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../connector_options/file_formats/tabsdata.NDJSONFormat.html">tabsdata.NDJSONFormat</a></li>
@@ -730,7 +730,7 @@
     <li class="breadcrumb-item"><a href="../index.html" class="nav-link">Connectors</a></li>
     
     
-    <li class="breadcrumb-item"><a href="../for_publishers.html" class="nav-link">For Publishers</a></li>
+    <li class="breadcrumb-item"><a href="../for_publishers.html" class="nav-link">Publishers</a></li>
     
     <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">tabsdata.AzureSource</span></li>
   </ul>
@@ -750,7 +750,7 @@
                 <article class="bd-article">
                   
   <section id="tabsdata-azuresource">
-<h1>tabsdata.AzureSource<a class="headerlink" href="#tabsdata-azuresource" title="Link to this heading">#</a></h1>
+<h1>tabsdata.AzureSource</h1>
 <dl class="py class">
 <dt class="sig sig-object py" id="tabsdata.AzureSource">
 <em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">AzureSource</span></span><span class="sig-paren">(</span>
@@ -762,56 +762,9 @@
 <dd><em class="sig-param"><span class="n"><span class="pre">initial_last_modified</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/datetime.html#datetime.datetime" title="(in Python v3.14)"><span class="pre">datetime</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>,</dd>
 </dl>
 
-<span class="sig-paren">)</span><a class="headerlink" href="#tabsdata.AzureSource" title="Link to this definition">#</a></dt>
+<span class="sig-paren">)</span></dt>
 <dd><p>Bases: <a class="reference internal" href="../plugins/tabsdata.SourcePlugin.html#tabsdata.SourcePlugin" title="tabsdata._io.plugin.SourcePlugin"><code class="xref py py-class docutils literal notranslate"><span class="pre">SourcePlugin</span></code></a></p>
-<p>Class for managing the configuration of Azure-file-based data inputs.</p>
-<dl class="py attribute">
-<dt class="sig sig-object py" id="tabsdata.AzureSource.format">
-<span class="sig-name descname"><span class="pre">format</span></span><a class="headerlink" href="#tabsdata.AzureSource.format" title="Link to this definition">#</a></dt>
-<dd><p>The format of the file. If not provided, it will be
-inferred from the file extension of the data.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>FileFormat</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="tabsdata.AzureSource.uri">
-<span class="sig-name descname"><span class="pre">uri</span></span><a class="headerlink" href="#tabsdata.AzureSource.uri" title="Link to this definition">#</a></dt>
-<dd><p>The URI of the files with format: ‘az://path/to/files’.
-It can be a single URI or a list of URIs.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Type<span class="colon">:</span></dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)">str</a> | <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.14)">list</a>[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)">str</a>]</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="tabsdata.AzureSource.credentials">
-<span class="sig-name descname"><span class="pre">credentials</span></span><a class="headerlink" href="#tabsdata.AzureSource.credentials" title="Link to this definition">#</a></dt>
-<dd><p>The credentials required to access Azure.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>AzureCredentials</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="tabsdata.AzureSource.initial_last_modified">
-<span class="sig-name descname"><span class="pre">initial_last_modified</span></span><a class="headerlink" href="#tabsdata.AzureSource.initial_last_modified" title="Link to this definition">#</a></dt>
-<dd><p>If provided, only the files
-modified after this date and time will be considered.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Type<span class="colon">:</span></dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)">str</a> | datetime</p>
-</dd>
-</dl>
-</dd></dl>
-
+<p>Azure-file-based data inputs.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="tabsdata.AzureSource.__init__">
 <span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span>
@@ -823,27 +776,23 @@ modified after this date and time will be considered.</p>
 <dd><em class="sig-param"><span class="n"><span class="pre">initial_last_modified</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/datetime.html#datetime.datetime" title="(in Python v3.14)"><span class="pre">datetime</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>,</dd>
 </dl>
 
-<span class="sig-paren">)</span><a class="headerlink" href="#tabsdata.AzureSource.__init__" title="Link to this definition">#</a></dt>
-<dd><dl class="simple">
-<dt>Initializes the AzureSource with the given URI and the credentials required to</dt><dd><p>access Azure, and optionally a format and date and
-time after which the files were modified.</p>
-</dd>
-</dl>
+<span class="sig-paren">)</span></dt>
+<dd><p>Initializes the AzureSource with the given URI and the credentials required to access Azure, and
+optionally a format and date and time after which the files were modified.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>uri</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a><em> | </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.14)"><em>list</em></a><em>[</em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a><em>]</em>) – The URI of the files with format:
+<li><p><strong>uri</strong> – The URI of the files with format:
 ‘az://path/to/files’. It can be a single URI or a list of URIs.</p></li>
-<li><p><strong>credentials</strong> (<em>AzureCredentials</em>) – The credentials required to access
-Azure. Must be an AzureCredentials object.</p></li>
-<li><p><strong>format</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a><em> | </em><em>FileFormat</em><em>, </em><em>optional</em>) – The format of the file. If not
+<li><p><strong>credentials</strong> – The credentials required to access
+Azure. Must be an AzureAccountKeyCredentials object.</p></li>
+<li><p><strong>format</strong> – The format of the file. If not
 provided, it will be inferred from the file extension of the data.
 Can be either a string with the format or a FileFormat object .
-Currently supported formats are ‘csv’,
-‘parquet’, ‘avro’, ‘ndjson’, ‘jsonl’ and ‘log’.</p></li>
-<li><p><strong>initial_last_modified</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a><em> | </em><em>datetime</em><em>, </em><em>optional</em>) – If provided,
-only the files modified after this date and time will be considered.
-The date and time can be provided as a string in
+Currently supported formats are ‘csv’, ‘parquet’, ‘avro’, ‘ndjson’, ‘jsonl’
+and ‘log’.</p></li>
+<li><p><strong>initial_last_modified</strong> – If provided, only the files modified after this date and
+time will be considered. The date and time can be provided as a string in
 [ISO 8601 format](<a class="reference external" href="https://en.wikipedia.org/wiki/ISO_8601">https://en.wikipedia.org/wiki/ISO_8601</a>) or as
 a datetime object. If no timezone is provided, UTC will be assumed.</p></li>
 </ul>
@@ -861,10 +810,10 @@ a datetime object. If no timezone is provided, UTC will be assumed.</p></li>
 <div class="pst-scrollable-table-container"><table class="autosummary longtable table">
 <tbody>
 <tr class="row-odd"><td><p><a class="reference internal" href="#tabsdata.AzureSource.__init__" title="tabsdata.AzureSource.__init__"><code class="xref py py-obj docutils literal notranslate"><span class="pre">__init__</span></code></a>(uri, credentials[, format, ...])</p></td>
-<td><p>Initializes the AzureSource with the given URI and the credentials required to</p></td>
+<td><p>Initializes the AzureSource with the given URI and the credentials required to access Azure, and optionally a format and date and time after which the files were modified.</p></td>
 </tr>
 <tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">chunk</span></code>(working_dir)</p></td>
-<td><p>Trigger the import of the data. This must be implemented in any class that</p></td>
+<td><p>Trigger the import of the data.</p></td>
 </tr>
 <tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">stream</span></code>(working_dir)</p></td>
 <td><p></p></td>
@@ -875,19 +824,19 @@ a datetime object. If no timezone is provided, UTC will be assumed.</p></li>
 <p class="rubric">Attributes</p>
 <div class="pst-scrollable-table-container"><table class="autosummary longtable table">
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="#tabsdata.AzureSource.credentials" title="tabsdata.AzureSource.credentials"><code class="xref py py-obj docutils literal notranslate"><span class="pre">credentials</span></code></a></p></td>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">credentials</span></code></p></td>
 <td><p>The credentials required to access Azure.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#tabsdata.AzureSource.format" title="tabsdata.AzureSource.format"><code class="xref py py-obj docutils literal notranslate"><span class="pre">format</span></code></a></p></td>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">format</span></code></p></td>
 <td><p>The format of the file.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#tabsdata.AzureSource.initial_last_modified" title="tabsdata.AzureSource.initial_last_modified"><code class="xref py py-obj docutils literal notranslate"><span class="pre">initial_last_modified</span></code></a></p></td>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">initial_last_modified</span></code></p></td>
 <td><p>The date and time after which the files were modified.</p></td>
 </tr>
 <tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">initial_values</span></code></p></td>
 <td><p>Return a dictionary with the initial values to be stored after execution of the plugin.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#tabsdata.AzureSource.uri" title="tabsdata.AzureSource.uri"><code class="xref py py-obj docutils literal notranslate"><span class="pre">uri</span></code></a></p></td>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">uri</span></code></p></td>
 <td><p>'az://path/to/files'.</p></td>
 </tr>
 </tbody>
@@ -913,7 +862,7 @@ a datetime object. If no timezone is provided, UTC will be assumed.</p></li>
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">For Publishers</p>
+        <p class="prev-next-title">Publishers</p>
       </div>
     </a>
     <a class="right-next"
@@ -945,10 +894,6 @@ a datetime object. If no timezone is provided, UTC will be assumed.</p></li>
   <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tabsdata.AzureSource"><code class="docutils literal notranslate"><span class="pre">AzureSource</span></code></a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tabsdata.AzureSource.format"><code class="docutils literal notranslate"><span class="pre">AzureSource.format</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tabsdata.AzureSource.uri"><code class="docutils literal notranslate"><span class="pre">AzureSource.uri</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tabsdata.AzureSource.credentials"><code class="docutils literal notranslate"><span class="pre">AzureSource.credentials</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tabsdata.AzureSource.initial_last_modified"><code class="docutils literal notranslate"><span class="pre">AzureSource.initial_last_modified</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tabsdata.AzureSource.__init__"><code class="docutils literal notranslate"><span class="pre">AzureSource.__init__()</span></code></a></li>
 </ul>
 </li>

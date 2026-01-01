@@ -33,7 +33,7 @@
     <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=8f2a1f02" />
     <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
     <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
-    <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=5a027c77" />
+    <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=b7af4508" />
   
   <!-- So that users can add custom icons -->
   <script src="../../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
@@ -445,7 +445,7 @@
                 <article class="bd-article">
                   
   <section id="testing">
-<h1>Testing<a class="headerlink" href="#testing" title="Link to this heading">#</a></h1>
+<h1>Testing</h1>
 <p>You can use the <a class="reference external" href="https://docs.pola.rs/">polars</a> or <a class="reference external" href="https://pandas.pydata.org/docs/index.html">pandas</a> Python package to test out your function logic before registering and executing your functions on the server. When testing, the accepted input types are pandas.DataFrame, polars.DataFrame, and polars.LazyFrame, and the type of the returned output will match the input type. Regardless of the input type, the function itself always receives a Tabsdata TableFrame when executed on the server.</p>
 <p>Here is an example of how to do that.</p>
 <p>Let’s take the function logic of the transformer code from the Getting Started section <a class="reference internal" href="../02_getting_started/main.html#getting-started-transformer"><span class="std std-ref">here</span></a>. You can test the function logic using the following code:</p>

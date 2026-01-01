@@ -33,7 +33,7 @@
     <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=8f2a1f02" />
     <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
     <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-design.min.css?v=95c83b7e" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/custom.css?v=5a027c77" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/custom.css?v=b7af4508" />
   
   <!-- So that users can add custom icons -->
   <script src="../../../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
@@ -338,7 +338,7 @@
 </ul>
 <ul class="current nav bd-sidenav">
 <li class="toctree-l1 current active has-children"><a class="reference internal" href="../index.html">Connectors</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
-<li class="toctree-l2 current active has-children"><a class="reference internal" href="../for_publishers.html">For Publishers</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2 current active has-children"><a class="reference internal" href="../for_publishers.html">Publishers</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
 <li class="toctree-l3"><a class="reference internal" href="tabsdata.AzureSource.html">tabsdata.AzureSource</a></li>
 <li class="toctree-l3"><a class="reference internal" href="tabsdata.GCSSource.html">tabsdata.GCSSource</a></li>
 <li class="toctree-l3"><a class="reference internal" href="tabsdata.LocalFileSource.html">tabsdata.LocalFileSource</a></li>
@@ -352,11 +352,10 @@
 <li class="toctree-l3"><a class="reference internal" href="tabsdata.SalesforceSource.html">tabsdata.SalesforceSource</a></li>
 </ul>
 </details></li>
-<li class="toctree-l2 has-children"><a class="reference internal" href="../for_subscribers.html">For Subscribers</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../for_subscribers.html">Subscribers</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l3"><a class="reference internal" href="../for_subscribers/tabsdata.AzureDestination.html">tabsdata.AzureDestination</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../for_subscribers/tabsdata.DatabricksDestination.html">tabsdata.DatabricksDestination</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../for_subscribers/tabsdata.BigQueryConn.html">tabsdata.BigQueryConn</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../for_subscribers/tabsdata.BigQueryDest.html">tabsdata.BigQueryDest</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../for_subscribers/tabsdata.DatabricksDestination.html">tabsdata.DatabricksDestination</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../for_subscribers/tabsdata.GCSDestination.html">tabsdata.GCSDestination</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../for_subscribers/tabsdata.LocalFileDestination.html">tabsdata.LocalFileDestination</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../for_subscribers/tabsdata.MariaDBDestination.html">tabsdata.MariaDBDestination</a></li>
@@ -376,8 +375,9 @@
 </details></li>
 </ul>
 </details></li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../../connector_options/index.html">Connector options</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../connector_options/index.html">Connector Common Options</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2 has-children"><a class="reference internal" href="../../connector_options/file_formats.html">File formats</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../connector_options/file_formats/tabsdata.AvroFormat.html">tabsdata.AvroFormat</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../connector_options/file_formats/tabsdata.CSVFormat.html">tabsdata.CSVFormat</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../connector_options/file_formats/tabsdata.LogFormat.html">tabsdata.LogFormat</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../connector_options/file_formats/tabsdata.NDJSONFormat.html">tabsdata.NDJSONFormat</a></li>
@@ -730,7 +730,7 @@
     <li class="breadcrumb-item"><a href="../index.html" class="nav-link">Connectors</a></li>
     
     
-    <li class="breadcrumb-item"><a href="../for_publishers.html" class="nav-link">For Publishers</a></li>
+    <li class="breadcrumb-item"><a href="../for_publishers.html" class="nav-link">Publishers</a></li>
     
     <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">tabsdata.SalesforceReportSource</span></li>
   </ul>
@@ -750,7 +750,7 @@
                 <article class="bd-article">
                   
   <section id="tabsdata-salesforcereportsource">
-<h1>tabsdata.SalesforceReportSource<a class="headerlink" href="#tabsdata-salesforcereportsource" title="Link to this heading">#</a></h1>
+<h1>tabsdata.SalesforceReportSource</h1>
 <dl class="py class">
 <dt class="sig sig-object py" id="tabsdata.SalesforceReportSource">
 <em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">SalesforceReportSource</span></span><span class="sig-paren">(</span>
@@ -768,8 +768,9 @@
 <dd><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em>,</dd>
 </dl>
 
-<span class="sig-paren">)</span><a class="headerlink" href="#tabsdata.SalesforceReportSource" title="Link to this definition">#</a></dt>
+<span class="sig-paren">)</span></dt>
 <dd><p>Bases: <a class="reference internal" href="../plugins/tabsdata.SourcePlugin.html#tabsdata.SourcePlugin" title="tabsdata._io.plugin.SourcePlugin"><code class="xref py py-class docutils literal notranslate"><span class="pre">SourcePlugin</span></code></a></p>
+<p>Salesforce Reports based data inputs.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="tabsdata.SalesforceReportSource.__init__">
 <span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span>
@@ -787,27 +788,24 @@
 <dd><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em>,</dd>
 </dl>
 
-<span class="sig-paren">)</span><a class="headerlink" href="#tabsdata.SalesforceReportSource.__init__" title="Link to this definition">#</a></dt>
-<dd><dl class="simple">
-<dt>Initializes the SalesforceReportSource with the report information and the</dt><dd><p>credentials required to access Salesforce.</p>
-</dd>
-</dl>
+<span class="sig-paren">)</span></dt>
+<dd><p>Initializes the SalesforceReportSource with the report information and the credentials to access Salesforce.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>credentials</strong> (<em>SalesforceCredentials</em>) – The credentials to access Salesforce.</p></li>
-<li><p><strong>report</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a><em> | </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.14)"><em>list</em></a><em>[</em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a><em>]</em>) – The report or reports to execute in Salesforce.
+<li><p><strong>credentials</strong> – The credentials to access Salesforce.</p></li>
+<li><p><strong>report</strong> – The report or reports to execute in Salesforce.
 It can be a single string or a list of strings. The string must be
 either the report ID or the name of the report.</p></li>
-<li><p><strong>column_name_strategy</strong> (<em>Literal</em><em>[</em><em>&quot;columnName&quot;</em><em>, </em><em>&quot;label&quot;</em><em>]</em>) – Indicates which
+<li><p><strong>column_name_strategy</strong> – Indicates which
 column attribute to use as the
 column name in the output data. It can be one of the following:
 - “columnName”: The API name of the column (e.g., “ACCOUNT.NAME”).
 - “label”: The label of the column (e.g., “Account Name”).</p></li>
-<li><p><strong>find_report_by</strong> (<em>Literal</em><em>[</em><em>&quot;id&quot;</em><em>, </em><em>&quot;name&quot;</em><em>]</em><em>, </em><em>optional</em>) – Indicates whether the
+<li><p><strong>find_report_by</strong> – Indicates whether the
 ‘report’ parameter contains report IDs or report names. If not
 provided, it will be inferred from the value of the ‘report’ parameter.</p></li>
-<li><p><strong>filter</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.14)"><em>tuple</em></a><em>[</em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a><em>, </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a><em>, </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a><em>] </em><em>| </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.14)"><em>list</em></a><em>[</em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.14)"><em>tuple</em></a><em>[</em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a><em>, </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a><em>, </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a><em>]</em><em>]</em><em>, </em><em>optional</em>) – <p>A filter or list of filters to apply to the report. Each filter is a
+<li><p><strong>filter</strong> – <p>A filter or list of filters to apply to the report. Each filter is a
 tuple of three strings: (field, operator, value). For example:
 [(“CreatedDate”, “greaterThan”, “2023-01-01T00:00:00.000Z”)].
 The possible operators are:</p>
@@ -830,17 +828,17 @@ The possible operators are:</p>
 </div></blockquote>
 <p>Defaults to None.</p>
 </p></li>
-<li><p><strong>filter_logic</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a><em>, </em><em>optional</em>) – A string representing the logic to apply to
+<li><p><strong>filter_logic</strong> – A string representing the logic to apply to
 the filters. For example: “(1 AND 2) OR 3”. The numbers correspond to
 the position of the filters in the ‘filter’ list (starting at 1).
 Defaults to None.</p></li>
-<li><p><strong>instance_url</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a><em>, </em><em>optional</em>) – The URL of the instance to which we want to
+<li><p><strong>instance_url</strong> – The URL of the instance to which we want to
 connect. Only necessary when the username and password are associated
 to more than one instance. Defaults to None.</p></li>
-<li><p><strong>last_modified_column</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a><em>, </em><em>optional</em>) – The name of the column to use for
+<li><p><strong>last_modified_column</strong> – The name of the column to use for
 incremental loading based on the last modified date. If provided,
 the report must contain this column. Defaults to None.</p></li>
-<li><p><strong>initial_last_modified</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a><em>, </em><em>optional</em>) – The initial last modified date to
+<li><p><strong>initial_last_modified</strong> – The initial last modified date to
 use for incremental loading. This is useful when we want to load only
 the records that have been modified since a certain date. Defaults to
 None. If provided, it must be a string in Salesforce datetime format
@@ -854,10 +852,10 @@ None. If provided, it must be a string in Salesforce datetime format
 <div class="pst-scrollable-table-container"><table class="autosummary longtable table">
 <tbody>
 <tr class="row-odd"><td><p><a class="reference internal" href="#tabsdata.SalesforceReportSource.__init__" title="tabsdata.SalesforceReportSource.__init__"><code class="xref py py-obj docutils literal notranslate"><span class="pre">__init__</span></code></a>(credentials, report, ...[, ...])</p></td>
-<td><p>Initializes the SalesforceReportSource with the report information and the</p></td>
+<td><p>Initializes the SalesforceReportSource with the report information and the credentials to access Salesforce.</p></td>
 </tr>
 <tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">chunk</span></code>(working_dir)</p></td>
-<td><p>Trigger the import of the data. This must be implemented in any class that</p></td>
+<td><p>Trigger the import of the data.</p></td>
 </tr>
 <tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">stream</span></code>(working_dir)</p></td>
 <td><p></p></td>

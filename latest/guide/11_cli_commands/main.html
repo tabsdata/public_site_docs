@@ -33,7 +33,7 @@
     <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=8f2a1f02" />
     <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
     <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
-    <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=5a027c77" />
+    <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=b7af4508" />
   
   <!-- So that users can add custom icons -->
   <script src="../../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
@@ -449,7 +449,7 @@
                 <article class="bd-article">
                   
   <section id="cli-reference">
-<h1>CLI Reference<a class="headerlink" href="#cli-reference" title="Link to this heading">#</a></h1>
+<h1>CLI Reference</h1>
 <p>The document below, covers the major commands and sub-commands to work with Tabsdata Command Line Interface (CLI). For more options, please use <code class="docutils literal notranslate"><span class="pre">-h</span></code>/<code class="docutils literal notranslate"><span class="pre">--help</span></code> option in the CLI to obtain the full list and description of commands and their options.</p>
 <p>Tabsdata provides 2 CLI tools:</p>
 <ul class="simple">
@@ -457,7 +457,7 @@
 <li><p><code class="docutils literal notranslate"><span class="pre">td</span></code> - Tabsdata Client CLI</p></li>
 </ul>
 <section id="tabsdata-server-cli-tdserver">
-<h2>Tabsdata Server CLI <code class="docutils literal notranslate"><span class="pre">tdserver</span></code><a class="headerlink" href="#tabsdata-server-cli-tdserver" title="Link to this heading">#</a></h2>
+<h2>Tabsdata Server CLI <code class="docutils literal notranslate"><span class="pre">tdserver</span></code></h2>
 <p>The <code class="docutils literal notranslate"><span class="pre">tdserver</span></code> CLI is used to manage the Tabsdata server.</p>
 <p>It provides the following commands:</p>
 <ul class="simple">
@@ -469,16 +469,16 @@
 <p><strong>Note</strong>: You can use <code class="docutils literal notranslate"><span class="pre">tdserver</span> <span class="pre">status</span> <span class="pre">--metrics</span></code> to access the report on disk utilization.</p>
 </section>
 <section id="tabsdata-client-cli-td">
-<h2>Tabsdata Client CLI <code class="docutils literal notranslate"><span class="pre">td</span></code><a class="headerlink" href="#tabsdata-client-cli-td" title="Link to this heading">#</a></h2>
+<h2>Tabsdata Client CLI <code class="docutils literal notranslate"><span class="pre">td</span></code></h2>
 <p>The <code class="docutils literal notranslate"><span class="pre">td</span></code> CLI is used to interact with a Tabsdata server.</p>
 <p>The <code class="docutils literal notranslate"><span class="pre">td</span></code> CLI works with options and in interactive mode if the options are not provided.</p>
 <section id="interactive-mode">
-<h3>Interactive Mode<a class="headerlink" href="#interactive-mode" title="Link to this heading">#</a></h3>
+<h3>Interactive Mode</h3>
 <p>By default, the <code class="docutils literal notranslate"><span class="pre">td</span></code> CLI enters interactive mode if there is a required option that is missing.</p>
 <p>To disable interactive mode, use the <code class="docutils literal notranslate"><span class="pre">--no-prompt</span></code> option immediately after the <code class="docutils literal notranslate"><span class="pre">td</span></code> command.</p>
 </section>
 <section id="login-to-server">
-<span id="login-cli"></span><h3>Login to Server<a class="headerlink" href="#login-to-server" title="Link to this heading">#</a></h3>
+<span id="login-cli"></span><h3>Login to Server</h3>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span>
 <span class="n">td</span> <span class="n">login</span> <span class="o">--</span><span class="n">server</span> <span class="n">localhost</span><span class="p">:</span><span class="mi">2457</span> <span class="o">--</span><span class="n">username</span> <span class="o">&lt;</span><span class="n">USER</span><span class="o">&gt;</span> <span class="o">--</span><span class="n">role</span> <span class="o">&lt;</span><span class="n">ROLE</span><span class="o">&gt;</span> <span class="o">--</span><span class="n">password</span> <span class="o">&lt;</span><span class="n">PASSWORD</span><span class="o">&gt;</span>
 
@@ -496,7 +496,7 @@
 <p>until the session expires (2 hours after login)</p>
 </section>
 <section id="logout-from-server">
-<h3>Logout from Server<a class="headerlink" href="#logout-from-server" title="Link to this heading">#</a></h3>
+<h3>Logout from Server</h3>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span>
 <span class="n">td</span> <span class="n">logout</span>
 
@@ -505,9 +505,9 @@
 <p>Terminates the current session if any.</p>
 </section>
 <section id="user-sub-commands">
-<h3>User Sub-Commands<a class="headerlink" href="#user-sub-commands" title="Link to this heading">#</a></h3>
+<h3>User Sub-Commands</h3>
 <section id="create-a-user">
-<h4>Create a User<a class="headerlink" href="#create-a-user" title="Link to this heading">#</a></h4>
+<h4>Create a User</h4>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span>
 <span class="n">td</span> <span class="n">user</span> <span class="n">create</span> <span class="o">&lt;</span><span class="n">NAME</span><span class="o">&gt;</span> <span class="o">--</span><span class="n">password</span> <span class="o">&lt;</span><span class="n">PASSWORD</span><span class="o">&gt;</span> <span class="o">--</span><span class="n">full</span><span class="o">-</span><span class="n">name</span> <span class="o">&lt;</span><span class="n">FULL_NAME</span><span class="o">&gt;</span> <span class="o">--</span><span class="n">email</span> <span class="o">&lt;</span><span class="n">EMAIL</span><span class="o">&gt;</span>
 
@@ -516,7 +516,7 @@
 <p>Password must be at least 8 characters long.</p>
 </section>
 <section id="show-user-info">
-<h4>Show User Info<a class="headerlink" href="#show-user-info" title="Link to this heading">#</a></h4>
+<h4>Show User Info</h4>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span>
 <span class="n">td</span> <span class="n">user</span> <span class="n">info</span> <span class="o">&lt;</span><span class="n">NAME</span><span class="o">&gt;</span>
 
@@ -524,7 +524,7 @@
 </div>
 </section>
 <section id="list-users">
-<h4>List Users<a class="headerlink" href="#list-users" title="Link to this heading">#</a></h4>
+<h4>List Users</h4>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span>
 <span class="n">td</span> <span class="n">user</span> <span class="nb">list</span>
 
@@ -532,7 +532,7 @@
 </div>
 </section>
 <section id="update-user">
-<h4>Update User<a class="headerlink" href="#update-user" title="Link to this heading">#</a></h4>
+<h4>Update User</h4>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span>
 <span class="n">td</span> <span class="n">user</span> <span class="n">update</span> <span class="o">&lt;</span><span class="n">NAME</span><span class="o">&gt;</span> <span class="o">-</span><span class="n">full</span><span class="o">-</span><span class="n">name</span> <span class="o">&lt;</span><span class="n">NEW_FULL_NAME</span><span class="o">&gt;</span> <span class="o">--</span><span class="n">email</span> <span class="o">&lt;</span><span class="n">NEW_EMAIL</span><span class="o">&gt;</span>
 
@@ -541,7 +541,7 @@
 <p>Password must be at least 8 characters long.</p>
 </section>
 <section id="delete-user">
-<h4>Delete User<a class="headerlink" href="#delete-user" title="Link to this heading">#</a></h4>
+<h4>Delete User</h4>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span>
 <span class="n">td</span> <span class="n">user</span> <span class="n">delete</span> <span class="o">&lt;</span><span class="n">NAME</span><span class="o">&gt;</span> <span class="o">-</span><span class="n">confirm</span> <span class="n">delete</span>
 
@@ -550,9 +550,9 @@
 </section>
 </section>
 <section id="collection-management-commands">
-<h3>Collection Management Commands<a class="headerlink" href="#collection-management-commands" title="Link to this heading">#</a></h3>
+<h3>Collection Management Commands</h3>
 <section id="collection-sub-commands">
-<h4>Collection Sub-Commands<a class="headerlink" href="#collection-sub-commands" title="Link to this heading">#</a></h4>
+<h4>Collection Sub-Commands</h4>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span>
 <span class="n">td</span> <span class="n">collection</span> <span class="n">create</span> <span class="o">--</span><span class="n">name</span> <span class="o">&lt;</span><span class="n">NAME</span><span class="o">&gt;</span> <span class="o">--</span><span class="n">description</span> <span class="o">&lt;</span><span class="n">DESCRIPTION</span><span class="o">&gt;</span>
 
@@ -561,7 +561,7 @@
 <p>Password must be at least 8 characters long.</p>
 </section>
 <section id="show-collection-info">
-<h4>Show Collection Info<a class="headerlink" href="#show-collection-info" title="Link to this heading">#</a></h4>
+<h4>Show Collection Info</h4>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span>
 <span class="n">td</span> <span class="n">collection</span> <span class="n">info</span> <span class="o">--</span><span class="n">name</span> <span class="o">&lt;</span><span class="n">NAME</span><span class="o">&gt;</span>
 
@@ -569,7 +569,7 @@
 </div>
 </section>
 <section id="list-collections">
-<h4>List Collections<a class="headerlink" href="#list-collections" title="Link to this heading">#</a></h4>
+<h4>List Collections</h4>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span>
 <span class="n">td</span> <span class="n">collection</span> <span class="nb">list</span>
 
@@ -577,7 +577,7 @@
 </div>
 </section>
 <section id="update-collection">
-<h4>Update Collection<a class="headerlink" href="#update-collection" title="Link to this heading">#</a></h4>
+<h4>Update Collection</h4>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span>
 <span class="n">td</span> <span class="n">collection</span> <span class="n">update</span> <span class="o">--</span><span class="n">name</span> <span class="o">&lt;</span><span class="n">NAME</span><span class="o">&gt;</span> <span class="o">--</span><span class="n">new</span><span class="o">-</span><span class="n">name</span> <span class="o">&lt;</span><span class="n">NEW_NAME</span><span class="o">&gt;</span> <span class="o">--</span><span class="n">description</span> <span class="o">&lt;</span><span class="n">NEW_DESCRIPTION</span><span class="o">&gt;</span>
 
@@ -586,9 +586,9 @@
 </section>
 </section>
 <section id="functions-sub-commands">
-<h3>Functions Sub-Commands<a class="headerlink" href="#functions-sub-commands" title="Link to this heading">#</a></h3>
+<h3>Functions Sub-Commands</h3>
 <section id="register-a-function">
-<h4>Register a Function<a class="headerlink" href="#register-a-function" title="Link to this heading">#</a></h4>
+<h4>Register a Function</h4>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span>
 <span class="n">td</span> <span class="n">fn</span> <span class="n">register</span> <span class="o">--</span><span class="n">coll</span> <span class="n">examples</span> <span class="o">--</span><span class="n">path</span> <span class="o">&lt;</span><span class="n">PYTHON_FILE</span><span class="o">&gt;</span><span class="p">::</span><span class="o">&lt;</span><span class="n">PYTHON_FUNCTION</span><span class="o">&gt;</span>
 
@@ -603,7 +603,7 @@
 <p>off automatic requirements detection.</p>
 </section>
 <section id="update-a-function">
-<h4>Update a Function<a class="headerlink" href="#update-a-function" title="Link to this heading">#</a></h4>
+<h4>Update a Function</h4>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span>
 <span class="n">td</span> <span class="n">fn</span> <span class="n">update</span> <span class="o">--</span><span class="n">coll</span> <span class="n">examples</span> <span class="o">--</span><span class="n">name</span> <span class="o">&lt;</span><span class="n">FUNCTION</span><span class="o">&gt;</span> 
 
@@ -620,7 +620,7 @@
 <p>off automatic requirements detection.</p>
 </section>
 <section id="show-function-info-current">
-<h4>Show Function Info (current)<a class="headerlink" href="#show-function-info-current" title="Link to this heading">#</a></h4>
+<h4>Show Function Info (current)</h4>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span>
 <span class="n">td</span> <span class="n">fn</span> <span class="n">info</span> <span class="o">--</span><span class="n">coll</span> <span class="o">&lt;</span><span class="n">COLLECTION</span><span class="o">&gt;</span> <span class="o">--</span><span class="n">name</span> <span class="o">&lt;</span><span class="n">FUNCTION</span><span class="o">&gt;</span> 
 
@@ -628,7 +628,7 @@
 </div>
 </section>
 <section id="show-function-info-history">
-<h4>Show Function Info History<a class="headerlink" href="#show-function-info-history" title="Link to this heading">#</a></h4>
+<h4>Show Function Info History</h4>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span>
 <span class="n">td</span> <span class="n">fn</span> <span class="n">info</span> <span class="o">--</span><span class="n">coll</span> <span class="o">&lt;</span><span class="n">COLLECTION</span><span class="o">&gt;</span> <span class="o">--</span><span class="n">name</span> <span class="o">&lt;</span><span class="n">FUNCTION</span><span class="o">&gt;</span> <span class="o">--</span><span class="n">history</span>
 
@@ -636,7 +636,7 @@
 </div>
 </section>
 <section id="list-functions">
-<h4>List Functions<a class="headerlink" href="#list-functions" title="Link to this heading">#</a></h4>
+<h4>List Functions</h4>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span>
 <span class="n">td</span> <span class="n">fn</span> <span class="nb">list</span> <span class="o">--</span><span class="n">coll</span> <span class="o">&lt;</span><span class="n">COLLECTION</span><span class="o">&gt;</span> 
 
@@ -645,9 +645,9 @@
 </section>
 </section>
 <section id="execution-management-sub-commands">
-<h3>Execution Management Sub-Commands<a class="headerlink" href="#execution-management-sub-commands" title="Link to this heading">#</a></h3>
+<h3>Execution Management Sub-Commands</h3>
 <section id="trigger-a-function">
-<h4>Trigger a Function<a class="headerlink" href="#trigger-a-function" title="Link to this heading">#</a></h4>
+<h4>Trigger a Function</h4>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span>
 <span class="n">td</span> <span class="n">fn</span> <span class="n">trigger</span> <span class="o">--</span><span class="n">coll</span> <span class="o">&lt;</span><span class="n">COLLECTION</span><span class="o">&gt;</span> <span class="o">--</span><span class="n">name</span> <span class="o">&lt;</span><span class="n">FUNCTION</span><span class="o">&gt;</span>
 
@@ -655,7 +655,7 @@
 </div>
 </section>
 <section id="listing-transactions">
-<h4>Listing Transactions<a class="headerlink" href="#listing-transactions" title="Link to this heading">#</a></h4>
+<h4>Listing Transactions</h4>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span>
 <span class="n">td</span> <span class="n">exe</span> <span class="nb">list</span><span class="o">-</span><span class="n">trx</span>
 
@@ -663,7 +663,7 @@
 </div>
 </section>
 <section id="listing-execution-plans">
-<h4>Listing Execution Plans<a class="headerlink" href="#listing-execution-plans" title="Link to this heading">#</a></h4>
+<h4>Listing Execution Plans</h4>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span>
 <span class="n">td</span> <span class="n">exe</span> <span class="nb">list</span><span class="o">-</span><span class="n">plan</span>
 
@@ -671,7 +671,7 @@
 </div>
 </section>
 <section id="listing-workers">
-<h4>Listing Workers<a class="headerlink" href="#listing-workers" title="Link to this heading">#</a></h4>
+<h4>Listing Workers</h4>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span>
 <span class="n">td</span> <span class="n">exe</span> <span class="nb">list</span><span class="o">-</span><span class="n">worker</span> <span class="o">--&lt;</span><span class="n">BY</span><span class="o">&gt;</span> <span class="o">&lt;</span><span class="n">ID</span><span class="o">&gt;</span>
 
@@ -686,7 +686,7 @@
 </ul>
 </section>
 <section id="cancel-a-transaction">
-<h4>Cancel a Transaction<a class="headerlink" href="#cancel-a-transaction" title="Link to this heading">#</a></h4>
+<h4>Cancel a Transaction</h4>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span>
 <span class="n">td</span> <span class="n">exe</span> <span class="n">cancel</span> <span class="o">--</span><span class="n">trx</span> <span class="o">&lt;</span><span class="n">TRX_ID</span><span class="o">&gt;</span>
 
@@ -697,7 +697,7 @@
 <p>All transactions that are dependent on data of the canceled transaction will be canceled as well.</p>
 </section>
 <section id="recover-a-transaction">
-<h4>Recover a Transaction<a class="headerlink" href="#recover-a-transaction" title="Link to this heading">#</a></h4>
+<h4>Recover a Transaction</h4>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span>
 <span class="n">td</span> <span class="n">exe</span> <span class="n">recover</span> <span class="o">--</span><span class="n">trx</span> <span class="o">&lt;</span><span class="n">TRX_ID</span><span class="o">&gt;</span>
 
@@ -707,7 +707,7 @@
 <p>All transactions that are dependent and where on hold will be retried as well.</p>
 </section>
 <section id="viewing-the-logs-of-a-worker">
-<h4>Viewing the logs of a Worker<a class="headerlink" href="#viewing-the-logs-of-a-worker" title="Link to this heading">#</a></h4>
+<h4>Viewing the logs of a Worker</h4>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span>
 <span class="n">td</span> <span class="n">exe</span> <span class="n">logs</span> <span class="o">--</span><span class="n">worker</span> <span class="o">&lt;</span><span class="n">WORKER_ID</span><span class="o">&gt;</span>
 
@@ -717,9 +717,9 @@
 </section>
 </section>
 <section id="view-table-data">
-<h3>View Table Data<a class="headerlink" href="#view-table-data" title="Link to this heading">#</a></h3>
+<h3>View Table Data</h3>
 <section id="view-a-table-schema">
-<h4>View A Table Schema<a class="headerlink" href="#view-a-table-schema" title="Link to this heading">#</a></h4>
+<h4>View A Table Schema</h4>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span>
 <span class="n">td</span> <span class="n">table</span> <span class="n">schema</span> <span class="o">--</span><span class="n">coll</span> <span class="o">&lt;</span><span class="n">COLLECTION</span><span class="o">&gt;</span> <span class="o">--</span><span class="n">name</span> <span class="o">&lt;</span><span class="n">TABLE</span><span class="o">&gt;</span>
 
@@ -727,7 +727,7 @@
 </div>
 </section>
 <section id="view-a-table-sample">
-<h4>View A Table Sample<a class="headerlink" href="#view-a-table-sample" title="Link to this heading">#</a></h4>
+<h4>View A Table Sample</h4>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span>
 <span class="n">td</span> <span class="n">table</span> <span class="n">sample</span> <span class="o">--</span><span class="n">coll</span> <span class="o">&lt;</span><span class="n">COLLECTION</span><span class="o">&gt;</span> <span class="o">--</span><span class="n">name</span> <span class="o">&lt;</span><span class="n">TABLE</span><span class="o">&gt;</span>
 
@@ -735,7 +735,7 @@
 </div>
 </section>
 <section id="download-a-table-data">
-<h4>Download A Table Data<a class="headerlink" href="#download-a-table-data" title="Link to this heading">#</a></h4>
+<h4>Download A Table Data</h4>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span>
 <span class="n">td</span> <span class="n">table</span> <span class="n">download</span> <span class="o">--</span><span class="n">coll</span> <span class="o">&lt;</span><span class="n">COLLECTION</span><span class="o">&gt;</span> <span class="o">--</span><span class="n">name</span> <span class="o">&lt;</span><span class="n">TABLE</span><span class="o">&gt;</span> <span class="o">--</span><span class="n">file</span> <span class="o">&lt;</span><span class="n">FILE</span><span class="o">&gt;</span>
 </pre></div>

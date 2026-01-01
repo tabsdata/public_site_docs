@@ -33,7 +33,7 @@
     <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=8f2a1f02" />
     <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
     <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-design.min.css?v=95c83b7e" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/custom.css?v=5a027c77" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/custom.css?v=b7af4508" />
   
   <!-- So that users can add custom icons -->
   <script src="../../../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
@@ -372,7 +372,7 @@
                 <article class="bd-article">
                   
   <section id="data-drift-support">
-<h1>Data Drift Support<a class="headerlink" href="#data-drift-support" title="Link to this heading">#</a></h1>
+<h1>Data Drift Support</h1>
 <p>This section talks about how Tabsdata handles data drift in the input data for this Subscriber connector.</p>
 <p>As this is a file-based subscriber, the exported files will reflect the updated schema. No special handling is required in this case, as the target external system serves purely as a storage layer without schema-dependent logic.</p>
 <p>However, this applies only if the subscriber function does not contain schema-dependent logic. If such logic exists, changes in the schema may conflict with the function’s expectations, leading to execution errors.</p>

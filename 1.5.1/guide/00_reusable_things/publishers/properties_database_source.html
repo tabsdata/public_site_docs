@@ -33,7 +33,7 @@
     <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=8f2a1f02" />
     <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
     <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-design.min.css?v=95c83b7e" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/custom.css?v=5a027c77" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/custom.css?v=b7af4508" />
   
   <!-- So that users can add custom icons -->
   <script src="../../../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
@@ -378,21 +378,21 @@
   <p><strong>Note:</strong> After defining the function, you need to register it with a Tabsdata collection and execute it. For more information, see <a class="reference internal" href="../../04_working_with_functions/main.html#register-a-function"><span class="std std-ref">Register a Function</span></a> and <a class="reference internal" href="../../04_working_with_functions/main.html#execute-a-function"><span class="std std-ref">Execute a Function</span></a>.</p>
 <p>Following properties are defined in the code above:</p>
 <section id="source">
-<h1>source<a class="headerlink" href="#source" title="Link to this heading">#</a></h1>
+<h1>source</h1>
 <section id="uri">
-<h2>uri<a class="headerlink" href="#uri" title="Link to this heading">#</a></h2>
+<h2>uri</h2>
 <p><code class="docutils literal notranslate"><span class="pre">&lt;path_to_db&gt;</span></code> is the URI to the database.</p>
 </section>
 <section id="query">
-<h2>query<a class="headerlink" href="#query" title="Link to this heading">#</a></h2>
+<h2>query</h2>
 <p><code class="docutils literal notranslate"><span class="pre">&lt;db_query1&gt;</span></code>, <code class="docutils literal notranslate"><span class="pre">&lt;db_query2&gt;</span></code>,… are the queries to run on the database. Add as many as needed. Optionally include variables in the queries to be defined by initial values.</p>
 </section>
 <section id="credentials">
-<h2>credentials<a class="headerlink" href="#credentials" title="Link to this heading">#</a></h2>
+<h2>credentials</h2>
 <p><code class="docutils literal notranslate"><span class="pre">&lt;db_username&gt;</span></code> and <code class="docutils literal notranslate"><span class="pre">&lt;db_password&gt;</span></code> are the username and password to log in to the database respectively. You can use different ways to store the credentials which are highlighted <a class="reference internal" href="../../secrets_management/main.html#credentials"><span class="std std-ref">here</span></a> in the documentation.</p>
 </section>
 <section id="optional-initial-values">
-<h2>[Optional] initial_values<a class="headerlink" href="#optional-initial-values" title="Link to this heading">#</a></h2>
+<h2>[Optional] initial_values</h2>
 <p><code class="docutils literal notranslate"><span class="pre">&lt;variable_name1&gt;</span></code>, <code class="docutils literal notranslate"><span class="pre">&lt;variable_name2&gt;</span></code>,… are the variable names included in the database queries.</p>
 <p><code class="docutils literal notranslate"><span class="pre">&lt;variable_value1&gt;</span></code>, <code class="docutils literal notranslate"><span class="pre">&lt;variable_value2&gt;</span></code>,… are the values to assign to the defined variables.</p>
 <p>If you are using <code class="docutils literal notranslate"><span class="pre">initial_values</span></code>, the function can return the initial values for the next run. The last parameter in the function output, after the tableframes, can be a dictionary with the initial values for the next run.</p>

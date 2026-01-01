@@ -34,7 +34,7 @@
     <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
     <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
     <link rel="stylesheet" type="text/css" href="../../_static/tabs.css?v=a5c4661c" />
-    <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=5a027c77" />
+    <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=b7af4508" />
   
   <!-- So that users can add custom icons -->
   <script src="../../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
@@ -451,7 +451,7 @@
                 <article class="bd-article">
                   
   <section id="setting-up-tabsdata-over-https">
-<h1>Setting up Tabsdata over HTTPS<a class="headerlink" href="#setting-up-tabsdata-over-https" title="Link to this heading">#</a></h1>
+<h1>Setting up Tabsdata over HTTPS</h1>
 <p>The command snippets in this document assume:</p>
 <ul class="simple">
 <li><p>You are using the default Tabsdata instance, <code class="docutils literal notranslate"><span class="pre">tabsdata</span></code>.</p></li>
@@ -461,20 +461,20 @@
 <p>If you are using a different Tabsdata instance or a different hostname, you need to
 update the command snippets accordingly.</p>
 <section id="tabsdata-server-root-directory">
-<h2>Tabsdata Server Root Directory<a class="headerlink" href="#tabsdata-server-root-directory" title="Link to this heading">#</a></h2>
+<h2>Tabsdata Server Root Directory</h2>
 <p>Each Tabsdata server instance has its own root directory structure which is located at
 <code class="docutils literal notranslate"><span class="pre">~/.tabsdata/instances/&lt;INSTANCE_NAME&gt;/</span></code>.</p>
 <p>The root directory for the <code class="docutils literal notranslate"><span class="pre">tabsdata</span></code> instance is <code class="docutils literal notranslate"><span class="pre">~/.tabsdata/instances/tabsdata/</span></code>.</p>
 </section>
 <section id="find-out-the-hostname-and-corresponding-ip-address-of-the-tabsdata-server">
-<h2>Find out the Hostname and Corresponding IP Address of the Tabsdata Server<a class="headerlink" href="#find-out-the-hostname-and-corresponding-ip-address-of-the-tabsdata-server" title="Link to this heading">#</a></h2>
+<h2>Find out the Hostname and Corresponding IP Address of the Tabsdata Server</h2>
 <p>If you are running the tabsdata server in your own machine and accessing it only from your own machine,
 you can use <code class="docutils literal notranslate"><span class="pre">localhost</span></code> for the hostname and <code class="docutils literal notranslate"><span class="pre">127.0.0.1</span></code> for the IP address.</p>
 <p>Otherwise, you need to find out the hostname and IP address used to access the Tabsdata server machine
 over the network.</p>
 </section>
 <section id="ssl-certificate">
-<h2>SSL Certificate<a class="headerlink" href="#ssl-certificate" title="Link to this heading">#</a></h2>
+<h2>SSL Certificate</h2>
 <p>A private SSL key and its certificate are needed in PEM format.</p>
 <p>HTTPS requires the hostname used in the URL to access a server over HTTPS to be in the certificate.</p>
 <p>A signed certificate can be obtained (for a fee) from a public Certificate Authority (CA).</p>
@@ -540,7 +540,7 @@ del %CONFIG_FILE%
 </div>
 </section>
 <section id="installing-the-ssl-certificate-in-the-tabsdata-server">
-<h2>Installing the SSL Certificate in the Tabsdata Server<a class="headerlink" href="#installing-the-ssl-certificate-in-the-tabsdata-server" title="Link to this heading">#</a></h2>
+<h2>Installing the SSL Certificate in the Tabsdata Server</h2>
 <p>Copy the key and certificate PEM files to the SSL configuration directory of your Tabsdata instance.</p>
 <p>For example, for the <code class="docutils literal notranslate"><span class="pre">tabsdata</span></code> instance, standing in the directory where you have the key and
 certificate PEM files, run the following command:</p>
@@ -554,7 +554,7 @@ certificate PEM files, run the following command:</p>
 </div></div>
 </section>
 <section id="configure-tabsdata-server-to-use-the-ip-address-associated-to-the-hostname-in-the-certificate">
-<h2>Configure Tabsdata Server to Use the IP Address Associated to the Hostname in the Certificate<a class="headerlink" href="#configure-tabsdata-server-to-use-the-ip-address-associated-to-the-hostname-in-the-certificate" title="Link to this heading">#</a></h2>
+<h2>Configure Tabsdata Server to Use the IP Address Associated to the Hostname in the Certificate</h2>
 <p>If the certificate has been created for a hostname that is not associated to the <code class="docutils literal notranslate"><span class="pre">127.0.0.1</span></code> IP address,
 then we need configure Tabsdata server to listen for HTTPS requests in the correct IP address.</p>
 <p>Edit Tabsdata ApiServer configuration file
@@ -571,20 +571,20 @@ the certificate (do not modify the <code class="docutils literal notranslate"><s
 </div>
 </section>
 <section id="restart-tabsdata-server">
-<h2>Restart Tabsdata Server<a class="headerlink" href="#restart-tabsdata-server" title="Link to this heading">#</a></h2>
+<h2>Restart Tabsdata Server</h2>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>tdserver<span class="w"> </span>stop
 tdserver<span class="w"> </span>start
 </pre></div>
 </div>
 </section>
 <section id="accessing-tabsdata-server-ui">
-<h2>Accessing Tabsdata Server UI<a class="headerlink" href="#accessing-tabsdata-server-ui" title="Link to this heading">#</a></h2>
+<h2>Accessing Tabsdata Server UI</h2>
 <p>With your browser go to <code class="docutils literal notranslate"><span class="pre">https://localhost:2457</span></code>. Make sure to use <code class="docutils literal notranslate"><span class="pre">https</span></code> in the URL.</p>
 <p>If you are using a self-signed certificate the browser will alert you that certificate
 authority is not valid and you’ll have to agree to proceed. Do so.</p>
 </section>
 <section id="accessing-tabsdata-server-using-tabsdata-command-line-tool">
-<h2>Accessing Tabsdata Server using Tabsdata Command Line Tool<a class="headerlink" href="#accessing-tabsdata-server-using-tabsdata-command-line-tool" title="Link to this heading">#</a></h2>
+<h2>Accessing Tabsdata Server using Tabsdata Command Line Tool</h2>
 <p>If you are using a self-signed certificate, Tabsdata command line tool <code class="docutils literal notranslate"><span class="pre">td</span></code> requires
 a one time configuration to trust the certificate.</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>td<span class="w"> </span>auth<span class="w"> </span>add-cert<span class="w"> </span>--server<span class="w"> </span>https://localhost:2457<span class="w"> </span>--pem<span class="w"> </span>cert.pem

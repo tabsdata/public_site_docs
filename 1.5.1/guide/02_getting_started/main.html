@@ -34,7 +34,7 @@
     <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
     <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
     <link rel="stylesheet" type="text/css" href="../../_static/tabs.css?v=a5c4661c" />
-    <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=5a027c77" />
+    <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=b7af4508" />
   
   <!-- So that users can add custom icons -->
   <script src="../../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
@@ -451,7 +451,7 @@
                 <article class="bd-article">
                   
   <section id="getting-started">
-<span id="id1"></span><h1>Getting Started<a class="headerlink" href="#getting-started" title="Link to this heading">#</a></h1>
+<span id="id1"></span><h1>Getting Started</h1>
 <p>This chapter provides a tutorial to walk you through essential Tabsdata operations.</p>
 <p>In this tutorial, you create a collection to store the Tabsdata functions and tables. Then, you implement:</p>
 <ul class="simple">
@@ -462,7 +462,7 @@
 <p>The tutorial shows you how to define, register, and trigger the functions. It also demonstrates how the downstream dependencies are automatically managed by Tabsdata.</p>
 <p>If you encounter any trouble with the tutorial, you might find help in <a class="reference internal" href="../10_troubleshooting/main.html#troubleshooting"><span class="std std-ref">Troubleshooting</span></a>, and reach out to us on <a class="reference external" href="https://join.slack.com/t/tabsdata-community/shared_invite/zt-322toyigx-ZGFioMV2Gbza4bJDAR7wSQ">Slack</a>.</p>
 <section id="step-1-install-tabsdata">
-<span id="install-tabsdata"></span><h2>Step 1. Install Tabsdata<a class="headerlink" href="#step-1-install-tabsdata" title="Link to this heading">#</a></h2>
+<span id="install-tabsdata"></span><h2>Step 1. Install Tabsdata</h2>
 <p><strong>Note:</strong> The following tutorial is meant for CMD shell. You might need to adapt some commands if using PowerShell. You can use <cite>bash</cite> such as MinGW, CygWIn or Bash for Git, and follow the steps for Linux/macOS.</p>
 <p>While not required, you should install the Tabsdata Python package in a clean virtual environment. You can use <a class="reference external" href="https://docs.python.org/3/library/venv.html">python venv</a>, <a class="reference external" href="https://docs.conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html">conda</a> or other similar tools to create and manage your virtual environment.</p>
 <p>The commands in this tutorial assume that the user is running the tabsdata server in the same machine as the one in which doing the tutorial.</p>
@@ -488,7 +488,7 @@ $<span class="w"> </span>.<span class="se">\.</span>venv<span class="se">\S</spa
 <p>The ‘full’ installation is done with the command <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">tabsdata[&quot;all&quot;]</span></code>. The ‘only what you need’ installation is done using the command <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">tabsdata</span></code> followed by installations for specific components, for example <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">tabsdata[&quot;salesforce&quot;]</span></code>.</p>
 </section>
 <section id="step-2-start-the-server">
-<h2>Step 2. Start the Server<a class="headerlink" href="#step-2-start-the-server" title="Link to this heading">#</a></h2>
+<h2>Step 2. Start the Server</h2>
 <p>In case you have started the Tabsdata server earlier, it is suggested that you remove the older Tabsdata instance. This enables you to start from scratch, reducing the possibilities of error or conflicts.</p>
 <p><strong>Clearing the old Tabsdata instance</strong> [Only if you have started a Tabsdata server before]</p>
 <p>Run the following commands in your CLI, to stop the Tabsdata server and clear the instance:</p>
@@ -511,7 +511,7 @@ $<span class="w"> </span>tdserver<span class="w"> </span>delete
 <img alt="../../_images/tdserver_status.png" src="../../_images/tdserver_status.png" />
 </section>
 <section id="step-3-setup-tutorial">
-<span id="setup-tutorial"></span><h2>Step 3. Setup Tutorial<a class="headerlink" href="#step-3-setup-tutorial" title="Link to this heading">#</a></h2>
+<span id="setup-tutorial"></span><h2>Step 3. Setup Tutorial</h2>
 <p>TO setup the tutorial run the following commands in your CLI from your desired directory.</p>
 <p>The <code class="docutils literal notranslate"><span class="pre">td</span> <span class="pre">examples</span> <span class="pre">--dir</span> <span class="pre">examples</span></code> command creates the <code class="docutils literal notranslate"><span class="pre">examples</span></code> directory, <code class="docutils literal notranslate"><span class="pre">input</span></code> and <code class="docutils literal notranslate"><span class="pre">output</span></code> directories and create the function configuration files called <code class="docutils literal notranslate"><span class="pre">publisher.py</span></code>, <code class="docutils literal notranslate"><span class="pre">tranformer.py</span></code>, and <code class="docutils literal notranslate"><span class="pre">subscriber.py</span></code> for the tutorial. This step is needed only in the context of this tutorial. You can choose a different setup for your own projects. The <code class="docutils literal notranslate"><span class="pre">--dir</span></code> flag specifies the directory where the examples will be created. You can change the directory name to your preference.</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>td<span class="w"> </span>examples<span class="w"> </span>--dir<span class="w"> </span>examples
@@ -520,7 +520,7 @@ $<span class="w"> </span><span class="nb">cd</span><span class="w"> </span>examp
 </div>
 </section>
 <section id="step-4-log-in-and-create-a-collection">
-<h2>Step 4. Log in and Create a Collection<a class="headerlink" href="#step-4-log-in-and-create-a-collection" title="Link to this heading">#</a></h2>
+<h2>Step 4. Log in and Create a Collection</h2>
 <p>Collections are logical containers for Tabsdata <a class="reference internal" href="../06_working_with_tables/table_frame.html#working-with-tables"><span class="std std-ref">tables</span></a> and <a class="reference internal" href="../04_working_with_functions/main.html#working-with-functions"><span class="std std-ref">functions</span></a>. You use collections to enable different business domains to have their own organizational space.</p>
 <p>Use the following steps to create a collection for the tutorial.</p>
 <ol class="arabic simple">
@@ -538,7 +538,7 @@ $<span class="w"> </span><span class="nb">cd</span><span class="w"> </span>examp
 <p>Now that you have created a collection, you’re ready to implement a publisher.</p>
 </section>
 <section id="step-5-implement-a-publisher">
-<h2>Step 5. Implement a Publisher<a class="headerlink" href="#step-5-implement-a-publisher" title="Link to this heading">#</a></h2>
+<h2>Step 5. Implement a Publisher</h2>
 <p>Publishers import data from external systems such as local file systems, databases, and cloud storage, and publish the data as tables in the Tabsdata server.</p>
 <p>Use the following steps to create a publisher that reads the sample data from local system, register the publisher in the tutorial collection, and manually trigger the publisher to execute.</p>
 <p><strong>1. Define the publisher.</strong></p>
@@ -588,7 +588,7 @@ $<span class="w"> </span><span class="nb">cd</span><span class="w"> </span>examp
 <p>Now that you have successfully defined, registered, and executed a publisher, you’re ready to do the same for a transformer.</p>
 </section>
 <section id="step-6-implement-a-transformer">
-<span id="getting-started-transformer"></span><h2>Step 6. Implement a Transformer<a class="headerlink" href="#step-6-implement-a-transformer" title="Link to this heading">#</a></h2>
+<span id="getting-started-transformer"></span><h2>Step 6. Implement a Transformer</h2>
 <p>Transformers modify tables inside the Tabsdata server. They can read from one or more Tabsdata tables, transform the data, and write to new Tabsdata tables.</p>
 <p>Use the following steps to create a transformer that modifies the tutorial data and writes the results to new tables, register the transformer with the tutorial collection, and manually trigger the transformer to execute.</p>
 <p><strong>1. Define a transformer.</strong></p>
@@ -648,7 +648,7 @@ $<span class="w"> </span><span class="nb">cd</span><span class="w"> </span>examp
 <p>Now that you have implemented a transformer, it’s time to work with a subscriber….</p>
 </section>
 <section id="step-7-implement-a-subscriber">
-<h2>Step 7. Implement a Subscriber<a class="headerlink" href="#step-7-implement-a-subscriber" title="Link to this heading">#</a></h2>
+<h2>Step 7. Implement a Subscriber</h2>
 <p>Subscribers export tables from the Tabsdata server to external systems such as local systems, databases, and cloud storage. Use subscribers to provide prepared data to data consumer teams.</p>
 <p>Use the following steps to create a subscriber that exports the tutorial tables, register the subscriber with the tutorial collection, and manually trigger the subscriber to execute.</p>
 <p><strong>1. Define a subscriber.</strong></p>
@@ -700,7 +700,7 @@ $<span class="w"> </span><span class="nb">cd</span><span class="w"> </span>examp
 <p>You can use your favorite editor to view the contents of the files.</p>
 </section>
 <section id="step-8-initiate-automated-triggers">
-<h2>Step 8. Initiate Automated Triggers<a class="headerlink" href="#step-8-initiate-automated-triggers" title="Link to this heading">#</a></h2>
+<h2>Step 8. Initiate Automated Triggers</h2>
 <p>So far, you have used manual triggers to execute the functions in this tutorial.</p>
 <p>As mentioned earlier, transformer and subscriber functions have default automated triggers: when a trigger is not explicitly defined, the input tables for the function act as trigger tables. Publishers do not include a default trigger like transformers and subscribers, but you can define them when needed. For more information, see <a class="reference internal" href="../05_working_with_triggers/main.html#working-with-triggers"><span class="std std-ref">Working with Triggers</span></a>.</p>
 <p>Since the tutorial transformer does not have a specified trigger, it is triggered by a commit to its input table, persons. Similarly, since the tutorial subscriber does not have a specified trigger, it is triggered by a commit to either of its input tables: french or spanish.</p>
@@ -724,6 +724,9 @@ $<span class="w"> </span><span class="nb">cd</span><span class="w"> </span>examp
 <p><strong>3. View the list of functions related to the manual trigger of the publisher.</strong></p>
 <p>The command triggers the function and polls the transaction status. Once successful, the polling returns the transaction for your publisher, transformer, and subscriber functions. The transaction data looks like the following:</p>
 <img alt="../../_images/pub_trx_full.png" src="../../_images/pub_trx_full.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
 <p><strong>4. Verify the output.</strong></p>
 <p>You can verify that the spanish.json1 and french.ndjson files have been written to the output folder with the following command:</p>
 <div class="sphinx-tabs docutils container">
@@ -736,8 +739,26 @@ $<span class="w"> </span><span class="nb">cd</span><span class="w"> </span>examp
 </div></div>
 <p>And you can once again check the contents of those files with your favorite editor.</p>
 </section>
+<section id="step-9-check-the-lineage-graph">
+<h2>Step 9. Check the lineage graph</h2>
+<p>You can check the lienage graph in the Tabsdata browser UI. You can see more details on <a class="reference internal" href="../user_interface/main.html#ui"><span class="std std-ref">User Interface</span></a>.</p>
+<img alt="../../_images/lineage_graph.png" src="../../_images/lineage_graph.png" />
+<p>Here the steps to see the lineage graph:</p>
+<p><strong>1. Open the URL in a browser</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">localhost</span><span class="p">:</span><span class="mi">2457</span>
+</pre></div>
+</div>
+<p><strong>2. Use the following credentials to login.</strong></p>
+<p>Username: <cite>admin</cite></p>
+<p>Password: <cite>tabsdata</cite></p>
+<p>Role: <cite>sys_admin</cite></p>
+<p><strong>3. Open the execution graphs.</strong></p>
+<p>On the left dropdown, select ‘Finished’ used ‘Execution Plans’.</p>
+<p><strong>4. Click on any execution plan.</strong></p>
+<p>You can see the respective lienage graphs by clicking on the execution plans. Click on the first one to open the latest linegae graph with all functions and tables.</p>
+</section>
 <section id="next-steps">
-<h2>Next Steps<a class="headerlink" href="#next-steps" title="Link to this heading">#</a></h2>
+<h2>Next Steps</h2>
 <p>Congratulations on working with Tabsdata functions and creating an automated workflow!</p>
 <p>Here are some suggestions for your next steps:</p>
 <ul class="simple">
@@ -805,6 +826,7 @@ $<span class="w"> </span><span class="nb">cd</span><span class="w"> </span>examp
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-6-implement-a-transformer">Step 6. Implement a Transformer</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-7-implement-a-subscriber">Step 7. Implement a Subscriber</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-8-initiate-automated-triggers">Step 8. Initiate Automated Triggers</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-9-check-the-lineage-graph">Step 9. Check the lineage graph</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#next-steps">Next Steps</a></li>
 </ul>
   </nav></div>

@@ -33,7 +33,7 @@
     <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=8f2a1f02" />
     <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
     <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-design.min.css?v=95c83b7e" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/custom.css?v=5a027c77" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/custom.css?v=b7af4508" />
   
   <!-- So that users can add custom icons -->
   <script src="../../../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
@@ -60,8 +60,8 @@
     <script src="../../../_static/custom.js?v=ac098f57"></script>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
-    <link rel="next" title="tabsdata.BigQueryConn" href="tabsdata.BigQueryConn.html" />
-    <link rel="prev" title="tabsdata.AzureDestination" href="tabsdata.AzureDestination.html" />
+    <link rel="next" title="tabsdata.GCSDestination" href="tabsdata.GCSDestination.html" />
+    <link rel="prev" title="tabsdata.BigQueryDest" href="tabsdata.BigQueryDest.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   <meta name="docsearch:version" content="1.5.1" />
@@ -338,7 +338,7 @@
 </ul>
 <ul class="current nav bd-sidenav">
 <li class="toctree-l1 current active has-children"><a class="reference internal" href="../index.html">Connectors</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
-<li class="toctree-l2 has-children"><a class="reference internal" href="../for_publishers.html">For Publishers</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../for_publishers.html">Publishers</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l3"><a class="reference internal" href="../for_publishers/tabsdata.AzureSource.html">tabsdata.AzureSource</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../for_publishers/tabsdata.GCSSource.html">tabsdata.GCSSource</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../for_publishers/tabsdata.LocalFileSource.html">tabsdata.LocalFileSource</a></li>
@@ -352,11 +352,10 @@
 <li class="toctree-l3"><a class="reference internal" href="../for_publishers/tabsdata.SalesforceSource.html">tabsdata.SalesforceSource</a></li>
 </ul>
 </details></li>
-<li class="toctree-l2 current active has-children"><a class="reference internal" href="../for_subscribers.html">For Subscribers</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2 current active has-children"><a class="reference internal" href="../for_subscribers.html">Subscribers</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
 <li class="toctree-l3"><a class="reference internal" href="tabsdata.AzureDestination.html">tabsdata.AzureDestination</a></li>
-<li class="toctree-l3 current active"><a class="current reference internal" href="#">tabsdata.DatabricksDestination</a></li>
-<li class="toctree-l3"><a class="reference internal" href="tabsdata.BigQueryConn.html">tabsdata.BigQueryConn</a></li>
 <li class="toctree-l3"><a class="reference internal" href="tabsdata.BigQueryDest.html">tabsdata.BigQueryDest</a></li>
+<li class="toctree-l3 current active"><a class="current reference internal" href="#">tabsdata.DatabricksDestination</a></li>
 <li class="toctree-l3"><a class="reference internal" href="tabsdata.GCSDestination.html">tabsdata.GCSDestination</a></li>
 <li class="toctree-l3"><a class="reference internal" href="tabsdata.LocalFileDestination.html">tabsdata.LocalFileDestination</a></li>
 <li class="toctree-l3"><a class="reference internal" href="tabsdata.MariaDBDestination.html">tabsdata.MariaDBDestination</a></li>
@@ -376,8 +375,9 @@
 </details></li>
 </ul>
 </details></li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../../connector_options/index.html">Connector options</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../connector_options/index.html">Connector Common Options</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2 has-children"><a class="reference internal" href="../../connector_options/file_formats.html">File formats</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../connector_options/file_formats/tabsdata.AvroFormat.html">tabsdata.AvroFormat</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../connector_options/file_formats/tabsdata.CSVFormat.html">tabsdata.CSVFormat</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../connector_options/file_formats/tabsdata.LogFormat.html">tabsdata.LogFormat</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../connector_options/file_formats/tabsdata.NDJSONFormat.html">tabsdata.NDJSONFormat</a></li>
@@ -730,7 +730,7 @@
     <li class="breadcrumb-item"><a href="../index.html" class="nav-link">Connectors</a></li>
     
     
-    <li class="breadcrumb-item"><a href="../for_subscribers.html" class="nav-link">For Subscribers</a></li>
+    <li class="breadcrumb-item"><a href="../for_subscribers.html" class="nav-link">Subscribers</a></li>
     
     <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">tabsdata.DatabricksDestination</span></li>
   </ul>
@@ -750,7 +750,7 @@
                 <article class="bd-article">
                   
   <section id="tabsdata-databricksdestination">
-<h1>tabsdata.DatabricksDestination<a class="headerlink" href="#tabsdata-databricksdestination" title="Link to this heading">#</a></h1>
+<h1>tabsdata.DatabricksDestination</h1>
 <dl class="py class">
 <dt class="sig sig-object py" id="tabsdata.DatabricksDestination">
 <em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">DatabricksDestination</span></span><span class="sig-paren">(</span>
@@ -769,8 +769,9 @@
 <dd><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em>,</dd>
 </dl>
 
-<span class="sig-paren">)</span><a class="headerlink" href="#tabsdata.DatabricksDestination" title="Link to this definition">#</a></dt>
+<span class="sig-paren">)</span></dt>
 <dd><p>Bases: <a class="reference internal" href="../plugins/tabsdata.DestinationPlugin.html#tabsdata.DestinationPlugin" title="tabsdata._io.plugin.DestinationPlugin"><code class="xref py py-class docutils literal notranslate"><span class="pre">DestinationPlugin</span></code></a></p>
+<p>Databricks based data outputs.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="tabsdata.DatabricksDestination.__init__">
 <span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span>
@@ -789,25 +790,49 @@
 <dd><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em>,</dd>
 </dl>
 
-<span class="sig-paren">)</span><a class="headerlink" href="#tabsdata.DatabricksDestination.__init__" title="Link to this definition">#</a></dt>
-<dd><dl class="simple">
-<dt>Initializes the DatabricksDestination with the configuration desired to store</dt><dd><p>the data.</p>
+<span class="sig-paren">)</span></dt>
+<dd><p>Initializes the DatabricksDestination with the configuration desired to store the data.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>host_url</strong> – Databricks URL</p></li>
+<li><p><strong>token</strong> – Databricks Personal Account Token (PAT). The user owning the PAT requires ‘USE CATALOG’,
+‘USE SCHEMA’, ‘READ VOLUME’ &amp; ‘WRITE VOLUME’ privileges.</p></li>
+<li><p><strong>tables</strong> – Tables to be created in Databricks. Each table name provided must either be fully qualified in the
+form of ‘catalog.schema.table_name’ or have the information provided through the ‘catalog’ or the
+‘schema’ parameters. For example, if a table of the form ‘schema.table_name’ is provided, the ‘catalog’
+parameter must also be provided. If a table of the form ‘table_name’ is provided, both ‘catalog’ and
+‘schema’ must be provided.</p></li>
+<li><p><strong>volume</strong> – Name of the Databricks volume. The connector uses an existing Databricks managed volume. The
+files written to the volume are deleted after connector finishes writing the data to the
+Databricks table.</p></li>
+<li><p><strong>catalog</strong> – Catalog name (optional, can be null if the table name has the catalog name.)</p></li>
+<li><p><strong>schema</strong> – Schema name (optional, can be null if the table name has the schema name.)</p></li>
+<li><p><strong>warehouse</strong> – Warehouse name (use either this or warehouse_id) that will be used for uploading data to
+Databricks tables. The user has to have privileges to use the warehouse.</p></li>
+<li><p><strong>warehouse_id</strong> – Warehouse Id. Use <cite>null</cite> if warehouse name is provided.</p></li>
+<li><p><strong>if_table_exists</strong> – This is an optional property to define the strategy to follow when the table already
+exists. ‘replace’ will create overwrite the existing table, and ‘append’ will append to the
+existing data in the table. Defaults to ‘append’.</p></li>
+<li><p><strong>schema_strategy</strong> – The is to mention the strategy to follow when appending to a table with an existing
+schema. ‘update’ will update the schema with the possible new columns that might exist in the
+TableFrame. ‘strict’ will not modify the schema, and will fail if there is any difference.</p></li>
+</ul>
 </dd>
 </dl>
-<p>Args:</p>
 </dd></dl>
 
 <p class="rubric">Methods</p>
 <div class="pst-scrollable-table-container"><table class="autosummary longtable table">
 <tbody>
 <tr class="row-odd"><td><p><a class="reference internal" href="#tabsdata.DatabricksDestination.__init__" title="tabsdata.DatabricksDestination.__init__"><code class="xref py py-obj docutils literal notranslate"><span class="pre">__init__</span></code></a>(host_url, token, tables, volume[, ...])</p></td>
-<td><p>Initializes the DatabricksDestination with the configuration desired to store</p></td>
+<td><p>Initializes the DatabricksDestination with the configuration desired to store the data.</p></td>
 </tr>
 <tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">chunk</span></code>(working_dir, *results)</p></td>
-<td><p>Trigger the exporting of the data to local parquet chunks. This method will</p></td>
+<td><p>Trigger the exporting of the data to local parquet chunks.</p></td>
 </tr>
 <tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">stream</span></code>(working_dir, *results)</p></td>
-<td><p>Trigger the exporting of the data. This method will receive the resulting data</p></td>
+<td><p>Trigger the exporting of the data.</p></td>
 </tr>
 <tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">write</span></code>(files)</p></td>
 <td><p>This method is used to write the files to the databricks.</p></td>
@@ -851,20 +876,20 @@
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="tabsdata.AzureDestination.html"
+       href="tabsdata.BigQueryDest.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">tabsdata.AzureDestination</p>
+        <p class="prev-next-title">tabsdata.BigQueryDest</p>
       </div>
     </a>
     <a class="right-next"
-       href="tabsdata.BigQueryConn.html"
+       href="tabsdata.GCSDestination.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">tabsdata.BigQueryConn</p>
+        <p class="prev-next-title">tabsdata.GCSDestination</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>

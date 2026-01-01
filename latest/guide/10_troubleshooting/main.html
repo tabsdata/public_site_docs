@@ -33,7 +33,7 @@
     <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=8f2a1f02" />
     <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
     <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
-    <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=5a027c77" />
+    <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=b7af4508" />
   
   <!-- So that users can add custom icons -->
   <script src="../../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
@@ -449,9 +449,9 @@
                 <article class="bd-article">
                   
   <section id="troubleshooting">
-<span id="id1"></span><h1>Troubleshooting<a class="headerlink" href="#troubleshooting" title="Link to this heading">#</a></h1>
+<span id="id1"></span><h1>Troubleshooting</h1>
 <section id="the-execution-of-a-function-failed">
-<h2>The Execution of a Function Failed<a class="headerlink" href="#the-execution-of-a-function-failed" title="Link to this heading">#</a></h2>
+<h2>The Execution of a Function Failed</h2>
 <p>After triggering a function, the <code class="docutils literal notranslate"><span class="pre">td</span> <span class="pre">exe</span> <span class="pre">list-trx</span></code> reports the
 transaction as failed.</p>
 <p>For example:</p>
@@ -469,9 +469,9 @@ complete successfully yet are either in <code class="docutils literal notranslat
 <li><p>Re-trigger the function that started the cancelled transaction.</p></li>
 </ol>
 <section id="check-the-logs-for-issues">
-<h3>Check the logs for issues<a class="headerlink" href="#check-the-logs-for-issues" title="Link to this heading">#</a></h3>
+<h3>Check the logs for issues</h3>
 <section id="find-the-workers-of-the-failed-transaction-that-already-executed">
-<h4>Find the Workers of the Failed Transaction that Already Executed<a class="headerlink" href="#find-the-workers-of-the-failed-transaction-that-already-executed" title="Link to this heading">#</a></h4>
+<h4>Find the Workers of the Failed Transaction that Already Executed</h4>
 <p>To know the exact reason for fialure, you will need to access the constituent workers of a transaction.
 To find the workers of the stalled transaction, use the <code class="docutils literal notranslate"><span class="pre">td</span> <span class="pre">exe</span> <span class="pre">list-worker</span></code> command with one of the following 3
 options:</p>
@@ -484,7 +484,7 @@ options:</p>
 </a>
 </section>
 <section id="fetch-the-logs-of-a-worker">
-<h4>Fetch the logs of a Worker<a class="headerlink" href="#fetch-the-logs-of-a-worker" title="Link to this heading">#</a></h4>
+<h4>Fetch the logs of a Worker</h4>
 <p>To fetch the logs of a worker, use the
 <code class="docutils literal notranslate"><span class="pre">td</span> <span class="pre">exe</span> <span class="pre">logs</span> <span class="pre">--worker</span> <span class="pre">&lt;WORKER_ID&gt;</span></code> command.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="err">$</span> <span class="n">td</span> <span class="n">exe</span> <span class="n">logs</span> <span class="o">--</span><span class="n">worker</span> <span class="mi">06</span><span class="n">ACHMC505VC10HMF7NI1D9RUG</span>
@@ -521,7 +521,7 @@ options:</p>
 <p>Depending on the type of error, you may need to retry the transaction or
 cancel it.</p>
 <section id="if-logs-show-up-empty">
-<h5>If logs show up empty<a class="headerlink" href="#if-logs-show-up-empty" title="Link to this heading">#</a></h5>
+<h5>If logs show up empty</h5>
 <p>In the rare case that the logs show up empty, follow the path below to find the logs in the server folder. Remember to replace the <cite>06ACHMC505VC10HMF7NI1D9RUG</cite> with the id of your run that you want to check the logs for.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="o">/</span><span class="n">Users</span><span class="o">/</span><span class="n">foo</span><span class="o">/.</span><span class="n">tabsdata</span><span class="o">/</span><span class="n">instances</span><span class="o">/</span><span class="n">tabsdata</span><span class="o">/</span><span class="n">workspace</span><span class="o">/</span><span class="n">work</span><span class="o">/</span><span class="n">proc</span><span class="o">/</span><span class="n">ephemeral</span><span class="o">/</span><span class="n">function</span><span class="o">/</span><span class="n">work</span><span class="o">/</span><span class="n">cast</span><span class="o">/</span><span class="mi">06</span><span class="n">ACHMC505VC10HMF7NI1D9RUG_1</span><span class="o">/</span><span class="n">work</span><span class="o">/</span><span class="n">log</span><span class="o">/</span><span class="n">fn</span><span class="o">.</span><span class="n">log</span>
 </pre></div>
@@ -529,7 +529,7 @@ cancel it.</p>
 </section>
 </section>
 <section id="cancel-the-transaction">
-<h4>Cancel the Transaction<a class="headerlink" href="#cancel-the-transaction" title="Link to this heading">#</a></h4>
+<h4>Cancel the Transaction</h4>
 <p>To cancel the transaction use the <code class="docutils literal notranslate"><span class="pre">td</span> <span class="pre">exe</span> <span class="pre">cancel</span> <span class="pre">--trx</span> <span class="pre">&lt;TRX_ID&gt;</span></code>
 command. It will cancel all workers of the transaction, including the
 ones that finished successfully. The cancel also applies to all the
@@ -542,7 +542,7 @@ dependent transactions.</p>
 </pre></div>
 </div>
 <section id="recover-the-transaction">
-<h5>Recover the Transaction<a class="headerlink" href="#recover-the-transaction" title="Link to this heading">#</a></h5>
+<h5>Recover the Transaction</h5>
 <p>To recover the transaction use the <code class="docutils literal notranslate"><span class="pre">td</span> <span class="pre">exe</span> <span class="pre">recover</span> <span class="pre">--trx</span> <span class="pre">&lt;TRX_ID&gt;</span></code>
 command. It will retry all workers that failed and reschedule all
 workers that were on hold. The recover also applies to all the dependent
@@ -557,7 +557,7 @@ transactions.</p>
 </section>
 </section>
 <section id="update-the-function-body-in-the-tabsdata-server">
-<h4>Update the function body in the Tabsdata server<a class="headerlink" href="#update-the-function-body-in-the-tabsdata-server" title="Link to this heading">#</a></h4>
+<h4>Update the function body in the Tabsdata server</h4>
 <p>The function changes you made are still in your local and need to be moved to the Tabsdata server. To do that, use the below command and modify as needed.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="err">$</span> <span class="n">td</span> <span class="n">fn</span> <span class="n">update</span> <span class="o">--</span><span class="n">coll</span> <span class="n">examples</span> <span class="o">--</span><span class="n">name</span> <span class="o">&lt;</span><span class="n">FUNCTION</span><span class="o">&gt;</span>
 
@@ -572,9 +572,9 @@ transactions.</p>
 </section>
 </section>
 <section id="common-error-resolutions">
-<h2>Common Error Resolutions<a class="headerlink" href="#common-error-resolutions" title="Link to this heading">#</a></h2>
+<h2>Common Error Resolutions</h2>
 <section id="authentication-failed">
-<h3>Authentication Failed<a class="headerlink" href="#authentication-failed" title="Link to this heading">#</a></h3>
+<h3>Authentication Failed</h3>
 <img alt="../../_images/authentication_failed.png" src="../../_images/authentication_failed.png" />
 <p>If authentication is failing, try logging back in.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">td</span> <span class="n">login</span> <span class="o">--</span><span class="n">server</span> <span class="n">localhost</span> <span class="o">--</span><span class="n">user</span> <span class="o">&lt;</span><span class="n">USERNAME</span><span class="o">&gt;</span> <span class="o">--</span><span class="n">role</span> <span class="o">&lt;</span><span class="n">ROLE</span><span class="o">&gt;</span> <span class="o">--</span><span class="n">password</span> <span class="o">&lt;</span><span class="n">PASSWORD</span><span class="o">&gt;</span>
@@ -586,15 +586,15 @@ transactions.</p>
 </div>
 </section>
 <section id="empty-table-schema-sample">
-<h3>Empty Table Schema/Sample<a class="headerlink" href="#empty-table-schema-sample" title="Link to this heading">#</a></h3>
+<h3>Empty Table Schema/Sample</h3>
 <img alt="../../_images/empty_schema.png" src="../../_images/empty_schema.png" />
 <p>If the table value is empty, check if the path to the input file in the Python code is correct or not. If the path seems correct, you may also want to check the folder from which you are running the function registration CLI command. If you are using <code class="docutils literal notranslate"><span class="pre">os.getcwd()</span></code> in the python code, it is important to remember that this command retrieves the path of the folder from which the function is registered in the CLI.</p>
 </section>
 </section>
 <section id="server-related-issues">
-<h2>Server Related Issues<a class="headerlink" href="#server-related-issues" title="Link to this heading">#</a></h2>
+<h2>Server Related Issues</h2>
 <section id="check-the-server-status">
-<h3>Check the Server Status<a class="headerlink" href="#check-the-server-status" title="Link to this heading">#</a></h3>
+<h3>Check the Server Status</h3>
 <p>Use the <code class="docutils literal notranslate"><span class="pre">tdserver</span> <span class="pre">status</span></code> command to check the status of the
 Tabsdata server.</p>
 <p><em>Sample output when running:</em></p>
@@ -608,7 +608,7 @@ Tabsdata server.</p>
 </div>
 </section>
 <section id="check-the-server-logs">
-<h3>Check the Server Logs<a class="headerlink" href="#check-the-server-logs" title="Link to this heading">#</a></h3>
+<h3>Check the Server Logs</h3>
 <p>Use the <code class="docutils literal notranslate"><span class="pre">tdserver</span> <span class="pre">log</span></code> command to check the logs of the Tabsdata
 server. It will print (continuously) the logs of the server. Press
 <code class="docutils literal notranslate"><span class="pre">Ctrl+C</span></code> to stop.</p>
@@ -631,7 +631,7 @@ server. It will print (continuously) the logs of the server. Press
 </div>
 </section>
 <section id="check-the-server-status-using-the-client-command-line-tool">
-<h3>Check the Server Status using the Client Command-Line Tool<a class="headerlink" href="#check-the-server-status-using-the-client-command-line-tool" title="Link to this heading">#</a></h3>
+<h3>Check the Server Status using the Client Command-Line Tool</h3>
 <p>Use the <code class="docutils literal notranslate"><span class="pre">td</span> <span class="pre">status</span></code> command to check the status of the Tabsdata
 server. You must be logged in to the server to use the <code class="docutils literal notranslate"><span class="pre">td</span></code>
 command-line tool.</p>
@@ -653,9 +653,9 @@ command-line tool.</p>
 </section>
 </section>
 <section id="hard-reset">
-<h2>Hard Reset<a class="headerlink" href="#hard-reset" title="Link to this heading">#</a></h2>
+<h2>Hard Reset</h2>
 <section id="remove-tabsdata-instance">
-<h3>Remove Tabsdata instance<a class="headerlink" href="#remove-tabsdata-instance" title="Link to this heading">#</a></h3>
+<h3>Remove Tabsdata instance</h3>
 <p>All the information related to Tabsdata server is stored in instances. By default instances are created in the root folder.
 You can run the following command to delete the instance and start the process from scratch with <code class="docutils literal notranslate"><span class="pre">tdserver</span> <span class="pre">start</span></code>.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="err">$</span> <span class="n">tdserver</span> <span class="n">delete</span>
@@ -668,18 +668,18 @@ You can run the following command to delete the instance and start the process f
 <p><strong>Note:</strong> You can also delete the server by finding the <code class="docutils literal notranslate"><span class="pre">.tabsdata</span></code> folder in your system and deleting it. This folder gets created in the root directory of your system by default.</p>
 </section>
 <section id="delete-stray-servers">
-<h3>Delete stray Servers<a class="headerlink" href="#delete-stray-servers" title="Link to this heading">#</a></h3>
+<h3>Delete stray Servers</h3>
 <p>There may be also be a stray Tabsdata server (supervisor and/or apiserver) running in the background.</p>
 <p>You can delete the servers using the methods below:</p>
 <section id="searching-through-processes">
-<h4>Searching through processes<a class="headerlink" href="#searching-through-processes" title="Link to this heading">#</a></h4>
+<h4>Searching through processes</h4>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="err">$</span> <span class="n">ps</span> <span class="o">-</span><span class="n">ef</span> <span class="o">|</span> <span class="n">grep</span> <span class="n">tabsdata</span>
 <span class="err">$</span> <span class="n">kill</span> <span class="o">&lt;</span><span class="n">PID</span><span class="o">&gt;</span>
 </pre></div>
 </div>
 </section>
 <section id="using-btop">
-<h4>Using <cite>btop</cite><a class="headerlink" href="#using-btop" title="Link to this heading">#</a></h4>
+<h4>Using <cite>btop</cite></h4>
 <p>You can use <cite>btop</cite> (Read more about the tool on <a class="reference external" href="https://github.com/aristocratos/btop">btop github</a>).</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="err">$</span> <span class="n">brew</span> <span class="n">install</span> <span class="n">btop</span>
 <span class="err">$</span> <span class="n">btop</span>

@@ -33,7 +33,7 @@
     <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=8f2a1f02" />
     <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
     <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
-    <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=5a027c77" />
+    <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=b7af4508" />
   
   <!-- So that users can add custom icons -->
   <script src="../../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
@@ -449,24 +449,23 @@
                 <article class="bd-article">
                   
   <section id="tabsdata-ai-agent-tabby">
-<h1>Tabsdata AI Agent (Tabby)<a class="headerlink" href="#tabsdata-ai-agent-tabby" title="Link to this heading">#</a></h1>
+<h1>Tabsdata AI Agent (Tabby)</h1>
+<p>You can use the Tabsdata AI Agent (Tabby) to interact with the Tabsdata server. The agent can list collections, tables and functions. It can access table schemas and sample data, list executions, register functions, cancel executions, recover executions and trigger functions. It can also help create publishers, subscribers and transformers. There is a read-only mode to constrain the operations the agent can do when interacting with Tabsdata.</p>
 <section id="usage">
-<h2>Usage<a class="headerlink" href="#usage" title="Link to this heading">#</a></h2>
+<h2>Usage</h2>
 <p>To interact with the agent, there is a new AI window in the UI (accessible in the top right corner). It will only be enabled if the agent is enabled too. To enable the agent store your OpenAI API Key in the environment variable before starting the Tabsdata server. For more details, see <a class="reference internal" href="../secrets_management/env_variables/main.html#env-variables"><span class="std std-ref">Environment Variables</span></a>.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">OPENAI_API_KEY</span><span class="o">=&lt;</span><span class="n">your_key</span><span class="o">&gt;</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="err">$</span> <span class="n">export</span> <span class="n">OPENAI_API_KEY</span><span class="o">=&lt;</span><span class="n">your_key</span><span class="o">&gt;</span>
 </pre></div>
 </div>
-<p>The agent can list collections, tables and functions, it can access table schemas and sample data, list executions, register functions, cancel executions, recover executions and trigger functions.
-It can also help create publishers, subscribers and transformers.</p>
 <a class="reference internal image-reference" href="../../_images/tabby.png"><img alt="Tabsdata AI Agent interface" class="align-center" src="../../_images/tabby.png" style="width: 409.6px; height: 135.20000000000002px;" />
 </a>
 </section>
 <section id="configuration">
-<h2>Configuration<a class="headerlink" href="#configuration" title="Link to this heading">#</a></h2>
+<h2>Configuration</h2>
 <p>The AI agent is only available if an OpenAI API key is provided, otherwise the Tabsdata instance will run without the AI Agent.</p>
 <p>The agent runs on a specific port, which has to be configured. The Tabsdata API Server needs to know where this agent is, in order to use it. Therefore, we need to configure the following:</p>
 <section id="agent-configuration">
-<h3>Agent configuration<a class="headerlink" href="#agent-configuration" title="Link to this heading">#</a></h3>
+<h3>Agent configuration</h3>
 <p>Path: <code class="docutils literal notranslate"><span class="pre">.tabsdata/instances/&lt;instance&gt;/workspace/config/proc/regular/aiagent/config/config.yaml</span></code></p>
 <div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">2459</span>
 <span class="nt">read_only</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span>
@@ -476,11 +475,11 @@ It can also help create publishers, subscribers and transformers.</p>
 </pre></div>
 </div>
 <p>The key is taken from the environment variable in this case. If not present, the agent doesn’t start.</p>
-<p>Read only mode allows to constrain the operations the agent can do when interacting with Tabsdata.</p>
+<p>Read-only mode allows to constrain the operations the agent can do when interacting with Tabsdata.</p>
 <p><cite>2459</cite> is the port number that the agent is listening to.</p>
 </section>
 <section id="api-server-configuration">
-<h3>API Server configuration<a class="headerlink" href="#api-server-configuration" title="Link to this heading">#</a></h3>
+<h3>API Server configuration</h3>
 <p>Additional configuration file path:
 <code class="docutils literal notranslate"><span class="pre">.tabsdata/instances/&lt;instance&gt;/workspace/config/proc/regular/apiserver/config/config.yaml</span></code></p>
 <div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="l l-Scalar l-Scalar-Plain">…</span>

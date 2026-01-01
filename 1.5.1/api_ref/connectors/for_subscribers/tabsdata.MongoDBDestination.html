@@ -33,7 +33,7 @@
     <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=8f2a1f02" />
     <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
     <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-design.min.css?v=95c83b7e" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/custom.css?v=5a027c77" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/custom.css?v=b7af4508" />
   
   <!-- So that users can add custom icons -->
   <script src="../../../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
@@ -338,7 +338,7 @@
 </ul>
 <ul class="current nav bd-sidenav">
 <li class="toctree-l1 current active has-children"><a class="reference internal" href="../index.html">Connectors</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
-<li class="toctree-l2 has-children"><a class="reference internal" href="../for_publishers.html">For Publishers</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../for_publishers.html">Publishers</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l3"><a class="reference internal" href="../for_publishers/tabsdata.AzureSource.html">tabsdata.AzureSource</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../for_publishers/tabsdata.GCSSource.html">tabsdata.GCSSource</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../for_publishers/tabsdata.LocalFileSource.html">tabsdata.LocalFileSource</a></li>
@@ -352,11 +352,10 @@
 <li class="toctree-l3"><a class="reference internal" href="../for_publishers/tabsdata.SalesforceSource.html">tabsdata.SalesforceSource</a></li>
 </ul>
 </details></li>
-<li class="toctree-l2 current active has-children"><a class="reference internal" href="../for_subscribers.html">For Subscribers</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2 current active has-children"><a class="reference internal" href="../for_subscribers.html">Subscribers</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
 <li class="toctree-l3"><a class="reference internal" href="tabsdata.AzureDestination.html">tabsdata.AzureDestination</a></li>
-<li class="toctree-l3"><a class="reference internal" href="tabsdata.DatabricksDestination.html">tabsdata.DatabricksDestination</a></li>
-<li class="toctree-l3"><a class="reference internal" href="tabsdata.BigQueryConn.html">tabsdata.BigQueryConn</a></li>
 <li class="toctree-l3"><a class="reference internal" href="tabsdata.BigQueryDest.html">tabsdata.BigQueryDest</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tabsdata.DatabricksDestination.html">tabsdata.DatabricksDestination</a></li>
 <li class="toctree-l3"><a class="reference internal" href="tabsdata.GCSDestination.html">tabsdata.GCSDestination</a></li>
 <li class="toctree-l3"><a class="reference internal" href="tabsdata.LocalFileDestination.html">tabsdata.LocalFileDestination</a></li>
 <li class="toctree-l3"><a class="reference internal" href="tabsdata.MariaDBDestination.html">tabsdata.MariaDBDestination</a></li>
@@ -376,8 +375,9 @@
 </details></li>
 </ul>
 </details></li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../../connector_options/index.html">Connector options</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../connector_options/index.html">Connector Common Options</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2 has-children"><a class="reference internal" href="../../connector_options/file_formats.html">File formats</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../connector_options/file_formats/tabsdata.AvroFormat.html">tabsdata.AvroFormat</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../connector_options/file_formats/tabsdata.CSVFormat.html">tabsdata.CSVFormat</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../connector_options/file_formats/tabsdata.LogFormat.html">tabsdata.LogFormat</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../connector_options/file_formats/tabsdata.NDJSONFormat.html">tabsdata.NDJSONFormat</a></li>
@@ -730,7 +730,7 @@
     <li class="breadcrumb-item"><a href="../index.html" class="nav-link">Connectors</a></li>
     
     
-    <li class="breadcrumb-item"><a href="../for_subscribers.html" class="nav-link">For Subscribers</a></li>
+    <li class="breadcrumb-item"><a href="../for_subscribers.html" class="nav-link">Subscribers</a></li>
     
     <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">tabsdata.MongoDBDestination</span></li>
   </ul>
@@ -750,7 +750,7 @@
                 <article class="bd-article">
                   
   <section id="tabsdata-mongodbdestination">
-<h1>tabsdata.MongoDBDestination<a class="headerlink" href="#tabsdata-mongodbdestination" title="Link to this heading">#</a></h1>
+<h1>tabsdata.MongoDBDestination</h1>
 <dl class="py class">
 <dt class="sig sig-object py" id="tabsdata.MongoDBDestination">
 <em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">MongoDBDestination</span></span><span class="sig-paren">(</span>
@@ -770,8 +770,9 @@
 <dd><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em>,</dd>
 </dl>
 
-<span class="sig-paren">)</span><a class="headerlink" href="#tabsdata.MongoDBDestination" title="Link to this definition">#</a></dt>
+<span class="sig-paren">)</span></dt>
 <dd><p>Bases: <a class="reference internal" href="../plugins/tabsdata.DestinationPlugin.html#tabsdata.DestinationPlugin" title="tabsdata._io.plugin.DestinationPlugin"><code class="xref py py-class docutils literal notranslate"><span class="pre">DestinationPlugin</span></code></a></p>
+<p>MongoDB-based data outputs.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="tabsdata.MongoDBDestination.__init__">
 <span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span>
@@ -791,16 +792,13 @@
 <dd><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em>,</dd>
 </dl>
 
-<span class="sig-paren">)</span><a class="headerlink" href="#tabsdata.MongoDBDestination.__init__" title="Link to this definition">#</a></dt>
-<dd><dl class="simple">
-<dt>Initializes the MongoDBDestination with the configuration desired to store</dt><dd><p>the data.</p>
-</dd>
-</dl>
+<span class="sig-paren">)</span></dt>
+<dd><p>Initializes the MongoDBDestination with the configuration desired to store the data.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>uri</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a>) – The URI of the MongoDB database.</p></li>
-<li><p><strong>collections_with_ids</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.14)"><em>tuple</em></a><em>[</em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a><em>, </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a><em>] </em><em>| </em><em>List</em><em>[</em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.14)"><em>tuple</em></a><em>[</em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a><em>, </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a><em>]</em><em>]</em>) – A tuple
+<li><p><strong>uri</strong> – The URI of the MongoDB database.</p></li>
+<li><p><strong>collections_with_ids</strong> – A tuple
 or list of tuples with the collection and the name of the
 field that will be used as the unique identifier. For example, if you
 want to store the data in a collection called ‘my_collection’ in
@@ -809,40 +807,40 @@ identifier, you would provide the following tuple: (
 ‘my_database.my_collection’, ‘username’). If you wanted MongoDB to
 autogenerate the id, you would provide the following tuple:
 (‘my_database.my_collection’, None).</p></li>
-<li><p><strong>credentials</strong> (<a class="reference internal" href="../../connector_options/credentials/tabsdata.UserPasswordCredentials.html#tabsdata.UserPasswordCredentials" title="tabsdata.UserPasswordCredentials"><em>UserPasswordCredentials</em></a><em>, </em><em>optional</em>) – The credentials to connect
+<li><p><strong>credentials</strong> – The credentials to connect
 with the database. If None, no credentials will be used.</p></li>
-<li><p><strong>connection_options</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.14)"><em>dict</em></a><em>, </em><em>optional</em>) – A dictionary with the options to pass
+<li><p><strong>connection_options</strong> – A dictionary with the options to pass
 to the pymongo.MongoClient constructor. For example, if you want to
 set the timeout to 1000 milliseconds, you would provide the following
 dictionary: {‘serverSelectionTimeoutMS’: 1000}.</p></li>
-<li><p><strong>if_collection_exists</strong> (<em>Literal</em><em>[</em><em>&quot;append&quot;</em><em>, </em><em>&quot;replace&quot;</em><em>]</em><em>, </em><em>optional</em>) – The action
+<li><p><strong>if_collection_exists</strong> – The action
 to take if the collection already exists. If ‘append’, the data will be
 appended to the existing collection. If ‘replace’, the existing
 collection will be replaced with the new data. Defaults to ‘append’.</p></li>
-<li><p><strong>use_trxs</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><em>bool</em></a><em>, </em><em>optional</em>) – Whether to use a transaction when storing
+<li><p><strong>use_trxs</strong> – Whether to use a transaction when storing
 the data in the database. If True, the data will be stored in a
 transaction, which will ensure that all the data is stored or none of
 it is (requires that the database is configured with a replica set). If
 False, the data will be stored without a transaction, which may lead
 to inconsistent data in the database. Defaults to False.</p></li>
-<li><p><strong>docs_per_trx</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><em>int</em></a><em>, </em><em>optional</em>) – The maximum number of documents
+<li><p><strong>docs_per_trx</strong> – The maximum number of documents
 to store in a single transaction. If the number of documents to store
 exceeds this number, the data will be stored in multiple transactions.</p></li>
-<li><p><strong>maintain_order</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><em>bool</em></a><em>, </em><em>optional</em>) – Whether to maintain the order of the
+<li><p><strong>maintain_order</strong> – Whether to maintain the order of the
 documents when storing them in the database. If True, the documents
 will be stored in the same order as they are in the TableFrame. If
 False, the documents will be stored in the order that they are
 processed. Defaults to False.</p></li>
-<li><p><strong>update_existing</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><em>bool</em></a><em>, </em><em>optional</em>) – Whether to update the existing documents
+<li><p><strong>update_existing</strong> – Whether to update the existing documents
 in the database. If True, the documents will be updated if they already
 exist in the database. If False, the documents will be inserted without
 updating the existing documents, and if a document with the same id
 already exists execution will fail. Defaults to True.</p></li>
-<li><p><strong>fail_on_duplicate_key</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><em>bool</em></a><em>, </em><em>optional</em>) – Whether to raise an exception if a
+<li><p><strong>fail_on_duplicate_key</strong> – Whether to raise an exception if a
 document with the same id already exists in the collection. If True, an
 exception will be raised. If False, the operation will continue without
 raising an exception. Defaults to True.</p></li>
-<li><p><strong>log_intermediate_files</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><em>bool</em></a><em>, </em><em>optional</em>) – Whether to log when each batch
+<li><p><strong>log_intermediate_files</strong> – Whether to log when each batch
 of data is stored in the database. If True, a message will be logged for
 each batch of data stored. If False, no message will be logged until all
 the data for a single collection has been stored. Defaults to False.</p></li>
@@ -855,13 +853,13 @@ the data for a single collection has been stored. Defaults to False.</p></li>
 <div class="pst-scrollable-table-container"><table class="autosummary longtable table">
 <tbody>
 <tr class="row-odd"><td><p><a class="reference internal" href="#tabsdata.MongoDBDestination.__init__" title="tabsdata.MongoDBDestination.__init__"><code class="xref py py-obj docutils literal notranslate"><span class="pre">__init__</span></code></a>(uri, collections_with_ids[, ...])</p></td>
-<td><p>Initializes the MongoDBDestination with the configuration desired to store</p></td>
+<td><p>Initializes the MongoDBDestination with the configuration desired to store the data.</p></td>
 </tr>
 <tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">chunk</span></code>(working_dir, *results)</p></td>
-<td><p>Trigger the exporting of the data to local parquet chunks. This method will</p></td>
+<td><p>Trigger the exporting of the data to local parquet chunks.</p></td>
 </tr>
 <tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">stream</span></code>(working_dir, *results)</p></td>
-<td><p>Trigger the exporting of the data. This method will receive the resulting data</p></td>
+<td><p>Trigger the exporting of the data.</p></td>
 </tr>
 <tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">write</span></code>(files)</p></td>
 <td><p>This method is used to write the files to the database.</p></td>

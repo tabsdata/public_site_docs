@@ -33,7 +33,7 @@
     <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=8f2a1f02" />
     <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
     <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
-    <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=5a027c77" />
+    <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=b7af4508" />
   
   <!-- So that users can add custom icons -->
   <script src="../../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
@@ -60,8 +60,8 @@
     <script src="../../_static/custom.js?v=ac098f57"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="tabsdata.CSVFormat" href="file_formats/tabsdata.CSVFormat.html" />
-    <link rel="prev" title="Connector options" href="index.html" />
+    <link rel="next" title="tabsdata.AvroFormat" href="file_formats/tabsdata.AvroFormat.html" />
+    <link rel="prev" title="Connector Common Options" href="index.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   <meta name="docsearch:version" content="1.5.1" />
@@ -334,7 +334,7 @@
 </ul>
 <ul class="current nav bd-sidenav">
 <li class="toctree-l1 has-children"><a class="reference internal" href="../connectors/index.html">Connectors</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l2 has-children"><a class="reference internal" href="../connectors/for_publishers.html">For Publishers</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../connectors/for_publishers.html">Publishers</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l3"><a class="reference internal" href="../connectors/for_publishers/tabsdata.AzureSource.html">tabsdata.AzureSource</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../connectors/for_publishers/tabsdata.GCSSource.html">tabsdata.GCSSource</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../connectors/for_publishers/tabsdata.LocalFileSource.html">tabsdata.LocalFileSource</a></li>
@@ -348,11 +348,10 @@
 <li class="toctree-l3"><a class="reference internal" href="../connectors/for_publishers/tabsdata.SalesforceSource.html">tabsdata.SalesforceSource</a></li>
 </ul>
 </details></li>
-<li class="toctree-l2 has-children"><a class="reference internal" href="../connectors/for_subscribers.html">For Subscribers</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../connectors/for_subscribers.html">Subscribers</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l3"><a class="reference internal" href="../connectors/for_subscribers/tabsdata.AzureDestination.html">tabsdata.AzureDestination</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../connectors/for_subscribers/tabsdata.DatabricksDestination.html">tabsdata.DatabricksDestination</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../connectors/for_subscribers/tabsdata.BigQueryConn.html">tabsdata.BigQueryConn</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../connectors/for_subscribers/tabsdata.BigQueryDest.html">tabsdata.BigQueryDest</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../connectors/for_subscribers/tabsdata.DatabricksDestination.html">tabsdata.DatabricksDestination</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../connectors/for_subscribers/tabsdata.GCSDestination.html">tabsdata.GCSDestination</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../connectors/for_subscribers/tabsdata.LocalFileDestination.html">tabsdata.LocalFileDestination</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../connectors/for_subscribers/tabsdata.MariaDBDestination.html">tabsdata.MariaDBDestination</a></li>
@@ -372,8 +371,9 @@
 </details></li>
 </ul>
 </details></li>
-<li class="toctree-l1 current active has-children"><a class="reference internal" href="index.html">Connector options</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="index.html">Connector Common Options</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
 <li class="toctree-l2 current active has-children"><a class="current reference internal" href="#">File formats</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="file_formats/tabsdata.AvroFormat.html">tabsdata.AvroFormat</a></li>
 <li class="toctree-l3"><a class="reference internal" href="file_formats/tabsdata.CSVFormat.html">tabsdata.CSVFormat</a></li>
 <li class="toctree-l3"><a class="reference internal" href="file_formats/tabsdata.LogFormat.html">tabsdata.LogFormat</a></li>
 <li class="toctree-l3"><a class="reference internal" href="file_formats/tabsdata.NDJSONFormat.html">tabsdata.NDJSONFormat</a></li>
@@ -723,7 +723,7 @@
     <li class="breadcrumb-item"><a href="../index.html" class="nav-link">Tabsdata API Reference</a></li>
     
     
-    <li class="breadcrumb-item"><a href="index.html" class="nav-link">Connector options</a></li>
+    <li class="breadcrumb-item"><a href="index.html" class="nav-link">Connector Common Options</a></li>
     
     <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">File formats</span></li>
   </ul>
@@ -743,20 +743,23 @@
                 <article class="bd-article">
                   
   <section id="file-formats">
-<h1>File formats<a class="headerlink" href="#file-formats" title="Link to this heading">#</a></h1>
+<h1>File formats</h1>
 <div class="pst-scrollable-table-container"><table class="autosummary longtable table">
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="file_formats/tabsdata.CSVFormat.html#tabsdata.CSVFormat" title="tabsdata.CSVFormat"><code class="xref py py-obj docutils literal notranslate"><span class="pre">CSVFormat</span></code></a></p></td>
-<td><p>The class of the CSV file format.</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="file_formats/tabsdata.AvroFormat.html#tabsdata.AvroFormat" title="tabsdata.AvroFormat"><code class="xref py py-obj docutils literal notranslate"><span class="pre">AvroFormat</span></code></a></p></td>
+<td><p>Avro file format.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="file_formats/tabsdata.LogFormat.html#tabsdata.LogFormat" title="tabsdata.LogFormat"><code class="xref py py-obj docutils literal notranslate"><span class="pre">LogFormat</span></code></a></p></td>
-<td><p>The class of the log file format.</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="file_formats/tabsdata.CSVFormat.html#tabsdata.CSVFormat" title="tabsdata.CSVFormat"><code class="xref py py-obj docutils literal notranslate"><span class="pre">CSVFormat</span></code></a></p></td>
+<td><p>CSV file format.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="file_formats/tabsdata.NDJSONFormat.html#tabsdata.NDJSONFormat" title="tabsdata.NDJSONFormat"><code class="xref py py-obj docutils literal notranslate"><span class="pre">NDJSONFormat</span></code></a></p></td>
-<td><p>The class of the log file format.</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="file_formats/tabsdata.LogFormat.html#tabsdata.LogFormat" title="tabsdata.LogFormat"><code class="xref py py-obj docutils literal notranslate"><span class="pre">LogFormat</span></code></a></p></td>
+<td><p>Log file format.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="file_formats/tabsdata.ParquetFormat.html#tabsdata.ParquetFormat" title="tabsdata.ParquetFormat"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ParquetFormat</span></code></a></p></td>
-<td><p>The class of the Parquet file format.</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="file_formats/tabsdata.NDJSONFormat.html#tabsdata.NDJSONFormat" title="tabsdata.NDJSONFormat"><code class="xref py py-obj docutils literal notranslate"><span class="pre">NDJSONFormat</span></code></a></p></td>
+<td><p>JSON file format.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="file_formats/tabsdata.ParquetFormat.html#tabsdata.ParquetFormat" title="tabsdata.ParquetFormat"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ParquetFormat</span></code></a></p></td>
+<td><p>Parquet file format.</p></td>
 </tr>
 </tbody>
 </table>
@@ -779,15 +782,15 @@
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Connector options</p>
+        <p class="prev-next-title">Connector Common Options</p>
       </div>
     </a>
     <a class="right-next"
-       href="file_formats/tabsdata.CSVFormat.html"
+       href="file_formats/tabsdata.AvroFormat.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">tabsdata.CSVFormat</p>
+        <p class="prev-next-title">tabsdata.AvroFormat</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>

@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>For Publishers &#8212; Tabsdata  documentation</title>
+    <title>Publishers &#8212; Tabsdata  documentation</title>
   
   
   
@@ -33,7 +33,7 @@
     <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=8f2a1f02" />
     <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
     <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
-    <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=5a027c77" />
+    <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=b7af4508" />
   
   <!-- So that users can add custom icons -->
   <script src="../../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
@@ -334,7 +334,7 @@
 </ul>
 <ul class="current nav bd-sidenav">
 <li class="toctree-l1 current active has-children"><a class="reference internal" href="index.html">Connectors</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
-<li class="toctree-l2 current active has-children"><a class="current reference internal" href="#">For Publishers</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2 current active has-children"><a class="current reference internal" href="#">Publishers</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l3"><a class="reference internal" href="for_publishers/tabsdata.AzureSource.html">tabsdata.AzureSource</a></li>
 <li class="toctree-l3"><a class="reference internal" href="for_publishers/tabsdata.GCSSource.html">tabsdata.GCSSource</a></li>
 <li class="toctree-l3"><a class="reference internal" href="for_publishers/tabsdata.LocalFileSource.html">tabsdata.LocalFileSource</a></li>
@@ -348,11 +348,10 @@
 <li class="toctree-l3"><a class="reference internal" href="for_publishers/tabsdata.SalesforceSource.html">tabsdata.SalesforceSource</a></li>
 </ul>
 </details></li>
-<li class="toctree-l2 has-children"><a class="reference internal" href="for_subscribers.html">For Subscribers</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="for_subscribers.html">Subscribers</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l3"><a class="reference internal" href="for_subscribers/tabsdata.AzureDestination.html">tabsdata.AzureDestination</a></li>
-<li class="toctree-l3"><a class="reference internal" href="for_subscribers/tabsdata.DatabricksDestination.html">tabsdata.DatabricksDestination</a></li>
-<li class="toctree-l3"><a class="reference internal" href="for_subscribers/tabsdata.BigQueryConn.html">tabsdata.BigQueryConn</a></li>
 <li class="toctree-l3"><a class="reference internal" href="for_subscribers/tabsdata.BigQueryDest.html">tabsdata.BigQueryDest</a></li>
+<li class="toctree-l3"><a class="reference internal" href="for_subscribers/tabsdata.DatabricksDestination.html">tabsdata.DatabricksDestination</a></li>
 <li class="toctree-l3"><a class="reference internal" href="for_subscribers/tabsdata.GCSDestination.html">tabsdata.GCSDestination</a></li>
 <li class="toctree-l3"><a class="reference internal" href="for_subscribers/tabsdata.LocalFileDestination.html">tabsdata.LocalFileDestination</a></li>
 <li class="toctree-l3"><a class="reference internal" href="for_subscribers/tabsdata.MariaDBDestination.html">tabsdata.MariaDBDestination</a></li>
@@ -372,8 +371,9 @@
 </details></li>
 </ul>
 </details></li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../connector_options/index.html">Connector options</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../connector_options/index.html">Connector Common Options</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2 has-children"><a class="reference internal" href="../connector_options/file_formats.html">File formats</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../connector_options/file_formats/tabsdata.AvroFormat.html">tabsdata.AvroFormat</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../connector_options/file_formats/tabsdata.CSVFormat.html">tabsdata.CSVFormat</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../connector_options/file_formats/tabsdata.LogFormat.html">tabsdata.LogFormat</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../connector_options/file_formats/tabsdata.NDJSONFormat.html">tabsdata.NDJSONFormat</a></li>
@@ -725,7 +725,7 @@
     
     <li class="breadcrumb-item"><a href="index.html" class="nav-link">Connectors</a></li>
     
-    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">For Publishers</span></li>
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">Publishers</span></li>
   </ul>
 </nav>
 </div>
@@ -742,42 +742,42 @@
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section id="for-publishers">
-<h1>For Publishers<a class="headerlink" href="#for-publishers" title="Link to this heading">#</a></h1>
+  <section id="publishers">
+<h1>Publishers</h1>
 <div class="pst-scrollable-table-container"><table class="autosummary longtable table">
 <tbody>
 <tr class="row-odd"><td><p><a class="reference internal" href="for_publishers/tabsdata.AzureSource.html#tabsdata.AzureSource" title="tabsdata.AzureSource"><code class="xref py py-obj docutils literal notranslate"><span class="pre">AzureSource</span></code></a></p></td>
-<td><p>Class for managing the configuration of Azure-file-based data inputs.</p></td>
+<td><p>Azure-file-based data inputs.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="for_publishers/tabsdata.GCSSource.html#tabsdata.GCSSource" title="tabsdata.GCSSource"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GCSSource</span></code></a></p></td>
-<td><p>Class for managing the configuration of GCS-file-based data inputs.</p></td>
+<td><p>GCS-file-based data inputs.</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="for_publishers/tabsdata.LocalFileSource.html#tabsdata.LocalFileSource" title="tabsdata.LocalFileSource"><code class="xref py py-obj docutils literal notranslate"><span class="pre">LocalFileSource</span></code></a></p></td>
-<td><p>Class for managing the configuration of local-file-based data inputs.</p></td>
+<td><p>Local-file-based data inputs.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="for_publishers/tabsdata.MariaDBSource.html#tabsdata.MariaDBSource" title="tabsdata.MariaDBSource"><code class="xref py py-obj docutils literal notranslate"><span class="pre">MariaDBSource</span></code></a></p></td>
-<td><p>Class for managing the configuration of MariaDB-based data inputs.</p></td>
+<td><p>MariaDB-based data inputs.</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="for_publishers/tabsdata.MSSQLSource.html#tabsdata.MSSQLSource" title="tabsdata.MSSQLSource"><code class="xref py py-obj docutils literal notranslate"><span class="pre">MSSQLSource</span></code></a></p></td>
-<td><p>Source plugin for Microsoft SQL Server.</p></td>
+<td><p>Microsoft SQL Server based data inputs.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="for_publishers/tabsdata.MySQLSource.html#tabsdata.MySQLSource" title="tabsdata.MySQLSource"><code class="xref py py-obj docutils literal notranslate"><span class="pre">MySQLSource</span></code></a></p></td>
-<td><p>Class for managing the configuration of MySQL-based data inputs.</p></td>
+<td><p>MySQL-based data inputs.</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="for_publishers/tabsdata.OracleSource.html#tabsdata.OracleSource" title="tabsdata.OracleSource"><code class="xref py py-obj docutils literal notranslate"><span class="pre">OracleSource</span></code></a></p></td>
-<td><p>Class for managing the configuration of Oracle-based data inputs.</p></td>
+<td><p>Oracle-based data inputs.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="for_publishers/tabsdata.PostgresSource.html#tabsdata.PostgresSource" title="tabsdata.PostgresSource"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PostgresSource</span></code></a></p></td>
-<td><p>Class for managing the configuration of Postgres-based data inputs.</p></td>
+<td><p>Postgres-based data inputs.</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="for_publishers/tabsdata.S3Source.html#tabsdata.S3Source" title="tabsdata.S3Source"><code class="xref py py-obj docutils literal notranslate"><span class="pre">S3Source</span></code></a></p></td>
-<td><p>Class for managing the configuration of S3-file-based data inputs.</p></td>
+<td><p>S3-file-based data inputs.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="for_publishers/tabsdata.SalesforceReportSource.html#tabsdata.SalesforceReportSource" title="tabsdata.SalesforceReportSource"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SalesforceReportSource</span></code></a></p></td>
-<td><p></p></td>
+<td><p>Salesforce Reports based data inputs.</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="for_publishers/tabsdata.SalesforceSource.html#tabsdata.SalesforceSource" title="tabsdata.SalesforceSource"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SalesforceSource</span></code></a></p></td>
-<td><p></p></td>
+<td><p>Salesforce (SOQL query) based data inputs (not Salesforce Reports).</p></td>
 </tr>
 </tbody>
 </table>

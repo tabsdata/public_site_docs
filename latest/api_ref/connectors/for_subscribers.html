@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>For Subscribers &#8212; Tabsdata  documentation</title>
+    <title>Subscribers &#8212; Tabsdata  documentation</title>
   
   
   
@@ -33,7 +33,7 @@
     <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=8f2a1f02" />
     <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
     <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
-    <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=5a027c77" />
+    <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=b7af4508" />
   
   <!-- So that users can add custom icons -->
   <script src="../../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
@@ -334,7 +334,7 @@
 </ul>
 <ul class="current nav bd-sidenav">
 <li class="toctree-l1 current active has-children"><a class="reference internal" href="index.html">Connectors</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
-<li class="toctree-l2 has-children"><a class="reference internal" href="for_publishers.html">For Publishers</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="for_publishers.html">Publishers</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l3"><a class="reference internal" href="for_publishers/tabsdata.AzureSource.html">tabsdata.AzureSource</a></li>
 <li class="toctree-l3"><a class="reference internal" href="for_publishers/tabsdata.GCSSource.html">tabsdata.GCSSource</a></li>
 <li class="toctree-l3"><a class="reference internal" href="for_publishers/tabsdata.LocalFileSource.html">tabsdata.LocalFileSource</a></li>
@@ -348,11 +348,10 @@
 <li class="toctree-l3"><a class="reference internal" href="for_publishers/tabsdata.SalesforceSource.html">tabsdata.SalesforceSource</a></li>
 </ul>
 </details></li>
-<li class="toctree-l2 current active has-children"><a class="current reference internal" href="#">For Subscribers</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2 current active has-children"><a class="current reference internal" href="#">Subscribers</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l3"><a class="reference internal" href="for_subscribers/tabsdata.AzureDestination.html">tabsdata.AzureDestination</a></li>
-<li class="toctree-l3"><a class="reference internal" href="for_subscribers/tabsdata.DatabricksDestination.html">tabsdata.DatabricksDestination</a></li>
-<li class="toctree-l3"><a class="reference internal" href="for_subscribers/tabsdata.BigQueryConn.html">tabsdata.BigQueryConn</a></li>
 <li class="toctree-l3"><a class="reference internal" href="for_subscribers/tabsdata.BigQueryDest.html">tabsdata.BigQueryDest</a></li>
+<li class="toctree-l3"><a class="reference internal" href="for_subscribers/tabsdata.DatabricksDestination.html">tabsdata.DatabricksDestination</a></li>
 <li class="toctree-l3"><a class="reference internal" href="for_subscribers/tabsdata.GCSDestination.html">tabsdata.GCSDestination</a></li>
 <li class="toctree-l3"><a class="reference internal" href="for_subscribers/tabsdata.LocalFileDestination.html">tabsdata.LocalFileDestination</a></li>
 <li class="toctree-l3"><a class="reference internal" href="for_subscribers/tabsdata.MariaDBDestination.html">tabsdata.MariaDBDestination</a></li>
@@ -372,8 +371,9 @@
 </details></li>
 </ul>
 </details></li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../connector_options/index.html">Connector options</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../connector_options/index.html">Connector Common Options</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2 has-children"><a class="reference internal" href="../connector_options/file_formats.html">File formats</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../connector_options/file_formats/tabsdata.AvroFormat.html">tabsdata.AvroFormat</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../connector_options/file_formats/tabsdata.CSVFormat.html">tabsdata.CSVFormat</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../connector_options/file_formats/tabsdata.LogFormat.html">tabsdata.LogFormat</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../connector_options/file_formats/tabsdata.NDJSONFormat.html">tabsdata.NDJSONFormat</a></li>
@@ -725,7 +725,7 @@
     
     <li class="breadcrumb-item"><a href="index.html" class="nav-link">Connectors</a></li>
     
-    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">For Subscribers</span></li>
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">Subscribers</span></li>
   </ul>
 </nav>
 </div>
@@ -742,51 +742,48 @@
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section id="for-subscribers">
-<h1>For Subscribers<a class="headerlink" href="#for-subscribers" title="Link to this heading">#</a></h1>
+  <section id="subscribers">
+<h1>Subscribers</h1>
 <div class="pst-scrollable-table-container"><table class="autosummary longtable table">
 <tbody>
 <tr class="row-odd"><td><p><a class="reference internal" href="for_subscribers/tabsdata.AzureDestination.html#tabsdata.AzureDestination" title="tabsdata.AzureDestination"><code class="xref py py-obj docutils literal notranslate"><span class="pre">AzureDestination</span></code></a></p></td>
-<td><p>Class for managing the configuration of Azure-file-based data outputs.</p></td>
-</tr>
-<tr class="row-even"><td><p><a class="reference internal" href="for_subscribers/tabsdata.DatabricksDestination.html#tabsdata.DatabricksDestination" title="tabsdata.DatabricksDestination"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DatabricksDestination</span></code></a></p></td>
-<td><p></p></td>
-</tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="for_subscribers/tabsdata.BigQueryConn.html#tabsdata.BigQueryConn" title="tabsdata.BigQueryConn"><code class="xref py py-obj docutils literal notranslate"><span class="pre">BigQueryConn</span></code></a></p></td>
-<td><p>Represents a connection configuration to BigQuery.</p></td>
+<td><p>Azure-file-based data outputs.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="for_subscribers/tabsdata.BigQueryDest.html#tabsdata.BigQueryDest" title="tabsdata.BigQueryDest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">BigQueryDest</span></code></a></p></td>
-<td><p>Destination plugin to store data in BigQuery tables. The data is first stored in</p></td>
+<td><p>BigQuery based data outputs.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="for_subscribers/tabsdata.GCSDestination.html#tabsdata.GCSDestination" title="tabsdata.GCSDestination"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GCSDestination</span></code></a></p></td>
-<td><p>Class for managing the configuration of GCS-file-based data outputs.</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="for_subscribers/tabsdata.DatabricksDestination.html#tabsdata.DatabricksDestination" title="tabsdata.DatabricksDestination"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DatabricksDestination</span></code></a></p></td>
+<td><p>Databricks based data outputs.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="for_subscribers/tabsdata.LocalFileDestination.html#tabsdata.LocalFileDestination" title="tabsdata.LocalFileDestination"><code class="xref py py-obj docutils literal notranslate"><span class="pre">LocalFileDestination</span></code></a></p></td>
-<td><p></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="for_subscribers/tabsdata.GCSDestination.html#tabsdata.GCSDestination" title="tabsdata.GCSDestination"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GCSDestination</span></code></a></p></td>
+<td><p>GCS-file-based data outputs.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="for_subscribers/tabsdata.MariaDBDestination.html#tabsdata.MariaDBDestination" title="tabsdata.MariaDBDestination"><code class="xref py py-obj docutils literal notranslate"><span class="pre">MariaDBDestination</span></code></a></p></td>
-<td><p>Class for managing the configuration of MariaDB-based data outputs.</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="for_subscribers/tabsdata.LocalFileDestination.html#tabsdata.LocalFileDestination" title="tabsdata.LocalFileDestination"><code class="xref py py-obj docutils literal notranslate"><span class="pre">LocalFileDestination</span></code></a></p></td>
+<td><p>LocalFile-based data outputs.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="for_subscribers/tabsdata.MongoDBDestination.html#tabsdata.MongoDBDestination" title="tabsdata.MongoDBDestination"><code class="xref py py-obj docutils literal notranslate"><span class="pre">MongoDBDestination</span></code></a></p></td>
-<td><p></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="for_subscribers/tabsdata.MariaDBDestination.html#tabsdata.MariaDBDestination" title="tabsdata.MariaDBDestination"><code class="xref py py-obj docutils literal notranslate"><span class="pre">MariaDBDestination</span></code></a></p></td>
+<td><p>MariaDB-based data outputs.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="for_subscribers/tabsdata.MSSQLDestination.html#tabsdata.MSSQLDestination" title="tabsdata.MSSQLDestination"><code class="xref py py-obj docutils literal notranslate"><span class="pre">MSSQLDestination</span></code></a></p></td>
-<td><p>Destination plugin for Microsoft SQL Server.</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="for_subscribers/tabsdata.MongoDBDestination.html#tabsdata.MongoDBDestination" title="tabsdata.MongoDBDestination"><code class="xref py py-obj docutils literal notranslate"><span class="pre">MongoDBDestination</span></code></a></p></td>
+<td><p>MongoDB-based data outputs.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="for_subscribers/tabsdata.MySQLDestination.html#tabsdata.MySQLDestination" title="tabsdata.MySQLDestination"><code class="xref py py-obj docutils literal notranslate"><span class="pre">MySQLDestination</span></code></a></p></td>
-<td><p>Class for managing the configuration of MySQL-based data outputs.</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="for_subscribers/tabsdata.MSSQLDestination.html#tabsdata.MSSQLDestination" title="tabsdata.MSSQLDestination"><code class="xref py py-obj docutils literal notranslate"><span class="pre">MSSQLDestination</span></code></a></p></td>
+<td><p>MSSQL-based data outputs.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="for_subscribers/tabsdata.OracleDestination.html#tabsdata.OracleDestination" title="tabsdata.OracleDestination"><code class="xref py py-obj docutils literal notranslate"><span class="pre">OracleDestination</span></code></a></p></td>
-<td><p>Class for managing the configuration of Oracle-based data outputs.</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="for_subscribers/tabsdata.MySQLDestination.html#tabsdata.MySQLDestination" title="tabsdata.MySQLDestination"><code class="xref py py-obj docutils literal notranslate"><span class="pre">MySQLDestination</span></code></a></p></td>
+<td><p>MySQL-based data outputs.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="for_subscribers/tabsdata.PostgresDestination.html#tabsdata.PostgresDestination" title="tabsdata.PostgresDestination"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PostgresDestination</span></code></a></p></td>
-<td><p>Class for managing the configuration of Postgres-based data outputs.</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="for_subscribers/tabsdata.OracleDestination.html#tabsdata.OracleDestination" title="tabsdata.OracleDestination"><code class="xref py py-obj docutils literal notranslate"><span class="pre">OracleDestination</span></code></a></p></td>
+<td><p>Oracle-based data outputs.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="for_subscribers/tabsdata.S3Destination.html#tabsdata.S3Destination" title="tabsdata.S3Destination"><code class="xref py py-obj docutils literal notranslate"><span class="pre">S3Destination</span></code></a></p></td>
-<td><p>Class for managing the configuration of S3-file-based data outputs.</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="for_subscribers/tabsdata.PostgresDestination.html#tabsdata.PostgresDestination" title="tabsdata.PostgresDestination"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PostgresDestination</span></code></a></p></td>
+<td><p>Postgres-based data outputs.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="for_subscribers/tabsdata.SnowflakeDestination.html#tabsdata.SnowflakeDestination" title="tabsdata.SnowflakeDestination"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SnowflakeDestination</span></code></a></p></td>
-<td><p></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="for_subscribers/tabsdata.S3Destination.html#tabsdata.S3Destination" title="tabsdata.S3Destination"><code class="xref py py-obj docutils literal notranslate"><span class="pre">S3Destination</span></code></a></p></td>
+<td><p>S3-file-based data outputs.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="for_subscribers/tabsdata.SnowflakeDestination.html#tabsdata.SnowflakeDestination" title="tabsdata.SnowflakeDestination"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SnowflakeDestination</span></code></a></p></td>
+<td><p>Snowflake based data outputs.</p></td>
 </tr>
 </tbody>
 </table>

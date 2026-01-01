@@ -145,6 +145,20 @@ html[data-theme="dark"] {
     display: block !important; /* Ensures visibility */
 }
 
+.bd-main .bd-content .bd-article-container {
+  max-width: 100%;  /* default is 60em */
+}
+
+.bd-page-width {
+  max-width: 95%; /* default is 88rem */
+}
+
+h1, h2, h3, h4, h5, h6 {
+  word-break: break-word;
+  overflow-wrap: anywhere;
+  hyphens: auto;
+}
+
 pre {
     white-space: pre-wrap;
     word-wrap: break-word;

@@ -33,7 +33,7 @@
     <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=8f2a1f02" />
     <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
     <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
-    <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=5a027c77" />
+    <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=b7af4508" />
   
   <!-- So that users can add custom icons -->
   <script src="../../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
@@ -449,7 +449,7 @@
                 <article class="bd-article">
                   
   <section id="role-based-access-control-rbac">
-<span id="rbac"></span><h1>Role Based Access Control (RBAC)<a class="headerlink" href="#role-based-access-control-rbac" title="Link to this heading">#</a></h1>
+<span id="rbac"></span><h1>Role Based Access Control (RBAC)</h1>
 <p>Role based access control (RBAC) in Tabsdata has 2 levels.</p>
 <ol class="arabic simple">
 <li><p>Role level permissions.</p></li>
@@ -457,12 +457,12 @@
 </ol>
 <p>In the document, various paramters available for permission configuration are provided along with important CLI commands.</p>
 <section id="permissions">
-<span id="id1"></span><h2>Permissions<a class="headerlink" href="#permissions" title="Link to this heading">#</a></h2>
+<span id="id1"></span><h2>Permissions</h2>
 <section id="role-level-permissions">
-<h3>Role level permissions<a class="headerlink" href="#role-level-permissions" title="Link to this heading">#</a></h3>
+<h3>Role level permissions</h3>
 <p>Following configurations are available for roles.</p>
 <section id="system-permissions">
-<h4>System Permissions<a class="headerlink" href="#system-permissions" title="Link to this heading">#</a></h4>
+<h4>System Permissions</h4>
 <p>Top-level permissions such as System Administrator and Security Administrator grant comprehensive control over core system configurations and security settings. Two such permissions exist:</p>
 <ul class="simple">
 <li><p>System administration: To grant control over core system configurations.</p></li>
@@ -470,7 +470,7 @@
 </ul>
 </section>
 <section id="collection-permissions">
-<h4>Collection Permissions<a class="headerlink" href="#collection-permissions" title="Link to this heading">#</a></h4>
+<h4>Collection Permissions</h4>
 <p>You have the option to assign permissions at “All collections” or to a specific collection. Here are the options available:</p>
 <ul class="simple">
 <li><p>Administration: Manage collection roles</p></li>
@@ -480,23 +480,23 @@
 </ul>
 </section>
 <section id="assigned-users">
-<h4>Assigned Users<a class="headerlink" href="#assigned-users" title="Link to this heading">#</a></h4>
+<h4>Assigned Users</h4>
 <p>You can see the users assigned to a particular role or assign users to a role.</p>
 </section>
 </section>
 <section id="collection-level-permissions">
-<h3>Collection level permissions<a class="headerlink" href="#collection-level-permissions" title="Link to this heading">#</a></h3>
+<h3>Collection level permissions</h3>
 <p>Following configurations are available for collections.</p>
 <section id="inter-collection-permissions">
-<h4>Inter-collection Permissions<a class="headerlink" href="#inter-collection-permissions" title="Link to this heading">#</a></h4>
+<h4>Inter-collection Permissions</h4>
 <p>This allows you to assign permissions to collections to read tables from other collection.</p>
 </section>
 </section>
 </section>
 <section id="cli-commands-for-rbac">
-<h2>CLI Commands for RBAC<a class="headerlink" href="#cli-commands-for-rbac" title="Link to this heading">#</a></h2>
+<h2>CLI Commands for RBAC</h2>
 <section id="role">
-<h3>Role<a class="headerlink" href="#role" title="Link to this heading">#</a></h3>
+<h3>Role</h3>
 <p>You can access the commands available for <strong>Role Management</strong> using:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>td<span class="w"> </span>role<span class="w"> </span>--help
 </pre></div>
@@ -529,14 +529,14 @@
 <p>As you can see, the options in <code class="docutils literal notranslate"><span class="pre">--perm</span></code> directly map to the permissions highlighted in <a class="reference internal" href="#permissions"><span class="std std-ref">Permissions</span></a>.</p>
 </section>
 <section id="user">
-<h3>User<a class="headerlink" href="#user" title="Link to this heading">#</a></h3>
+<h3>User</h3>
 <p>You can access the commands available for <strong>User Management</strong> using:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>td<span class="w"> </span>user<span class="w"> </span>--help
 </pre></div>
 </div>
 </section>
 <section id="id2">
-<h3>Inter-collection permissions<a class="headerlink" href="#id2" title="Link to this heading">#</a></h3>
+<h3>Inter-collection permissions</h3>
 <p>You can access the commands available for <strong>Collection Permissions Management</strong> using:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>td<span class="w"> </span>collection<span class="w"> </span>--help
 </pre></div>
