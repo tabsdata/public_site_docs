@@ -490,14 +490,18 @@ $<span class="w"> </span>.<span class="se">\.</span>venv<span class="se">\S</spa
 <section id="step-2-start-the-server">
 <h2>Step 2. Start the Server</h2>
 <p>In case you have started the Tabsdata server earlier, it is suggested that you remove the older Tabsdata instance. This enables you to start from scratch, reducing the possibilities of error or conflicts.</p>
-<p><strong>Clearing the old Tabsdata instance</strong> [Only if you have started a Tabsdata server before]</p>
+<section id="clearing-the-old-tabsdata-instance">
+<h3>1. Clearing the old Tabsdata instance</h3>
+<p><strong>[Applicable only if you have started a Tabsdata server before]</strong></p>
 <p>Run the following commands in your CLI, to stop the Tabsdata server and clear the instance:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>tdserver<span class="w"> </span>stop
 $<span class="w"> </span>tdserver<span class="w"> </span>clean
 $<span class="w"> </span>tdserver<span class="w"> </span>delete
 </pre></div>
 </div>
-<p><strong>Starting the server</strong></p>
+</section>
+<section id="starting-the-server">
+<h3>2. Starting the server</h3>
 <p>To start the Tabsdata server, use the following command:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>tdserver<span class="w"> </span>start
 </pre></div>
@@ -510,9 +514,10 @@ $<span class="w"> </span>tdserver<span class="w"> </span>delete
 <p>Output:</p>
 <img alt="../../_images/tdserver_status.png" src="../../_images/tdserver_status.png" />
 </section>
+</section>
 <section id="step-3-setup-tutorial">
 <span id="setup-tutorial"></span><h2>Step 3. Setup Tutorial</h2>
-<p>TO setup the tutorial run the following commands in your CLI from your desired directory.</p>
+<p>To setup the tutorial run the following commands in your CLI from your desired directory.</p>
 <p>The <code class="docutils literal notranslate"><span class="pre">td</span> <span class="pre">examples</span> <span class="pre">--dir</span> <span class="pre">examples</span></code> command creates the <code class="docutils literal notranslate"><span class="pre">examples</span></code> directory, <code class="docutils literal notranslate"><span class="pre">input</span></code> and <code class="docutils literal notranslate"><span class="pre">output</span></code> directories and create the function configuration files called <code class="docutils literal notranslate"><span class="pre">publisher.py</span></code>, <code class="docutils literal notranslate"><span class="pre">tranformer.py</span></code>, and <code class="docutils literal notranslate"><span class="pre">subscriber.py</span></code> for the tutorial. This step is needed only in the context of this tutorial. You can choose a different setup for your own projects. The <code class="docutils literal notranslate"><span class="pre">--dir</span></code> flag specifies the directory where the examples will be created. You can change the directory name to your preference.</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>td<span class="w"> </span>examples<span class="w"> </span>--dir<span class="w"> </span>examples
 $<span class="w"> </span><span class="nb">cd</span><span class="w"> </span>examples/example-000
@@ -522,6 +527,8 @@ $<span class="w"> </span><span class="nb">cd</span><span class="w"> </span>examp
 <section id="step-4-log-in-and-create-a-collection">
 <h2>Step 4. Log in and Create a Collection</h2>
 <p>Collections are logical containers for Tabsdata <a class="reference internal" href="../06_working_with_tables/table_frame.html#working-with-tables"><span class="std std-ref">tables</span></a> and <a class="reference internal" href="../04_working_with_functions/main.html#working-with-functions"><span class="std std-ref">functions</span></a>. You use collections to enable different business domains to have their own organizational space.</p>
+<section id="using-cli">
+<h3>Using CLI</h3>
 <p>Use the following steps to create a collection for the tutorial.</p>
 <ol class="arabic simple">
 <li><p>If you are not logged in, use the following command to log in to Tabsdata:</p></li>
@@ -535,13 +542,59 @@ $<span class="w"> </span><span class="nb">cd</span><span class="w"> </span>examp
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>td<span class="w"> </span>collection<span class="w"> </span>create<span class="w"> </span>--name<span class="w"> </span>tutorial
 </pre></div>
 </div>
+</section>
+<section id="using-ui">
+<h3>Using UI</h3>
+<p>You can create a collection through the Tabsdata UI as well.</p>
+<section id="open-the-url">
+<h4>1. Open the URL</h4>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">localhost</span><span class="p">:</span><span class="mi">2457</span>
+</pre></div>
+</div>
+<img alt="../../_images/login_page.png" src="../../_images/login_page.png" />
+</section>
+<section id="credentials-to-login">
+<h4>2. Credentials to login</h4>
+<p>Username</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">admin</span>
+</pre></div>
+</div>
+<p>Password:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">tabsdata</span>
+</pre></div>
+</div>
+<p>Role</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">sys_admin</span>
+</pre></div>
+</div>
+</section>
+<section id="create-the-collection">
+<h4>3. Create the collection</h4>
+<p>The collection page will open up by default. Click on “Create Collection” in the top right</p>
+<img alt="../../_images/create_coll_ui.png" src="../../_images/create_coll_ui.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Fill out the name and description (optional). Click on “Create” in the top right.</p>
+<img alt="../../_images/coll_name.png" src="../../_images/coll_name.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Collection is created.</p>
+<img alt="../../_images/coll_created.png" src="../../_images/coll_created.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
 <p>Now that you have created a collection, you’re ready to implement a publisher.</p>
+</section>
+</section>
 </section>
 <section id="step-5-implement-a-publisher">
 <h2>Step 5. Implement a Publisher</h2>
 <p>Publishers import data from external systems such as local file systems, databases, and cloud storage, and publish the data as tables in the Tabsdata server.</p>
 <p>Use the following steps to create a publisher that reads the sample data from local system, register the publisher in the tutorial collection, and manually trigger the publisher to execute.</p>
-<p><strong>1. Define the publisher.</strong></p>
+<section id="define-the-publisher">
+<h3>1. Define the publisher</h3>
 <p>In the <code class="docutils literal notranslate"><span class="pre">publisher.py</span></code> file in your <cite>examples</cite> directory, the following code is used to define a publisher.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">tabsdata</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">td</span>
@@ -557,21 +610,51 @@ $<span class="w"> </span><span class="nb">cd</span><span class="w"> </span>examp
 </div>
 <p>This publisher, named <code class="docutils literal notranslate"><span class="pre">pub</span></code>, reads the “persons.csv” file in the input folder and writes it to the Tabsdata server as a table called <code class="docutils literal notranslate"><span class="pre">persons</span></code>.</p>
 <p>You can configure publishers to read data from many external systems. For details, <a class="reference internal" href="../04_01_working_with_publishers/main.html#working-with-publishers"><span class="std std-ref">Publishers</span></a>.</p>
-<p><strong>2. Register the publisher.</strong></p>
+</section>
+<section id="register-the-publisher">
+<h3>2. Register the publisher</h3>
 <p>Before you execute a publisher, you need to register it with a collection. Publishers write all of their output tables to the collection that they are registered with.</p>
 <p>Use the following command to register your pub publisher with the tutorial collection:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>td<span class="w"> </span>fn<span class="w"> </span>register<span class="w"> </span>--coll<span class="w"> </span>tutorial<span class="w"> </span>--path<span class="w"> </span>publisher.py::pub
 </pre></div>
 </div>
-<p><strong>3. Execute the publisher.</strong></p>
+</section>
+<section id="execute-the-publisher">
+<h3>3. Execute the publisher</h3>
 <p>Use the following command to manually trigger the publisher to execute:</p>
+<section id="id2">
+<h4>Using CLI</h4>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>td<span class="w"> </span>fn<span class="w"> </span>trigger<span class="w"> </span>--coll<span class="w"> </span>tutorial<span class="w"> </span>--name<span class="w"> </span>pub
 </pre></div>
 </div>
 <p>The command triggers the function and polls the transaction status. Once successful, the polling returns the following transaction data:</p>
 <img alt="../../_images/pub_trx.png" src="../../_images/pub_trx.png" />
-<p>.</p>
-<p><strong>4. View the new persons Tabsdata table.</strong></p>
+</section>
+<section id="execute-publisher-using-ui">
+<span id="id3"></span><h4>Using UI</h4>
+<p>Click on the collection name “tutorial” on the left hand side or from the collection list to open the view containing further details regarding the collection.</p>
+<img alt="../../_images/coll_details_view.png" src="../../_images/coll_details_view.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Click on “Publishers” to open the publishers registered in the collection.</p>
+<img alt="../../_images/coll_publisher_list.png" src="../../_images/coll_publisher_list.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Open the publisher details by clicking on “pub” in the list. Click on trigger on the top right to trigger the execution of the publisher.</p>
+<img alt="../../_images/coll_publisher_trigger.png" src="../../_images/coll_publisher_trigger.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>You can monitor the status of trigger through this diagram.</p>
+<img alt="../../_images/monitor_the_trigger.png" src="../../_images/monitor_the_trigger.png" />
+</section>
+</section>
+<section id="view-the-new-persons-tabsdata-table">
+<h3>4. View the new persons Tabsdata table</h3>
+<section id="id4">
+<h4>Using CLI</h4>
 <p>To view the schema of the new persons table, run the following command:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>td<span class="w"> </span>table<span class="w"> </span>schema<span class="w"> </span>--coll<span class="w"> </span>tutorial<span class="w"> </span>--name<span class="w"> </span>persons
 </pre></div>
@@ -585,13 +668,31 @@ $<span class="w"> </span><span class="nb">cd</span><span class="w"> </span>examp
 </div>
 <p>The results should look like this:</p>
 <img alt="../../_images/sample_persons.png" src="../../_images/sample_persons.png" />
+</section>
+<section id="check-table-using-ui">
+<span id="id5"></span><h4>Using UI</h4>
+<p>You can access the tables by clicking on the collection name “tutorial” from the left panel. You will see the list of tables contained in the collection.</p>
+<img alt="../../_images/coll_details_view.png" src="../../_images/coll_details_view.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>You can check the table details by clicking on “persons” from the list.</p>
+<img alt="../../_images/table_details.png" src="../../_images/table_details.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>You can check the sample data and run various SQL queries by clicking on the “Sample” tab.</p>
+<img alt="../../_images/table_sample_ui.png" src="../../_images/table_sample_ui.png" />
 <p>Now that you have successfully defined, registered, and executed a publisher, you’re ready to do the same for a transformer.</p>
+</section>
+</section>
 </section>
 <section id="step-6-implement-a-transformer">
 <span id="getting-started-transformer"></span><h2>Step 6. Implement a Transformer</h2>
 <p>Transformers modify tables inside the Tabsdata server. They can read from one or more Tabsdata tables, transform the data, and write to new Tabsdata tables.</p>
 <p>Use the following steps to create a transformer that modifies the tutorial data and writes the results to new tables, register the transformer with the tutorial collection, and manually trigger the transformer to execute.</p>
-<p><strong>1. Define a transformer.</strong></p>
+<section id="define-a-transformer">
+<h3>1. Define a transformer</h3>
 <p>In the <code class="docutils literal notranslate"><span class="pre">transformer.py</span></code> file in your <cite>examples</cite> directory, the following code defines a transformer.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">tabsdata</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">td</span>
 
@@ -616,21 +717,39 @@ $<span class="w"> </span><span class="nb">cd</span><span class="w"> </span>examp
 </ul>
 <p>Since no trigger is explicitly defined, the transformer is triggered by a commit to the specified input table: <code class="docutils literal notranslate"><span class="pre">persons</span></code>. You can use a <code class="docutils literal notranslate"><span class="pre">trigger_by</span></code> command to define different trigger tables or to prevent automated triggering. For more information, see <a class="reference internal" href="../05_working_with_triggers/main.html#working-with-triggers"><span class="std std-ref">Working with Triggers</span></a>.</p>
 <p>You can configure transformers to perform a range of operations. For details, see <a class="reference internal" href="../04_02_working_with_transformers/main.html#working-with-transformers"><span class="std std-ref">Transformers</span></a>.</p>
-<p><strong>2. Register the transformer with a Tabsdata collection.</strong></p>
+</section>
+<section id="register-the-transformer-with-a-tabsdata-collection">
+<h3>2. Register the transformer with a Tabsdata collection</h3>
 <p>Before you execute a transformer, you need to register it with a collection. Transformers can read data from any Tabsdata collection. And like publishers, they write all of their output tables to the collection that they are registered with.</p>
 <p>Use the following command to register the <code class="docutils literal notranslate"><span class="pre">tfr</span></code> transformer with the <code class="docutils literal notranslate"><span class="pre">tutorial</span></code> collection:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>td<span class="w"> </span>fn<span class="w"> </span>register<span class="w"> </span>--coll<span class="w"> </span>tutorial<span class="w"> </span>--path<span class="w"> </span>transformer.py::tfr
 </pre></div>
 </div>
-<p><strong>3. Execute the transformer.</strong></p>
+</section>
+<section id="execute-the-transformer">
+<h3>3. Execute the transformer</h3>
+<section id="id6">
+<h4>Using CLI</h4>
 <p>Use the trigger command to manually trigger the transformer to execute. The command syntax is the same for all Tabsdata functions:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>td<span class="w"> </span>fn<span class="w"> </span>trigger<span class="w"> </span>--coll<span class="w"> </span>tutorial<span class="w"> </span>--name<span class="w"> </span>tfr
 </pre></div>
 </div>
 <p>The command triggers the function and polls the transaction status. Once successful, the polling returns the transaction data such as the following:</p>
 <img alt="../../_images/tfr_new.png" src="../../_images/tfr_new.png" />
+</section>
+<section id="id7">
+<h4>Using UI</h4>
+<p>You can also use UI to trigger the transformer in the same way as shown for publisher <a class="reference internal" href="#execute-publisher-using-ui"><span class="std std-ref">here</span></a>.</p>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
 <p>If you face any issues, make sure to check out the <a class="reference internal" href="../10_troubleshooting/main.html#troubleshooting"><span class="std std-ref">Troubleshooting guide</span></a>.</p>
-<p><strong>4. View the output tables.</strong></p>
+</section>
+</section>
+<section id="view-the-output-tables">
+<h3>4. View the output tables</h3>
+<section id="id8">
+<h4>Using CLI</h4>
 <p>To view the schema of the spanish output table, run the following command:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>td<span class="w"> </span>table<span class="w"> </span>schema<span class="w"> </span>--coll<span class="w"> </span>tutorial<span class="w"> </span>--name<span class="w"> </span>spanish
 </pre></div>
@@ -645,13 +764,23 @@ $<span class="w"> </span><span class="nb">cd</span><span class="w"> </span>examp
 </div>
 <p>The results should look like this:</p>
 <img alt="../../_images/sample_spanish.png" src="../../_images/sample_spanish.png" />
+</section>
+<section id="id9">
+<h4>Using UI</h4>
+<p>You can also use UI to view the sample table data as shown <a class="reference internal" href="#check-table-using-ui"><span class="std std-ref">here</span></a>.</p>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
 <p>Now that you have implemented a transformer, it’s time to work with a subscriber….</p>
+</section>
+</section>
 </section>
 <section id="step-7-implement-a-subscriber">
 <h2>Step 7. Implement a Subscriber</h2>
 <p>Subscribers export tables from the Tabsdata server to external systems such as local systems, databases, and cloud storage. Use subscribers to provide prepared data to data consumer teams.</p>
 <p>Use the following steps to create a subscriber that exports the tutorial tables, register the subscriber with the tutorial collection, and manually trigger the subscriber to execute.</p>
-<p><strong>1. Define a subscriber.</strong></p>
+<section id="define-a-subscriber">
+<h3>1. Define a subscriber</h3>
 <p>In the subscriber.py file in your <cite>examples</cite> directory, the following code defines a subscriber.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">tabsdata</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">td</span>
@@ -673,13 +802,19 @@ $<span class="w"> </span><span class="nb">cd</span><span class="w"> </span>examp
 <p>This subscriber, named sub, reads data from the spanish and french tables in the Tabsdata server and writes the output files spanish.json1 and french.ndjson to the output folder in the <cite>examples</cite> directory.</p>
 <p>Since no trigger is explicitly defined, the subscriber is triggered by a commit to any of the specified input tables: spanish or french. You can use a trigger_by command to define different trigger tables or to prevent automated triggering.</p>
 <p>You can configure subscribers to export data to many external systems. For details, see <a class="reference internal" href="../05_working_with_triggers/main.html#working-with-triggers"><span class="std std-ref">Working with Triggers</span></a>.</p>
-<p><strong>2. Register the subscriber.</strong></p>
+</section>
+<section id="register-the-subscriber">
+<h3>2. Register the subscriber</h3>
 <p>Before you execute a subscriber, you need to register it with a collection. Subscribers can read data from any Tabsdata collection.</p>
 <p>Use the following command to register the sub subscriber with the tutorial collection:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>td<span class="w"> </span>fn<span class="w"> </span>register<span class="w"> </span>--coll<span class="w"> </span>tutorial<span class="w"> </span>--path<span class="w"> </span>subscriber.py::sub
 </pre></div>
 </div>
-<p><strong>3. Execute the subscriber.</strong></p>
+</section>
+<section id="execute-the-subscriber">
+<h3>3. Execute the subscriber</h3>
+<section id="id10">
+<h4>Using CLI</h4>
 <p>Use the trigger command to manually trigger the subscriber:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>td<span class="w"> </span>fn<span class="w"> </span>trigger<span class="w"> </span>--coll<span class="w"> </span>tutorial<span class="w"> </span>--name<span class="w"> </span>sub
 </pre></div>
@@ -687,7 +822,14 @@ $<span class="w"> </span><span class="nb">cd</span><span class="w"> </span>examp
 <p>The command triggers the function and polls the transaction status. Once successful, the polling returns the transaction data such as the following:</p>
 <img alt="../../_images/sub_trx.png" src="../../_images/sub_trx.png" />
 <p>If you face any issues, make sure to check out the <a class="reference internal" href="../10_troubleshooting/main.html#troubleshooting"><span class="std std-ref">Troubleshooting guide</span></a>.</p>
-<p><strong>4. Verify subscriber execution.</strong></p>
+</section>
+<section id="id11">
+<h4>Using UI</h4>
+<p>You can also use UI to trigger the subscriber in the same way as shown for publisher <a class="reference internal" href="#execute-publisher-using-ui"><span class="std std-ref">here</span></a>.</p>
+</section>
+</section>
+<section id="verify-subscriber-execution">
+<h3>4. Verify subscriber execution</h3>
 <p>You can verify that the spanish.json1 and french.ndjson output files have been created by listing files in the output directory:</p>
 <div class="sphinx-tabs docutils container">
 <div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-1-1-0" aria-selected="true" class="sphinx-tabs-tab" id="tab-1-1-0" name="1-0" role="tab" tabindex="0">For Linux or macOS:</button><button aria-controls="panel-1-1-1" aria-selected="false" class="sphinx-tabs-tab" id="tab-1-1-1" name="1-1" role="tab" tabindex="-1">For Windows (CMD):</button></div><div aria-labelledby="tab-1-1-0" class="sphinx-tabs-panel" id="panel-1-1-0" name="1-0" role="tabpanel" tabindex="0"><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>ls<span class="w"> </span>output
@@ -699,6 +841,7 @@ $<span class="w"> </span><span class="nb">cd</span><span class="w"> </span>examp
 </div></div>
 <p>You can use your favorite editor to view the contents of the files.</p>
 </section>
+</section>
 <section id="step-8-initiate-automated-triggers">
 <h2>Step 8. Initiate Automated Triggers</h2>
 <p>So far, you have used manual triggers to execute the functions in this tutorial.</p>
@@ -706,7 +849,8 @@ $<span class="w"> </span><span class="nb">cd</span><span class="w"> </span>examp
 <p>Since the tutorial transformer does not have a specified trigger, it is triggered by a commit to its input table, persons. Similarly, since the tutorial subscriber does not have a specified trigger, it is triggered by a commit to either of its input tables: french or spanish.</p>
 <p>So when the tutorial publisher executes, it writes to the persons table and creates a commit to that table. The commit to the persons table automatically triggers the transformer. The transformer processes the data and generates commits to the french and spanish tables. This automatically triggers the subscriber, which exports the data to files in the output directory. As a result, the manual execution of the tutorial publisher results in the automatic processing of the data and the writing of the desired output files.</p>
 <p>To see this in action, clear the output folder and test the automated triggers for this tutorial:</p>
-<p><strong>1. Remove the existing files from the output directory.</strong></p>
+<section id="remove-the-existing-files-from-the-output-directory">
+<h3>1. Remove the existing files from the output directory</h3>
 <p>You can do this manually or by running the following command:</p>
 <div class="sphinx-tabs docutils container">
 <div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-2-2-0" aria-selected="true" class="sphinx-tabs-tab" id="tab-2-2-0" name="2-0" role="tab" tabindex="0">For Linux or macOS:</button><button aria-controls="panel-2-2-1" aria-selected="false" class="sphinx-tabs-tab" id="tab-2-2-1" name="2-1" role="tab" tabindex="-1">For Windows (CMD):</button></div><div aria-labelledby="tab-2-2-0" class="sphinx-tabs-panel" id="panel-2-2-0" name="2-0" role="tabpanel" tabindex="0"><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>rm<span class="w"> </span>output/*
@@ -716,18 +860,28 @@ $<span class="w"> </span><span class="nb">cd</span><span class="w"> </span>examp
 </pre></div>
 </div>
 </div></div>
-<p><strong>2. Execute the publisher.</strong></p>
+</section>
+<section id="id12">
+<h3>2. Execute the publisher</h3>
+<section id="id13">
+<h4>Using CLI</h4>
 <p>To run the entire tutorial workflow, use the following command to manually trigger the publisher:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>td<span class="w"> </span>fn<span class="w"> </span>trigger<span class="w"> </span>--coll<span class="w"> </span>tutorial<span class="w"> </span>--name<span class="w"> </span>pub
 </pre></div>
 </div>
-<p><strong>3. View the list of functions related to the manual trigger of the publisher.</strong></p>
+</section>
+<section id="id14">
+<h4>Using UI</h4>
+<p>You can also use UI to trigger the publisher as shown <a class="reference internal" href="#execute-publisher-using-ui"><span class="std std-ref">here</span></a>.</p>
+</section>
+</section>
+<section id="view-the-list-of-functions-related-to-the-manual-trigger-of-the-publisher">
+<h3>3. View the list of functions related to the manual trigger of the publisher</h3>
 <p>The command triggers the function and polls the transaction status. Once successful, the polling returns the transaction for your publisher, transformer, and subscriber functions. The transaction data looks like the following:</p>
 <img alt="../../_images/pub_trx_full.png" src="../../_images/pub_trx_full.png" />
-<div class="line-block">
-<div class="line"><br /></div>
-</div>
-<p><strong>4. Verify the output.</strong></p>
+</section>
+<section id="verify-the-output">
+<h3>4. Verify the output</h3>
 <p>You can verify that the spanish.json1 and french.ndjson files have been written to the output folder with the following command:</p>
 <div class="sphinx-tabs docutils container">
 <div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-3-3-0" aria-selected="true" class="sphinx-tabs-tab" id="tab-3-3-0" name="3-0" role="tab" tabindex="0">For Linux or macOS:</button><button aria-controls="panel-3-3-1" aria-selected="false" class="sphinx-tabs-tab" id="tab-3-3-1" name="3-1" role="tab" tabindex="-1">For Windows (CMD):</button></div><div aria-labelledby="tab-3-3-0" class="sphinx-tabs-panel" id="panel-3-3-0" name="3-0" role="tabpanel" tabindex="0"><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>ls<span class="w"> </span>output
@@ -739,23 +893,19 @@ $<span class="w"> </span><span class="nb">cd</span><span class="w"> </span>examp
 </div></div>
 <p>And you can once again check the contents of those files with your favorite editor.</p>
 </section>
+</section>
 <section id="step-9-check-the-lineage-graph">
 <h2>Step 9. Check the lineage graph</h2>
 <p>You can check the lienage graph in the Tabsdata browser UI. You can see more details on <a class="reference internal" href="../user_interface/main.html#ui"><span class="std std-ref">User Interface</span></a>.</p>
 <img alt="../../_images/lineage_graph.png" src="../../_images/lineage_graph.png" />
-<p>Here the steps to see the lineage graph:</p>
-<p><strong>1. Open the URL in a browser</strong></p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">localhost</span><span class="p">:</span><span class="mi">2457</span>
-</pre></div>
+<div class="line-block">
+<div class="line"><br /></div>
 </div>
-<p><strong>2. Use the following credentials to login.</strong></p>
-<p>Username: <cite>admin</cite></p>
-<p>Password: <cite>tabsdata</cite></p>
-<p>Role: <cite>sys_admin</cite></p>
-<p><strong>3. Open the execution graphs.</strong></p>
+<p>To check the graph:</p>
+<p><strong>1. Open the execution graphs.</strong></p>
 <p>On the left dropdown, select ‘Finished’ used ‘Execution Plans’.</p>
-<p><strong>4. Click on any execution plan.</strong></p>
-<p>You can see the respective lienage graphs by clicking on the execution plans. Click on the first one to open the latest linegae graph with all functions and tables.</p>
+<p><strong>2. Click on the execution plan.</strong></p>
+<p>Click on the first one to open the latest linegae graph with all functions and tables.</p>
 </section>
 <section id="next-steps">
 <h2>Next Steps</h2>
@@ -819,13 +969,74 @@ $<span class="w"> </span><span class="nb">cd</span><span class="w"> </span>examp
   <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-1-install-tabsdata">Step 1. Install Tabsdata</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-2-start-the-server">Step 2. Start the Server</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-2-start-the-server">Step 2. Start the Server</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#clearing-the-old-tabsdata-instance">1. Clearing the old Tabsdata instance</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#starting-the-server">2. Starting the server</a></li>
+</ul>
+</li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-3-setup-tutorial">Step 3. Setup Tutorial</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-4-log-in-and-create-a-collection">Step 4. Log in and Create a Collection</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-5-implement-a-publisher">Step 5. Implement a Publisher</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-6-implement-a-transformer">Step 6. Implement a Transformer</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-7-implement-a-subscriber">Step 7. Implement a Subscriber</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-8-initiate-automated-triggers">Step 8. Initiate Automated Triggers</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-4-log-in-and-create-a-collection">Step 4. Log in and Create a Collection</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#using-cli">Using CLI</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#using-ui">Using UI</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#open-the-url">1. Open the URL</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#credentials-to-login">2. Credentials to login</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#create-the-collection">3. Create the collection</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-5-implement-a-publisher">Step 5. Implement a Publisher</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#define-the-publisher">1. Define the publisher</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#register-the-publisher">2. Register the publisher</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#execute-the-publisher">3. Execute the publisher</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Using CLI</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#execute-publisher-using-ui">Using UI</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#view-the-new-persons-tabsdata-table">4. View the new persons Tabsdata table</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">Using CLI</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#check-table-using-ui">Using UI</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-6-implement-a-transformer">Step 6. Implement a Transformer</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#define-a-transformer">1. Define a transformer</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#register-the-transformer-with-a-tabsdata-collection">2. Register the transformer with a Tabsdata collection</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#execute-the-transformer">3. Execute the transformer</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">Using CLI</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">Using UI</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#view-the-output-tables">4. View the output tables</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">Using CLI</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">Using UI</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-7-implement-a-subscriber">Step 7. Implement a Subscriber</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#define-a-subscriber">1. Define a subscriber</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#register-the-subscriber">2. Register the subscriber</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#execute-the-subscriber">3. Execute the subscriber</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id10">Using CLI</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id11">Using UI</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#verify-subscriber-execution">4. Verify subscriber execution</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-8-initiate-automated-triggers">Step 8. Initiate Automated Triggers</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#remove-the-existing-files-from-the-output-directory">1. Remove the existing files from the output directory</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id12">2. Execute the publisher</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id13">Using CLI</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id14">Using UI</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#view-the-list-of-functions-related-to-the-manual-trigger-of-the-publisher">3. View the list of functions related to the manual trigger of the publisher</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#verify-the-output">4. Verify the output</a></li>
+</ul>
+</li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-9-check-the-lineage-graph">Step 9. Check the lineage graph</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#next-steps">Next Steps</a></li>
 </ul>
