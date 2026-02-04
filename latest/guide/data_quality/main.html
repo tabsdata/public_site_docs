@@ -1,0 +1,1137 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Data Quality &#8212; Tabsdata  documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=8f2a1f02" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=b7af4508" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="../../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+
+    <script src="../../_static/jquery.js?v=5d32c60e"></script>
+    <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+    <script src="../../_static/documentation_options.js?v=7f41d439"></script>
+    <script src="../../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=a56c686a"></script>
+    <script src="../../_static/design-tabs.js?v=f930bc37"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'guide/data_quality/main';</script>
+    <script>
+        DOCUMENTATION_OPTIONS.theme_version = '0.16.1';
+        DOCUMENTATION_OPTIONS.theme_switcher_json_url = 'https://docs.tabsdata.com/version.json';
+        DOCUMENTATION_OPTIONS.theme_switcher_version_match = '1.6.0';
+        DOCUMENTATION_OPTIONS.show_version_warning_banner =
+            false;
+        </script>
+    <script src="../../_static/custom.js?v=ac098f57"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Catalogs" href="../catalogs/main.html" />
+    <link rel="prev" title="Working with Plugins" href="../07_working_with_connector_plugins/main.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="1.6.0" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+
+
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+     
+  
+
+<a class="navbar-brand logo" href=" https://tabsdata.com/?utm_source=docs">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../_static/tabsdata_root.png" class="logo__image only-light" alt="Tabsdata  documentation - Home"/>
+    <img src="../../_static/tabsdata_root_light.png" class="logo__image only-dark pst-js-only" alt="Tabsdata  documentation - Home"/>
+  
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="../intro.html">
+    Guide
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../api_ref/index.html">
+    API Reference
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../tutorials/index.html">
+    Tutorials
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+        <div class="navbar-item">
+<div class="version-switcher__container dropdown pst-js-only">
+  <button id="pst-version-switcher-button-2"
+    type="button"
+    class="version-switcher__button btn btn-sm dropdown-toggle"
+    data-bs-toggle="dropdown"
+    aria-haspopup="listbox"
+    aria-controls="pst-version-switcher-list-2"
+    aria-label="Version switcher list"
+  >
+    Choose version  <!-- this text may get changed later by javascript -->
+    <span class="caret"></span>
+  </button>
+  <div id="pst-version-switcher-list-2"
+    class="version-switcher__menu dropdown-menu list-group-flush py-0"
+    role="listbox" aria-labelledby="pst-version-switcher-button-2">
+    <!-- dropdown will be populated by javascript on page load -->
+  </div>
+</div></div>
+      
+        <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="../intro.html">
+    Guide
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../api_ref/index.html">
+    API Reference
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../tutorials/index.html">
+    Tutorials
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+<div class="version-switcher__container dropdown pst-js-only">
+  <button id="pst-version-switcher-button-3"
+    type="button"
+    class="version-switcher__button btn btn-sm dropdown-toggle"
+    data-bs-toggle="dropdown"
+    aria-haspopup="listbox"
+    aria-controls="pst-version-switcher-list-3"
+    aria-label="Version switcher list"
+  >
+    Choose version  <!-- this text may get changed later by javascript -->
+    <span class="caret"></span>
+  </button>
+  <div id="pst-version-switcher-list-3"
+    class="version-switcher__menu dropdown-menu list-group-flush py-0"
+    role="listbox" aria-labelledby="pst-version-switcher-button-3">
+    <!-- dropdown will be populated by javascript on page load -->
+  </div>
+</div></div>
+        
+          <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+<nav class="bd-docs-nav bd-links"
+     aria-label="Section Navigation">
+  <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
+  <div class="bd-toc-item navbar-nav"><ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../01_overview/main.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../02_getting_started/main.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../03_key_concepts/main.html">Key Concepts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../04_working_with_functions/main.html">Working with Functions</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../04_01_working_with_publishers/main.html">Publishers</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../04_01_working_with_publishers/local_file_system/main.html">Local File System</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../04_01_working_with_publishers/amazon_s3/main.html">Amazon S3</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../04_01_working_with_publishers/azure/main.html">Azure Blob Storage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../04_01_working_with_publishers/gcp/main.html">Google Cloud Storage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../04_01_working_with_publishers/mariadb/main.html">MariaDB</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../04_01_working_with_publishers/mssql/main.html">Microsoft SQL Server</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../04_01_working_with_publishers/mysql/main.html">MySQL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../04_01_working_with_publishers/oracle/main.html">Oracle</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../04_01_working_with_publishers/postgres/main.html">Postgres</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../04_01_working_with_publishers/salesforce/main.html">Salesforce SOQL Query</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../04_01_working_with_publishers/salesforce_reports/main.html">Salesforce Reports</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../04_01_working_with_publishers/grok_for_log_files/main.html">Grok for Log Files</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="../04_02_working_with_transformers/main.html">Transformers</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../04_03_working_with_subscribers/main.html">Subscribers</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../04_03_working_with_subscribers/local_file_system/main.html">Local File System</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../04_03_working_with_subscribers/aws_iceberg/main.html">AWS Glue - Iceberg tables</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../04_03_working_with_subscribers/amazon_s3/main.html">Amazon S3</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../04_03_working_with_subscribers/azure/main.html">Azure Blob Storage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../04_03_working_with_subscribers/bigquery/main.html">Big Query</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../04_03_working_with_subscribers/databricks/main.html">Databricks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../04_03_working_with_subscribers/gcp/main.html">Google Cloud Storage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../04_03_working_with_subscribers/mariadb/main.html">MariaDB</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../04_03_working_with_subscribers/mongodb/main.html">MongoDB</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../04_03_working_with_subscribers/mssql/main.html">Microsoft SQL Server</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../04_03_working_with_subscribers/mysql/main.html">MySQL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../04_03_working_with_subscribers/oracle/main.html">Oracle</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../04_03_working_with_subscribers/postgres/main.html">Postgres</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../04_03_working_with_subscribers/snowflake/main.html">Snowflake</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="../working_with_kafka/main.html">Working with Kafka</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../05_working_with_triggers/main.html">Working with Triggers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../06_working_with_tables/table_frame.html">Working with Tables</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../06_working_with_tables/user_defined_functions.html">User-defined Functions (UDFs)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../07_working_with_connector_plugins/main.html">Working with Plugins</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Data Quality</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../catalogs/main.html">Catalogs</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../catalogs/aws_glue/main.html">AWS Glue Catalog</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../catalogs/unity_catalog/main.html">Unity Catalog</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="../user_interface/main.html">User Interface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ai_agent/main.html">Tabsdata AI Agent (Tabby)</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../secrets_management/main.html">Secrets Management</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../secrets_management/env_variables/main.html">Environment Variables</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../secrets_management/hashicorp/main.html">HashiCorp Secret</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="../permissioning/main.html">Role Based Access Control (RBAC)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../security/main.html">Setting up Tabsdata over HTTPS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../08_testing/main.html">Testing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../10_troubleshooting/main.html">Troubleshooting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cli_commands/main.html">CLI Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../09_contact_support/main.html">Contact Us</a></li>
+</ul>
+</div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../../index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    
+    <li class="breadcrumb-item"><a href="../intro.html" class="nav-link">User Guide</a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">Data Quality</span></li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="data-quality">
+<span id="id1"></span><h1>Data Quality</h1>
+<p>Tabsdata Data Quality (DQ) lets you attach declarative quality checks to the output of publishers and transformers. Every run inspects the data that was just produced, enriches it with quality signals, and optionally quarantines or rejects rows that fail your criteria.</p>
+<p>The feature augments each output with quality columns, per-classifier summaries, and optional quarantine/select tables. These artifacts help teams monitor ingestion quality, steer remediation, and deliver trustworthy data for downstream decisions.</p>
+<p>In the code below, a transformer reads from a <code class="docutils literal notranslate"><span class="pre">new_visitors</span></code> table and outputs to a <code class="docutils literal notranslate"><span class="pre">visitors</span></code> table with data quality checks attached. Three classifiers inspect the data: one checks for <cite>NULL</cite> values in <code class="docutils literal notranslate"><span class="pre">name</span></code> and <code class="docutils literal notranslate"><span class="pre">email</span></code> (tagged as <code class="docutils literal notranslate"><span class="pre">&quot;required&quot;</span></code>), another checks for <cite>NULL</cite> values in <code class="docutils literal notranslate"><span class="pre">country</span></code>, and a third verifies that <code class="docutils literal notranslate"><span class="pre">ok_to_contact</span></code> is true. Three operators then act on these signals: <code class="docutils literal notranslate"><span class="pre">Summary()</span></code> generates a <code class="docutils literal notranslate"><span class="pre">visitor_dq_summary</span></code> table with aggregated quality metrics, <code class="docutils literal notranslate"><span class="pre">Select()</span></code> copies rows passing all checks to a <code class="docutils literal notranslate"><span class="pre">visitor_leads</span></code> table, and <code class="docutils literal notranslate"><span class="pre">Filter()</span></code> removes rows with NULL <code class="docutils literal notranslate"><span class="pre">name</span></code> or <code class="docutils literal notranslate"><span class="pre">email</span></code> values from the output. Note that rows with NULL <code class="docutils literal notranslate"><span class="pre">country</span></code> or false <code class="docutils literal notranslate"><span class="pre">ok_to_contact</span></code> remain in the output since the filter only targets the <code class="docutils literal notranslate"><span class="pre">&quot;required&quot;</span></code> tag.</p>
+<p>Example Code:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">tabsdata</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">td</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">tabsdata.dataquality</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">dq</span>
+
+<span class="nd">@td</span><span class="o">.</span><span class="n">transformer</span><span class="p">(</span>
+    <span class="n">input_tables</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;new_visitors&quot;</span><span class="p">],</span>
+    <span class="n">output_tables</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;visitors&quot;</span><span class="p">],</span>
+    <span class="n">on_output_tables</span><span class="o">=</span><span class="p">[</span>
+        <span class="n">dq</span><span class="o">.</span><span class="n">DataQuality</span><span class="p">(</span>
+            <span class="n">table</span><span class="o">=</span><span class="s2">&quot;visitors&quot;</span><span class="p">,</span>
+            <span class="n">classifiers</span><span class="o">=</span><span class="p">[</span>
+                <span class="n">dq</span><span class="o">.</span><span class="n">IsNotNull</span><span class="p">(</span><span class="n">column_names</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;name&quot;</span><span class="p">,</span><span class="s2">&quot;email&quot;</span><span class="p">],</span> <span class="n">tags</span><span class="o">=</span><span class="s2">&quot;required&quot;</span><span class="p">),</span>
+                <span class="n">dq</span><span class="o">.</span><span class="n">IsNotNull</span><span class="p">(</span><span class="s2">&quot;country&quot;</span><span class="p">),</span>
+                <span class="n">dq</span><span class="o">.</span><span class="n">IsTrue</span><span class="p">(</span><span class="s2">&quot;ok_to_contact&quot;</span><span class="p">),</span>
+            <span class="p">],</span>
+            <span class="n">operators</span><span class="o">=</span><span class="p">[</span>
+                <span class="c1"># creates table `visitor_dq_summary`</span>
+                <span class="n">dq</span><span class="o">.</span><span class="n">Summary</span><span class="p">(),</span>
+
+                <span class="c1"># creates table `visitor_leads`</span>
+                <span class="n">dq</span><span class="o">.</span><span class="n">Select</span><span class="p">(</span>
+                    <span class="n">to_table</span><span class="o">=</span><span class="s2">&quot;visitor_leads&quot;</span><span class="p">,</span>
+                    <span class="n">criteria</span><span class="o">=</span><span class="n">dq</span><span class="o">.</span><span class="n">AllOk</span><span class="p">(),</span>
+                <span class="p">),</span>
+                <span class="c1"># drop from `visitors` without name or email</span>
+                <span class="n">dq</span><span class="o">.</span><span class="n">Filter</span><span class="p">(</span>
+                    <span class="n">criteria</span><span class="o">=</span><span class="n">dq</span><span class="o">.</span><span class="n">AnyFailed</span><span class="p">(</span><span class="n">tags</span><span class="o">=</span><span class="s2">&quot;required&quot;</span><span class="p">),</span>
+                <span class="p">),</span>
+            <span class="p">],</span>
+        <span class="p">)</span>
+    <span class="p">],</span>
+<span class="p">)</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">process_visitors</span><span class="p">(</span><span class="n">tf</span><span class="p">:</span> <span class="n">td</span><span class="o">.</span><span class="n">TableFrame</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">td</span><span class="o">.</span><span class="n">TableFrame</span><span class="p">:</span>
+    <span class="k">return</span> <span class="n">tf</span>
+</pre></div>
+</div>
+<section id="dataquality-action">
+<h2>DataQuality Action</h2>
+<p>The <code class="docutils literal notranslate"><span class="pre">DataQuality</span></code> action is the entry point for attaching quality checks to an output table. Defined under <code class="docutils literal notranslate"><span class="pre">on_tables</span></code> parameter in Publisher and <code class="docutils literal notranslate"><span class="pre">on_output_tables</span></code> in Transformer decorators, DataQuality Action attaches a target output table to a declarative/programmatic set of quality checks and follow-up reactions so every run can inspect and act on the data that was just produced.</p>
+<p><em>Example:</em> You have a publisher writing customer data to a <code class="docutils literal notranslate"><span class="pre">customers</span></code> table. By attaching a <code class="docutils literal notranslate"><span class="pre">DataQuality</span></code> action to this table, you can automatically validate every batch of customer records before they become available to downstream consumers.</p>
+<p>Data Quality actions have these core ingredients:</p>
+<dl>
+<dt><strong>Classifiers</strong></dt><dd><p>Inspect one or more columns and emit boolean or categorical signals (e.g., <code class="docutils literal notranslate"><span class="pre">is_positive</span></code>, <code class="docutils literal notranslate"><span class="pre">is_null</span></code>). Each classifier examines specific columns and creates a data quality column with the values generated by the classifier.</p>
+<p><em>Example:</em> Use <code class="docutils literal notranslate"><span class="pre">dq.IsNull(&quot;email&quot;)</span></code> to detect rows with missing email addresses, or <code class="docutils literal notranslate"><span class="pre">dq.IsPositive(&quot;order_amount&quot;)</span></code> to flag transactions with zero or negative values that might indicate data entry errors.</p>
+</dd>
+<dt><strong>Operators</strong></dt><dd><p>Consume the signals emitted by classifiers to enrich tables, build summaries, route/retain rows, or fail a run. Operators determine what happens after classifiers have evaluated the data.</p>
+<p><em>Example:</em> After classifying rows with null customer IDs, use <code class="docutils literal notranslate"><span class="pre">dq.Filter()</span></code> to quarantine those rows into a separate <code class="docutils literal notranslate"><span class="pre">bad_records</span></code> table for manual review, while clean rows flow to downstream analytics. Or use <code class="docutils literal notranslate"><span class="pre">dq.Summary()</span></code> to generate a quality report showing how many records passed or failed each check.</p>
+</dd>
+<dt><strong>Criteria &amp; Thresholds</strong></dt><dd><p>Describe which classifier outcomes an operator cares about and when to trigger actions such as filtering or failure. Criteria specify the conditions (e.g., “any null values”), while thresholds define acceptable limits (e.g., “fail if more than 5% of rows are affected”).</p>
+<p><em>Example:</em> Use <code class="docutils literal notranslate"><span class="pre">dq.AnyFailed(tags=&quot;nulls&quot;)</span></code> as criteria to match rows that failed null checks, combined with <code class="docutils literal notranslate"><span class="pre">dq.PercentThreshold(5)</span></code> to abort the pipeline if more than 5% of incoming records have missing required fields.</p>
+</dd>
+<dt><strong>Tags (optional)</strong></dt><dd><p>Label every classifier output column. Operators can refer to those labels to focus on specific checks, all checks, or only the untagged ones. Tags help organize multiple classifiers and allow operators to selectively act on specific quality dimensions.</p>
+<p><em>Example:</em> Tag null-checking classifiers with <code class="docutils literal notranslate"><span class="pre">tags=&quot;completeness&quot;</span></code> and range-checking classifiers with <code class="docutils literal notranslate"><span class="pre">tags=&quot;validity&quot;</span></code>. Then configure one <code class="docutils literal notranslate"><span class="pre">Filter</span></code> operator to quarantine rows failing completeness checks and another to quarantine rows failing validity checks into separate tables for different remediation workflows.</p>
+<p>When a classifier runs, every generated column inherits the tags declared on that classifier (or stays untagged if no tags were provided). Operators read those tags to decide which columns they should process. Aside from the no-duplicates rules called out below, there is no cap on how many actions, classifiers, or operators can be attached to a single function.</p>
+</dd>
+</dl>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Running a DQ action can yield additional derived tables (enriched rows, summary tables, quarantine tables) alongside the regular outputs. In such a case, downstream steps can consume the results in the same function run.</p>
+<p>All configuration and consistency checks run during function registration, so once a transformer or publisher is accepted, authors know every DQ action attached to it is structurally valid.</p>
+</div>
+<section id="examples">
+<h3>Examples</h3>
+<section id="example-1-enriching-output-with-quality-columns">
+<h4>Example 1 – Enriching Output with Quality Columns</h4>
+<p>The following example shows how to enrich output rows with quality flag columns. A publisher writes order data to an <code class="docutils literal notranslate"><span class="pre">orders</span></code> table, and the <code class="docutils literal notranslate"><span class="pre">Enrich()</span></code> operator adds a <code class="docutils literal notranslate"><span class="pre">total_is_positive</span></code> column to the output <code class="docutils literal notranslate"><span class="pre">orders</span></code> table indicating whether each row’s <code class="docutils literal notranslate"><span class="pre">total</span></code> value is positive.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">tabsdata</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">td</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">tabsdata.dataquality</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">dq</span>
+
+<span class="nd">@td</span><span class="o">.</span><span class="n">publisher</span><span class="p">(</span>
+    <span class="n">source</span><span class="o">=</span><span class="n">td</span><span class="o">.</span><span class="n">LocalFileSource</span><span class="p">(</span><span class="s2">&quot;orders.csv&quot;</span><span class="p">),</span>
+    <span class="n">output_tables</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;orders&quot;</span><span class="p">],</span>
+    <span class="n">on_tables</span><span class="o">=</span><span class="p">[</span>
+        <span class="n">dq</span><span class="o">.</span><span class="n">DataQuality</span><span class="p">(</span>
+            <span class="n">table</span><span class="o">=</span><span class="s2">&quot;orders&quot;</span><span class="p">,</span>
+            <span class="n">classifiers</span><span class="o">=</span><span class="p">[</span><span class="n">dq</span><span class="o">.</span><span class="n">IsPositive</span><span class="p">(</span><span class="s2">&quot;total&quot;</span><span class="p">)],</span>
+            <span class="n">operators</span><span class="o">=</span><span class="p">[</span><span class="n">dq</span><span class="o">.</span><span class="n">Enrich</span><span class="p">()],</span>
+        <span class="p">)</span>
+    <span class="p">],</span>
+<span class="p">)</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">publish_orders</span><span class="p">(</span><span class="n">tf</span><span class="p">:</span> <span class="n">td</span><span class="o">.</span><span class="n">TableFrame</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">td</span><span class="o">.</span><span class="n">TableFrame</span><span class="p">:</span>
+    <span class="k">return</span> <span class="n">tf</span>
+</pre></div>
+</div>
+</section>
+<section id="example-2-failing-a-run-based-on-row-count-threshold">
+<h4>Example 2 – Failing a Run Based on Row Count Threshold</h4>
+<p>In this example, a transformer validates that critical fields (<code class="docutils literal notranslate"><span class="pre">order_id</span></code>, <code class="docutils literal notranslate"><span class="pre">customer_id</span></code>) are not <cite>NULL</cite> and aborts the run if more than 10 rows fail the check. The <code class="docutils literal notranslate"><span class="pre">Fail()</span></code> operator uses <code class="docutils literal notranslate"><span class="pre">RowCountThreshold</span></code> to enforce this limit. If 10 or more rows have <cite>NULL`</cite> values in <code class="docutils literal notranslate"><span class="pre">order_id</span></code> or <code class="docutils literal notranslate"><span class="pre">customer_id</span></code>, the entire run fails with a <code class="docutils literal notranslate"><span class="pre">DataQualityProcessingError</span></code>.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">tabsdata</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">td</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">tabsdata.dataquality</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">dq</span>
+
+<span class="nd">@td</span><span class="o">.</span><span class="n">transformer</span><span class="p">(</span>
+    <span class="n">input_tables</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;raw_orders&quot;</span><span class="p">],</span>
+    <span class="n">output_tables</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;validated_orders&quot;</span><span class="p">],</span>
+    <span class="n">on_output_tables</span><span class="o">=</span><span class="p">[</span>
+        <span class="n">dq</span><span class="o">.</span><span class="n">DataQuality</span><span class="p">(</span>
+            <span class="n">table</span><span class="o">=</span><span class="s2">&quot;validated_orders&quot;</span><span class="p">,</span>
+            <span class="n">classifiers</span><span class="o">=</span><span class="p">[</span><span class="n">dq</span><span class="o">.</span><span class="n">IsNotNull</span><span class="p">([</span><span class="s2">&quot;order_id&quot;</span><span class="p">,</span> <span class="s2">&quot;customer_id&quot;</span><span class="p">])],</span>
+            <span class="n">operators</span><span class="o">=</span><span class="p">[</span>
+                <span class="n">dq</span><span class="o">.</span><span class="n">Fail</span><span class="p">(</span>
+                    <span class="n">criteria</span><span class="o">=</span><span class="n">dq</span><span class="o">.</span><span class="n">AnyFailed</span><span class="p">(),</span>
+                    <span class="n">threshold</span><span class="o">=</span><span class="n">dq</span><span class="o">.</span><span class="n">RowCountThreshold</span><span class="p">(</span><span class="mi">10</span><span class="p">),</span>
+                <span class="p">)</span>
+            <span class="p">],</span>
+        <span class="p">)</span>
+    <span class="p">],</span>
+<span class="p">)</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">validate_orders</span><span class="p">(</span><span class="n">tf</span><span class="p">:</span> <span class="n">td</span><span class="o">.</span><span class="n">TableFrame</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">td</span><span class="o">.</span><span class="n">TableFrame</span><span class="p">:</span>
+    <span class="k">return</span> <span class="n">tf</span>
+</pre></div>
+</div>
+</section>
+<section id="example-3-using-multiple-classifiers-and-operators-with-tags">
+<h4>Example 3 – Using Multiple Classifiers and Operators with Tags</h4>
+<p>In the code below, a transformer reads from a <code class="docutils literal notranslate"><span class="pre">landing</span></code> table and outputs to a <code class="docutils literal notranslate"><span class="pre">clean</span></code> table with data quality checks attached. Two classifiers inspect the data: one checks for NULL values in <code class="docutils literal notranslate"><span class="pre">customer_id</span></code> (tagged as <code class="docutils literal notranslate"><span class="pre">&quot;nulls&quot;</span></code>), and another verifies that <code class="docutils literal notranslate"><span class="pre">amount</span></code> is positive (tagged as <code class="docutils literal notranslate"><span class="pre">&quot;positive&quot;</span></code>). Three operators then act on these signals: <code class="docutils literal notranslate"><span class="pre">Enrich()</span></code> adds the quality flag columns to the output table, <code class="docutils literal notranslate"><span class="pre">Summary()</span></code> generates a <code class="docutils literal notranslate"><span class="pre">clean_dq_summary</span></code> table with aggregated quality metrics, and <code class="docutils literal notranslate"><span class="pre">Filter()</span></code> removes rows with <cite>NULL</cite> customer IDs—routing them to a separate <code class="docutils literal notranslate"><span class="pre">clean_nulls</span></code> quarantine table for review. Note that rows with non-positive amounts remain in the output (flagged but not filtered) since the filter only targets the <code class="docutils literal notranslate"><span class="pre">&quot;nulls&quot;</span></code> tag.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">tabsdata</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">td</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">tabsdata.dataquality</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">dq</span>
+
+<span class="nd">@td</span><span class="o">.</span><span class="n">transformer</span><span class="p">(</span>
+    <span class="n">input_tables</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;landing&quot;</span><span class="p">],</span>
+    <span class="n">output_tables</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;clean&quot;</span><span class="p">],</span>
+    <span class="n">on_output_tables</span><span class="o">=</span><span class="p">[</span>
+        <span class="n">dq</span><span class="o">.</span><span class="n">DataQuality</span><span class="p">(</span>
+            <span class="n">table</span><span class="o">=</span><span class="s2">&quot;clean&quot;</span><span class="p">,</span>
+            <span class="n">classifiers</span><span class="o">=</span><span class="p">[</span>
+                <span class="n">dq</span><span class="o">.</span><span class="n">IsNull</span><span class="p">(</span><span class="s2">&quot;customer_id&quot;</span><span class="p">,</span> <span class="n">tags</span><span class="o">=</span><span class="s2">&quot;nulls&quot;</span><span class="p">),</span>
+                <span class="n">dq</span><span class="o">.</span><span class="n">IsPositive</span><span class="p">(</span><span class="s2">&quot;amount&quot;</span><span class="p">,</span> <span class="n">tags</span><span class="o">=</span><span class="s2">&quot;positive&quot;</span><span class="p">),</span>
+            <span class="p">],</span>
+            <span class="n">operators</span><span class="o">=</span><span class="p">[</span>
+                <span class="n">dq</span><span class="o">.</span><span class="n">Enrich</span><span class="p">(),</span>           <span class="c1"># add dq columns to `clean`</span>
+                <span class="n">dq</span><span class="o">.</span><span class="n">Summary</span><span class="p">(),</span>          <span class="c1"># writes `clean_dq_summary`</span>
+                <span class="n">dq</span><span class="o">.</span><span class="n">Filter</span><span class="p">(</span>
+                    <span class="n">criteria</span><span class="o">=</span><span class="n">dq</span><span class="o">.</span><span class="n">AnyFailed</span><span class="p">(</span><span class="n">tags</span><span class="o">=</span><span class="s2">&quot;nulls&quot;</span><span class="p">,</span> <span class="n">none_is_ok</span><span class="o">=</span><span class="kc">False</span><span class="p">),</span>
+                    <span class="n">to_table</span><span class="o">=</span><span class="s2">&quot;clean_nulls&quot;</span><span class="p">,</span>
+                    <span class="n">include_quality_columns</span><span class="o">=</span><span class="s2">&quot;criteria&quot;</span><span class="p">,</span>
+                <span class="p">),</span>
+            <span class="p">],</span>
+        <span class="p">)</span>
+    <span class="p">],</span>
+<span class="p">)</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">enrich</span><span class="p">(</span><span class="n">tf</span><span class="p">:</span> <span class="n">td</span><span class="o">.</span><span class="n">TableFrame</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">td</span><span class="o">.</span><span class="n">TableFrame</span><span class="p">:</span>
+    <span class="o">...</span>
+</pre></div>
+</div>
+<p><strong>Key parameters:</strong></p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">classifiers</span></code> and <code class="docutils literal notranslate"><span class="pre">operators</span></code> accept either a single object or a list, which lets authors write compact one-off rules or longer pipelines.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">tags</span></code> on both classifiers and operators constrain which classifier results are visible to a given operator:</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">tags=None</span></code> – read every classifier column (default).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">tags=[]</span></code> – target only untagged classifier columns.</p></li>
+<li><p>One or more tag strings – narrow the scope to matching classifiers.</p></li>
+</ul>
+</li>
+<li><p>Boolean operators can decide how to treat missing or NaN inputs via <code class="docutils literal notranslate"><span class="pre">none_is_ok</span></code> / <code class="docutils literal notranslate"><span class="pre">nan_is_ok</span></code>. These flags matter only when the classifier itself isn’t already checking for NULLs or NaNs (e.g., <code class="docutils literal notranslate"><span class="pre">IsPositive</span></code>). If a classifier explicitly tests for nullability (<code class="docutils literal notranslate"><span class="pre">IsNull</span></code>, <code class="docutils literal notranslate"><span class="pre">IsNan</span></code>, <code class="docutils literal notranslate"><span class="pre">IsNullOrNan</span></code>, etc.), the corresponding operator flags are ignored.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">column_names</span></code> can be a string, a list of strings, or <code class="docutils literal notranslate"><span class="pre">(col_name,</span> <span class="pre">dq_col_name)</span></code> tuples. The alias becomes the DQ column name. For example, <code class="docutils literal notranslate"><span class="pre">ScaleCategorizer(column_names=(&quot;value&quot;,</span> <span class="pre">&quot;value_scale_category&quot;),</span> <span class="pre">...)</span></code> creates <code class="docutils literal notranslate"><span class="pre">value_scale_category</span></code>.</p></li>
+</ul>
+<p>Within a single action, the resulting column names (original + DQ columns) must remain unique. Configuring two classifiers that would emit the same alias is rejected at registration time.</p>
+</section>
+</section>
+<section id="classifiers">
+<h3>Classifiers</h3>
+<p>There are two families of classifiers:</p>
+<section id="boolean-classifiers">
+<h4>Boolean Classifiers</h4>
+<p>Boolean classifiers add <code class="docutils literal notranslate"><span class="pre">&lt;column&gt;_&lt;classifier&gt;</span></code> UInt8 columns. Values follow a fixed mapping:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">0</span></code> = False</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">1</span></code> = True</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">252</span></code> = underflow</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">253</span></code> = overflow</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">254</span></code> = NaN</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">255</span></code> = NULL</p></li>
+</ul>
+<p>If your operator sets <code class="docutils literal notranslate"><span class="pre">none_is_ok=True</span></code> and/or <code class="docutils literal notranslate"><span class="pre">nan_is_ok=True</span></code> and the classifier isn’t expressly checking for nullability (e.g., <code class="docutils literal notranslate"><span class="pre">IsPositive</span></code>), missing values are treated as True instead of receiving sentinel codes.</p>
+<p><strong>Nullability classifiers:</strong></p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">IsNull</span></code> / <code class="docutils literal notranslate"><span class="pre">IsNotNull</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">IsNullOrNan</span></code> / <code class="docutils literal notranslate"><span class="pre">IsNotNullNorNan</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">IsNan</span></code> / <code class="docutils literal notranslate"><span class="pre">IsNotNan</span></code></p></li>
+</ul>
+<p><strong>Zero and sign checks:</strong></p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">IsZero</span></code> / <code class="docutils literal notranslate"><span class="pre">IsNotZero</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">IsPositive</span></code> / <code class="docutils literal notranslate"><span class="pre">IsPositiveOrZero</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">IsNegative</span></code> / <code class="docutils literal notranslate"><span class="pre">IsNegativeOrZero</span></code></p></li>
+</ul>
+<p><strong>Range checks:</strong></p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">IsBetween</span></code> / <code class="docutils literal notranslate"><span class="pre">IsNotBetween</span></code> – with <code class="docutils literal notranslate"><span class="pre">min_val</span></code>, <code class="docutils literal notranslate"><span class="pre">max_val</span></code>, and <code class="docutils literal notranslate"><span class="pre">closed</span></code> ∈ <code class="docutils literal notranslate"><span class="pre">{&quot;none&quot;,</span> <span class="pre">&quot;lower&quot;,</span> <span class="pre">&quot;upper&quot;,</span> <span class="pre">&quot;both&quot;}</span></code></p></li>
+</ul>
+<p><strong>Set membership:</strong></p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">IsIn</span></code> / <code class="docutils literal notranslate"><span class="pre">IsNotIn</span></code></p></li>
+</ul>
+<p><strong>Pattern and length:</strong></p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">Matches</span></code> / <code class="docutils literal notranslate"><span class="pre">DoesNotMatch</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">HasLength</span></code></p></li>
+</ul>
+<p>All boolean classifiers support:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">column_names</span></code> – include multiple columns at once.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">on_missing_column</span></code> – <code class="docutils literal notranslate"><span class="pre">&quot;ignore&quot;</span></code> or <code class="docutils literal notranslate"><span class="pre">&quot;fail&quot;</span></code> to decide whether schema drift aborts the run.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">on_wrong_type</span></code> – <code class="docutils literal notranslate"><span class="pre">&quot;ignore&quot;</span></code> or <code class="docutils literal notranslate"><span class="pre">&quot;fail&quot;</span></code> for type mismatches.</p></li>
+<li><p>Optional <code class="docutils literal notranslate"><span class="pre">tags</span></code>.</p></li>
+</ul>
+</section>
+<section id="categorical-classifiers">
+<h4>Categorical Classifiers</h4>
+<p>Categorical classifiers extend the abstract <code class="docutils literal notranslate"><span class="pre">Categorizer</span></code>. The available implementation is <code class="docutils literal notranslate"><span class="pre">ScaleCategorizer</span></code>, which emits a <code class="docutils literal notranslate"><span class="pre">&lt;column&gt;_scale_category</span></code> UInt8 column representing bin numbers plus special sentinels (<code class="docutils literal notranslate"><span class="pre">&quot;none&quot;</span></code>, <code class="docutils literal notranslate"><span class="pre">&quot;nan&quot;</span></code>, <code class="docutils literal notranslate"><span class="pre">&quot;underflow&quot;</span></code>, <code class="docutils literal notranslate"><span class="pre">&quot;overflow&quot;</span></code>).</p>
+<p>It accepts numeric inputs and one of the following scales:</p>
+<dl class="simple">
+<dt><strong>IdentityScale</strong></dt><dd><p><code class="docutils literal notranslate"><span class="pre">IdentityScale(min_val,</span> <span class="pre">max_val,</span> <span class="pre">use_bin_zero=False)</span></code> – integer-to-bucket mapping.</p>
+</dd>
+<dt><strong>LinearScale</strong></dt><dd><p><code class="docutils literal notranslate"><span class="pre">LinearScale(min_val,</span> <span class="pre">max_val,</span> <span class="pre">bins=MAX_BINS,</span> <span class="pre">use_bin_zero=False)</span></code> – equal-width bins.</p>
+</dd>
+<dt><strong>MonomialScale</strong></dt><dd><p><code class="docutils literal notranslate"><span class="pre">MonomialScale(min_val,</span> <span class="pre">max_val,</span> <span class="pre">power,</span> <span class="pre">bins=MAX_BINS,</span> <span class="pre">use_bin_zero=False)</span></code> – power-law spacing. If <code class="docutils literal notranslate"><span class="pre">min_val</span></code> is negative, the values are shifted so the minimum maps to 0 before binning.</p>
+</dd>
+<dt><strong>LogarithmicScale</strong></dt><dd><p><code class="docutils literal notranslate"><span class="pre">LogarithmicScale(min_val,</span> <span class="pre">max_val,</span> <span class="pre">base,</span> <span class="pre">bins=MAX_BINS,</span> <span class="pre">use_bin_zero=False)</span></code> – logarithmic spacing. Negative <code class="docutils literal notranslate"><span class="pre">min_val</span></code> inputs are shifted so the minimum becomes just above zero to keep the domain positive.</p>
+</dd>
+<dt><strong>ExponentialScale</strong></dt><dd><p><code class="docutils literal notranslate"><span class="pre">ExponentialScale(min_val,</span> <span class="pre">max_val,</span> <span class="pre">base,</span> <span class="pre">bins=MAX_BINS,</span> <span class="pre">use_bin_zero=False)</span></code> – exponential widening. Negative ranges are handled like the logarithmic scale.</p>
+</dd>
+</dl>
+<p><code class="docutils literal notranslate"><span class="pre">MAX_BINS</span></code> is 100. When <code class="docutils literal notranslate"><span class="pre">use_bin_zero=True</span></code>, bin 0 is reserved for the minimum and the usable bin count shrinks accordingly.</p>
+</section>
+<section id="default-column-names">
+<h4>Default Column Names</h4>
+<p><strong>Boolean classifier outputs:</strong></p>
+<div class="pst-scrollable-table-container"><table class="table">
+<colgroup>
+<col style="width: 42.9%" />
+<col style="width: 57.1%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Classifier</p></th>
+<th class="head"><p>Default Column Name</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">IsNull</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">&lt;source_column&gt;_is_null</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">IsNotNull</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">&lt;source_column&gt;_is_not_null</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">IsNullOrNan</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">&lt;source_column&gt;_is_null_or_nan</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">IsNotNullNorNan</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">&lt;source_column&gt;_is_not_null_nor_nan</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">IsNan</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">&lt;source_column&gt;_is_nan</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">IsNotNan</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">&lt;source_column&gt;_is_not_nan</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">IsZero</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">&lt;source_column&gt;_is_zero</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">IsNotZero</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">&lt;source_column&gt;_is_not_zero</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">IsPositive</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">&lt;source_column&gt;_is_positive</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">IsPositiveOrZero</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">&lt;source_column&gt;_is_positive_or_zero</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">IsNegative</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">&lt;source_column&gt;_is_negative</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">IsNegativeOrZero</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">&lt;source_column&gt;_is_negative_or_zero</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">IsBetween</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">&lt;source_column&gt;_is_between</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">IsNotBetween</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">&lt;source_column&gt;_is_not_between</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">IsIn</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">&lt;source_column&gt;_is_in</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">IsNotIn</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">&lt;source_column&gt;_is_not_in</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">Matches</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">&lt;source_column&gt;_matches</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">DoesNotMatch</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">&lt;source_column&gt;_does_not_match</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">HasLength</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">&lt;source_column&gt;_has_length</span></code></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><strong>Categorizer outputs:</strong></p>
+<div class="pst-scrollable-table-container"><table class="table">
+<colgroup>
+<col style="width: 42.9%" />
+<col style="width: 57.1%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Classifier</p></th>
+<th class="head"><p>Default Column Name</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">ScaleCategorizer</span></code> (no alias provided)</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">&lt;source_column&gt;_scale_category</span></code></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>When you supply <code class="docutils literal notranslate"><span class="pre">(source,</span> <span class="pre">alias)</span></code> pairs, the alias overrides these defaults.</p>
+</section>
+</section>
+<section id="operators">
+<h3>Operators</h3>
+<p>Operators consume classifier signals and produce actions on your data.</p>
+<section id="enrich">
+<h4>Enrich</h4>
+<p><code class="docutils literal notranslate"><span class="pre">Enrich(to_table=None,</span> <span class="pre">tags=None)</span></code></p>
+<p>Adds classifier columns to either the original table (default, in-place overwrite) or a dedicated new table. When tags are provided, only classifiers with matching tags are materialized.</p>
+</section>
+<section id="summary">
+<h4>Summary</h4>
+<p><code class="docutils literal notranslate"><span class="pre">Summary(tags=None,</span> <span class="pre">table=None)</span></code></p>
+<p>Always emits a new table. When you omit <code class="docutils literal notranslate"><span class="pre">table</span></code>, the engine names it <code class="docutils literal notranslate"><span class="pre">&lt;source&gt;_dq_summary</span></code>.</p>
+</section>
+<section id="filter">
+<h4>Filter</h4>
+<p><code class="docutils literal notranslate"><span class="pre">Filter(criteria,</span> <span class="pre">to_table=None,</span> <span class="pre">include_quality_columns=&quot;none&quot;)</span></code></p>
+<p>Removes rows matching criteria from the output table. With <code class="docutils literal notranslate"><span class="pre">to_table</span></code>, rejected rows are written to a separate table; otherwise they are dropped.</p>
+<p><code class="docutils literal notranslate"><span class="pre">include_quality_columns</span></code> options:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">&quot;none&quot;</span></code> – bare data rows.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">&quot;criteria&quot;</span></code> – only the DQ columns referenced by the criteria (boolean or categorical).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">&quot;all&quot;</span></code> – all classifier outputs.</p></li>
+</ul>
+</section>
+<section id="select">
+<h4>Select</h4>
+<p><code class="docutils literal notranslate"><span class="pre">Select(criteria,</span> <span class="pre">to_table,</span> <span class="pre">include_quality_columns=&quot;none&quot;)</span></code></p>
+<p>Copies rows matching criteria to another table without mutating the source table. A target name is mandatory.</p>
+</section>
+<section id="fail">
+<h4>Fail</h4>
+<p><code class="docutils literal notranslate"><span class="pre">Fail(criteria,</span> <span class="pre">threshold)</span></code></p>
+<p>Aborts the entire transformer/publisher run when the threshold is exceeded.</p>
+<p>Thresholds:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">RowCountThreshold(row_count)</span></code> – fail if matching rows &gt;= count.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">PercentThreshold(percent)</span></code> – fail if matching rows exceed percentage.</p></li>
+</ul>
+</section>
+<section id="derived-table-names">
+<h4>Derived Table Names</h4>
+<div class="pst-scrollable-table-container"><table class="table">
+<colgroup>
+<col style="width: 17.6%" />
+<col style="width: 41.2%" />
+<col style="width: 41.2%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Operator</p></th>
+<th class="head"><p>Default Table Name</p></th>
+<th class="head"><p>Behavior with <code class="docutils literal notranslate"><span class="pre">to_table</span></code>/<code class="docutils literal notranslate"><span class="pre">table</span></code></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">Enrich</span></code></p></td>
+<td><p>Overwrites source table in place</p></td>
+<td><p>Uses your exact <code class="docutils literal notranslate"><span class="pre">to_table</span></code> name for the enriched copy</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">Filter</span></code></p></td>
+<td><p>Rows dropped; no table emitted</p></td>
+<td><p>Uses your exact <code class="docutils literal notranslate"><span class="pre">to_table</span></code> name for rejected rows</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">Select</span></code></p></td>
+<td><p>Target name is mandatory</p></td>
+<td><p>Uses your exact <code class="docutils literal notranslate"><span class="pre">to_table</span></code> name for selected rows</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">Summary</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">&lt;output_table_name&gt;_dq_summary</span></code></p></td>
+<td><p>Uses your exact <code class="docutils literal notranslate"><span class="pre">table</span></code> name when provided</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="cross-action-constraints">
+<h4>Cross-Action Constraints</h4>
+<ul class="simple">
+<li><p>Only one <code class="docutils literal notranslate"><span class="pre">Enrich</span></code> per output table may redirect rows by setting <code class="docutils literal notranslate"><span class="pre">to_table</span></code>, because that operator substitutes the original table with the enriched copy.</p></li>
+<li><p>A given derived table name (<code class="docutils literal notranslate"><span class="pre">to_table</span></code> in Filter/Select or <code class="docutils literal notranslate"><span class="pre">table</span></code> in Summary) must be declared once across all actions attached to the function; producing the same non-output table multiple times is disallowed.</p></li>
+</ul>
+</section>
+</section>
+<section id="criteria-and-thresholds">
+<h3>Criteria and Thresholds</h3>
+<p><strong>Boolean criteria:</strong></p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">AllOk</span></code> / <code class="docutils literal notranslate"><span class="pre">AnyFailed</span></code> – operate on boolean classifier columns and expose <code class="docutils literal notranslate"><span class="pre">none_is_ok</span></code> / <code class="docutils literal notranslate"><span class="pre">nan_is_ok</span></code> toggles. Set these to <code class="docutils literal notranslate"><span class="pre">True</span></code> when you want operators to treat missing/NaN values as acceptable rather than as sentinel codes.</p></li>
+</ul>
+<p><strong>Categorical criteria:</strong></p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">InBins</span></code> / <code class="docutils literal notranslate"><span class="pre">NotInBins</span></code> – target categorizer outputs. Bins can include integers or the special labels <code class="docutils literal notranslate"><span class="pre">&quot;none&quot;</span></code>, <code class="docutils literal notranslate"><span class="pre">&quot;nan&quot;</span></code>, <code class="docutils literal notranslate"><span class="pre">&quot;underflow&quot;</span></code>, <code class="docutils literal notranslate"><span class="pre">&quot;overflow&quot;</span></code>.</p></li>
+</ul>
+<p>Each criteria holds onto the classifier tags it needs, so operators automatically align with the right DQ columns. Threshold choices (row count / percent) are validated to catch impossible values.</p>
+</section>
+</section>
+<section id="showcased-workflows">
+<h2>Showcased Workflows</h2>
+<section id="enriching-output-rows-and-building-summaries">
+<h3>1. Enriching Output Rows and Building Summaries</h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">dq</span><span class="o">.</span><span class="n">DataQuality</span><span class="p">(</span>
+    <span class="n">table</span><span class="o">=</span><span class="s2">&quot;table_o&quot;</span><span class="p">,</span>
+    <span class="n">classifiers</span><span class="o">=</span><span class="p">[</span><span class="n">dq</span><span class="o">.</span><span class="n">IsPositive</span><span class="p">(</span><span class="s2">&quot;value&quot;</span><span class="p">)],</span>
+    <span class="n">operators</span><span class="o">=</span><span class="p">[</span><span class="n">dq</span><span class="o">.</span><span class="n">Summary</span><span class="p">(),</span> <span class="n">dq</span><span class="o">.</span><span class="n">Enrich</span><span class="p">()],</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<p>This produces <code class="docutils literal notranslate"><span class="pre">table_o</span></code> with the extra <code class="docutils literal notranslate"><span class="pre">value_is_positive</span></code> column (UInt8 status codes) and <code class="docutils literal notranslate"><span class="pre">table_o_dq_summary</span></code> with boolean counts (<code class="docutils literal notranslate"><span class="pre">dq.true</span></code>, <code class="docutils literal notranslate"><span class="pre">dq.false</span></code>, <code class="docutils literal notranslate"><span class="pre">dq.none</span></code>, <code class="docutils literal notranslate"><span class="pre">dq.nan</span></code>). This is the easiest drop-in for surfacing quality metrics alongside the data.</p>
+</section>
+<section id="quarantining-bad-rows-with-tags">
+<h3>2. Quarantining Bad Rows with Tags</h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">scale</span> <span class="o">=</span> <span class="n">dq</span><span class="o">.</span><span class="n">LinearScale</span><span class="p">(</span><span class="n">min_val</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">max_val</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+
+<span class="n">dq</span><span class="o">.</span><span class="n">DataQuality</span><span class="p">(</span>
+    <span class="n">table</span><span class="o">=</span><span class="s2">&quot;scores&quot;</span><span class="p">,</span>
+    <span class="n">classifiers</span><span class="o">=</span><span class="p">[</span>
+        <span class="n">dq</span><span class="o">.</span><span class="n">IsPositive</span><span class="p">(</span><span class="s2">&quot;score&quot;</span><span class="p">,</span> <span class="n">tags</span><span class="o">=</span><span class="s2">&quot;positive&quot;</span><span class="p">,</span> <span class="n">none_is_ok</span><span class="o">=</span><span class="kc">False</span><span class="p">),</span>
+        <span class="n">dq</span><span class="o">.</span><span class="n">ScaleCategorizer</span><span class="p">(</span>
+            <span class="p">(</span><span class="s2">&quot;score_float&quot;</span><span class="p">,</span> <span class="s2">&quot;score_float_scale_category&quot;</span><span class="p">),</span>
+            <span class="n">scale</span><span class="o">=</span><span class="n">scale</span>
+        <span class="p">),</span>
+    <span class="p">],</span>
+    <span class="n">operators</span><span class="o">=</span><span class="p">[</span>
+        <span class="n">dq</span><span class="o">.</span><span class="n">Filter</span><span class="p">(</span>
+            <span class="n">criteria</span><span class="o">=</span><span class="n">dq</span><span class="o">.</span><span class="n">AnyFailed</span><span class="p">(</span><span class="n">tags</span><span class="o">=</span><span class="s2">&quot;positive&quot;</span><span class="p">,</span> <span class="n">none_is_ok</span><span class="o">=</span><span class="kc">False</span><span class="p">),</span>
+            <span class="n">to_table</span><span class="o">=</span><span class="s2">&quot;scores_bad&quot;</span><span class="p">,</span>
+            <span class="n">include_quality_columns</span><span class="o">=</span><span class="s2">&quot;criteria&quot;</span><span class="p">,</span>  <span class="c1"># adds only score_is_positive</span>
+        <span class="p">),</span>
+        <span class="n">dq</span><span class="o">.</span><span class="n">Select</span><span class="p">(</span>
+            <span class="n">criteria</span><span class="o">=</span><span class="n">dq</span><span class="o">.</span><span class="n">InBins</span><span class="p">(</span><span class="s2">&quot;score_float_scale_category&quot;</span><span class="p">,</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]),</span>
+            <span class="n">to_table</span><span class="o">=</span><span class="s2">&quot;scores_low_bins&quot;</span><span class="p">,</span>
+            <span class="n">include_quality_columns</span><span class="o">=</span><span class="s2">&quot;all&quot;</span><span class="p">,</span>
+        <span class="p">),</span>
+    <span class="p">],</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Rows with invalid or zero scores are removed from the main output. With <code class="docutils literal notranslate"><span class="pre">to_table=None</span></code> they would be discarded completely.</p></li>
+<li><p>Because <code class="docutils literal notranslate"><span class="pre">&quot;criteria&quot;</span></code> is used, <code class="docutils literal notranslate"><span class="pre">scores_bad</span></code> only exposes the DQ columns that justified the move, keeping tables narrow.</p></li>
+<li><p>The <code class="docutils literal notranslate"><span class="pre">Select</span></code> example shows how categorical bins get propagated to downstream tables for auditing.</p></li>
+</ul>
+</section>
+<section id="failing-a-run-when-breaches-cross-a-threshold">
+<h3>3. Failing a Run When Breaches Cross a Threshold</h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">dq</span><span class="o">.</span><span class="n">DataQuality</span><span class="p">(</span>
+    <span class="n">table</span><span class="o">=</span><span class="s2">&quot;clean&quot;</span><span class="p">,</span>
+    <span class="n">classifiers</span><span class="o">=</span><span class="p">[</span><span class="n">dq</span><span class="o">.</span><span class="n">IsNotNull</span><span class="p">([</span><span class="s2">&quot;customer_id&quot;</span><span class="p">,</span> <span class="s2">&quot;order_id&quot;</span><span class="p">])],</span>
+    <span class="n">operators</span><span class="o">=</span><span class="p">[</span>
+        <span class="n">dq</span><span class="o">.</span><span class="n">Fail</span><span class="p">(</span>
+            <span class="n">criteria</span><span class="o">=</span><span class="n">dq</span><span class="o">.</span><span class="n">AnyFailed</span><span class="p">(</span><span class="n">none_is_ok</span><span class="o">=</span><span class="kc">False</span><span class="p">),</span>
+            <span class="n">threshold</span><span class="o">=</span><span class="n">dq</span><span class="o">.</span><span class="n">RowCountThreshold</span><span class="p">(</span><span class="mi">2</span><span class="p">),</span>
+        <span class="p">)</span>
+    <span class="p">],</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<p>If 2 or more rows contain NULL in either column, the transformer raises <code class="docutils literal notranslate"><span class="pre">DataQualityProcessingError</span></code> and the orchestration layer can retry or alert. Swapping to <code class="docutils literal notranslate"><span class="pre">PercentThreshold(5)</span></code> switches to percentage-based gating.</p>
+</section>
+<section id="categorizing-continuous-metrics">
+<h3>4. Categorizing Continuous Metrics</h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">temp_scale</span> <span class="o">=</span> <span class="n">dq</span><span class="o">.</span><span class="n">LinearScale</span><span class="p">(</span>
+    <span class="n">min_val</span><span class="o">=-</span><span class="mf">20.0</span><span class="p">,</span>
+    <span class="n">max_val</span><span class="o">=</span><span class="mf">50.0</span><span class="p">,</span>
+    <span class="n">bins</span><span class="o">=</span><span class="mi">7</span><span class="p">,</span>
+    <span class="n">use_bin_zero</span><span class="o">=</span><span class="kc">True</span>
+<span class="p">)</span>
+
+<span class="n">dq</span><span class="o">.</span><span class="n">DataQuality</span><span class="p">(</span>
+    <span class="n">table</span><span class="o">=</span><span class="s2">&quot;sensor_readings&quot;</span><span class="p">,</span>
+    <span class="n">classifiers</span><span class="o">=</span><span class="p">[</span>
+        <span class="n">dq</span><span class="o">.</span><span class="n">ScaleCategorizer</span><span class="p">((</span><span class="s2">&quot;temp_c&quot;</span><span class="p">,</span> <span class="s2">&quot;temp_bucket&quot;</span><span class="p">),</span> <span class="n">scale</span><span class="o">=</span><span class="n">temp_scale</span><span class="p">),</span>
+    <span class="p">],</span>
+    <span class="n">operators</span><span class="o">=</span><span class="p">[</span><span class="n">dq</span><span class="o">.</span><span class="n">Enrich</span><span class="p">(),</span> <span class="n">dq</span><span class="o">.</span><span class="n">Summary</span><span class="p">()],</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">temp_bucket</span></code> holds UInt8 bin ids, where 0 means “exactly the minimum” because <code class="docutils literal notranslate"><span class="pre">use_bin_zero=True</span></code>.</p></li>
+<li><p>Special status values mark NULL, NaN, underflow, and overflow readings when they fall outside the configured range.</p></li>
+<li><p>The summary table reports <code class="docutils literal notranslate"><span class="pre">dq.bins</span></code>, <code class="docutils literal notranslate"><span class="pre">dq.under</span></code>, <code class="docutils literal notranslate"><span class="pre">dq.over</span></code>, and <code class="docutils literal notranslate"><span class="pre">dq.p000</span></code> … <code class="docutils literal notranslate"><span class="pre">dq.p007</span></code> counts so dashboards can aggregate distribution drift.</p></li>
+</ul>
+</section>
+<section id="guarding-against-schema-drift">
+<h3>5. Guarding Against Schema Drift</h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">dq</span><span class="o">.</span><span class="n">IsNull</span><span class="p">(</span>
+    <span class="p">[</span><span class="s2">&quot;legacy_col&quot;</span><span class="p">],</span>
+    <span class="n">on_missing_column</span><span class="o">=</span><span class="s2">&quot;fail&quot;</span><span class="p">,</span>   <span class="c1"># explode if publisher forgets the column</span>
+<span class="p">)</span>
+
+<span class="n">dq</span><span class="o">.</span><span class="n">IsNan</span><span class="p">(</span>
+    <span class="s2">&quot;ratio&quot;</span><span class="p">,</span>
+    <span class="n">on_wrong_type</span><span class="o">=</span><span class="s2">&quot;fail&quot;</span><span class="p">,</span>       <span class="c1"># catch accidental casting to string</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<p>These flags are essential when the source team wants DQ to double as guardrails against structural regressions.</p>
+</section>
+</section>
+<section id="summary-table-schema">
+<h2>Summary Table Schema</h2>
+<p>Reference for the schema emitted by <code class="docutils literal notranslate"><span class="pre">dq.Summary()</span></code> at runtime:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<colgroup>
+<col style="width: 28.6%" />
+<col style="width: 71.4%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Column</p></th>
+<th class="head"><p>Meaning</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">dq.version</span></code></p></td>
+<td><p>Engine version (1 today)</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">dq.classifier</span></code></p></td>
+<td><p>Result column name (e.g., <code class="docutils literal notranslate"><span class="pre">amount_is_positive</span></code>)</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">dq.type</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">&quot;boolean&quot;</span></code> or <code class="docutils literal notranslate"><span class="pre">&quot;categorical&quot;</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">dq.bins</span></code></p></td>
+<td><p>Number of configured bins (categorizer only, else None)</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">dq.false</span></code> / <code class="docutils literal notranslate"><span class="pre">dq.true</span></code></p></td>
+<td><p>Counts of boolean failures/passes</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">dq.none</span></code> / <code class="docutils literal notranslate"><span class="pre">dq.nan</span></code></p></td>
+<td><p>Rows with None / NaN</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">dq.under</span></code> / <code class="docutils literal notranslate"><span class="pre">dq.over</span></code></p></td>
+<td><p>Underflow/overflow counts for categorizers</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">dq.p000</span></code> … <code class="docutils literal notranslate"><span class="pre">dq.p100</span></code></p></td>
+<td><p>Bin occupancy; unused bins remain None</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">dq.parameters</span></code></p></td>
+<td><p>Stringified classifier configuration (<code class="docutils literal notranslate"><span class="pre">str(classifier)</span></code>)</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="known-limitations">
+<h2>Known Limitations</h2>
+<ul class="simple">
+<li><p><strong>Subscribers</strong> do not emit TableFrames and therefore cannot run DQ yet.</p></li>
+<li><p><strong>Input-table DQ</strong> (validating data as it enters a transformer) is not implemented. Today, users must stage raw data or build a two-step pipeline.</p></li>
+<li><p><strong>Max of 100 bins</strong> per categorizer (101 if <code class="docutils literal notranslate"><span class="pre">use_bin_zero=True</span></code>). Heavy skew scenarios may require multiple categorizer columns.</p></li>
+</ul>
+</section>
+</section>
+
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="../07_working_with_connector_plugins/main.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Working with Plugins</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="../catalogs/main.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Catalogs</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+<div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dataquality-action">DataQuality Action</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#examples">Examples</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#example-1-enriching-output-with-quality-columns">Example 1 – Enriching Output with Quality Columns</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#example-2-failing-a-run-based-on-row-count-threshold">Example 2 – Failing a Run Based on Row Count Threshold</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#example-3-using-multiple-classifiers-and-operators-with-tags">Example 3 – Using Multiple Classifiers and Operators with Tags</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#classifiers">Classifiers</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#boolean-classifiers">Boolean Classifiers</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#categorical-classifiers">Categorical Classifiers</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#default-column-names">Default Column Names</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#operators">Operators</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#enrich">Enrich</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#summary">Summary</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#filter">Filter</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#select">Select</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#fail">Fail</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#derived-table-names">Derived Table Names</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#cross-action-constraints">Cross-Action Constraints</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#criteria-and-thresholds">Criteria and Thresholds</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#showcased-workflows">Showcased Workflows</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#enriching-output-rows-and-building-summaries">1. Enriching Output Rows and Building Summaries</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#quarantining-bad-rows-with-tags">2. Quarantining Bad Rows with Tags</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#failing-a-run-when-breaches-cross-a-threshold">3. Failing a Run When Breaches Cross a Threshold</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#categorizing-continuous-metrics">4. Categorizing Continuous Metrics</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#guarding-against-schema-drift">5. Guarding Against Schema Drift</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#summary-table-schema">Summary Table Schema</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#known-limitations">Known Limitations</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+
+<!-- Your custom footer content here -->
+
+  </body>
+</html>
