@@ -1,0 +1,888 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>cosh &#8212; Tabsdata  documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=8f2a1f02" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/custom.css?v=b7af4508" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="../../../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+
+    <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+    <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+    <script src="../../../_static/documentation_options.js?v=7f41d439"></script>
+    <script src="../../../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../../_static/copybutton.js?v=a56c686a"></script>
+    <script src="../../../_static/design-tabs.js?v=f930bc37"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'api_ref/tableframe_api/numeric/Expr.cosh';</script>
+    <script>
+        DOCUMENTATION_OPTIONS.theme_version = '0.16.1';
+        DOCUMENTATION_OPTIONS.theme_switcher_json_url = 'https://docs.tabsdata.com/version.json';
+        DOCUMENTATION_OPTIONS.theme_switcher_version_match = '1.6.0';
+        DOCUMENTATION_OPTIONS.show_version_warning_banner =
+            false;
+        </script>
+    <script src="../../../_static/custom.js?v=ac098f57"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="cot" href="Expr.cot.html" />
+    <link rel="prev" title="cos" href="Expr.cos.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="1.6.0" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+
+
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+     
+  
+
+<a class="navbar-brand logo" href=" https://tabsdata.com/?utm_source=docs">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../../_static/tabsdata_root.png" class="logo__image only-light" alt="Tabsdata  documentation - Home"/>
+    <img src="../../../_static/tabsdata_root_light.png" class="logo__image only-dark pst-js-only" alt="Tabsdata  documentation - Home"/>
+  
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../guide/intro.html">
+    Guide
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="../../index.html">
+    API Reference
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../tutorials/index.html">
+    Tutorials
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+        <div class="navbar-item">
+<div class="version-switcher__container dropdown pst-js-only">
+  <button id="pst-version-switcher-button-2"
+    type="button"
+    class="version-switcher__button btn btn-sm dropdown-toggle"
+    data-bs-toggle="dropdown"
+    aria-haspopup="listbox"
+    aria-controls="pst-version-switcher-list-2"
+    aria-label="Version switcher list"
+  >
+    Choose version  <!-- this text may get changed later by javascript -->
+    <span class="caret"></span>
+  </button>
+  <div id="pst-version-switcher-list-2"
+    class="version-switcher__menu dropdown-menu list-group-flush py-0"
+    role="listbox" aria-labelledby="pst-version-switcher-button-2">
+    <!-- dropdown will be populated by javascript on page load -->
+  </div>
+</div></div>
+      
+        <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../guide/intro.html">
+    Guide
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="../../index.html">
+    API Reference
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../tutorials/index.html">
+    Tutorials
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+<div class="version-switcher__container dropdown pst-js-only">
+  <button id="pst-version-switcher-button-3"
+    type="button"
+    class="version-switcher__button btn btn-sm dropdown-toggle"
+    data-bs-toggle="dropdown"
+    aria-haspopup="listbox"
+    aria-controls="pst-version-switcher-list-3"
+    aria-label="Version switcher list"
+  >
+    Choose version  <!-- this text may get changed later by javascript -->
+    <span class="caret"></span>
+  </button>
+  <div id="pst-version-switcher-list-3"
+    class="version-switcher__menu dropdown-menu list-group-flush py-0"
+    role="listbox" aria-labelledby="pst-version-switcher-button-3">
+    <!-- dropdown will be populated by javascript on page load -->
+  </div>
+</div></div>
+        
+          <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+<nav class="bd-docs-nav bd-links"
+     aria-label="Section Navigation">
+  <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
+  <div class="bd-toc-item navbar-nav"><ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../decorators/index.html">Functions</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../decorators/api/tabsdata.publisher.html">publisher</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../decorators/api/tabsdata.subscriber.html">subscriber</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../decorators/api/tabsdata.transformer.html">transformer</a></li>
+</ul>
+</details></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../dataquality/index.html">Data Quality</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../dataquality/api/tabsdata.dataquality.DataQuality.html">DataQuality</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../dataquality/api/tabsdata.dataquality.Categorizer.html">Categorizer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../dataquality/api/tabsdata.dataquality.DoesNotMatch.html">DoesNotMatch</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../dataquality/api/tabsdata.dataquality.IsIn.html">IsIn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../dataquality/api/tabsdata.dataquality.IsNan.html">IsNan</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../dataquality/api/tabsdata.dataquality.IsNegative.html">IsNegative</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../dataquality/api/tabsdata.dataquality.IsNegativeOrZero.html">IsNegativeOrZero</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../dataquality/api/tabsdata.dataquality.IsNotIn.html">IsNotIn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../dataquality/api/tabsdata.dataquality.IsNotNan.html">IsNotNan</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../dataquality/api/tabsdata.dataquality.IsNotNull.html">IsNotNull</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../dataquality/api/tabsdata.dataquality.IsNotZero.html">IsNotZero</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../dataquality/api/tabsdata.dataquality.IsNull.html">IsNull</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../dataquality/api/tabsdata.dataquality.IsNullOrNan.html">IsNullOrNan</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../dataquality/api/tabsdata.dataquality.IsPositive.html">IsPositive</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../dataquality/api/tabsdata.dataquality.IsPositiveOrZero.html">IsPositiveOrZero</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../dataquality/api/tabsdata.dataquality.IsZero.html">IsZero</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../dataquality/api/tabsdata.dataquality.Matches.html">Matches</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../dataquality/api/tabsdata.dataquality.Scale.html">Scale</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../dataquality/api/tabsdata.dataquality.Criteria.html">Criteria</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../dataquality/api/tabsdata.dataquality.Fail.html">Fail</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../dataquality/api/tabsdata.dataquality.Filter.html">Filter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../dataquality/api/tabsdata.dataquality.Select.html">Select</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../dataquality/api/tabsdata.dataquality.Summary.html">Summary</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../dataquality/api/tabsdata.dataquality.Threshold.html">Threshold</a></li>
+</ul>
+</details></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../connectors/index.html">Connectors</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../connectors/for_publishers.html">Publishers</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../connectors/for_publishers/tabsdata.AzureSource.html">AzureSource</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../connectors/for_publishers/tabsdata.GCSSource.html">GCSSource</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../connectors/for_publishers/tabsdata.LocalFileSource.html">LocalFileSource</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../connectors/for_publishers/tabsdata.MariaDBSource.html">MariaDBSource</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../connectors/for_publishers/tabsdata.MariaDBSrc.html">MariaDBSrc</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../connectors/for_publishers/tabsdata.MSSQLSource.html">MSSQLSource</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../connectors/for_publishers/tabsdata.MSSQLSrc.html">MSSQLSrc</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../connectors/for_publishers/tabsdata.MySQLSource.html">MySQLSource</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../connectors/for_publishers/tabsdata.MySQLSrc.html">MySQLSrc</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../connectors/for_publishers/tabsdata.OracleSource.html">OracleSource</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../connectors/for_publishers/tabsdata.PostgresSource.html">PostgresSource</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../connectors/for_publishers/tabsdata.S3Source.html">S3Source</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../connectors/for_publishers/tabsdata.SalesforceReportSource.html">SalesforceReportSource</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../connectors/for_publishers/tabsdata.SalesforceSource.html">SalesforceSource</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../connectors/for_subscribers.html">Subscribers</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../connectors/for_subscribers/tabsdata.AzureDestination.html">AzureDestination</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../connectors/for_subscribers/tabsdata.BigQueryDest.html">BigQueryDest</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../connectors/for_subscribers/tabsdata.DatabricksDestination.html">DatabricksDestination</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../connectors/for_subscribers/tabsdata.GCSDestination.html">GCSDestination</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../connectors/for_subscribers/tabsdata.LocalFileDestination.html">LocalFileDestination</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../connectors/for_subscribers/tabsdata.MariaDBDestination.html">MariaDBDestination</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../connectors/for_subscribers/tabsdata.MariaDBDest.html">MariaDBDest</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../connectors/for_subscribers/tabsdata.MongoDBDestination.html">MongoDBDestination</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../connectors/for_subscribers/tabsdata.MSSQLDestination.html">MSSQLDestination</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../connectors/for_subscribers/tabsdata.MySQLDestination.html">MySQLDestination</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../connectors/for_subscribers/tabsdata.MySQLDest.html">MySQLDest</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../connectors/for_subscribers/tabsdata.OracleDestination.html">OracleDestination</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../connectors/for_subscribers/tabsdata.PostgresDestination.html">PostgresDestination</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../connectors/for_subscribers/tabsdata.S3Destination.html">S3Destination</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../connectors/for_subscribers/tabsdata.SnowflakeDestination.html">SnowflakeDestination</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../connectors/plugins.html">Plugins</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../connectors/plugins/tabsdata.SourcePlugin.html">SourcePlugin</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../connectors/plugins/tabsdata.DestinationPlugin.html">DestinationPlugin</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../connector_options/index.html">Connector Common Options</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../connector_options/file_formats.html">File formats</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../connector_options/file_formats/tabsdata.AvroFormat.html">AvroFormat</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../connector_options/file_formats/tabsdata.CSVFormat.html">CSVFormat</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../connector_options/file_formats/tabsdata.LogFormat.html">LogFormat</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../connector_options/file_formats/tabsdata.NDJSONFormat.html">NDJSONFormat</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../connector_options/file_formats/tabsdata.ParquetFormat.html">ParquetFormat</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../connector_options/credentials.html">Credentials</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../connector_options/credentials/tabsdata.AzureAccountKeyCredentials.html">AzureAccountKeyCredentials</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../connector_options/credentials/tabsdata.S3AccessKeyCredentials.html">S3AccessKeyCredentials</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../connector_options/credentials/tabsdata.UserPasswordCredentials.html">UserPasswordCredentials</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../connector_options/secrets.html">Secrets</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../connector_options/secrets/tabsdata.EnvironmentSecret.html">EnvironmentSecret</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+</ul>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="../index.html">TableFrame API</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2 has-children"><a class="reference internal" href="../aggregation.html">Aggregation</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../aggregation/Expr.count.html">count</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../aggregation/Expr.first.html">first</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../aggregation/Expr.last.html">last</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../aggregation/Expr.len.html">len</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../aggregation/Expr.max.html">max</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../aggregation/Expr.mean.html">mean</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../aggregation/Expr.median.html">median</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../aggregation/Expr.min.html">min</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../aggregation/Expr.n_unique.html">n_unique</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../aggregation/Expr.rank.html">rank</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../aggregation/Expr.sum.html">sum</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../aggregation/TableFrame.group_by.html">group_by</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../aggregation/tabsdata.tableframe.lazyframe.group_by.TableFrameGroupBy.count.html">count</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../aggregation/tabsdata.tableframe.lazyframe.group_by.TableFrameGroupBy.max.html">max</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../aggregation/tabsdata.tableframe.lazyframe.group_by.TableFrameGroupBy.mean.html">mean</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../aggregation/tabsdata.tableframe.lazyframe.group_by.TableFrameGroupBy.median.html">median</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../aggregation/tabsdata.tableframe.lazyframe.group_by.TableFrameGroupBy.min.html">min</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../aggregation/tabsdata.tableframe.lazyframe.group_by.TableFrameGroupBy.n_unique.html">n_unique</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../aggregation/tabsdata.tableframe.lazyframe.group_by.TableFrameGroupBy.sum.html">sum</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../attributes.html">Attributes</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../attributes/TableFrame.dtypes.html">dtypes</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../date.html">Date</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../date/ExprDateTimeNameSpace.add_business_days.html">add_business_days</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../date/ExprDateTimeNameSpace.base_utc_offset.html">base_utc_offset</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../date/ExprDateTimeNameSpace.cast_time_unit.html">cast_time_unit</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../date/ExprDateTimeNameSpace.century.html">century</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../date/ExprDateTimeNameSpace.combine.html">combine</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../date/ExprDateTimeNameSpace.convert_time_zone.html">convert_time_zone</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../date/ExprDateTimeNameSpace.date.html">date</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../date/ExprDateTimeNameSpace.datetime.html">datetime</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../date/ExprDateTimeNameSpace.day.html">day</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../date/ExprDateTimeNameSpace.dst_offset.html">dst_offset</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../date/ExprDateTimeNameSpace.epoch.html">epoch</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../date/ExprDateTimeNameSpace.hour.html">hour</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../date/ExprDateTimeNameSpace.is_leap_year.html">is_leap_year</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../date/ExprDateTimeNameSpace.iso_year.html">iso_year</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../date/ExprDateTimeNameSpace.microsecond.html">microsecond</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../date/ExprDateTimeNameSpace.millennium.html">millennium</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../date/ExprDateTimeNameSpace.millisecond.html">millisecond</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../date/ExprDateTimeNameSpace.minute.html">minute</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../date/ExprDateTimeNameSpace.month.html">month</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../date/ExprDateTimeNameSpace.month_end.html">month_end</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../date/ExprDateTimeNameSpace.month_start.html">month_start</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../date/ExprDateTimeNameSpace.nanosecond.html">nanosecond</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../date/ExprDateTimeNameSpace.offset_by.html">offset_by</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../date/ExprDateTimeNameSpace.ordinal_day.html">ordinal_day</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../date/ExprDateTimeNameSpace.quarter.html">quarter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../date/ExprDateTimeNameSpace.replace_time_zone.html">replace_time_zone</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../date/ExprDateTimeNameSpace.second.html">second</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../date/ExprDateTimeNameSpace.strftime.html">strftime</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../date/ExprDateTimeNameSpace.time.html">time</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../date/ExprDateTimeNameSpace.timestamp.html">timestamp</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../date/ExprDateTimeNameSpace.total_days.html">total_days</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../date/ExprDateTimeNameSpace.total_hours.html">total_hours</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../date/ExprDateTimeNameSpace.total_microseconds.html">total_microseconds</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../date/ExprDateTimeNameSpace.total_milliseconds.html">total_milliseconds</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../date/ExprDateTimeNameSpace.total_minutes.html">total_minutes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../date/ExprDateTimeNameSpace.total_nanoseconds.html">total_nanoseconds</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../date/ExprDateTimeNameSpace.total_seconds.html">total_seconds</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../date/ExprDateTimeNameSpace.truncate.html">truncate</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../date/ExprDateTimeNameSpace.week.html">week</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../date/ExprDateTimeNameSpace.weekday.html">weekday</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../date/ExprDateTimeNameSpace.with_time_unit.html">with_time_unit</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../date/ExprDateTimeNameSpace.year.html">year</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../description.html">Description</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../description/TableFrame.explain.html">explain</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../description/TableFrame.show_graph.html">show_graph</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../filters.html">Filters</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../filters/Expr.filter.html">filter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../filters/Expr.slice.html">slice</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../filters/TableFrame.extract_as_columns.html">extract_as_columns</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../filters/TableFrame.extract_as_rows.html">extract_as_rows</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../filters/TableFrame.filter.html">filter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../filters/TableFrame.first.html">first</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../filters/TableFrame.first_row.html">first_row</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../filters/TableFrame.head.html">head</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../filters/TableFrame.last.html">last</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../filters/TableFrame.last_row.html">last_row</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../filters/TableFrame.limit.html">limit</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../filters/TableFrame.slice.html">slice</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../filters/TableFrame.tail.html">tail</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../filters/TableFrame.unique.html">unique</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../generation.html">Generation</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../generation/tabsdata.tableframe.functions.lit.lit.html">lit</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../join.html">Join</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../join/TableFrame.join.html">join</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../logic.html">Logic</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../logic/Expr.and_.html">and</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../logic/Expr.eq.html">eq</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../logic/Expr.eq_missing.html">eq_missing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../logic/Expr.ge.html">ge</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../logic/Expr.gt.html">gt</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../logic/Expr.is_between.html">is_between</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../logic/Expr.is_finite.html">is_finite</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../logic/Expr.is_in.html">is_in</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../logic/Expr.is_infinite.html">is_infinite</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../logic/Expr.is_nan.html">is_nan</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../logic/Expr.is_not_nan.html">is_not_nan</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../logic/Expr.is_not_null.html">is_not_null</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../logic/Expr.is_null.html">is_null</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../logic/Expr.is_unique.html">is_unique</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../logic/Expr.le.html">le</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../logic/Expr.lt.html">lt</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../logic/Expr.ne.html">ne</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../logic/Expr.ne_missing.html">ne_missing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../logic/Expr.not_.html">not</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../logic/Expr.or_.html">or</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../logic/Expr.xor.html">xor</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../manipulation.html">Manipulation</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../manipulation/Expr.alias.html">alias</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../manipulation/Expr.fill_nan.html">fill_nan</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../manipulation/Expr.fill_null.html">fill_null</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../manipulation/TableFrame.cast.html">cast</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../manipulation/TableFrame.drop_nans.html">drop_nans</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../manipulation/TableFrame.drop_nulls.html">drop_nulls</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../manipulation/TableFrame.fill_nan.html">fill_nan</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../manipulation/TableFrame.fill_null.html">fill_null</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 current active has-children"><a class="reference internal" href="../numeric.html">Numeric</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="Expr.abs.html">abs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Expr.add.html">add</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Expr.arccos.html">arccos</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Expr.arccosh.html">arccosh</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Expr.arcsin.html">arcsin</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Expr.arcsinh.html">arcsinh</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Expr.arctan.html">arctan</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Expr.arctanh.html">arctanh</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Expr.cbrt.html">cbrt</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Expr.ceil.html">ceil</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Expr.clip.html">clip</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Expr.cos.html">cos</a></li>
+<li class="toctree-l3 current active"><a class="current reference internal" href="#">cosh</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Expr.cot.html">cot</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Expr.degrees.html">degrees</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Expr.diff.html">diff</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Expr.exp.html">exp</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Expr.floor.html">floor</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Expr.hash.html">hash</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Expr.log.html">log</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Expr.log10.html">log10</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Expr.log1p.html">log1p</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Expr.mod.html">mod</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Expr.mul.html">mul</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Expr.neg.html">neg</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Expr.pow.html">pow</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Expr.radians.html">radians</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Expr.reinterpret.html">reinterpret</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Expr.round.html">round</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Expr.round_sig_figs.html">round_sig_figs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Expr.shrink_dtype.html">shrink_dtype</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Expr.sign.html">sign</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Expr.sin.html">sin</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Expr.sinh.html">sinh</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Expr.sqrt.html">sqrt</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Expr.sub.html">sub</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Expr.tan.html">tan</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Expr.tanh.html">tanh</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Expr.truediv.html">truediv</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../projection.html">Projection</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../projection/TableFrame.drop.html">drop</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../projection/TableFrame.item.html">item</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../projection/TableFrame.rename.html">rename</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../projection/TableFrame.select.html">select</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../projection/TableFrame.udf.html">udf</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../projection/TableFrame.unnest.html">unnest</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../projection/TableFrame.with_columns.html">with_columns</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../projection/all.html">all</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../projection/alpha.html">alpha</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../projection/alphanumeric.html">alphanumeric</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../projection/binary.html">binary</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../projection/boolean.html">boolean</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../projection/by_dtype.html">by_dtype</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../projection/by_index.html">by_index</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../projection/by_name.html">by_name</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../projection/categorical.html">categorical</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../projection/contains.html">contains</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../projection/date.html">date</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../projection/datetime.html">datetime</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../projection/decimal.html">decimal</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../projection/digit.html">digit</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../projection/duration.html">duration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../projection/ends_with.html">ends_with</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../projection/exclude.html">exclude</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../projection/first.html">first</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../projection/float.html">float</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../projection/integer.html">integer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../projection/last.html">last</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../projection/matches.html">matches</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../projection/numeric.html">numeric</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../projection/object.html">object</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../projection/signed_integer.html">signed_integer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../projection/starts_with.html">starts_with</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../projection/string.html">string</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../projection/temporal.html">temporal</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../projection/time.html">time</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../projection/unsigned_integer.html">unsigned_integer</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../string.html">String</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../string/ExprStringNameSpace.contains.html">contains</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../string/ExprStringNameSpace.contains_any.html">contains_any</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../string/ExprStringNameSpace.count_matches.html">count_matches</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../string/ExprStringNameSpace.ends_with.html">ends_with</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../string/ExprStringNameSpace.extract.html">extract</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../string/ExprStringNameSpace.find.html">find</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../string/ExprStringNameSpace.grok.html">grok</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../string/ExprStringNameSpace.head.html">head</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../string/ExprStringNameSpace.len_bytes.html">len_bytes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../string/ExprStringNameSpace.len_chars.html">len_chars</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../string/ExprStringNameSpace.pad_end.html">pad_end</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../string/ExprStringNameSpace.pad_start.html">pad_start</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../string/ExprStringNameSpace.replace.html">replace</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../string/ExprStringNameSpace.replace_all.html">replace_all</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../string/ExprStringNameSpace.replace_many.html">replace_many</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../string/ExprStringNameSpace.reverse.html">reverse</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../string/ExprStringNameSpace.slice.html">slice</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../string/ExprStringNameSpace.starts_with.html">starts_with</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../string/ExprStringNameSpace.strip_chars.html">strip_chars</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../string/ExprStringNameSpace.strip_chars_end.html">strip_chars_end</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../string/ExprStringNameSpace.strip_chars_start.html">strip_chars_start</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../string/ExprStringNameSpace.strip_prefix.html">strip_prefix</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../string/ExprStringNameSpace.strip_suffix.html">strip_suffix</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../string/ExprStringNameSpace.tail.html">tail</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../string/ExprStringNameSpace.to_lowercase.html">to_lowercase</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../string/ExprStringNameSpace.to_titlecase.html">to_titlecase</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../string/ExprStringNameSpace.to_uppercase.html">to_uppercase</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../string/ExprStringNameSpace.zfill.html">zfill</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../string/TableFrame.grok.html">grok</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../tableframe.html">Tableframe</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../tableframe/TableFrame.assert_has_cols.html">assert_has_cols</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../tableframe/TableFrame.clear.html">clear</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../tableframe/TableFrame.empty.html">empty</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../tableframe/TableFrame.from_dict.html">from_dict</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../tableframe/TableFrame.from_pandas.html">from_pandas</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../tableframe/TableFrame.from_polars.html">from_polars</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../tableframe/TableFrame.has_cols.html">has_cols</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../tableframe/TableFrame.has_same_schema.html">has_same_schema</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../tableframe/TableFrame.is_empty.html">is_empty</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../tableframe/TableFrame.sort.html">sort</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../tableframe/TableFrame.to_dict.html">to_dict</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../tableframe/TableFrame.to_pandas.html">to_pandas</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../tableframe/TableFrame.to_polars_df.html">to_polars_df</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../tableframe/TableFrame.to_polars_lf.html">to_polars_lf</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../type_casting.html">Type_casting</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../type_casting/Expr.cast.html">cast</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../type_casting/Expr.dt.html">dt</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../type_casting/Expr.str.html">str</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../type_casting/ExprStringNameSpace.to_date.html">to_date</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../type_casting/ExprStringNameSpace.to_datetime.html">to_datetime</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../type_casting/ExprStringNameSpace.to_integer.html">to_integer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../type_casting/ExprStringNameSpace.to_time.html">to_time</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../type_casting/ExprDateTimeNameSpace.to_string.html">to_string</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../union.html">Union</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../union/tabsdata.tableframe.functions.eager.concat.html">concat</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+</ul>
+</div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../../../index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    
+    <li class="breadcrumb-item"><a href="../../index.html" class="nav-link">Tabsdata API Reference</a></li>
+    
+    
+    <li class="breadcrumb-item"><a href="../index.html" class="nav-link">TableFrame API</a></li>
+    
+    
+    <li class="breadcrumb-item"><a href="../numeric.html" class="nav-link">Numeric</a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">cosh</span></li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="cosh">
+<h1>cosh</h1>
+<dl class="py method">
+<dt class="sig sig-object py" id="tabsdata.tableframe.expr.expr.Expr.cosh">
+<span class="sig-prename descclassname"><span class="pre">Expr.</span></span><span class="sig-name descname"><span class="pre">cosh</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Expr</span></span></span></dt>
+<dd><p>Calculate the hyperbolic cosine of the element value.</p>
+<p>Example:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span><span class="w"> </span><span class="nn">tabsdata</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">td</span>
+<span class="gp">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">tf</span><span class="p">:</span> <span class="n">td</span><span class="o">.</span><span class="n">TableFrame</span> <span class="o">...</span>
+<span class="gp">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">tf</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="n">td</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;val&quot;</span><span class="p">),</span> <span class="n">td</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;val&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">cosh</span><span class="p">()</span><span class="o">.</span><span class="n">alias</span><span class="p">(</span><span class="s2">&quot;cosh&quot;</span><span class="p">))</span>
+<span class="gp">&gt;&gt;&gt;</span>
+<span class="go">┌──────┬────────────┐</span>
+<span class="go">│ val  ┆ cosh       │</span>
+<span class="go">│ ---  ┆ ---        │</span>
+<span class="go">│ f64  ┆ f64        │</span>
+<span class="go">╞══════╪════════════╡</span>
+<span class="go">│ 0.1  ┆ 1.005004   │</span>
+<span class="go">│ 1.5  ┆ 2.35241    │</span>
+<span class="go">│ 1.8  ┆ 3.107473   │</span>
+<span class="go">│ 6.0  ┆ 201.715636 │</span>
+<span class="go">│ 6.0  ┆ 201.715636 │</span>
+<span class="go">│ 7.5  ┆ 904.021484 │</span>
+<span class="go">│ null ┆ null       │</span>
+<span class="go">└──────┴────────────┘</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</section>
+
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="Expr.cos.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">cos</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="Expr.cot.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">cot</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+<div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tabsdata.tableframe.expr.expr.Expr.cosh"><code class="docutils literal notranslate"><span class="pre">cosh()</span></code></a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="../../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+
+<!-- Your custom footer content here -->
+
+  </body>
+</html>
