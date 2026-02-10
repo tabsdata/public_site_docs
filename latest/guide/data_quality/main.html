@@ -370,6 +370,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../working_with_kafka/main.html">Working with Kafka</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../05_working_with_triggers/main.html">Working with Triggers</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../06_working_with_tables/table_frame.html">Working with Tables</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../06_working_with_tables/tableframe_guide.html">TableFrame API Guide</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../06_working_with_tables/user_defined_functions.html">User-defined Functions (UDFs)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../07_working_with_connector_plugins/main.html">Working with Plugins</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Data Quality</a></li>
@@ -509,7 +510,7 @@
 </dd>
 <dt><strong>Tags (optional)</strong></dt><dd><p>Label every classifier output column. Operators can refer to those labels to focus on specific checks, all checks, or only the untagged ones. Tags help organize multiple classifiers and allow operators to selectively act on specific quality dimensions.</p>
 <p><em>Example:</em> Tag null-checking classifiers with <code class="docutils literal notranslate"><span class="pre">tags=&quot;completeness&quot;</span></code> and range-checking classifiers with <code class="docutils literal notranslate"><span class="pre">tags=&quot;validity&quot;</span></code>. Then configure one <code class="docutils literal notranslate"><span class="pre">Filter</span></code> operator to quarantine rows failing completeness checks and another to quarantine rows failing validity checks into separate tables for different remediation workflows.</p>
-<p>When a classifier runs, every generated column inherits the tags declared on that classifier (or stays untagged if no tags were provided). Operators read those tags to decide which columns they should process. Aside from the no-duplicates rules called out below, there is no cap on how many actions, classifiers, or operators can be attached to a single function.</p>
+<p>When a classifier runs, every generated column inherits the tags declared on that classifier (or stays untagged if no tags were provided). Operators read those tags to decide which columns they should process. There is no cap on how many actions, classifiers, or operators can be attached to a single function, as long as all resulting DQ column names remain unique.</p>
 </dd>
 </dl>
 <div class="admonition note">
