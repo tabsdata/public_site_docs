@@ -149,14 +149,14 @@
   <ul class="bd-navbar-elements navbar-nav">
     
 <li class="nav-item current active">
-  <a class="nav-link nav-internal" href="../intro.html">
-    Guide
+  <a class="nav-link nav-internal" href="../index.html">
+    User Guide
   </a>
 </li>
 
 
 <li class="nav-item ">
-  <a class="nav-link nav-internal" href="../../api_ref/index.html">
+  <a class="nav-link nav-internal" href="../../ref/index.html">
     API Reference
   </a>
 </li>
@@ -262,14 +262,14 @@
   <ul class="bd-navbar-elements navbar-nav">
     
 <li class="nav-item current active">
-  <a class="nav-link nav-internal" href="../intro.html">
-    Guide
+  <a class="nav-link nav-internal" href="../index.html">
+    User Guide
   </a>
 </li>
 
 
 <li class="nav-item ">
-  <a class="nav-link nav-internal" href="../../api_ref/index.html">
+  <a class="nav-link nav-internal" href="../../ref/index.html">
     API Reference
   </a>
 </li>
@@ -391,6 +391,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../08_testing/main.html">Testing</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../10_troubleshooting/main.html">Troubleshooting</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../11_cli_commands/main.html">CLI Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../release_notes/main.html">Release Notes</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../09_contact_support/main.html">Contact Us</a></li>
 </ul>
 </div>
@@ -433,7 +434,7 @@
       </a>
     </li>
     
-    <li class="breadcrumb-item"><a href="../intro.html" class="nav-link">User Guide</a></li>
+    <li class="breadcrumb-item"><a href="../index.html" class="nav-link">User Guide</a></li>
     
     <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">Working with Tables</span></li>
   </ul>
@@ -487,7 +488,7 @@
 </section>
 <section id="table-operations">
 <h2>Table Operations</h2>
-<p>Table operations are covered in detail in the <a class="reference external" href="https://docs.tabsdata.com/latest/api_ref/tableframe_api/index.html">API Reference documentation</a>.</p>
+<p>Table operations are covered in detail in the <a class="reference external" href="https://docs.tabsdata.com/latest/ref/api/bycat-index.html">API Reference documentation</a>.</p>
 <p>Some of the key table operations are demonstrated in this section using the following <code class="docutils literal notranslate"><span class="pre">persons</span></code> Tabsdata table:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span>
 <span class="err">┌────────────┬────────────┬────────────┬─────────────┬────────────┬────────┐</span>
@@ -712,7 +713,7 @@
 <section id="filter">
 <h3>Filter</h3>
 <hr class="docutils" />
-<p>Full list of Filters supported can be found in the <a class="reference external" href="https://docs.tabsdata.com/latest/api_ref/tableframe_api/filters.html">API Reference</a>.</p>
+<p>Full list of Filters supported can be found in the <a class="reference external" href="https://docs.tabsdata.com/latest/ref/api/bycat-filters.html">API Reference</a>.</p>
 <section id="simple-condition-on-column-value">
 <h4>Simple condition on column value</h4>
 <p>Here is an example code to filter the values of the <code class="docutils literal notranslate"><span class="pre">last_name</span></code> column by the first letter as “A”.</p>
@@ -786,7 +787,7 @@
 <hr class="docutils" />
 <section id="aggregation">
 <h3>Aggregation</h3>
-<p>Full list of Aggregations supported can be found in the <a class="reference external" href="https://docs.tabsdata.com/latest/api_ref/tableframe_api/aggregation.html">API Reference</a>.</p>
+<p>Full list of Aggregations supported can be found in the <a class="reference external" href="https://docs.tabsdata.com/latest/ref/api/bycat-aggregation.html">API Reference</a>.</p>
 <p>Here is an example code to group by the birth year and count the number of people born each year. It first converts the <code class="docutils literal notranslate"><span class="pre">birthdate</span></code> column to a Date type, extracts the year, and names it <code class="docutils literal notranslate"><span class="pre">birth_year</span></code>. Then, it groups the data by <code class="docutils literal notranslate"><span class="pre">birth_year</span></code> and counts the occurrences of <code class="docutils literal notranslate"><span class="pre">first_name</span></code>, storing the result in the <code class="docutils literal notranslate"><span class="pre">people_born</span></code> column.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">tf</span><span class="o">.</span><span class="n">group_by</span><span class="p">(</span><span class="n">td</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;birthdate&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">cast</span><span class="p">(</span><span class="n">td</span><span class="o">.</span><span class="n">Date</span><span class="p">)</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">year</span><span class="p">()</span><span class="o">.</span><span class="n">alias</span><span class="p">(</span><span class="s2">&quot;birth_year&quot;</span><span class="p">))</span><span class="o">.</span><span class="n">agg</span><span class="p">(</span><span class="n">td</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;first_name&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">count</span><span class="p">()</span><span class="o">.</span><span class="n">alias</span><span class="p">(</span><span class="s2">&quot;people_born&quot;</span><span class="p">))</span>
 </pre></div>
@@ -899,30 +900,6 @@
               
               
               
-              
-                <footer class="prev-next-footer d-print-none">
-                  
-<div class="prev-next-area">
-    <a class="left-prev"
-       href="../05_working_with_triggers/main.html"
-       title="previous page">
-      <i class="fa-solid fa-angle-left"></i>
-      <div class="prev-next-info">
-        <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Working with Triggers</p>
-      </div>
-    </a>
-    <a class="right-next"
-       href="tableframe_guide.html"
-       title="next page">
-      <div class="prev-next-info">
-        <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">TableFrame API Guide</p>
-      </div>
-      <i class="fa-solid fa-angle-right"></i>
-    </a>
-</div>
-                </footer>
               
             </div>
             

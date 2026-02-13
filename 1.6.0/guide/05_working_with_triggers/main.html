@@ -149,14 +149,14 @@
   <ul class="bd-navbar-elements navbar-nav">
     
 <li class="nav-item current active">
-  <a class="nav-link nav-internal" href="../intro.html">
-    Guide
+  <a class="nav-link nav-internal" href="../index.html">
+    User Guide
   </a>
 </li>
 
 
 <li class="nav-item ">
-  <a class="nav-link nav-internal" href="../../api_ref/index.html">
+  <a class="nav-link nav-internal" href="../../ref/index.html">
     API Reference
   </a>
 </li>
@@ -262,14 +262,14 @@
   <ul class="bd-navbar-elements navbar-nav">
     
 <li class="nav-item current active">
-  <a class="nav-link nav-internal" href="../intro.html">
-    Guide
+  <a class="nav-link nav-internal" href="../index.html">
+    User Guide
   </a>
 </li>
 
 
 <li class="nav-item ">
-  <a class="nav-link nav-internal" href="../../api_ref/index.html">
+  <a class="nav-link nav-internal" href="../../ref/index.html">
     API Reference
   </a>
 </li>
@@ -391,6 +391,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../08_testing/main.html">Testing</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../10_troubleshooting/main.html">Troubleshooting</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../11_cli_commands/main.html">CLI Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../release_notes/main.html">Release Notes</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../09_contact_support/main.html">Contact Us</a></li>
 </ul>
 </div>
@@ -433,7 +434,7 @@
       </a>
     </li>
     
-    <li class="breadcrumb-item"><a href="../intro.html" class="nav-link">User Guide</a></li>
+    <li class="breadcrumb-item"><a href="../index.html" class="nav-link">User Guide</a></li>
     
     <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">Working with Triggers</span></li>
   </ul>
@@ -498,6 +499,16 @@
 <p>Automated triggers are initiated by a new <a class="reference internal" href="../06_working_with_tables/table_frame.html#working-with-table-commits"><span class="std std-ref">commit</span></a> to one of the tables associated with the function. For example, you might define an inventory subscriber function that exports data from a Tabsdata inventory table to AWS S3 every time the inventory table receives a commit.</p>
 <p>Note that a commit does not always include changes in the table data. For example, a publisher that writes to three tables performs a commit to all three tables with each execution, irrespective of whether there is a change in data for any of the tables.</p>
 <p>Since, the functions are automatically triggered which in turn create a new commit to other tables, Tabsdata enables a cascading workflow of updates to downstream tables.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><strong>Transaction Boundaries and Trigger Paths</strong></p>
+<p>Trigger paths and execution order are affected by the server’s transaction mode configuration (<code class="docutils literal notranslate"><span class="pre">transaction_by</span></code> setting in config.yaml):</p>
+<ul class="simple">
+<li><p><strong>transaction_by: F</strong> (Per Function): Each function runs in its own separate transaction with no trigger path restrictions.</p></li>
+<li><p><strong>transaction_by: C</strong> (Per Collection): Functions are grouped by collection in a single transaction. <strong>Important constraint:</strong> with this setting, trigger paths cannot exit and reenter the same collection - the trigger graph must be acyclic at collection level.</p></li>
+</ul>
+<p>For more information about transaction modes, see <span class="xref std std-ref">transaction_mode</span> in the Server Configuration guide.</p>
+</div>
 <section id="trigger-by">
 <h3><code class="docutils literal notranslate"><span class="pre">trigger_by</span></code></h3>
 <p>Triggers in Tabsdata functions are defined using the <code class="docutils literal notranslate"><span class="pre">trigger_by</span></code> property.</p>
@@ -642,30 +653,6 @@ By default, subscribers are triggered by a commit to any of its input tables. He
               
               
               
-              
-                <footer class="prev-next-footer d-print-none">
-                  
-<div class="prev-next-area">
-    <a class="left-prev"
-       href="../04_03_working_with_subscribers/snowflake/main.html"
-       title="previous page">
-      <i class="fa-solid fa-angle-left"></i>
-      <div class="prev-next-info">
-        <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Snowflake</p>
-      </div>
-    </a>
-    <a class="right-next"
-       href="../06_working_with_tables/table_frame.html"
-       title="next page">
-      <div class="prev-next-info">
-        <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Working with Tables</p>
-      </div>
-      <i class="fa-solid fa-angle-right"></i>
-    </a>
-</div>
-                </footer>
               
             </div>
             
