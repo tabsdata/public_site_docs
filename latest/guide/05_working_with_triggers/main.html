@@ -499,16 +499,6 @@
 <p>Automated triggers are initiated by a new <a class="reference internal" href="../06_working_with_tables/table_frame.html#working-with-table-commits"><span class="std std-ref">commit</span></a> to one of the tables associated with the function. For example, you might define an inventory subscriber function that exports data from a Tabsdata inventory table to AWS S3 every time the inventory table receives a commit.</p>
 <p>Note that a commit does not always include changes in the table data. For example, a publisher that writes to three tables performs a commit to all three tables with each execution, irrespective of whether there is a change in data for any of the tables.</p>
 <p>Since, the functions are automatically triggered which in turn create a new commit to other tables, Tabsdata enables a cascading workflow of updates to downstream tables.</p>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p><strong>Transaction Boundaries and Trigger Paths</strong></p>
-<p>Trigger paths and execution order are affected by the server’s transaction mode configuration (<code class="docutils literal notranslate"><span class="pre">transaction_by</span></code> setting in config.yaml):</p>
-<ul class="simple">
-<li><p><strong>transaction_by: F</strong> (Per Function): Each function runs in its own separate transaction with no trigger path restrictions.</p></li>
-<li><p><strong>transaction_by: C</strong> (Per Collection): Functions are grouped by collection in a single transaction. <strong>Important constraint:</strong> with this setting, trigger paths cannot exit and reenter the same collection - the trigger graph must be acyclic at collection level.</p></li>
-</ul>
-<p>For more information about transaction modes, see <span class="xref std std-ref">transaction_mode</span> in the Server Configuration guide.</p>
-</div>
 <section id="trigger-by">
 <h3><code class="docutils literal notranslate"><span class="pre">trigger_by</span></code></h3>
 <p>Triggers in Tabsdata functions are defined using the <code class="docutils literal notranslate"><span class="pre">trigger_by</span></code> property.</p>
