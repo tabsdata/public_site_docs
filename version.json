@@ -1,9 +1,14 @@
 [
     {
+        "version": "1.7.0",
+        "url": "https://docs.tabsdata.com/1.7.0/guide/01_overview/main.html",
+        "name": "1.7.0(Latest)",
+        "preferred": true
+    },
+    {
         "version": "1.6.0",
         "url": "https://docs.tabsdata.com/1.6.0/guide/01_overview/main.html",
-        "name": "1.6.0(Latest)",
-        "preferred": true
+        "name": "1.6.0"
     },
     {
         "version": "1.5.1",
