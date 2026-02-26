@@ -44,8 +44,8 @@
     <script src="../../_static/jquery.js?v=5d32c60e"></script>
     <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
     <script src="../../_static/documentation_options.js?v=7f41d439"></script>
-    <script src="../../_static/doctools.js?v=9bcbadda"></script>
-    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="../../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
     <script src="../../_static/copybutton.js?v=a56c686a"></script>
     <script src="../../_static/design-tabs.js?v=f930bc37"></script>
@@ -231,6 +231,10 @@
   
 
   
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
 </div>
 
     </header>
@@ -335,6 +339,7 @@
 <li class="toctree-l2"><a class="reference internal" href="../04_01_working_with_publishers/amazon_s3/main.html">Amazon S3</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../04_01_working_with_publishers/azure/main.html">Azure Blob Storage</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../04_01_working_with_publishers/gcp/main.html">Google Cloud Storage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../04_01_working_with_publishers/grok_for_log_files/main.html">Grok for Log Files</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../working_with_kafka/main.html">Kafka</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../04_01_working_with_publishers/mariadb/main.html">MariaDB</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../04_01_working_with_publishers/mssql/main.html">Microsoft SQL Server</a></li>
@@ -343,18 +348,17 @@
 <li class="toctree-l2"><a class="reference internal" href="../04_01_working_with_publishers/postgres/main.html">Postgres</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../04_01_working_with_publishers/salesforce/main.html">Salesforce SOQL Query</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../04_01_working_with_publishers/salesforce_reports/main.html">Salesforce Reports</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../04_01_working_with_publishers/grok_for_log_files/main.html">Grok for Log Files</a></li>
 </ul>
 </details></li>
 <li class="toctree-l1"><a class="reference internal" href="../04_02_working_with_transformers/main.html">Transformers</a></li>
 <li class="toctree-l1 current active has-children"><a class="current reference internal" href="#">Subscribers</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference internal" href="local_file_system/main.html">Local File System</a></li>
-<li class="toctree-l2"><a class="reference internal" href="aws_iceberg/main.html">AWS Glue - Iceberg tables</a></li>
 <li class="toctree-l2"><a class="reference internal" href="amazon_s3/main.html">Amazon S3</a></li>
 <li class="toctree-l2"><a class="reference internal" href="azure/main.html">Azure Blob Storage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="gcp/main.html">Google Cloud Storage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="aws_iceberg/main.html">AWS Glue - Iceberg tables</a></li>
 <li class="toctree-l2"><a class="reference internal" href="bigquery/main.html">Big Query</a></li>
 <li class="toctree-l2"><a class="reference internal" href="databricks/main.html">Databricks</a></li>
-<li class="toctree-l2"><a class="reference internal" href="gcp/main.html">Google Cloud Storage</a></li>
 <li class="toctree-l2"><a class="reference internal" href="mariadb/main.html">MariaDB</a></li>
 <li class="toctree-l2"><a class="reference internal" href="mongodb/main.html">MongoDB</a></li>
 <li class="toctree-l2"><a class="reference internal" href="mssql/main.html">Microsoft SQL Server</a></li>
@@ -477,19 +481,28 @@
 </div>
 <p>When you define a subscriber, you specify the name of the subscriber, the Tabsdata tables to write, and destination properties to write to. By default a subscriber is triggered by a <a class="reference internal" href="../06_working_with_tables/table_frame.html#working-with-table-commits"><span class="std std-ref">new commit</span></a> to any of its input tables.</p>
 <p>To create and run a Tabsdata subscriber, complete the following tasks:</p>
-<p><strong>Define a subscriber</strong> - Define a subscriber to configure the parameters that govern the writing of data from the Tabsdata server. The syntax for defining a subscriber differs depending on the system that the subscriber writes to. For details, see <span class="xref std std-ref">writing_to_file_storage</span> or <span class="xref std std-ref">writing_to_database</span>.</p>
+<p><strong>Define a subscriber</strong> - Define a subscriber to configure the parameters that govern the writing of data from the Tabsdata server. The syntax for defining a subscriber differs depending on the system that the subscriber writes to. For details, see <a class="reference internal" href="#writing-to-file-storage"><span class="std std-ref">File Storage</span></a> or <a class="reference internal" href="#writing-to-database"><span class="std std-ref">Database and Other Destinations</span></a>.</p>
 <p><strong>Register the subscriber</strong> - Register the subscriber with a Tabsdata collection. A subscriber can read from tables outside the collection it is registered with. For information about registering functions, see <a class="reference internal" href="../04_working_with_functions/main.html#register-a-function"><span class="std std-ref">here</span></a>.</p>
 <p><strong>Execute the subscriber</strong> - Execute the subscriber by initiating its trigger. Once executed, the subscriber reads the Tabsdata tables, and writes the output data to the external systems. By default, subscribers are triggered when any of the input tables receive a new commit. However, you can define any Tabsdata table to act as a trigger for a subscriber. For more information, see <a class="reference internal" href="../04_working_with_functions/main.html#execute-a-function"><span class="std std-ref">here</span></a>.</p>
 <p>Below is the list of destination connectors that are currently supported natively in Tabsdata. Beyond these, you can connect with other external systems as per your need using <a class="reference internal" href="../07_working_with_connector_plugins/main.html#working-with-connector-plugins"><span class="std std-ref">connector plugins</span></a>.</p>
+<section id="file-storage">
+<span id="writing-to-file-storage"></span><h2>File Storage</h2>
 <div class="toctree-wrapper compound">
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="local_file_system/main.html">Local File System</a></li>
-<li class="toctree-l1"><a class="reference internal" href="aws_iceberg/main.html">AWS Glue - Iceberg tables</a></li>
 <li class="toctree-l1"><a class="reference internal" href="amazon_s3/main.html">Amazon S3</a></li>
 <li class="toctree-l1"><a class="reference internal" href="azure/main.html">Azure Blob Storage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gcp/main.html">Google Cloud Storage</a></li>
+</ul>
+</div>
+</section>
+<section id="database-and-other-destinations">
+<span id="writing-to-database"></span><h2>Database and Other Destinations</h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="aws_iceberg/main.html">AWS Glue - Iceberg tables</a></li>
 <li class="toctree-l1"><a class="reference internal" href="bigquery/main.html">Big Query</a></li>
 <li class="toctree-l1"><a class="reference internal" href="databricks/main.html">Databricks</a></li>
-<li class="toctree-l1"><a class="reference internal" href="gcp/main.html">Google Cloud Storage</a></li>
 <li class="toctree-l1"><a class="reference internal" href="mariadb/main.html">MariaDB</a></li>
 <li class="toctree-l1"><a class="reference internal" href="mongodb/main.html">MongoDB</a></li>
 <li class="toctree-l1"><a class="reference internal" href="mssql/main.html">Microsoft SQL Server</a></li>
@@ -499,6 +512,7 @@
 <li class="toctree-l1"><a class="reference internal" href="snowflake/main.html">Snowflake</a></li>
 </ul>
 </div>
+</section>
 </section>
 
 
@@ -511,6 +525,25 @@
             </div>
             
             
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+<div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#file-storage">File Storage</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#database-and-other-destinations">Database and Other Destinations</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
               
             
           </div>

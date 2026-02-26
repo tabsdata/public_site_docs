@@ -44,8 +44,8 @@
     <script src="../../_static/jquery.js?v=5d32c60e"></script>
     <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
     <script src="../../_static/documentation_options.js?v=7f41d439"></script>
-    <script src="../../_static/doctools.js?v=9bcbadda"></script>
-    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="../../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
     <script src="../../_static/copybutton.js?v=a56c686a"></script>
     <script src="../../_static/design-tabs.js?v=f930bc37"></script>
@@ -339,6 +339,7 @@
 <li class="toctree-l2"><a class="reference internal" href="../04_01_working_with_publishers/amazon_s3/main.html">Amazon S3</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../04_01_working_with_publishers/azure/main.html">Azure Blob Storage</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../04_01_working_with_publishers/gcp/main.html">Google Cloud Storage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../04_01_working_with_publishers/grok_for_log_files/main.html">Grok for Log Files</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../working_with_kafka/main.html">Kafka</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../04_01_working_with_publishers/mariadb/main.html">MariaDB</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../04_01_working_with_publishers/mssql/main.html">Microsoft SQL Server</a></li>
@@ -347,18 +348,17 @@
 <li class="toctree-l2"><a class="reference internal" href="../04_01_working_with_publishers/postgres/main.html">Postgres</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../04_01_working_with_publishers/salesforce/main.html">Salesforce SOQL Query</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../04_01_working_with_publishers/salesforce_reports/main.html">Salesforce Reports</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../04_01_working_with_publishers/grok_for_log_files/main.html">Grok for Log Files</a></li>
 </ul>
 </details></li>
 <li class="toctree-l1"><a class="reference internal" href="../04_02_working_with_transformers/main.html">Transformers</a></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../04_03_working_with_subscribers/main.html">Subscribers</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference internal" href="../04_03_working_with_subscribers/local_file_system/main.html">Local File System</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../04_03_working_with_subscribers/aws_iceberg/main.html">AWS Glue - Iceberg tables</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../04_03_working_with_subscribers/amazon_s3/main.html">Amazon S3</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../04_03_working_with_subscribers/azure/main.html">Azure Blob Storage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../04_03_working_with_subscribers/gcp/main.html">Google Cloud Storage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../04_03_working_with_subscribers/aws_iceberg/main.html">AWS Glue - Iceberg tables</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../04_03_working_with_subscribers/bigquery/main.html">Big Query</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../04_03_working_with_subscribers/databricks/main.html">Databricks</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../04_03_working_with_subscribers/gcp/main.html">Google Cloud Storage</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../04_03_working_with_subscribers/mariadb/main.html">MariaDB</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../04_03_working_with_subscribers/mongodb/main.html">MongoDB</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../04_03_working_with_subscribers/mssql/main.html">Microsoft SQL Server</a></li>
@@ -491,29 +491,27 @@
 <h2>Table Operations</h2>
 <p>Table operations are covered in detail in the <a class="reference external" href="https://docs.tabsdata.com/latest/ref/api/bycat-index.html">API Reference documentation</a>.</p>
 <p>Some of the key table operations are demonstrated in this section using the following <code class="docutils literal notranslate"><span class="pre">persons</span></code> Tabsdata table:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>
-<span class="err">┌────────────┬────────────┬────────────┬─────────────┬────────────┬────────┐</span>
-<span class="err">│</span> <span class="n">identifier</span> <span class="err">┆</span> <span class="n">first_name</span> <span class="err">┆</span> <span class="n">last_name</span>  <span class="err">┆</span> <span class="n">nationality</span> <span class="err">┆</span> <span class="n">birthdate</span>  <span class="err">┆</span> <span class="n">height</span> <span class="err">│</span>
-<span class="err">│</span> <span class="o">---</span>        <span class="err">┆</span> <span class="o">---</span>        <span class="err">┆</span> <span class="o">---</span>        <span class="err">┆</span> <span class="o">---</span>         <span class="err">┆</span> <span class="o">---</span>        <span class="err">┆</span> <span class="o">---</span>    <span class="err">│</span>
-<span class="err">│</span> <span class="nb">str</span>        <span class="err">┆</span> <span class="nb">str</span>        <span class="err">┆</span> <span class="nb">str</span>        <span class="err">┆</span> <span class="nb">str</span>         <span class="err">┆</span> <span class="nb">str</span>        <span class="err">┆</span> <span class="n">f64</span>    <span class="err">│</span>
-<span class="err">╞════════════╪════════════╪════════════╪═════════════╪════════════╪════════╡</span>
-<span class="err">│</span> <span class="mi">74</span><span class="o">-</span><span class="mi">93</span><span class="o">/</span><span class="mi">03</span>   <span class="err">┆</span> <span class="n">Bennett</span>    <span class="err">┆</span> <span class="n">Chandler</span>   <span class="err">┆</span> <span class="n">Portuguese</span>  <span class="err">┆</span> <span class="mi">1985</span><span class="o">-</span><span class="mi">10</span><span class="o">-</span><span class="mi">11</span> <span class="err">┆</span> <span class="mf">1.59</span>   <span class="err">│</span>
-<span class="err">│</span>            <span class="err">┆</span>            <span class="err">┆</span>            <span class="err">┆</span>             <span class="err">┆</span>            <span class="err">┆</span>        <span class="err">│</span>
-<span class="err">│</span> <span class="mi">68</span><span class="o">-</span><span class="mi">52</span><span class="o">/</span><span class="mi">94</span>   <span class="err">┆</span> <span class="n">Elijah</span>     <span class="err">┆</span> <span class="n">Lara</span>       <span class="err">┆</span> <span class="n">Costa</span> <span class="n">Rican</span> <span class="err">┆</span> <span class="mi">2003</span><span class="o">-</span><span class="mi">10</span><span class="o">-</span><span class="mi">16</span> <span class="err">┆</span> <span class="mf">1.75</span>   <span class="err">│</span>
-<span class="err">│</span> <span class="mi">37</span><span class="o">-</span><span class="mi">41</span><span class="o">/</span><span class="mi">89</span>   <span class="err">┆</span> <span class="n">Thresa</span>     <span class="err">┆</span> <span class="n">Carroll</span>    <span class="err">┆</span> <span class="n">Cuban</span>       <span class="err">┆</span> <span class="mi">2005</span><span class="o">-</span><span class="mi">02</span><span class="o">-</span><span class="mi">03</span> <span class="err">┆</span> <span class="mf">1.53</span>   <span class="err">│</span>
-<span class="err">│</span> <span class="mi">66</span><span class="o">-</span><span class="mi">27</span><span class="o">/</span><span class="mi">19</span>   <span class="err">┆</span> <span class="n">Alethia</span>    <span class="err">┆</span> <span class="n">Wilkinson</span>  <span class="err">┆</span> <span class="n">Colombian</span>   <span class="err">┆</span> <span class="mi">1999</span><span class="o">-</span><span class="mi">04</span><span class="o">-</span><span class="mi">17</span> <span class="err">┆</span> <span class="mf">1.86</span>   <span class="err">│</span>
-<span class="err">│</span> <span class="mi">35</span><span class="o">-</span><span class="mi">07</span><span class="o">/</span><span class="mi">51</span>   <span class="err">┆</span> <span class="n">Elin</span>       <span class="err">┆</span> <span class="n">English</span>    <span class="err">┆</span> <span class="n">Brazilian</span>   <span class="err">┆</span> <span class="mi">1998</span><span class="o">-</span><span class="mi">02</span><span class="o">-</span><span class="mi">12</span> <span class="err">┆</span> <span class="mf">1.88</span>   <span class="err">│</span>
-<span class="err">│</span>            <span class="err">┆</span>            <span class="err">┆</span>            <span class="err">┆</span>             <span class="err">┆</span>            <span class="err">┆</span>        <span class="err">│</span>
-<span class="err">│</span> <span class="err">…</span>          <span class="err">┆</span> <span class="err">…</span>          <span class="err">┆</span> <span class="err">…</span>          <span class="err">┆</span> <span class="err">…</span>           <span class="err">┆</span> <span class="err">…</span>          <span class="err">┆</span> <span class="err">…</span>      <span class="err">│</span>
-<span class="err">│</span> <span class="mi">85</span><span class="o">-</span><span class="mi">61</span><span class="o">/</span><span class="mi">58</span>   <span class="err">┆</span> <span class="n">Dudley</span>     <span class="err">┆</span> <span class="n">Valenzuela</span> <span class="err">┆</span> <span class="n">Iranian</span>     <span class="err">┆</span> <span class="mi">1998</span><span class="o">-</span><span class="mi">04</span><span class="o">-</span><span class="mi">12</span> <span class="err">┆</span> <span class="mf">1.77</span>   <span class="err">│</span>
-<span class="err">│</span> <span class="mi">36</span><span class="o">-</span><span class="mi">24</span><span class="o">/</span><span class="mi">33</span>   <span class="err">┆</span> <span class="n">Willard</span>    <span class="err">┆</span> <span class="n">Hodge</span>      <span class="err">┆</span> <span class="n">Israeli</span>     <span class="err">┆</span> <span class="mi">2002</span><span class="o">-</span><span class="mi">07</span><span class="o">-</span><span class="mi">31</span> <span class="err">┆</span> <span class="mf">1.77</span>   <span class="err">│</span>
-<span class="err">│</span>            <span class="err">┆</span>            <span class="err">┆</span>            <span class="err">┆</span>             <span class="err">┆</span>            <span class="err">┆</span>        <span class="err">│</span>
-<span class="err">│</span> <span class="mi">05</span><span class="o">-</span><span class="mi">43</span><span class="o">/</span><span class="mi">20</span>   <span class="err">┆</span> <span class="n">Salena</span>     <span class="err">┆</span> <span class="n">Waller</span>     <span class="err">┆</span> <span class="n">Colombian</span>   <span class="err">┆</span> <span class="mi">2014</span><span class="o">-</span><span class="mi">04</span><span class="o">-</span><span class="mi">19</span> <span class="err">┆</span> <span class="mf">1.88</span>   <span class="err">│</span>
-<span class="err">│</span> <span class="mi">49</span><span class="o">-</span><span class="mi">35</span><span class="o">/</span><span class="mi">73</span>   <span class="err">┆</span> <span class="n">August</span>     <span class="err">┆</span> <span class="n">Dillard</span>    <span class="err">┆</span> <span class="n">Guatemalan</span>  <span class="err">┆</span> <span class="mi">1988</span><span class="o">-</span><span class="mi">05</span><span class="o">-</span><span class="mi">25</span> <span class="err">┆</span> <span class="mf">1.83</span>   <span class="err">│</span>
-<span class="err">│</span> <span class="mi">40</span><span class="o">-</span><span class="mi">49</span><span class="o">/</span><span class="mi">72</span>   <span class="err">┆</span> <span class="n">Coy</span>        <span class="err">┆</span> <span class="n">Goodman</span>    <span class="err">┆</span> <span class="n">Uruguayan</span>   <span class="err">┆</span> <span class="mi">1999</span><span class="o">-</span><span class="mi">02</span><span class="o">-</span><span class="mi">17</span> <span class="err">┆</span> <span class="mf">1.56</span>   <span class="err">│</span>
-<span class="err">│</span>            <span class="err">┆</span>            <span class="err">┆</span>            <span class="err">┆</span>             <span class="err">┆</span>            <span class="err">┆</span>        <span class="err">│</span>
-<span class="err">└────────────┴────────────┴────────────┴─────────────┴────────────┴────────┘</span>
-
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>┌────────────┬────────────┬────────────┬─────────────┬────────────┬────────┐
+│ identifier ┆ first_name ┆ last_name  ┆ nationality ┆ birthdate  ┆ height │
+│ ---        ┆ ---        ┆ ---        ┆ ---         ┆ ---        ┆ ---    │
+│ str        ┆ str        ┆ str        ┆ str         ┆ str        ┆ f64    │
+╞════════════╪════════════╪════════════╪═════════════╪════════════╪════════╡
+│ 74-93/03   ┆ Bennett    ┆ Chandler   ┆ Portuguese  ┆ 1985-10-11 ┆ 1.59   │
+│            ┆            ┆            ┆             ┆            ┆        │
+│ 68-52/94   ┆ Elijah     ┆ Lara       ┆ Costa Rican ┆ 2003-10-16 ┆ 1.75   │
+│ 37-41/89   ┆ Thresa     ┆ Carroll    ┆ Cuban       ┆ 2005-02-03 ┆ 1.53   │
+│ 66-27/19   ┆ Alethia    ┆ Wilkinson  ┆ Colombian   ┆ 1999-04-17 ┆ 1.86   │
+│ 35-07/51   ┆ Elin       ┆ English    ┆ Brazilian   ┆ 1998-02-12 ┆ 1.88   │
+│            ┆            ┆            ┆             ┆            ┆        │
+│ …          ┆ …          ┆ …          ┆ …           ┆ …          ┆ …      │
+│ 85-61/58   ┆ Dudley     ┆ Valenzuela ┆ Iranian     ┆ 1998-04-12 ┆ 1.77   │
+│ 36-24/33   ┆ Willard    ┆ Hodge      ┆ Israeli     ┆ 2002-07-31 ┆ 1.77   │
+│            ┆            ┆            ┆             ┆            ┆        │
+│ 05-43/20   ┆ Salena     ┆ Waller     ┆ Colombian   ┆ 2014-04-19 ┆ 1.88   │
+│ 49-35/73   ┆ August     ┆ Dillard    ┆ Guatemalan  ┆ 1988-05-25 ┆ 1.83   │
+│ 40-49/72   ┆ Coy        ┆ Goodman    ┆ Uruguayan   ┆ 1999-02-17 ┆ 1.56   │
+│            ┆            ┆            ┆             ┆            ┆        │
+└────────────┴────────────┴────────────┴─────────────┴────────────┴────────┘
 </pre></div>
 </div>
 <p>To work with the table, you define a transformer as follows,</p>
@@ -546,23 +544,23 @@
 </pre></div>
 </div>
 <p><strong>Result:</strong></p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="err">┌────────────┬────────────┐</span>
-<span class="err">│</span> <span class="n">first_name</span> <span class="err">┆</span> <span class="n">last_name</span>  <span class="err">│</span>
-<span class="err">│</span> <span class="o">---</span>        <span class="err">┆</span> <span class="o">---</span>        <span class="err">│</span>
-<span class="err">│</span> <span class="nb">str</span>        <span class="err">┆</span> <span class="nb">str</span>        <span class="err">│</span>
-<span class="err">╞════════════╪════════════╡</span>
-<span class="err">│</span> <span class="n">Bennett</span>    <span class="err">┆</span> <span class="n">Chandler</span>   <span class="err">│</span>
-<span class="err">│</span> <span class="n">Elijah</span>     <span class="err">┆</span> <span class="n">Lara</span>       <span class="err">│</span>
-<span class="err">│</span> <span class="n">Thresa</span>     <span class="err">┆</span> <span class="n">Carroll</span>    <span class="err">│</span>
-<span class="err">│</span> <span class="n">Alethia</span>    <span class="err">┆</span> <span class="n">Wilkinson</span>  <span class="err">│</span>
-<span class="err">│</span> <span class="n">Elin</span>       <span class="err">┆</span> <span class="n">English</span>    <span class="err">│</span>
-<span class="err">│</span> <span class="err">…</span>          <span class="err">┆</span> <span class="err">…</span>          <span class="err">│</span>
-<span class="err">│</span> <span class="n">Dudley</span>     <span class="err">┆</span> <span class="n">Valenzuela</span> <span class="err">│</span>
-<span class="err">│</span> <span class="n">Willard</span>    <span class="err">┆</span> <span class="n">Hodge</span>      <span class="err">│</span>
-<span class="err">│</span> <span class="n">Salena</span>     <span class="err">┆</span> <span class="n">Waller</span>     <span class="err">│</span>
-<span class="err">│</span> <span class="n">August</span>     <span class="err">┆</span> <span class="n">Dillard</span>    <span class="err">│</span>
-<span class="err">│</span> <span class="n">Coy</span>        <span class="err">┆</span> <span class="n">Goodman</span>    <span class="err">│</span>
-<span class="err">└────────────┴────────────┘</span>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>┌────────────┬────────────┐
+│ first_name ┆ last_name  │
+│ ---        ┆ ---        │
+│ str        ┆ str        │
+╞════════════╪════════════╡
+│ Bennett    ┆ Chandler   │
+│ Elijah     ┆ Lara       │
+│ Thresa     ┆ Carroll    │
+│ Alethia    ┆ Wilkinson  │
+│ Elin       ┆ English    │
+│ …          ┆ …          │
+│ Dudley     ┆ Valenzuela │
+│ Willard    ┆ Hodge      │
+│ Salena     ┆ Waller     │
+│ August     ┆ Dillard    │
+│ Coy        ┆ Goodman    │
+└────────────┴────────────┘
 </pre></div>
 </div>
 </section>
@@ -573,23 +571,23 @@
 </pre></div>
 </div>
 <p><strong>Result:</strong></p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="err">┌────────────┬────────────┬─────────────┬────────────┬────────┐</span>
-<span class="err">│</span> <span class="n">identifier</span> <span class="err">┆</span> <span class="n">first_name</span> <span class="err">┆</span> <span class="n">nationality</span> <span class="err">┆</span> <span class="n">birthdate</span>  <span class="err">┆</span> <span class="n">height</span> <span class="err">│</span>
-<span class="err">│</span> <span class="o">---</span>        <span class="err">┆</span> <span class="o">---</span>        <span class="err">┆</span> <span class="o">---</span>         <span class="err">┆</span> <span class="o">---</span>        <span class="err">┆</span> <span class="o">---</span>    <span class="err">│</span>
-<span class="err">│</span> <span class="nb">str</span>        <span class="err">┆</span> <span class="nb">str</span>        <span class="err">┆</span> <span class="nb">str</span>         <span class="err">┆</span> <span class="nb">str</span>        <span class="err">┆</span> <span class="n">f64</span>    <span class="err">│</span>
-<span class="err">╞════════════╪════════════╪═════════════╪════════════╪════════╡</span>
-<span class="err">│</span> <span class="mi">74</span><span class="o">-</span><span class="mi">93</span><span class="o">/</span><span class="mi">03</span>   <span class="err">┆</span> <span class="n">Bennett</span>    <span class="err">┆</span> <span class="n">Portuguese</span>  <span class="err">┆</span> <span class="mi">1985</span><span class="o">-</span><span class="mi">10</span><span class="o">-</span><span class="mi">11</span> <span class="err">┆</span> <span class="mf">1.59</span>   <span class="err">│</span>
-<span class="err">│</span> <span class="mi">68</span><span class="o">-</span><span class="mi">52</span><span class="o">/</span><span class="mi">94</span>   <span class="err">┆</span> <span class="n">Elijah</span>     <span class="err">┆</span> <span class="n">Costa</span> <span class="n">Rican</span> <span class="err">┆</span> <span class="mi">2003</span><span class="o">-</span><span class="mi">10</span><span class="o">-</span><span class="mi">16</span> <span class="err">┆</span> <span class="mf">1.75</span>   <span class="err">│</span>
-<span class="err">│</span> <span class="mi">37</span><span class="o">-</span><span class="mi">41</span><span class="o">/</span><span class="mi">89</span>   <span class="err">┆</span> <span class="n">Thresa</span>     <span class="err">┆</span> <span class="n">Cuban</span>       <span class="err">┆</span> <span class="mi">2005</span><span class="o">-</span><span class="mi">02</span><span class="o">-</span><span class="mi">03</span> <span class="err">┆</span> <span class="mf">1.53</span>   <span class="err">│</span>
-<span class="err">│</span> <span class="mi">66</span><span class="o">-</span><span class="mi">27</span><span class="o">/</span><span class="mi">19</span>   <span class="err">┆</span> <span class="n">Alethia</span>    <span class="err">┆</span> <span class="n">Colombian</span>   <span class="err">┆</span> <span class="mi">1999</span><span class="o">-</span><span class="mi">04</span><span class="o">-</span><span class="mi">17</span> <span class="err">┆</span> <span class="mf">1.86</span>   <span class="err">│</span>
-<span class="err">│</span> <span class="mi">35</span><span class="o">-</span><span class="mi">07</span><span class="o">/</span><span class="mi">51</span>   <span class="err">┆</span> <span class="n">Elin</span>       <span class="err">┆</span> <span class="n">Brazilian</span>   <span class="err">┆</span> <span class="mi">1998</span><span class="o">-</span><span class="mi">02</span><span class="o">-</span><span class="mi">12</span> <span class="err">┆</span> <span class="mf">1.88</span>   <span class="err">│</span>
-<span class="err">│</span> <span class="err">…</span>          <span class="err">┆</span> <span class="err">…</span>          <span class="err">┆</span> <span class="err">…</span>           <span class="err">┆</span> <span class="err">…</span>          <span class="err">┆</span> <span class="err">…</span>      <span class="err">│</span>
-<span class="err">│</span> <span class="mi">85</span><span class="o">-</span><span class="mi">61</span><span class="o">/</span><span class="mi">58</span>   <span class="err">┆</span> <span class="n">Dudley</span>     <span class="err">┆</span> <span class="n">Iranian</span>     <span class="err">┆</span> <span class="mi">1998</span><span class="o">-</span><span class="mi">04</span><span class="o">-</span><span class="mi">12</span> <span class="err">┆</span> <span class="mf">1.77</span>   <span class="err">│</span>
-<span class="err">│</span> <span class="mi">36</span><span class="o">-</span><span class="mi">24</span><span class="o">/</span><span class="mi">33</span>   <span class="err">┆</span> <span class="n">Willard</span>    <span class="err">┆</span> <span class="n">Israeli</span>     <span class="err">┆</span> <span class="mi">2002</span><span class="o">-</span><span class="mi">07</span><span class="o">-</span><span class="mi">31</span> <span class="err">┆</span> <span class="mf">1.77</span>   <span class="err">│</span>
-<span class="err">│</span> <span class="mi">05</span><span class="o">-</span><span class="mi">43</span><span class="o">/</span><span class="mi">20</span>   <span class="err">┆</span> <span class="n">Salena</span>     <span class="err">┆</span> <span class="n">Colombian</span>   <span class="err">┆</span> <span class="mi">2014</span><span class="o">-</span><span class="mi">04</span><span class="o">-</span><span class="mi">19</span> <span class="err">┆</span> <span class="mf">1.88</span>   <span class="err">│</span>
-<span class="err">│</span> <span class="mi">49</span><span class="o">-</span><span class="mi">35</span><span class="o">/</span><span class="mi">73</span>   <span class="err">┆</span> <span class="n">August</span>     <span class="err">┆</span> <span class="n">Guatemalan</span>  <span class="err">┆</span> <span class="mi">1988</span><span class="o">-</span><span class="mi">05</span><span class="o">-</span><span class="mi">25</span> <span class="err">┆</span> <span class="mf">1.83</span>   <span class="err">│</span>
-<span class="err">│</span> <span class="mi">40</span><span class="o">-</span><span class="mi">49</span><span class="o">/</span><span class="mi">72</span>   <span class="err">┆</span> <span class="n">Coy</span>        <span class="err">┆</span> <span class="n">Uruguayan</span>   <span class="err">┆</span> <span class="mi">1999</span><span class="o">-</span><span class="mi">02</span><span class="o">-</span><span class="mi">17</span> <span class="err">┆</span> <span class="mf">1.56</span>   <span class="err">│</span>
-<span class="err">└────────────┴────────────┴─────────────┴────────────┴────────┘</span>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>┌────────────┬────────────┬─────────────┬────────────┬────────┐
+│ identifier ┆ first_name ┆ nationality ┆ birthdate  ┆ height │
+│ ---        ┆ ---        ┆ ---         ┆ ---        ┆ ---    │
+│ str        ┆ str        ┆ str         ┆ str        ┆ f64    │
+╞════════════╪════════════╪═════════════╪════════════╪════════╡
+│ 74-93/03   ┆ Bennett    ┆ Portuguese  ┆ 1985-10-11 ┆ 1.59   │
+│ 68-52/94   ┆ Elijah     ┆ Costa Rican ┆ 2003-10-16 ┆ 1.75   │
+│ 37-41/89   ┆ Thresa     ┆ Cuban       ┆ 2005-02-03 ┆ 1.53   │
+│ 66-27/19   ┆ Alethia    ┆ Colombian   ┆ 1999-04-17 ┆ 1.86   │
+│ 35-07/51   ┆ Elin       ┆ Brazilian   ┆ 1998-02-12 ┆ 1.88   │
+│ …          ┆ …          ┆ …           ┆ …          ┆ …      │
+│ 85-61/58   ┆ Dudley     ┆ Iranian     ┆ 1998-04-12 ┆ 1.77   │
+│ 36-24/33   ┆ Willard    ┆ Israeli     ┆ 2002-07-31 ┆ 1.77   │
+│ 05-43/20   ┆ Salena     ┆ Colombian   ┆ 2014-04-19 ┆ 1.88   │
+│ 49-35/73   ┆ August     ┆ Guatemalan  ┆ 1988-05-25 ┆ 1.83   │
+│ 40-49/72   ┆ Coy        ┆ Uruguayan   ┆ 1999-02-17 ┆ 1.56   │
+└────────────┴────────────┴─────────────┴────────────┴────────┘
 </pre></div>
 </div>
 </section>
@@ -600,23 +598,23 @@
 </pre></div>
 </div>
 <p><strong>Result:</strong></p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="err">┌───────────────────┐</span>
-<span class="err">│</span> <span class="n">full_name</span>         <span class="err">│</span>
-<span class="err">│</span> <span class="o">---</span>               <span class="err">│</span>
-<span class="err">│</span> <span class="nb">str</span>               <span class="err">│</span>
-<span class="err">╞═══════════════════╡</span>
-<span class="err">│</span> <span class="n">Bennett</span> <span class="n">Chandler</span>  <span class="err">│</span>
-<span class="err">│</span> <span class="n">Elijah</span> <span class="n">Lara</span>       <span class="err">│</span>
-<span class="err">│</span> <span class="n">Thresa</span> <span class="n">Carroll</span>    <span class="err">│</span>
-<span class="err">│</span> <span class="n">Alethia</span> <span class="n">Wilkinson</span> <span class="err">│</span>
-<span class="err">│</span> <span class="n">Elin</span> <span class="n">English</span>      <span class="err">│</span>
-<span class="err">│</span> <span class="err">…</span>                 <span class="err">│</span>
-<span class="err">│</span> <span class="n">Dudley</span> <span class="n">Valenzuela</span> <span class="err">│</span>
-<span class="err">│</span> <span class="n">Willard</span> <span class="n">Hodge</span>     <span class="err">│</span>
-<span class="err">│</span> <span class="n">Salena</span> <span class="n">Waller</span>     <span class="err">│</span>
-<span class="err">│</span> <span class="n">August</span> <span class="n">Dillard</span>    <span class="err">│</span>
-<span class="err">│</span> <span class="n">Coy</span> <span class="n">Goodman</span>       <span class="err">│</span>
-<span class="err">└───────────────────┘</span>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>┌───────────────────┐
+│ full_name         │
+│ ---               │
+│ str               │
+╞═══════════════════╡
+│ Bennett Chandler  │
+│ Elijah Lara       │
+│ Thresa Carroll    │
+│ Alethia Wilkinson │
+│ Elin English      │
+│ …                 │
+│ Dudley Valenzuela │
+│ Willard Hodge     │
+│ Salena Waller     │
+│ August Dillard    │
+│ Coy Goodman       │
+└───────────────────┘
 </pre></div>
 </div>
 </section>
@@ -627,23 +625,23 @@
 </pre></div>
 </div>
 <p><strong>Result:</strong></p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="err">┌───────────────────┐</span>
-<span class="err">│</span> <span class="n">full_name</span>         <span class="err">│</span>
-<span class="err">│</span> <span class="o">---</span>               <span class="err">│</span>
-<span class="err">│</span> <span class="nb">str</span>               <span class="err">│</span>
-<span class="err">╞═══════════════════╡</span>
-<span class="err">│</span> <span class="n">Bennett</span> <span class="n">CHANDLER</span>  <span class="err">│</span>
-<span class="err">│</span> <span class="n">Elijah</span> <span class="n">LARA</span>       <span class="err">│</span>
-<span class="err">│</span> <span class="n">Thresa</span> <span class="n">CARROLL</span>    <span class="err">│</span>
-<span class="err">│</span> <span class="n">Alethia</span> <span class="n">WILKINSON</span> <span class="err">│</span>
-<span class="err">│</span> <span class="n">Elin</span> <span class="n">ENGLISH</span>      <span class="err">│</span>
-<span class="err">│</span> <span class="err">…</span>                 <span class="err">│</span>
-<span class="err">│</span> <span class="n">Dudley</span> <span class="n">VALENZUELA</span> <span class="err">│</span>
-<span class="err">│</span> <span class="n">Willard</span> <span class="n">HODGE</span>     <span class="err">│</span>
-<span class="err">│</span> <span class="n">Salena</span> <span class="n">WALLER</span>     <span class="err">│</span>
-<span class="err">│</span> <span class="n">August</span> <span class="n">DILLARD</span>    <span class="err">│</span>
-<span class="err">│</span> <span class="n">Coy</span> <span class="n">GOODMAN</span>       <span class="err">│</span>
-<span class="err">└───────────────────┘</span>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>┌───────────────────┐
+│ full_name         │
+│ ---               │
+│ str               │
+╞═══════════════════╡
+│ Bennett CHANDLER  │
+│ Elijah LARA       │
+│ Thresa CARROLL    │
+│ Alethia WILKINSON │
+│ Elin ENGLISH      │
+│ …                 │
+│ Dudley VALENZUELA │
+│ Willard HODGE     │
+│ Salena WALLER     │
+│ August DILLARD    │
+│ Coy GOODMAN       │
+└───────────────────┘
 </pre></div>
 </div>
 </section>
@@ -658,23 +656,23 @@
 </pre></div>
 </div>
 <p><strong>Result:</strong></p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="err">┌────────────┬────────────┬────────────┐</span>
-<span class="err">│</span> <span class="n">first_name</span> <span class="err">┆</span> <span class="n">last_name</span>  <span class="err">┆</span> <span class="n">birth_year</span> <span class="err">│</span>
-<span class="err">│</span> <span class="o">---</span>        <span class="err">┆</span> <span class="o">---</span>        <span class="err">┆</span> <span class="o">---</span>        <span class="err">│</span>
-<span class="err">│</span> <span class="nb">str</span>        <span class="err">┆</span> <span class="nb">str</span>        <span class="err">┆</span> <span class="n">i32</span>        <span class="err">│</span>
-<span class="err">╞════════════╪════════════╪════════════╡</span>
-<span class="err">│</span> <span class="n">Bennett</span>    <span class="err">┆</span> <span class="n">Chandler</span>   <span class="err">┆</span> <span class="mi">1985</span>       <span class="err">│</span>
-<span class="err">│</span> <span class="n">Elijah</span>     <span class="err">┆</span> <span class="n">Lara</span>       <span class="err">┆</span> <span class="mi">2003</span>       <span class="err">│</span>
-<span class="err">│</span> <span class="n">Thresa</span>     <span class="err">┆</span> <span class="n">Carroll</span>    <span class="err">┆</span> <span class="mi">2005</span>       <span class="err">│</span>
-<span class="err">│</span> <span class="n">Alethia</span>    <span class="err">┆</span> <span class="n">Wilkinson</span>  <span class="err">┆</span> <span class="mi">1999</span>       <span class="err">│</span>
-<span class="err">│</span> <span class="n">Elin</span>       <span class="err">┆</span> <span class="n">English</span>    <span class="err">┆</span> <span class="mi">1998</span>       <span class="err">│</span>
-<span class="err">│</span> <span class="err">…</span>          <span class="err">┆</span> <span class="err">…</span>          <span class="err">┆</span> <span class="err">…</span>          <span class="err">│</span>
-<span class="err">│</span> <span class="n">Dudley</span>     <span class="err">┆</span> <span class="n">Valenzuela</span> <span class="err">┆</span> <span class="mi">1998</span>       <span class="err">│</span>
-<span class="err">│</span> <span class="n">Willard</span>    <span class="err">┆</span> <span class="n">Hodge</span>      <span class="err">┆</span> <span class="mi">2002</span>       <span class="err">│</span>
-<span class="err">│</span> <span class="n">Salena</span>     <span class="err">┆</span> <span class="n">Waller</span>     <span class="err">┆</span> <span class="mi">2014</span>       <span class="err">│</span>
-<span class="err">│</span> <span class="n">August</span>     <span class="err">┆</span> <span class="n">Dillard</span>    <span class="err">┆</span> <span class="mi">1988</span>       <span class="err">│</span>
-<span class="err">│</span> <span class="n">Coy</span>        <span class="err">┆</span> <span class="n">Goodman</span>    <span class="err">┆</span> <span class="mi">1999</span>       <span class="err">│</span>
-<span class="err">└────────────┴────────────┴────────────┘</span>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>┌────────────┬────────────┬────────────┐
+│ first_name ┆ last_name  ┆ birth_year │
+│ ---        ┆ ---        ┆ ---        │
+│ str        ┆ str        ┆ i32        │
+╞════════════╪════════════╪════════════╡
+│ Bennett    ┆ Chandler   ┆ 1985       │
+│ Elijah     ┆ Lara       ┆ 2003       │
+│ Thresa     ┆ Carroll    ┆ 2005       │
+│ Alethia    ┆ Wilkinson  ┆ 1999       │
+│ Elin       ┆ English    ┆ 1998       │
+│ …          ┆ …          ┆ …          │
+│ Dudley     ┆ Valenzuela ┆ 1998       │
+│ Willard    ┆ Hodge      ┆ 2002       │
+│ Salena     ┆ Waller     ┆ 2014       │
+│ August     ┆ Dillard    ┆ 1988       │
+│ Coy        ┆ Goodman    ┆ 1999       │
+└────────────┴────────────┴────────────┘
 </pre></div>
 </div>
 </section>
@@ -689,23 +687,23 @@
 </pre></div>
 </div>
 <p><strong>Result:</strong></p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="err">┌────────────┬────────────┬──────────────┐</span>
-<span class="err">│</span> <span class="n">first_name</span> <span class="err">┆</span> <span class="n">last_name</span>  <span class="err">┆</span> <span class="n">height_in_cm</span> <span class="err">│</span>
-<span class="err">│</span> <span class="o">---</span>        <span class="err">┆</span> <span class="o">---</span>        <span class="err">┆</span> <span class="o">---</span>          <span class="err">│</span>
-<span class="err">│</span> <span class="nb">str</span>        <span class="err">┆</span> <span class="nb">str</span>        <span class="err">┆</span> <span class="n">f64</span>          <span class="err">│</span>
-<span class="err">╞════════════╪════════════╪══════════════╡</span>
-<span class="err">│</span> <span class="n">Bennett</span>    <span class="err">┆</span> <span class="n">Chandler</span>   <span class="err">┆</span> <span class="mf">159.0</span>        <span class="err">│</span>
-<span class="err">│</span> <span class="n">Elijah</span>     <span class="err">┆</span> <span class="n">Lara</span>       <span class="err">┆</span> <span class="mf">175.0</span>        <span class="err">│</span>
-<span class="err">│</span> <span class="n">Thresa</span>     <span class="err">┆</span> <span class="n">Carroll</span>    <span class="err">┆</span> <span class="mf">153.0</span>        <span class="err">│</span>
-<span class="err">│</span> <span class="n">Alethia</span>    <span class="err">┆</span> <span class="n">Wilkinson</span>  <span class="err">┆</span> <span class="mf">186.0</span>        <span class="err">│</span>
-<span class="err">│</span> <span class="n">Elin</span>       <span class="err">┆</span> <span class="n">English</span>    <span class="err">┆</span> <span class="mf">188.0</span>        <span class="err">│</span>
-<span class="err">│</span> <span class="err">…</span>          <span class="err">┆</span> <span class="err">…</span>          <span class="err">┆</span> <span class="err">…</span>            <span class="err">│</span>
-<span class="err">│</span> <span class="n">Dudley</span>     <span class="err">┆</span> <span class="n">Valenzuela</span> <span class="err">┆</span> <span class="mf">177.0</span>        <span class="err">│</span>
-<span class="err">│</span> <span class="n">Willard</span>    <span class="err">┆</span> <span class="n">Hodge</span>      <span class="err">┆</span> <span class="mf">177.0</span>        <span class="err">│</span>
-<span class="err">│</span> <span class="n">Salena</span>     <span class="err">┆</span> <span class="n">Waller</span>     <span class="err">┆</span> <span class="mf">188.0</span>        <span class="err">│</span>
-<span class="err">│</span> <span class="n">August</span>     <span class="err">┆</span> <span class="n">Dillard</span>    <span class="err">┆</span> <span class="mf">183.0</span>        <span class="err">│</span>
-<span class="err">│</span> <span class="n">Coy</span>        <span class="err">┆</span> <span class="n">Goodman</span>    <span class="err">┆</span> <span class="mf">156.0</span>        <span class="err">│</span>
-<span class="err">└────────────┴────────────┴──────────────┘</span>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>┌────────────┬────────────┬──────────────┐
+│ first_name ┆ last_name  ┆ height_in_cm │
+│ ---        ┆ ---        ┆ ---          │
+│ str        ┆ str        ┆ f64          │
+╞════════════╪════════════╪══════════════╡
+│ Bennett    ┆ Chandler   ┆ 159.0        │
+│ Elijah     ┆ Lara       ┆ 175.0        │
+│ Thresa     ┆ Carroll    ┆ 153.0        │
+│ Alethia    ┆ Wilkinson  ┆ 186.0        │
+│ Elin       ┆ English    ┆ 188.0        │
+│ …          ┆ …          ┆ …            │
+│ Dudley     ┆ Valenzuela ┆ 177.0        │
+│ Willard    ┆ Hodge      ┆ 177.0        │
+│ Salena     ┆ Waller     ┆ 188.0        │
+│ August     ┆ Dillard    ┆ 183.0        │
+│ Coy        ┆ Goodman    ┆ 156.0        │
+└────────────┴────────────┴──────────────┘
 </pre></div>
 </div>
 </section>
@@ -713,7 +711,6 @@
 <hr class="docutils" />
 <section id="filter">
 <h3>Filter</h3>
-<hr class="docutils" />
 <p>Full list of Filters supported can be found in the <a class="reference external" href="https://docs.tabsdata.com/latest/ref/api/bycat-filters.html">API Reference</a>.</p>
 <section id="simple-condition-on-column-value">
 <h4>Simple condition on column value</h4>
@@ -722,28 +719,28 @@
 </pre></div>
 </div>
 <p><strong>Result:</strong></p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="err">┌────────────┬────────────┬───────────┬─────────────┬────────────┬────────┐</span>
-<span class="err">│</span> <span class="n">identifier</span> <span class="err">┆</span> <span class="n">first_name</span> <span class="err">┆</span> <span class="n">last_name</span> <span class="err">┆</span> <span class="n">nationality</span> <span class="err">┆</span> <span class="n">birthdate</span>  <span class="err">┆</span> <span class="n">height</span> <span class="err">│</span>
-<span class="err">│</span> <span class="o">---</span>        <span class="err">┆</span> <span class="o">---</span>        <span class="err">┆</span> <span class="o">---</span>       <span class="err">┆</span> <span class="o">---</span>         <span class="err">┆</span> <span class="o">---</span>        <span class="err">┆</span> <span class="o">---</span>    <span class="err">│</span>
-<span class="err">│</span> <span class="nb">str</span>        <span class="err">┆</span> <span class="nb">str</span>        <span class="err">┆</span> <span class="nb">str</span>       <span class="err">┆</span> <span class="nb">str</span>         <span class="err">┆</span> <span class="nb">str</span>        <span class="err">┆</span> <span class="n">f64</span>    <span class="err">│</span>
-<span class="err">╞════════════╪════════════╪═══════════╪═════════════╪════════════╪════════╡</span>
-<span class="err">│</span> <span class="mi">10</span><span class="o">-</span><span class="mi">08</span><span class="o">/</span><span class="mi">26</span>   <span class="err">┆</span> <span class="n">Milan</span>      <span class="err">┆</span> <span class="n">Austin</span>    <span class="err">┆</span> <span class="n">Swedish</span>     <span class="err">┆</span> <span class="mi">1981</span><span class="o">-</span><span class="mi">08</span><span class="o">-</span><span class="mi">28</span> <span class="err">┆</span> <span class="mf">1.94</span>   <span class="err">│</span>
-<span class="err">│</span>            <span class="err">┆</span>            <span class="err">┆</span>           <span class="err">┆</span>             <span class="err">┆</span>            <span class="err">┆</span>        <span class="err">│</span>
-<span class="err">│</span> <span class="mi">18</span><span class="o">-</span><span class="mi">23</span><span class="o">/</span><span class="mi">80</span>   <span class="err">┆</span> <span class="n">Gustavo</span>    <span class="err">┆</span> <span class="n">Ayers</span>     <span class="err">┆</span> <span class="n">Russian</span>     <span class="err">┆</span> <span class="mi">1991</span><span class="o">-</span><span class="mi">08</span><span class="o">-</span><span class="mi">27</span> <span class="err">┆</span> <span class="mf">1.84</span>   <span class="err">│</span>
-<span class="err">│</span>            <span class="err">┆</span>            <span class="err">┆</span>           <span class="err">┆</span>             <span class="err">┆</span>            <span class="err">┆</span>        <span class="err">│</span>
-<span class="err">│</span> <span class="mi">43</span><span class="o">-</span><span class="mi">25</span><span class="o">/</span><span class="mi">03</span>   <span class="err">┆</span> <span class="n">Barton</span>     <span class="err">┆</span> <span class="n">Alvarez</span>   <span class="err">┆</span> <span class="n">Swiss</span>       <span class="err">┆</span> <span class="mi">1995</span><span class="o">-</span><span class="mi">01</span><span class="o">-</span><span class="mi">08</span> <span class="err">┆</span> <span class="mf">1.55</span>   <span class="err">│</span>
-<span class="err">│</span> <span class="mi">46</span><span class="o">-</span><span class="mi">09</span><span class="o">/</span><span class="mi">51</span>   <span class="err">┆</span> <span class="n">Marvis</span>     <span class="err">┆</span> <span class="n">Alston</span>    <span class="err">┆</span> <span class="n">Ecuadorian</span>  <span class="err">┆</span> <span class="mi">2009</span><span class="o">-</span><span class="mi">03</span><span class="o">-</span><span class="mi">30</span> <span class="err">┆</span> <span class="mf">1.55</span>   <span class="err">│</span>
-<span class="err">│</span> <span class="mi">84</span><span class="o">-</span><span class="mi">84</span><span class="o">/</span><span class="mi">87</span>   <span class="err">┆</span> <span class="n">Alfred</span>     <span class="err">┆</span> <span class="n">Andrews</span>   <span class="err">┆</span> <span class="n">Ethiopian</span>   <span class="err">┆</span> <span class="mi">2010</span><span class="o">-</span><span class="mi">08</span><span class="o">-</span><span class="mi">29</span> <span class="err">┆</span> <span class="mf">1.82</span>   <span class="err">│</span>
-<span class="err">│</span> <span class="err">…</span>          <span class="err">┆</span> <span class="err">…</span>          <span class="err">┆</span> <span class="err">…</span>         <span class="err">┆</span> <span class="err">…</span>           <span class="err">┆</span> <span class="err">…</span>          <span class="err">┆</span> <span class="err">…</span>      <span class="err">│</span>
-<span class="err">│</span> <span class="mi">99</span><span class="o">-</span><span class="mi">98</span><span class="o">/</span><span class="mi">21</span>   <span class="err">┆</span> <span class="n">Doretta</span>    <span class="err">┆</span> <span class="n">Albert</span>    <span class="err">┆</span> <span class="n">Ukrainian</span>   <span class="err">┆</span> <span class="mi">2011</span><span class="o">-</span><span class="mi">11</span><span class="o">-</span><span class="mi">10</span> <span class="err">┆</span> <span class="mf">1.92</span>   <span class="err">│</span>
-<span class="err">│</span> <span class="mi">13</span><span class="o">-</span><span class="mi">33</span><span class="o">/</span><span class="mi">25</span>   <span class="err">┆</span> <span class="n">Sharika</span>    <span class="err">┆</span> <span class="n">Aguirre</span>   <span class="err">┆</span> <span class="n">Romanian</span>    <span class="err">┆</span> <span class="mi">1985</span><span class="o">-</span><span class="mi">10</span><span class="o">-</span><span class="mi">20</span> <span class="err">┆</span> <span class="mf">1.61</span>   <span class="err">│</span>
-<span class="err">│</span>            <span class="err">┆</span>            <span class="err">┆</span>           <span class="err">┆</span>             <span class="err">┆</span>            <span class="err">┆</span>        <span class="err">│</span>
-<span class="err">│</span> <span class="mi">60</span><span class="o">-</span><span class="mi">97</span><span class="o">/</span><span class="mi">39</span>   <span class="err">┆</span> <span class="n">Krysta</span>     <span class="err">┆</span> <span class="n">Albert</span>    <span class="err">┆</span> <span class="n">Greek</span>       <span class="err">┆</span> <span class="mi">2017</span><span class="o">-</span><span class="mi">10</span><span class="o">-</span><span class="mi">20</span> <span class="err">┆</span> <span class="mf">1.99</span>   <span class="err">│</span>
-<span class="err">│</span> <span class="mi">97</span><span class="o">-</span><span class="mi">89</span><span class="o">/</span><span class="mi">11</span>   <span class="err">┆</span> <span class="n">Elden</span>      <span class="err">┆</span> <span class="n">Alvarado</span>  <span class="err">┆</span> <span class="n">Dominican</span>   <span class="err">┆</span> <span class="mi">2014</span><span class="o">-</span><span class="mi">05</span><span class="o">-</span><span class="mi">09</span> <span class="err">┆</span> <span class="mf">1.8</span>    <span class="err">│</span>
-<span class="err">│</span>            <span class="err">┆</span>            <span class="err">┆</span>           <span class="err">┆</span>             <span class="err">┆</span>            <span class="err">┆</span>        <span class="err">│</span>
-<span class="err">│</span> <span class="mi">17</span><span class="o">-</span><span class="mi">61</span><span class="o">/</span><span class="mi">97</span>   <span class="err">┆</span> <span class="n">Rosario</span>    <span class="err">┆</span> <span class="n">Austin</span>    <span class="err">┆</span> <span class="n">Argentinian</span> <span class="err">┆</span> <span class="mi">1982</span><span class="o">-</span><span class="mi">12</span><span class="o">-</span><span class="mi">18</span> <span class="err">┆</span> <span class="mf">1.77</span>   <span class="err">│</span>
-<span class="err">│</span>            <span class="err">┆</span>            <span class="err">┆</span>           <span class="err">┆</span>             <span class="err">┆</span>            <span class="err">┆</span>        <span class="err">│</span>
-<span class="err">└────────────┴────────────┴───────────┴─────────────┴────────────┴────────┘</span>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>┌────────────┬────────────┬───────────┬─────────────┬────────────┬────────┐
+│ identifier ┆ first_name ┆ last_name ┆ nationality ┆ birthdate  ┆ height │
+│ ---        ┆ ---        ┆ ---       ┆ ---         ┆ ---        ┆ ---    │
+│ str        ┆ str        ┆ str       ┆ str         ┆ str        ┆ f64    │
+╞════════════╪════════════╪═══════════╪═════════════╪════════════╪════════╡
+│ 10-08/26   ┆ Milan      ┆ Austin    ┆ Swedish     ┆ 1981-08-28 ┆ 1.94   │
+│            ┆            ┆           ┆             ┆            ┆        │
+│ 18-23/80   ┆ Gustavo    ┆ Ayers     ┆ Russian     ┆ 1991-08-27 ┆ 1.84   │
+│            ┆            ┆           ┆             ┆            ┆        │
+│ 43-25/03   ┆ Barton     ┆ Alvarez   ┆ Swiss       ┆ 1995-01-08 ┆ 1.55   │
+│ 46-09/51   ┆ Marvis     ┆ Alston    ┆ Ecuadorian  ┆ 2009-03-30 ┆ 1.55   │
+│ 84-84/87   ┆ Alfred     ┆ Andrews   ┆ Ethiopian   ┆ 2010-08-29 ┆ 1.82   │
+│ …          ┆ …          ┆ …         ┆ …           ┆ …          ┆ …      │
+│ 99-98/21   ┆ Doretta    ┆ Albert    ┆ Ukrainian   ┆ 2011-11-10 ┆ 1.92   │
+│ 13-33/25   ┆ Sharika    ┆ Aguirre   ┆ Romanian    ┆ 1985-10-20 ┆ 1.61   │
+│            ┆            ┆           ┆             ┆            ┆        │
+│ 60-97/39   ┆ Krysta     ┆ Albert    ┆ Greek       ┆ 2017-10-20 ┆ 1.99   │
+│ 97-89/11   ┆ Elden      ┆ Alvarado  ┆ Dominican   ┆ 2014-05-09 ┆ 1.8    │
+│            ┆            ┆           ┆             ┆            ┆        │
+│ 17-61/97   ┆ Rosario    ┆ Austin    ┆ Argentinian ┆ 1982-12-18 ┆ 1.77   │
+│            ┆            ┆           ┆             ┆            ┆        │
+└────────────┴────────────┴───────────┴─────────────┴────────────┴────────┘
 </pre></div>
 </div>
 </section>
@@ -757,30 +754,30 @@
 </pre></div>
 </div>
 <p><strong>Result:</strong></p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="err">┌────────────┬────────────┬───────────┬─────────────┬────────────┬────────┐</span>
-<span class="err">│</span> <span class="n">identifier</span> <span class="err">┆</span> <span class="n">first_name</span> <span class="err">┆</span> <span class="n">last_name</span> <span class="err">┆</span> <span class="n">nationality</span> <span class="err">┆</span> <span class="n">birthdate</span>  <span class="err">┆</span> <span class="n">height</span> <span class="err">│</span>
-<span class="err">│</span> <span class="o">---</span>        <span class="err">┆</span> <span class="o">---</span>        <span class="err">┆</span> <span class="o">---</span>       <span class="err">┆</span> <span class="o">---</span>         <span class="err">┆</span> <span class="o">---</span>        <span class="err">┆</span> <span class="o">---</span>    <span class="err">│</span>
-<span class="err">│</span> <span class="nb">str</span>        <span class="err">┆</span> <span class="nb">str</span>        <span class="err">┆</span> <span class="nb">str</span>       <span class="err">┆</span> <span class="nb">str</span>         <span class="err">┆</span> <span class="nb">str</span>        <span class="err">┆</span> <span class="n">f64</span>    <span class="err">│</span>
-<span class="err">╞════════════╪════════════╪═══════════╪═════════════╪════════════╪════════╡</span>
-<span class="err">│</span> <span class="mi">10</span><span class="o">-</span><span class="mi">08</span><span class="o">/</span><span class="mi">26</span>   <span class="err">┆</span> <span class="n">Milan</span>      <span class="err">┆</span> <span class="n">Austin</span>    <span class="err">┆</span> <span class="n">Swedish</span>     <span class="err">┆</span> <span class="mi">1981</span><span class="o">-</span><span class="mi">08</span><span class="o">-</span><span class="mi">28</span> <span class="err">┆</span> <span class="mf">1.94</span>   <span class="err">│</span>
-<span class="err">│</span>            <span class="err">┆</span>            <span class="err">┆</span>           <span class="err">┆</span>             <span class="err">┆</span>            <span class="err">┆</span>        <span class="err">│</span>
-<span class="err">│</span> <span class="mi">18</span><span class="o">-</span><span class="mi">23</span><span class="o">/</span><span class="mi">80</span>   <span class="err">┆</span> <span class="n">Gustavo</span>    <span class="err">┆</span> <span class="n">Ayers</span>     <span class="err">┆</span> <span class="n">Russian</span>     <span class="err">┆</span> <span class="mi">1991</span><span class="o">-</span><span class="mi">08</span><span class="o">-</span><span class="mi">27</span> <span class="err">┆</span> <span class="mf">1.84</span>   <span class="err">│</span>
-<span class="err">│</span>            <span class="err">┆</span>            <span class="err">┆</span>           <span class="err">┆</span>             <span class="err">┆</span>            <span class="err">┆</span>        <span class="err">│</span>
-<span class="err">│</span> <span class="mi">84</span><span class="o">-</span><span class="mi">84</span><span class="o">/</span><span class="mi">87</span>   <span class="err">┆</span> <span class="n">Alfred</span>     <span class="err">┆</span> <span class="n">Andrews</span>   <span class="err">┆</span> <span class="n">Ethiopian</span>   <span class="err">┆</span> <span class="mi">2010</span><span class="o">-</span><span class="mi">08</span><span class="o">-</span><span class="mi">29</span> <span class="err">┆</span> <span class="mf">1.82</span>   <span class="err">│</span>
-<span class="err">│</span> <span class="mi">98</span><span class="o">-</span><span class="mi">38</span><span class="o">/</span><span class="mi">79</span>   <span class="err">┆</span> <span class="n">Cody</span>       <span class="err">┆</span> <span class="n">Allison</span>   <span class="err">┆</span> <span class="n">Australian</span>  <span class="err">┆</span> <span class="mi">2023</span><span class="o">-</span><span class="mi">12</span><span class="o">-</span><span class="mi">11</span> <span class="err">┆</span> <span class="mf">1.99</span>   <span class="err">│</span>
-<span class="err">│</span>            <span class="err">┆</span>            <span class="err">┆</span>           <span class="err">┆</span>             <span class="err">┆</span>            <span class="err">┆</span>        <span class="err">│</span>
-<span class="err">│</span> <span class="mi">33</span><span class="o">-</span><span class="mi">44</span><span class="o">/</span><span class="mi">94</span>   <span class="err">┆</span> <span class="n">Walton</span>     <span class="err">┆</span> <span class="n">Avery</span>     <span class="err">┆</span> <span class="n">Chinese</span>     <span class="err">┆</span> <span class="mi">1987</span><span class="o">-</span><span class="mi">11</span><span class="o">-</span><span class="mi">20</span> <span class="err">┆</span> <span class="mf">1.85</span>   <span class="err">│</span>
-<span class="err">│</span>            <span class="err">┆</span>            <span class="err">┆</span>           <span class="err">┆</span>             <span class="err">┆</span>            <span class="err">┆</span>        <span class="err">│</span>
-<span class="err">│</span> <span class="err">…</span>          <span class="err">┆</span> <span class="err">…</span>          <span class="err">┆</span> <span class="err">…</span>         <span class="err">┆</span> <span class="err">…</span>           <span class="err">┆</span> <span class="err">…</span>          <span class="err">┆</span> <span class="err">…</span>      <span class="err">│</span>
-<span class="err">│</span> <span class="mi">75</span><span class="o">-</span><span class="mi">70</span><span class="o">/</span><span class="mi">19</span>   <span class="err">┆</span> <span class="n">Ngoc</span>       <span class="err">┆</span> <span class="n">Anderson</span>  <span class="err">┆</span> <span class="n">Ukrainian</span>   <span class="err">┆</span> <span class="mi">2005</span><span class="o">-</span><span class="mi">11</span><span class="o">-</span><span class="mi">10</span> <span class="err">┆</span> <span class="mf">1.86</span>   <span class="err">│</span>
-<span class="err">│</span>            <span class="err">┆</span>            <span class="err">┆</span>           <span class="err">┆</span>             <span class="err">┆</span>            <span class="err">┆</span>        <span class="err">│</span>
-<span class="err">│</span> <span class="mi">65</span><span class="o">-</span><span class="mi">39</span><span class="o">/</span><span class="mi">04</span>   <span class="err">┆</span> <span class="n">Meg</span>        <span class="err">┆</span> <span class="n">Andrews</span>   <span class="err">┆</span> <span class="n">Colombian</span>   <span class="err">┆</span> <span class="mi">2006</span><span class="o">-</span><span class="mi">04</span><span class="o">-</span><span class="mi">26</span> <span class="err">┆</span> <span class="mf">1.86</span>   <span class="err">│</span>
-<span class="err">│</span>            <span class="err">┆</span>            <span class="err">┆</span>           <span class="err">┆</span>             <span class="err">┆</span>            <span class="err">┆</span>        <span class="err">│</span>
-<span class="err">│</span> <span class="mi">35</span><span class="o">-</span><span class="mi">32</span><span class="o">/</span><span class="mi">81</span>   <span class="err">┆</span> <span class="n">Julienne</span>   <span class="err">┆</span> <span class="n">Alston</span>    <span class="err">┆</span> <span class="n">Chilean</span>     <span class="err">┆</span> <span class="mi">2001</span><span class="o">-</span><span class="mi">08</span><span class="o">-</span><span class="mi">02</span> <span class="err">┆</span> <span class="mf">1.9</span>    <span class="err">│</span>
-<span class="err">│</span>            <span class="err">┆</span>            <span class="err">┆</span>           <span class="err">┆</span>             <span class="err">┆</span>            <span class="err">┆</span>        <span class="err">│</span>
-<span class="err">│</span> <span class="mi">99</span><span class="o">-</span><span class="mi">98</span><span class="o">/</span><span class="mi">21</span>   <span class="err">┆</span> <span class="n">Doretta</span>    <span class="err">┆</span> <span class="n">Albert</span>    <span class="err">┆</span> <span class="n">Ukrainian</span>   <span class="err">┆</span> <span class="mi">2011</span><span class="o">-</span><span class="mi">11</span><span class="o">-</span><span class="mi">10</span> <span class="err">┆</span> <span class="mf">1.92</span>   <span class="err">│</span>
-<span class="err">│</span> <span class="mi">60</span><span class="o">-</span><span class="mi">97</span><span class="o">/</span><span class="mi">39</span>   <span class="err">┆</span> <span class="n">Krysta</span>     <span class="err">┆</span> <span class="n">Albert</span>    <span class="err">┆</span> <span class="n">Greek</span>       <span class="err">┆</span> <span class="mi">2017</span><span class="o">-</span><span class="mi">10</span><span class="o">-</span><span class="mi">20</span> <span class="err">┆</span> <span class="mf">1.99</span>   <span class="err">│</span>
-<span class="err">└────────────┴────────────┴───────────┴─────────────┴────────────┴────────┘</span>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>┌────────────┬────────────┬───────────┬─────────────┬────────────┬────────┐
+│ identifier ┆ first_name ┆ last_name ┆ nationality ┆ birthdate  ┆ height │
+│ ---        ┆ ---        ┆ ---       ┆ ---         ┆ ---        ┆ ---    │
+│ str        ┆ str        ┆ str       ┆ str         ┆ str        ┆ f64    │
+╞════════════╪════════════╪═══════════╪═════════════╪════════════╪════════╡
+│ 10-08/26   ┆ Milan      ┆ Austin    ┆ Swedish     ┆ 1981-08-28 ┆ 1.94   │
+│            ┆            ┆           ┆             ┆            ┆        │
+│ 18-23/80   ┆ Gustavo    ┆ Ayers     ┆ Russian     ┆ 1991-08-27 ┆ 1.84   │
+│            ┆            ┆           ┆             ┆            ┆        │
+│ 84-84/87   ┆ Alfred     ┆ Andrews   ┆ Ethiopian   ┆ 2010-08-29 ┆ 1.82   │
+│ 98-38/79   ┆ Cody       ┆ Allison   ┆ Australian  ┆ 2023-12-11 ┆ 1.99   │
+│            ┆            ┆           ┆             ┆            ┆        │
+│ 33-44/94   ┆ Walton     ┆ Avery     ┆ Chinese     ┆ 1987-11-20 ┆ 1.85   │
+│            ┆            ┆           ┆             ┆            ┆        │
+│ …          ┆ …          ┆ …         ┆ …           ┆ …          ┆ …      │
+│ 75-70/19   ┆ Ngoc       ┆ Anderson  ┆ Ukrainian   ┆ 2005-11-10 ┆ 1.86   │
+│            ┆            ┆           ┆             ┆            ┆        │
+│ 65-39/04   ┆ Meg        ┆ Andrews   ┆ Colombian   ┆ 2006-04-26 ┆ 1.86   │
+│            ┆            ┆           ┆             ┆            ┆        │
+│ 35-32/81   ┆ Julienne   ┆ Alston    ┆ Chilean     ┆ 2001-08-02 ┆ 1.9    │
+│            ┆            ┆           ┆             ┆            ┆        │
+│ 99-98/21   ┆ Doretta    ┆ Albert    ┆ Ukrainian   ┆ 2011-11-10 ┆ 1.92   │
+│ 60-97/39   ┆ Krysta     ┆ Albert    ┆ Greek       ┆ 2017-10-20 ┆ 1.99   │
+└────────────┴────────────┴───────────┴─────────────┴────────────┴────────┘
 </pre></div>
 </div>
 </section>
@@ -794,23 +791,23 @@
 </pre></div>
 </div>
 <p><strong>Result:</strong></p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="err">┌────────────┬─────────────┐</span>
-<span class="err">│</span> <span class="n">birth_year</span> <span class="err">┆</span> <span class="n">people_born</span> <span class="err">│</span>
-<span class="err">│</span> <span class="o">---</span>        <span class="err">┆</span> <span class="o">---</span>         <span class="err">│</span>
-<span class="err">│</span> <span class="n">i32</span>        <span class="err">┆</span> <span class="n">u32</span>         <span class="err">│</span>
-<span class="err">╞════════════╪═════════════╡</span>
-<span class="err">│</span> <span class="mi">2013</span>       <span class="err">┆</span> <span class="mi">17</span>          <span class="err">│</span>
-<span class="err">│</span> <span class="mi">2008</span>       <span class="err">┆</span> <span class="mi">17</span>          <span class="err">│</span>
-<span class="err">│</span> <span class="mi">1997</span>       <span class="err">┆</span> <span class="mi">27</span>          <span class="err">│</span>
-<span class="err">│</span> <span class="mi">2014</span>       <span class="err">┆</span> <span class="mi">26</span>          <span class="err">│</span>
-<span class="err">│</span> <span class="mi">2007</span>       <span class="err">┆</span> <span class="mi">27</span>          <span class="err">│</span>
-<span class="err">│</span> <span class="err">…</span>          <span class="err">┆</span> <span class="err">…</span>           <span class="err">│</span>
-<span class="err">│</span> <span class="mi">1999</span>       <span class="err">┆</span> <span class="mi">26</span>          <span class="err">│</span>
-<span class="err">│</span> <span class="mi">2017</span>       <span class="err">┆</span> <span class="mi">25</span>          <span class="err">│</span>
-<span class="err">│</span> <span class="mi">2004</span>       <span class="err">┆</span> <span class="mi">20</span>          <span class="err">│</span>
-<span class="err">│</span> <span class="mi">1983</span>       <span class="err">┆</span> <span class="mi">24</span>          <span class="err">│</span>
-<span class="err">│</span> <span class="mi">1993</span>       <span class="err">┆</span> <span class="mi">16</span>          <span class="err">│</span>
-<span class="err">└────────────┴─────────────┘</span>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>┌────────────┬─────────────┐
+│ birth_year ┆ people_born │
+│ ---        ┆ ---         │
+│ i32        ┆ u32         │
+╞════════════╪═════════════╡
+│ 2013       ┆ 17          │
+│ 2008       ┆ 17          │
+│ 1997       ┆ 27          │
+│ 2014       ┆ 26          │
+│ 2007       ┆ 27          │
+│ …          ┆ …           │
+│ 1999       ┆ 26          │
+│ 2017       ┆ 25          │
+│ 2004       ┆ 20          │
+│ 1983       ┆ 24          │
+│ 1993       ┆ 16          │
+└────────────┴─────────────┘
 </pre></div>
 </div>
 </section>
@@ -837,23 +834,23 @@
 </pre></div>
 </div>
 <p><strong>Result:</strong></p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="err">┌───────────┬─────────────────┬────────────┐</span>
-<span class="err">│</span> <span class="n">last_name</span> <span class="err">┆</span> <span class="n">birth_year_mean</span> <span class="err">┆</span> <span class="n">birthdate</span>  <span class="err">│</span>
-<span class="err">│</span> <span class="o">---</span>       <span class="err">┆</span> <span class="o">---</span>             <span class="err">┆</span> <span class="o">---</span>        <span class="err">│</span>
-<span class="err">│</span> <span class="nb">str</span>       <span class="err">┆</span> <span class="n">f64</span>             <span class="err">┆</span> <span class="nb">str</span>        <span class="err">│</span>
-<span class="err">╞═══════════╪═════════════════╪════════════╡</span>
-<span class="err">│</span> <span class="n">Carroll</span>   <span class="err">┆</span> <span class="mf">2000.25</span>         <span class="err">┆</span> <span class="mi">2005</span><span class="o">-</span><span class="mi">02</span><span class="o">-</span><span class="mi">03</span> <span class="err">│</span>
-<span class="err">│</span> <span class="n">Brock</span>     <span class="err">┆</span> <span class="mf">1999.545455</span>     <span class="err">┆</span> <span class="mi">2013</span><span class="o">-</span><span class="mi">10</span><span class="o">-</span><span class="mi">12</span> <span class="err">│</span>
-<span class="err">│</span> <span class="n">Shields</span>   <span class="err">┆</span> <span class="mf">2003.172414</span>     <span class="err">┆</span> <span class="mi">2013</span><span class="o">-</span><span class="mi">12</span><span class="o">-</span><span class="mi">31</span> <span class="err">│</span>
-<span class="err">│</span> <span class="n">Decker</span>    <span class="err">┆</span> <span class="mf">2005.769231</span>     <span class="err">┆</span> <span class="mi">2006</span><span class="o">-</span><span class="mi">06</span><span class="o">-</span><span class="mi">26</span> <span class="err">│</span>
-<span class="err">│</span> <span class="n">Rodriguez</span> <span class="err">┆</span> <span class="mf">2002.866667</span>     <span class="err">┆</span> <span class="mi">2019</span><span class="o">-</span><span class="mi">06</span><span class="o">-</span><span class="mi">14</span> <span class="err">│</span>
-<span class="err">│</span> <span class="err">…</span>         <span class="err">┆</span> <span class="err">…</span>               <span class="err">┆</span> <span class="err">…</span>          <span class="err">│</span>
-<span class="err">│</span> <span class="n">Chan</span>      <span class="err">┆</span> <span class="mf">2002.181818</span>     <span class="err">┆</span> <span class="mi">2017</span><span class="o">-</span><span class="mi">08</span><span class="o">-</span><span class="mi">26</span> <span class="err">│</span>
-<span class="err">│</span> <span class="n">Vargas</span>    <span class="err">┆</span> <span class="mf">1998.925926</span>     <span class="err">┆</span> <span class="mi">2003</span><span class="o">-</span><span class="mi">07</span><span class="o">-</span><span class="mi">12</span> <span class="err">│</span>
-<span class="err">│</span> <span class="n">Crosby</span>    <span class="err">┆</span> <span class="mf">2006.769231</span>     <span class="err">┆</span> <span class="mi">2010</span><span class="o">-</span><span class="mi">01</span><span class="o">-</span><span class="mi">17</span> <span class="err">│</span>
-<span class="err">│</span> <span class="n">Jensen</span>    <span class="err">┆</span> <span class="mf">1998.925926</span>     <span class="err">┆</span> <span class="mi">2005</span><span class="o">-</span><span class="mi">08</span><span class="o">-</span><span class="mi">09</span> <span class="err">│</span>
-<span class="err">│</span> <span class="n">Waller</span>    <span class="err">┆</span> <span class="mf">2004.444444</span>     <span class="err">┆</span> <span class="mi">2014</span><span class="o">-</span><span class="mi">04</span><span class="o">-</span><span class="mi">19</span> <span class="err">│</span>
-<span class="err">└───────────┴─────────────────┴────────────┘</span>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>┌───────────┬─────────────────┬────────────┐
+│ last_name ┆ birth_year_mean ┆ birthdate  │
+│ ---       ┆ ---             ┆ ---        │
+│ str       ┆ f64             ┆ str        │
+╞═══════════╪═════════════════╪════════════╡
+│ Carroll   ┆ 2000.25         ┆ 2005-02-03 │
+│ Brock     ┆ 1999.545455     ┆ 2013-10-12 │
+│ Shields   ┆ 2003.172414     ┆ 2013-12-31 │
+│ Decker    ┆ 2005.769231     ┆ 2006-06-26 │
+│ Rodriguez ┆ 2002.866667     ┆ 2019-06-14 │
+│ …         ┆ …               ┆ …          │
+│ Chan      ┆ 2002.181818     ┆ 2017-08-26 │
+│ Vargas    ┆ 1998.925926     ┆ 2003-07-12 │
+│ Crosby    ┆ 2006.769231     ┆ 2010-01-17 │
+│ Jensen    ┆ 1998.925926     ┆ 2005-08-09 │
+│ Waller    ┆ 2004.444444     ┆ 2014-04-19 │
+└───────────┴─────────────────┴────────────┘
 </pre></div>
 </div>
 </section>

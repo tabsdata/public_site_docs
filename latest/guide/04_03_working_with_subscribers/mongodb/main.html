@@ -44,8 +44,8 @@
     <script src="../../../_static/jquery.js?v=5d32c60e"></script>
     <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
     <script src="../../../_static/documentation_options.js?v=7f41d439"></script>
-    <script src="../../../_static/doctools.js?v=9bcbadda"></script>
-    <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="../../../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
     <script src="../../../_static/copybutton.js?v=a56c686a"></script>
     <script src="../../../_static/design-tabs.js?v=f930bc37"></script>
@@ -339,6 +339,7 @@
 <li class="toctree-l2"><a class="reference internal" href="../../04_01_working_with_publishers/amazon_s3/main.html">Amazon S3</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../04_01_working_with_publishers/azure/main.html">Azure Blob Storage</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../04_01_working_with_publishers/gcp/main.html">Google Cloud Storage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../04_01_working_with_publishers/grok_for_log_files/main.html">Grok for Log Files</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../working_with_kafka/main.html">Kafka</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../04_01_working_with_publishers/mariadb/main.html">MariaDB</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../04_01_working_with_publishers/mssql/main.html">Microsoft SQL Server</a></li>
@@ -347,18 +348,17 @@
 <li class="toctree-l2"><a class="reference internal" href="../../04_01_working_with_publishers/postgres/main.html">Postgres</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../04_01_working_with_publishers/salesforce/main.html">Salesforce SOQL Query</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../04_01_working_with_publishers/salesforce_reports/main.html">Salesforce Reports</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../04_01_working_with_publishers/grok_for_log_files/main.html">Grok for Log Files</a></li>
 </ul>
 </details></li>
 <li class="toctree-l1"><a class="reference internal" href="../../04_02_working_with_transformers/main.html">Transformers</a></li>
 <li class="toctree-l1 current active has-children"><a class="reference internal" href="../main.html">Subscribers</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="../local_file_system/main.html">Local File System</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../aws_iceberg/main.html">AWS Glue - Iceberg tables</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../amazon_s3/main.html">Amazon S3</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../azure/main.html">Azure Blob Storage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../gcp/main.html">Google Cloud Storage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../aws_iceberg/main.html">AWS Glue - Iceberg tables</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../bigquery/main.html">Big Query</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../databricks/main.html">Databricks</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../gcp/main.html">Google Cloud Storage</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../mariadb/main.html">MariaDB</a></li>
 <li class="toctree-l2 current active"><a class="current reference internal" href="#">MongoDB</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../mssql/main.html">Microsoft SQL Server</a></li>
@@ -528,7 +528,7 @@
 <section id="destination">
 <h3>destination</h3>
 <p><strong>uri</strong>: <code class="docutils literal notranslate"><span class="pre">&lt;path_to_db&gt;</span></code> is the URI to the database. Some parameters can be sent together with the URI, for example the replication set to use, as you would do normally when connecting to the MongoDB database.</p>
-<p><strong>credentials</strong>: <code class="docutils literal notranslate"><span class="pre">&lt;db_username&gt;</span></code> and <code class="docutils literal notranslate"><span class="pre">&lt;db_password&gt;</span></code> are the username and password to log in to the database respectively. You can use different ways to store the credentials which are highlighted <a class="reference internal" href="../../../ref/api/bycat-credentials.html#credentials"><span class="std std-ref">here</span></a> in the documentation.</p>
+<p><strong>credentials</strong>: <code class="docutils literal notranslate"><span class="pre">&lt;db_username&gt;</span></code> and <code class="docutils literal notranslate"><span class="pre">&lt;db_password&gt;</span></code> are the username and password to log in to the database respectively. You can use different ways to store the credentials which are highlighted <a class="reference internal" href="../../secrets_management/main.html#credentials"><span class="std std-ref">here</span></a> in the documentation.</p>
 <p><strong>collections_with_ids</strong>: In MongoDB, documents (equivalent to tuples in RBMS) are stored in collections (equivalent to tables in RBMS) inside a database, and each document must have a column that acts as a unique identifier. This parameter will take, for each table that we want it to store, a tuple where its first element is a string representing the database plus the collection, as “database_name.collection_name”, and a second element that can be either a column in the table that we want to use as the identifier column (providing the string “column_name” in such a case) or None, in case we want MongoDB to automatically generate the identifier column. In the above example, we have <code class="docutils literal notranslate"><span class="pre">collection_with_ids=[(&quot;database.collection_1&quot;,None),</span> <span class="pre">(&quot;database.collection_2&quot;,&quot;field_name&quot;)]</span></code>. Here the first entry in the array, <code class="docutils literal notranslate"><span class="pre">(&quot;database.collection_1&quot;,None)</span></code> creates a collection that automatically generate the identifier column for all documents inside it. The second entry in the array, <code class="docutils literal notranslate"><span class="pre">(&quot;database.collection_2&quot;,&quot;field_name&quot;)</span></code> creates a collection that uses <code class="docutils literal notranslate"><span class="pre">field_name</span></code> from the document as the identifier.</p>
 <p>[optional] <strong>if_collection_exists</strong>: This parameter behaves identically to <code class="docutils literal notranslate"><span class="pre">if_table_exists</span></code>, found in other destinations. It defines what to do if the destination is storing to a specific collection that already existed before. The options are <code class="docutils literal notranslate"><span class="pre">append</span></code>, in which case the documents will be added to the list of already existing documents in the collection, or <code class="docutils literal notranslate"><span class="pre">replace</span></code>, in which case the entire collection will be emptied before performing insertion of the new documents. This parameter defaults to <code class="docutils literal notranslate"><span class="pre">append</span></code>.</p>
 <p>[optional] <strong>connection_options</strong>: The optional parameter <code class="docutils literal notranslate"><span class="pre">connection_options</span></code> takes a dictionary as the input, and will send it directly to the function creating the connection with the MongoDB database. We are using the function pymongo.MongoClient to create it, with documentation here: <a class="reference external" href="https://pymongo.readthedocs.io/en/stable/api/pymongo/mongo_client.html#pymongo.mongo_client.MongoClient">https://pymongo.readthedocs.io/en/stable/api/pymongo/mongo_client.html#pymongo.mongo_client.MongoClient</a>. For example, if one wanted to set the timeout to 1000 milliseconds, they would provide the following dictionary: {‘serverSelectionTimeoutMS’: 1000}.</p>

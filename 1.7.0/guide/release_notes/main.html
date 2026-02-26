@@ -44,8 +44,8 @@
     <script src="../../_static/jquery.js?v=5d32c60e"></script>
     <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
     <script src="../../_static/documentation_options.js?v=7f41d439"></script>
-    <script src="../../_static/doctools.js?v=9bcbadda"></script>
-    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="../../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
     <script src="../../_static/copybutton.js?v=a56c686a"></script>
     <script src="../../_static/design-tabs.js?v=f930bc37"></script>
@@ -339,6 +339,7 @@
 <li class="toctree-l2"><a class="reference internal" href="../04_01_working_with_publishers/amazon_s3/main.html">Amazon S3</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../04_01_working_with_publishers/azure/main.html">Azure Blob Storage</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../04_01_working_with_publishers/gcp/main.html">Google Cloud Storage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../04_01_working_with_publishers/grok_for_log_files/main.html">Grok for Log Files</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../working_with_kafka/main.html">Kafka</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../04_01_working_with_publishers/mariadb/main.html">MariaDB</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../04_01_working_with_publishers/mssql/main.html">Microsoft SQL Server</a></li>
@@ -347,18 +348,17 @@
 <li class="toctree-l2"><a class="reference internal" href="../04_01_working_with_publishers/postgres/main.html">Postgres</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../04_01_working_with_publishers/salesforce/main.html">Salesforce SOQL Query</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../04_01_working_with_publishers/salesforce_reports/main.html">Salesforce Reports</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../04_01_working_with_publishers/grok_for_log_files/main.html">Grok for Log Files</a></li>
 </ul>
 </details></li>
 <li class="toctree-l1"><a class="reference internal" href="../04_02_working_with_transformers/main.html">Transformers</a></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../04_03_working_with_subscribers/main.html">Subscribers</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference internal" href="../04_03_working_with_subscribers/local_file_system/main.html">Local File System</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../04_03_working_with_subscribers/aws_iceberg/main.html">AWS Glue - Iceberg tables</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../04_03_working_with_subscribers/amazon_s3/main.html">Amazon S3</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../04_03_working_with_subscribers/azure/main.html">Azure Blob Storage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../04_03_working_with_subscribers/gcp/main.html">Google Cloud Storage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../04_03_working_with_subscribers/aws_iceberg/main.html">AWS Glue - Iceberg tables</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../04_03_working_with_subscribers/bigquery/main.html">Big Query</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../04_03_working_with_subscribers/databricks/main.html">Databricks</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../04_03_working_with_subscribers/gcp/main.html">Google Cloud Storage</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../04_03_working_with_subscribers/mariadb/main.html">MariaDB</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../04_03_working_with_subscribers/mongodb/main.html">MongoDB</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../04_03_working_with_subscribers/mssql/main.html">Microsoft SQL Server</a></li>
@@ -478,13 +478,10 @@
 <li><p>Revamped <a class="reference internal" href="../user_interface/main.html#ui"><span class="std std-ref">UI</span></a> navigation.</p></li>
 </ul>
 <p>Known issues:</p>
-<ul>
+<ul class="simple">
 <li><p>When installing tabsdata with uv as the package manager, the databricks-sql-connector
-dependency must be pinned to version 4.2.0. For example:</p>
-<blockquote>
-<div><p>uv pip install “tabsdata[all]==1.6.0” “databricks-sql-connector==4.2.0”</p>
-</div></blockquote>
-</li>
+dependency must be pinned to version 4.2.0. For example:
+<code class="docutils literal notranslate"><span class="pre">uv</span> <span class="pre">pip</span> <span class="pre">install</span> <span class="pre">&quot;tabsdata[all]==1.6.0&quot;</span> <span class="pre">&quot;databricks-sql-connector==4.2.0&quot;</span></code></p></li>
 <li><p>To have the tabsdata agent working, you need to edit the file <code class="docutils literal notranslate"><span class="pre">`~/.tabsdata/instances/tabsdata/workspace/config/proc/regular/aiagent/config/requirements.txt</span></code>,  and replace <cite>tabsdata_agent</cite> with <cite>tabsdata-agent</cite>. This will get corrected in the next release.</p></li>
 </ul>
 </section>
@@ -523,7 +520,7 @@ dependency must be pinned to version 4.2.0. For example:</p>
 <ul class="simple">
 <li><p><a class="reference internal" href="../04_03_working_with_subscribers/gcp/main.html#gcp-subscriber"><span class="std std-ref">Google Cloud Storage</span></a> publisher and subscriber connectors</p></li>
 <li><p>Avro Support for publishing and subscribing using file based connectors (File, S3, Azure storage, Google Cloud Storage)</p></li>
-<li><p><a class="reference internal" href="../04_01_working_with_publishers/salesforce_reports/main.html#salesforce"><span class="std std-ref">Salesforce</span></a> reports publisher connector</p></li>
+<li><p><a class="reference internal" href="../04_01_working_with_publishers/salesforce_reports/main.html#salesforce-reports"><span class="std std-ref">Salesforce</span></a> reports publisher connector</p></li>
 <li><p><a class="reference internal" href="../04_01_working_with_publishers/grok_for_log_files/main.html#grok-for-log-files"><span class="std std-ref">Grok parser</span></a> support for TableFrames columns</p></li>
 <li><p><a class="reference internal" href="../permissioning/main.html#rbac"><span class="std std-ref">Permissions CLI</span></a></p></li>
 </ul>
@@ -561,7 +558,7 @@ dependency must be pinned to version 4.2.0. For example:</p>
 <p><strong>What’s New?</strong></p>
 <ul class="simple">
 <li><p><a class="reference internal" href="../user_interface/main.html#ui"><span class="std std-ref">Browser Interface</span></a>: You can now interact with various powerful functionalities of Tabsdata using the browser interface.</p></li>
-<li><p><strong>New Connectors:</strong> Built-in support for <a class="reference internal" href="../04_03_working_with_subscribers/snowflake/main.html#snowflake-subscriber"><span class="std std-ref">Snowflake</span></a> and <a class="reference internal" href="../catalogs/unity_catalog/main.html#databricks-subscriber"><span class="std std-ref">Databricks</span></a> is now live. Seamless integrations, out of the box.</p></li>
+<li><p><strong>New Connectors:</strong> Built-in support for <a class="reference internal" href="../04_03_working_with_subscribers/snowflake/main.html#snowflake-subscriber"><span class="std std-ref">Snowflake</span></a> and <a class="reference internal" href="../04_03_working_with_subscribers/databricks/main.html#databricks-subscriber"><span class="std std-ref">Databricks</span></a> is now live. Seamless integrations, out of the box.</p></li>
 <li><p><a class="reference internal" href="../catalogs/main.html#catalogs"><span class="std std-ref">Catalog Support</span></a>: Enhanced support for Unity Catalog, and AWS Glue Catalog, with Parquet format compatibility.</p></li>
 <li><p><a class="reference internal" href="../11_cli_commands/main.html"><span class="doc">CLI</span></a> <strong>Improvements:</strong> We’ve reimagined the CLI experience with streamlined commands and contextual hints to make onboarding easier.</p></li>
 <li><p><strong>Richer Metadata:</strong> We’re capturing and displaying more metadata to give users better visibility and control over their data.</p></li>
@@ -586,9 +583,9 @@ dependency must be pinned to version 4.2.0. For example:</p>
 <p>Tabsdata 0.9.5 is here!</p>
 <p><strong>What’s New?</strong></p>
 <ul class="simple">
-<li><p><a class="reference internal" href="../catalogs/aws_glue/main.html#amazon-s3-subscriber-iceberg"><span class="std std-ref">AWS Glue Iceberg</span></a> connector to seamlessly subscribe data from Tabsdata to AWS as Iceberg Tables.</p></li>
+<li><p><a class="reference internal" href="../04_03_working_with_subscribers/aws_iceberg/main.html#amazon-s3-subscriber-iceberg"><span class="std std-ref">AWS Glue Iceberg</span></a> connector to seamlessly subscribe data from Tabsdata to AWS as Iceberg Tables.</p></li>
 <li><p><a class="reference internal" href="../04_03_working_with_subscribers/mongodb/main.html#mongodb-subscriber"><span class="std std-ref">MongoDB</span></a> destination connector to seamlessly subscribe data from Tabsdata to MongoDB.</p></li>
-<li><p>Richer support for <a class="reference internal" href="../../ref/api/bycat-credentials.html#credentials"><span class="std std-ref">Hashicorp Vault</span></a>.</p></li>
+<li><p>Richer support for <a class="reference internal" href="../secrets_management/main.html#credentials"><span class="std std-ref">Hashicorp Vault</span></a>.</p></li>
 <li><p>Corrections and restructuring in documentation.</p></li>
 </ul>
 </section>
@@ -598,8 +595,8 @@ dependency must be pinned to version 4.2.0. For example:</p>
 <p>Tabsdata 0.9.3 is here!</p>
 <p><strong>What’s New?</strong></p>
 <ul class="simple">
-<li><p><a class="reference internal" href="../04_01_working_with_publishers/salesforce_reports/main.html#salesforce"><span class="std std-ref">Salesforce</span></a> connector to seamlessly publish data from Salesforce to Tabsdata.</p></li>
-<li><p>Stronger <a class="reference internal" href="../security/main.html#security"><span class="std std-ref">security</span></a> protocols with support for <a class="reference internal" href="../../ref/api/bycat-credentials.html#credentials"><span class="std std-ref">Hashicorp secrets</span></a>.</p></li>
+<li><p><a class="reference internal" href="../04_01_working_with_publishers/salesforce/main.html#salesforce"><span class="std std-ref">Salesforce</span></a> connector to seamlessly publish data from Salesforce to Tabsdata.</p></li>
+<li><p>Stronger <a class="reference internal" href="../security/main.html#security"><span class="std std-ref">security</span></a> protocols with support for <a class="reference internal" href="../secrets_management/main.html#credentials"><span class="std std-ref">Hashicorp secrets</span></a>.</p></li>
 <li><p>Isolation of the server’s python environment from that of the user for better controls.</p></li>
 </ul>
 </section>

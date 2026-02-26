@@ -45,8 +45,8 @@
     <script src="../../_static/jquery.js?v=5d32c60e"></script>
     <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
     <script src="../../_static/documentation_options.js?v=7f41d439"></script>
-    <script src="../../_static/doctools.js?v=9bcbadda"></script>
-    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="../../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
     <script src="../../_static/copybutton.js?v=a56c686a"></script>
     <script src="../../_static/design-tabs.js?v=f930bc37"></script>
@@ -341,6 +341,7 @@
 <li class="toctree-l2"><a class="reference internal" href="../04_01_working_with_publishers/amazon_s3/main.html">Amazon S3</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../04_01_working_with_publishers/azure/main.html">Azure Blob Storage</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../04_01_working_with_publishers/gcp/main.html">Google Cloud Storage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../04_01_working_with_publishers/grok_for_log_files/main.html">Grok for Log Files</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../working_with_kafka/main.html">Kafka</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../04_01_working_with_publishers/mariadb/main.html">MariaDB</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../04_01_working_with_publishers/mssql/main.html">Microsoft SQL Server</a></li>
@@ -349,18 +350,17 @@
 <li class="toctree-l2"><a class="reference internal" href="../04_01_working_with_publishers/postgres/main.html">Postgres</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../04_01_working_with_publishers/salesforce/main.html">Salesforce SOQL Query</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../04_01_working_with_publishers/salesforce_reports/main.html">Salesforce Reports</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../04_01_working_with_publishers/grok_for_log_files/main.html">Grok for Log Files</a></li>
 </ul>
 </details></li>
 <li class="toctree-l1"><a class="reference internal" href="../04_02_working_with_transformers/main.html">Transformers</a></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../04_03_working_with_subscribers/main.html">Subscribers</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference internal" href="../04_03_working_with_subscribers/local_file_system/main.html">Local File System</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../04_03_working_with_subscribers/aws_iceberg/main.html">AWS Glue - Iceberg tables</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../04_03_working_with_subscribers/amazon_s3/main.html">Amazon S3</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../04_03_working_with_subscribers/azure/main.html">Azure Blob Storage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../04_03_working_with_subscribers/gcp/main.html">Google Cloud Storage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../04_03_working_with_subscribers/aws_iceberg/main.html">AWS Glue - Iceberg tables</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../04_03_working_with_subscribers/bigquery/main.html">Big Query</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../04_03_working_with_subscribers/databricks/main.html">Databricks</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../04_03_working_with_subscribers/gcp/main.html">Google Cloud Storage</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../04_03_working_with_subscribers/mariadb/main.html">MariaDB</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../04_03_working_with_subscribers/mongodb/main.html">MongoDB</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../04_03_working_with_subscribers/mssql/main.html">Microsoft SQL Server</a></li>
@@ -488,60 +488,60 @@ over the network.</p>
 you can use <code class="docutils literal notranslate"><span class="pre">localhost</span></code>.</p>
 <p>For a development environment you can create a self-signed certificate using the following command:</p>
 <div class="sphinx-tabs docutils container">
-<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-0-0-0" aria-selected="true" class="sphinx-tabs-tab" id="tab-0-0-0" name="0-0" role="tab" tabindex="0">For Linux or macOS:</button><button aria-controls="panel-0-0-1" aria-selected="false" class="sphinx-tabs-tab" id="tab-0-0-1" name="0-1" role="tab" tabindex="-1">For Windows (CMD):</button></div><div aria-labelledby="tab-0-0-0" class="sphinx-tabs-panel" id="panel-0-0-0" name="0-0" role="tabpanel" tabindex="0"><div class="highlight-bash: notranslate"><div class="highlight"><pre><span></span>cd
-export NAME=localhost;
-export SUBJ=&quot;/CN=${NAME}&quot;;
-export CONFIG=&quot;[dn]\nCN=${NAME}\n[req]\ndistinguished_name = dn\n[EXT]\nsubjectAltName=DNS:${NAME}\nkeyUsage=digitalSignature\nextendedKeyUsage=serverAuth&quot;;
+<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-0-0-0" aria-selected="true" class="sphinx-tabs-tab" id="tab-0-0-0" name="0-0" role="tab" tabindex="0">For Linux or macOS:</button><button aria-controls="panel-0-0-1" aria-selected="false" class="sphinx-tabs-tab" id="tab-0-0-1" name="0-1" role="tab" tabindex="-1">For Windows (CMD):</button></div><div aria-labelledby="tab-0-0-0" class="sphinx-tabs-panel" id="panel-0-0-0" name="0-0" role="tabpanel" tabindex="0"><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span>
+<span class="nb">export</span><span class="w"> </span><span class="nv">NAME</span><span class="o">=</span>localhost<span class="p">;</span>
+<span class="nb">export</span><span class="w"> </span><span class="nv">SUBJ</span><span class="o">=</span><span class="s2">&quot;/CN=</span><span class="si">${</span><span class="nv">NAME</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">;</span>
+<span class="nb">export</span><span class="w"> </span><span class="nv">CONFIG</span><span class="o">=</span><span class="s2">&quot;[dn]\nCN=</span><span class="si">${</span><span class="nv">NAME</span><span class="si">}</span><span class="s2">\n[req]\ndistinguished_name = dn\n[EXT]\nsubjectAltName=DNS:</span><span class="si">${</span><span class="nv">NAME</span><span class="si">}</span><span class="s2">\nkeyUsage=digitalSignature\nextendedKeyUsage=serverAuth&quot;</span><span class="p">;</span>
 
-echo &quot;${CONFIG}&quot; | openssl \
-req -x509 \
--out cert.pem \
--keyout key.pem \
--newkey rsa:4096 \
--nodes -sha256 \
--subj &quot;${SUBJ}&quot; \
--extensions EXT \
--config -;
+<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">CONFIG</span><span class="si">}</span><span class="s2">&quot;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>openssl<span class="w"> </span><span class="se">\</span>
+req<span class="w"> </span>-x509<span class="w"> </span><span class="se">\</span>
+-out<span class="w"> </span>cert.pem<span class="w"> </span><span class="se">\</span>
+-keyout<span class="w"> </span>key.pem<span class="w"> </span><span class="se">\</span>
+-newkey<span class="w"> </span>rsa:4096<span class="w"> </span><span class="se">\</span>
+-nodes<span class="w"> </span>-sha256<span class="w"> </span><span class="se">\</span>
+-subj<span class="w"> </span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">SUBJ</span><span class="si">}</span><span class="s2">&quot;</span><span class="w"> </span><span class="se">\</span>
+-extensions<span class="w"> </span>EXT<span class="w"> </span><span class="se">\</span>
+-config<span class="w"> </span>-<span class="p">;</span>
 
-echo
-echo &quot;Certificate created, private key PEM: `pwd`/key.pem &amp; certificate PEM: `pwd`/cert.pem&quot;
-echo
+<span class="nb">echo</span>
+<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Certificate created, private key PEM: `pwd`/key.pem &amp; certificate PEM: `pwd`/cert.pem&quot;</span>
+<span class="nb">echo</span>
 </pre></div>
 </div>
-</div><div aria-labelledby="tab-0-0-1" class="sphinx-tabs-panel" hidden="true" id="panel-0-0-1" name="0-1" role="tabpanel" tabindex="0"><div class="highlight-batch: notranslate"><div class="highlight"><pre><span></span>cd %USERPROFILE%
-set NAME=localhost
-set SUBJ=/CN=%NAME%
-set CONFIG_FILE=config.cnf
-(
-echo [dn]
-echo CN=%NAME%
-echo [req]
-echo distinguished_name = dn
-echo [EXT]
-echo subjectAltName=DNS:%NAME%
-echo keyUsage=digitalSignature
-echo extendedKeyUsage=serverAuth
-) &gt; %CONFIG_FILE%
+</div><div aria-labelledby="tab-0-0-1" class="sphinx-tabs-panel" hidden="true" id="panel-0-0-1" name="0-1" role="tabpanel" tabindex="0"><div class="highlight-batch notranslate"><div class="highlight"><pre><span></span><span class="k">cd</span> <span class="nv">%USERPROFILE%</span>
+<span class="k">set</span> <span class="nv">NAME</span><span class="p">=</span>localhost
+<span class="k">set</span> <span class="nv">SUBJ</span><span class="p">=</span>/CN=<span class="nv">%NAME%</span>
+<span class="k">set</span> <span class="nv">CONFIG_FILE</span><span class="p">=</span>config.cnf
+<span class="p">(</span>
+<span class="k">echo</span> [dn]
+<span class="k">echo</span> CN=<span class="nv">%NAME%</span>
+<span class="k">echo</span> [req]
+<span class="k">echo</span> distinguished_name = dn
+<span class="k">echo</span> [EXT]
+<span class="k">echo</span> subjectAltName=DNS:<span class="nv">%NAME%</span>
+<span class="k">echo</span> keyUsage=digitalSignature
+<span class="k">echo</span> extendedKeyUsage=serverAuth
+<span class="p">)</span> <span class="p">&gt;</span> <span class="nv">%CONFIG_FILE%</span>
 
-openssl req -x509 ^
--out cert.pem ^
--keyout key.pem ^
--newkey rsa:4096 ^
--nodes -sha256 ^
--subj &quot;%SUBJ%&quot; ^
--extensions EXT ^
--config %CONFIG_FILE%
+openssl req -x509 <span class="se">^</span>
+<span class="se">-</span>out cert.pem <span class="se">^</span>
+<span class="se">-</span>keyout key.pem <span class="se">^</span>
+<span class="se">-</span>newkey rsa:4096 <span class="se">^</span>
+<span class="se">-</span>nodes -sha256 <span class="se">^</span>
+<span class="se">-</span>subj <span class="s2">&quot;</span><span class="nv">%SUBJ%</span><span class="s2">&quot;</span> <span class="se">^</span>
+<span class="se">-</span>extensions EXT <span class="se">^</span>
+<span class="se">-</span>config <span class="nv">%CONFIG_FILE%</span>
 
-echo.
-echo &quot;Certificate created, private key PEM: %CD%\key.pem &amp; certificate PEM: %CD%\cert.pem&quot;
-echo.
+<span class="k">echo</span>.
+<span class="k">echo</span> <span class="s2">&quot;Certificate created, private key PEM: </span><span class="nv">%CD%</span><span class="s2">\key.pem &amp; certificate PEM: </span><span class="nv">%CD%</span><span class="s2">\cert.pem&quot;</span>
+<span class="k">echo</span>.
 
-del %CONFIG_FILE%
+<span class="k">del</span> <span class="nv">%CONFIG_FILE%</span>
 </pre></div>
 </div>
 </div></div>
 <p>To check the certificate use the following command:</p>
-<div class="highlight-bash: notranslate"><div class="highlight"><pre><span></span>openssl x509 -in cert.pem --text
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>openssl<span class="w"> </span>x509<span class="w"> </span>-in<span class="w"> </span>cert.pem<span class="w"> </span>--text
 </pre></div>
 </div>
 </section>
@@ -551,10 +551,10 @@ del %CONFIG_FILE%
 <p>For example, for the <code class="docutils literal notranslate"><span class="pre">tabsdata</span></code> instance, standing in the directory where you have the key and
 certificate PEM files, run the following command:</p>
 <div class="sphinx-tabs docutils container">
-<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-1-1-0" aria-selected="true" class="sphinx-tabs-tab" id="tab-1-1-0" name="1-0" role="tab" tabindex="0">For Linux or macOS:</button><button aria-controls="panel-1-1-1" aria-selected="false" class="sphinx-tabs-tab" id="tab-1-1-1" name="1-1" role="tab" tabindex="-1">For Windows (CMD):</button></div><div aria-labelledby="tab-1-1-0" class="sphinx-tabs-panel" id="panel-1-1-0" name="1-0" role="tabpanel" tabindex="0"><div class="highlight-bash: notranslate"><div class="highlight"><pre><span></span>cp key.pem cert.pem ~/.tabsdata/instances/tabsdata/workspace/config/ssl/
+<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-1-1-0" aria-selected="true" class="sphinx-tabs-tab" id="tab-1-1-0" name="1-0" role="tab" tabindex="0">For Linux or macOS:</button><button aria-controls="panel-1-1-1" aria-selected="false" class="sphinx-tabs-tab" id="tab-1-1-1" name="1-1" role="tab" tabindex="-1">For Windows (CMD):</button></div><div aria-labelledby="tab-1-1-0" class="sphinx-tabs-panel" id="panel-1-1-0" name="1-0" role="tabpanel" tabindex="0"><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>cp<span class="w"> </span>key.pem<span class="w"> </span>cert.pem<span class="w"> </span>~/.tabsdata/instances/tabsdata/workspace/config/ssl/
 </pre></div>
 </div>
-</div><div aria-labelledby="tab-1-1-1" class="sphinx-tabs-panel" hidden="true" id="panel-1-1-1" name="1-1" role="tabpanel" tabindex="0"><div class="highlight-bash: notranslate"><div class="highlight"><pre><span></span>copy *.pem %USERPROFILE%\.tabsdata\instances\tabsdata\workspace\config\ssl\
+</div><div aria-labelledby="tab-1-1-1" class="sphinx-tabs-panel" hidden="true" id="panel-1-1-1" name="1-1" role="tabpanel" tabindex="0"><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>copy<span class="w"> </span>*.pem<span class="w"> </span>%USERPROFILE%<span class="se">\.</span>tabsdata<span class="se">\i</span>nstances<span class="se">\t</span>absdata<span class="se">\w</span>orkspace<span class="se">\c</span>onfig<span class="se">\s</span>sl<span class="se">\</span>
 </pre></div>
 </div>
 </div></div>

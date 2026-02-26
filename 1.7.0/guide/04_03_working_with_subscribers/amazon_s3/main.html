@@ -44,8 +44,8 @@
     <script src="../../../_static/jquery.js?v=5d32c60e"></script>
     <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
     <script src="../../../_static/documentation_options.js?v=7f41d439"></script>
-    <script src="../../../_static/doctools.js?v=9bcbadda"></script>
-    <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="../../../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
     <script src="../../../_static/copybutton.js?v=a56c686a"></script>
     <script src="../../../_static/design-tabs.js?v=f930bc37"></script>
@@ -61,7 +61,7 @@
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
     <link rel="next" title="Azure Blob Storage" href="../azure/main.html" />
-    <link rel="prev" title="AWS Glue - Iceberg tables" href="../aws_iceberg/main.html" />
+    <link rel="prev" title="Local File System" href="../local_file_system/main.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   <meta name="docsearch:version" content="1.7.0" />
@@ -339,6 +339,7 @@
 <li class="toctree-l2"><a class="reference internal" href="../../04_01_working_with_publishers/amazon_s3/main.html">Amazon S3</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../04_01_working_with_publishers/azure/main.html">Azure Blob Storage</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../04_01_working_with_publishers/gcp/main.html">Google Cloud Storage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../04_01_working_with_publishers/grok_for_log_files/main.html">Grok for Log Files</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../working_with_kafka/main.html">Kafka</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../04_01_working_with_publishers/mariadb/main.html">MariaDB</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../04_01_working_with_publishers/mssql/main.html">Microsoft SQL Server</a></li>
@@ -347,18 +348,17 @@
 <li class="toctree-l2"><a class="reference internal" href="../../04_01_working_with_publishers/postgres/main.html">Postgres</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../04_01_working_with_publishers/salesforce/main.html">Salesforce SOQL Query</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../04_01_working_with_publishers/salesforce_reports/main.html">Salesforce Reports</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../04_01_working_with_publishers/grok_for_log_files/main.html">Grok for Log Files</a></li>
 </ul>
 </details></li>
 <li class="toctree-l1"><a class="reference internal" href="../../04_02_working_with_transformers/main.html">Transformers</a></li>
 <li class="toctree-l1 current active has-children"><a class="reference internal" href="../main.html">Subscribers</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="../local_file_system/main.html">Local File System</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../aws_iceberg/main.html">AWS Glue - Iceberg tables</a></li>
 <li class="toctree-l2 current active"><a class="current reference internal" href="#">Amazon S3</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../azure/main.html">Azure Blob Storage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../gcp/main.html">Google Cloud Storage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../aws_iceberg/main.html">AWS Glue - Iceberg tables</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../bigquery/main.html">Big Query</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../databricks/main.html">Databricks</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../gcp/main.html">Google Cloud Storage</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../mariadb/main.html">MariaDB</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../mongodb/main.html">MongoDB</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../mssql/main.html">Microsoft SQL Server</a></li>
@@ -597,7 +597,7 @@
 <p><code class="docutils literal notranslate"><span class="pre">S3_ACCESS_KEY</span></code> is the value of your Amazon S3 access key.</p>
 <p><code class="docutils literal notranslate"><span class="pre">S3_SECRET_KEY</span></code> is the value of your Amazon S3 secret key.</p>
 <p><code class="docutils literal notranslate"><span class="pre">path-to-secret</span></code> is the name of the default key value store in HashiCorp where the credential values are required to be stored.</p>
-<p>You can use different ways to store the credentials which are highlighted <a class="reference internal" href="../../../ref/api/bycat-credentials.html#credentials"><span class="std std-ref">here</span></a> in the documentation.</p>
+<p>You can use different ways to store the credentials which are highlighted <a class="reference internal" href="../../secrets_management/main.html#credentials"><span class="std std-ref">here</span></a> in the documentation.</p>
 </section>
 <section id="region">
 <h4>region</h4>

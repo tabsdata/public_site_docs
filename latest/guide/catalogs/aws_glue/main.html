@@ -44,8 +44,8 @@
     <script src="../../../_static/jquery.js?v=5d32c60e"></script>
     <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
     <script src="../../../_static/documentation_options.js?v=7f41d439"></script>
-    <script src="../../../_static/doctools.js?v=9bcbadda"></script>
-    <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="../../../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
     <script src="../../../_static/copybutton.js?v=a56c686a"></script>
     <script src="../../../_static/design-tabs.js?v=f930bc37"></script>
@@ -339,6 +339,7 @@
 <li class="toctree-l2"><a class="reference internal" href="../../04_01_working_with_publishers/amazon_s3/main.html">Amazon S3</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../04_01_working_with_publishers/azure/main.html">Azure Blob Storage</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../04_01_working_with_publishers/gcp/main.html">Google Cloud Storage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../04_01_working_with_publishers/grok_for_log_files/main.html">Grok for Log Files</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../working_with_kafka/main.html">Kafka</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../04_01_working_with_publishers/mariadb/main.html">MariaDB</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../04_01_working_with_publishers/mssql/main.html">Microsoft SQL Server</a></li>
@@ -347,18 +348,17 @@
 <li class="toctree-l2"><a class="reference internal" href="../../04_01_working_with_publishers/postgres/main.html">Postgres</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../04_01_working_with_publishers/salesforce/main.html">Salesforce SOQL Query</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../04_01_working_with_publishers/salesforce_reports/main.html">Salesforce Reports</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../04_01_working_with_publishers/grok_for_log_files/main.html">Grok for Log Files</a></li>
 </ul>
 </details></li>
 <li class="toctree-l1"><a class="reference internal" href="../../04_02_working_with_transformers/main.html">Transformers</a></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../../04_03_working_with_subscribers/main.html">Subscribers</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference internal" href="../../04_03_working_with_subscribers/local_file_system/main.html">Local File System</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../04_03_working_with_subscribers/aws_iceberg/main.html">AWS Glue - Iceberg tables</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../04_03_working_with_subscribers/amazon_s3/main.html">Amazon S3</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../04_03_working_with_subscribers/azure/main.html">Azure Blob Storage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../04_03_working_with_subscribers/gcp/main.html">Google Cloud Storage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../04_03_working_with_subscribers/aws_iceberg/main.html">AWS Glue - Iceberg tables</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../04_03_working_with_subscribers/bigquery/main.html">Big Query</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../04_03_working_with_subscribers/databricks/main.html">Databricks</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../04_03_working_with_subscribers/gcp/main.html">Google Cloud Storage</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../04_03_working_with_subscribers/mariadb/main.html">MariaDB</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../04_03_working_with_subscribers/mongodb/main.html">MongoDB</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../04_03_working_with_subscribers/mssql/main.html">Microsoft SQL Server</a></li>
@@ -458,10 +458,10 @@
                 <article class="bd-article">
                   
   <section id="aws-glue-catalog">
-<span id="amazon-s3-subscriber-iceberg"></span><h1>AWS Glue Catalog</h1>
+<span id="catalog-aws-glue"></span><h1>AWS Glue Catalog</h1>
 <p>You can use a built-in Tabsdata subscriber to write tables from the Tabsdata to Amazon S3 as parquet files and add the corresponding metadata to AWS Glue Data Catalog. This also enables Iceberg tables in AWS.</p>
 <section id="example-subscriber-aws-glue-iceberg-tables">
-<span id="example-subscriber-amazon-s3-iceberg"></span><h2>Example (Subscriber - AWS Glue - Iceberg tables)</h2>
+<span id="catalog-example-aws-glue-iceberg"></span><h2>Example (Subscriber - AWS Glue - Iceberg tables)</h2>
 <p>Here is an example subscriber named <code class="docutils literal notranslate"><span class="pre">write_employees</span></code>. It reads departments table and multiple employees tables from Tabsdata. Subsequently, it writes the tables to the output HR folder. This subscriber executes automatically as soon as a <a class="reference internal" href="../../06_working_with_tables/table_frame.html#working-with-table-commits"><span class="std std-ref">new commit</span></a> occurs on any of its input tables.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">tabsdata</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">td</span>
 
@@ -574,7 +574,7 @@
 <p><code class="docutils literal notranslate"><span class="pre">S3_ACCESS_KEY</span></code> is the value of your Amazon S3 access key.</p>
 <p><code class="docutils literal notranslate"><span class="pre">S3_SECRET_KEY</span></code> is the value of your Amazon S3 secret key.</p>
 <p><code class="docutils literal notranslate"><span class="pre">path-to-secret</span></code> is the name of the default key value store in HashiCorp where the credential values are required to be stored.</p>
-<p>You can use different ways to store the credentials which are highlighted <a class="reference internal" href="../../../ref/api/bycat-credentials.html#credentials"><span class="std std-ref">here</span></a> in the documentation.</p>
+<p>You can use different ways to store the credentials which are highlighted <a class="reference internal" href="../../secrets_management/main.html#credentials"><span class="std std-ref">here</span></a> in the documentation.</p>
 </section>
 <section id="region">
 <h4>region</h4>
