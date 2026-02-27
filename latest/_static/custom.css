@@ -50,6 +50,10 @@
 }
 
 html[data-theme="dark"] {
+    /* --pst-color-background: #1a1a2e;  change to your desired color */
+
+    /* --pst-color-header-bg: #345081;  navbar background */
+
     .sphinx-tabs-panel {
         background: none !important;
     }
