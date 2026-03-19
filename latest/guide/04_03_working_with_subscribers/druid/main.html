@@ -1,0 +1,860 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Apache Druid &#8212; Tabsdata  documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=8f2a1f02" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/custom.css?v=8305e08e" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="../../../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+
+    <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+    <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+    <script src="../../../_static/documentation_options.js?v=7f41d439"></script>
+    <script src="../../../_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="../../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../../_static/copybutton.js?v=a56c686a"></script>
+    <script src="../../../_static/design-tabs.js?v=f930bc37"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'guide/04_03_working_with_subscribers/druid/main';</script>
+    <script>
+        DOCUMENTATION_OPTIONS.theme_version = '0.16.1';
+        DOCUMENTATION_OPTIONS.theme_switcher_json_url = 'https://docs.tabsdata.com/version.json';
+        DOCUMENTATION_OPTIONS.theme_switcher_version_match = '1.7.1';
+        DOCUMENTATION_OPTIONS.show_version_warning_banner =
+            false;
+        </script>
+    <script src="../../../_static/custom.js?v=ac098f57"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="MariaDB" href="../mariadb/main.html" />
+    <link rel="prev" title="Databricks" href="../databricks/main.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="1.7.1" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+
+
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+     
+  
+
+<a class="navbar-brand logo" href=" https://tabsdata.com/?utm_source=docs">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../../_static/tabsdata_root.png" class="logo__image only-light" alt="Tabsdata  documentation - Home"/>
+    <img src="../../../_static/tabsdata_root_light.png" class="logo__image only-dark pst-js-only" alt="Tabsdata  documentation - Home"/>
+  
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="../../index.html">
+    User Guide
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../ref/index.html">
+    API Reference
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../tutorials/index.html">
+    Tutorials
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+        <div class="navbar-item">
+<div class="version-switcher__container dropdown pst-js-only">
+  <button id="pst-version-switcher-button-2"
+    type="button"
+    class="version-switcher__button btn btn-sm dropdown-toggle"
+    data-bs-toggle="dropdown"
+    aria-haspopup="listbox"
+    aria-controls="pst-version-switcher-list-2"
+    aria-label="Version switcher list"
+  >
+    Choose version  <!-- this text may get changed later by javascript -->
+    <span class="caret"></span>
+  </button>
+  <div id="pst-version-switcher-list-2"
+    class="version-switcher__menu dropdown-menu list-group-flush py-0"
+    role="listbox" aria-labelledby="pst-version-switcher-button-2">
+    <!-- dropdown will be populated by javascript on page load -->
+  </div>
+</div></div>
+      
+        <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="../../index.html">
+    User Guide
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../ref/index.html">
+    API Reference
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../tutorials/index.html">
+    Tutorials
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+<div class="version-switcher__container dropdown pst-js-only">
+  <button id="pst-version-switcher-button-3"
+    type="button"
+    class="version-switcher__button btn btn-sm dropdown-toggle"
+    data-bs-toggle="dropdown"
+    aria-haspopup="listbox"
+    aria-controls="pst-version-switcher-list-3"
+    aria-label="Version switcher list"
+  >
+    Choose version  <!-- this text may get changed later by javascript -->
+    <span class="caret"></span>
+  </button>
+  <div id="pst-version-switcher-list-3"
+    class="version-switcher__menu dropdown-menu list-group-flush py-0"
+    role="listbox" aria-labelledby="pst-version-switcher-button-3">
+    <!-- dropdown will be populated by javascript on page load -->
+  </div>
+</div></div>
+        
+          <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+<nav class="bd-docs-nav bd-links"
+     aria-label="Section Navigation">
+  <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
+  <div class="bd-toc-item navbar-nav"><ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../01_overview/main.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../02_getting_started/main.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../server_configuration/main.html">Server Configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../03_key_concepts/main.html">Key Concepts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../04_working_with_functions/main.html">Working with Functions</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../04_01_working_with_publishers/main.html">Publishers</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../04_01_working_with_publishers/local_file_system/main.html">Local File System</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../04_01_working_with_publishers/amazon_s3/main.html">Amazon S3</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../04_01_working_with_publishers/azure/main.html">Azure Blob Storage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../04_01_working_with_publishers/gcp/main.html">Google Cloud Storage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../04_01_working_with_publishers/grok_for_log_files/main.html">Grok for Log Files</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../04_01_working_with_publishers/db2/main.html">Db2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../04_01_working_with_publishers/db2_cdc/main.html">Db2 CDC</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../working_with_kafka/main.html">Kafka</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../04_01_working_with_publishers/mariadb/main.html">MariaDB</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../04_01_working_with_publishers/mssql/main.html">Microsoft SQL Server</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../04_01_working_with_publishers/mysql/main.html">MySQL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../04_01_working_with_publishers/mysql_cdc/main.html">MySQL CDC</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../04_01_working_with_publishers/oracle/main.html">Oracle</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../04_01_working_with_publishers/postgres/main.html">Postgres</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../04_01_working_with_publishers/postgres_cdc/main.html">PostgreSQL CDC</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../04_01_working_with_publishers/salesforce/main.html">Salesforce SOQL Query</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../04_01_working_with_publishers/salesforce_reports/main.html">Salesforce Reports</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="../../04_02_working_with_transformers/main.html">Transformers</a></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="../main.html">Subscribers</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../local_file_system/main.html">Local File System</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../amazon_s3/main.html">Amazon S3</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../azure/main.html">Azure Blob Storage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../gcp/main.html">Google Cloud Storage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../aws_iceberg/main.html">AWS Glue - Iceberg tables</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../bigquery/main.html">Big Query</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../clickhouse/main.html">ClickHouse</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../databricks/main.html">Databricks</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Apache Druid</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../mariadb/main.html">MariaDB</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../mongodb/main.html">MongoDB</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../mssql/main.html">Microsoft SQL Server</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../mysql/main.html">MySQL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../oracle/main.html">Oracle</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../postgres/main.html">Postgres</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../snowflake/main.html">Snowflake</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../starrocks/main.html">StarRocks</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="../../working_with_kafka/main.html">Working with Kafka</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../05_working_with_triggers/main.html">Working with Triggers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../06_working_with_tables/table_frame.html">Working with Tables</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../06_working_with_tables/tableframe_guide.html">TableFrame API Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../06_working_with_tables/user_defined_functions.html">User-defined Functions (UDFs)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../07_working_with_connector_plugins/main.html">Working with Plugins</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../data_quality/main.html">Data Quality</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../catalogs/main.html">Catalogs</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../catalogs/aws_glue/main.html">AWS Glue Catalog</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../catalogs/unity_catalog/main.html">Unity Catalog</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user_interface/main.html">User Interface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ai_agent/main.html">Tabsdata AI Agent (Tabby)</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../secrets_management/main.html">Secrets Management</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../secrets_management/env_variables/main.html">Environment Variables</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../secrets_management/hashicorp/main.html">HashiCorp Secret</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="../../permissioning/main.html">Role Based Access Control (RBAC)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../security/main.html">Setting up Tabsdata over HTTPS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../08_testing/main.html">Testing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../10_troubleshooting/main.html">Troubleshooting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../11_cli_commands/main.html">CLI Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../release_notes/main.html">Release Notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../09_contact_support/main.html">Contact Us</a></li>
+</ul>
+</div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../../../index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    
+    <li class="breadcrumb-item"><a href="../../index.html" class="nav-link">User Guide</a></li>
+    
+    
+    <li class="breadcrumb-item"><a href="../main.html" class="nav-link">Subscribers</a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">Apache Druid</span></li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="apache-druid">
+<h1>Apache Druid</h1>
+<p>You can use this built-in Tabsdata subscriber to write to Apache Druid.</p>
+<blockquote>
+<div><p><strong>Note:</strong> <code class="docutils literal notranslate"><span class="pre">DruidDest</span></code> is currently marked as <strong>unstable</strong> and is subject to change in future releases.</p>
+</div></blockquote>
+<p><code class="docutils literal notranslate"><span class="pre">DruidDest</span></code> works by first uploading the output data as Parquet files to a cloud staging area (Amazon S3, Azure Blob
+Storage, or Google Cloud Storage), and then loading them into Druid via a native batch <code class="docutils literal notranslate"><span class="pre">index_parallel</span></code> task submitted
+to the Overlord REST API.</p>
+<section id="installing-the-connector">
+<h2>Installing the connector</h2>
+<p>To work with the Druid connector you are required to install the dependencies separately. Please run the following
+command in your terminal to install the dependencies.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span><span class="s1">&#39;tabsdata[druid]&#39;</span>
+</pre></div>
+</div>
+</section>
+<section id="example-subscriber-druid">
+<h2>Example (Subscriber - Druid)</h2>
+<p>The following example creates a subscriber named <code class="docutils literal notranslate"><span class="pre">write_sales</span></code>. It writes two Tabsdata tables to Apache Druid. The
+subscriber is automatically triggered by a new commit to any of its input tables, and writes data to the database
+without any modification. In this example, S3 is used as the cloud staging area.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">tabsdata</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">td</span>
+
+<span class="nd">@td</span><span class="o">.</span><span class="n">subscriber</span><span class="p">(</span>
+    <span class="n">tables</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;vendors&quot;</span><span class="p">,</span> <span class="s2">&quot;items&quot;</span><span class="p">],</span>
+    <span class="n">destination</span><span class="o">=</span><span class="n">td</span><span class="o">.</span><span class="n">DruidDest</span><span class="p">(</span>
+        <span class="n">td</span><span class="o">.</span><span class="n">DruidConn</span><span class="p">(</span>
+            <span class="n">overlord_url</span><span class="o">=</span><span class="s2">&quot;http://druid-overlord:8090&quot;</span><span class="p">,</span>
+            <span class="n">staging</span><span class="o">=</span><span class="n">td</span><span class="o">.</span><span class="n">S3Config</span><span class="p">(</span>
+                <span class="n">bucket</span><span class="o">=</span><span class="s2">&quot;acme-staging&quot;</span><span class="p">,</span>
+                <span class="n">region</span><span class="o">=</span><span class="s2">&quot;us-east-1&quot;</span><span class="p">,</span>
+                <span class="n">base_path</span><span class="o">=</span><span class="s2">&quot;staging/druid&quot;</span><span class="p">,</span>
+                <span class="n">credentials</span><span class="o">=</span><span class="n">td</span><span class="o">.</span><span class="n">S3AccessKeyCredentials</span><span class="p">(</span>
+                    <span class="n">td</span><span class="o">.</span><span class="n">EnvironmentSecret</span><span class="p">(</span><span class="s2">&quot;AWS_ACCESS_KEY_ID&quot;</span><span class="p">),</span>
+                    <span class="n">td</span><span class="o">.</span><span class="n">EnvironmentSecret</span><span class="p">(</span><span class="s2">&quot;AWS_SECRET_ACCESS_KEY&quot;</span><span class="p">),</span>
+                <span class="p">),</span>
+            <span class="p">),</span>
+            <span class="n">time_column</span><span class="o">=</span><span class="s2">&quot;created_at&quot;</span><span class="p">,</span>
+            <span class="n">segment_granularity</span><span class="o">=</span><span class="s2">&quot;DAY&quot;</span><span class="p">,</span>
+            <span class="n">credentials</span><span class="o">=</span><span class="n">td</span><span class="o">.</span><span class="n">UserPasswordCredentials</span><span class="p">(</span>
+                <span class="n">td</span><span class="o">.</span><span class="n">EnvironmentSecret</span><span class="p">(</span><span class="s2">&quot;DRUID_USER&quot;</span><span class="p">),</span>
+                <span class="n">td</span><span class="o">.</span><span class="n">EnvironmentSecret</span><span class="p">(</span><span class="s2">&quot;DRUID_PASSWORD&quot;</span><span class="p">),</span>
+            <span class="p">),</span>
+        <span class="p">),</span>
+        <span class="n">destination_tables</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;vendors&quot;</span><span class="p">,</span> <span class="s2">&quot;items&quot;</span><span class="p">],</span>
+        <span class="n">if_table_exists</span><span class="o">=</span><span class="s2">&quot;replace&quot;</span><span class="p">,</span>
+    <span class="p">),</span>
+<span class="p">)</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">write_sales</span><span class="p">(</span><span class="n">tf1</span><span class="p">:</span> <span class="n">td</span><span class="o">.</span><span class="n">TableFrame</span><span class="p">,</span> <span class="n">tf2</span><span class="p">:</span> <span class="n">td</span><span class="o">.</span><span class="n">TableFrame</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">tf1</span><span class="p">,</span> <span class="n">tf2</span>
+</pre></div>
+</div>
+<p>After defining the function, register it with a Tabsdata collection and trigger its execution.</p>
+</section>
+<section id="setup-subscriber-druid">
+<h2>Setup (Subscriber - Druid)</h2>
+<p>To use <code class="docutils literal notranslate"><span class="pre">DruidDest</span></code>, you need two objects:</p>
+<ol class="arabic simple">
+<li><p>A <code class="docutils literal notranslate"><span class="pre">DruidConn</span></code> that defines how to connect to the Druid Overlord and where to stage files in the cloud.</p></li>
+<li><p>A <code class="docutils literal notranslate"><span class="pre">DruidDest</span></code> that references the connection and specifies which datasource(s) to write to.</p></li>
+</ol>
+<p>The following code uses placeholder values for defining a subscriber that reads Tabsdata tables and writes to Apache
+Druid:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">tabsdata</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">td</span>
+
+<span class="n">conn</span> <span class="o">=</span> <span class="n">td</span><span class="o">.</span><span class="n">DruidConn</span><span class="p">(</span>
+    <span class="n">overlord_url</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">,</span>
+    <span class="n">staging</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">,</span>
+    <span class="n">time_column</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">,</span>
+    <span class="n">segment_granularity</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">,</span>
+    <span class="n">max_concurrent_subtasks</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">,</span>
+    <span class="n">max_rows_per_segment</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">,</span>
+    <span class="n">max_rows_in_memory</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">,</span>
+    <span class="n">http_timeout_sec</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">,</span>
+    <span class="n">credentials</span><span class="o">=</span><span class="n">td</span><span class="o">.</span><span class="n">UserPasswordCredentials</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">),</span>
+<span class="p">)</span>
+
+<span class="nd">@td</span><span class="o">.</span><span class="n">subscriber</span><span class="p">(</span>
+    <span class="n">tables</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">],</span>
+    <span class="n">destination</span><span class="o">=</span><span class="n">td</span><span class="o">.</span><span class="n">DruidDest</span><span class="p">(</span>
+        <span class="n">conn</span><span class="o">=</span><span class="n">conn</span><span class="p">,</span>
+        <span class="n">destination_tables</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">],</span>
+        <span class="n">if_table_exists</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">,</span>
+    <span class="p">),</span>
+    <span class="n">trigger_by</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">],</span>
+<span class="p">)</span>
+<span class="k">def</span><span class="w"> </span><span class="p">(:</span> <span class="n">td</span><span class="o">.</span><span class="n">TableFrame</span><span class="p">,</span> <span class="p">:</span> <span class="n">td</span><span class="o">.</span><span class="n">TableFrame</span><span class="p">):</span>
+    
+    <span class="k">return</span> <span class="p">,</span> 
+</pre></div>
+</div>
+<p>After defining the function, register it with a Tabsdata collection and trigger its execution.</p>
+</section>
+<section id="properties">
+<h2>Properties</h2>
+<p>Following properties are defined in the code above:</p>
+<section id="tables">
+<h3>tables</h3>
+<p><code class="docutils literal notranslate"><span class="pre">&lt;input_table1&gt;</span></code>, <code class="docutils literal notranslate"><span class="pre">&lt;input_table2&gt;</span></code>… are the names of the Tabsdata tables to be written to the external system.</p>
+</section>
+<section id="destination">
+<h3>destination</h3>
+<section id="druidconn">
+<h4><code class="docutils literal notranslate"><span class="pre">DruidConn</span></code></h4>
+<p><code class="docutils literal notranslate"><span class="pre">DruidConn</span></code> holds the Druid Overlord connection details and the cloud staging configuration.</p>
+<section id="overlord-url">
+<h5><code class="docutils literal notranslate"><span class="pre">overlord_url</span></code></h5>
+<p>Base URL of the Druid Overlord REST API (e.g. <code class="docutils literal notranslate"><span class="pre">&quot;http://druid-overlord:8090&quot;</span></code>).</p>
+</section>
+<section id="staging">
+<h5><code class="docutils literal notranslate"><span class="pre">staging</span></code></h5>
+<p>Cloud storage staging configuration. Data is first written as Parquet files to the configured cloud storage staging
+area and then ingested into Druid via a native batch <code class="docutils literal notranslate"><span class="pre">index_parallel</span></code> task submitted to the Overlord REST API. Provide
+one of:</p>
+<p><strong>S3 (Amazon S3)</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">staging</span> <span class="o">=</span> <span class="n">td</span><span class="o">.</span><span class="n">S3Config</span><span class="p">(</span>
+    <span class="n">bucket</span><span class="o">=</span><span class="s2">&quot;my-data-bucket&quot;</span><span class="p">,</span>
+    <span class="n">region</span><span class="o">=</span><span class="s2">&quot;us-east-1&quot;</span><span class="p">,</span>
+    <span class="n">base_path</span><span class="o">=</span><span class="s2">&quot;staging/druid&quot;</span><span class="p">,</span>
+    <span class="n">credentials</span><span class="o">=</span><span class="n">td</span><span class="o">.</span><span class="n">S3AccessKeyCredentials</span><span class="p">(</span>
+        <span class="n">td</span><span class="o">.</span><span class="n">EnvironmentSecret</span><span class="p">(</span><span class="s2">&quot;AWS_ACCESS_KEY_ID&quot;</span><span class="p">),</span>
+        <span class="n">td</span><span class="o">.</span><span class="n">EnvironmentSecret</span><span class="p">(</span><span class="s2">&quot;AWS_SECRET_ACCESS_KEY&quot;</span><span class="p">),</span>
+    <span class="p">),</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">bucket</span></code> — The S3 bucket name.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">region</span></code> — The AWS region (e.g. <code class="docutils literal notranslate"><span class="pre">&quot;us-east-1&quot;</span></code>).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">base_path</span></code> — The key prefix under which staged files are stored (e.g. <code class="docutils literal notranslate"><span class="pre">&quot;staging/druid&quot;</span></code>).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">credentials</span></code> (<code class="docutils literal notranslate"><span class="pre">S3AccessKeyCredentials</span></code>) — AWS access key credentials for uploading files to S3.</p></li>
+</ul>
+<p><strong>Azure Blob Storage</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">staging</span> <span class="o">=</span> <span class="n">td</span><span class="o">.</span><span class="n">AzureConfig</span><span class="p">(</span>
+    <span class="n">container</span><span class="o">=</span><span class="s2">&quot;my-container&quot;</span><span class="p">,</span>
+    <span class="n">base_path</span><span class="o">=</span><span class="s2">&quot;staging/druid&quot;</span><span class="p">,</span>
+    <span class="n">credentials</span><span class="o">=</span><span class="n">td</span><span class="o">.</span><span class="n">AzureAccountKeyCredentials</span><span class="p">(</span>
+        <span class="n">td</span><span class="o">.</span><span class="n">EnvironmentSecret</span><span class="p">(</span><span class="s2">&quot;AZURE_ACCOUNT_NAME&quot;</span><span class="p">),</span>
+        <span class="n">td</span><span class="o">.</span><span class="n">EnvironmentSecret</span><span class="p">(</span><span class="s2">&quot;AZURE_ACCOUNT_KEY&quot;</span><span class="p">),</span>
+    <span class="p">),</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">container</span></code> — The Azure Blob container name.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">base_path</span></code> — The blob path prefix for staged files (e.g. <code class="docutils literal notranslate"><span class="pre">&quot;staging/druid&quot;</span></code>).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">credentials</span></code> (<code class="docutils literal notranslate"><span class="pre">AzureAccountKeyCredentials</span></code>) — Azure account key credentials for uploading files.</p></li>
+</ul>
+<p><strong>Google Cloud Storage (GCS)</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">staging</span> <span class="o">=</span> <span class="n">td</span><span class="o">.</span><span class="n">GCSConfig</span><span class="p">(</span>
+    <span class="n">bucket</span><span class="o">=</span><span class="s2">&quot;my-gcs-bucket&quot;</span><span class="p">,</span>
+    <span class="n">base_path</span><span class="o">=</span><span class="s2">&quot;staging/druid&quot;</span><span class="p">,</span>
+    <span class="n">upload_credentials</span><span class="o">=</span><span class="n">td</span><span class="o">.</span><span class="n">GCPServiceAccountKeyCredentials</span><span class="p">(</span>
+        <span class="n">td</span><span class="o">.</span><span class="n">EnvironmentSecret</span><span class="p">(</span><span class="s2">&quot;GCP_SERVICE_ACCOUNT_JSON&quot;</span><span class="p">),</span>
+    <span class="p">),</span>
+    <span class="n">hmac_credentials</span><span class="o">=</span><span class="n">td</span><span class="o">.</span><span class="n">HMACCredentials</span><span class="p">(</span>
+        <span class="n">td</span><span class="o">.</span><span class="n">EnvironmentSecret</span><span class="p">(</span><span class="s2">&quot;GCS_HMAC_ACCESS_KEY&quot;</span><span class="p">),</span>
+        <span class="n">td</span><span class="o">.</span><span class="n">EnvironmentSecret</span><span class="p">(</span><span class="s2">&quot;GCS_HMAC_SECRET_KEY&quot;</span><span class="p">),</span>
+    <span class="p">),</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">bucket</span></code> — The GCS bucket name.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">base_path</span></code> — The object path prefix for staged files (e.g. <code class="docutils literal notranslate"><span class="pre">&quot;staging/druid&quot;</span></code>).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">upload_credentials</span></code> (<code class="docutils literal notranslate"><span class="pre">GCPServiceAccountKeyCredentials</span></code>, optional) — GCP service account credentials for uploading
+files via the GCS SDK. When not provided, application default credentials (ADC) are used.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">hmac_credentials</span></code> (<code class="docutils literal notranslate"><span class="pre">HMACCredentials</span></code>, optional) — GCS HMAC credentials for S3-compatible access used during Druid
+ingestion.</p></li>
+</ul>
+</section>
+<section id="optional-time-column">
+<h5>[optional] <code class="docutils literal notranslate"><span class="pre">time_column</span></code></h5>
+<p>Name of the column to use as Druid’s required <code class="docutils literal notranslate"><span class="pre">__time</span></code> primary timestamp. When <code class="docutils literal notranslate"><span class="pre">None</span></code>, a constant value is used
+(<code class="docutils literal notranslate"><span class="pre">2000-01-01T00:00:00.000Z</span></code>). Defaults to <code class="docutils literal notranslate"><span class="pre">None</span></code>.</p>
+<blockquote>
+<div><p><strong>Important:</strong> If <code class="docutils literal notranslate"><span class="pre">time_column</span></code> is <code class="docutils literal notranslate"><span class="pre">None</span></code>, the connector uses a synthetic timestamp column internally. If your data
+contains a column named <code class="docutils literal notranslate"><span class="pre">__td_druid_time</span></code>, the ingestion will fail. Either rename that column in your data or set
+<code class="docutils literal notranslate"><span class="pre">time_column</span></code> to use one of your own columns as the Druid <code class="docutils literal notranslate"><span class="pre">__time</span></code> primary timestamp.</p>
+</div></blockquote>
+</section>
+<section id="optional-segment-granularity">
+<h5>[optional] <code class="docutils literal notranslate"><span class="pre">segment_granularity</span></code></h5>
+<p>Time-based partitioning granularity for new segments. One of <code class="docutils literal notranslate"><span class="pre">&quot;ALL&quot;</span></code>, <code class="docutils literal notranslate"><span class="pre">&quot;DAY&quot;</span></code>, <code class="docutils literal notranslate"><span class="pre">&quot;HOUR&quot;</span></code>, <code class="docutils literal notranslate"><span class="pre">&quot;MONTH&quot;</span></code>, or <code class="docutils literal notranslate"><span class="pre">&quot;YEAR&quot;</span></code>.
+Defaults to <code class="docutils literal notranslate"><span class="pre">&quot;ALL&quot;</span></code>.</p>
+</section>
+<section id="optional-max-concurrent-subtasks">
+<h5>[optional] <code class="docutils literal notranslate"><span class="pre">max_concurrent_subtasks</span></code></h5>
+<p>Maximum number of parallel sub-tasks inside the <code class="docutils literal notranslate"><span class="pre">index_parallel</span></code> ingestion task. When set to <code class="docutils literal notranslate"><span class="pre">1</span></code>, the supervisor runs
+inline without spawning subtasks. Defaults to <code class="docutils literal notranslate"><span class="pre">1</span></code>.</p>
+</section>
+<section id="optional-max-rows-per-segment">
+<h5>[optional] <code class="docutils literal notranslate"><span class="pre">max_rows_per_segment</span></code></h5>
+<p>Dynamic partitioning threshold — maximum number of rows per segment. Defaults to <code class="docutils literal notranslate"><span class="pre">5000000</span></code>.</p>
+</section>
+<section id="optional-max-rows-in-memory">
+<h5>[optional] <code class="docutils literal notranslate"><span class="pre">max_rows_in_memory</span></code></h5>
+<p>In-memory buffer size during ingestion. Defaults to <code class="docutils literal notranslate"><span class="pre">1000000</span></code>.</p>
+</section>
+<section id="optional-http-timeout-sec">
+<h5>[optional] <code class="docutils literal notranslate"><span class="pre">http_timeout_sec</span></code></h5>
+<p>Timeout in seconds for HTTP requests to the Overlord API. Defaults to <code class="docutils literal notranslate"><span class="pre">300</span></code>.</p>
+</section>
+<section id="optional-credentials">
+<h5>[optional] <code class="docutils literal notranslate"><span class="pre">credentials</span></code></h5>
+<p><code class="docutils literal notranslate"><span class="pre">UserPasswordCredentials</span></code> for HTTP Basic authentication against the Overlord API. When <code class="docutils literal notranslate"><span class="pre">None</span></code>, authentication is
+skipped. Defaults to <code class="docutils literal notranslate"><span class="pre">None</span></code>.</p>
+<p>For quick testing with plain strings:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">conn</span> <span class="o">=</span> <span class="n">td</span><span class="o">.</span><span class="n">DruidConn</span><span class="p">(</span>
+    <span class="n">overlord_url</span><span class="o">=</span><span class="s2">&quot;http://druid-overlord:8090&quot;</span><span class="p">,</span>
+    <span class="n">staging</span><span class="o">=</span><span class="n">staging</span><span class="p">,</span>
+    <span class="n">credentials</span><span class="o">=</span><span class="n">td</span><span class="o">.</span><span class="n">UserPasswordCredentials</span><span class="p">(</span><span class="s2">&quot;admin&quot;</span><span class="p">,</span> <span class="s2">&quot;my_password&quot;</span><span class="p">),</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<p>For production, credentials should be wrapped in <code class="docutils literal notranslate"><span class="pre">EnvironmentSecret</span></code> to avoid hardcoding secrets:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">conn</span> <span class="o">=</span> <span class="n">td</span><span class="o">.</span><span class="n">DruidConn</span><span class="p">(</span>
+    <span class="n">overlord_url</span><span class="o">=</span><span class="s2">&quot;http://druid-overlord:8090&quot;</span><span class="p">,</span>
+    <span class="n">staging</span><span class="o">=</span><span class="n">staging</span><span class="p">,</span>
+    <span class="n">credentials</span><span class="o">=</span><span class="n">td</span><span class="o">.</span><span class="n">UserPasswordCredentials</span><span class="p">(</span>
+        <span class="n">td</span><span class="o">.</span><span class="n">EnvironmentSecret</span><span class="p">(</span><span class="s2">&quot;DRUID_USER&quot;</span><span class="p">),</span>
+        <span class="n">td</span><span class="o">.</span><span class="n">EnvironmentSecret</span><span class="p">(</span><span class="s2">&quot;DRUID_PASSWORD&quot;</span><span class="p">),</span>
+    <span class="p">),</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="destination-tables">
+<h4><code class="docutils literal notranslate"><span class="pre">destination_tables</span></code></h4>
+<p>The datasource(s) to store the data in. In Druid terminology, a datasource is the equivalent of a table. A single
+datasource name may be provided as a string; multiple names must be provided as a list.</p>
+<p>Example with a single datasource:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">destination</span> <span class="o">=</span> <span class="n">td</span><span class="o">.</span><span class="n">DruidDest</span><span class="p">(</span>
+    <span class="n">conn</span><span class="o">=</span><span class="n">conn</span><span class="p">,</span>
+    <span class="n">destination_tables</span><span class="o">=</span><span class="s2">&quot;events&quot;</span><span class="p">,</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<p>Example with multiple datasources:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">destination</span> <span class="o">=</span> <span class="n">td</span><span class="o">.</span><span class="n">DruidDest</span><span class="p">(</span>
+    <span class="n">conn</span><span class="o">=</span><span class="n">conn</span><span class="p">,</span>
+    <span class="n">destination_tables</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;vendors&quot;</span><span class="p">,</span> <span class="s2">&quot;items&quot;</span><span class="p">],</span>
+    <span class="n">if_table_exists</span><span class="o">=</span><span class="s2">&quot;replace&quot;</span><span class="p">,</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="optional-if-table-exists">
+<h4>[optional] <code class="docutils literal notranslate"><span class="pre">if_table_exists</span></code></h4>
+<p>This is an optional property to define the strategy to follow when the datasource already exists. <code class="docutils literal notranslate"><span class="pre">'replace'</span></code> will drop
+existing segments and replace with new data, and <code class="docutils literal notranslate"><span class="pre">'append'</span></code> will add new segments alongside existing ones. Defaults to
+<code class="docutils literal notranslate"><span class="pre">'append'</span></code>.</p>
+</section>
+</section>
+</section>
+<section id="writing-to-multiple-tables">
+<h2>Writing to Multiple Tables</h2>
+<p>When writing to multiple datasources, the subscriber function must return one result per destination datasource, in the
+same order as they are listed in <code class="docutils literal notranslate"><span class="pre">destination_tables</span></code>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nd">@td</span><span class="o">.</span><span class="n">subscriber</span><span class="p">(</span>
+    <span class="n">name</span><span class="o">=</span><span class="s2">&quot;write_to_druid&quot;</span><span class="p">,</span>
+    <span class="n">tables</span><span class="o">=</span><span class="s2">&quot;collection/raw_data&quot;</span><span class="p">,</span>
+    <span class="n">destination</span><span class="o">=</span><span class="n">td</span><span class="o">.</span><span class="n">DruidDest</span><span class="p">(</span>
+        <span class="n">conn</span><span class="o">=</span><span class="n">conn</span><span class="p">,</span>
+        <span class="n">destination_tables</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;vendors&quot;</span><span class="p">,</span> <span class="s2">&quot;items&quot;</span><span class="p">],</span>
+    <span class="p">),</span>
+<span class="p">)</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">write_to_druid</span><span class="p">(</span><span class="n">df</span><span class="p">:</span> <span class="n">td</span><span class="o">.</span><span class="n">TableFrame</span><span class="p">):</span>
+    <span class="n">vendors</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">td</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;type&quot;</span><span class="p">)</span> <span class="o">==</span> <span class="s2">&quot;vendor&quot;</span><span class="p">)</span>
+    <span class="n">items</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">td</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;type&quot;</span><span class="p">)</span> <span class="o">==</span> <span class="s2">&quot;item&quot;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">vendors</span><span class="p">,</span> <span class="n">items</span>
+</pre></div>
+</div>
+</section>
+<section id="skipping-a-table-with-none">
+<h2>Skipping a Table with None</h2>
+<p>If a subscriber returns <code class="docutils literal notranslate"><span class="pre">None</span></code> for a particular output, the corresponding destination datasource is skipped entirely
+(not created, not written to):</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nd">@td</span><span class="o">.</span><span class="n">subscriber</span><span class="p">(</span>
+    <span class="n">name</span><span class="o">=</span><span class="s2">&quot;conditional_write&quot;</span><span class="p">,</span>
+    <span class="n">tables</span><span class="o">=</span><span class="s2">&quot;collection/data&quot;</span><span class="p">,</span>
+    <span class="n">destination</span><span class="o">=</span><span class="n">td</span><span class="o">.</span><span class="n">DruidDest</span><span class="p">(</span>
+        <span class="n">conn</span><span class="o">=</span><span class="n">conn</span><span class="p">,</span>
+        <span class="n">destination_tables</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;primary&quot;</span><span class="p">,</span> <span class="s2">&quot;secondary&quot;</span><span class="p">],</span>
+    <span class="p">),</span>
+<span class="p">)</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">conditional_write</span><span class="p">(</span><span class="n">df</span><span class="p">:</span> <span class="n">td</span><span class="o">.</span><span class="n">TableFrame</span><span class="p">):</span>
+    <span class="n">primary</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">drop_nulls</span><span class="p">()</span>
+    <span class="k">return</span> <span class="n">primary</span><span class="p">,</span> <span class="kc">None</span>  <span class="c1"># &quot;secondary&quot; datasource is skipped</span>
+</pre></div>
+</div>
+<section id="optional-trigger-by">
+<h3>[optional] trigger_by</h3>
+<p><code class="docutils literal notranslate"><span class="pre">&lt;trigger_table1&gt;</span></code>, <code class="docutils literal notranslate"><span class="pre">&lt;trigger_table2&gt;</span></code> are the names of the Tabsdata tables that trigger the execution of the
+subscriber function.</p>
+</section>
+<section id="subscriber-name">
+<h3>subscriber_name</h3>
+<p>This is the user-defined function that processes the input tables and returns the table frames to be written to the
+destination.</p>
+</section>
+</section>
+<section id="data-drift-support">
+<h2>Data Drift Support</h2>
+<p>Apache Druid creates the schema on write, which means schema changes are inherently supported. When new columns appear
+in the incoming data, Druid will automatically incorporate them into the datasource schema during ingestion. Similarly,
+if columns are removed from the source data, they will simply not appear in the newly ingested segments.</p>
+<p>For a Druid subscriber with <code class="docutils literal notranslate"><span class="pre">if_table_exists=replace</span></code>, the existing segments are dropped and replaced entirely. The
+resulting schema exactly matches the newly exported data.</p>
+<p>For a Druid subscriber with <code class="docutils literal notranslate"><span class="pre">if_table_exists=append</span></code>, new segments are added alongside existing ones. New columns in
+the incoming data will be present in the new segments, while older segments will have <code class="docutils literal notranslate"><span class="pre">null</span></code> values for those columns.
+Columns that existed in older segments but are absent from the new data will remain queryable from the older segments.</p>
+</section>
+</section>
+
+
+                </article>
+              
+              
+              
+              
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+<div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#installing-the-connector">Installing the connector</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-subscriber-druid">Example (Subscriber - Druid)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#setup-subscriber-druid">Setup (Subscriber - Druid)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#properties">Properties</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tables">tables</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#destination">destination</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#druidconn"><code class="docutils literal notranslate"><span class="pre">DruidConn</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#overlord-url"><code class="docutils literal notranslate"><span class="pre">overlord_url</span></code></a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#staging"><code class="docutils literal notranslate"><span class="pre">staging</span></code></a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#optional-time-column">[optional] <code class="docutils literal notranslate"><span class="pre">time_column</span></code></a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#optional-segment-granularity">[optional] <code class="docutils literal notranslate"><span class="pre">segment_granularity</span></code></a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#optional-max-concurrent-subtasks">[optional] <code class="docutils literal notranslate"><span class="pre">max_concurrent_subtasks</span></code></a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#optional-max-rows-per-segment">[optional] <code class="docutils literal notranslate"><span class="pre">max_rows_per_segment</span></code></a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#optional-max-rows-in-memory">[optional] <code class="docutils literal notranslate"><span class="pre">max_rows_in_memory</span></code></a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#optional-http-timeout-sec">[optional] <code class="docutils literal notranslate"><span class="pre">http_timeout_sec</span></code></a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#optional-credentials">[optional] <code class="docutils literal notranslate"><span class="pre">credentials</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#destination-tables"><code class="docutils literal notranslate"><span class="pre">destination_tables</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#optional-if-table-exists">[optional] <code class="docutils literal notranslate"><span class="pre">if_table_exists</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#writing-to-multiple-tables">Writing to Multiple Tables</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#skipping-a-table-with-none">Skipping a Table with None</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#optional-trigger-by">[optional] trigger_by</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#subscriber-name">subscriber_name</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data-drift-support">Data Drift Support</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="../../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+
+<!-- Your custom footer content here -->
+
+  </body>
+</html>

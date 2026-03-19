@@ -1,0 +1,1067 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>MySQL CDC &#8212; Tabsdata  documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=8f2a1f02" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/custom.css?v=8305e08e" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="../../../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+
+    <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+    <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+    <script src="../../../_static/documentation_options.js?v=7f41d439"></script>
+    <script src="../../../_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="../../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../../_static/copybutton.js?v=a56c686a"></script>
+    <script src="../../../_static/design-tabs.js?v=f930bc37"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'guide/04_01_working_with_publishers/mysql_cdc/main';</script>
+    <script>
+        DOCUMENTATION_OPTIONS.theme_version = '0.16.1';
+        DOCUMENTATION_OPTIONS.theme_switcher_json_url = 'https://docs.tabsdata.com/version.json';
+        DOCUMENTATION_OPTIONS.theme_switcher_version_match = '1.7.1';
+        DOCUMENTATION_OPTIONS.show_version_warning_banner =
+            false;
+        </script>
+    <script src="../../../_static/custom.js?v=ac098f57"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="Oracle" href="../oracle/main.html" />
+    <link rel="prev" title="MySQL" href="../mysql/main.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="1.7.1" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+
+
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+     
+  
+
+<a class="navbar-brand logo" href=" https://tabsdata.com/?utm_source=docs">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../../_static/tabsdata_root.png" class="logo__image only-light" alt="Tabsdata  documentation - Home"/>
+    <img src="../../../_static/tabsdata_root_light.png" class="logo__image only-dark pst-js-only" alt="Tabsdata  documentation - Home"/>
+  
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="../../index.html">
+    User Guide
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../ref/index.html">
+    API Reference
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../tutorials/index.html">
+    Tutorials
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+        <div class="navbar-item">
+<div class="version-switcher__container dropdown pst-js-only">
+  <button id="pst-version-switcher-button-2"
+    type="button"
+    class="version-switcher__button btn btn-sm dropdown-toggle"
+    data-bs-toggle="dropdown"
+    aria-haspopup="listbox"
+    aria-controls="pst-version-switcher-list-2"
+    aria-label="Version switcher list"
+  >
+    Choose version  <!-- this text may get changed later by javascript -->
+    <span class="caret"></span>
+  </button>
+  <div id="pst-version-switcher-list-2"
+    class="version-switcher__menu dropdown-menu list-group-flush py-0"
+    role="listbox" aria-labelledby="pst-version-switcher-button-2">
+    <!-- dropdown will be populated by javascript on page load -->
+  </div>
+</div></div>
+      
+        <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="../../index.html">
+    User Guide
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../ref/index.html">
+    API Reference
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../tutorials/index.html">
+    Tutorials
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+<div class="version-switcher__container dropdown pst-js-only">
+  <button id="pst-version-switcher-button-3"
+    type="button"
+    class="version-switcher__button btn btn-sm dropdown-toggle"
+    data-bs-toggle="dropdown"
+    aria-haspopup="listbox"
+    aria-controls="pst-version-switcher-list-3"
+    aria-label="Version switcher list"
+  >
+    Choose version  <!-- this text may get changed later by javascript -->
+    <span class="caret"></span>
+  </button>
+  <div id="pst-version-switcher-list-3"
+    class="version-switcher__menu dropdown-menu list-group-flush py-0"
+    role="listbox" aria-labelledby="pst-version-switcher-button-3">
+    <!-- dropdown will be populated by javascript on page load -->
+  </div>
+</div></div>
+        
+          <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+<nav class="bd-docs-nav bd-links"
+     aria-label="Section Navigation">
+  <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
+  <div class="bd-toc-item navbar-nav"><ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../01_overview/main.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../02_getting_started/main.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../server_configuration/main.html">Server Configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../03_key_concepts/main.html">Key Concepts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../04_working_with_functions/main.html">Working with Functions</a></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="../main.html">Publishers</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../local_file_system/main.html">Local File System</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../amazon_s3/main.html">Amazon S3</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../azure/main.html">Azure Blob Storage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../gcp/main.html">Google Cloud Storage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../grok_for_log_files/main.html">Grok for Log Files</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../db2/main.html">Db2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../db2_cdc/main.html">Db2 CDC</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../working_with_kafka/main.html">Kafka</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../mariadb/main.html">MariaDB</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../mssql/main.html">Microsoft SQL Server</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../mysql/main.html">MySQL</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">MySQL CDC</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../oracle/main.html">Oracle</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../postgres/main.html">Postgres</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../postgres_cdc/main.html">PostgreSQL CDC</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../salesforce/main.html">Salesforce SOQL Query</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../salesforce_reports/main.html">Salesforce Reports</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="../../04_02_working_with_transformers/main.html">Transformers</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../04_03_working_with_subscribers/main.html">Subscribers</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../04_03_working_with_subscribers/local_file_system/main.html">Local File System</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../04_03_working_with_subscribers/amazon_s3/main.html">Amazon S3</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../04_03_working_with_subscribers/azure/main.html">Azure Blob Storage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../04_03_working_with_subscribers/gcp/main.html">Google Cloud Storage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../04_03_working_with_subscribers/aws_iceberg/main.html">AWS Glue - Iceberg tables</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../04_03_working_with_subscribers/bigquery/main.html">Big Query</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../04_03_working_with_subscribers/clickhouse/main.html">ClickHouse</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../04_03_working_with_subscribers/databricks/main.html">Databricks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../04_03_working_with_subscribers/druid/main.html">Apache Druid</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../04_03_working_with_subscribers/mariadb/main.html">MariaDB</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../04_03_working_with_subscribers/mongodb/main.html">MongoDB</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../04_03_working_with_subscribers/mssql/main.html">Microsoft SQL Server</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../04_03_working_with_subscribers/mysql/main.html">MySQL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../04_03_working_with_subscribers/oracle/main.html">Oracle</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../04_03_working_with_subscribers/postgres/main.html">Postgres</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../04_03_working_with_subscribers/snowflake/main.html">Snowflake</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../04_03_working_with_subscribers/starrocks/main.html">StarRocks</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="../../working_with_kafka/main.html">Working with Kafka</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../05_working_with_triggers/main.html">Working with Triggers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../06_working_with_tables/table_frame.html">Working with Tables</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../06_working_with_tables/tableframe_guide.html">TableFrame API Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../06_working_with_tables/user_defined_functions.html">User-defined Functions (UDFs)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../07_working_with_connector_plugins/main.html">Working with Plugins</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../data_quality/main.html">Data Quality</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../catalogs/main.html">Catalogs</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../catalogs/aws_glue/main.html">AWS Glue Catalog</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../catalogs/unity_catalog/main.html">Unity Catalog</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user_interface/main.html">User Interface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ai_agent/main.html">Tabsdata AI Agent (Tabby)</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../secrets_management/main.html">Secrets Management</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../secrets_management/env_variables/main.html">Environment Variables</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../secrets_management/hashicorp/main.html">HashiCorp Secret</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="../../permissioning/main.html">Role Based Access Control (RBAC)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../security/main.html">Setting up Tabsdata over HTTPS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../08_testing/main.html">Testing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../10_troubleshooting/main.html">Troubleshooting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../11_cli_commands/main.html">CLI Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../release_notes/main.html">Release Notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../09_contact_support/main.html">Contact Us</a></li>
+</ul>
+</div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../../../index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    
+    <li class="breadcrumb-item"><a href="../../index.html" class="nav-link">User Guide</a></li>
+    
+    
+    <li class="breadcrumb-item"><a href="../main.html" class="nav-link">Publishers</a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">MySQL CDC</span></li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="mysql-cdc">
+<h1>MySQL CDC</h1>
+<p>The MySQL CDC publisher captures row-level changes (inserts, updates, deletes) from a MySQL database by reading its binary log (binlog) in real time.</p>
+<blockquote>
+<div><p><strong>Note:</strong> MySQL CDC is currently marked as unstable and may undergo API changes in future releases.</p>
+</div></blockquote>
+<section id="installing-the-connector-dependencies">
+<h2>Installing the Connector Dependencies</h2>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>mysql-connector-python<span class="o">==</span><span class="m">9</span>.3.0
+</pre></div>
+</div>
+</section>
+<section id="example">
+<h2>Example</h2>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Tuple</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">tabsdata</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">td</span>
+
+<span class="n">conn</span> <span class="o">=</span> <span class="n">td</span><span class="o">.</span><span class="n">MySQLCdcConn</span><span class="p">(</span>
+    <span class="n">uri</span><span class="o">=</span><span class="s2">&quot;mysql://localhost:3306/ecommerce&quot;</span><span class="p">,</span>
+    <span class="n">credentials</span><span class="o">=</span><span class="n">td</span><span class="o">.</span><span class="n">UserPasswordCredentials</span><span class="p">(</span>
+        <span class="n">user</span><span class="o">=</span><span class="n">td</span><span class="o">.</span><span class="n">EnvironmentSecret</span><span class="p">(</span><span class="s2">&quot;MYSQL_USER&quot;</span><span class="p">),</span>
+        <span class="n">password</span><span class="o">=</span><span class="n">td</span><span class="o">.</span><span class="n">EnvironmentSecret</span><span class="p">(</span><span class="s2">&quot;MYSQL_PASS&quot;</span><span class="p">),</span>
+    <span class="p">),</span>
+<span class="p">)</span>
+
+<span class="n">trigger</span> <span class="o">=</span> <span class="n">td</span><span class="o">.</span><span class="n">MySQLCdcTrigger</span><span class="p">(</span>
+    <span class="n">conn</span><span class="o">=</span><span class="n">conn</span><span class="p">,</span>
+    <span class="n">tables</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;ecommerce.orders&quot;</span><span class="p">,</span> <span class="s2">&quot;ecommerce.order_items&quot;</span><span class="p">],</span>
+    <span class="n">start_from</span><span class="o">=</span><span class="s2">&quot;tail&quot;</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="nd">@td</span><span class="o">.</span><span class="n">publisher</span><span class="p">(</span>
+    <span class="n">trigger</span><span class="o">=</span><span class="n">trigger</span><span class="p">,</span>
+    <span class="n">tables</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;orders&quot;</span><span class="p">,</span> <span class="s2">&quot;order_items&quot;</span><span class="p">],</span>
+<span class="p">)</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">capture_ecommerce</span><span class="p">(</span>
+    <span class="n">orders</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">td</span><span class="o">.</span><span class="n">TableFrame</span><span class="p">],</span>
+    <span class="n">order_items</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">td</span><span class="o">.</span><span class="n">TableFrame</span><span class="p">],</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">td</span><span class="o">.</span><span class="n">TableFrame</span><span class="p">,</span> <span class="n">td</span><span class="o">.</span><span class="n">TableFrame</span><span class="p">]:</span>
+    <span class="k">return</span> <span class="n">td</span><span class="o">.</span><span class="n">concat</span><span class="p">(</span><span class="n">orders</span><span class="p">),</span> <span class="n">td</span><span class="o">.</span><span class="n">concat</span><span class="p">(</span><span class="n">order_items</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>This example publishes CDC data for the <code class="docutils literal notranslate"><span class="pre">orders</span></code> and <code class="docutils literal notranslate"><span class="pre">order_items</span></code> tables, capturing only changes that occur after the publisher has been first registered.</p>
+<p>After defining the function, register it with a Tabsdata collection and trigger its execution.</p>
+</section>
+<hr class="docutils" />
+<section id="setup">
+<h2>Setup</h2>
+<section id="configuring-mysql-for-cdc">
+<h3>Configuring MySQL for CDC</h3>
+<p>Before using the MySQL CDC publisher, the source MySQL database must be configured to enable row-based binary logging and GTID support.</p>
+<section id="server-configuration">
+<h4>Server Configuration</h4>
+<p>Add the following to your MySQL configuration file (<code class="docutils literal notranslate"><span class="pre">my.cnf</span></code> or <code class="docutils literal notranslate"><span class="pre">my.ini</span></code>) and restart the server:</p>
+<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="k">[mysqld]</span>
+<span class="na">server-id</span><span class="w">                </span><span class="o">=</span><span class="w"> </span><span class="s">1</span>
+<span class="na">log_bin</span><span class="w">                  </span><span class="o">=</span><span class="w"> </span><span class="s">mysql-bin</span>
+<span class="na">binlog_format</span><span class="w">            </span><span class="o">=</span><span class="w"> </span><span class="s">ROW</span>
+<span class="na">binlog_row_image</span><span class="w">         </span><span class="o">=</span><span class="w"> </span><span class="s">FULL</span>
+<span class="na">binlog_row_metadata</span><span class="w">      </span><span class="o">=</span><span class="w"> </span><span class="s">FULL</span>
+<span class="na">gtid_mode</span><span class="w">                </span><span class="o">=</span><span class="w"> </span><span class="s">ON</span>
+<span class="na">enforce_gtid_consistency</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">ON</span>
+</pre></div>
+</div>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Parameter</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">server-id</span></code></p></td>
+<td><p>Enables binary logging with a unique server identifier.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">binlog_format</span> <span class="pre">=</span> <span class="pre">ROW</span></code></p></td>
+<td><p>Row-based format captures individual column values rather than SQL statements.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">binlog_row_image</span> <span class="pre">=</span> <span class="pre">FULL</span></code></p></td>
+<td><p>Logs all columns for every change, not just modified ones.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">gtid_mode</span> <span class="pre">=</span> <span class="pre">ON</span></code></p></td>
+<td><p>Required for resuming from a precise position across server restarts.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="create-a-cdc-user">
+<h4>Create a CDC User</h4>
+<p>Create a dedicated MySQL user with the privileges required for binlog replication:</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">CREATE</span><span class="w"> </span><span class="k">USER</span><span class="w"> </span><span class="s1">&#39;cdc_user&#39;</span><span class="o">@</span><span class="s1">&#39;%&#39;</span><span class="w"> </span><span class="n">IDENTIFIED</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="s1">&#39;cdc_password&#39;</span><span class="p">;</span>
+<span class="k">GRANT</span><span class="w"> </span><span class="n">REPLICATION</span><span class="w"> </span><span class="n">SLAVE</span><span class="p">,</span><span class="w"> </span><span class="n">REPLICATION</span><span class="w"> </span><span class="n">CLIENT</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="o">*</span><span class="p">.</span><span class="o">*</span><span class="w"> </span><span class="k">TO</span><span class="w"> </span><span class="s1">&#39;cdc_user&#39;</span><span class="o">@</span><span class="s1">&#39;%&#39;</span><span class="p">;</span>
+<span class="k">GRANT</span><span class="w"> </span><span class="k">SELECT</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="n">my_database</span><span class="p">.</span><span class="o">*</span><span class="w"> </span><span class="k">TO</span><span class="w"> </span><span class="s1">&#39;cdc_user&#39;</span><span class="o">@</span><span class="s1">&#39;%&#39;</span><span class="p">;</span>
+<span class="n">FLUSH</span><span class="w"> </span><span class="k">PRIVILEGES</span><span class="p">;</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">REPLICATION</span> <span class="pre">SLAVE</span></code> and <code class="docutils literal notranslate"><span class="pre">REPLICATION</span> <span class="pre">CLIENT</span></code> are the minimum privileges needed to connect as a binlog reader. <code class="docutils literal notranslate"><span class="pre">SELECT</span></code> is required for the initial table schema discovery.</p>
+</section>
+</section>
+<section id="connection-mysqlcdcconn">
+<h3>Connection: <code class="docutils literal notranslate"><span class="pre">MySQLCdcConn</span></code></h3>
+<p><code class="docutils literal notranslate"><span class="pre">MySQLCdcConn</span></code> defines how to connect to the MySQL server. It accepts a standard MySQL URI and optional credentials.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">conn</span> <span class="o">=</span> <span class="n">td</span><span class="o">.</span><span class="n">MySQLCdcConn</span><span class="p">(</span>
+    <span class="n">uri</span><span class="o">=</span><span class="s2">&quot;mysql://localhost:3306/my_database&quot;</span><span class="p">,</span>
+    <span class="n">credentials</span><span class="o">=</span><span class="n">td</span><span class="o">.</span><span class="n">UserPasswordCredentials</span><span class="p">(</span>
+        <span class="n">user</span><span class="o">=</span><span class="n">td</span><span class="o">.</span><span class="n">EnvironmentSecret</span><span class="p">(</span><span class="s2">&quot;MYSQL_CDC_USER&quot;</span><span class="p">),</span>
+        <span class="n">password</span><span class="o">=</span><span class="n">td</span><span class="o">.</span><span class="n">EnvironmentSecret</span><span class="p">(</span><span class="s2">&quot;MYSQL_CDC_PASSWORD&quot;</span><span class="p">),</span>
+    <span class="p">),</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Parameter</p></th>
+<th class="head"><p>Type</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">uri</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">str</span></code></p></td>
+<td><p>MySQL connection URI (<code class="docutils literal notranslate"><span class="pre">mysql://host:port/database</span></code>). If the port is omitted, defaults to <code class="docutils literal notranslate"><span class="pre">3306</span></code>. If the database is omitted, defaults to <code class="docutils literal notranslate"><span class="pre">&quot;mysql&quot;</span></code>.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">credentials</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">UserPasswordCredentials</span> <span class="pre">|</span> <span class="pre">None</span></code></p></td>
+<td><p>Optional user/password credentials. If <code class="docutils literal notranslate"><span class="pre">None</span></code>, credentials from the URI are used.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">cx_src_configs_mysql</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">dict</span> <span class="pre">|</span> <span class="pre">None</span></code></p></td>
+<td><p>Optional MySQL-specific connection parameters passed to the underlying driver.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="trigger-mysqlcdctrigger">
+<h3>Trigger: <code class="docutils literal notranslate"><span class="pre">MySQLCdcTrigger</span></code></h3>
+<p><code class="docutils literal notranslate"><span class="pre">MySQLCdcTrigger</span></code> connects to MySQL, reads binlog events for the specified tables, and stages batches of changes.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">trigger</span> <span class="o">=</span> <span class="n">td</span><span class="o">.</span><span class="n">MySQLCdcTrigger</span><span class="p">(</span>
+    <span class="n">conn</span><span class="o">=</span><span class="n">conn</span><span class="p">,</span>
+    <span class="n">tables</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;ecommerce.orders&quot;</span><span class="p">,</span> <span class="s2">&quot;ecommerce.order_items&quot;</span><span class="p">],</span>
+    <span class="n">start_from</span><span class="o">=</span><span class="s2">&quot;tail&quot;</span><span class="p">,</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<section id="tables">
+<h4><code class="docutils literal notranslate"><span class="pre">tables</span></code></h4>
+<p>Specifies which database tables to monitor. Tables must be fully qualified as <code class="docutils literal notranslate"><span class="pre">schema.table</span></code>. Accepts a single string or a list of strings.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Single table</span>
+<span class="n">tables</span><span class="o">=</span><span class="s2">&quot;my_database.orders&quot;</span>
+
+<span class="c1"># Multiple tables</span>
+<span class="n">tables</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;my_database.orders&quot;</span><span class="p">,</span> <span class="s2">&quot;my_database.order_items&quot;</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>All tables must exist in the source database before the trigger starts. Tables created after the trigger is running will not be captured.</p>
+</section>
+<section id="start-from">
+<h4><code class="docutils literal notranslate"><span class="pre">start_from</span></code></h4>
+<p>Determines where the connector begins reading the binlog. On subsequent runs, the connector resumes automatically from its last committed position.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Value</p></th>
+<th class="head"><p>Type</p></th>
+<th class="head"><p>Behavior</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">&quot;head&quot;</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">str</span></code></p></td>
+<td><p>Start from the earliest available position in the binlog.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">&quot;tail&quot;</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">str</span></code></p></td>
+<td><p>Start from the current end of the binlog, capturing only new events.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">GtidPosition(gtid=&quot;...&quot;)</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">GtidPosition</span></code></p></td>
+<td><p>Resume from a specific Global Transaction ID.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">BinlogPosition(file=&quot;...&quot;,</span> <span class="pre">pos=...)</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">BinlogPosition</span></code></p></td>
+<td><p>Resume from a specific binlog file name and byte offset.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">TimestampPosition(ts=datetime(...))</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">TimestampPosition</span></code></p></td>
+<td><p>Start from the first event at or after the given timestamp.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+</section>
+</section>
+<hr class="docutils" />
+<section id="advanced-configuration">
+<h2>Advanced Configuration</h2>
+<section id="cdc-output-format-cdc-format">
+<h3>CDC Output Format (<code class="docutils literal notranslate"><span class="pre">cdc_format</span></code>)</h3>
+<p>The <code class="docutils literal notranslate"><span class="pre">cdc_format</span></code> parameter controls how change data is structured in the output <code class="docutils literal notranslate"><span class="pre">TableFrame</span></code>s, configured via <code class="docutils literal notranslate"><span class="pre">CdcFormat</span></code>.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">tabsdata.connector.cdc.common.typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">CdcFormat</span>
+
+<span class="n">cdc_format</span><span class="o">=</span><span class="n">CdcFormat</span><span class="p">(</span><span class="n">values_format</span><span class="o">=</span><span class="s2">&quot;columns&quot;</span><span class="p">,</span> <span class="n">flatten_values</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Parameter</p></th>
+<th class="head"><p>Type</p></th>
+<th class="head"><p>Default</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">values_format</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">&quot;columns&quot;</span> <span class="pre">|</span> <span class="pre">&quot;struct&quot;</span> <span class="pre">|</span> <span class="pre">&quot;map&quot;</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">&quot;columns&quot;</span></code></p></td>
+<td><p>Controls how old and new row values are laid out in the output.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">flatten_values</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">bool</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">True</span></code></p></td>
+<td><p>When <code class="docutils literal notranslate"><span class="pre">True</span></code>, new values are promoted to individual top-level columns instead of being packed into a container column.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<section id="metadata-columns-always-present">
+<h4>Metadata columns (always present)</h4>
+<p>Every output row includes the following metadata columns regardless of <code class="docutils literal notranslate"><span class="pre">values_format</span></code>:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Column</p></th>
+<th class="head"><p>Type</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">&#64;td.cdc.meta.op</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">str</span></code></p></td>
+<td><p>Operation type: <code class="docutils literal notranslate"><span class="pre">&quot;i&quot;</span></code> (insert), <code class="docutils literal notranslate"><span class="pre">&quot;u&quot;</span></code> (update), or <code class="docutils literal notranslate"><span class="pre">&quot;d&quot;</span></code> (delete).</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">&#64;td.cdc.meta.tx</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">str</span></code></p></td>
+<td><p>Transaction identifier from the source database.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">&#64;td.cdc.meta.sq</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">int</span></code></p></td>
+<td><p>Sequence number ordering changes within a transaction.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="values-format-columns">
+<h4><code class="docutils literal notranslate"><span class="pre">values_format</span> <span class="pre">=</span> <span class="pre">&quot;columns&quot;</span></code></h4>
+<p>Each source table column is represented as two explicit output columns — one for the old value and one for the new value:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Column</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">&#64;td.cdc.data.col.old.&lt;COL_NAME&gt;</span></code></p></td>
+<td><p>Value before the change.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">&#64;td.cdc.data.col.new.&lt;COL_NAME&gt;</span></code></p></td>
+<td><p>Value after the change. Present when <code class="docutils literal notranslate"><span class="pre">flatten_values=False</span></code>.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">&lt;COL_NAME&gt;</span></code></p></td>
+<td><p>Value after the change. Present when <code class="docutils literal notranslate"><span class="pre">flatten_values=True</span></code> (replaces the <code class="docutils literal notranslate"><span class="pre">new</span></code> prefixed column).</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><strong>Semantics by operation:</strong></p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Operation</p></th>
+<th class="head"><p><code class="docutils literal notranslate"><span class="pre">&#64;td.cdc.data.col.old.&lt;COL_NAME&gt;</span></code></p></th>
+<th class="head"><p>New value column</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Insert (<code class="docutils literal notranslate"><span class="pre">i</span></code>)</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">null</span></code></p></td>
+<td><p>Inserted data</p></td>
+</tr>
+<tr class="row-odd"><td><p>Update (<code class="docutils literal notranslate"><span class="pre">u</span></code>)</p></td>
+<td><p>Value prior to the update</p></td>
+<td><p>Value after the update</p></td>
+</tr>
+<tr class="row-even"><td><p>Delete (<code class="docutils literal notranslate"><span class="pre">d</span></code>)</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">null</span></code></p></td>
+<td><p>Deleted data</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="values-format-map">
+<h4><code class="docutils literal notranslate"><span class="pre">values_format</span> <span class="pre">=</span> <span class="pre">&quot;map&quot;</span></code></h4>
+<p>Old and new values are packed into map columns keyed by table column name:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Column</p></th>
+<th class="head"><p>Type</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">&#64;td.cdc.data.map.old</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">Map&lt;str,</span> <span class="pre">str&gt;</span></code></p></td>
+<td><p>Old values. Present when <code class="docutils literal notranslate"><span class="pre">flatten_values=False</span></code> or for old values always.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">&#64;td.cdc.data.map.new</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">Map&lt;str,</span> <span class="pre">str&gt;</span></code></p></td>
+<td><p>New values packed as a map. Present when <code class="docutils literal notranslate"><span class="pre">flatten_values=False</span></code>.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">&lt;COL_NAME&gt;</span></code></p></td>
+<td><p>—</p></td>
+<td><p>New values as individual columns. Present when <code class="docutils literal notranslate"><span class="pre">flatten_values=True</span></code> (replaces <code class="docutils literal notranslate"><span class="pre">&#64;td.cdc.data.map.new</span></code>).</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><strong>Semantics by operation:</strong></p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Operation</p></th>
+<th class="head"><p><code class="docutils literal notranslate"><span class="pre">&#64;td.cdc.data.map.old</span></code></p></th>
+<th class="head"><p>New value column(s)</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Insert (<code class="docutils literal notranslate"><span class="pre">i</span></code>)</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">null</span></code></p></td>
+<td><p>Inserted data</p></td>
+</tr>
+<tr class="row-odd"><td><p>Update (<code class="docutils literal notranslate"><span class="pre">u</span></code>)</p></td>
+<td><p>Values prior to the update</p></td>
+<td><p>Values after the update</p></td>
+</tr>
+<tr class="row-even"><td><p>Delete (<code class="docutils literal notranslate"><span class="pre">d</span></code>)</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">null</span></code></p></td>
+<td><p>Deleted data</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="values-format-struct">
+<h4><code class="docutils literal notranslate"><span class="pre">values_format</span> <span class="pre">=</span> <span class="pre">&quot;struct&quot;</span></code></h4>
+<p>Identical to <code class="docutils literal notranslate"><span class="pre">&quot;map&quot;</span></code> but old and new values are packed into struct fields instead of map columns:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Column</p></th>
+<th class="head"><p>Type</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">&#64;td.cdc.data.row.old</span></code></p></td>
+<td><p>struct</p></td>
+<td><p>Old values. Present when <code class="docutils literal notranslate"><span class="pre">flatten_values=False</span></code> or for old values always.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">&#64;td.cdc.data.row.new</span></code></p></td>
+<td><p>struct</p></td>
+<td><p>New values packed as a struct. Present when <code class="docutils literal notranslate"><span class="pre">flatten_values=False</span></code>.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">&lt;COL_NAME&gt;</span></code></p></td>
+<td><p>—</p></td>
+<td><p>New values as individual columns. Present when <code class="docutils literal notranslate"><span class="pre">flatten_values=True</span></code> (replaces <code class="docutils literal notranslate"><span class="pre">&#64;td.cdc.data.row.new</span></code>).</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Semantics by operation are identical to <code class="docutils literal notranslate"><span class="pre">&quot;map&quot;</span></code> above.</p>
+</section>
+</section>
+<section id="start-position-examples">
+<h3>Start Position Examples</h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">tabsdata.connector.cdc.mysql.typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">GtidPosition</span><span class="p">,</span> <span class="n">BinlogPosition</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">tabsdata.connector.cdc.common.typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">TimestampPosition</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">datetime</span><span class="w"> </span><span class="kn">import</span> <span class="n">datetime</span><span class="p">,</span> <span class="n">timezone</span>
+
+<span class="c1"># Start from the beginning of the binlog</span>
+<span class="n">start_from</span><span class="o">=</span><span class="s2">&quot;head&quot;</span>
+
+<span class="c1"># Start from the end — capture only new changes going forward</span>
+<span class="n">start_from</span><span class="o">=</span><span class="s2">&quot;tail&quot;</span>
+
+<span class="c1"># Resume from a specific GTID</span>
+<span class="n">start_from</span><span class="o">=</span><span class="n">GtidPosition</span><span class="p">(</span><span class="n">gtid</span><span class="o">=</span><span class="s2">&quot;3E11FA47-71CA-11E1-9E33-C80AA9429562:1-5&quot;</span><span class="p">)</span>
+
+<span class="c1"># Resume from a binlog file and byte offset</span>
+<span class="n">start_from</span><span class="o">=</span><span class="n">BinlogPosition</span><span class="p">(</span><span class="n">file</span><span class="o">=</span><span class="s2">&quot;mysql-bin.000003&quot;</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="mi">154</span><span class="p">)</span>
+
+<span class="c1"># Start from a specific timestamp</span>
+<span class="n">start_from</span><span class="o">=</span><span class="n">TimestampPosition</span><span class="p">(</span><span class="n">ts</span><span class="o">=</span><span class="n">datetime</span><span class="p">(</span><span class="mi">2026</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">15</span><span class="p">,</span> <span class="n">tzinfo</span><span class="o">=</span><span class="n">timezone</span><span class="o">.</span><span class="n">utc</span><span class="p">))</span>
+</pre></div>
+</div>
+</section>
+<section id="buffer-and-trigger-thresholds">
+<h3>Buffer and Trigger Thresholds</h3>
+<p>The CDC connector uses a two-stage pipeline: changes accumulate in memory (buffer), are flushed to the working directory, then staged to the output location.</p>
+<section id="buffer-thresholds-memory-working-directory">
+<h4>Buffer thresholds (memory → working directory)</h4>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Parameter</p></th>
+<th class="head"><p>Type</p></th>
+<th class="head"><p>Default</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">buffer_max_rows</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">int</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">10,000</span></code></p></td>
+<td><p>Flush to disk when row count in memory reaches this limit.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">buffer_max_bytes</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">int</span> <span class="pre">|</span> <span class="pre">None</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">None</span></code></p></td>
+<td><p>Flush to disk when byte size in memory reaches this limit.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">buffer_max_sec</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">float</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">60.0</span></code></p></td>
+<td><p>Flush to disk when this many seconds have elapsed since the last flush.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="trigger-thresholds-working-directory-stage-location">
+<h4>Trigger thresholds (working directory → stage location)</h4>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Parameter</p></th>
+<th class="head"><p>Type</p></th>
+<th class="head"><p>Default</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">trigger_max_rows</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">int</span> <span class="pre">|</span> <span class="pre">None</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">None</span></code></p></td>
+<td><p>Stage when total rows on disk reach this limit.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">trigger_max_bytes</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">int</span> <span class="pre">|</span> <span class="pre">None</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">None</span></code></p></td>
+<td><p>Stage when total bytes on disk reach this limit.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">trigger_max_sec</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">float</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">60.0</span></code></p></td>
+<td><p>Stage when this many seconds have elapsed since the last stage.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+</section>
+<section id="other-parameters">
+<h3>Other Parameters</h3>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Parameter</p></th>
+<th class="head"><p>Type</p></th>
+<th class="head"><p>Default</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">poll_interval_sec</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">float</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">1.0</span></code></p></td>
+<td><p>Seconds between polling cycles when no new events are available.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">blocking_timeout_sec</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">float</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">1.0</span></code></p></td>
+<td><p>Timeout in seconds for blocking reads from the binlog stream.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">server_id</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">int</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">512</span></code></p></td>
+<td><p>MySQL server ID for binlog replication. Must be unique across all replication clients.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">start</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">datetime</span> <span class="pre">|</span> <span class="pre">None</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">None</span></code></p></td>
+<td><p>Delay trigger execution until this datetime (UTC).</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">end</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">datetime</span> <span class="pre">|</span> <span class="pre">None</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">None</span></code></p></td>
+<td><p>Stop the trigger at this datetime (UTC).</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+</section>
+<hr class="docutils" />
+<section id="limitations">
+<h2>Limitations</h2>
+<ul class="simple">
+<li><p><strong>Schema changes:</strong> <code class="docutils literal notranslate"><span class="pre">ALTER</span> <span class="pre">TABLE</span></code>, <code class="docutils literal notranslate"><span class="pre">ADD/DROP</span> <span class="pre">COLUMN</span></code>, and similar DDL operations on tracked tables are not detected or handled. If the source schema changes, the connector must be stopped and reconfigured.</p></li>
+<li><p><strong>TRUNCATE:</strong> <code class="docutils literal notranslate"><span class="pre">TRUNCATE</span> <span class="pre">TABLE</span></code> operations are not captured. A truncate on a tracked table will not produce any change events.</p></li>
+<li><p><strong>Large/Blob types:</strong> <code class="docutils literal notranslate"><span class="pre">BLOB</span></code>, <code class="docutils literal notranslate"><span class="pre">CLOB</span></code>, <code class="docutils literal notranslate"><span class="pre">LONGBLOB</span></code>, <code class="docutils literal notranslate"><span class="pre">BYTEA</span></code>, and <code class="docutils literal notranslate"><span class="pre">TEXT</span></code> (in some configurations) column types are not currently supported. Tables containing these types should exclude them from capture or use alternative ingestion methods.</p></li>
+<li><p><strong>Static table list:</strong> All tables in the <code class="docutils literal notranslate"><span class="pre">tables</span></code> parameter must exist before the trigger starts. The connector does not perform runtime table discovery.</p></li>
+</ul>
+</section>
+</section>
+
+
+                </article>
+              
+              
+              
+              
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+<div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#installing-the-connector-dependencies">Installing the Connector Dependencies</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example">Example</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#setup">Setup</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#configuring-mysql-for-cdc">Configuring MySQL for CDC</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#server-configuration">Server Configuration</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#create-a-cdc-user">Create a CDC User</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#connection-mysqlcdcconn">Connection: <code class="docutils literal notranslate"><span class="pre">MySQLCdcConn</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#trigger-mysqlcdctrigger">Trigger: <code class="docutils literal notranslate"><span class="pre">MySQLCdcTrigger</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#tables"><code class="docutils literal notranslate"><span class="pre">tables</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#start-from"><code class="docutils literal notranslate"><span class="pre">start_from</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#advanced-configuration">Advanced Configuration</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cdc-output-format-cdc-format">CDC Output Format (<code class="docutils literal notranslate"><span class="pre">cdc_format</span></code>)</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#metadata-columns-always-present">Metadata columns (always present)</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#values-format-columns"><code class="docutils literal notranslate"><span class="pre">values_format</span> <span class="pre">=</span> <span class="pre">"columns"</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#values-format-map"><code class="docutils literal notranslate"><span class="pre">values_format</span> <span class="pre">=</span> <span class="pre">"map"</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#values-format-struct"><code class="docutils literal notranslate"><span class="pre">values_format</span> <span class="pre">=</span> <span class="pre">"struct"</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#start-position-examples">Start Position Examples</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#buffer-and-trigger-thresholds">Buffer and Trigger Thresholds</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#buffer-thresholds-memory-working-directory">Buffer thresholds (memory → working directory)</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#trigger-thresholds-working-directory-stage-location">Trigger thresholds (working directory → stage location)</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#other-parameters">Other Parameters</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#limitations">Limitations</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="../../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+
+<!-- Your custom footer content here -->
+
+  </body>
+</html>

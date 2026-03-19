@@ -1,0 +1,771 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Db2 CDC &#8212; Tabsdata  documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=8f2a1f02" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/custom.css?v=8305e08e" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="../../../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+
+    <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+    <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+    <script src="../../../_static/documentation_options.js?v=7f41d439"></script>
+    <script src="../../../_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="../../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../../_static/copybutton.js?v=a56c686a"></script>
+    <script src="../../../_static/design-tabs.js?v=f930bc37"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'guide/04_01_working_with_publishers/db2_cdc/main';</script>
+    <script>
+        DOCUMENTATION_OPTIONS.theme_version = '0.16.1';
+        DOCUMENTATION_OPTIONS.theme_switcher_json_url = 'https://docs.tabsdata.com/version.json';
+        DOCUMENTATION_OPTIONS.theme_switcher_version_match = '1.7.1';
+        DOCUMENTATION_OPTIONS.show_version_warning_banner =
+            false;
+        </script>
+    <script src="../../../_static/custom.js?v=ac098f57"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="Working with Kafka" href="../../working_with_kafka/main.html" />
+    <link rel="prev" title="Db2" href="../db2/main.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="1.7.1" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+
+
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+     
+  
+
+<a class="navbar-brand logo" href=" https://tabsdata.com/?utm_source=docs">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../../_static/tabsdata_root.png" class="logo__image only-light" alt="Tabsdata  documentation - Home"/>
+    <img src="../../../_static/tabsdata_root_light.png" class="logo__image only-dark pst-js-only" alt="Tabsdata  documentation - Home"/>
+  
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="../../index.html">
+    User Guide
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../ref/index.html">
+    API Reference
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../tutorials/index.html">
+    Tutorials
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+        <div class="navbar-item">
+<div class="version-switcher__container dropdown pst-js-only">
+  <button id="pst-version-switcher-button-2"
+    type="button"
+    class="version-switcher__button btn btn-sm dropdown-toggle"
+    data-bs-toggle="dropdown"
+    aria-haspopup="listbox"
+    aria-controls="pst-version-switcher-list-2"
+    aria-label="Version switcher list"
+  >
+    Choose version  <!-- this text may get changed later by javascript -->
+    <span class="caret"></span>
+  </button>
+  <div id="pst-version-switcher-list-2"
+    class="version-switcher__menu dropdown-menu list-group-flush py-0"
+    role="listbox" aria-labelledby="pst-version-switcher-button-2">
+    <!-- dropdown will be populated by javascript on page load -->
+  </div>
+</div></div>
+      
+        <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="../../index.html">
+    User Guide
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../ref/index.html">
+    API Reference
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../tutorials/index.html">
+    Tutorials
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+<div class="version-switcher__container dropdown pst-js-only">
+  <button id="pst-version-switcher-button-3"
+    type="button"
+    class="version-switcher__button btn btn-sm dropdown-toggle"
+    data-bs-toggle="dropdown"
+    aria-haspopup="listbox"
+    aria-controls="pst-version-switcher-list-3"
+    aria-label="Version switcher list"
+  >
+    Choose version  <!-- this text may get changed later by javascript -->
+    <span class="caret"></span>
+  </button>
+  <div id="pst-version-switcher-list-3"
+    class="version-switcher__menu dropdown-menu list-group-flush py-0"
+    role="listbox" aria-labelledby="pst-version-switcher-button-3">
+    <!-- dropdown will be populated by javascript on page load -->
+  </div>
+</div></div>
+        
+          <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+<nav class="bd-docs-nav bd-links"
+     aria-label="Section Navigation">
+  <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
+  <div class="bd-toc-item navbar-nav"><ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../01_overview/main.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../02_getting_started/main.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../server_configuration/main.html">Server Configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../03_key_concepts/main.html">Key Concepts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../04_working_with_functions/main.html">Working with Functions</a></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="../main.html">Publishers</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../local_file_system/main.html">Local File System</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../amazon_s3/main.html">Amazon S3</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../azure/main.html">Azure Blob Storage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../gcp/main.html">Google Cloud Storage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../grok_for_log_files/main.html">Grok for Log Files</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../db2/main.html">Db2</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Db2 CDC</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../working_with_kafka/main.html">Kafka</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../mariadb/main.html">MariaDB</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../mssql/main.html">Microsoft SQL Server</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../mysql/main.html">MySQL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../mysql_cdc/main.html">MySQL CDC</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../oracle/main.html">Oracle</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../postgres/main.html">Postgres</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../postgres_cdc/main.html">PostgreSQL CDC</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../salesforce/main.html">Salesforce SOQL Query</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../salesforce_reports/main.html">Salesforce Reports</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="../../04_02_working_with_transformers/main.html">Transformers</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../04_03_working_with_subscribers/main.html">Subscribers</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../04_03_working_with_subscribers/local_file_system/main.html">Local File System</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../04_03_working_with_subscribers/amazon_s3/main.html">Amazon S3</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../04_03_working_with_subscribers/azure/main.html">Azure Blob Storage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../04_03_working_with_subscribers/gcp/main.html">Google Cloud Storage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../04_03_working_with_subscribers/aws_iceberg/main.html">AWS Glue - Iceberg tables</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../04_03_working_with_subscribers/bigquery/main.html">Big Query</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../04_03_working_with_subscribers/clickhouse/main.html">ClickHouse</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../04_03_working_with_subscribers/databricks/main.html">Databricks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../04_03_working_with_subscribers/druid/main.html">Apache Druid</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../04_03_working_with_subscribers/mariadb/main.html">MariaDB</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../04_03_working_with_subscribers/mongodb/main.html">MongoDB</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../04_03_working_with_subscribers/mssql/main.html">Microsoft SQL Server</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../04_03_working_with_subscribers/mysql/main.html">MySQL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../04_03_working_with_subscribers/oracle/main.html">Oracle</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../04_03_working_with_subscribers/postgres/main.html">Postgres</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../04_03_working_with_subscribers/snowflake/main.html">Snowflake</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../04_03_working_with_subscribers/starrocks/main.html">StarRocks</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="../../working_with_kafka/main.html">Working with Kafka</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../05_working_with_triggers/main.html">Working with Triggers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../06_working_with_tables/table_frame.html">Working with Tables</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../06_working_with_tables/tableframe_guide.html">TableFrame API Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../06_working_with_tables/user_defined_functions.html">User-defined Functions (UDFs)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../07_working_with_connector_plugins/main.html">Working with Plugins</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../data_quality/main.html">Data Quality</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../catalogs/main.html">Catalogs</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../catalogs/aws_glue/main.html">AWS Glue Catalog</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../catalogs/unity_catalog/main.html">Unity Catalog</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user_interface/main.html">User Interface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ai_agent/main.html">Tabsdata AI Agent (Tabby)</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../secrets_management/main.html">Secrets Management</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../secrets_management/env_variables/main.html">Environment Variables</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../secrets_management/hashicorp/main.html">HashiCorp Secret</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="../../permissioning/main.html">Role Based Access Control (RBAC)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../security/main.html">Setting up Tabsdata over HTTPS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../08_testing/main.html">Testing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../10_troubleshooting/main.html">Troubleshooting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../11_cli_commands/main.html">CLI Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../release_notes/main.html">Release Notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../09_contact_support/main.html">Contact Us</a></li>
+</ul>
+</div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../../../index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    
+    <li class="breadcrumb-item"><a href="../../index.html" class="nav-link">User Guide</a></li>
+    
+    
+    <li class="breadcrumb-item"><a href="../main.html" class="nav-link">Publishers</a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">Db2 CDC</span></li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="db2-cdc">
+<h1>Db2 CDC</h1>
+<p>The Db2 CDC publisher captures row-level changes (inserts, updates, deletes) from a Db2 database using SQL Replication. Unlike MySQL and PostgreSQL which stream changes via replication protocols, Db2 CDC polls Change Data (CD) tables that are populated by the Db2 capture agent.</p>
+<blockquote>
+<div><p><strong>Note:</strong> Db2 CDC is currently marked as unstable and may undergo API changes in future releases.</p>
+</div></blockquote>
+<section id="example">
+<h2>Example</h2>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Tuple</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">tabsdata</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">td</span>
+
+<span class="n">conn</span> <span class="o">=</span> <span class="n">td</span><span class="o">.</span><span class="n">Db2CdcConn</span><span class="p">(</span>
+    <span class="n">uri</span><span class="o">=</span><span class="s2">&quot;db2://localhost:50000/ecommerce&quot;</span><span class="p">,</span>
+    <span class="n">credentials</span><span class="o">=</span><span class="n">td</span><span class="o">.</span><span class="n">UserPasswordCredentials</span><span class="p">(</span>
+        <span class="n">user</span><span class="o">=</span><span class="n">td</span><span class="o">.</span><span class="n">EnvironmentSecret</span><span class="p">(</span><span class="s2">&quot;DB2_USER&quot;</span><span class="p">),</span>
+        <span class="n">password</span><span class="o">=</span><span class="n">td</span><span class="o">.</span><span class="n">EnvironmentSecret</span><span class="p">(</span><span class="s2">&quot;DB2_PASS&quot;</span><span class="p">),</span>
+    <span class="p">),</span>
+<span class="p">)</span>
+
+<span class="n">trigger</span> <span class="o">=</span> <span class="n">td</span><span class="o">.</span><span class="n">Db2CdcTrigger</span><span class="p">(</span>
+    <span class="n">conn</span><span class="o">=</span><span class="n">conn</span><span class="p">,</span>
+    <span class="n">tables</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;ASN.TD_T__ORDERS&quot;</span><span class="p">,</span> <span class="s2">&quot;ASN.TD_T__ORDER_ITEMS&quot;</span><span class="p">],</span>
+    <span class="n">start_from</span><span class="o">=</span><span class="s2">&quot;tail&quot;</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="nd">@td</span><span class="o">.</span><span class="n">publisher</span><span class="p">(</span>
+    <span class="n">trigger</span><span class="o">=</span><span class="n">trigger</span><span class="p">,</span>
+    <span class="n">tables</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;orders&quot;</span><span class="p">,</span> <span class="s2">&quot;order_items&quot;</span><span class="p">],</span>
+<span class="p">)</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">capture_ecommerce</span><span class="p">(</span>
+    <span class="n">orders</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">td</span><span class="o">.</span><span class="n">TableFrame</span><span class="p">],</span>
+    <span class="n">order_items</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">td</span><span class="o">.</span><span class="n">TableFrame</span><span class="p">],</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">td</span><span class="o">.</span><span class="n">TableFrame</span><span class="p">,</span> <span class="n">td</span><span class="o">.</span><span class="n">TableFrame</span><span class="p">]:</span>
+    <span class="k">return</span> <span class="n">td</span><span class="o">.</span><span class="n">concat</span><span class="p">(</span><span class="n">orders</span><span class="p">),</span> <span class="n">td</span><span class="o">.</span><span class="n">concat</span><span class="p">(</span><span class="n">order_items</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>This example publishes CDC data for the <code class="docutils literal notranslate"><span class="pre">orders</span></code> and <code class="docutils literal notranslate"><span class="pre">order_items</span></code> tables, capturing only changes that occur after the publisher has been first registered.</p>
+<p>After defining the function, register it with a Tabsdata collection and trigger its execution.</p>
+</section>
+<hr class="docutils" />
+<section id="setup">
+<h2>Setup</h2>
+<section id="configuring-db2-for-cdc">
+<h3>Configuring Db2 for CDC</h3>
+<p>Before using the Db2 CDC publisher, the source database must be configured with archive logging, ASN control tables, a running capture agent, and tables registered for capture.</p>
+<section id="enable-archive-logging">
+<h4>Enable Archive Logging</h4>
+<p>SQL Replication requires archive logging so the capture agent can read the recovery log.</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>mkdir<span class="w"> </span><span class="nv">$HOME</span>/archive
+mkdir<span class="w"> </span><span class="nv">$HOME</span>/backup
+
+db2<span class="w"> </span>UPDATE<span class="w"> </span>DB<span class="w"> </span>CFG<span class="w"> </span>FOR<span class="w"> </span>my_database<span class="w"> </span>USING<span class="w"> </span>logarchmeth1<span class="w"> </span>disk:<span class="nv">$HOME</span>/archive/
+
+db2<span class="w"> </span>BACKUP<span class="w"> </span>DB<span class="w"> </span>my_database<span class="w"> </span>TO<span class="w"> </span><span class="nv">$HOME</span>/backup/
+</pre></div>
+</div>
+<p>A full backup is required after enabling archive logging.</p>
+</section>
+<section id="create-asn-control-tables">
+<h4>Create ASN Control Tables</h4>
+<p>The ASN control tables store capture metadata. Create them using the <code class="docutils literal notranslate"><span class="pre">asnclp</span></code> tool:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>asnclp<span class="w"> </span><span class="s">&lt;&lt; EOF</span>
+<span class="s">SET SERVER CAPTURE TO DB my_database;</span>
+<span class="s">SET CAPTURE SCHEMA SOURCE ASN;</span>
+<span class="s">CREATE CONTROL TABLES FOR CAPTURE SERVER;</span>
+<span class="s">EOF</span>
+</pre></div>
+</div>
+</section>
+<section id="start-the-capture-agent">
+<h4>Start the Capture Agent</h4>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>asncap<span class="w"> </span><span class="nv">capture_server</span><span class="o">=</span>my_database<span class="w"> </span><span class="nv">capture_schema</span><span class="o">=</span>ASN<span class="w"> </span><span class="p">&amp;</span>
+</pre></div>
+</div>
+<p>The capture agent runs continuously, reading the recovery log and writing changes to CD tables. It must be running before the connector can capture changes.</p>
+</section>
+<section id="register-tables-for-capture">
+<h4>Register Tables for Capture</h4>
+<p>Each source table must be explicitly registered for CDC. Registration creates a corresponding CD table that stores captured changes.</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>asnclp<span class="w"> </span><span class="s">&lt;&lt; EOF</span>
+<span class="s">SET SERVER CAPTURE TO DB my_database;</span>
+<span class="s">SET CAPTURE SCHEMA SOURCE ASN;</span>
+<span class="s">SET RUN SCRIPT NOW STOP ON SQL ERROR ON;</span>
+<span class="s">CREATE REGISTRATION (</span>
+<span class="s">    my_schema.orders</span>
+<span class="s">)</span>
+<span class="s">DIFFERENTIAL REFRESH</span>
+<span class="s">IMAGE BOTH</span>
+<span class="s">PREFIX _</span>
+<span class="s">CAPTURE ALL;</span>
+<span class="s">EOF</span>
+</pre></div>
+</div>
+<p>Option Description <code class="docutils literal notranslate"><span class="pre">DIFFERENTIAL</span> <span class="pre">REFRESH</span></code> Only changed rows are captured, not full table snapshots. <code class="docutils literal notranslate"><span class="pre">IMAGE</span> <span class="pre">BOTH</span></code> Both before-image and after-image are recorded for updates. <code class="docutils literal notranslate"><span class="pre">PREFIX</span> <span class="pre">_</span></code> Before-image column names are prefixed with underscore (e.g., <code class="docutils literal notranslate"><span class="pre">_NAME</span></code> for the old value of <code class="docutils literal notranslate"><span class="pre">NAME</span></code>). <code class="docutils literal notranslate"><span class="pre">CAPTURE</span> <span class="pre">ALL</span></code> All column changes are captured.</p>
+<p>After registration, insert a <code class="docutils literal notranslate"><span class="pre">CAPSTART</span></code> signal to activate capture and wait for the capture agent to process it:</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">INSERT</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="n">ASN</span><span class="p">.</span><span class="n">ibmsnap_signal</span>
+<span class="w">    </span><span class="p">(</span><span class="n">signal_type</span><span class="p">,</span><span class="w"> </span><span class="n">signal_subtype</span><span class="p">,</span><span class="w"> </span><span class="n">signal_input_in</span><span class="p">,</span><span class="w"> </span><span class="n">signal_state</span><span class="p">)</span>
+<span class="k">VALUES</span>
+<span class="w">    </span><span class="p">(</span><span class="s1">&#39;CMD&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;CAPSTART&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;ASN.MY_SCHEMA_ORDERS&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;P&#39;</span><span class="p">);</span>
+
+<span class="c1">-- Verify capture is active (signal_state should become &#39;C&#39;)</span>
+<span class="k">SELECT</span><span class="w"> </span><span class="n">signal_state</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">ASN</span><span class="p">.</span><span class="n">ibmsnap_signal</span>
+<span class="k">WHERE</span><span class="w"> </span><span class="n">signal_input_in</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;ASN.MY_SCHEMA_ORDERS&#39;</span><span class="p">;</span>
+</pre></div>
+</div>
+</section>
+<section id="create-a-cdc-user">
+<h4>Create a CDC User</h4>
+<p>Create a dedicated Db2 user with the privileges required to read the CD tables and ASN metadata:</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">GRANT</span><span class="w"> </span><span class="k">SELECT</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">ASN</span><span class="p">.</span><span class="n">ibmsnap_register</span><span class="w"> </span><span class="k">TO</span><span class="w"> </span><span class="k">USER</span><span class="w"> </span><span class="n">cdc_user</span><span class="p">;</span>
+<span class="k">GRANT</span><span class="w"> </span><span class="k">SELECT</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">ASN</span><span class="p">.</span><span class="n">TD_T__ORDERS</span><span class="w"> </span><span class="k">TO</span><span class="w"> </span><span class="k">USER</span><span class="w"> </span><span class="n">cdc_user</span><span class="p">;</span>
+<span class="k">GRANT</span><span class="w"> </span><span class="k">SELECT</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">ASN</span><span class="p">.</span><span class="n">TD_T__ORDER_ITEMS</span><span class="w"> </span><span class="k">TO</span><span class="w"> </span><span class="k">USER</span><span class="w"> </span><span class="n">cdc_user</span><span class="p">;</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="connection-db2cdcconn">
+<h3>Connection: <code class="docutils literal notranslate"><span class="pre">Db2CdcConn</span></code></h3>
+<p><code class="docutils literal notranslate"><span class="pre">Db2CdcConn</span></code> defines how to connect to the Db2 server. It accepts a standard Db2 URI and optional credentials.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">conn</span> <span class="o">=</span> <span class="n">td</span><span class="o">.</span><span class="n">Db2CdcConn</span><span class="p">(</span>
+    <span class="n">uri</span><span class="o">=</span><span class="s2">&quot;db2://localhost:50000/my_database&quot;</span><span class="p">,</span>
+    <span class="n">credentials</span><span class="o">=</span><span class="n">td</span><span class="o">.</span><span class="n">UserPasswordCredentials</span><span class="p">(</span>
+        <span class="n">user</span><span class="o">=</span><span class="n">td</span><span class="o">.</span><span class="n">EnvironmentSecret</span><span class="p">(</span><span class="s2">&quot;DB2_CDC_USER&quot;</span><span class="p">),</span>
+        <span class="n">password</span><span class="o">=</span><span class="n">td</span><span class="o">.</span><span class="n">EnvironmentSecret</span><span class="p">(</span><span class="s2">&quot;DB2_CDC_PASSWORD&quot;</span><span class="p">),</span>
+    <span class="p">),</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<p>Parameter Type Description <code class="docutils literal notranslate"><span class="pre">uri</span></code> <code class="docutils literal notranslate"><span class="pre">str</span></code> Db2 connection URI (<code class="docutils literal notranslate"><span class="pre">db2://host:port/database</span></code>). If the port is omitted, defaults to <code class="docutils literal notranslate"><span class="pre">50000</span></code>. If the database is omitted, defaults to <code class="docutils literal notranslate"><span class="pre">&quot;sample&quot;</span></code>. <code class="docutils literal notranslate"><span class="pre">credentials</span></code> <code class="docutils literal notranslate"><span class="pre">UserPasswordCredentials</span> <span class="pre">|</span> <span class="pre">None</span></code> Optional user/password credentials. If <code class="docutils literal notranslate"><span class="pre">None</span></code>, credentials from the URI are used. <code class="docutils literal notranslate"><span class="pre">cx_src_configs_db2</span></code> <code class="docutils literal notranslate"><span class="pre">dict</span> <span class="pre">|</span> <span class="pre">None</span></code> Optional Db2-specific connection parameters passed to the underlying driver.</p>
+</section>
+<section id="trigger-db2cdctrigger">
+<h3>Trigger: <code class="docutils literal notranslate"><span class="pre">Db2CdcTrigger</span></code></h3>
+<p><code class="docutils literal notranslate"><span class="pre">Db2CdcTrigger</span></code> connects to Db2, polls the specified CD tables for new changes, and stages batches for downstream processing.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">trigger</span> <span class="o">=</span> <span class="n">td</span><span class="o">.</span><span class="n">Db2CdcTrigger</span><span class="p">(</span>
+    <span class="n">conn</span><span class="o">=</span><span class="n">conn</span><span class="p">,</span>
+    <span class="n">tables</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;ASN.TD_T__ORDERS&quot;</span><span class="p">,</span> <span class="s2">&quot;ASN.TD_T__ORDER_ITEMS&quot;</span><span class="p">],</span>
+    <span class="n">start_from</span><span class="o">=</span><span class="s2">&quot;tail&quot;</span><span class="p">,</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<section id="tables-cd-tables">
+<h4><code class="docutils literal notranslate"><span class="pre">tables</span></code> (CD Tables)</h4>
+<p>Unlike MySQL and PostgreSQL where you specify the source tables directly, the <code class="docutils literal notranslate"><span class="pre">tables</span></code> parameter in Db2 refers to the <strong>CD (Change Data) tables</strong> created during capture registration — not the original source tables.</p>
+<p>A single source table can be registered for SQL Replication more than once, producing multiple CD tables with different configurations (e.g., different column subsets or capture schemas). By specifying the CD table, you select exactly which registration to consume from.</p>
+<p>The connector automatically infers the original source table from the CD table by querying the <code class="docutils literal notranslate"><span class="pre">ASN.ibmsnap_register</span></code> metadata. Output <code class="docutils literal notranslate"><span class="pre">TableFrame</span></code>s are named after the source tables, not the CD tables.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Specify CD tables (created by capture registration), not source tables</span>
+<span class="n">tables</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;ASN.TD_T__ORDERS&quot;</span><span class="p">,</span> <span class="s2">&quot;ASN.TD_T__ORDER_ITEMS&quot;</span><span class="p">]</span>
+
+<span class="c1"># The connector resolves these to the original source tables</span>
+<span class="c1"># (e.g., MY_SCHEMA.ORDERS, MY_SCHEMA.ORDER_ITEMS) automatically.</span>
+</pre></div>
+</div>
+<p>All CD tables must exist before the trigger starts.</p>
+</section>
+<section id="start-from">
+<h4><code class="docutils literal notranslate"><span class="pre">start_from</span></code></h4>
+<p>Determines where the connector begins reading from the CD tables. Position is tracked via <code class="docutils literal notranslate"><span class="pre">IBMSNAP_COMMITSEQ</span></code> values. On subsequent runs, the connector resumes automatically from its last committed position.</p>
+<p>Value Type Behavior <code class="docutils literal notranslate"><span class="pre">&quot;head&quot;</span></code> <code class="docutils literal notranslate"><span class="pre">str</span></code> Start from the earliest available data in the CD tables. <code class="docutils literal notranslate"><span class="pre">&quot;tail&quot;</span></code> <code class="docutils literal notranslate"><span class="pre">str</span></code> Start from the current end, capturing only new changes. <code class="docutils literal notranslate"><span class="pre">CommitSeqPosition(seq=&quot;...&quot;)</span></code> <code class="docutils literal notranslate"><span class="pre">CommitSeqPosition</span></code> Resume from a specific commit sequence number (global across all tables). <code class="docutils literal notranslate"><span class="pre">TableCommitSeqPosition(seqs={...})</span></code> <code class="docutils literal notranslate"><span class="pre">TableCommitSeqPosition</span></code> Resume from per-table commit sequence numbers. <code class="docutils literal notranslate"><span class="pre">TimestampPosition(ts=datetime(...))</span></code> <code class="docutils literal notranslate"><span class="pre">TimestampPosition</span></code> Start from the first change at or after the given timestamp.</p>
+</section>
+</section>
+</section>
+<hr class="docutils" />
+<section id="advanced-configuration">
+<h2>Advanced Configuration</h2>
+<section id="cdc-output-format-cdc-format">
+<h3>CDC Output Format (<code class="docutils literal notranslate"><span class="pre">cdc_format</span></code>)</h3>
+<p>The <code class="docutils literal notranslate"><span class="pre">cdc_format</span></code> parameter controls how change data is structured in the output <code class="docutils literal notranslate"><span class="pre">TableFrame</span></code>s, configured via <code class="docutils literal notranslate"><span class="pre">CdcFormat</span></code>. The available options are identical to those of the MySQL CDC publisher — see the <a class="reference internal" href="../mysql_cdc/main.html"><span class="std std-doc">MySQL CDC Publisher</span></a> documentation for the full breakdown of <code class="docutils literal notranslate"><span class="pre">values_format</span></code> options, <code class="docutils literal notranslate"><span class="pre">flatten_values</span></code> behaviour, metadata columns, and per-operation semantics.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">tabsdata.connector.cdc.common.typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">CdcFormat</span>
+
+<span class="n">cdc_format</span><span class="o">=</span><span class="n">CdcFormat</span><span class="p">(</span><span class="n">values_format</span><span class="o">=</span><span class="s2">&quot;columns&quot;</span><span class="p">,</span> <span class="n">flatten_values</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Parameter Type Default Description <code class="docutils literal notranslate"><span class="pre">values_format</span></code> <code class="docutils literal notranslate"><span class="pre">&quot;columns&quot;</span> <span class="pre">|</span> <span class="pre">&quot;struct&quot;</span> <span class="pre">|</span> <span class="pre">&quot;map&quot;</span></code> <code class="docutils literal notranslate"><span class="pre">&quot;columns&quot;</span></code> Controls how old and new row values are laid out in the output. <code class="docutils literal notranslate"><span class="pre">flatten_values</span></code> <code class="docutils literal notranslate"><span class="pre">bool</span></code> <code class="docutils literal notranslate"><span class="pre">True</span></code> When <code class="docutils literal notranslate"><span class="pre">True</span></code>, new values are promoted to individual top-level columns instead of being packed into a container column.</p>
+</section>
+<section id="start-position-examples">
+<h3>Start Position Examples</h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">tabsdata.connector.cdc.db2.typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">CommitSeqPosition</span><span class="p">,</span> <span class="n">TableCommitSeqPosition</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">tabsdata.connector.cdc.common.typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">TimestampPosition</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">datetime</span><span class="w"> </span><span class="kn">import</span> <span class="n">datetime</span><span class="p">,</span> <span class="n">timezone</span>
+
+<span class="c1"># Start from the end — capture only new changes going forward</span>
+<span class="n">start_from</span><span class="o">=</span><span class="s2">&quot;tail&quot;</span>
+
+<span class="c1"># Start from the beginning of the CD tables</span>
+<span class="n">start_from</span><span class="o">=</span><span class="s2">&quot;head&quot;</span>
+
+<span class="c1"># Resume from a global commit sequence number</span>
+<span class="n">start_from</span><span class="o">=</span><span class="n">CommitSeqPosition</span><span class="p">(</span><span class="n">seq</span><span class="o">=</span><span class="s2">&quot;00000000000000001234&quot;</span><span class="p">)</span>
+
+<span class="c1"># Resume with per-table commit sequence numbers</span>
+<span class="n">start_from</span><span class="o">=</span><span class="n">TableCommitSeqPosition</span><span class="p">(</span><span class="n">seqs</span><span class="o">=</span><span class="p">{</span>
+    <span class="s2">&quot;my_schema.orders&quot;</span><span class="p">:</span> <span class="s2">&quot;00000000000000001234&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;my_schema.order_items&quot;</span><span class="p">:</span> <span class="s2">&quot;00000000000000001200&quot;</span><span class="p">,</span>
+<span class="p">})</span>
+
+<span class="c1"># Start from a specific timestamp</span>
+<span class="n">start_from</span><span class="o">=</span><span class="n">TimestampPosition</span><span class="p">(</span><span class="n">ts</span><span class="o">=</span><span class="n">datetime</span><span class="p">(</span><span class="mi">2026</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">15</span><span class="p">,</span> <span class="n">tzinfo</span><span class="o">=</span><span class="n">timezone</span><span class="o">.</span><span class="n">utc</span><span class="p">))</span>
+</pre></div>
+</div>
+</section>
+<section id="buffer-and-trigger-thresholds">
+<h3>Buffer and Trigger Thresholds</h3>
+<p>The CDC connector uses a two-stage pipeline: changes accumulate in memory (buffer), are flushed to the working directory, then staged to the output location.</p>
+<section id="buffer-thresholds-memory-working-directory">
+<h4>Buffer thresholds (memory → working directory)</h4>
+<p>Parameter Type Default Description <code class="docutils literal notranslate"><span class="pre">buffer_max_rows</span></code> <code class="docutils literal notranslate"><span class="pre">int</span></code> <code class="docutils literal notranslate"><span class="pre">10,000</span></code> Flush to disk when row count in memory reaches this limit. <code class="docutils literal notranslate"><span class="pre">buffer_max_bytes</span></code> <code class="docutils literal notranslate"><span class="pre">int</span> <span class="pre">|</span> <span class="pre">None</span></code> <code class="docutils literal notranslate"><span class="pre">None</span></code> Flush to disk when byte size in memory reaches this limit. <code class="docutils literal notranslate"><span class="pre">buffer_max_sec</span></code> <code class="docutils literal notranslate"><span class="pre">float</span></code> <code class="docutils literal notranslate"><span class="pre">60.0</span></code> Flush to disk when this many seconds have elapsed since the last flush.</p>
+</section>
+<section id="trigger-thresholds-working-directory-stage-location">
+<h4>Trigger thresholds (working directory → stage location)</h4>
+<p>Parameter Type Default Description <code class="docutils literal notranslate"><span class="pre">trigger_max_rows</span></code> <code class="docutils literal notranslate"><span class="pre">int</span> <span class="pre">|</span> <span class="pre">None</span></code> <code class="docutils literal notranslate"><span class="pre">None</span></code> Stage when total rows on disk reach this limit. <code class="docutils literal notranslate"><span class="pre">trigger_max_bytes</span></code> <code class="docutils literal notranslate"><span class="pre">int</span> <span class="pre">|</span> <span class="pre">None</span></code> <code class="docutils literal notranslate"><span class="pre">None</span></code> Stage when total bytes on disk reach this limit. <code class="docutils literal notranslate"><span class="pre">trigger_max_sec</span></code> <code class="docutils literal notranslate"><span class="pre">float</span></code> <code class="docutils literal notranslate"><span class="pre">60.0</span></code> Stage when this many seconds have elapsed since the last stage.</p>
+</section>
+</section>
+<section id="other-parameters">
+<h3>Other Parameters</h3>
+<p>Parameter Type Default Description <code class="docutils literal notranslate"><span class="pre">poll_interval_sec</span></code> <code class="docutils literal notranslate"><span class="pre">float</span></code> <code class="docutils literal notranslate"><span class="pre">1.0</span></code> Seconds between polling the CD tables for new changes. Directly determines minimum capture latency. <code class="docutils literal notranslate"><span class="pre">blocking_timeout_sec</span></code> <code class="docutils literal notranslate"><span class="pre">float</span></code> <code class="docutils literal notranslate"><span class="pre">1.0</span></code> Timeout in seconds for blocking reads. <code class="docutils literal notranslate"><span class="pre">start</span></code> <code class="docutils literal notranslate"><span class="pre">datetime</span> <span class="pre">|</span> <span class="pre">None</span></code> <code class="docutils literal notranslate"><span class="pre">None</span></code> Delay trigger execution until this datetime (UTC). <code class="docutils literal notranslate"><span class="pre">end</span></code> <code class="docutils literal notranslate"><span class="pre">datetime</span> <span class="pre">|</span> <span class="pre">None</span></code> <code class="docutils literal notranslate"><span class="pre">None</span></code> Stop the trigger at this datetime (UTC).</p>
+</section>
+</section>
+<hr class="docutils" />
+<section id="limitations">
+<h2>Limitations</h2>
+<ul class="simple">
+<li><p><strong>Schema changes:</strong> <code class="docutils literal notranslate"><span class="pre">ALTER</span> <span class="pre">TABLE</span></code>, <code class="docutils literal notranslate"><span class="pre">ADD/DROP</span> <span class="pre">COLUMN</span></code>, and similar DDL operations on tracked tables are not detected or handled. If the source schema changes, the connector must be stopped and reconfigured.</p></li>
+<li><p><strong>TRUNCATE:</strong> <code class="docutils literal notranslate"><span class="pre">TRUNCATE</span> <span class="pre">TABLE</span></code> operations are not captured. A truncate on a tracked table will not produce any change events.</p></li>
+<li><p><strong>Large/Blob types:</strong> <code class="docutils literal notranslate"><span class="pre">BLOB</span></code>, <code class="docutils literal notranslate"><span class="pre">CLOB</span></code>, <code class="docutils literal notranslate"><span class="pre">LONGBLOB</span></code>, <code class="docutils literal notranslate"><span class="pre">BYTEA</span></code>, and <code class="docutils literal notranslate"><span class="pre">TEXT</span></code> (in some configurations) column types are not currently supported. Tables containing these types should exclude them from capture or use alternative ingestion methods.</p></li>
+<li><p><strong>Static table list:</strong> All CD tables in the <code class="docutils literal notranslate"><span class="pre">tables</span></code> parameter must exist before the trigger starts. The connector does not perform runtime table discovery.</p></li>
+</ul>
+</section>
+</section>
+
+
+                </article>
+              
+              
+              
+              
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+<div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example">Example</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#setup">Setup</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#configuring-db2-for-cdc">Configuring Db2 for CDC</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#enable-archive-logging">Enable Archive Logging</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#create-asn-control-tables">Create ASN Control Tables</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#start-the-capture-agent">Start the Capture Agent</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#register-tables-for-capture">Register Tables for Capture</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#create-a-cdc-user">Create a CDC User</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#connection-db2cdcconn">Connection: <code class="docutils literal notranslate"><span class="pre">Db2CdcConn</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#trigger-db2cdctrigger">Trigger: <code class="docutils literal notranslate"><span class="pre">Db2CdcTrigger</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#tables-cd-tables"><code class="docutils literal notranslate"><span class="pre">tables</span></code> (CD Tables)</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#start-from"><code class="docutils literal notranslate"><span class="pre">start_from</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#advanced-configuration">Advanced Configuration</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cdc-output-format-cdc-format">CDC Output Format (<code class="docutils literal notranslate"><span class="pre">cdc_format</span></code>)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#start-position-examples">Start Position Examples</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#buffer-and-trigger-thresholds">Buffer and Trigger Thresholds</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#buffer-thresholds-memory-working-directory">Buffer thresholds (memory → working directory)</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#trigger-thresholds-working-directory-stage-location">Trigger thresholds (working directory → stage location)</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#other-parameters">Other Parameters</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#limitations">Limitations</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="../../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+
+<!-- Your custom footer content here -->
+
+  </body>
+</html>
