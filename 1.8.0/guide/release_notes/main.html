@@ -472,6 +472,15 @@
 <li><p>New Destination connectors: <a class="reference internal" href="../04_03_working_with_subscribers/clickhouse/main.html#clickhouse-subscriber"><span class="std std-ref">ClickHouse</span></a>, <a class="reference internal" href="../04_03_working_with_subscribers/starrocks/main.html#starrocks-subscriber"><span class="std std-ref">StarRocks</span></a>, and <a class="reference internal" href="../04_03_working_with_subscribers/druid/main.html#druid-subscriber"><span class="std std-ref">Apache Druid</span></a>.</p></li>
 <li><p>UI, navigation improvements, new look &amp; feel.</p></li>
 </ul>
+<p>Known issues:</p>
+<ul>
+<li><p>Some tabsdata binaries are linked against a Homebrew-installed liblzma library during the build process, creating a runtime dependency on <code class="docutils literal notranslate"><span class="pre">/opt/homebrew/opt/xz/lib/liblzma.5.dylib</span></code>. If the library is not installed in your system, commands like <code class="docutils literal notranslate"><span class="pre">tdserver</span></code> will fail with the error <code class="docutils literal notranslate"><span class="pre">/opt/homebrew/opt/xz/lib/liblzma.5.dylib</span> <span class="pre">(no</span> <span class="pre">such</span> <span class="pre">file)</span></code>.</p>
+<ul class="simple">
+<li><p><strong>Workaround</strong>: Install the required library by running: <code class="docutils literal notranslate"><span class="pre">brew</span> <span class="pre">install</span> <span class="pre">xz</span></code></p></li>
+</ul>
+<p>This will be corrected in the next release.</p>
+</li>
+</ul>
 </section>
 <section id="tabsdata-1-7-1">
 <h2>Tabsdata 1.7.1</h2>
