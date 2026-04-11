@@ -474,9 +474,26 @@
 <li><p>File-based sources (<a class="reference internal" href="../04_01_working_with_publishers/local_file_system/main.html#local-file-system"><span class="std std-ref">Local</span></a>, <a class="reference internal" href="../04_01_working_with_publishers/amazon_s3/main.html#amazon-s3"><span class="std std-ref">S3</span></a>, <a class="reference internal" href="../04_01_working_with_publishers/azure/main.html#azure"><span class="std std-ref">Azure</span></a>, <a class="reference internal" href="../04_01_working_with_publishers/gcp/main.html#gcp"><span class="std std-ref">GCS</span></a>) can add columns with file URI/name and row position.</p></li>
 <li><p>New UI functionality: lineage tracking — given a table data version or a function version, it is possible to see all execution plans where they were used.</p></li>
 <li><p>UI improvements: Table data versions show when new data is available, and when schema changes have happened.</p></li>
+<li><p>Corrected the issue from 1.8.0.</p></li>
 </ul>
 <p>Known issues:</p>
-<ul class="simple">
+<ul>
+<li><p>Tabsdata 1.9.0 was shipped with an incomplete requirements lock file that does not include all necessary dependency pins. This can cause import errors at startup when the supervisor resolves dependencies to incompatible versions.</p>
+<ul>
+<li><p><strong>Workaround</strong>:</p>
+<ol class="arabic">
+<li><p>Download the corrected constraints file <a class="reference download internal" download="" href="../../_downloads/d6d158149b967c47701ff281103afa4a/tdconstraints.txt"><code class="xref download docutils literal notranslate"><span class="pre">tdconstraints.txt</span></code></a> to a persistent location on your system.</p></li>
+<li><p>Export the <code class="docutils literal notranslate"><span class="pre">UV_CONSTRAINT</span></code> environment variable pointing to the file <strong>before</strong> starting the supervisor or server:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">export</span><span class="w"> </span><span class="nv">UV_CONSTRAINT</span><span class="o">=</span>/path/to/tdconstraints.txt
+</pre></div>
+</div>
+</li>
+<li><p>Start the supervisor/server as usual. UV will now resolve all dependencies to the pinned versions in the constraints file.</p></li>
+</ol>
+</li>
+</ul>
+<p>This issue is resolved in Tabsdata 1.10.0.</p>
+</li>
 <li><p>File-based sources on Windows do not add the <code class="docutils literal notranslate"><span class="pre">file://</span></code> scheme to the URI when using the <code class="docutils literal notranslate"><span class="pre">file_info</span></code> parameter.</p></li>
 </ul>
 </section>
