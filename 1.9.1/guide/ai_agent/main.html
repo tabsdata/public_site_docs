@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Release Notes &#8212; Tabsdata  documentation</title>
+    <title>Tabsdata AI Agent (Tabby) &#8212; Tabsdata  documentation</title>
   
   
   
@@ -49,22 +49,22 @@
     <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
     <script src="../../_static/copybutton.js?v=a56c686a"></script>
     <script src="../../_static/design-tabs.js?v=f930bc37"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'guide/release_notes/main';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'guide/ai_agent/main';</script>
     <script>
         DOCUMENTATION_OPTIONS.theme_version = '0.16.1';
         DOCUMENTATION_OPTIONS.theme_switcher_json_url = 'https://docs.tabsdata.com/version.json';
-        DOCUMENTATION_OPTIONS.theme_switcher_version_match = '1.9.0';
+        DOCUMENTATION_OPTIONS.theme_switcher_version_match = '1.9.1';
         DOCUMENTATION_OPTIONS.show_version_warning_banner =
             false;
         </script>
     <script src="../../_static/custom.js?v=ac098f57"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="Contact Us" href="../09_contact_support/main.html" />
-    <link rel="prev" title="CLI Reference" href="../11_cli_commands/main.html" />
+    <link rel="next" title="Secrets Management" href="../secrets_management/main.html" />
+    <link rel="prev" title="User Interface" href="../user_interface/main.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
-  <meta name="docsearch:version" content="1.9.0" />
+  <meta name="docsearch:version" content="1.9.1" />
   </head>
   
   
@@ -389,7 +389,7 @@
 </ul>
 </details></li>
 <li class="toctree-l1"><a class="reference internal" href="../user_interface/main.html">User Interface</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../ai_agent/main.html">Tabsdata AI Agent (Tabby)</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Tabsdata AI Agent (Tabby)</a></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../secrets_management/main.html">Secrets Management</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference internal" href="../secrets_management/env_variables/main.html">Environment Variables</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../secrets_management/hashicorp/main.html">HashiCorp Secret</a></li>
@@ -400,7 +400,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../08_testing/main.html">Testing</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../10_troubleshooting/main.html">Troubleshooting</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../11_cli_commands/main.html">CLI Reference</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">Release Notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../release_notes/main.html">Release Notes</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../09_contact_support/main.html">Contact Us</a></li>
 </ul>
 </div>
@@ -445,7 +445,7 @@
     
     <li class="breadcrumb-item"><a href="../index.html" class="nav-link">User Guide</a></li>
     
-    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">Release Notes</span></li>
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">Tabsdata AI Agent (Tabby)</span></li>
   </ul>
 </nav>
 </div>
@@ -462,234 +462,49 @@
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section id="release-notes">
-<h1>Release Notes</h1>
-<section id="tabsdata-1-9-0">
-<h2>Tabsdata 1.9.0</h2>
-<p><strong>March 27, 2026</strong></p>
-<p>What is New:</p>
-<ul class="simple">
-<li><p>New Source connector: <a class="reference internal" href="../04_01_working_with_publishers/databricks/main.html#databricks-publisher"><span class="std std-ref">Databricks</span></a>.</p></li>
-<li><p><a class="reference internal" href="../04_03_working_with_subscribers/clickhouse/main.html#clickhouse-subscriber"><span class="std std-ref">ClickHouse</span></a> and <a class="reference internal" href="../04_03_working_with_subscribers/starrocks/main.html#starrocks-subscriber"><span class="std std-ref">StarRocks</span></a> destination connectors support Iceberg schema evolution.</p></li>
-<li><p><a class="reference internal" href="../04_01_working_with_publishers/mysql_cdc/main.html#mysql-cdc-publisher"><span class="std std-ref">MySQL CDC</span></a>, <a class="reference internal" href="../04_01_working_with_publishers/postgres_cdc/main.html#postgres-cdc-publisher"><span class="std std-ref">Postgres CDC</span></a>, and <a class="reference internal" href="../04_01_working_with_publishers/db2_cdc/main.html#db2-cdc-publisher"><span class="std std-ref">Db2 CDC</span></a> triggers support schema changes.</p></li>
-<li><p>File-based sources (<a class="reference internal" href="../04_01_working_with_publishers/local_file_system/main.html#local-file-system"><span class="std std-ref">Local</span></a>, <a class="reference internal" href="../04_01_working_with_publishers/amazon_s3/main.html#amazon-s3"><span class="std std-ref">S3</span></a>, <a class="reference internal" href="../04_01_working_with_publishers/azure/main.html#azure"><span class="std std-ref">Azure</span></a>, <a class="reference internal" href="../04_01_working_with_publishers/gcp/main.html#gcp"><span class="std std-ref">GCS</span></a>) can add columns with file URI/name and row position.</p></li>
-<li><p>New UI functionality: lineage tracking — given a table data version or a function version, it is possible to see all execution plans where they were used.</p></li>
-<li><p>UI improvements: Table data versions show when new data is available, and when schema changes have happened.</p></li>
-<li><p>Corrected the issue from 1.8.0.</p></li>
-</ul>
-<p>Known issues:</p>
-<ul>
-<li><p>Tabsdata 1.9.0 was shipped with an incomplete requirements lock file that does not include all necessary dependency pins. This can cause import errors at startup when the supervisor resolves dependencies to incompatible versions.</p>
-<ul>
-<li><p><strong>Workaround</strong>:</p>
-<ol class="arabic">
-<li><p>Download the corrected constraints file <a class="reference download internal" download="" href="../../_downloads/d6d158149b967c47701ff281103afa4a/tdconstraints.txt"><code class="xref download docutils literal notranslate"><span class="pre">tdconstraints.txt</span></code></a> to a persistent location on your system.</p></li>
-<li><p>Export the <code class="docutils literal notranslate"><span class="pre">UV_CONSTRAINT</span></code> environment variable pointing to the file <strong>before</strong> starting the supervisor or server:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">export</span><span class="w"> </span><span class="nv">UV_CONSTRAINT</span><span class="o">=</span>/path/to/tdconstraints.txt
+  <section id="tabsdata-ai-agent-tabby">
+<span id="ai-agent"></span><h1>Tabsdata AI Agent (Tabby)</h1>
+<p>You can use the Tabsdata AI Agent (Tabby) to interact with the Tabsdata server. The agent can list collections, tables and functions. It can access table schemas and sample data, list executions, register functions, cancel executions, recover executions and trigger functions. It can also help create publishers, subscribers and transformers. There is a read-only mode to constrain the operations the agent can do when interacting with Tabsdata.</p>
+<section id="usage">
+<h2>Usage</h2>
+<p>To interact with the agent, there is a new AI window in the UI (accessible in the top right corner). It will only be enabled if the agent is enabled too. To enable the agent store your OpenAI API Key in the environment variable before starting the Tabsdata server. For more details, see <a class="reference internal" href="../secrets_management/env_variables/main.html#env-variables"><span class="std std-ref">Environment Variables</span></a>.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span><span class="nb">export</span><span class="w"> </span><span class="nv">OPENAI_API_KEY</span><span class="o">=</span>&lt;your_key&gt;
 </pre></div>
 </div>
-</li>
-<li><p>Start the supervisor/server as usual. UV will now resolve all dependencies to the pinned versions in the constraints file.</p></li>
-</ol>
-</li>
-</ul>
-<p>This issue is resolved in Tabsdata 1.10.0.</p>
-</li>
-<li><p>File-based sources on Windows do not add the <code class="docutils literal notranslate"><span class="pre">file://</span></code> scheme to the URI when using the <code class="docutils literal notranslate"><span class="pre">file_info</span></code> parameter.</p></li>
-</ul>
+<a class="reference internal image-reference" href="../../_images/tabby.png"><img alt="Tabsdata AI Agent interface" class="align-center" height="135" src="../../_images/tabby.png" width="410" />
+</a>
 </section>
-<section id="tabsdata-1-8-0">
-<h2>Tabsdata 1.8.0</h2>
-<p><strong>March 19, 2026</strong></p>
-<p>What is New:</p>
-<ul class="simple">
-<li><p>New Source connectors: <a class="reference internal" href="../04_01_working_with_publishers/db2_cdc/main.html#db2-cdc-publisher"><span class="std std-ref">Db2 CDC</span></a>, <a class="reference internal" href="../04_01_working_with_publishers/mysql_cdc/main.html#mysql-cdc-publisher"><span class="std std-ref">MySQL CDC</span></a>, and <a class="reference internal" href="../04_01_working_with_publishers/postgres_cdc/main.html#postgres-cdc-publisher"><span class="std std-ref">Postgres CDC</span></a>.</p></li>
-<li><p>New Destination connectors: <a class="reference internal" href="../04_03_working_with_subscribers/clickhouse/main.html#clickhouse-subscriber"><span class="std std-ref">ClickHouse</span></a>, <a class="reference internal" href="../04_03_working_with_subscribers/starrocks/main.html#starrocks-subscriber"><span class="std std-ref">StarRocks</span></a>, and <a class="reference internal" href="../04_03_working_with_subscribers/druid/main.html#druid-subscriber"><span class="std std-ref">Apache Druid</span></a>.</p></li>
-<li><p>UI, navigation improvements, new look &amp; feel.</p></li>
-</ul>
-<p>Known issues:</p>
-<ul>
-<li><p>Some tabsdata binaries are linked against a Homebrew-installed liblzma library during the build process, creating a runtime dependency on <code class="docutils literal notranslate"><span class="pre">/opt/homebrew/opt/xz/lib/liblzma.5.dylib</span></code>. If the library is not installed in your system, commands like <code class="docutils literal notranslate"><span class="pre">tdserver</span></code> will fail with the error <code class="docutils literal notranslate"><span class="pre">/opt/homebrew/opt/xz/lib/liblzma.5.dylib</span> <span class="pre">(no</span> <span class="pre">such</span> <span class="pre">file)</span></code>.</p>
-<ul class="simple">
-<li><p><strong>Workaround</strong>: Install the required library by running: <code class="docutils literal notranslate"><span class="pre">brew</span> <span class="pre">install</span> <span class="pre">xz</span></code></p></li>
-</ul>
-<p>This will be corrected in the next release.</p>
-</li>
-</ul>
+<section id="configuration">
+<h2>Configuration</h2>
+<p>The AI agent is only available if an OpenAI API key is provided, otherwise the Tabsdata instance will run without the AI Agent.</p>
+<p>The agent runs on a specific port, which has to be configured. The Tabsdata API Server needs to know where this agent is, in order to use it. Therefore, we need to configure the following:</p>
+<section id="agent-configuration">
+<h3>Agent configuration</h3>
+<p>Path: <code class="docutils literal notranslate"><span class="pre">.tabsdata/instances/&lt;instance&gt;/workspace/config/proc/regular/aiagent/config/config.yaml</span></code></p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">2459</span>
+<span class="nt">read_only</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span>
+<span class="nt">ai_providers</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">openai</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">api_key</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">${env:OPENAI_API_KEY?}</span>
+</pre></div>
+</div>
+<p>The key is taken from the environment variable in this case. If not present, the agent doesn’t start.</p>
+<p>Read-only mode allows to constrain the operations the agent can do when interacting with Tabsdata.</p>
+<p><cite>2459</cite> is the port number that the agent is listening to.</p>
 </section>
-<section id="tabsdata-1-7-1">
-<h2>Tabsdata 1.7.1</h2>
-<p><strong>February 25, 2026</strong></p>
-<p>What is New:</p>
-<ul class="simple">
-<li><p>New Source connector: <a class="reference internal" href="../04_01_working_with_publishers/db2/main.html#db2"><span class="std std-ref">Db2</span></a>.</p></li>
-</ul>
+<section id="api-server-configuration">
+<h3>API Server configuration</h3>
+<p>Additional configuration file path:
+<code class="docutils literal notranslate"><span class="pre">.tabsdata/instances/&lt;instance&gt;/workspace/config/proc/regular/apiserver/config/config.yaml</span></code></p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="l l-Scalar l-Scalar-Plain">…</span>
+<span class="l l-Scalar l-Scalar-Plain">agent_addresses</span><span class="p p-Indicator">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">127.0.0.1:2459</span>
+<span class="l l-Scalar l-Scalar-Plain">…</span>
+</pre></div>
+</div>
+<p>The agent address above is the one that the API Server is using to interact with the agent. Note that both ports (the one the agent is listening to and the one the API server can use to interact with the agent) must be the same one.</p>
+<p>For now, only OpenAI’s <code class="docutils literal notranslate"><span class="pre">gpt-4</span></code> is the supported model, and the one that the agent will use.</p>
 </section>
-<section id="tabsdata-1-7-0">
-<h2>Tabsdata 1.7.0</h2>
-<p><strong>February 24, 2026</strong></p>
-<p>What is New:</p>
-<ul class="simple">
-<li><p>UI navigation re-design for improved user experience.</p></li>
-<li><p>User-friendly IDs for Execution Plans, Transactions, and Data Versions.</p></li>
-<li><p>Improved documentation across the platform.</p></li>
-</ul>
-</section>
-<section id="tabsdata-1-6-0">
-<h2>Tabsdata 1.6.0</h2>
-<p><strong>Februrary 3, 2026</strong></p>
-<p>What is New:</p>
-<ul class="simple">
-<li><p><a class="reference internal" href="../working_with_kafka/main.html"><span class="doc">KafkaTrigger</span></a>, a Kafka topic consumer to load messages into Tabsdata tables.</p></li>
-<li><p><a class="reference internal" href="../05_working_with_triggers/main.html#working-with-triggers"><span class="std std-ref">CronTrigger</span></a>, periodic triggering of publishers/subscribers/transformers.</p></li>
-<li><p>Declarative <a class="reference internal" href="../data_quality/main.html#data-quality"><span class="std std-ref">data quality</span></a> API for validation, classification and quarantining data.</p></li>
-<li><p>New SQL connectors supporting Database transactions both for <a class="reference internal" href="../04_01_working_with_publishers/main.html#working-with-publishers"><span class="std std-ref">publishers</span></a> and <a class="reference internal" href="../04_03_working_with_subscribers/main.html#working-with-subscribers"><span class="std std-ref">subscribers</span></a>.</p></li>
-<li><p>Revamped <a class="reference internal" href="../user_interface/main.html#ui"><span class="std std-ref">UI</span></a> navigation.</p></li>
-</ul>
-<p>Known issues:</p>
-<ul class="simple">
-<li><p>When installing tabsdata with uv as the package manager, the databricks-sql-connector
-dependency must be pinned to version 4.2.0. For example:
-<code class="docutils literal notranslate"><span class="pre">uv</span> <span class="pre">pip</span> <span class="pre">install</span> <span class="pre">&quot;tabsdata[all]==1.6.0&quot;</span> <span class="pre">&quot;databricks-sql-connector==4.2.0&quot;</span></code></p></li>
-<li><p>To have the tabsdata agent working, you need to edit the file <code class="docutils literal notranslate"><span class="pre">`~/.tabsdata/instances/tabsdata/workspace/config/proc/regular/aiagent/config/requirements.txt</span></code>,  and replace <cite>tabsdata_agent</cite> with <cite>tabsdata-agent</cite>. This will get corrected in the next release.</p></li>
-</ul>
-</section>
-<section id="tabsdata-1-5-1">
-<h2>Tabsdata 1.5.1</h2>
-<p><strong>November 18, 2025</strong></p>
-<p>Fixes a 1.5.0 regression that stopped parts of the UI from working correctly.</p>
-</section>
-<section id="tabsdata-1-5-0">
-<h2>Tabsdata 1.5.0</h2>
-<p><strong>November 15, 2025</strong></p>
-<p>Tabsdata 1.5.0 is here!</p>
-<p><strong>What’s New?</strong></p>
-<ul class="simple">
-<li><p><strong>Version System Columns:</strong> All TableFrames now have a set of system columns with version information (execution ID, transaction ID, version ID and timestamp). Having these system columns enable advanced multi-time query functionality.</p></li>
-<li><p><a class="reference internal" href="../04_03_working_with_subscribers/bigquery/main.html#bigquery-subscriber"><span class="std std-ref">BigQuery Subscriber Connector</span></a>.</p></li>
-<li><p>Several improvements and new functionality for Lineage/Execution graphs in the <a class="reference internal" href="../user_interface/main.html#ui"><span class="std std-ref">UI</span></a>.</p></li>
-</ul>
-</section>
-<section id="tabsdata-1-4-0">
-<h2>Tabsdata 1.4.0</h2>
-<p><strong>October 20, 2025</strong></p>
-<p>Tabsdata 1.4.0 is here!</p>
-<p><strong>What’s New?</strong></p>
-<ul class="simple">
-<li><p><a class="reference internal" href="../ai_agent/main.html#ai-agent"><span class="std std-ref">Tabsdata AI agent</span></a> (Preview). Explore collections and tables, and create publishers and subscriber using a natural language interface.</p></li>
-<li><p><a class="reference internal" href="../06_working_with_tables/user_defined_functions.html#user-defined-functions"><span class="std std-ref">User Defined Functions</span></a> support. Integrate custom logic or external functions with TableFrame’s processing.</p></li>
-<li><p>Interactive Execution/Lineage graphs in the <a class="reference internal" href="../user_interface/main.html#ui"><span class="std std-ref">UI</span></a>.</p></li>
-</ul>
-</section>
-<section id="tabsdata-1-3-0">
-<h2>Tabsdata 1.3.0</h2>
-<p><strong>September 26, 2025</strong></p>
-<p>Tabsdata 1.3.0 is here!</p>
-<p><strong>What’s New?</strong></p>
-<ul class="simple">
-<li><p><a class="reference internal" href="../04_03_working_with_subscribers/gcp/main.html#gcp-subscriber"><span class="std std-ref">Google Cloud Storage</span></a> publisher and subscriber connectors</p></li>
-<li><p>Avro Support for publishing and subscribing using file based connectors (File, S3, Azure storage, Google Cloud Storage)</p></li>
-<li><p><a class="reference internal" href="../04_01_working_with_publishers/salesforce_reports/main.html#salesforce-reports"><span class="std std-ref">Salesforce</span></a> reports publisher connector</p></li>
-<li><p><a class="reference internal" href="../04_01_working_with_publishers/grok_for_log_files/main.html#grok-for-log-files"><span class="std std-ref">Grok parser</span></a> support for TableFrames columns</p></li>
-<li><p><a class="reference internal" href="../permissioning/main.html#rbac"><span class="std std-ref">Permissions CLI</span></a></p></li>
-</ul>
-<p><strong>Improvements:</strong></p>
-<ul class="simple">
-<li><p>Minor <a class="reference internal" href="../11_cli_commands/main.html"><span class="doc">CLI</span></a> usability improvements</p></li>
-<li><p>Minor <a class="reference internal" href="../user_interface/main.html#ui"><span class="std std-ref">UI</span></a> usability improvements</p></li>
-<li><p>Non functional improvements</p></li>
-</ul>
-</section>
-<section id="tabsdata-1-2-0">
-<h2>Tabsdata 1.2.0</h2>
-<p><strong>August 14, 2025</strong></p>
-<p>Tabsdata 1.2.0 is here!</p>
-<p><strong>What’s New?</strong></p>
-<ul class="simple">
-<li><p>New <a class="reference internal" href="../04_01_working_with_publishers/mssql/main.html#mssql"><span class="std std-ref">publisher</span></a> and <a class="reference internal" href="../04_03_working_with_subscribers/mssql/main.html#mssql-subscriber"><span class="std std-ref">subscriber</span></a> connectors for Microsoft SQL Server.</p></li>
-<li><p><a class="reference internal" href="../user_interface/main.html#ui"><span class="std std-ref">UI</span></a> usability improvements.</p></li>
-</ul>
-</section>
-<section id="tabsdata-1-1-0">
-<h2>Tabsdata 1.1.0</h2>
-<p><strong>August 4, 2025</strong></p>
-<p>Tabsdata 1.1.0 is here!</p>
-<p><strong>What’s New?</strong></p>
-<ul class="simple">
-<li><p>Internal module reorganization to clearly separate public and private APIs.</p></li>
-<li><p>No user-facing changes.</p></li>
-</ul>
-</section>
-<section id="tabsdata-1-0-0">
-<h2>Tabsdata 1.0.0</h2>
-<p><strong>July 24, 2025</strong></p>
-<p>Tabsdata 1.0.0 is here!</p>
-<p><strong>What’s New?</strong></p>
-<ul class="simple">
-<li><p><a class="reference internal" href="../user_interface/main.html#ui"><span class="std std-ref">Browser Interface</span></a>: You can now interact with various powerful functionalities of Tabsdata using the browser interface.</p></li>
-<li><p><strong>New Connectors:</strong> Built-in support for <a class="reference internal" href="../04_03_working_with_subscribers/snowflake/main.html#snowflake-subscriber"><span class="std std-ref">Snowflake</span></a> and <a class="reference internal" href="../04_03_working_with_subscribers/databricks/main.html#databricks-subscriber"><span class="std std-ref">Databricks</span></a> is now live. Seamless integrations, out of the box.</p></li>
-<li><p><a class="reference internal" href="../catalogs/main.html#catalogs"><span class="std std-ref">Catalog Support</span></a>: Enhanced support for Unity Catalog, and AWS Glue Catalog, with Parquet format compatibility.</p></li>
-<li><p><a class="reference internal" href="../11_cli_commands/main.html"><span class="doc">CLI</span></a> <strong>Improvements:</strong> We’ve reimagined the CLI experience with streamlined commands and contextual hints to make onboarding easier.</p></li>
-<li><p><strong>Richer Metadata:</strong> We’re capturing and displaying more metadata to give users better visibility and control over their data.</p></li>
-<li><p><strong>Backend Enhancements:</strong> Under-the-hood upgrades to improve <a class="reference internal" href="../security/main.html#security"><span class="std std-ref">security</span></a>, stability, and scalability in production environments.</p></li>
-</ul>
-</section>
-<section id="tabsdata-0-9-6">
-<h2>Tabsdata 0.9.6</h2>
-<p><strong>April 24, 2025</strong></p>
-<p>Tabsdata 0.9.6 is here!</p>
-<p><strong>What’s New?</strong></p>
-<ul class="simple">
-<li><p>Changes logs from ANSI to ASCII.</p></li>
-<li><p>Improved schema inference when publishing files into Tabsdata.</p></li>
-<li><p>Added column rename to TableFrames.</p></li>
-<li><p>Fixed initial_values bugs on first run and when there is no additional incremental data.</p></li>
-</ul>
-</section>
-<section id="tabsdata-0-9-5">
-<h2>Tabsdata 0.9.5</h2>
-<p><strong>April 12, 2025</strong></p>
-<p>Tabsdata 0.9.5 is here!</p>
-<p><strong>What’s New?</strong></p>
-<ul class="simple">
-<li><p><a class="reference internal" href="../04_03_working_with_subscribers/aws_iceberg/main.html#amazon-s3-subscriber-iceberg"><span class="std std-ref">AWS Glue Iceberg</span></a> connector to seamlessly subscribe data from Tabsdata to AWS as Iceberg Tables.</p></li>
-<li><p><a class="reference internal" href="../04_03_working_with_subscribers/mongodb/main.html#mongodb-subscriber"><span class="std std-ref">MongoDB</span></a> destination connector to seamlessly subscribe data from Tabsdata to MongoDB.</p></li>
-<li><p>Richer support for <a class="reference internal" href="../secrets_management/main.html#credentials"><span class="std std-ref">Hashicorp Vault</span></a>.</p></li>
-<li><p>Corrections and restructuring in documentation.</p></li>
-</ul>
-</section>
-<section id="tabsdata-0-9-3">
-<h2>Tabsdata 0.9.3</h2>
-<p><strong>March 14, 2025</strong></p>
-<p>Tabsdata 0.9.3 is here!</p>
-<p><strong>What’s New?</strong></p>
-<ul class="simple">
-<li><p><a class="reference internal" href="../04_01_working_with_publishers/salesforce/main.html#salesforce"><span class="std std-ref">Salesforce</span></a> connector to seamlessly publish data from Salesforce to Tabsdata.</p></li>
-<li><p>Stronger <a class="reference internal" href="../security/main.html#security"><span class="std std-ref">security</span></a> protocols with support for <a class="reference internal" href="../secrets_management/main.html#credentials"><span class="std std-ref">Hashicorp secrets</span></a>.</p></li>
-<li><p>Isolation of the server’s python environment from that of the user for better controls.</p></li>
-</ul>
-</section>
-<section id="tabsdata-0-9-2">
-<h2>Tabsdata 0.9.2</h2>
-<p><strong>February 28, 2025</strong></p>
-<p>Tabsdata 0.9.2 is here!</p>
-<p><strong>What’s New?</strong></p>
-<ul class="simple">
-<li><p>Improvements in CLI experience</p></li>
-<li><p>Enhancements in backend to debug edge cases and performance improvement</p></li>
-</ul>
-</section>
-<section id="tabsdata-0-9-1">
-<h2>Tabsdata 0.9.1</h2>
-<p><strong>February 14, 2025</strong></p>
-<p>Tabsdata 0.9.1 is here!</p>
-<p><strong>What’s New?</strong></p>
-<ul class="simple">
-<li><p>Python 3.13 support</p></li>
-<li><p>New <code class="docutils literal notranslate"><span class="pre">TableFrame.item(self)</span></code> method for extracting a single value from Tabsdata TableFrames</p></li>
-<li><p>Renamed some TableFrame classes for better clarity</p></li>
-<li><p>Corrections and restructuring in documentation</p></li>
-</ul>
 </section>
 </section>
 
@@ -716,23 +531,12 @@ dependency must be pinned to version 4.2.0. For example:
   </div>
   <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tabsdata-1-9-0">Tabsdata 1.9.0</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tabsdata-1-8-0">Tabsdata 1.8.0</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tabsdata-1-7-1">Tabsdata 1.7.1</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tabsdata-1-7-0">Tabsdata 1.7.0</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tabsdata-1-6-0">Tabsdata 1.6.0</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tabsdata-1-5-1">Tabsdata 1.5.1</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tabsdata-1-5-0">Tabsdata 1.5.0</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tabsdata-1-4-0">Tabsdata 1.4.0</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tabsdata-1-3-0">Tabsdata 1.3.0</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tabsdata-1-2-0">Tabsdata 1.2.0</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tabsdata-1-1-0">Tabsdata 1.1.0</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tabsdata-1-0-0">Tabsdata 1.0.0</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tabsdata-0-9-6">Tabsdata 0.9.6</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tabsdata-0-9-5">Tabsdata 0.9.5</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tabsdata-0-9-3">Tabsdata 0.9.3</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tabsdata-0-9-2">Tabsdata 0.9.2</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tabsdata-0-9-1">Tabsdata 0.9.1</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#usage">Usage</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#configuration">Configuration</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#agent-configuration">Agent configuration</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#api-server-configuration">API Server configuration</a></li>
+</ul>
+</li>
 </ul>
   </nav></div>
 

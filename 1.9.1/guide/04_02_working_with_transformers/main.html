@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Release Notes &#8212; Tabsdata  documentation</title>
+    <title>Transformers &#8212; Tabsdata  documentation</title>
   
   
   
@@ -49,22 +49,22 @@
     <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
     <script src="../../_static/copybutton.js?v=a56c686a"></script>
     <script src="../../_static/design-tabs.js?v=f930bc37"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'guide/release_notes/main';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'guide/04_02_working_with_transformers/main';</script>
     <script>
         DOCUMENTATION_OPTIONS.theme_version = '0.16.1';
         DOCUMENTATION_OPTIONS.theme_switcher_json_url = 'https://docs.tabsdata.com/version.json';
-        DOCUMENTATION_OPTIONS.theme_switcher_version_match = '1.9.0';
+        DOCUMENTATION_OPTIONS.theme_switcher_version_match = '1.9.1';
         DOCUMENTATION_OPTIONS.show_version_warning_banner =
             false;
         </script>
     <script src="../../_static/custom.js?v=ac098f57"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="Contact Us" href="../09_contact_support/main.html" />
-    <link rel="prev" title="CLI Reference" href="../11_cli_commands/main.html" />
+    <link rel="next" title="Subscribers" href="../04_03_working_with_subscribers/main.html" />
+    <link rel="prev" title="Grok for Log Files" href="../04_01_working_with_publishers/grok_for_log_files/main.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
-  <meta name="docsearch:version" content="1.9.0" />
+  <meta name="docsearch:version" content="1.9.1" />
   </head>
   
   
@@ -355,7 +355,7 @@
 <li class="toctree-l2"><a class="reference internal" href="../04_01_working_with_publishers/grok_for_log_files/main.html">Grok for Log Files</a></li>
 </ul>
 </details></li>
-<li class="toctree-l1"><a class="reference internal" href="../04_02_working_with_transformers/main.html">Transformers</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Transformers</a></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../04_03_working_with_subscribers/main.html">Subscribers</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference internal" href="../04_03_working_with_subscribers/local_file_system/main.html">Local File System</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../04_03_working_with_subscribers/amazon_s3/main.html">Amazon S3</a></li>
@@ -400,7 +400,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../08_testing/main.html">Testing</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../10_troubleshooting/main.html">Troubleshooting</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../11_cli_commands/main.html">CLI Reference</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">Release Notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../release_notes/main.html">Release Notes</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../09_contact_support/main.html">Contact Us</a></li>
 </ul>
 </div>
@@ -445,7 +445,7 @@
     
     <li class="breadcrumb-item"><a href="../index.html" class="nav-link">User Guide</a></li>
     
-    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">Release Notes</span></li>
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">Transformers</span></li>
   </ul>
 </nav>
 </div>
@@ -462,234 +462,120 @@
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section id="release-notes">
-<h1>Release Notes</h1>
-<section id="tabsdata-1-9-0">
-<h2>Tabsdata 1.9.0</h2>
-<p><strong>March 27, 2026</strong></p>
-<p>What is New:</p>
-<ul class="simple">
-<li><p>New Source connector: <a class="reference internal" href="../04_01_working_with_publishers/databricks/main.html#databricks-publisher"><span class="std std-ref">Databricks</span></a>.</p></li>
-<li><p><a class="reference internal" href="../04_03_working_with_subscribers/clickhouse/main.html#clickhouse-subscriber"><span class="std std-ref">ClickHouse</span></a> and <a class="reference internal" href="../04_03_working_with_subscribers/starrocks/main.html#starrocks-subscriber"><span class="std std-ref">StarRocks</span></a> destination connectors support Iceberg schema evolution.</p></li>
-<li><p><a class="reference internal" href="../04_01_working_with_publishers/mysql_cdc/main.html#mysql-cdc-publisher"><span class="std std-ref">MySQL CDC</span></a>, <a class="reference internal" href="../04_01_working_with_publishers/postgres_cdc/main.html#postgres-cdc-publisher"><span class="std std-ref">Postgres CDC</span></a>, and <a class="reference internal" href="../04_01_working_with_publishers/db2_cdc/main.html#db2-cdc-publisher"><span class="std std-ref">Db2 CDC</span></a> triggers support schema changes.</p></li>
-<li><p>File-based sources (<a class="reference internal" href="../04_01_working_with_publishers/local_file_system/main.html#local-file-system"><span class="std std-ref">Local</span></a>, <a class="reference internal" href="../04_01_working_with_publishers/amazon_s3/main.html#amazon-s3"><span class="std std-ref">S3</span></a>, <a class="reference internal" href="../04_01_working_with_publishers/azure/main.html#azure"><span class="std std-ref">Azure</span></a>, <a class="reference internal" href="../04_01_working_with_publishers/gcp/main.html#gcp"><span class="std std-ref">GCS</span></a>) can add columns with file URI/name and row position.</p></li>
-<li><p>New UI functionality: lineage tracking — given a table data version or a function version, it is possible to see all execution plans where they were used.</p></li>
-<li><p>UI improvements: Table data versions show when new data is available, and when schema changes have happened.</p></li>
-<li><p>Corrected the issue from 1.8.0.</p></li>
-</ul>
-<p>Known issues:</p>
-<ul>
-<li><p>Tabsdata 1.9.0 was shipped with an incomplete requirements lock file that does not include all necessary dependency pins. This can cause import errors at startup when the supervisor resolves dependencies to incompatible versions.</p>
-<ul>
-<li><p><strong>Workaround</strong>:</p>
-<ol class="arabic">
-<li><p>Download the corrected constraints file <a class="reference download internal" download="" href="../../_downloads/d6d158149b967c47701ff281103afa4a/tdconstraints.txt"><code class="xref download docutils literal notranslate"><span class="pre">tdconstraints.txt</span></code></a> to a persistent location on your system.</p></li>
-<li><p>Export the <code class="docutils literal notranslate"><span class="pre">UV_CONSTRAINT</span></code> environment variable pointing to the file <strong>before</strong> starting the supervisor or server:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">export</span><span class="w"> </span><span class="nv">UV_CONSTRAINT</span><span class="o">=</span>/path/to/tdconstraints.txt
+  <section id="transformers">
+<span id="working-with-transformers"></span><h1>Transformers</h1>
+<p>A transformer reads data from one or more Tabsdata tables, transforms them, and writes transformed data to new or existing tables in the Tabsdata server.</p>
+<section id="example-transformer">
+<h2>Example (Transformer)</h2>
+<p>Here is an example transformer named <code class="docutils literal notranslate"><span class="pre">process_sales</span></code>. It reads three tabsdata tables, sums the <code class="docutils literal notranslate"><span class="pre">sales_value</span></code> data by <code class="docutils literal notranslate"><span class="pre">sales_rep</span></code>, and writes the resultant tables back to the Tabsdata server. There is a data quality check on the <code class="docutils literal notranslate"><span class="pre">us_sales_by_sales_rep</span></code> table. It filters out rows where <code class="docutils literal notranslate"><span class="pre">rep_id</span></code> is NULL, routing them to a separate <code class="docutils literal notranslate"><span class="pre">clean_nulls</span></code> quarantine table. The main <code class="docutils literal notranslate"><span class="pre">us_sales_by_sales_rep</span></code> table output only contains rows with valid (non-NULL) rep IDs. This transformer executes automatically as soon as a <a class="reference internal" href="../06_working_with_tables/table_frame.html#working-with-table-commits"><span class="std std-ref">new commit</span></a> occurs on any of its input tables:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">tabsdata</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">td</span>
+
+
+<span class="nd">@td</span><span class="o">.</span><span class="n">transformer</span><span class="p">(</span>
+    <span class="n">input_tables</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;us_sales&quot;</span><span class="p">,</span> <span class="s2">&quot;eu_sales&quot;</span><span class="p">,</span> <span class="s2">&quot;emea_sales&quot;</span><span class="p">],</span>
+    <span class="n">output_tables</span><span class="o">=</span><span class="p">[</span>
+        <span class="s2">&quot;us_sales_by_sales_rep&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;eu_sales_by_sales_rep&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;emea_sales_by_sales_rep&quot;</span><span class="p">,</span>
+    <span class="p">],</span>
+    <span class="n">on_output_tables</span><span class="o">=</span><span class="p">[</span>
+        <span class="n">dq</span><span class="o">.</span><span class="n">DataQuality</span><span class="p">(</span>
+            <span class="n">table</span><span class="o">=</span><span class="s2">&quot;us_sales_by_sales_rep&quot;</span><span class="p">,</span>
+            <span class="n">classifiers</span><span class="o">=</span><span class="p">[</span>
+                <span class="n">dq</span><span class="o">.</span><span class="n">IsNull</span><span class="p">(</span><span class="s2">&quot;rep_id&quot;</span><span class="p">,</span> <span class="n">tags</span><span class="o">=</span><span class="s2">&quot;nulls&quot;</span><span class="p">),</span>
+            <span class="p">],</span>
+            <span class="n">operators</span><span class="o">=</span><span class="p">[</span>
+                <span class="n">dq</span><span class="o">.</span><span class="n">Filter</span><span class="p">(</span>
+                    <span class="n">criteria</span><span class="o">=</span><span class="n">dq</span><span class="o">.</span><span class="n">AnyFailed</span><span class="p">(</span><span class="n">tags</span><span class="o">=</span><span class="s2">&quot;nulls&quot;</span><span class="p">,</span> <span class="n">none_is_ok</span><span class="o">=</span><span class="kc">False</span><span class="p">),</span>
+                    <span class="n">to_table</span><span class="o">=</span><span class="s2">&quot;clean_nulls&quot;</span><span class="p">,</span>
+                    <span class="n">include_quality_columns</span><span class="o">=</span><span class="s2">&quot;criteria&quot;</span><span class="p">,</span>
+                    <span class="p">),</span>
+                <span class="p">],</span>
+            <span class="p">)</span>
+    <span class="p">],</span>
+<span class="p">)</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">process_sales</span><span class="p">(</span><span class="n">tf1</span><span class="p">:</span> <span class="n">td</span><span class="o">.</span><span class="n">TableFrame</span><span class="p">,</span> <span class="n">tf2</span><span class="p">:</span> <span class="n">td</span><span class="o">.</span><span class="n">TableFrame</span><span class="p">,</span> <span class="n">tf3</span><span class="p">:</span> <span class="n">td</span><span class="o">.</span><span class="n">TableFrame</span><span class="p">):</span>
+    <span class="n">tf1</span> <span class="o">=</span> <span class="n">tf1</span><span class="o">.</span><span class="n">group_by</span><span class="p">(</span><span class="n">td</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;sales_rep&quot;</span><span class="p">))</span><span class="o">.</span><span class="n">agg</span><span class="p">(</span><span class="n">td</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;sales_value&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">())</span>
+    <span class="n">tf2</span> <span class="o">=</span> <span class="n">tf2</span><span class="o">.</span><span class="n">group_by</span><span class="p">(</span><span class="n">td</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;sales_rep&quot;</span><span class="p">))</span><span class="o">.</span><span class="n">agg</span><span class="p">(</span><span class="n">td</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;sales_value&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">())</span>
+    <span class="n">tf3</span> <span class="o">=</span> <span class="n">tf3</span><span class="o">.</span><span class="n">group_by</span><span class="p">(</span><span class="n">td</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;sales_rep&quot;</span><span class="p">))</span><span class="o">.</span><span class="n">agg</span><span class="p">(</span><span class="n">td</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;sales_value&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">())</span>
+    <span class="k">return</span> <span class="n">tf1</span><span class="p">,</span> <span class="n">tf2</span><span class="p">,</span> <span class="n">tf3</span>
 </pre></div>
 </div>
-</li>
-<li><p>Start the supervisor/server as usual. UV will now resolve all dependencies to the pinned versions in the constraints file.</p></li>
-</ol>
-</li>
-</ul>
-<p>This issue is resolved in Tabsdata 1.10.0.</p>
-</li>
-<li><p>File-based sources on Windows do not add the <code class="docutils literal notranslate"><span class="pre">file://</span></code> scheme to the URI when using the <code class="docutils literal notranslate"><span class="pre">file_info</span></code> parameter.</p></li>
-</ul>
+<p><strong>Note:</strong> After defining the function, you need to register it with a Tabsdata collection and execute it. For more information, see <a class="reference internal" href="../04_working_with_functions/main.html#register-a-function"><span class="std std-ref">Register a Function</span></a> and <a class="reference internal" href="../04_working_with_functions/main.html#execute-a-function"><span class="std std-ref">Execute a Function</span></a>.</p>
+<p>When you define a transformer, you specify the name of the transformer, the Tabsdata tables to read, and the names of the Tabsdata tables to write to. By default a transformer is triggered by a <a class="reference internal" href="../06_working_with_tables/table_frame.html#working-with-table-commits"><span class="std std-ref">new commit</span></a> to any of its input tables.</p>
+<p>To create and run a transformer, complete the following tasks:</p>
+<p><strong>Define a transformer</strong> - Define a transformer to configure the parameters that govern the transformations of tables in the Tabsdata server.</p>
+<p><strong>Register the transformer</strong> - Register the transformer with a Tabsdata collection. A transformer can read from tables in any Tabsdata collection, but can only write output tables to the collection that it is registered with. For information about registering functions, see <a class="reference internal" href="../04_working_with_functions/main.html#register-a-function"><span class="std std-ref">here</span></a>.</p>
+<p><strong>Execute the transformer</strong> - Execute the transformer by initiating a trigger. Once executed, the transformer processes data from the specified input tables as defined in the function logic, then writes the results to tables in the Tabsdata server. By default, a commit on any of the input tables triggers a transformer. However, you can use any Tabsdata table as a trigger. For more information about executing a function, see <a class="reference internal" href="../04_working_with_functions/main.html#execute-a-function"><span class="std std-ref">here</span></a>.</p>
 </section>
-<section id="tabsdata-1-8-0">
-<h2>Tabsdata 1.8.0</h2>
-<p><strong>March 19, 2026</strong></p>
-<p>What is New:</p>
-<ul class="simple">
-<li><p>New Source connectors: <a class="reference internal" href="../04_01_working_with_publishers/db2_cdc/main.html#db2-cdc-publisher"><span class="std std-ref">Db2 CDC</span></a>, <a class="reference internal" href="../04_01_working_with_publishers/mysql_cdc/main.html#mysql-cdc-publisher"><span class="std std-ref">MySQL CDC</span></a>, and <a class="reference internal" href="../04_01_working_with_publishers/postgres_cdc/main.html#postgres-cdc-publisher"><span class="std std-ref">Postgres CDC</span></a>.</p></li>
-<li><p>New Destination connectors: <a class="reference internal" href="../04_03_working_with_subscribers/clickhouse/main.html#clickhouse-subscriber"><span class="std std-ref">ClickHouse</span></a>, <a class="reference internal" href="../04_03_working_with_subscribers/starrocks/main.html#starrocks-subscriber"><span class="std std-ref">StarRocks</span></a>, and <a class="reference internal" href="../04_03_working_with_subscribers/druid/main.html#druid-subscriber"><span class="std std-ref">Apache Druid</span></a>.</p></li>
-<li><p>UI, navigation improvements, new look &amp; feel.</p></li>
-</ul>
-<p>Known issues:</p>
-<ul>
-<li><p>Some tabsdata binaries are linked against a Homebrew-installed liblzma library during the build process, creating a runtime dependency on <code class="docutils literal notranslate"><span class="pre">/opt/homebrew/opt/xz/lib/liblzma.5.dylib</span></code>. If the library is not installed in your system, commands like <code class="docutils literal notranslate"><span class="pre">tdserver</span></code> will fail with the error <code class="docutils literal notranslate"><span class="pre">/opt/homebrew/opt/xz/lib/liblzma.5.dylib</span> <span class="pre">(no</span> <span class="pre">such</span> <span class="pre">file)</span></code>.</p>
-<ul class="simple">
-<li><p><strong>Workaround</strong>: Install the required library by running: <code class="docutils literal notranslate"><span class="pre">brew</span> <span class="pre">install</span> <span class="pre">xz</span></code></p></li>
-</ul>
-<p>This will be corrected in the next release.</p>
-</li>
-</ul>
+<section id="setup-transformer">
+<h2>Setup (Transformer)</h2>
+<p>The following code uses placeholder values for defining a transformer:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">tabsdata</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">td</span>
+
+<span class="nd">@td</span><span class="o">.</span><span class="n">transformer</span><span class="p">(</span>
+    <span class="n">input_tables</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;&lt;input_table1&gt;&quot;</span><span class="p">,</span> <span class="s2">&quot;&lt;collection_name&gt;/&lt;input_table2&gt;&quot;</span><span class="p">],</span>
+    <span class="n">output_tables</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;&lt;output_table1&gt;&quot;</span><span class="p">,</span> <span class="s2">&quot;&lt;output_table2&gt;&quot;</span><span class="p">],</span>
+    <span class="n">on_output_tables</span><span class="o">=</span><span class="p">[</span>
+        <span class="n">dq</span><span class="o">.</span><span class="n">DataQuality</span><span class="p">(</span>
+            <span class="n">table</span><span class="o">=</span><span class="s2">&quot;&lt;output_table1&gt;&quot;</span><span class="p">,</span>
+            <span class="n">classifiers</span><span class="o">=</span><span class="p">[</span>
+                <span class="n">dq</span><span class="o">.</span><span class="n">IsNull</span><span class="p">(</span><span class="s2">&quot;&lt;table1_column1&gt;&quot;</span><span class="p">,</span> <span class="n">tags</span><span class="o">=</span><span class="s2">&quot;nulls&quot;</span><span class="p">),</span>
+                <span class="n">dq</span><span class="o">.</span><span class="n">IsPositive</span><span class="p">(</span><span class="s2">&quot;&lt;table1_column2&gt;&quot;</span><span class="p">,</span> <span class="n">tags</span><span class="o">=</span><span class="s2">&quot;positive&quot;</span><span class="p">),</span>
+            <span class="p">],</span>
+            <span class="n">operators</span><span class="o">=</span><span class="p">[</span>
+                <span class="n">dq</span><span class="o">.</span><span class="n">Enrich</span><span class="p">(),</span>           <span class="c1"># add dq columns to `output_table1`</span>
+                <span class="n">dq</span><span class="o">.</span><span class="n">Summary</span><span class="p">(),</span>          <span class="c1"># writes `output_table1_dq_summary`</span>
+                <span class="n">dq</span><span class="o">.</span><span class="n">Filter</span><span class="p">(</span>
+                    <span class="n">criteria</span><span class="o">=</span><span class="n">dq</span><span class="o">.</span><span class="n">AnyFailed</span><span class="p">(</span><span class="n">tags</span><span class="o">=</span><span class="s2">&quot;nulls&quot;</span><span class="p">,</span> <span class="n">none_is_ok</span><span class="o">=</span><span class="kc">False</span><span class="p">),</span>
+                    <span class="n">to_table</span><span class="o">=</span><span class="s2">&quot;output_table_nulls&quot;</span><span class="p">,</span>
+                    <span class="n">include_quality_columns</span><span class="o">=</span><span class="s2">&quot;criteria&quot;</span><span class="p">,</span>
+                <span class="p">),</span>
+            <span class="p">],</span>
+        <span class="p">)</span>
+    <span class="p">],</span>
+    <span class="n">trigger_by</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;&lt;trigger_table1&gt;&quot;</span><span class="p">,</span> <span class="s2">&quot;&lt;trigger_table2&gt;&quot;</span><span class="p">],</span>
+<span class="p">)</span>
+<span class="k">def</span><span class="w"> </span><span class="o">&lt;</span><span class="n">transformer_name</span><span class="o">&gt;</span><span class="p">(</span><span class="s2">&quot;&lt;table_frame1&gt;&quot;</span><span class="p">:</span> <span class="n">td</span><span class="o">.</span><span class="n">TableFrame</span><span class="p">,</span> <span class="s2">&quot;&lt;table_frame2&gt;&quot;&quot;: td.TableFrame):</span>
+    <span class="o">&lt;</span><span class="n">function_logic</span><span class="o">&gt;</span>
+    <span class="k">return</span> <span class="o">&lt;</span><span class="n">table_frame_output1</span><span class="o">&gt;</span><span class="p">,</span> <span class="o">&lt;</span><span class="n">table_frame_output2</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<p><strong>Note:</strong> After defining the function, you need to register it with a Tabsdata collection and execute it. For more information, see <a class="reference internal" href="../04_working_with_functions/main.html#register-a-function"><span class="std std-ref">Register a Function</span></a> and <a class="reference internal" href="../04_working_with_functions/main.html#execute-a-function"><span class="std std-ref">Execute a Function</span></a>.</p>
+<p>Following properties are defined in the setup code above:</p>
+<section id="input-tables">
+<h3>Input Tables</h3>
+<p><code class="docutils literal notranslate"><span class="pre">&lt;input_table_1&gt;</span></code> is the name of an input table in the collection that the function is registered with.
+<code class="docutils literal notranslate"><span class="pre">&lt;collection_name&gt;/&lt;input_table_2&gt;</span></code> is an input table from a collection that the transformer is not registered with.</p>
+<p>Tabsdata stores all the commits of a table in the Tabsdata server. Hence, you can have multiple commits of the same table in the input. You can read more about it <a class="reference internal" href="../06_working_with_tables/table_frame.html#working-with-table-commits"><span class="std std-ref">here</span></a>.</p>
 </section>
-<section id="tabsdata-1-7-1">
-<h2>Tabsdata 1.7.1</h2>
-<p><strong>February 25, 2026</strong></p>
-<p>What is New:</p>
-<ul class="simple">
-<li><p>New Source connector: <a class="reference internal" href="../04_01_working_with_publishers/db2/main.html#db2"><span class="std std-ref">Db2</span></a>.</p></li>
-</ul>
+<section id="output-tables">
+<h3>Output Tables</h3>
+<p><code class="docutils literal notranslate"><span class="pre">&lt;output_table1&gt;</span></code>, <code class="docutils literal notranslate"><span class="pre">&lt;output_table2&gt;</span></code>… are the names of the Tabsdata tables to publish to.</p>
 </section>
-<section id="tabsdata-1-7-0">
-<h2>Tabsdata 1.7.0</h2>
-<p><strong>February 24, 2026</strong></p>
-<p>What is New:</p>
-<ul class="simple">
-<li><p>UI navigation re-design for improved user experience.</p></li>
-<li><p>User-friendly IDs for Execution Plans, Transactions, and Data Versions.</p></li>
-<li><p>Improved documentation across the platform.</p></li>
-</ul>
+<section id="none-as-an-input-and-output">
+<h3><code class="docutils literal notranslate"><span class="pre">None</span></code> as an input and output</h3>
+<p>A transformer may receive and return a <code class="docutils literal notranslate"><span class="pre">None</span></code> value instead of a TableFrame parameter or return value.</p>
+<p>When a transformer receives a <code class="docutils literal notranslate"><span class="pre">None</span></code> value instead of a TableFrame it means that the requested table dependency version does not exist.</p>
+<p>For example, a transformer that has a dependency on the previous version of one the tables it produces, has a <code class="docutils literal notranslate"><span class="pre">None</span></code> value as an input on its first execution since the input table doesn’t exist yet.</p>
+<p>When a transformer returns a <code class="docutils literal notranslate"><span class="pre">None</span></code> value instead of a TableFrame it means that the associated table will preserve the existing data from the previous commit. This helps in avoiding the creation of multiple copies of the same data.</p>
 </section>
-<section id="tabsdata-1-6-0">
-<h2>Tabsdata 1.6.0</h2>
-<p><strong>Februrary 3, 2026</strong></p>
-<p>What is New:</p>
-<ul class="simple">
-<li><p><a class="reference internal" href="../working_with_kafka/main.html"><span class="doc">KafkaTrigger</span></a>, a Kafka topic consumer to load messages into Tabsdata tables.</p></li>
-<li><p><a class="reference internal" href="../05_working_with_triggers/main.html#working-with-triggers"><span class="std std-ref">CronTrigger</span></a>, periodic triggering of publishers/subscribers/transformers.</p></li>
-<li><p>Declarative <a class="reference internal" href="../data_quality/main.html#data-quality"><span class="std std-ref">data quality</span></a> API for validation, classification and quarantining data.</p></li>
-<li><p>New SQL connectors supporting Database transactions both for <a class="reference internal" href="../04_01_working_with_publishers/main.html#working-with-publishers"><span class="std std-ref">publishers</span></a> and <a class="reference internal" href="../04_03_working_with_subscribers/main.html#working-with-subscribers"><span class="std std-ref">subscribers</span></a>.</p></li>
-<li><p>Revamped <a class="reference internal" href="../user_interface/main.html#ui"><span class="std std-ref">UI</span></a> navigation.</p></li>
-</ul>
-<p>Known issues:</p>
-<ul class="simple">
-<li><p>When installing tabsdata with uv as the package manager, the databricks-sql-connector
-dependency must be pinned to version 4.2.0. For example:
-<code class="docutils literal notranslate"><span class="pre">uv</span> <span class="pre">pip</span> <span class="pre">install</span> <span class="pre">&quot;tabsdata[all]==1.6.0&quot;</span> <span class="pre">&quot;databricks-sql-connector==4.2.0&quot;</span></code></p></li>
-<li><p>To have the tabsdata agent working, you need to edit the file <code class="docutils literal notranslate"><span class="pre">`~/.tabsdata/instances/tabsdata/workspace/config/proc/regular/aiagent/config/requirements.txt</span></code>,  and replace <cite>tabsdata_agent</cite> with <cite>tabsdata-agent</cite>. This will get corrected in the next release.</p></li>
-</ul>
+<section id="triggers">
+<h3>Triggers</h3>
+<p><code class="docutils literal notranslate"><span class="pre">&lt;trigger_table1&gt;</span></code>, <code class="docutils literal notranslate"><span class="pre">&lt;trigger_table2&gt;</span></code>… are the names of the tables in the Tabsdata server. A new commit to any of these tables triggers the publisher. All listed trigger tables must exist in the server before registering the publisher.</p>
+<p>Defining trigger tables is optional. If you don’t define the <code class="docutils literal notranslate"><span class="pre">trigger_by</span></code> property, the transformer will get triggered by any of its input tables. If you define the <code class="docutils literal notranslate"><span class="pre">trigger_by</span></code> property, then only those tables listed in the property can automatically trigger the transformer.</p>
+<p>For more information, see <a class="reference internal" href="../05_working_with_triggers/main.html#working-with-triggers"><span class="std std-ref">Working with Triggers</span></a>.</p>
 </section>
-<section id="tabsdata-1-5-1">
-<h2>Tabsdata 1.5.1</h2>
-<p><strong>November 18, 2025</strong></p>
-<p>Fixes a 1.5.0 regression that stopped parts of the UI from working correctly.</p>
+<section id="name">
+<h3>Name</h3>
+<p><code class="docutils literal notranslate"><span class="pre">&lt;transformer_name&gt;</span></code> is the name for the transformer that you are configuring. It has be unique within all functions registered in a collection.</p>
 </section>
-<section id="tabsdata-1-5-0">
-<h2>Tabsdata 1.5.0</h2>
-<p><strong>November 15, 2025</strong></p>
-<p>Tabsdata 1.5.0 is here!</p>
-<p><strong>What’s New?</strong></p>
-<ul class="simple">
-<li><p><strong>Version System Columns:</strong> All TableFrames now have a set of system columns with version information (execution ID, transaction ID, version ID and timestamp). Having these system columns enable advanced multi-time query functionality.</p></li>
-<li><p><a class="reference internal" href="../04_03_working_with_subscribers/bigquery/main.html#bigquery-subscriber"><span class="std std-ref">BigQuery Subscriber Connector</span></a>.</p></li>
-<li><p>Several improvements and new functionality for Lineage/Execution graphs in the <a class="reference internal" href="../user_interface/main.html#ui"><span class="std std-ref">UI</span></a>.</p></li>
-</ul>
+<section id="function-logic">
+<h3>Function Logic</h3>
+<p><code class="docutils literal notranslate"><span class="pre">&lt;function_logic&gt;</span></code> governs the processing performed by the publisher. You can specify function logic to be a simple write or to perform additional processing, such as dropping nulls, before writing data to output tables. For more information about the function logic that you can include, see <a class="reference internal" href="../06_working_with_tables/table_frame.html#working-with-tables"><span class="std std-ref">Working with Tables</span></a>.</p>
+<p><code class="docutils literal notranslate"><span class="pre">&lt;table_frame1&gt;</span></code>, <code class="docutils literal notranslate"><span class="pre">&lt;table_frame2&gt;</span></code>… are the names for the variables that temporarily store source data for processing.</p>
+<p><code class="docutils literal notranslate"><span class="pre">&lt;table_frame_output1&gt;</span></code>, <code class="docutils literal notranslate"><span class="pre">&lt;table_frame_output2&gt;</span></code>… are the output from the function that are stored as Tabsdata tables with names as defined in the <code class="docutils literal notranslate"><span class="pre">tables</span></code> property. Consequently, the number of tables returned from the function have to exactly match the number of tables defined in the <code class="docutils literal notranslate"><span class="pre">tables</span></code> property.</p>
 </section>
-<section id="tabsdata-1-4-0">
-<h2>Tabsdata 1.4.0</h2>
-<p><strong>October 20, 2025</strong></p>
-<p>Tabsdata 1.4.0 is here!</p>
-<p><strong>What’s New?</strong></p>
-<ul class="simple">
-<li><p><a class="reference internal" href="../ai_agent/main.html#ai-agent"><span class="std std-ref">Tabsdata AI agent</span></a> (Preview). Explore collections and tables, and create publishers and subscriber using a natural language interface.</p></li>
-<li><p><a class="reference internal" href="../06_working_with_tables/user_defined_functions.html#user-defined-functions"><span class="std std-ref">User Defined Functions</span></a> support. Integrate custom logic or external functions with TableFrame’s processing.</p></li>
-<li><p>Interactive Execution/Lineage graphs in the <a class="reference internal" href="../user_interface/main.html#ui"><span class="std std-ref">UI</span></a>.</p></li>
-</ul>
-</section>
-<section id="tabsdata-1-3-0">
-<h2>Tabsdata 1.3.0</h2>
-<p><strong>September 26, 2025</strong></p>
-<p>Tabsdata 1.3.0 is here!</p>
-<p><strong>What’s New?</strong></p>
-<ul class="simple">
-<li><p><a class="reference internal" href="../04_03_working_with_subscribers/gcp/main.html#gcp-subscriber"><span class="std std-ref">Google Cloud Storage</span></a> publisher and subscriber connectors</p></li>
-<li><p>Avro Support for publishing and subscribing using file based connectors (File, S3, Azure storage, Google Cloud Storage)</p></li>
-<li><p><a class="reference internal" href="../04_01_working_with_publishers/salesforce_reports/main.html#salesforce-reports"><span class="std std-ref">Salesforce</span></a> reports publisher connector</p></li>
-<li><p><a class="reference internal" href="../04_01_working_with_publishers/grok_for_log_files/main.html#grok-for-log-files"><span class="std std-ref">Grok parser</span></a> support for TableFrames columns</p></li>
-<li><p><a class="reference internal" href="../permissioning/main.html#rbac"><span class="std std-ref">Permissions CLI</span></a></p></li>
-</ul>
-<p><strong>Improvements:</strong></p>
-<ul class="simple">
-<li><p>Minor <a class="reference internal" href="../11_cli_commands/main.html"><span class="doc">CLI</span></a> usability improvements</p></li>
-<li><p>Minor <a class="reference internal" href="../user_interface/main.html#ui"><span class="std std-ref">UI</span></a> usability improvements</p></li>
-<li><p>Non functional improvements</p></li>
-</ul>
-</section>
-<section id="tabsdata-1-2-0">
-<h2>Tabsdata 1.2.0</h2>
-<p><strong>August 14, 2025</strong></p>
-<p>Tabsdata 1.2.0 is here!</p>
-<p><strong>What’s New?</strong></p>
-<ul class="simple">
-<li><p>New <a class="reference internal" href="../04_01_working_with_publishers/mssql/main.html#mssql"><span class="std std-ref">publisher</span></a> and <a class="reference internal" href="../04_03_working_with_subscribers/mssql/main.html#mssql-subscriber"><span class="std std-ref">subscriber</span></a> connectors for Microsoft SQL Server.</p></li>
-<li><p><a class="reference internal" href="../user_interface/main.html#ui"><span class="std std-ref">UI</span></a> usability improvements.</p></li>
-</ul>
-</section>
-<section id="tabsdata-1-1-0">
-<h2>Tabsdata 1.1.0</h2>
-<p><strong>August 4, 2025</strong></p>
-<p>Tabsdata 1.1.0 is here!</p>
-<p><strong>What’s New?</strong></p>
-<ul class="simple">
-<li><p>Internal module reorganization to clearly separate public and private APIs.</p></li>
-<li><p>No user-facing changes.</p></li>
-</ul>
-</section>
-<section id="tabsdata-1-0-0">
-<h2>Tabsdata 1.0.0</h2>
-<p><strong>July 24, 2025</strong></p>
-<p>Tabsdata 1.0.0 is here!</p>
-<p><strong>What’s New?</strong></p>
-<ul class="simple">
-<li><p><a class="reference internal" href="../user_interface/main.html#ui"><span class="std std-ref">Browser Interface</span></a>: You can now interact with various powerful functionalities of Tabsdata using the browser interface.</p></li>
-<li><p><strong>New Connectors:</strong> Built-in support for <a class="reference internal" href="../04_03_working_with_subscribers/snowflake/main.html#snowflake-subscriber"><span class="std std-ref">Snowflake</span></a> and <a class="reference internal" href="../04_03_working_with_subscribers/databricks/main.html#databricks-subscriber"><span class="std std-ref">Databricks</span></a> is now live. Seamless integrations, out of the box.</p></li>
-<li><p><a class="reference internal" href="../catalogs/main.html#catalogs"><span class="std std-ref">Catalog Support</span></a>: Enhanced support for Unity Catalog, and AWS Glue Catalog, with Parquet format compatibility.</p></li>
-<li><p><a class="reference internal" href="../11_cli_commands/main.html"><span class="doc">CLI</span></a> <strong>Improvements:</strong> We’ve reimagined the CLI experience with streamlined commands and contextual hints to make onboarding easier.</p></li>
-<li><p><strong>Richer Metadata:</strong> We’re capturing and displaying more metadata to give users better visibility and control over their data.</p></li>
-<li><p><strong>Backend Enhancements:</strong> Under-the-hood upgrades to improve <a class="reference internal" href="../security/main.html#security"><span class="std std-ref">security</span></a>, stability, and scalability in production environments.</p></li>
-</ul>
-</section>
-<section id="tabsdata-0-9-6">
-<h2>Tabsdata 0.9.6</h2>
-<p><strong>April 24, 2025</strong></p>
-<p>Tabsdata 0.9.6 is here!</p>
-<p><strong>What’s New?</strong></p>
-<ul class="simple">
-<li><p>Changes logs from ANSI to ASCII.</p></li>
-<li><p>Improved schema inference when publishing files into Tabsdata.</p></li>
-<li><p>Added column rename to TableFrames.</p></li>
-<li><p>Fixed initial_values bugs on first run and when there is no additional incremental data.</p></li>
-</ul>
-</section>
-<section id="tabsdata-0-9-5">
-<h2>Tabsdata 0.9.5</h2>
-<p><strong>April 12, 2025</strong></p>
-<p>Tabsdata 0.9.5 is here!</p>
-<p><strong>What’s New?</strong></p>
-<ul class="simple">
-<li><p><a class="reference internal" href="../04_03_working_with_subscribers/aws_iceberg/main.html#amazon-s3-subscriber-iceberg"><span class="std std-ref">AWS Glue Iceberg</span></a> connector to seamlessly subscribe data from Tabsdata to AWS as Iceberg Tables.</p></li>
-<li><p><a class="reference internal" href="../04_03_working_with_subscribers/mongodb/main.html#mongodb-subscriber"><span class="std std-ref">MongoDB</span></a> destination connector to seamlessly subscribe data from Tabsdata to MongoDB.</p></li>
-<li><p>Richer support for <a class="reference internal" href="../secrets_management/main.html#credentials"><span class="std std-ref">Hashicorp Vault</span></a>.</p></li>
-<li><p>Corrections and restructuring in documentation.</p></li>
-</ul>
-</section>
-<section id="tabsdata-0-9-3">
-<h2>Tabsdata 0.9.3</h2>
-<p><strong>March 14, 2025</strong></p>
-<p>Tabsdata 0.9.3 is here!</p>
-<p><strong>What’s New?</strong></p>
-<ul class="simple">
-<li><p><a class="reference internal" href="../04_01_working_with_publishers/salesforce/main.html#salesforce"><span class="std std-ref">Salesforce</span></a> connector to seamlessly publish data from Salesforce to Tabsdata.</p></li>
-<li><p>Stronger <a class="reference internal" href="../security/main.html#security"><span class="std std-ref">security</span></a> protocols with support for <a class="reference internal" href="../secrets_management/main.html#credentials"><span class="std std-ref">Hashicorp secrets</span></a>.</p></li>
-<li><p>Isolation of the server’s python environment from that of the user for better controls.</p></li>
-</ul>
-</section>
-<section id="tabsdata-0-9-2">
-<h2>Tabsdata 0.9.2</h2>
-<p><strong>February 28, 2025</strong></p>
-<p>Tabsdata 0.9.2 is here!</p>
-<p><strong>What’s New?</strong></p>
-<ul class="simple">
-<li><p>Improvements in CLI experience</p></li>
-<li><p>Enhancements in backend to debug edge cases and performance improvement</p></li>
-</ul>
-</section>
-<section id="tabsdata-0-9-1">
-<h2>Tabsdata 0.9.1</h2>
-<p><strong>February 14, 2025</strong></p>
-<p>Tabsdata 0.9.1 is here!</p>
-<p><strong>What’s New?</strong></p>
-<ul class="simple">
-<li><p>Python 3.13 support</p></li>
-<li><p>New <code class="docutils literal notranslate"><span class="pre">TableFrame.item(self)</span></code> method for extracting a single value from Tabsdata TableFrames</p></li>
-<li><p>Renamed some TableFrame classes for better clarity</p></li>
-<li><p>Corrections and restructuring in documentation</p></li>
-</ul>
 </section>
 </section>
 
@@ -716,23 +602,16 @@ dependency must be pinned to version 4.2.0. For example:
   </div>
   <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tabsdata-1-9-0">Tabsdata 1.9.0</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tabsdata-1-8-0">Tabsdata 1.8.0</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tabsdata-1-7-1">Tabsdata 1.7.1</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tabsdata-1-7-0">Tabsdata 1.7.0</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tabsdata-1-6-0">Tabsdata 1.6.0</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tabsdata-1-5-1">Tabsdata 1.5.1</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tabsdata-1-5-0">Tabsdata 1.5.0</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tabsdata-1-4-0">Tabsdata 1.4.0</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tabsdata-1-3-0">Tabsdata 1.3.0</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tabsdata-1-2-0">Tabsdata 1.2.0</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tabsdata-1-1-0">Tabsdata 1.1.0</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tabsdata-1-0-0">Tabsdata 1.0.0</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tabsdata-0-9-6">Tabsdata 0.9.6</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tabsdata-0-9-5">Tabsdata 0.9.5</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tabsdata-0-9-3">Tabsdata 0.9.3</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tabsdata-0-9-2">Tabsdata 0.9.2</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tabsdata-0-9-1">Tabsdata 0.9.1</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-transformer">Example (Transformer)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#setup-transformer">Setup (Transformer)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#input-tables">Input Tables</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#output-tables">Output Tables</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#none-as-an-input-and-output"><code class="docutils literal notranslate"><span class="pre">None</span></code> as an input and output</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#triggers">Triggers</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#name">Name</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#function-logic">Function Logic</a></li>
+</ul>
+</li>
 </ul>
   </nav></div>
 
