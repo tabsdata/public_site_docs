@@ -1,2 +1,4 @@
 /archive
 /00_reusable_things
+.vscode/
+.DS_Store
