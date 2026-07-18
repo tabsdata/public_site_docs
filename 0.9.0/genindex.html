@@ -1,0 +1,1377 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-QEJPE16TH2"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-QEJPE16TH2');
+    </script>
+    
+    <title>Index &#8212; Tabsdata v0.0 documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=8f2a1f02" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="_static/custom.css?v=1e778574" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+
+    <script src="_static/jquery.js?v=5d32c60e"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+    <script src="_static/documentation_options.js?v=5ae79a96"></script>
+    <script src="_static/doctools.js?v=9bcbadda"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'genindex';</script>
+    <script>
+        DOCUMENTATION_OPTIONS.theme_version = '0.16.1';
+        DOCUMENTATION_OPTIONS.theme_switcher_json_url = 'https://docs.tabsdata.com/version.json';
+        DOCUMENTATION_OPTIONS.theme_switcher_version_match = '0.9.0';
+        DOCUMENTATION_OPTIONS.show_version_warning_banner =
+            false;
+        </script>
+    <script src="_static/custom.js?v=4c20ed59"></script>
+    <link rel="index" title="Index" href="#" />
+    <link rel="search" title="Search" href="search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="0.9.0" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+<div class="docs-nav-container">
+    <nav class="docs-nav">
+        <a href="/docs/" class="docs-nav-link">Documentation</a>
+        <a href="/docs/api-reference/" class="docs-nav-link">API Reference</a>
+        <a href="/docs/faq/" class="docs-nav-link">Frequently Asked Questions</a>
+    </nav>
+</div>
+
+
+
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+     
+  
+
+<a class="navbar-brand logo" href="https://tabsdata.com/">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/tabsdata_root.png" class="logo__image only-light" alt="Tabsdata v0.0 documentation - Home"/>
+    <img src="_static/tabsdata.png" class="logo__image only-dark pst-js-only" alt="Tabsdata v0.0 documentation - Home"/>
+  
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="guide/intro.html">
+    Guide
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="api_ref/index.html">
+    API Reference
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="tutorials/index.html">
+    Tutorials
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+        <div class="navbar-item">
+<div class="version-switcher__container dropdown pst-js-only">
+  <button id="pst-version-switcher-button-2"
+    type="button"
+    class="version-switcher__button btn btn-sm dropdown-toggle"
+    data-bs-toggle="dropdown"
+    aria-haspopup="listbox"
+    aria-controls="pst-version-switcher-list-2"
+    aria-label="Version switcher list"
+  >
+    Choose version  <!-- this text may get changed later by javascript -->
+    <span class="caret"></span>
+  </button>
+  <div id="pst-version-switcher-list-2"
+    class="version-switcher__menu dropdown-menu list-group-flush py-0"
+    role="listbox" aria-labelledby="pst-version-switcher-button-2">
+    <!-- dropdown will be populated by javascript on page load -->
+  </div>
+</div></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar hide-on-wide">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="guide/intro.html">
+    Guide
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="api_ref/index.html">
+    API Reference
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="tutorials/index.html">
+    Tutorials
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+<div class="version-switcher__container dropdown pst-js-only">
+  <button id="pst-version-switcher-button-3"
+    type="button"
+    class="version-switcher__button btn btn-sm dropdown-toggle"
+    data-bs-toggle="dropdown"
+    aria-haspopup="listbox"
+    aria-controls="pst-version-switcher-list-3"
+    aria-label="Version switcher list"
+  >
+    Choose version  <!-- this text may get changed later by javascript -->
+    <span class="caret"></span>
+  </button>
+  <div id="pst-version-switcher-list-3"
+    class="version-switcher__menu dropdown-menu list-group-flush py-0"
+    role="listbox" aria-labelledby="pst-version-switcher-button-3">
+    <!-- dropdown will be populated by javascript on page load -->
+  </div>
+</div></div>
+        
+      </div>
+    
+  </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none"></div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+
+<h1 id="index">Index</h1>
+
+<div class="genindex-jumpbox">
+ <a href="#A"><strong>A</strong></a>
+ | <a href="#B"><strong>B</strong></a>
+ | <a href="#C"><strong>C</strong></a>
+ | <a href="#D"><strong>D</strong></a>
+ | <a href="#E"><strong>E</strong></a>
+ | <a href="#F"><strong>F</strong></a>
+ | <a href="#G"><strong>G</strong></a>
+ | <a href="#H"><strong>H</strong></a>
+ | <a href="#I"><strong>I</strong></a>
+ | <a href="#J"><strong>J</strong></a>
+ | <a href="#L"><strong>L</strong></a>
+ | <a href="#M"><strong>M</strong></a>
+ | <a href="#N"><strong>N</strong></a>
+ | <a href="#O"><strong>O</strong></a>
+ | <a href="#P"><strong>P</strong></a>
+ | <a href="#Q"><strong>Q</strong></a>
+ | <a href="#R"><strong>R</strong></a>
+ | <a href="#S"><strong>S</strong></a>
+ | <a href="#T"><strong>T</strong></a>
+ | <a href="#U"><strong>U</strong></a>
+ | <a href="#W"><strong>W</strong></a>
+ | <a href="#X"><strong>X</strong></a>
+ | <a href="#Y"><strong>Y</strong></a>
+ | <a href="#Z"><strong>Z</strong></a>
+ 
+</div>
+<h2 id="A">A</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api_ref/tableframe.html#tabsdata.Expr.abs">abs() (Expr method)</a>
+</li>
+      <li><a href="api_ref/credentials.html#tabsdata.credentials.AzureAccountKeyCredentials.account_key">account_key (AzureAccountKeyCredentials property)</a>
+</li>
+      <li><a href="api_ref/credentials.html#tabsdata.credentials.AzureAccountKeyCredentials.ACCOUNT_KEY_KEY">ACCOUNT_KEY_KEY (AzureAccountKeyCredentials attribute)</a>
+</li>
+      <li><a href="api_ref/credentials.html#tabsdata.credentials.AzureAccountKeyCredentials.account_name">account_name (AzureAccountKeyCredentials property)</a>
+</li>
+      <li><a href="api_ref/tableframe.html#tabsdata.Expr.add">add() (Expr method)</a>
+</li>
+      <li><a href="api_ref/tableframe.html#tabsdata.tableframe.functions.datetime.TdExprDateTimeNameSpace.add_business_days">add_business_days() (TdExprDateTimeNameSpace method)</a>, <a href="api_ref/tabsdata.tableframe.functions.html#tabsdata.tableframe.functions.datetime.TdExprDateTimeNameSpace.add_business_days">[1]</a>
+</li>
+      <li><a href="api_ref/tableframe.html#tabsdata.tableframe.lazyframe.group_by.TdLazyGroupBy.agg">agg() (TdLazyGroupBy method)</a>, <a href="api_ref/tabsdata.tableframe.lazyframe.html#tabsdata.tableframe.lazyframe.group_by.TdLazyGroupBy.agg">[1]</a>
+</li>
+      <li><a href="api_ref/tableframe.html#tabsdata.Expr.alias">alias() (Expr method)</a>
+</li>
+      <li><a href="api_ref/tableframe.html#tabsdata.Expr.and_">and_() (Expr method)</a>
+</li>
+      <li><a href="api_ref/tableframe.html#tabsdata.Expr.arccos">arccos() (Expr method)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api_ref/tableframe.html#tabsdata.Expr.arccosh">arccosh() (Expr method)</a>
+</li>
+      <li><a href="api_ref/tableframe.html#tabsdata.Expr.arcsin">arcsin() (Expr method)</a>
+</li>
+      <li><a href="api_ref/tableframe.html#tabsdata.Expr.arcsinh">arcsinh() (Expr method)</a>
+</li>
+      <li><a href="api_ref/tableframe.html#tabsdata.Expr.arctan">arctan() (Expr method)</a>
+</li>
+      <li><a href="api_ref/tableframe.html#tabsdata.Expr.arctanh">arctanh() (Expr method)</a>
+</li>
+      <li><a href="api_ref/credentials.html#tabsdata.credentials.S3AccessKeyCredentials.aws_access_key_id">aws_access_key_id (S3AccessKeyCredentials property)</a>
+</li>
+      <li><a href="api_ref/credentials.html#tabsdata.credentials.S3AccessKeyCredentials.aws_secret_access_key">aws_secret_access_key (S3AccessKeyCredentials property)</a>
+</li>
+      <li><a href="api_ref/credentials.html#tabsdata.credentials.AzureAccountKeyCredentials">AzureAccountKeyCredentials (class in tabsdata.credentials)</a>
+</li>
+      <li><a href="api_ref/connectors_list.html#tabsdata.tabsdatafunction.AzureDestination">AzureDestination (class in tabsdata.tabsdatafunction)</a>
+</li>
+      <li><a href="api_ref/connectors_list.html#tabsdata.tabsdatafunction.AzureSource">AzureSource (class in tabsdata.tabsdatafunction)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="B">B</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api_ref/tableframe.html#tabsdata.tableframe.functions.datetime.TdExprDateTimeNameSpace.base_utc_offset">base_utc_offset() (TdExprDateTimeNameSpace method)</a>, <a href="api_ref/tabsdata.tableframe.functions.html#tabsdata.tableframe.functions.datetime.TdExprDateTimeNameSpace.base_utc_offset">[1]</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="C">C</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api_ref/tableframe.html#tabsdata.Expr.cast">cast() (Expr method)</a>
+
+      <ul>
+        <li><a href="api_ref/tableframe.html#tabsdata.TableFrame.cast">(TableFrame method)</a>
+</li>
+      </ul></li>
+      <li><a href="api_ref/tableframe.html#tabsdata.tableframe.functions.datetime.TdExprDateTimeNameSpace.cast_time_unit">cast_time_unit() (TdExprDateTimeNameSpace method)</a>, <a href="api_ref/tabsdata.tableframe.functions.html#tabsdata.tableframe.functions.datetime.TdExprDateTimeNameSpace.cast_time_unit">[1]</a>
+</li>
+      <li><a href="api_ref/tableframe.html#tabsdata.Expr.cbrt">cbrt() (Expr method)</a>
+</li>
+      <li><a href="api_ref/tableframe.html#tabsdata.Expr.ceil">ceil() (Expr method)</a>
+</li>
+      <li><a href="api_ref/tableframe.html#tabsdata.tableframe.functions.datetime.TdExprDateTimeNameSpace.century">century() (TdExprDateTimeNameSpace method)</a>, <a href="api_ref/tabsdata.tableframe.functions.html#tabsdata.tableframe.functions.datetime.TdExprDateTimeNameSpace.century">[1]</a>
+</li>
+      <li><a href="api_ref/tabsdata.tableframe.lazyframe.html#tabsdata.tableframe.lazyframe.frame.check_polars_api">check_polars_api() (in module tabsdata.tableframe.lazyframe.frame)</a>
+</li>
+      <li><a href="api_ref/tableframe.html#tabsdata.TableFrame.clear">clear() (TableFrame method)</a>
+</li>
+      <li><a href="api_ref/tableframe.html#tabsdata.Expr.clip">clip() (Expr method)</a>
+</li>
+      <li><a href="api_ref/tableframe.html#tabsdata.TableFrame.columns">columns (TableFrame property)</a>
+</li>
+      <li><a href="api_ref/tableframe.html#tabsdata.tableframe.functions.datetime.TdExprDateTimeNameSpace.combine">combine() (TdExprDateTimeNameSpace method)</a>, <a href="api_ref/tabsdata.tableframe.functions.html#tabsdata.tableframe.functions.datetime.TdExprDateTimeNameSpace.combine">[1]</a>
+</li>
+      <li><a href="api_ref/tableframe_functions.html#tabsdata.concat">concat() (in module tabsdata)</a>
+
+      <ul>
+        <li><a href="api_ref/tabsdata.tableframe.functions.html#tabsdata.tableframe.functions.eager.concat">(in module tabsdata.tableframe.functions.eager)</a>
+</li>
+      </ul></li>
+      <li><a href="api_ref/tableframe.html#tabsdata.tableframe.expr.string.TdExprStringNameSpace.contains">contains() (TdExprStringNameSpace method)</a>, <a href="api_ref/tabsdata.tableframe.expr.html#tabsdata.tableframe.expr.string.TdExprStringNameSpace.contains">[1]</a>
+</li>
+      <li><a href="api_ref/tableframe.html#tabsdata.tableframe.expr.string.TdExprStringNameSpace.contains_any">contains_any() (TdExprStringNameSpace method)</a>, <a href="api_ref/tabsdata.tableframe.expr.html#tabsdata.tableframe.expr.string.TdExprStringNameSpace.contains_any">[1]</a>
+</li>
+      <li><a href="api_ref/tableframe.html#tabsdata.tableframe.functions.datetime.TdExprDateTimeNameSpace.convert_time_zone">convert_time_zone() (TdExprDateTimeNameSpace method)</a>, <a href="api_ref/tabsdata.tableframe.functions.html#tabsdata.tableframe.functions.datetime.TdExprDateTimeNameSpace.convert_time_zone">[1]</a>
+</li>
+      <li><a href="api_ref/tableframe.html#tabsdata.Expr.cos">cos() (Expr method)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api_ref/tableframe.html#tabsdata.Expr.cosh">cosh() (Expr method)</a>
+</li>
+      <li><a href="api_ref/tableframe.html#tabsdata.Expr.cot">cot() (Expr method)</a>
+</li>
+      <li><a href="api_ref/tableframe.html#tabsdata.Expr.count">count() (Expr method)</a>
+
+      <ul>
+        <li><a href="api_ref/tableframe.html#tabsdata.tableframe.lazyframe.group_by.TdLazyGroupBy.count">(TdLazyGroupBy method)</a>, <a href="api_ref/tabsdata.tableframe.lazyframe.html#tabsdata.tableframe.lazyframe.group_by.TdLazyGroupBy.count">[1]</a>
+</li>
+      </ul></li>
+      <li><a href="api_ref/tableframe.html#tabsdata.tableframe.expr.string.TdExprStringNameSpace.count_matches">count_matches() (TdExprStringNameSpace method)</a>, <a href="api_ref/tabsdata.tableframe.expr.html#tabsdata.tableframe.expr.string.TdExprStringNameSpace.count_matches">[1]</a>
+</li>
+      <li><a href="api_ref/connectors_list.html#tabsdata.tabsdatafunction.AzureDestination.credentials">credentials (AzureDestination property)</a>
+
+      <ul>
+        <li><a href="api_ref/connectors_list.html#tabsdata.tabsdatafunction.AzureSource.credentials">(AzureSource property)</a>
+</li>
+        <li><a href="api_ref/connectors_list.html#tabsdata.tabsdatafunction.MariaDBDestination.credentials">(MariaDBDestination property)</a>
+</li>
+        <li><a href="api_ref/connectors_list.html#tabsdata.tabsdatafunction.MariaDBSource.credentials">(MariaDBSource property)</a>
+</li>
+        <li><a href="api_ref/connectors_list.html#tabsdata.tabsdatafunction.MySQLDestination.credentials">(MySQLDestination property)</a>
+</li>
+        <li><a href="api_ref/connectors_list.html#tabsdata.tabsdatafunction.MySQLSource.credentials">(MySQLSource property)</a>
+</li>
+        <li><a href="api_ref/connectors_list.html#tabsdata.tabsdatafunction.OracleDestination.credentials">(OracleDestination property)</a>
+</li>
+        <li><a href="api_ref/connectors_list.html#tabsdata.tabsdatafunction.OracleSource.credentials">(OracleSource property)</a>
+</li>
+        <li><a href="api_ref/connectors_list.html#tabsdata.tabsdatafunction.PostgresDestination.credentials">(PostgresDestination property)</a>
+</li>
+        <li><a href="api_ref/connectors_list.html#tabsdata.tabsdatafunction.PostgresSource.credentials">(PostgresSource property)</a>
+</li>
+        <li><a href="api_ref/connectors_list.html#tabsdata.tabsdatafunction.S3Destination.credentials">(S3Destination property)</a>
+</li>
+        <li><a href="api_ref/connectors_list.html#tabsdata.tabsdatafunction.S3Source.credentials">(S3Source property)</a>
+</li>
+      </ul></li>
+      <li><a href="api_ref/fileformats.html#tabsdata.format.CSVFormat">CSVFormat (class in tabsdata.format)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="D">D</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api_ref/tableframe.html#tabsdata.tableframe.functions.datetime.TdExprDateTimeNameSpace.date">date() (TdExprDateTimeNameSpace method)</a>, <a href="api_ref/tabsdata.tableframe.functions.html#tabsdata.tableframe.functions.datetime.TdExprDateTimeNameSpace.date">[1]</a>
+</li>
+      <li><a href="api_ref/tableframe.html#tabsdata.tableframe.functions.datetime.TdExprDateTimeNameSpace.datetime">datetime() (TdExprDateTimeNameSpace method)</a>, <a href="api_ref/tabsdata.tableframe.functions.html#tabsdata.tableframe.functions.datetime.TdExprDateTimeNameSpace.datetime">[1]</a>
+</li>
+      <li><a href="api_ref/tableframe.html#tabsdata.tableframe.functions.datetime.TdExprDateTimeNameSpace.day">day() (TdExprDateTimeNameSpace method)</a>, <a href="api_ref/tabsdata.tableframe.functions.html#tabsdata.tableframe.functions.datetime.TdExprDateTimeNameSpace.day">[1]</a>
+</li>
+      <li><a href="api_ref/tableframe.html#tabsdata.Expr.degrees">degrees() (Expr method)</a>
+</li>
+      <li><a href="api_ref/connectors_list.html#tabsdata.tabsdatafunction.MariaDBDestination.destination_table">destination_table (MariaDBDestination property)</a>
+
+      <ul>
+        <li><a href="api_ref/connectors_list.html#tabsdata.tabsdatafunction.MySQLDestination.destination_table">(MySQLDestination property)</a>
+</li>
+        <li><a href="api_ref/connectors_list.html#tabsdata.tabsdatafunction.OracleDestination.destination_table">(OracleDestination property)</a>
+</li>
+        <li><a href="api_ref/connectors_list.html#tabsdata.tabsdatafunction.PostgresDestination.destination_table">(PostgresDestination property)</a>
+</li>
+      </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api_ref/connectors_list.html#tabsdata.tabsdatafunction.DestinationPlugin">DestinationPlugin (class in tabsdata.tabsdatafunction)</a>
+</li>
+      <li><a href="api_ref/tableframe.html#tabsdata.Expr.diff">diff() (Expr method)</a>
+</li>
+      <li><a href="api_ref/credentials.html#tabsdata.secret.DirectSecret">DirectSecret (class in tabsdata.secret)</a>
+</li>
+      <li><a href="api_ref/tableframe.html#tabsdata.TableFrame.drop">drop() (TableFrame method)</a>
+</li>
+      <li><a href="api_ref/tableframe.html#tabsdata.TableFrame.drop_nans">drop_nans() (TableFrame method)</a>
+</li>
+      <li><a href="api_ref/tableframe.html#tabsdata.TableFrame.drop_nulls">drop_nulls() (TableFrame method)</a>
+</li>
+      <li><a href="api_ref/tableframe.html#tabsdata.tableframe.functions.datetime.TdExprDateTimeNameSpace.dst_offset">dst_offset() (TdExprDateTimeNameSpace method)</a>, <a href="api_ref/tabsdata.tableframe.functions.html#tabsdata.tableframe.functions.datetime.TdExprDateTimeNameSpace.dst_offset">[1]</a>
+</li>
+      <li><a href="api_ref/tableframe.html#tabsdata.Expr.dt">dt (Expr property)</a>
+</li>
+      <li><a href="api_ref/tableframe.html#tabsdata.TableFrame.dtypes">dtypes (TableFrame property)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="E">E</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api_ref/tableframe.html#tabsdata.TableFrame.empty">empty() (TableFrame class method)</a>
+</li>
+      <li><a href="api_ref/tableframe.html#tabsdata.tableframe.expr.string.TdExprStringNameSpace.ends_with">ends_with() (TdExprStringNameSpace method)</a>, <a href="api_ref/tabsdata.tableframe.expr.html#tabsdata.tableframe.expr.string.TdExprStringNameSpace.ends_with">[1]</a>
+</li>
+      <li><a href="api_ref/credentials.html#tabsdata.secret.EnvironmentSecret">EnvironmentSecret (class in tabsdata.secret)</a>
+</li>
+      <li><a href="api_ref/tableframe.html#tabsdata.tableframe.functions.datetime.TdExprDateTimeNameSpace.epoch">epoch() (TdExprDateTimeNameSpace method)</a>, <a href="api_ref/tabsdata.tableframe.functions.html#tabsdata.tableframe.functions.datetime.TdExprDateTimeNameSpace.epoch">[1]</a>
+</li>
+      <li><a href="api_ref/tableframe.html#tabsdata.Expr.eq">eq() (Expr method)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api_ref/tableframe.html#tabsdata.Expr.eq_missing">eq_missing() (Expr method)</a>
+</li>
+      <li><a href="api_ref/tableframe.html#tabsdata.Expr.exp">exp() (Expr method)</a>
+</li>
+      <li><a href="api_ref/tableframe.html#tabsdata.TableFrame.explain">explain() (TableFrame method)</a>
+</li>
+      <li><a href="api_ref/tableframe.html#tabsdata.Expr">Expr (class in tabsdata)</a>
+</li>
+      <li><a href="api_ref/tableframe.html#tabsdata.tableframe.expr.string.TdExprStringNameSpace.extract">extract() (TdExprStringNameSpace method)</a>, <a href="api_ref/tabsdata.tableframe.expr.html#tabsdata.tableframe.expr.string.TdExprStringNameSpace.extract">[1]</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="F">F</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api_ref/fileformats.html#tabsdata.format.FileFormat">FileFormat (class in tabsdata.format)</a>
+</li>
+      <li><a href="api_ref/tableframe.html#tabsdata.Expr.fill_nan">fill_nan() (Expr method)</a>
+
+      <ul>
+        <li><a href="api_ref/tableframe.html#tabsdata.TableFrame.fill_nan">(TableFrame method)</a>
+</li>
+      </ul></li>
+      <li><a href="api_ref/tableframe.html#tabsdata.Expr.fill_null">fill_null() (Expr method)</a>
+
+      <ul>
+        <li><a href="api_ref/tableframe.html#tabsdata.TableFrame.fill_null">(TableFrame method)</a>
+</li>
+      </ul></li>
+      <li><a href="api_ref/tableframe.html#tabsdata.Expr.filter">filter() (Expr method)</a>
+
+      <ul>
+        <li><a href="api_ref/tableframe.html#tabsdata.TableFrame.filter">(TableFrame method)</a>
+</li>
+      </ul></li>
+      <li><a href="api_ref/tableframe.html#tabsdata.tableframe.expr.string.TdExprStringNameSpace.find">find() (TdExprStringNameSpace method)</a>, <a href="api_ref/tabsdata.tableframe.expr.html#tabsdata.tableframe.expr.string.TdExprStringNameSpace.find">[1]</a>
+</li>
+      <li><a href="api_ref/tableframe.html#tabsdata.Expr.first">first() (Expr method)</a>
+
+      <ul>
+        <li><a href="api_ref/tableframe.html#tabsdata.TableFrame.first">(TableFrame method)</a>
+</li>
+      </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api_ref/tableframe.html#tabsdata.Expr.floor">floor() (Expr method)</a>
+</li>
+      <li><a href="api_ref/tableframe.html#tabsdata.Expr.floordiv">floordiv() (Expr method)</a>
+</li>
+      <li><a href="api_ref/connectors_list.html#tabsdata.tabsdatafunction.AzureDestination.format">format (AzureDestination property)</a>
+
+      <ul>
+        <li><a href="api_ref/connectors_list.html#tabsdata.tabsdatafunction.AzureSource.format">(AzureSource property)</a>
+</li>
+        <li><a href="api_ref/connectors_list.html#tabsdata.tabsdatafunction.LocalFileDestination.format">(LocalFileDestination property)</a>
+</li>
+        <li><a href="api_ref/connectors_list.html#tabsdata.tabsdatafunction.LocalFileSource.format">(LocalFileSource property)</a>
+</li>
+        <li><a href="api_ref/connectors_list.html#tabsdata.tabsdatafunction.S3Destination.format">(S3Destination property)</a>
+</li>
+        <li><a href="api_ref/connectors_list.html#tabsdata.tabsdatafunction.S3Source.format">(S3Source property)</a>
+</li>
+      </ul></li>
+  </ul></td>
+</tr></table>
+
+<h2 id="G">G</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api_ref/tableframe.html#tabsdata.Expr.ge">ge() (Expr method)</a>
+</li>
+      <li><a href="api_ref/tabsdata.tableframe.lazyframe.html#tabsdata.tableframe.lazyframe.frame.get_class_methods">get_class_methods() (in module tabsdata.tableframe.lazyframe.frame)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api_ref/tabsdata.tableframe.lazyframe.html#tabsdata.tableframe.lazyframe.frame.get_missing_methods">get_missing_methods() (in module tabsdata.tableframe.lazyframe.frame)</a>
+</li>
+      <li><a href="api_ref/tableframe.html#tabsdata.TableFrame.group_by">group_by() (TableFrame method)</a>
+</li>
+      <li><a href="api_ref/tableframe.html#tabsdata.Expr.gt">gt() (Expr method)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="H">H</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api_ref/tableframe.html#tabsdata.Expr.hash">hash() (Expr method)</a>
+</li>
+      <li><a href="api_ref/tableframe.html#tabsdata.TableFrame.head">head() (TableFrame method)</a>
+
+      <ul>
+        <li><a href="api_ref/tableframe.html#tabsdata.tableframe.expr.string.TdExprStringNameSpace.head">(TdExprStringNameSpace method)</a>, <a href="api_ref/tabsdata.tableframe.expr.html#tabsdata.tableframe.expr.string.TdExprStringNameSpace.head">[1]</a>
+</li>
+      </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api_ref/tableframe.html#tabsdata.tableframe.functions.datetime.TdExprDateTimeNameSpace.hour">hour() (TdExprDateTimeNameSpace method)</a>, <a href="api_ref/tabsdata.tableframe.functions.html#tabsdata.tableframe.functions.datetime.TdExprDateTimeNameSpace.hour">[1]</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="I">I</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api_ref/connectors_list.html#tabsdata.tabsdatafunction.MariaDBDestination.if_table_exists">if_table_exists (MariaDBDestination property)</a>
+
+      <ul>
+        <li><a href="api_ref/connectors_list.html#tabsdata.tabsdatafunction.MySQLDestination.if_table_exists">(MySQLDestination property)</a>
+</li>
+        <li><a href="api_ref/connectors_list.html#tabsdata.tabsdatafunction.OracleDestination.if_table_exists">(OracleDestination property)</a>
+</li>
+        <li><a href="api_ref/connectors_list.html#tabsdata.tabsdatafunction.PostgresDestination.if_table_exists">(PostgresDestination property)</a>
+</li>
+      </ul></li>
+      <li><a href="api_ref/connectors_list.html#tabsdata.tabsdatafunction.AzureSource.initial_last_modified">initial_last_modified (AzureSource property)</a>
+
+      <ul>
+        <li><a href="api_ref/connectors_list.html#tabsdata.tabsdatafunction.LocalFileSource.initial_last_modified">(LocalFileSource property)</a>
+</li>
+        <li><a href="api_ref/connectors_list.html#tabsdata.tabsdatafunction.S3Source.initial_last_modified">(S3Source property)</a>
+</li>
+      </ul></li>
+      <li><a href="api_ref/connectors_list.html#tabsdata.tabsdatafunction.MariaDBSource.initial_values">initial_values (MariaDBSource property)</a>
+
+      <ul>
+        <li><a href="api_ref/connectors_list.html#tabsdata.tabsdatafunction.MySQLSource.initial_values">(MySQLSource property)</a>
+</li>
+        <li><a href="api_ref/connectors_list.html#tabsdata.tabsdatafunction.OracleSource.initial_values">(OracleSource property)</a>
+</li>
+        <li><a href="api_ref/connectors_list.html#tabsdata.tabsdatafunction.PostgresSource.initial_values">(PostgresSource property)</a>
+</li>
+        <li><a href="api_ref/connectors_list.html#tabsdata.tabsdatafunction.SourcePlugin.initial_values">(SourcePlugin property)</a>
+</li>
+      </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api_ref/tableframe.html#tabsdata.TableFrame.inspect">inspect() (TableFrame method)</a>
+</li>
+      <li><a href="api_ref/tableframe.html#tabsdata.Expr.is_between">is_between() (Expr method)</a>
+</li>
+      <li><a href="api_ref/tableframe.html#tabsdata.Expr.is_finite">is_finite() (Expr method)</a>
+</li>
+      <li><a href="api_ref/tableframe.html#tabsdata.Expr.is_in">is_in() (Expr method)</a>
+</li>
+      <li><a href="api_ref/tableframe.html#tabsdata.Expr.is_infinite">is_infinite() (Expr method)</a>
+</li>
+      <li><a href="api_ref/tableframe.html#tabsdata.tableframe.functions.datetime.TdExprDateTimeNameSpace.is_leap_year">is_leap_year() (TdExprDateTimeNameSpace method)</a>, <a href="api_ref/tabsdata.tableframe.functions.html#tabsdata.tableframe.functions.datetime.TdExprDateTimeNameSpace.is_leap_year">[1]</a>
+</li>
+      <li><a href="api_ref/tableframe.html#tabsdata.Expr.is_nan">is_nan() (Expr method)</a>
+</li>
+      <li><a href="api_ref/tableframe.html#tabsdata.Expr.is_not_nan">is_not_nan() (Expr method)</a>
+</li>
+      <li><a href="api_ref/tableframe.html#tabsdata.Expr.is_not_null">is_not_null() (Expr method)</a>
+</li>
+      <li><a href="api_ref/tableframe.html#tabsdata.Expr.is_null">is_null() (Expr method)</a>
+</li>
+      <li><a href="api_ref/tableframe.html#tabsdata.Expr.is_unique">is_unique() (Expr method)</a>
+</li>
+      <li><a href="api_ref/tableframe.html#tabsdata.tableframe.functions.datetime.TdExprDateTimeNameSpace.iso_year">iso_year() (TdExprDateTimeNameSpace method)</a>, <a href="api_ref/tabsdata.tableframe.functions.html#tabsdata.tableframe.functions.datetime.TdExprDateTimeNameSpace.iso_year">[1]</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="J">J</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api_ref/tableframe.html#tabsdata.TableFrame.join">join() (TableFrame method)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="L">L</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api_ref/tableframe.html#tabsdata.Expr.last">last() (Expr method)</a>
+
+      <ul>
+        <li><a href="api_ref/tableframe.html#tabsdata.TableFrame.last">(TableFrame method)</a>
+</li>
+      </ul></li>
+      <li><a href="api_ref/tableframe.html#tabsdata.Expr.le">le() (Expr method)</a>
+</li>
+      <li><a href="api_ref/tableframe.html#tabsdata.Expr.len">len() (Expr method)</a>
+
+      <ul>
+        <li><a href="api_ref/tableframe.html#tabsdata.tableframe.lazyframe.group_by.TdLazyGroupBy.len">(TdLazyGroupBy method)</a>, <a href="api_ref/tabsdata.tableframe.lazyframe.html#tabsdata.tableframe.lazyframe.group_by.TdLazyGroupBy.len">[1]</a>
+</li>
+      </ul></li>
+      <li><a href="api_ref/tableframe.html#tabsdata.tableframe.expr.string.TdExprStringNameSpace.len_bytes">len_bytes() (TdExprStringNameSpace method)</a>, <a href="api_ref/tabsdata.tableframe.expr.html#tabsdata.tableframe.expr.string.TdExprStringNameSpace.len_bytes">[1]</a>
+</li>
+      <li><a href="api_ref/tableframe.html#tabsdata.tableframe.expr.string.TdExprStringNameSpace.len_chars">len_chars() (TdExprStringNameSpace method)</a>, <a href="api_ref/tabsdata.tableframe.expr.html#tabsdata.tableframe.expr.string.TdExprStringNameSpace.len_chars">[1]</a>
+</li>
+      <li><a href="api_ref/tableframe.html#tabsdata.TableFrame.limit">limit() (TableFrame method)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api_ref/tableframe_functions.html#tabsdata.lit">lit() (in module tabsdata)</a>
+
+      <ul>
+        <li><a href="api_ref/tabsdata.tableframe.functions.html#tabsdata.tableframe.functions.lit.lit">(in module tabsdata.tableframe.functions.lit)</a>
+</li>
+      </ul></li>
+      <li><a href="api_ref/connectors_list.html#tabsdata.tabsdatafunction.LocalFileDestination">LocalFileDestination (class in tabsdata.tabsdatafunction)</a>
+</li>
+      <li><a href="api_ref/connectors_list.html#tabsdata.tabsdatafunction.LocalFileSource">LocalFileSource (class in tabsdata.tabsdatafunction)</a>
+</li>
+      <li><a href="api_ref/tableframe.html#tabsdata.Expr.log">log() (Expr method)</a>
+</li>
+      <li><a href="api_ref/tableframe.html#tabsdata.Expr.log10">log10() (Expr method)</a>
+</li>
+      <li><a href="api_ref/tableframe.html#tabsdata.Expr.log1p">log1p() (Expr method)</a>
+</li>
+      <li><a href="api_ref/fileformats.html#tabsdata.format.LogFormat">LogFormat (class in tabsdata.format)</a>
+</li>
+      <li><a href="api_ref/tableframe.html#tabsdata.Expr.lt">lt() (Expr method)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="M">M</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api_ref/connectors_list.html#tabsdata.tabsdatafunction.MariaDBDestination">MariaDBDestination (class in tabsdata.tabsdatafunction)</a>
+</li>
+      <li><a href="api_ref/connectors_list.html#tabsdata.tabsdatafunction.MariaDBSource">MariaDBSource (class in tabsdata.tabsdatafunction)</a>
+</li>
+      <li><a href="api_ref/tableframe.html#tabsdata.Expr.max">max() (Expr method)</a>
+
+      <ul>
+        <li><a href="api_ref/tableframe.html#tabsdata.tableframe.lazyframe.group_by.TdLazyGroupBy.max">(TdLazyGroupBy method)</a>, <a href="api_ref/tabsdata.tableframe.lazyframe.html#tabsdata.tableframe.lazyframe.group_by.TdLazyGroupBy.max">[1]</a>
+</li>
+      </ul></li>
+      <li><a href="api_ref/tableframe.html#tabsdata.Expr.mean">mean() (Expr method)</a>
+
+      <ul>
+        <li><a href="api_ref/tableframe.html#tabsdata.tableframe.lazyframe.group_by.TdLazyGroupBy.mean">(TdLazyGroupBy method)</a>, <a href="api_ref/tabsdata.tableframe.lazyframe.html#tabsdata.tableframe.lazyframe.group_by.TdLazyGroupBy.mean">[1]</a>
+</li>
+      </ul></li>
+      <li><a href="api_ref/tableframe.html#tabsdata.Expr.median">median() (Expr method)</a>
+
+      <ul>
+        <li><a href="api_ref/tableframe.html#tabsdata.tableframe.lazyframe.group_by.TdLazyGroupBy.median">(TdLazyGroupBy method)</a>, <a href="api_ref/tabsdata.tableframe.lazyframe.html#tabsdata.tableframe.lazyframe.group_by.TdLazyGroupBy.median">[1]</a>
+</li>
+      </ul></li>
+      <li><a href="api_ref/tableframe.html#tabsdata.tableframe.functions.datetime.TdExprDateTimeNameSpace.microsecond">microsecond() (TdExprDateTimeNameSpace method)</a>, <a href="api_ref/tabsdata.tableframe.functions.html#tabsdata.tableframe.functions.datetime.TdExprDateTimeNameSpace.microsecond">[1]</a>
+</li>
+      <li><a href="api_ref/tableframe.html#tabsdata.tableframe.functions.datetime.TdExprDateTimeNameSpace.millennium">millennium() (TdExprDateTimeNameSpace method)</a>, <a href="api_ref/tabsdata.tableframe.functions.html#tabsdata.tableframe.functions.datetime.TdExprDateTimeNameSpace.millennium">[1]</a>
+</li>
+      <li><a href="api_ref/tableframe.html#tabsdata.tableframe.functions.datetime.TdExprDateTimeNameSpace.millisecond">millisecond() (TdExprDateTimeNameSpace method)</a>, <a href="api_ref/tabsdata.tableframe.functions.html#tabsdata.tableframe.functions.datetime.TdExprDateTimeNameSpace.millisecond">[1]</a>
+</li>
+      <li><a href="api_ref/tableframe.html#tabsdata.Expr.min">min() (Expr method)</a>
+
+      <ul>
+        <li><a href="api_ref/tableframe.html#tabsdata.tableframe.lazyframe.group_by.TdLazyGroupBy.min">(TdLazyGroupBy method)</a>, <a href="api_ref/tabsdata.tableframe.lazyframe.html#tabsdata.tableframe.lazyframe.group_by.TdLazyGroupBy.min">[1]</a>
+</li>
+      </ul></li>
+      <li><a href="api_ref/tableframe.html#tabsdata.tableframe.functions.datetime.TdExprDateTimeNameSpace.minute">minute() (TdExprDateTimeNameSpace method)</a>, <a href="api_ref/tabsdata.tableframe.functions.html#tabsdata.tableframe.functions.datetime.TdExprDateTimeNameSpace.minute">[1]</a>
+</li>
+      <li><a href="api_ref/tableframe.html#tabsdata.Expr.mod">mod() (Expr method)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li>
+    module
+
+      <ul>
+        <li><a href="api_ref/tabsdata.tableframe.expr.html#module-tabsdata.tableframe.expr.expr">tabsdata.tableframe.expr.expr</a>
+</li>
+        <li><a href="api_ref/tabsdata.tableframe.expr.html#module-tabsdata.tableframe.expr.string">tabsdata.tableframe.expr.string</a>
+</li>
+        <li><a href="api_ref/tabsdata.tableframe.functions.html#module-tabsdata.tableframe.functions.col">tabsdata.tableframe.functions.col</a>
+</li>
+        <li><a href="api_ref/tabsdata.tableframe.functions.html#module-tabsdata.tableframe.functions.datetime">tabsdata.tableframe.functions.datetime</a>
+</li>
+        <li><a href="api_ref/tabsdata.tableframe.functions.html#module-tabsdata.tableframe.functions.eager">tabsdata.tableframe.functions.eager</a>
+</li>
+        <li><a href="api_ref/tabsdata.tableframe.functions.html#module-tabsdata.tableframe.functions.lit">tabsdata.tableframe.functions.lit</a>
+</li>
+        <li><a href="api_ref/tabsdata.tableframe.lazyframe.html#module-tabsdata.tableframe.lazyframe.frame">tabsdata.tableframe.lazyframe.frame</a>
+</li>
+        <li><a href="api_ref/tabsdata.tableframe.lazyframe.html#module-tabsdata.tableframe.lazyframe.group_by">tabsdata.tableframe.lazyframe.group_by</a>
+</li>
+        <li><a href="api_ref/tabsdata.utils.tableframe.html#module-tabsdata.utils.tableframe">tabsdata.utils.tableframe</a>
+</li>
+      </ul></li>
+      <li><a href="api_ref/tableframe.html#tabsdata.tableframe.functions.datetime.TdExprDateTimeNameSpace.month">month() (TdExprDateTimeNameSpace method)</a>, <a href="api_ref/tabsdata.tableframe.functions.html#tabsdata.tableframe.functions.datetime.TdExprDateTimeNameSpace.month">[1]</a>
+</li>
+      <li><a href="api_ref/tableframe.html#tabsdata.tableframe.functions.datetime.TdExprDateTimeNameSpace.month_end">month_end() (TdExprDateTimeNameSpace method)</a>, <a href="api_ref/tabsdata.tableframe.functions.html#tabsdata.tableframe.functions.datetime.TdExprDateTimeNameSpace.month_end">[1]</a>
+</li>
+      <li><a href="api_ref/tableframe.html#tabsdata.tableframe.functions.datetime.TdExprDateTimeNameSpace.month_start">month_start() (TdExprDateTimeNameSpace method)</a>, <a href="api_ref/tabsdata.tableframe.functions.html#tabsdata.tableframe.functions.datetime.TdExprDateTimeNameSpace.month_start">[1]</a>
+</li>
+      <li><a href="api_ref/tableframe.html#tabsdata.Expr.mul">mul() (Expr method)</a>
+</li>
+      <li><a href="api_ref/connectors_list.html#tabsdata.tabsdatafunction.MySQLDestination">MySQLDestination (class in tabsdata.tabsdatafunction)</a>
+</li>
+      <li><a href="api_ref/connectors_list.html#tabsdata.tabsdatafunction.MySQLSource">MySQLSource (class in tabsdata.tabsdatafunction)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="N">N</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api_ref/tableframe.html#tabsdata.Expr.n_unique">n_unique() (Expr method)</a>
+
+      <ul>
+        <li><a href="api_ref/tableframe.html#tabsdata.tableframe.lazyframe.group_by.TdLazyGroupBy.n_unique">(TdLazyGroupBy method)</a>, <a href="api_ref/tabsdata.tableframe.lazyframe.html#tabsdata.tableframe.lazyframe.group_by.TdLazyGroupBy.n_unique">[1]</a>
+</li>
+      </ul></li>
+      <li><a href="api_ref/tableframe.html#tabsdata.tableframe.functions.datetime.TdExprDateTimeNameSpace.nanosecond">nanosecond() (TdExprDateTimeNameSpace method)</a>, <a href="api_ref/tabsdata.tableframe.functions.html#tabsdata.tableframe.functions.datetime.TdExprDateTimeNameSpace.nanosecond">[1]</a>
+</li>
+      <li><a href="api_ref/fileformats.html#tabsdata.format.NDJSONFormat">NDJSONFormat (class in tabsdata.format)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api_ref/tableframe.html#tabsdata.Expr.ne">ne() (Expr method)</a>
+</li>
+      <li><a href="api_ref/tableframe.html#tabsdata.Expr.ne_missing">ne_missing() (Expr method)</a>
+</li>
+      <li><a href="api_ref/tableframe.html#tabsdata.Expr.neg">neg() (Expr method)</a>
+</li>
+      <li><a href="api_ref/tableframe.html#tabsdata.Expr.not_">not_() (Expr method)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="O">O</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api_ref/tableframe.html#tabsdata.tableframe.functions.datetime.TdExprDateTimeNameSpace.offset_by">offset_by() (TdExprDateTimeNameSpace method)</a>, <a href="api_ref/tabsdata.tableframe.functions.html#tabsdata.tableframe.functions.datetime.TdExprDateTimeNameSpace.offset_by">[1]</a>
+</li>
+      <li><a href="api_ref/tableframe.html#tabsdata.Expr.or_">or_() (Expr method)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api_ref/connectors_list.html#tabsdata.tabsdatafunction.OracleDestination">OracleDestination (class in tabsdata.tabsdatafunction)</a>
+</li>
+      <li><a href="api_ref/connectors_list.html#tabsdata.tabsdatafunction.OracleSource">OracleSource (class in tabsdata.tabsdatafunction)</a>
+</li>
+      <li><a href="api_ref/tableframe.html#tabsdata.tableframe.functions.datetime.TdExprDateTimeNameSpace.ordinal_day">ordinal_day() (TdExprDateTimeNameSpace method)</a>, <a href="api_ref/tabsdata.tableframe.functions.html#tabsdata.tableframe.functions.datetime.TdExprDateTimeNameSpace.ordinal_day">[1]</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="P">P</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api_ref/tableframe.html#tabsdata.tableframe.expr.string.TdExprStringNameSpace.pad_end">pad_end() (TdExprStringNameSpace method)</a>, <a href="api_ref/tabsdata.tableframe.expr.html#tabsdata.tableframe.expr.string.TdExprStringNameSpace.pad_end">[1]</a>
+</li>
+      <li><a href="api_ref/tableframe.html#tabsdata.tableframe.expr.string.TdExprStringNameSpace.pad_start">pad_start() (TdExprStringNameSpace method)</a>, <a href="api_ref/tabsdata.tableframe.expr.html#tabsdata.tableframe.expr.string.TdExprStringNameSpace.pad_start">[1]</a>
+</li>
+      <li><a href="api_ref/fileformats.html#tabsdata.format.ParquetFormat">ParquetFormat (class in tabsdata.format)</a>
+</li>
+      <li><a href="api_ref/credentials.html#tabsdata.credentials.UserPasswordCredentials.password">password (UserPasswordCredentials property)</a>
+</li>
+      <li><a href="api_ref/connectors_list.html#tabsdata.tabsdatafunction.LocalFileDestination.path">path (LocalFileDestination property)</a>
+
+      <ul>
+        <li><a href="api_ref/connectors_list.html#tabsdata.tabsdatafunction.LocalFileSource.path">(LocalFileSource property)</a>
+</li>
+      </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api_ref/connectors_list.html#tabsdata.tabsdatafunction.PostgresDestination">PostgresDestination (class in tabsdata.tabsdatafunction)</a>
+</li>
+      <li><a href="api_ref/connectors_list.html#tabsdata.tabsdatafunction.PostgresSource">PostgresSource (class in tabsdata.tabsdatafunction)</a>
+</li>
+      <li><a href="api_ref/tableframe.html#tabsdata.Expr.pow">pow() (Expr method)</a>
+</li>
+      <li><a href="api_ref/decorators.html#tabsdata.decorators.publisher">publisher() (in module tabsdata.decorators)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="Q">Q</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api_ref/tableframe.html#tabsdata.tableframe.functions.datetime.TdExprDateTimeNameSpace.quarter">quarter() (TdExprDateTimeNameSpace method)</a>, <a href="api_ref/tabsdata.tableframe.functions.html#tabsdata.tableframe.functions.datetime.TdExprDateTimeNameSpace.quarter">[1]</a>
+</li>
+      <li><a href="api_ref/connectors_list.html#tabsdata.tabsdatafunction.MariaDBSource.query">query (MariaDBSource property)</a>
+
+      <ul>
+        <li><a href="api_ref/connectors_list.html#tabsdata.tabsdatafunction.MySQLSource.query">(MySQLSource property)</a>
+</li>
+        <li><a href="api_ref/connectors_list.html#tabsdata.tabsdatafunction.OracleSource.query">(OracleSource property)</a>
+</li>
+        <li><a href="api_ref/connectors_list.html#tabsdata.tabsdatafunction.PostgresSource.query">(PostgresSource property)</a>
+</li>
+      </ul></li>
+  </ul></td>
+</tr></table>
+
+<h2 id="R">R</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api_ref/tableframe.html#tabsdata.Expr.radians">radians() (Expr method)</a>
+</li>
+      <li><a href="api_ref/tableframe.html#tabsdata.Expr.rank">rank() (Expr method)</a>
+</li>
+      <li><a href="api_ref/connectors_list.html#tabsdata.tabsdatafunction.S3Destination.region">region (S3Destination property)</a>
+
+      <ul>
+        <li><a href="api_ref/connectors_list.html#tabsdata.tabsdatafunction.S3Source.region">(S3Source property)</a>
+</li>
+      </ul></li>
+      <li><a href="api_ref/tableframe.html#tabsdata.Expr.reinterpret">reinterpret() (Expr method)</a>
+</li>
+      <li><a href="api_ref/tableframe.html#tabsdata.tableframe.functions.datetime.TdExprDateTimeNameSpace.replace">replace() (TdExprDateTimeNameSpace method)</a>, <a href="api_ref/tabsdata.tableframe.functions.html#tabsdata.tableframe.functions.datetime.TdExprDateTimeNameSpace.replace">[1]</a>
+
+      <ul>
+        <li><a href="api_ref/tableframe.html#tabsdata.tableframe.expr.string.TdExprStringNameSpace.replace">(TdExprStringNameSpace method)</a>, <a href="api_ref/tabsdata.tableframe.expr.html#tabsdata.tableframe.expr.string.TdExprStringNameSpace.replace">[1]</a>
+</li>
+      </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api_ref/tableframe.html#tabsdata.tableframe.expr.string.TdExprStringNameSpace.replace_all">replace_all() (TdExprStringNameSpace method)</a>, <a href="api_ref/tabsdata.tableframe.expr.html#tabsdata.tableframe.expr.string.TdExprStringNameSpace.replace_all">[1]</a>
+</li>
+      <li><a href="api_ref/tableframe.html#tabsdata.tableframe.expr.string.TdExprStringNameSpace.replace_many">replace_many() (TdExprStringNameSpace method)</a>, <a href="api_ref/tabsdata.tableframe.expr.html#tabsdata.tableframe.expr.string.TdExprStringNameSpace.replace_many">[1]</a>
+</li>
+      <li><a href="api_ref/tableframe.html#tabsdata.tableframe.functions.datetime.TdExprDateTimeNameSpace.replace_time_zone">replace_time_zone() (TdExprDateTimeNameSpace method)</a>, <a href="api_ref/tabsdata.tableframe.functions.html#tabsdata.tableframe.functions.datetime.TdExprDateTimeNameSpace.replace_time_zone">[1]</a>
+</li>
+      <li><a href="api_ref/tableframe.html#tabsdata.tableframe.expr.string.TdExprStringNameSpace.reverse">reverse() (TdExprStringNameSpace method)</a>, <a href="api_ref/tabsdata.tableframe.expr.html#tabsdata.tableframe.expr.string.TdExprStringNameSpace.reverse">[1]</a>
+</li>
+      <li><a href="api_ref/tableframe.html#tabsdata.Expr.round">round() (Expr method)</a>
+</li>
+      <li><a href="api_ref/tableframe.html#tabsdata.Expr.round_sig_figs">round_sig_figs() (Expr method)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="S">S</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api_ref/credentials.html#tabsdata.credentials.S3AccessKeyCredentials">S3AccessKeyCredentials (class in tabsdata.credentials)</a>
+</li>
+      <li><a href="api_ref/connectors_list.html#tabsdata.tabsdatafunction.S3Destination">S3Destination (class in tabsdata.tabsdatafunction)</a>
+</li>
+      <li><a href="api_ref/connectors_list.html#tabsdata.tabsdatafunction.S3Source">S3Source (class in tabsdata.tabsdatafunction)</a>
+</li>
+      <li><a href="api_ref/tableframe.html#tabsdata.TableFrame.schema">schema (TableFrame property)</a>
+</li>
+      <li><a href="api_ref/tableframe.html#tabsdata.tableframe.functions.datetime.TdExprDateTimeNameSpace.second">second() (TdExprDateTimeNameSpace method)</a>, <a href="api_ref/tabsdata.tableframe.functions.html#tabsdata.tableframe.functions.datetime.TdExprDateTimeNameSpace.second">[1]</a>
+</li>
+      <li><a href="api_ref/credentials.html#tabsdata.secret.Secret">Secret (class in tabsdata.secret)</a>
+</li>
+      <li><a href="api_ref/credentials.html#tabsdata.secret.DirectSecret.secret_value">secret_value (DirectSecret property)</a>
+
+      <ul>
+        <li><a href="api_ref/credentials.html#tabsdata.secret.EnvironmentSecret.secret_value">(EnvironmentSecret property)</a>
+</li>
+      </ul></li>
+      <li><a href="api_ref/tableframe.html#tabsdata.TableFrame.select">select() (TableFrame method)</a>
+</li>
+      <li><a href="api_ref/tableframe.html#tabsdata.TableFrame.show_graph">show_graph() (TableFrame method)</a>
+</li>
+      <li><a href="api_ref/tableframe.html#tabsdata.Expr.shrink_dtype">shrink_dtype() (Expr method)</a>
+</li>
+      <li><a href="api_ref/tableframe.html#tabsdata.Expr.sign">sign() (Expr method)</a>
+</li>
+      <li><a href="api_ref/tableframe.html#tabsdata.Expr.sin">sin() (Expr method)</a>
+</li>
+      <li><a href="api_ref/tableframe.html#tabsdata.Expr.sinh">sinh() (Expr method)</a>
+</li>
+      <li><a href="api_ref/tableframe.html#tabsdata.Expr.slice">slice() (Expr method)</a>
+
+      <ul>
+        <li><a href="api_ref/tableframe.html#tabsdata.TableFrame.slice">(TableFrame method)</a>
+</li>
+        <li><a href="api_ref/tableframe.html#tabsdata.tableframe.expr.string.TdExprStringNameSpace.slice">(TdExprStringNameSpace method)</a>, <a href="api_ref/tabsdata.tableframe.expr.html#tabsdata.tableframe.expr.string.TdExprStringNameSpace.slice">[1]</a>
+</li>
+      </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api_ref/tableframe.html#tabsdata.TableFrame.sort">sort() (TableFrame method)</a>
+</li>
+      <li><a href="api_ref/connectors_list.html#tabsdata.tabsdatafunction.SourcePlugin">SourcePlugin (class in tabsdata.tabsdatafunction)</a>
+</li>
+      <li><a href="api_ref/tableframe.html#tabsdata.Expr.sqrt">sqrt() (Expr method)</a>
+</li>
+      <li><a href="api_ref/tableframe.html#tabsdata.tableframe.expr.string.TdExprStringNameSpace.starts_with">starts_with() (TdExprStringNameSpace method)</a>, <a href="api_ref/tabsdata.tableframe.expr.html#tabsdata.tableframe.expr.string.TdExprStringNameSpace.starts_with">[1]</a>
+</li>
+      <li><a href="api_ref/tableframe.html#tabsdata.Expr.str">str (Expr property)</a>
+</li>
+      <li><a href="api_ref/tableframe.html#tabsdata.tableframe.functions.datetime.TdExprDateTimeNameSpace.strftime">strftime() (TdExprDateTimeNameSpace method)</a>, <a href="api_ref/tabsdata.tableframe.functions.html#tabsdata.tableframe.functions.datetime.TdExprDateTimeNameSpace.strftime">[1]</a>
+</li>
+      <li><a href="api_ref/tableframe.html#tabsdata.tableframe.expr.string.TdExprStringNameSpace.strip_chars">strip_chars() (TdExprStringNameSpace method)</a>, <a href="api_ref/tabsdata.tableframe.expr.html#tabsdata.tableframe.expr.string.TdExprStringNameSpace.strip_chars">[1]</a>
+</li>
+      <li><a href="api_ref/tableframe.html#tabsdata.tableframe.expr.string.TdExprStringNameSpace.strip_chars_end">strip_chars_end() (TdExprStringNameSpace method)</a>, <a href="api_ref/tabsdata.tableframe.expr.html#tabsdata.tableframe.expr.string.TdExprStringNameSpace.strip_chars_end">[1]</a>
+</li>
+      <li><a href="api_ref/tableframe.html#tabsdata.tableframe.expr.string.TdExprStringNameSpace.strip_chars_start">strip_chars_start() (TdExprStringNameSpace method)</a>, <a href="api_ref/tabsdata.tableframe.expr.html#tabsdata.tableframe.expr.string.TdExprStringNameSpace.strip_chars_start">[1]</a>
+</li>
+      <li><a href="api_ref/tableframe.html#tabsdata.tableframe.expr.string.TdExprStringNameSpace.strip_prefix">strip_prefix() (TdExprStringNameSpace method)</a>, <a href="api_ref/tabsdata.tableframe.expr.html#tabsdata.tableframe.expr.string.TdExprStringNameSpace.strip_prefix">[1]</a>
+</li>
+      <li><a href="api_ref/tableframe.html#tabsdata.tableframe.expr.string.TdExprStringNameSpace.strip_suffix">strip_suffix() (TdExprStringNameSpace method)</a>, <a href="api_ref/tabsdata.tableframe.expr.html#tabsdata.tableframe.expr.string.TdExprStringNameSpace.strip_suffix">[1]</a>
+</li>
+      <li><a href="api_ref/tableframe.html#tabsdata.Expr.sub">sub() (Expr method)</a>
+</li>
+      <li><a href="api_ref/decorators.html#tabsdata.decorators.subscriber">subscriber() (in module tabsdata.decorators)</a>
+</li>
+      <li><a href="api_ref/tableframe.html#tabsdata.Expr.sum">sum() (Expr method)</a>
+
+      <ul>
+        <li><a href="api_ref/tableframe.html#tabsdata.tableframe.lazyframe.group_by.TdLazyGroupBy.sum">(TdLazyGroupBy method)</a>, <a href="api_ref/tabsdata.tableframe.lazyframe.html#tabsdata.tableframe.lazyframe.group_by.TdLazyGroupBy.sum">[1]</a>
+</li>
+      </ul></li>
+  </ul></td>
+</tr></table>
+
+<h2 id="T">T</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api_ref/tableframe.html#tabsdata.TableFrame">TableFrame (class in tabsdata)</a>
+</li>
+      <li>
+    tabsdata.tableframe.expr.expr
+
+      <ul>
+        <li><a href="api_ref/tabsdata.tableframe.expr.html#module-tabsdata.tableframe.expr.expr">module</a>
+</li>
+      </ul></li>
+      <li>
+    tabsdata.tableframe.expr.string
+
+      <ul>
+        <li><a href="api_ref/tabsdata.tableframe.expr.html#module-tabsdata.tableframe.expr.string">module</a>
+</li>
+      </ul></li>
+      <li>
+    tabsdata.tableframe.functions.col
+
+      <ul>
+        <li><a href="api_ref/tabsdata.tableframe.functions.html#module-tabsdata.tableframe.functions.col">module</a>
+</li>
+      </ul></li>
+      <li>
+    tabsdata.tableframe.functions.datetime
+
+      <ul>
+        <li><a href="api_ref/tabsdata.tableframe.functions.html#module-tabsdata.tableframe.functions.datetime">module</a>
+</li>
+      </ul></li>
+      <li>
+    tabsdata.tableframe.functions.eager
+
+      <ul>
+        <li><a href="api_ref/tabsdata.tableframe.functions.html#module-tabsdata.tableframe.functions.eager">module</a>
+</li>
+      </ul></li>
+      <li>
+    tabsdata.tableframe.functions.lit
+
+      <ul>
+        <li><a href="api_ref/tabsdata.tableframe.functions.html#module-tabsdata.tableframe.functions.lit">module</a>
+</li>
+      </ul></li>
+      <li>
+    tabsdata.tableframe.lazyframe.frame
+
+      <ul>
+        <li><a href="api_ref/tabsdata.tableframe.lazyframe.html#module-tabsdata.tableframe.lazyframe.frame">module</a>
+</li>
+      </ul></li>
+      <li>
+    tabsdata.tableframe.lazyframe.group_by
+
+      <ul>
+        <li><a href="api_ref/tabsdata.tableframe.lazyframe.html#module-tabsdata.tableframe.lazyframe.group_by">module</a>
+</li>
+      </ul></li>
+      <li>
+    tabsdata.utils.tableframe
+
+      <ul>
+        <li><a href="api_ref/tabsdata.utils.tableframe.html#module-tabsdata.utils.tableframe">module</a>
+</li>
+      </ul></li>
+      <li><a href="api_ref/tableframe.html#tabsdata.TableFrame.tail">tail() (TableFrame method)</a>
+
+      <ul>
+        <li><a href="api_ref/tableframe.html#tabsdata.tableframe.expr.string.TdExprStringNameSpace.tail">(TdExprStringNameSpace method)</a>, <a href="api_ref/tabsdata.tableframe.expr.html#tabsdata.tableframe.expr.string.TdExprStringNameSpace.tail">[1]</a>
+</li>
+      </ul></li>
+      <li><a href="api_ref/tableframe.html#tabsdata.Expr.tan">tan() (Expr method)</a>
+</li>
+      <li><a href="api_ref/tableframe.html#tabsdata.Expr.tanh">tanh() (Expr method)</a>
+</li>
+      <li><a href="api_ref/tableframe_functions.html#tabsdata.tableframe.functions.col.TdCol">TdCol (class in tabsdata.tableframe.functions.col)</a>, <a href="api_ref/tabsdata.tableframe.functions.html#tabsdata.tableframe.functions.col.TdCol">[1]</a>
+</li>
+      <li><a href="api_ref/tableframe.html#tabsdata.tableframe.functions.datetime.TdExprDateTimeNameSpace">TdExprDateTimeNameSpace (class in tabsdata.tableframe.functions.datetime)</a>, <a href="api_ref/tabsdata.tableframe.functions.html#tabsdata.tableframe.functions.datetime.TdExprDateTimeNameSpace">[1]</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api_ref/tableframe.html#tabsdata.tableframe.expr.string.TdExprStringNameSpace">TdExprStringNameSpace (class in tabsdata.tableframe.expr.string)</a>, <a href="api_ref/tabsdata.tableframe.expr.html#tabsdata.tableframe.expr.string.TdExprStringNameSpace">[1]</a>
+</li>
+      <li><a href="api_ref/tableframe.html#tabsdata.tableframe.lazyframe.group_by.TdLazyGroupBy">TdLazyGroupBy (class in tabsdata.tableframe.lazyframe.group_by)</a>, <a href="api_ref/tabsdata.tableframe.lazyframe.html#tabsdata.tableframe.lazyframe.group_by.TdLazyGroupBy">[1]</a>
+</li>
+      <li><a href="api_ref/tabsdata.tableframe.lazyframe.html#tabsdata.tableframe.lazyframe.frame.TdPolarsType">TdPolarsType (class in tabsdata.tableframe.lazyframe.frame)</a>
+</li>
+      <li><a href="api_ref/tableframe.html#tabsdata.tableframe.functions.datetime.TdExprDateTimeNameSpace.time">time() (TdExprDateTimeNameSpace method)</a>, <a href="api_ref/tabsdata.tableframe.functions.html#tabsdata.tableframe.functions.datetime.TdExprDateTimeNameSpace.time">[1]</a>
+</li>
+      <li><a href="api_ref/tableframe.html#tabsdata.tableframe.functions.datetime.TdExprDateTimeNameSpace.timestamp">timestamp() (TdExprDateTimeNameSpace method)</a>, <a href="api_ref/tabsdata.tableframe.functions.html#tabsdata.tableframe.functions.datetime.TdExprDateTimeNameSpace.timestamp">[1]</a>
+</li>
+      <li><a href="api_ref/tableframe.html#tabsdata.tableframe.expr.string.TdExprStringNameSpace.to_date">to_date() (TdExprStringNameSpace method)</a>, <a href="api_ref/tabsdata.tableframe.expr.html#tabsdata.tableframe.expr.string.TdExprStringNameSpace.to_date">[1]</a>
+</li>
+      <li><a href="api_ref/tableframe.html#tabsdata.tableframe.expr.string.TdExprStringNameSpace.to_datetime">to_datetime() (TdExprStringNameSpace method)</a>, <a href="api_ref/tabsdata.tableframe.expr.html#tabsdata.tableframe.expr.string.TdExprStringNameSpace.to_datetime">[1]</a>
+</li>
+      <li><a href="api_ref/tableframe.html#tabsdata.tableframe.expr.string.TdExprStringNameSpace.to_integer">to_integer() (TdExprStringNameSpace method)</a>, <a href="api_ref/tabsdata.tableframe.expr.html#tabsdata.tableframe.expr.string.TdExprStringNameSpace.to_integer">[1]</a>
+</li>
+      <li><a href="api_ref/tableframe.html#tabsdata.tableframe.expr.string.TdExprStringNameSpace.to_lowercase">to_lowercase() (TdExprStringNameSpace method)</a>, <a href="api_ref/tabsdata.tableframe.expr.html#tabsdata.tableframe.expr.string.TdExprStringNameSpace.to_lowercase">[1]</a>
+</li>
+      <li><a href="api_ref/tableframe.html#tabsdata.tableframe.functions.datetime.TdExprDateTimeNameSpace.to_string">to_string() (TdExprDateTimeNameSpace method)</a>, <a href="api_ref/tabsdata.tableframe.functions.html#tabsdata.tableframe.functions.datetime.TdExprDateTimeNameSpace.to_string">[1]</a>
+</li>
+      <li><a href="api_ref/tabsdata.tableframe.expr.html#tabsdata.tableframe.expr.string.to_tdexpr">to_tdexpr() (in module tabsdata.tableframe.expr.string)</a>
+</li>
+      <li><a href="api_ref/tableframe.html#tabsdata.tableframe.expr.string.TdExprStringNameSpace.to_time">to_time() (TdExprStringNameSpace method)</a>, <a href="api_ref/tabsdata.tableframe.expr.html#tabsdata.tableframe.expr.string.TdExprStringNameSpace.to_time">[1]</a>
+</li>
+      <li><a href="api_ref/tableframe.html#tabsdata.tableframe.expr.string.TdExprStringNameSpace.to_titlecase">to_titlecase() (TdExprStringNameSpace method)</a>, <a href="api_ref/tabsdata.tableframe.expr.html#tabsdata.tableframe.expr.string.TdExprStringNameSpace.to_titlecase">[1]</a>
+</li>
+      <li><a href="api_ref/tableframe.html#tabsdata.tableframe.expr.string.TdExprStringNameSpace.to_uppercase">to_uppercase() (TdExprStringNameSpace method)</a>, <a href="api_ref/tabsdata.tableframe.expr.html#tabsdata.tableframe.expr.string.TdExprStringNameSpace.to_uppercase">[1]</a>
+</li>
+      <li><a href="api_ref/tableframe.html#tabsdata.tableframe.functions.datetime.TdExprDateTimeNameSpace.total_days">total_days() (TdExprDateTimeNameSpace method)</a>, <a href="api_ref/tabsdata.tableframe.functions.html#tabsdata.tableframe.functions.datetime.TdExprDateTimeNameSpace.total_days">[1]</a>
+</li>
+      <li><a href="api_ref/tableframe.html#tabsdata.tableframe.functions.datetime.TdExprDateTimeNameSpace.total_hours">total_hours() (TdExprDateTimeNameSpace method)</a>, <a href="api_ref/tabsdata.tableframe.functions.html#tabsdata.tableframe.functions.datetime.TdExprDateTimeNameSpace.total_hours">[1]</a>
+</li>
+      <li><a href="api_ref/tableframe.html#tabsdata.tableframe.functions.datetime.TdExprDateTimeNameSpace.total_microseconds">total_microseconds() (TdExprDateTimeNameSpace method)</a>, <a href="api_ref/tabsdata.tableframe.functions.html#tabsdata.tableframe.functions.datetime.TdExprDateTimeNameSpace.total_microseconds">[1]</a>
+</li>
+      <li><a href="api_ref/tableframe.html#tabsdata.tableframe.functions.datetime.TdExprDateTimeNameSpace.total_milliseconds">total_milliseconds() (TdExprDateTimeNameSpace method)</a>, <a href="api_ref/tabsdata.tableframe.functions.html#tabsdata.tableframe.functions.datetime.TdExprDateTimeNameSpace.total_milliseconds">[1]</a>
+</li>
+      <li><a href="api_ref/tableframe.html#tabsdata.tableframe.functions.datetime.TdExprDateTimeNameSpace.total_minutes">total_minutes() (TdExprDateTimeNameSpace method)</a>, <a href="api_ref/tabsdata.tableframe.functions.html#tabsdata.tableframe.functions.datetime.TdExprDateTimeNameSpace.total_minutes">[1]</a>
+</li>
+      <li><a href="api_ref/tableframe.html#tabsdata.tableframe.functions.datetime.TdExprDateTimeNameSpace.total_nanoseconds">total_nanoseconds() (TdExprDateTimeNameSpace method)</a>, <a href="api_ref/tabsdata.tableframe.functions.html#tabsdata.tableframe.functions.datetime.TdExprDateTimeNameSpace.total_nanoseconds">[1]</a>
+</li>
+      <li><a href="api_ref/tableframe.html#tabsdata.tableframe.functions.datetime.TdExprDateTimeNameSpace.total_seconds">total_seconds() (TdExprDateTimeNameSpace method)</a>, <a href="api_ref/tabsdata.tableframe.functions.html#tabsdata.tableframe.functions.datetime.TdExprDateTimeNameSpace.total_seconds">[1]</a>
+</li>
+      <li><a href="api_ref/decorators.html#tabsdata.decorators.transformer">transformer() (in module tabsdata.decorators)</a>
+</li>
+      <li><a href="api_ref/connectors_list.html#tabsdata.tabsdatafunction.SourcePlugin.trigger_input">trigger_input() (SourcePlugin method)</a>
+</li>
+      <li><a href="api_ref/connectors_list.html#tabsdata.tabsdatafunction.DestinationPlugin.trigger_output">trigger_output() (DestinationPlugin method)</a>
+</li>
+      <li><a href="api_ref/tableframe.html#tabsdata.Expr.truediv">truediv() (Expr method)</a>
+</li>
+      <li><a href="api_ref/tableframe.html#tabsdata.tableframe.functions.datetime.TdExprDateTimeNameSpace.truncate">truncate() (TdExprDateTimeNameSpace method)</a>, <a href="api_ref/tabsdata.tableframe.functions.html#tabsdata.tableframe.functions.datetime.TdExprDateTimeNameSpace.truncate">[1]</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="U">U</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api_ref/tableframe.html#tabsdata.TableFrame.unique">unique() (TableFrame method)</a>
+</li>
+      <li><a href="api_ref/connectors_list.html#tabsdata.tabsdatafunction.AzureDestination.uri">uri (AzureDestination property)</a>
+
+      <ul>
+        <li><a href="api_ref/connectors_list.html#tabsdata.tabsdatafunction.AzureSource.uri">(AzureSource property)</a>
+</li>
+        <li><a href="api_ref/connectors_list.html#tabsdata.tabsdatafunction.MariaDBDestination.uri">(MariaDBDestination property)</a>
+</li>
+        <li><a href="api_ref/connectors_list.html#tabsdata.tabsdatafunction.MariaDBSource.uri">(MariaDBSource property)</a>
+</li>
+        <li><a href="api_ref/connectors_list.html#tabsdata.tabsdatafunction.MySQLDestination.uri">(MySQLDestination property)</a>
+</li>
+        <li><a href="api_ref/connectors_list.html#tabsdata.tabsdatafunction.MySQLSource.uri">(MySQLSource property)</a>
+</li>
+        <li><a href="api_ref/connectors_list.html#tabsdata.tabsdatafunction.OracleDestination.uri">(OracleDestination property)</a>
+</li>
+        <li><a href="api_ref/connectors_list.html#tabsdata.tabsdatafunction.OracleSource.uri">(OracleSource property)</a>
+</li>
+        <li><a href="api_ref/connectors_list.html#tabsdata.tabsdatafunction.PostgresDestination.uri">(PostgresDestination property)</a>
+</li>
+        <li><a href="api_ref/connectors_list.html#tabsdata.tabsdatafunction.PostgresSource.uri">(PostgresSource property)</a>
+</li>
+        <li><a href="api_ref/connectors_list.html#tabsdata.tabsdatafunction.S3Destination.uri">(S3Destination property)</a>
+</li>
+        <li><a href="api_ref/connectors_list.html#tabsdata.tabsdatafunction.S3Source.uri">(S3Source property)</a>
+</li>
+      </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api_ref/credentials.html#tabsdata.credentials.UserPasswordCredentials.user">user (UserPasswordCredentials property)</a>
+</li>
+      <li><a href="api_ref/credentials.html#tabsdata.credentials.UserPasswordCredentials">UserPasswordCredentials (class in tabsdata.credentials)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="W">W</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api_ref/tableframe.html#tabsdata.tableframe.functions.datetime.TdExprDateTimeNameSpace.week">week() (TdExprDateTimeNameSpace method)</a>, <a href="api_ref/tabsdata.tableframe.functions.html#tabsdata.tableframe.functions.datetime.TdExprDateTimeNameSpace.week">[1]</a>
+</li>
+      <li><a href="api_ref/tableframe.html#tabsdata.tableframe.functions.datetime.TdExprDateTimeNameSpace.weekday">weekday() (TdExprDateTimeNameSpace method)</a>, <a href="api_ref/tabsdata.tableframe.functions.html#tabsdata.tableframe.functions.datetime.TdExprDateTimeNameSpace.weekday">[1]</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api_ref/tableframe.html#tabsdata.TableFrame.width">width (TableFrame property)</a>
+</li>
+      <li><a href="api_ref/tableframe.html#tabsdata.TableFrame.with_columns">with_columns() (TableFrame method)</a>
+</li>
+      <li><a href="api_ref/tableframe.html#tabsdata.tableframe.functions.datetime.TdExprDateTimeNameSpace.with_time_unit">with_time_unit() (TdExprDateTimeNameSpace method)</a>, <a href="api_ref/tabsdata.tableframe.functions.html#tabsdata.tableframe.functions.datetime.TdExprDateTimeNameSpace.with_time_unit">[1]</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="X">X</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api_ref/tableframe.html#tabsdata.Expr.xor">xor() (Expr method)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="Y">Y</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api_ref/tableframe.html#tabsdata.tableframe.functions.datetime.TdExprDateTimeNameSpace.year">year() (TdExprDateTimeNameSpace method)</a>, <a href="api_ref/tabsdata.tableframe.functions.html#tabsdata.tableframe.functions.datetime.TdExprDateTimeNameSpace.year">[1]</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="Z">Z</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api_ref/tableframe.html#tabsdata.tableframe.expr.string.TdExprStringNameSpace.zfill">zfill() (TdExprStringNameSpace method)</a>, <a href="api_ref/tabsdata.tableframe.expr.html#tabsdata.tableframe.expr.string.TdExprStringNameSpace.zfill">[1]</a>
+</li>
+  </ul></td>
+</tr></table>
+
+
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="copyright">
+    
+      © Copyright 2024, Tabs Data.
+      <br/>
+    
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item">
+<p class="theme-version">
+  <!-- # L10n: Setting the PST URL as an argument as this does not need to be localized -->
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.16.1.
+</p></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>

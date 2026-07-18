@@ -1,0 +1,722 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Release Notes &#8212; Tabsdata  documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=8f2a1f02" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=8305e08e" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="../../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+
+    <script src="../../_static/jquery.js?v=5d32c60e"></script>
+    <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+    <script src="../../_static/documentation_options.js?v=7f41d439"></script>
+    <script src="../../_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=a56c686a"></script>
+    <script src="../../_static/design-tabs.js?v=f930bc37"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'guide/release_notes/main';</script>
+    <script>
+        DOCUMENTATION_OPTIONS.theme_version = '0.16.1';
+        DOCUMENTATION_OPTIONS.theme_switcher_json_url = 'https://docs.tabsdata.com/version.json';
+        DOCUMENTATION_OPTIONS.theme_switcher_version_match = '1.8.0';
+        DOCUMENTATION_OPTIONS.show_version_warning_banner =
+            false;
+        </script>
+    <script src="../../_static/custom.js?v=ac098f57"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Contact Us" href="../09_contact_support/main.html" />
+    <link rel="prev" title="CLI Reference" href="../11_cli_commands/main.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="1.8.0" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+
+
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+     
+  
+
+<a class="navbar-brand logo" href=" https://tabsdata.com/?utm_source=docs">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../_static/tabsdata_root.png" class="logo__image only-light" alt="Tabsdata  documentation - Home"/>
+    <img src="../../_static/tabsdata_root_light.png" class="logo__image only-dark pst-js-only" alt="Tabsdata  documentation - Home"/>
+  
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="../index.html">
+    User Guide
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../ref/index.html">
+    API Reference
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../tutorials/index.html">
+    Tutorials
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+        <div class="navbar-item">
+<div class="version-switcher__container dropdown pst-js-only">
+  <button id="pst-version-switcher-button-2"
+    type="button"
+    class="version-switcher__button btn btn-sm dropdown-toggle"
+    data-bs-toggle="dropdown"
+    aria-haspopup="listbox"
+    aria-controls="pst-version-switcher-list-2"
+    aria-label="Version switcher list"
+  >
+    Choose version  <!-- this text may get changed later by javascript -->
+    <span class="caret"></span>
+  </button>
+  <div id="pst-version-switcher-list-2"
+    class="version-switcher__menu dropdown-menu list-group-flush py-0"
+    role="listbox" aria-labelledby="pst-version-switcher-button-2">
+    <!-- dropdown will be populated by javascript on page load -->
+  </div>
+</div></div>
+      
+        <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="../index.html">
+    User Guide
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../ref/index.html">
+    API Reference
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../tutorials/index.html">
+    Tutorials
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+<div class="version-switcher__container dropdown pst-js-only">
+  <button id="pst-version-switcher-button-3"
+    type="button"
+    class="version-switcher__button btn btn-sm dropdown-toggle"
+    data-bs-toggle="dropdown"
+    aria-haspopup="listbox"
+    aria-controls="pst-version-switcher-list-3"
+    aria-label="Version switcher list"
+  >
+    Choose version  <!-- this text may get changed later by javascript -->
+    <span class="caret"></span>
+  </button>
+  <div id="pst-version-switcher-list-3"
+    class="version-switcher__menu dropdown-menu list-group-flush py-0"
+    role="listbox" aria-labelledby="pst-version-switcher-button-3">
+    <!-- dropdown will be populated by javascript on page load -->
+  </div>
+</div></div>
+        
+          <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+<nav class="bd-docs-nav bd-links"
+     aria-label="Section Navigation">
+  <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
+  <div class="bd-toc-item navbar-nav"><ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../01_overview/main.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../02_getting_started/main.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../server_configuration/main.html">Server Configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../03_key_concepts/main.html">Key Concepts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../04_working_with_functions/main.html">Working with Functions</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../04_01_working_with_publishers/main.html">Publishers</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../04_01_working_with_publishers/local_file_system/main.html">Local File System</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../04_01_working_with_publishers/amazon_s3/main.html">Amazon S3</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../04_01_working_with_publishers/azure/main.html">Azure Blob Storage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../04_01_working_with_publishers/gcp/main.html">Google Cloud Storage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../04_01_working_with_publishers/grok_for_log_files/main.html">Grok for Log Files</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../04_01_working_with_publishers/db2/main.html">Db2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../04_01_working_with_publishers/db2_cdc/main.html">Db2 CDC</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../working_with_kafka/main.html">Kafka</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../04_01_working_with_publishers/mariadb/main.html">MariaDB</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../04_01_working_with_publishers/mssql/main.html">Microsoft SQL Server</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../04_01_working_with_publishers/mysql/main.html">MySQL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../04_01_working_with_publishers/mysql_cdc/main.html">MySQL CDC</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../04_01_working_with_publishers/oracle/main.html">Oracle</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../04_01_working_with_publishers/postgres/main.html">Postgres</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../04_01_working_with_publishers/postgres_cdc/main.html">PostgreSQL CDC</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../04_01_working_with_publishers/salesforce/main.html">Salesforce SOQL Query</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../04_01_working_with_publishers/salesforce_reports/main.html">Salesforce Reports</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="../04_02_working_with_transformers/main.html">Transformers</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../04_03_working_with_subscribers/main.html">Subscribers</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../04_03_working_with_subscribers/local_file_system/main.html">Local File System</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../04_03_working_with_subscribers/amazon_s3/main.html">Amazon S3</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../04_03_working_with_subscribers/azure/main.html">Azure Blob Storage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../04_03_working_with_subscribers/gcp/main.html">Google Cloud Storage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../04_03_working_with_subscribers/aws_iceberg/main.html">AWS Glue - Iceberg tables</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../04_03_working_with_subscribers/bigquery/main.html">Big Query</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../04_03_working_with_subscribers/clickhouse/main.html">ClickHouse</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../04_03_working_with_subscribers/databricks/main.html">Databricks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../04_03_working_with_subscribers/druid/main.html">Apache Druid</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../04_03_working_with_subscribers/mariadb/main.html">MariaDB</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../04_03_working_with_subscribers/mongodb/main.html">MongoDB</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../04_03_working_with_subscribers/mssql/main.html">Microsoft SQL Server</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../04_03_working_with_subscribers/mysql/main.html">MySQL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../04_03_working_with_subscribers/oracle/main.html">Oracle</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../04_03_working_with_subscribers/postgres/main.html">Postgres</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../04_03_working_with_subscribers/snowflake/main.html">Snowflake</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../04_03_working_with_subscribers/starrocks/main.html">StarRocks</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="../working_with_kafka/main.html">Working with Kafka</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../05_working_with_triggers/main.html">Working with Triggers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../06_working_with_tables/table_frame.html">Working with Tables</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../06_working_with_tables/tableframe_guide.html">TableFrame API Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../06_working_with_tables/user_defined_functions.html">User-defined Functions (UDFs)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../07_working_with_connector_plugins/main.html">Working with Plugins</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../data_quality/main.html">Data Quality</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../catalogs/main.html">Catalogs</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../catalogs/aws_glue/main.html">AWS Glue Catalog</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../catalogs/unity_catalog/main.html">Unity Catalog</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="../user_interface/main.html">User Interface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ai_agent/main.html">Tabsdata AI Agent (Tabby)</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../secrets_management/main.html">Secrets Management</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../secrets_management/env_variables/main.html">Environment Variables</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../secrets_management/hashicorp/main.html">HashiCorp Secret</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="../permissioning/main.html">Role Based Access Control (RBAC)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../security/main.html">Setting up Tabsdata over HTTPS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../08_testing/main.html">Testing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../10_troubleshooting/main.html">Troubleshooting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cli_commands/main.html">CLI Reference</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Release Notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../09_contact_support/main.html">Contact Us</a></li>
+</ul>
+</div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../../index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    
+    <li class="breadcrumb-item"><a href="../index.html" class="nav-link">User Guide</a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">Release Notes</span></li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="release-notes">
+<h1>Release Notes</h1>
+<section id="tabsdata-1-8-0">
+<h2>Tabsdata 1.8.0</h2>
+<p><strong>March 19, 2026</strong></p>
+<p>What is New:</p>
+<ul class="simple">
+<li><p>New Source connectors: <a class="reference internal" href="../04_01_working_with_publishers/db2_cdc/main.html#db2-cdc-publisher"><span class="std std-ref">Db2 CDC</span></a>, <a class="reference internal" href="../04_01_working_with_publishers/mysql_cdc/main.html#mysql-cdc-publisher"><span class="std std-ref">MySQL CDC</span></a>, and <a class="reference internal" href="../04_01_working_with_publishers/postgres_cdc/main.html#postgres-cdc-publisher"><span class="std std-ref">Postgres CDC</span></a>.</p></li>
+<li><p>New Destination connectors: <a class="reference internal" href="../04_03_working_with_subscribers/clickhouse/main.html#clickhouse-subscriber"><span class="std std-ref">ClickHouse</span></a>, <a class="reference internal" href="../04_03_working_with_subscribers/starrocks/main.html#starrocks-subscriber"><span class="std std-ref">StarRocks</span></a>, and <a class="reference internal" href="../04_03_working_with_subscribers/druid/main.html#druid-subscriber"><span class="std std-ref">Apache Druid</span></a>.</p></li>
+<li><p>UI, navigation improvements, new look &amp; feel.</p></li>
+</ul>
+<p>Known issues:</p>
+<ul>
+<li><p>Some tabsdata binaries are linked against a Homebrew-installed liblzma library during the build process, creating a runtime dependency on <code class="docutils literal notranslate"><span class="pre">/opt/homebrew/opt/xz/lib/liblzma.5.dylib</span></code>. If the library is not installed in your system, commands like <code class="docutils literal notranslate"><span class="pre">tdserver</span></code> will fail with the error <code class="docutils literal notranslate"><span class="pre">/opt/homebrew/opt/xz/lib/liblzma.5.dylib</span> <span class="pre">(no</span> <span class="pre">such</span> <span class="pre">file)</span></code>.</p>
+<ul class="simple">
+<li><p><strong>Workaround</strong>: Install the required library by running: <code class="docutils literal notranslate"><span class="pre">brew</span> <span class="pre">install</span> <span class="pre">xz</span></code></p></li>
+</ul>
+<p>This will be corrected in the next release.</p>
+</li>
+</ul>
+</section>
+<section id="tabsdata-1-7-1">
+<h2>Tabsdata 1.7.1</h2>
+<p><strong>February 25, 2026</strong></p>
+<p>What is New:</p>
+<ul class="simple">
+<li><p>New Source connector: <a class="reference internal" href="../04_01_working_with_publishers/db2/main.html#db2"><span class="std std-ref">Db2</span></a>.</p></li>
+</ul>
+</section>
+<section id="tabsdata-1-7-0">
+<h2>Tabsdata 1.7.0</h2>
+<p><strong>February 24, 2026</strong></p>
+<p>What is New:</p>
+<ul class="simple">
+<li><p>UI navigation re-design for improved user experience.</p></li>
+<li><p>User-friendly IDs for Execution Plans, Transactions, and Data Versions.</p></li>
+<li><p>Improved documentation across the platform.</p></li>
+</ul>
+</section>
+<section id="tabsdata-1-6-0">
+<h2>Tabsdata 1.6.0</h2>
+<p><strong>Februrary 3, 2026</strong></p>
+<p>What is New:</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="../working_with_kafka/main.html"><span class="doc">KafkaTrigger</span></a>, a Kafka topic consumer to load messages into Tabsdata tables.</p></li>
+<li><p><a class="reference internal" href="../05_working_with_triggers/main.html#working-with-triggers"><span class="std std-ref">CronTrigger</span></a>, periodic triggering of publishers/subscribers/transformers.</p></li>
+<li><p>Declarative <a class="reference internal" href="../data_quality/main.html#data-quality"><span class="std std-ref">data quality</span></a> API for validation, classification and quarantining data.</p></li>
+<li><p>New SQL connectors supporting Database transactions both for <a class="reference internal" href="../04_01_working_with_publishers/main.html#working-with-publishers"><span class="std std-ref">publishers</span></a> and <a class="reference internal" href="../04_03_working_with_subscribers/main.html#working-with-subscribers"><span class="std std-ref">subscribers</span></a>.</p></li>
+<li><p>Revamped <a class="reference internal" href="../user_interface/main.html#ui"><span class="std std-ref">UI</span></a> navigation.</p></li>
+</ul>
+<p>Known issues:</p>
+<ul class="simple">
+<li><p>When installing tabsdata with uv as the package manager, the databricks-sql-connector
+dependency must be pinned to version 4.2.0. For example:
+<code class="docutils literal notranslate"><span class="pre">uv</span> <span class="pre">pip</span> <span class="pre">install</span> <span class="pre">&quot;tabsdata[all]==1.6.0&quot;</span> <span class="pre">&quot;databricks-sql-connector==4.2.0&quot;</span></code></p></li>
+<li><p>To have the tabsdata agent working, you need to edit the file <code class="docutils literal notranslate"><span class="pre">`~/.tabsdata/instances/tabsdata/workspace/config/proc/regular/aiagent/config/requirements.txt</span></code>,  and replace <cite>tabsdata_agent</cite> with <cite>tabsdata-agent</cite>. This will get corrected in the next release.</p></li>
+</ul>
+</section>
+<section id="tabsdata-1-5-1">
+<h2>Tabsdata 1.5.1</h2>
+<p><strong>November 18, 2025</strong></p>
+<p>Fixes a 1.5.0 regression that stopped parts of the UI from working correctly.</p>
+</section>
+<section id="tabsdata-1-5-0">
+<h2>Tabsdata 1.5.0</h2>
+<p><strong>November 15, 2025</strong></p>
+<p>Tabsdata 1.5.0 is here!</p>
+<p><strong>What’s New?</strong></p>
+<ul class="simple">
+<li><p><strong>Version System Columns:</strong> All TableFrames now have a set of system columns with version information (execution ID, transaction ID, version ID and timestamp). Having these system columns enable advanced multi-time query functionality.</p></li>
+<li><p><a class="reference internal" href="../04_03_working_with_subscribers/bigquery/main.html#bigquery-subscriber"><span class="std std-ref">BigQuery Subscriber Connector</span></a>.</p></li>
+<li><p>Several improvements and new functionality for Lineage/Execution graphs in the <a class="reference internal" href="../user_interface/main.html#ui"><span class="std std-ref">UI</span></a>.</p></li>
+</ul>
+</section>
+<section id="tabsdata-1-4-0">
+<h2>Tabsdata 1.4.0</h2>
+<p><strong>October 20, 2025</strong></p>
+<p>Tabsdata 1.4.0 is here!</p>
+<p><strong>What’s New?</strong></p>
+<ul class="simple">
+<li><p><a class="reference internal" href="../ai_agent/main.html#ai-agent"><span class="std std-ref">Tabsdata AI agent</span></a> (Preview). Explore collections and tables, and create publishers and subscriber using a natural language interface.</p></li>
+<li><p><a class="reference internal" href="../06_working_with_tables/user_defined_functions.html#user-defined-functions"><span class="std std-ref">User Defined Functions</span></a> support. Integrate custom logic or external functions with TableFrame’s processing.</p></li>
+<li><p>Interactive Execution/Lineage graphs in the <a class="reference internal" href="../user_interface/main.html#ui"><span class="std std-ref">UI</span></a>.</p></li>
+</ul>
+</section>
+<section id="tabsdata-1-3-0">
+<h2>Tabsdata 1.3.0</h2>
+<p><strong>September 26, 2025</strong></p>
+<p>Tabsdata 1.3.0 is here!</p>
+<p><strong>What’s New?</strong></p>
+<ul class="simple">
+<li><p><a class="reference internal" href="../04_03_working_with_subscribers/gcp/main.html#gcp-subscriber"><span class="std std-ref">Google Cloud Storage</span></a> publisher and subscriber connectors</p></li>
+<li><p>Avro Support for publishing and subscribing using file based connectors (File, S3, Azure storage, Google Cloud Storage)</p></li>
+<li><p><a class="reference internal" href="../04_01_working_with_publishers/salesforce_reports/main.html#salesforce-reports"><span class="std std-ref">Salesforce</span></a> reports publisher connector</p></li>
+<li><p><a class="reference internal" href="../04_01_working_with_publishers/grok_for_log_files/main.html#grok-for-log-files"><span class="std std-ref">Grok parser</span></a> support for TableFrames columns</p></li>
+<li><p><a class="reference internal" href="../permissioning/main.html#rbac"><span class="std std-ref">Permissions CLI</span></a></p></li>
+</ul>
+<p><strong>Improvements:</strong></p>
+<ul class="simple">
+<li><p>Minor <a class="reference internal" href="../11_cli_commands/main.html"><span class="doc">CLI</span></a> usability improvements</p></li>
+<li><p>Minor <a class="reference internal" href="../user_interface/main.html#ui"><span class="std std-ref">UI</span></a> usability improvements</p></li>
+<li><p>Non functional improvements</p></li>
+</ul>
+</section>
+<section id="tabsdata-1-2-0">
+<h2>Tabsdata 1.2.0</h2>
+<p><strong>August 14, 2025</strong></p>
+<p>Tabsdata 1.2.0 is here!</p>
+<p><strong>What’s New?</strong></p>
+<ul class="simple">
+<li><p>New <a class="reference internal" href="../04_01_working_with_publishers/mssql/main.html#mssql"><span class="std std-ref">publisher</span></a> and <a class="reference internal" href="../04_03_working_with_subscribers/mssql/main.html#mssql-subscriber"><span class="std std-ref">subscriber</span></a> connectors for Microsoft SQL Server.</p></li>
+<li><p><a class="reference internal" href="../user_interface/main.html#ui"><span class="std std-ref">UI</span></a> usability improvements.</p></li>
+</ul>
+</section>
+<section id="tabsdata-1-1-0">
+<h2>Tabsdata 1.1.0</h2>
+<p><strong>August 4, 2025</strong></p>
+<p>Tabsdata 1.1.0 is here!</p>
+<p><strong>What’s New?</strong></p>
+<ul class="simple">
+<li><p>Internal module reorganization to clearly separate public and private APIs.</p></li>
+<li><p>No user-facing changes.</p></li>
+</ul>
+</section>
+<section id="tabsdata-1-0-0">
+<h2>Tabsdata 1.0.0</h2>
+<p><strong>July 24, 2025</strong></p>
+<p>Tabsdata 1.0.0 is here!</p>
+<p><strong>What’s New?</strong></p>
+<ul class="simple">
+<li><p><a class="reference internal" href="../user_interface/main.html#ui"><span class="std std-ref">Browser Interface</span></a>: You can now interact with various powerful functionalities of Tabsdata using the browser interface.</p></li>
+<li><p><strong>New Connectors:</strong> Built-in support for <a class="reference internal" href="../04_03_working_with_subscribers/snowflake/main.html#snowflake-subscriber"><span class="std std-ref">Snowflake</span></a> and <a class="reference internal" href="../04_03_working_with_subscribers/databricks/main.html#databricks-subscriber"><span class="std std-ref">Databricks</span></a> is now live. Seamless integrations, out of the box.</p></li>
+<li><p><a class="reference internal" href="../catalogs/main.html#catalogs"><span class="std std-ref">Catalog Support</span></a>: Enhanced support for Unity Catalog, and AWS Glue Catalog, with Parquet format compatibility.</p></li>
+<li><p><a class="reference internal" href="../11_cli_commands/main.html"><span class="doc">CLI</span></a> <strong>Improvements:</strong> We’ve reimagined the CLI experience with streamlined commands and contextual hints to make onboarding easier.</p></li>
+<li><p><strong>Richer Metadata:</strong> We’re capturing and displaying more metadata to give users better visibility and control over their data.</p></li>
+<li><p><strong>Backend Enhancements:</strong> Under-the-hood upgrades to improve <a class="reference internal" href="../security/main.html#security"><span class="std std-ref">security</span></a>, stability, and scalability in production environments.</p></li>
+</ul>
+</section>
+<section id="tabsdata-0-9-6">
+<h2>Tabsdata 0.9.6</h2>
+<p><strong>April 24, 2025</strong></p>
+<p>Tabsdata 0.9.6 is here!</p>
+<p><strong>What’s New?</strong></p>
+<ul class="simple">
+<li><p>Changes logs from ANSI to ASCII.</p></li>
+<li><p>Improved schema inference when publishing files into Tabsdata.</p></li>
+<li><p>Added column rename to TableFrames.</p></li>
+<li><p>Fixed initial_values bugs on first run and when there is no additional incremental data.</p></li>
+</ul>
+</section>
+<section id="tabsdata-0-9-5">
+<h2>Tabsdata 0.9.5</h2>
+<p><strong>April 12, 2025</strong></p>
+<p>Tabsdata 0.9.5 is here!</p>
+<p><strong>What’s New?</strong></p>
+<ul class="simple">
+<li><p><a class="reference internal" href="../04_03_working_with_subscribers/aws_iceberg/main.html#amazon-s3-subscriber-iceberg"><span class="std std-ref">AWS Glue Iceberg</span></a> connector to seamlessly subscribe data from Tabsdata to AWS as Iceberg Tables.</p></li>
+<li><p><a class="reference internal" href="../04_03_working_with_subscribers/mongodb/main.html#mongodb-subscriber"><span class="std std-ref">MongoDB</span></a> destination connector to seamlessly subscribe data from Tabsdata to MongoDB.</p></li>
+<li><p>Richer support for <a class="reference internal" href="../secrets_management/main.html#credentials"><span class="std std-ref">Hashicorp Vault</span></a>.</p></li>
+<li><p>Corrections and restructuring in documentation.</p></li>
+</ul>
+</section>
+<section id="tabsdata-0-9-3">
+<h2>Tabsdata 0.9.3</h2>
+<p><strong>March 14, 2025</strong></p>
+<p>Tabsdata 0.9.3 is here!</p>
+<p><strong>What’s New?</strong></p>
+<ul class="simple">
+<li><p><a class="reference internal" href="../04_01_working_with_publishers/salesforce/main.html#salesforce"><span class="std std-ref">Salesforce</span></a> connector to seamlessly publish data from Salesforce to Tabsdata.</p></li>
+<li><p>Stronger <a class="reference internal" href="../security/main.html#security"><span class="std std-ref">security</span></a> protocols with support for <a class="reference internal" href="../secrets_management/main.html#credentials"><span class="std std-ref">Hashicorp secrets</span></a>.</p></li>
+<li><p>Isolation of the server’s python environment from that of the user for better controls.</p></li>
+</ul>
+</section>
+<section id="tabsdata-0-9-2">
+<h2>Tabsdata 0.9.2</h2>
+<p><strong>February 28, 2025</strong></p>
+<p>Tabsdata 0.9.2 is here!</p>
+<p><strong>What’s New?</strong></p>
+<ul class="simple">
+<li><p>Improvements in CLI experience</p></li>
+<li><p>Enhancements in backend to debug edge cases and performance improvement</p></li>
+</ul>
+</section>
+<section id="tabsdata-0-9-1">
+<h2>Tabsdata 0.9.1</h2>
+<p><strong>February 14, 2025</strong></p>
+<p>Tabsdata 0.9.1 is here!</p>
+<p><strong>What’s New?</strong></p>
+<ul class="simple">
+<li><p>Python 3.13 support</p></li>
+<li><p>New <code class="docutils literal notranslate"><span class="pre">TableFrame.item(self)</span></code> method for extracting a single value from Tabsdata TableFrames</p></li>
+<li><p>Renamed some TableFrame classes for better clarity</p></li>
+<li><p>Corrections and restructuring in documentation</p></li>
+</ul>
+</section>
+</section>
+
+
+                </article>
+              
+              
+              
+              
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+<div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tabsdata-1-8-0">Tabsdata 1.8.0</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tabsdata-1-7-1">Tabsdata 1.7.1</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tabsdata-1-7-0">Tabsdata 1.7.0</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tabsdata-1-6-0">Tabsdata 1.6.0</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tabsdata-1-5-1">Tabsdata 1.5.1</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tabsdata-1-5-0">Tabsdata 1.5.0</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tabsdata-1-4-0">Tabsdata 1.4.0</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tabsdata-1-3-0">Tabsdata 1.3.0</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tabsdata-1-2-0">Tabsdata 1.2.0</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tabsdata-1-1-0">Tabsdata 1.1.0</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tabsdata-1-0-0">Tabsdata 1.0.0</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tabsdata-0-9-6">Tabsdata 0.9.6</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tabsdata-0-9-5">Tabsdata 0.9.5</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tabsdata-0-9-3">Tabsdata 0.9.3</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tabsdata-0-9-2">Tabsdata 0.9.2</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tabsdata-0-9-1">Tabsdata 0.9.1</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+
+<!-- Your custom footer content here -->
+
+  </body>
+</html>

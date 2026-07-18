@@ -1,0 +1,1196 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Server Configuration &#8212; Tabsdata  documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=8f2a1f02" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=8305e08e" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="../../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+
+    <script src="../../_static/jquery.js?v=5d32c60e"></script>
+    <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+    <script src="../../_static/documentation_options.js?v=7f41d439"></script>
+    <script src="../../_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=a56c686a"></script>
+    <script src="../../_static/design-tabs.js?v=f930bc37"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'guide/server_configuration/main';</script>
+    <script>
+        DOCUMENTATION_OPTIONS.theme_version = '0.16.1';
+        DOCUMENTATION_OPTIONS.theme_switcher_json_url = 'https://docs.tabsdata.com/version.json';
+        DOCUMENTATION_OPTIONS.theme_switcher_version_match = '1.8.0';
+        DOCUMENTATION_OPTIONS.show_version_warning_banner =
+            false;
+        </script>
+    <script src="../../_static/custom.js?v=ac098f57"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Key Concepts" href="../03_key_concepts/main.html" />
+    <link rel="prev" title="Getting Started" href="../02_getting_started/main.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="1.8.0" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+
+
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+     
+  
+
+<a class="navbar-brand logo" href=" https://tabsdata.com/?utm_source=docs">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../_static/tabsdata_root.png" class="logo__image only-light" alt="Tabsdata  documentation - Home"/>
+    <img src="../../_static/tabsdata_root_light.png" class="logo__image only-dark pst-js-only" alt="Tabsdata  documentation - Home"/>
+  
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="../index.html">
+    User Guide
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../ref/index.html">
+    API Reference
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../tutorials/index.html">
+    Tutorials
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+        <div class="navbar-item">
+<div class="version-switcher__container dropdown pst-js-only">
+  <button id="pst-version-switcher-button-2"
+    type="button"
+    class="version-switcher__button btn btn-sm dropdown-toggle"
+    data-bs-toggle="dropdown"
+    aria-haspopup="listbox"
+    aria-controls="pst-version-switcher-list-2"
+    aria-label="Version switcher list"
+  >
+    Choose version  <!-- this text may get changed later by javascript -->
+    <span class="caret"></span>
+  </button>
+  <div id="pst-version-switcher-list-2"
+    class="version-switcher__menu dropdown-menu list-group-flush py-0"
+    role="listbox" aria-labelledby="pst-version-switcher-button-2">
+    <!-- dropdown will be populated by javascript on page load -->
+  </div>
+</div></div>
+      
+        <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="../index.html">
+    User Guide
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../ref/index.html">
+    API Reference
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../tutorials/index.html">
+    Tutorials
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+<div class="version-switcher__container dropdown pst-js-only">
+  <button id="pst-version-switcher-button-3"
+    type="button"
+    class="version-switcher__button btn btn-sm dropdown-toggle"
+    data-bs-toggle="dropdown"
+    aria-haspopup="listbox"
+    aria-controls="pst-version-switcher-list-3"
+    aria-label="Version switcher list"
+  >
+    Choose version  <!-- this text may get changed later by javascript -->
+    <span class="caret"></span>
+  </button>
+  <div id="pst-version-switcher-list-3"
+    class="version-switcher__menu dropdown-menu list-group-flush py-0"
+    role="listbox" aria-labelledby="pst-version-switcher-button-3">
+    <!-- dropdown will be populated by javascript on page load -->
+  </div>
+</div></div>
+        
+          <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+<nav class="bd-docs-nav bd-links"
+     aria-label="Section Navigation">
+  <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
+  <div class="bd-toc-item navbar-nav"><ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../01_overview/main.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../02_getting_started/main.html">Getting Started</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Server Configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../03_key_concepts/main.html">Key Concepts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../04_working_with_functions/main.html">Working with Functions</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../04_01_working_with_publishers/main.html">Publishers</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../04_01_working_with_publishers/local_file_system/main.html">Local File System</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../04_01_working_with_publishers/amazon_s3/main.html">Amazon S3</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../04_01_working_with_publishers/azure/main.html">Azure Blob Storage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../04_01_working_with_publishers/gcp/main.html">Google Cloud Storage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../04_01_working_with_publishers/grok_for_log_files/main.html">Grok for Log Files</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../04_01_working_with_publishers/db2/main.html">Db2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../04_01_working_with_publishers/db2_cdc/main.html">Db2 CDC</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../working_with_kafka/main.html">Kafka</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../04_01_working_with_publishers/mariadb/main.html">MariaDB</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../04_01_working_with_publishers/mssql/main.html">Microsoft SQL Server</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../04_01_working_with_publishers/mysql/main.html">MySQL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../04_01_working_with_publishers/mysql_cdc/main.html">MySQL CDC</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../04_01_working_with_publishers/oracle/main.html">Oracle</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../04_01_working_with_publishers/postgres/main.html">Postgres</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../04_01_working_with_publishers/postgres_cdc/main.html">PostgreSQL CDC</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../04_01_working_with_publishers/salesforce/main.html">Salesforce SOQL Query</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../04_01_working_with_publishers/salesforce_reports/main.html">Salesforce Reports</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="../04_02_working_with_transformers/main.html">Transformers</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../04_03_working_with_subscribers/main.html">Subscribers</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../04_03_working_with_subscribers/local_file_system/main.html">Local File System</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../04_03_working_with_subscribers/amazon_s3/main.html">Amazon S3</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../04_03_working_with_subscribers/azure/main.html">Azure Blob Storage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../04_03_working_with_subscribers/gcp/main.html">Google Cloud Storage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../04_03_working_with_subscribers/aws_iceberg/main.html">AWS Glue - Iceberg tables</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../04_03_working_with_subscribers/bigquery/main.html">Big Query</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../04_03_working_with_subscribers/clickhouse/main.html">ClickHouse</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../04_03_working_with_subscribers/databricks/main.html">Databricks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../04_03_working_with_subscribers/druid/main.html">Apache Druid</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../04_03_working_with_subscribers/mariadb/main.html">MariaDB</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../04_03_working_with_subscribers/mongodb/main.html">MongoDB</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../04_03_working_with_subscribers/mssql/main.html">Microsoft SQL Server</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../04_03_working_with_subscribers/mysql/main.html">MySQL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../04_03_working_with_subscribers/oracle/main.html">Oracle</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../04_03_working_with_subscribers/postgres/main.html">Postgres</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../04_03_working_with_subscribers/snowflake/main.html">Snowflake</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../04_03_working_with_subscribers/starrocks/main.html">StarRocks</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="../working_with_kafka/main.html">Working with Kafka</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../05_working_with_triggers/main.html">Working with Triggers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../06_working_with_tables/table_frame.html">Working with Tables</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../06_working_with_tables/tableframe_guide.html">TableFrame API Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../06_working_with_tables/user_defined_functions.html">User-defined Functions (UDFs)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../07_working_with_connector_plugins/main.html">Working with Plugins</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../data_quality/main.html">Data Quality</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../catalogs/main.html">Catalogs</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../catalogs/aws_glue/main.html">AWS Glue Catalog</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../catalogs/unity_catalog/main.html">Unity Catalog</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="../user_interface/main.html">User Interface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ai_agent/main.html">Tabsdata AI Agent (Tabby)</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../secrets_management/main.html">Secrets Management</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../secrets_management/env_variables/main.html">Environment Variables</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../secrets_management/hashicorp/main.html">HashiCorp Secret</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="../permissioning/main.html">Role Based Access Control (RBAC)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../security/main.html">Setting up Tabsdata over HTTPS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../08_testing/main.html">Testing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../10_troubleshooting/main.html">Troubleshooting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cli_commands/main.html">CLI Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../release_notes/main.html">Release Notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../09_contact_support/main.html">Contact Us</a></li>
+</ul>
+</div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../../index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    
+    <li class="breadcrumb-item"><a href="../index.html" class="nav-link">User Guide</a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">Server Configuration</span></li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="server-configuration">
+<span id="id1"></span><h1>Server Configuration</h1>
+<p>This section describes how to configure Tabsdata server components through various configuration files.</p>
+<section id="overview">
+<h2>Overview</h2>
+<p>Tabsdata configuration is managed through YAML files located in the Tabsdata instance directory. These configuration files control critical aspects of the Tabsdata server including API server settings, security, database connections, storage mounts, and AI agent integration.</p>
+<p>Proper configuration ensures optimal performance, security, and reliability of your Tabsdata deployment. This guide covers the main configuration files and their available options.</p>
+<section id="instance-directory">
+<h3>Instance Directory</h3>
+<p>The default instance directory location is:</p>
+<ul class="simple">
+<li><p><strong>Windows:</strong> <code class="docutils literal notranslate"><span class="pre">%USERPROFILE%/.tabsdata/instances/tabsdata</span></code></p></li>
+<li><p><strong>Linux and MacOS:</strong> <code class="docutils literal notranslate"><span class="pre">${HOME}/.tabsdata/instances/tabsdata</span></code></p></li>
+</ul>
+</section>
+<section id="configuration-files">
+<h3>Configuration Files</h3>
+<p>The following configuration files are available within the instance directory:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<colgroup>
+<col style="width: 50.0%" />
+<col style="width: 50.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Configuration File</p></th>
+<th class="head"><p>Purpose</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">workspace/config/proc/regular/apiserver/config/config.yaml</span></code></p></td>
+<td><p>API server settings: addresses, authentication, database, storage, and transactions</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">workspace/config/proc/regular/aiagent/config/config.yaml</span></code></p></td>
+<td><p>AI agent settings: port, read-only mode, and AI provider credentials</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">workspace/config/ssl/</span></code></p></td>
+<td><p>SSL certificates (<code class="docutils literal notranslate"><span class="pre">key.pem</span></code> and <code class="docutils literal notranslate"><span class="pre">cert.pem</span></code>) for HTTPS</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">workspace/config/proc/regular/apiserver/config/log.yaml</span></code></p></td>
+<td><p>Logging configuration for the API server</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="environment-variables">
+<h3>Environment Variables</h3>
+<p>Configuration files support environment variable substitution using the <code class="docutils literal notranslate"><span class="pre">${}</span></code> syntax. Tabsdata provides the following built-in variables:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<colgroup>
+<col style="width: 30.0%" />
+<col style="width: 70.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Variable</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">TD_PATH_INSTANCE</span></code></p></td>
+<td><p>Full path to the Tabsdata instance directory</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">TD_PATH_REPOSITORY</span></code></p></td>
+<td><p>Full path to the repository directory (default: <code class="docutils literal notranslate"><span class="pre">${TD_PATH_INSTANCE}/repository</span></code>)</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">TD_PATH_CONFIG</span></code></p></td>
+<td><p>Full path to the configuration directory (default: <code class="docutils literal notranslate"><span class="pre">${TD_PATH_INSTANCE}/workspace/config</span></code>)</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">TD_PATH_WORK</span></code></p></td>
+<td><p>Full path to the working directory (default: <code class="docutils literal notranslate"><span class="pre">${TD_PATH_INSTANCE}/workspace/work</span></code>)</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">TD_URI_INSTANCE</span></code></p></td>
+<td><p>Same as <code class="docutils literal notranslate"><span class="pre">TD_PATH_INSTANCE</span></code> but URI-friendly (no scheme)</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">TD_URI_REPOSITORY</span></code></p></td>
+<td><p>Same as <code class="docutils literal notranslate"><span class="pre">TD_PATH_REPOSITORY</span></code> but URI-friendly (no scheme)</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">TD_URI_CONFIG</span></code></p></td>
+<td><p>Same as <code class="docutils literal notranslate"><span class="pre">TD_PATH_CONFIG</span></code> but URI-friendly (no scheme)</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Example:</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">database</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">url</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">file://${TD_URI_REPOSITORY}/database/tabsdata.db</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="api-server-configuration">
+<h2>API Server Configuration</h2>
+<p>The API server configuration file is located at <code class="docutils literal notranslate"><span class="pre">workspace/config/proc/regular/apiserver/config/config.yaml</span></code> within your instance directory.</p>
+<section id="complete-configuration-example">
+<h3>Complete Configuration Example</h3>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="c1"># storage_url: null    # Default: file://${TD_URI_REPOSITORY}/storage</span>
+<span class="nt">addresses</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">127.0.0.1:2457</span><span class="w">     </span><span class="c1"># Public IP/PORT</span>
+<span class="nt">internal_addresses</span><span class="p">:</span>
+<span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">127.0.0.1:2458</span><span class="w">     </span><span class="c1"># Internal IP/PORT, don&#39;t change 127.0.0.1</span>
+<span class="nt">agent_addresses</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">127.0.0.1:2459</span>
+<span class="nt">password</span><span class="p">:</span><span class="w">              </span><span class="c1"># Password Hashing Configuration</span>
+<span class="w">  </span><span class="nt">algorithm</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">argon2id</span>
+<span class="w">  </span><span class="nt">version</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">19</span>
+<span class="w">  </span><span class="nt">memory_cost_mib</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">20</span>
+<span class="w">  </span><span class="nt">time_cost</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">2</span>
+<span class="w">  </span><span class="nt">parallelism_cost</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1</span>
+<span class="nt">jwt</span><span class="p">:</span>
+<span class="w">  </span><span class="c1">#secret: null                     # By default a generated UUID</span>
+<span class="w">  </span><span class="nt">access_token_expiration</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">3600</span><span class="w">     </span><span class="c1"># Max inactivity period for a user session</span>
+<span class="nt">request_timeout</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">60</span><span class="w">                 </span><span class="c1"># HTTP (API and UI) requests timeout</span>
+<span class="nt">database</span><span class="p">:</span>
+<span class="w">  </span><span class="c1">#  url: null         # Default: file://${TD_URI_REPOSITORY}/database/tabsdata.db</span>
+<span class="w">  </span><span class="c1"># Connection pool configurations</span>
+<span class="w">  </span><span class="nt">min_connections</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1</span>
+<span class="w">  </span><span class="nt">max_connections</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">10</span>
+<span class="w">  </span><span class="nt">acquire_timeout</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">30</span>
+<span class="w">  </span><span class="nt">max_lifetime</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">3600</span>
+<span class="w">  </span><span class="nt">idle_timeout</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">60</span>
+<span class="w">  </span><span class="nt">test_before_acquire</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">  </span><span class="nt">log_level</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">off</span>
+<span class="nt">transaction_by</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">C</span><span class="w">      </span><span class="c1"># C or F if transactions are by collection or by function</span>
+<span class="nt">ssl_folder</span><span class="p">:</span><span class="w">            </span><span class="c1"># Path for SSL configuration</span>
+<span class="nt">storage</span><span class="p">:</span><span class="w">               </span><span class="c1"># It also supports &#39;url&#39; instead of &#39;mounts&#39;</span>
+<span class="w">  </span><span class="nt">mounts</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ROOT</span>
+<span class="w">      </span><span class="nt">path</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/</span>
+<span class="w">      </span><span class="nt">uri</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">file://${TD_URI_REPOSITORY}/storage/data/</span>
+<span class="w">    </span><span class="c1"># IMPORTANT: /bundles must be a local mount.</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">BUNDLES</span>
+<span class="w">      </span><span class="nt">path</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/bundles</span>
+<span class="w">      </span><span class="nt">uri</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">file://${TD_URI_REPOSITORY}/storage/bundles/</span>
+</pre></div>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p><strong>Important Configuration Decision:</strong> The <code class="docutils literal notranslate"><span class="pre">transaction_by</span></code> setting determines how Tabsdata manages transaction boundaries for execution plans. This is a critical configuration choice that affects performance and data consistency. See <a class="reference internal" href="#transaction-mode"><span class="std std-ref">Transaction Mode</span></a> for detailed guidance on choosing between collection-based (C) and function-based (F) transactions.</p>
+</div>
+</section>
+<section id="configuration-options">
+<h3>Configuration Options</h3>
+<p>The API server configuration in <code class="docutils literal notranslate"><span class="pre">config.yaml</span></code> controls the core Tabsdata server behavior.</p>
+<section id="storage-configuration">
+<h4>Storage Configuration</h4>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="c1"># storage_url: null    # Default: file://${TD_URI_REPOSITORY}/storage</span>
+</pre></div>
+</div>
+<p>The URL to the location to store the Tabsdata data. The storage URL can be configured globally or through mount points (see <a class="reference internal" href="#storage-mounts">Storage Mounts</a> below).</p>
+</section>
+<section id="server-addresses">
+<h4>Server Addresses</h4>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">addresses</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">127.0.0.1:2457</span><span class="w">     </span><span class="c1"># Public IP/PORT</span>
+<span class="nt">internal_addresses</span><span class="p">:</span>
+<span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">127.0.0.1:2458</span><span class="w">     </span><span class="c1"># Internal IP/PORT, don&#39;t change 127.0.0.1</span>
+<span class="nt">agent_addresses</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">127.0.0.1:2459</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><strong>addresses</strong>: List of IP:PORT combinations for the API server to listen on</p></li>
+<li><p><strong>agent_addresses</strong>: List of IP:PORT combinations for agent communication</p></li>
+</ul>
+</section>
+<section id="password-hashing">
+<h4>Password Hashing</h4>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">password</span><span class="p">:</span><span class="w">              </span><span class="c1"># Password Hashing Configuration</span>
+<span class="w">  </span><span class="nt">algorithm</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">argon2id</span>
+<span class="w">  </span><span class="nt">version</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">19</span>
+<span class="w">  </span><span class="nt">memory_cost_mib</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">20</span>
+<span class="w">  </span><span class="nt">time_cost</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">2</span>
+<span class="w">  </span><span class="nt">parallelism_cost</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1</span>
+</pre></div>
+</div>
+<p>Configures password hashing using Argon2id algorithm:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<colgroup>
+<col style="width: 25.0%" />
+<col style="width: 75.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Parameter</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">algorithm</span></code></p></td>
+<td><p>Password hashing algorithm - argon2id</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">version</span></code></p></td>
+<td><p>Argon2 version number</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">memory_cost_mib</span></code></p></td>
+<td><p>Memory cost in MiB for password hashing</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">time_cost</span></code></p></td>
+<td><p>Number of iterations</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">parallelism_cost</span></code></p></td>
+<td><p>Number of parallel threads</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="jwt-configuration">
+<h4>JWT Configuration</h4>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">jwt</span><span class="p">:</span>
+<span class="w">  </span><span class="c1">#secret: null                     # By default a generated UUID</span>
+<span class="w">  </span><span class="nt">access_token_expiration</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">3600</span><span class="w">     </span><span class="c1"># Max inactivity period for a user session</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><strong>secret</strong>: JWT signing secret (auto-generated UUID if not specified)</p></li>
+<li><p><strong>access_token_expiration</strong>: Maximum inactivity period in seconds before session expires</p></li>
+</ul>
+</section>
+<section id="request-timeout">
+<h4>Request Timeout</h4>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">request_timeout</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">60</span><span class="w">                 </span><span class="c1"># HTTP (API and UI) requests timeout</span>
+</pre></div>
+</div>
+<p>HTTP request timeout in seconds for both API and UI requests.</p>
+</section>
+<section id="database-configuration">
+<h4>Database Configuration</h4>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">database</span><span class="p">:</span>
+<span class="w">  </span><span class="c1">#  url: null         # Default: file://${TD_URI_REPOSITORY}/database/tabsdata.db</span>
+<span class="w">  </span><span class="c1"># Connection pool configurations</span>
+<span class="w">  </span><span class="nt">min_connections</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1</span>
+<span class="w">  </span><span class="nt">max_connections</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">10</span>
+<span class="w">  </span><span class="nt">acquire_timeout</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">30</span>
+<span class="w">  </span><span class="nt">max_lifetime</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">3600</span>
+<span class="w">  </span><span class="nt">idle_timeout</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">60</span>
+<span class="w">  </span><span class="nt">test_before_acquire</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">  </span><span class="nt">log_level</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">off</span>
+</pre></div>
+</div>
+<p>Database connection and pool settings:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<colgroup>
+<col style="width: 30.0%" />
+<col style="width: 70.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Parameter</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">url</span></code></p></td>
+<td><p>Database connection URL (defaults to SQLite in repository)</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">min_connections</span></code></p></td>
+<td><p>Minimum number of connections in the pool</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">max_connections</span></code></p></td>
+<td><p>Maximum number of connections in the pool</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">acquire_timeout</span></code></p></td>
+<td><p>Timeout in seconds when acquiring a connection</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">max_lifetime</span></code></p></td>
+<td><p>Maximum lifetime of a connection in seconds</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">idle_timeout</span></code></p></td>
+<td><p>Idle timeout in seconds before closing unused connections</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">test_before_acquire</span></code></p></td>
+<td><p>Test connection health before use</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">log_level</span></code></p></td>
+<td><p>Database logging level (off, trace, debug, info, warn, error)</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="transaction-mode">
+<span id="id2"></span><h4>Transaction Mode</h4>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">transaction_by</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">C</span><span class="w">      </span><span class="c1"># C or F if transactions are by collection or by function</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><strong>C</strong>: Transactions are managed by collection</p></li>
+<li><p><strong>F</strong>: Transactions are managed by function</p></li>
+</ul>
+<section id="execution-plan-transaction-boundaries">
+<h5>Execution Plan Transaction Boundaries</h5>
+<p>Tabsdata supports two transaction strategies for execution plans: <strong>per function</strong> or <strong>per collection</strong>. The instance is configured with a particular strategy using the <code class="docutils literal notranslate"><span class="pre">transaction_by</span></code> parameter above.</p>
+<p><strong>Per Function Transactions (transaction_by: F)</strong></p>
+<p>Every function of the execution plan runs in its own separate transaction. The tables produced by the function are immediately committed and available after the function execution finishes. This provides:</p>
+<ul class="simple">
+<li><p>Maximum isolation between functions</p></li>
+<li><p>Independent function execution boundaries</p></li>
+<li><p>Ability to handle failures at the function level</p></li>
+<li><p>Better for independent function executions with minimal shared state</p></li>
+</ul>
+<p><strong>Per Collection Transactions (transaction_by: C)</strong></p>
+<p>The functions of the execution plan are grouped per collection, and a single transaction is used for each collection to execute all its functions. All the tables produced by all the functions of a collection are committed and available when the transaction finishes. This provides:</p>
+<ul class="simple">
+<li><p>Shared transaction context across collection functions</p></li>
+<li><p>Reduced transaction overhead for collection operations</p></li>
+</ul>
+</section>
+</section>
+<section id="ssl-configuration">
+<h4>SSL Configuration</h4>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">ssl_folder</span><span class="p">:</span><span class="w">            </span><span class="c1"># Path for SSL configuration</span>
+</pre></div>
+</div>
+<p>Path to directory containing SSL certificates. If not specified, defaults to:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>${INSTANCE_PATH}/workspace/config/ssl/
+</pre></div>
+</div>
+</section>
+<section id="storage-mounts">
+<h4>Storage Mounts</h4>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">storage</span><span class="p">:</span><span class="w">               </span><span class="c1"># It also supports &#39;url&#39; instead of &#39;mounts&#39;</span>
+<span class="w">  </span><span class="nt">mounts</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ROOT</span>
+<span class="w">      </span><span class="nt">path</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/</span>
+<span class="w">      </span><span class="nt">uri</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">file://${TD_URI_REPOSITORY}/storage/data/</span>
+<span class="w">    </span><span class="c1"># IMPORTANT: /bundles must be a local mount.</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">BUNDLES</span>
+<span class="w">      </span><span class="nt">path</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/bundles</span>
+<span class="w">      </span><span class="nt">uri</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">file://${TD_URI_REPOSITORY}/storage/bundles/</span>
+<span class="c1">#    # Mount configuration sample:</span>
+<span class="c1">#    - id: PREFIX</span>
+<span class="c1">#      path: /c</span>
+<span class="c1">#      uri: s3://my-bucket/tabsdata</span>
+<span class="c1">#      options:</span>
+<span class="c1">#        - AwsAccessKey: ...</span>
+<span class="c1">#          AwsSecretKey: ...</span>
+</pre></div>
+</div>
+<p>Storage mount configuration:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<colgroup>
+<col style="width: 20.0%" />
+<col style="width: 80.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Parameter</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">id</span></code></p></td>
+<td><p>Unique identifier for the mount</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">path</span></code></p></td>
+<td><p>Virtual path in Tabsdata</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">uri</span></code></p></td>
+<td><p>Physical storage location (supports <a class="reference external" href="file://">file://</a>, s3://, etc.)</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">options</span></code></p></td>
+<td><p>Mount-specific options (e.g., AWS credentials for S3)</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">/bundles</span></code> path must always be a local file system mount.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Storage can be configured using either <code class="docutils literal notranslate"><span class="pre">url</span></code> (single storage location) or <code class="docutils literal notranslate"><span class="pre">mounts</span></code> (multiple mount points), but not both.</p>
+</div>
+</section>
+</section>
+</section>
+<section id="ai-agent-configuration">
+<h2>AI Agent Configuration</h2>
+<p>The AI agent configuration file is located at <code class="docutils literal notranslate"><span class="pre">workspace/config/proc/regular/aiagent/config/config.yaml</span></code> within your instance directory.</p>
+<section id="id3">
+<h3>Configuration Options</h3>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">2459</span>
+<span class="nt">read_only</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span>
+<span class="nt">ai_providers</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">openai</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">api_key</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">${OPENAI_API_KEY}</span><span class="w">    </span><span class="c1"># If set the AI agent will start</span>
+</pre></div>
+</div>
+<p>AI Agent settings:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<colgroup>
+<col style="width: 25.0%" />
+<col style="width: 75.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Parameter</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">port</span></code></p></td>
+<td><p>Port number for the AI agent to listen on</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">read_only</span></code></p></td>
+<td><p>When true, AI agent can only read data, not modify</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">ai_providers</span></code></p></td>
+<td><p>Configuration for AI provider integrations</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="ai-provider-configuration">
+<h3>AI Provider Configuration</h3>
+<section id="openai-provider">
+<h4>OpenAI Provider</h4>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">ai_providers</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">openai</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">api_key</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">${OPENAI_API_KEY}</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><strong>api_key</strong>: OpenAI API key (use environment variable for security)</p></li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The AI agent will only start if at least one AI provider is properly configured with valid credentials.</p>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Use environment variables (e.g., <code class="docutils literal notranslate"><span class="pre">${OPENAI_API_KEY}</span></code>) for sensitive values like API keys instead of hardcoding them in configuration files.</p>
+</div>
+</section>
+</section>
+</section>
+<section id="ssl-certificate-configuration">
+<h2>SSL Certificate Configuration</h2>
+<p>SSL certificate files are located at <code class="docutils literal notranslate"><span class="pre">workspace/config/ssl/</span></code> within your instance directory.</p>
+<section id="required-files">
+<h3>Required Files</h3>
+<p>The SSL folder should contain:</p>
+<ul class="simple">
+<li><p><strong>key.pem</strong>: Private key file</p></li>
+<li><p><strong>cert.pem</strong>: Certificate file</p></li>
+</ul>
+<p>To enable HTTPS:</p>
+<ol class="arabic simple">
+<li><p>Place your SSL certificate files in the SSL folder</p></li>
+<li><p>Configure the <code class="docutils literal notranslate"><span class="pre">ssl_folder</span></code> path in the API server configuration</p></li>
+<li><p>Restart the Tabsdata server</p></li>
+</ol>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>tdserver<span class="w"> </span>restart
+</pre></div>
+</div>
+</section>
+</section>
+<section id="log-configuration">
+<h2>Log Configuration</h2>
+<p>The log configuration file is located at <code class="docutils literal notranslate"><span class="pre">workspace/config/proc/regular/apiserver/config/log.yaml</span></code> within your instance directory. This file controls logging behavior for the API server and other components.</p>
+<section id="configuration-example">
+<h3>Configuration Example</h3>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">profile</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">production</span>
+
+<span class="nt">profiles</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">development</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">output</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">stdout</span>
+<span class="w">    </span><span class="nt">level</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">debug</span>
+<span class="w">    </span><span class="nt">directives</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">tower::buffer::worker=info</span>
+<span class="w">  </span><span class="nt">production</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">output</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">file</span>
+<span class="w">    </span><span class="nt">level</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">debug</span>
+<span class="w">    </span><span class="nt">directives</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">tower::buffer::worker=info</span>
+<span class="w">    </span><span class="nt">sinks</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">file</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">sql.log</span>
+<span class="w">        </span><span class="nt">directives</span><span class="p">:</span>
+<span class="w">          </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">sqlx::query=trace</span>
+</pre></div>
+</div>
+</section>
+<section id="id4">
+<h3>Configuration Options</h3>
+<div class="pst-scrollable-table-container"><table class="table">
+<colgroup>
+<col style="width: 25.0%" />
+<col style="width: 75.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Parameter</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">profile</span></code></p></td>
+<td><p>Active logging profile (<code class="docutils literal notranslate"><span class="pre">development</span></code> or <code class="docutils literal notranslate"><span class="pre">production</span></code>)</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">output</span></code></p></td>
+<td><p>Log output destination: <code class="docutils literal notranslate"><span class="pre">stdout</span></code> (console) or <code class="docutils literal notranslate"><span class="pre">file</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">level</span></code></p></td>
+<td><p>Default log level: <code class="docutils literal notranslate"><span class="pre">trace</span></code>, <code class="docutils literal notranslate"><span class="pre">debug</span></code>, <code class="docutils literal notranslate"><span class="pre">info</span></code>, <code class="docutils literal notranslate"><span class="pre">warn</span></code>, <code class="docutils literal notranslate"><span class="pre">error</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">directives</span></code></p></td>
+<td><p>Module-specific log level overrides (e.g., <code class="docutils literal notranslate"><span class="pre">tower::buffer::worker=info</span></code>)</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">sinks</span></code></p></td>
+<td><p>Additional log file destinations with specific directives</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><strong>Profiles:</strong></p>
+<ul class="simple">
+<li><p><strong>development</strong>: Outputs logs to stdout (console) for easy debugging during development</p></li>
+<li><p><strong>production</strong>: Outputs logs to files, with additional sinks for SQL query logging</p></li>
+</ul>
+</section>
+</section>
+<section id="configuration-best-practices">
+<h2>Configuration Best Practices</h2>
+<ol class="arabic">
+<li><p><strong>Use Environment Variables for Secrets</strong></p>
+<p>Always use environment variables for sensitive data like API keys, passwords, and tokens:</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">ai_providers</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">openai</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">api_key</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">${OPENAI_API_KEY}</span>
+</pre></div>
+</div>
+</li>
+<li><p><strong>Backup Before Modifications</strong></p>
+<p>Always backup configuration files before making changes:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>cp<span class="w"> </span>config.yaml<span class="w"> </span>config.yaml.backup
+</pre></div>
+</div>
+</li>
+<li><p><strong>Restart After Changes</strong></p>
+<p>Configuration changes require a server restart:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>tdserver<span class="w"> </span>restart
+</pre></div>
+</div>
+</li>
+<li><p><strong>Monitor Resource Usage</strong></p>
+<p>Adjust database connection pool settings based on your workload:</p>
+<ul class="simple">
+<li><p>Increase <code class="docutils literal notranslate"><span class="pre">max_connections</span></code> for high-traffic environments</p></li>
+<li><p>Adjust <code class="docutils literal notranslate"><span class="pre">acquire_timeout</span></code> and <code class="docutils literal notranslate"><span class="pre">idle_timeout</span></code> based on query patterns</p></li>
+</ul>
+</li>
+<li><p><strong>Storage Planning</strong></p>
+<ul class="simple">
+<li><p>Keep <code class="docutils literal notranslate"><span class="pre">/bundles</span></code> as a local mount for optimal performance</p></li>
+<li><p>Use S3 or cloud storage for data mounts when appropriate</p></li>
+<li><p>Configure appropriate credentials for cloud storage mounts</p></li>
+</ul>
+</li>
+<li><p><strong>Security Considerations</strong></p>
+<ul class="simple">
+<li><p>Use strong JWT secrets in production</p></li>
+<li><p>Configure appropriate <code class="docutils literal notranslate"><span class="pre">access_token_expiration</span></code> values</p></li>
+<li><p>Enable SSL/TLS for production deployments</p></li>
+<li><p>Use Argon2id for password hashing with appropriate cost parameters</p></li>
+</ul>
+</li>
+<li><p><strong>Transaction Mode Selection</strong></p>
+<p>Choose transaction mode based on your use case:</p>
+<ul class="simple">
+<li><p><strong>Collection-based (C)</strong>: Better for scenarios with multiple operations per collection. Requires acyclic trigger graph at collection level.</p></li>
+<li><p><strong>Function-based (F)</strong>: Better for independent function executions with maximum isolation.</p></li>
+</ul>
+<p>See <a class="reference internal" href="#transaction-mode"><span class="std std-ref">Transaction Mode</span></a> for detailed information about transaction boundaries and important constraints.</p>
+</li>
+</ol>
+</section>
+<section id="troubleshooting">
+<h2>Troubleshooting</h2>
+<section id="configuration-not-taking-effect">
+<h3>Configuration Not Taking Effect</h3>
+<p>If configuration changes don’t take effect:</p>
+<ol class="arabic simple">
+<li><p>Verify YAML syntax is correct</p></li>
+<li><p>Check for typos in parameter names</p></li>
+<li><p>Restart the server: <code class="docutils literal notranslate"><span class="pre">tdserver</span> <span class="pre">restart</span></code></p></li>
+<li><p>Check server logs for configuration errors</p></li>
+</ol>
+</section>
+<section id="environment-variables-not-resolving">
+<h3>Environment Variables Not Resolving</h3>
+<p>If environment variables aren’t resolving:</p>
+<ol class="arabic simple">
+<li><p>Verify the environment variable is set: <code class="docutils literal notranslate"><span class="pre">echo</span> <span class="pre">$VARIABLE_NAME</span></code></p></li>
+<li><p>Ensure the variable is exported in the shell</p></li>
+<li><p>Check the syntax uses <code class="docutils literal notranslate"><span class="pre">${VARIABLE_NAME}</span></code> format</p></li>
+<li><p>Restart the server after setting environment variables</p></li>
+</ol>
+</section>
+<section id="connection-pool-issues">
+<h3>Connection Pool Issues</h3>
+<p>If experiencing database connection issues:</p>
+<ol class="arabic simple">
+<li><p>Check <code class="docutils literal notranslate"><span class="pre">max_connections</span></code> isn’t set too low</p></li>
+<li><p>Increase <code class="docutils literal notranslate"><span class="pre">acquire_timeout</span></code> if seeing timeout errors</p></li>
+<li><p>Review <code class="docutils literal notranslate"><span class="pre">max_lifetime</span></code> and <code class="docutils literal notranslate"><span class="pre">idle_timeout</span></code> settings</p></li>
+<li><p>Enable <code class="docutils literal notranslate"><span class="pre">log_level:</span> <span class="pre">debug</span></code> for detailed connection information</p></li>
+</ol>
+</section>
+<section id="transaction-mode-issues">
+<h3>Transaction Mode Issues</h3>
+<p>If experiencing execution plan or trigger issues:</p>
+<ol class="arabic">
+<li><p><strong>Collection Transaction Constraint Violation</strong>: If using <code class="docutils literal notranslate"><span class="pre">transaction_by:</span> <span class="pre">C</span></code> and encountering errors about circular dependencies or trigger paths, verify that your trigger graph does not have arc trigger paths that exit and reenter the same collection.</p>
+<p>Solution: Either restructure your triggers to avoid collection reentry, or switch to <code class="docutils literal notranslate"><span class="pre">transaction_by:</span> <span class="pre">F</span></code> (per-function transactions).</p>
+</li>
+<li><p><strong>Performance Issues</strong>: If function execution is slower than expected, consider switching transaction modes:</p>
+<ul class="simple">
+<li><p>For many independent functions: Use <code class="docutils literal notranslate"><span class="pre">transaction_by:</span> <span class="pre">F</span></code></p></li>
+<li><p>For related functions in collections: Use <code class="docutils literal notranslate"><span class="pre">transaction_by:</span> <span class="pre">C</span></code></p></li>
+</ul>
+</li>
+<li><p><strong>Transaction Rollback Issues</strong>: Remember that at the end of each transaction, the system is in a pristine state. If you need state to persist across function boundaries, ensure your transaction mode aligns with your data flow.</p></li>
+</ol>
+<p>See <a class="reference internal" href="#transaction-mode"><span class="std std-ref">Transaction Mode</span></a> for more details on transaction strategies.</p>
+<p>For additional help, see <a class="reference internal" href="../10_troubleshooting/main.html#troubleshooting"><span class="std std-ref">Troubleshooting</span></a> or <a class="reference internal" href="../09_contact_support/main.html#contact-support"><span class="std std-ref">Contact Us</span></a>.</p>
+</section>
+</section>
+<section id="related-topics">
+<h2>Related Topics</h2>
+<ul class="simple">
+<li><p><a class="reference internal" href="../security/main.html#security"><span class="std std-ref">Setting up Tabsdata over HTTPS</span></a> - Security configuration and best practices</p></li>
+<li><p><a class="reference internal" href="../secrets_management/main.html#secrets-management"><span class="std std-ref">Secrets Management</span></a> - Managing secrets with HashiCorp Vault</p></li>
+<li><p><a class="reference internal" href="../ai_agent/main.html#ai-agent"><span class="std std-ref">Tabsdata AI Agent (Tabby)</span></a> - Detailed AI agent setup and usage</p></li>
+<li><p><a class="reference internal" href="../02_getting_started/main.html#getting-started"><span class="std std-ref">Getting Started</span></a> - Initial server setup</p></li>
+</ul>
+</section>
+</section>
+
+
+                </article>
+              
+              
+              
+              
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+<div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#overview">Overview</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#instance-directory">Instance Directory</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#configuration-files">Configuration Files</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#environment-variables">Environment Variables</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#api-server-configuration">API Server Configuration</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#complete-configuration-example">Complete Configuration Example</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#configuration-options">Configuration Options</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#storage-configuration">Storage Configuration</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#server-addresses">Server Addresses</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#password-hashing">Password Hashing</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#jwt-configuration">JWT Configuration</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#request-timeout">Request Timeout</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#database-configuration">Database Configuration</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#transaction-mode">Transaction Mode</a><ul class="nav section-nav flex-column">
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#execution-plan-transaction-boundaries">Execution Plan Transaction Boundaries</a></li>
+</ul>
+</li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#ssl-configuration">SSL Configuration</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#storage-mounts">Storage Mounts</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ai-agent-configuration">AI Agent Configuration</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">Configuration Options</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ai-provider-configuration">AI Provider Configuration</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#openai-provider">OpenAI Provider</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ssl-certificate-configuration">SSL Certificate Configuration</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#required-files">Required Files</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#log-configuration">Log Configuration</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#configuration-example">Configuration Example</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">Configuration Options</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#configuration-best-practices">Configuration Best Practices</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#troubleshooting">Troubleshooting</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#configuration-not-taking-effect">Configuration Not Taking Effect</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#environment-variables-not-resolving">Environment Variables Not Resolving</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#connection-pool-issues">Connection Pool Issues</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#transaction-mode-issues">Transaction Mode Issues</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#related-topics">Related Topics</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+
+<!-- Your custom footer content here -->
+
+  </body>
+</html>

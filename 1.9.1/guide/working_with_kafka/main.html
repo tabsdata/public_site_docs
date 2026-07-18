@@ -1,0 +1,818 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Working with Kafka &#8212; Tabsdata  documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=8f2a1f02" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=8305e08e" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="../../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+
+    <script src="../../_static/jquery.js?v=5d32c60e"></script>
+    <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+    <script src="../../_static/documentation_options.js?v=7f41d439"></script>
+    <script src="../../_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=a56c686a"></script>
+    <script src="../../_static/design-tabs.js?v=f930bc37"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'guide/working_with_kafka/main';</script>
+    <script>
+        DOCUMENTATION_OPTIONS.theme_version = '0.16.1';
+        DOCUMENTATION_OPTIONS.theme_switcher_json_url = 'https://docs.tabsdata.com/version.json';
+        DOCUMENTATION_OPTIONS.theme_switcher_version_match = '1.9.1';
+        DOCUMENTATION_OPTIONS.show_version_warning_banner =
+            false;
+        </script>
+    <script src="../../_static/custom.js?v=ac098f57"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="MariaDB" href="../04_01_working_with_publishers/mariadb/main.html" />
+    <link rel="prev" title="Google Cloud Storage" href="../04_01_working_with_publishers/gcp/main.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="1.9.1" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+
+
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+     
+  
+
+<a class="navbar-brand logo" href=" https://tabsdata.com/?utm_source=docs">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../_static/tabsdata_root.png" class="logo__image only-light" alt="Tabsdata  documentation - Home"/>
+    <img src="../../_static/tabsdata_root_light.png" class="logo__image only-dark pst-js-only" alt="Tabsdata  documentation - Home"/>
+  
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="../index.html">
+    User Guide
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../ref/index.html">
+    API Reference
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../tutorials/index.html">
+    Tutorials
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+        <div class="navbar-item">
+<div class="version-switcher__container dropdown pst-js-only">
+  <button id="pst-version-switcher-button-2"
+    type="button"
+    class="version-switcher__button btn btn-sm dropdown-toggle"
+    data-bs-toggle="dropdown"
+    aria-haspopup="listbox"
+    aria-controls="pst-version-switcher-list-2"
+    aria-label="Version switcher list"
+  >
+    Choose version  <!-- this text may get changed later by javascript -->
+    <span class="caret"></span>
+  </button>
+  <div id="pst-version-switcher-list-2"
+    class="version-switcher__menu dropdown-menu list-group-flush py-0"
+    role="listbox" aria-labelledby="pst-version-switcher-button-2">
+    <!-- dropdown will be populated by javascript on page load -->
+  </div>
+</div></div>
+      
+        <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="../index.html">
+    User Guide
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../ref/index.html">
+    API Reference
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../tutorials/index.html">
+    Tutorials
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+<div class="version-switcher__container dropdown pst-js-only">
+  <button id="pst-version-switcher-button-3"
+    type="button"
+    class="version-switcher__button btn btn-sm dropdown-toggle"
+    data-bs-toggle="dropdown"
+    aria-haspopup="listbox"
+    aria-controls="pst-version-switcher-list-3"
+    aria-label="Version switcher list"
+  >
+    Choose version  <!-- this text may get changed later by javascript -->
+    <span class="caret"></span>
+  </button>
+  <div id="pst-version-switcher-list-3"
+    class="version-switcher__menu dropdown-menu list-group-flush py-0"
+    role="listbox" aria-labelledby="pst-version-switcher-button-3">
+    <!-- dropdown will be populated by javascript on page load -->
+  </div>
+</div></div>
+        
+          <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+<nav class="bd-docs-nav bd-links"
+     aria-label="Section Navigation">
+  <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
+  <div class="bd-toc-item navbar-nav"><ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../01_overview/main.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../02_getting_started/main.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../server_configuration/main.html">Server Configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../03_key_concepts/main.html">Key Concepts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../04_working_with_functions/main.html">Working with Functions</a></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="../04_01_working_with_publishers/main.html">Publishers</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../04_01_working_with_publishers/local_file_system/main.html">Local File System</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../04_01_working_with_publishers/amazon_s3/main.html">Amazon S3</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../04_01_working_with_publishers/azure/main.html">Azure Blob Storage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../04_01_working_with_publishers/databricks/main.html">Databricks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../04_01_working_with_publishers/db2/main.html">Db2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../04_01_working_with_publishers/db2_cdc/main.html">Db2 CDC</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../04_01_working_with_publishers/gcp/main.html">Google Cloud Storage</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Kafka</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../04_01_working_with_publishers/mariadb/main.html">MariaDB</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../04_01_working_with_publishers/mssql/main.html">Microsoft SQL Server</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../04_01_working_with_publishers/mysql_cdc/main.html">MySQL CDC</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../04_01_working_with_publishers/mysql/main.html">MySQL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../04_01_working_with_publishers/oracle/main.html">Oracle</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../04_01_working_with_publishers/postgres/main.html">Postgres</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../04_01_working_with_publishers/postgres_cdc/main.html">PostgreSQL CDC</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../04_01_working_with_publishers/salesforce/main.html">Salesforce SOQL Query</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../04_01_working_with_publishers/salesforce_reports/main.html">Salesforce Reports</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../04_01_working_with_publishers/grok_for_log_files/main.html">Grok for Log Files</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="../04_02_working_with_transformers/main.html">Transformers</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../04_03_working_with_subscribers/main.html">Subscribers</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../04_03_working_with_subscribers/local_file_system/main.html">Local File System</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../04_03_working_with_subscribers/amazon_s3/main.html">Amazon S3</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../04_03_working_with_subscribers/aws_iceberg/main.html">AWS Glue - Iceberg tables</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../04_03_working_with_subscribers/azure/main.html">Azure Blob Storage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../04_03_working_with_subscribers/bigquery/main.html">Big Query</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../04_03_working_with_subscribers/clickhouse/main.html">ClickHouse</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../04_03_working_with_subscribers/databricks/main.html">Databricks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../04_03_working_with_subscribers/druid/main.html">Apache Druid</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../04_03_working_with_subscribers/gcp/main.html">Google Cloud Storage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../04_03_working_with_subscribers/mariadb/main.html">MariaDB</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../04_03_working_with_subscribers/mongodb/main.html">MongoDB</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../04_03_working_with_subscribers/mssql/main.html">Microsoft SQL Server</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../04_03_working_with_subscribers/mysql/main.html">MySQL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../04_03_working_with_subscribers/oracle/main.html">Oracle</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../04_03_working_with_subscribers/postgres/main.html">Postgres</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../04_03_working_with_subscribers/snowflake/main.html">Snowflake</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../04_03_working_with_subscribers/starrocks/main.html">StarRocks</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Working with Kafka</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../05_working_with_triggers/main.html">Working with Triggers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../06_working_with_tables/table_frame.html">Working with Tables</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../06_working_with_tables/tableframe_guide.html">TableFrame API Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../06_working_with_tables/user_defined_functions.html">User-defined Functions (UDFs)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../07_working_with_connector_plugins/main.html">Working with Plugins</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../data_quality/main.html">Data Quality</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../catalogs/main.html">Catalogs</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../catalogs/aws_glue/main.html">AWS Glue Catalog</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../catalogs/unity_catalog/main.html">Unity Catalog</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="../user_interface/main.html">User Interface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ai_agent/main.html">Tabsdata AI Agent (Tabby)</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../secrets_management/main.html">Secrets Management</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../secrets_management/env_variables/main.html">Environment Variables</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../secrets_management/hashicorp/main.html">HashiCorp Secret</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="../permissioning/main.html">Role Based Access Control (RBAC)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../security/main.html">Setting up Tabsdata over HTTPS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../08_testing/main.html">Testing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../10_troubleshooting/main.html">Troubleshooting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cli_commands/main.html">CLI Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../release_notes/main.html">Release Notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../09_contact_support/main.html">Contact Us</a></li>
+</ul>
+</div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../../index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    
+    <li class="breadcrumb-item"><a href="../index.html" class="nav-link">User Guide</a></li>
+    
+    
+    <li class="breadcrumb-item"><a href="../04_01_working_with_publishers/main.html" class="nav-link">Publishers</a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">Working with Kafka</span></li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="working-with-kafka">
+<h1>Working with Kafka</h1>
+<p>The <strong>Kafka Trigger</strong> enables Publishers to ingest data directly from a Kafka topic into a Tabsdata table. This allows for seamless streaming of event-based data into Tabsdata.</p>
+<section id="how-it-works">
+<h2>How It Works</h2>
+<p>The Kafka Trigger operates in tandem with the <strong>Tabsdata Stage</strong> source (<code class="docutils literal notranslate"><span class="pre">td.Stage()</span></code>).</p>
+<ol class="arabic simple">
+<li><p><strong>Staging:</strong> When the trigger is active, Tabsdata acts as a consumer, pulling messages from the specified Kafka topic and holding them in a private storage area called a <strong>Stage</strong>.</p></li>
+<li><p><strong>Buffering:</strong> Messages are accumulated in the Stage based on specific thresholds (Time, Size, or Count).</p></li>
+<li><p><strong>Publishing:</strong> Once a threshold is met, the accumulated data is passed to your publisher function (as a list of <code class="docutils literal notranslate"><span class="pre">TableFrame</span></code> objects), concatenated, and committed as a new incremental table version.</p></li>
+</ol>
+</section>
+<section id="supported-formats">
+<h2>Supported Formats</h2>
+<ul class="simple">
+<li><p><strong>Data Formats:</strong> JSON, Avro, Protobuf.</p></li>
+<li><p><strong>Schema Management:</strong> You can provide the schema string directly or connect to external registries (Confluent Schema Registry or AWS Glue Schema Registry).</p></li>
+</ul>
+</section>
+<hr class="docutils" />
+<section id="basic-configuration-example">
+<h2>Basic Configuration Example</h2>
+<p>The following example demonstrates how to configure a publisher to consume JSON data from a Kafka topic named <code class="docutils literal notranslate"><span class="pre">my_topic</span></code> without an external registry.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">tabsdata</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">td</span>
+
+<span class="c1"># Define your schema (or load it from a file)</span>
+<span class="n">JSON_SCHEMA</span> <span class="o">=</span> <span class="s2">&quot;...&quot;</span> 
+
+<span class="nd">@td</span><span class="o">.</span><span class="n">publisher</span><span class="p">(</span>
+    <span class="c1"># The source must be a Stage when using KafkaTrigger</span>
+    <span class="n">source</span><span class="o">=</span><span class="n">td</span><span class="o">.</span><span class="n">Stage</span><span class="p">(),</span>
+    <span class="n">tables</span><span class="o">=</span><span class="s2">&quot;flight_events&quot;</span><span class="p">,</span>
+    <span class="n">trigger_by</span><span class="o">=</span><span class="n">td</span><span class="o">.</span><span class="n">KafkaTrigger</span><span class="p">(</span>
+        <span class="n">conn</span><span class="o">=</span><span class="n">td</span><span class="o">.</span><span class="n">KafkaConn</span><span class="p">(</span>
+            <span class="n">servers</span><span class="o">=</span><span class="s2">&quot;my_kafka:9092&quot;</span><span class="p">,</span>
+            <span class="n">credentials</span><span class="o">=</span><span class="n">td</span><span class="o">.</span><span class="n">UserPasswordCredentials</span><span class="p">(</span><span class="s2">&quot;user&quot;</span><span class="p">,</span> <span class="s2">&quot;password&quot;</span><span class="p">),</span>
+            <span class="n">group_id</span><span class="o">=</span><span class="s2">&quot;tabsdata_consumer_group&quot;</span><span class="p">,</span>
+        <span class="p">),</span>
+        <span class="n">topic</span><span class="o">=</span><span class="s2">&quot;my_topic&quot;</span><span class="p">,</span>
+        <span class="n">data_format</span><span class="o">=</span><span class="s2">&quot;json&quot;</span><span class="p">,</span>
+        <span class="n">schema</span><span class="o">=</span><span class="n">JSON_SCHEMA</span><span class="p">,</span>
+        <span class="c1"># Commit data every 30 seconds</span>
+        <span class="n">time_rollover_secs</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span>
+    <span class="p">),</span>
+<span class="p">)</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">flight_events_publisher</span><span class="p">(</span><span class="n">tfs</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">td</span><span class="o">.</span><span class="n">TableFrame</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">td</span><span class="o">.</span><span class="n">TableFrame</span><span class="p">:</span>
+    <span class="c1"># Concatenate the batch of messages into a single frame</span>
+    <span class="k">return</span> <span class="n">td</span><span class="o">.</span><span class="n">concat</span><span class="p">(</span><span class="n">tfs</span><span class="p">)</span>
+
+</pre></div>
+</div>
+</section>
+<hr class="docutils" />
+<section id="configuration-reference">
+<h2>Configuration Reference</h2>
+<p>The <code class="docutils literal notranslate"><span class="pre">KafkaTrigger</span></code> object requires two main components: the <strong>Trigger Configuration</strong> (logic for handling data) and the <strong>Connection Configuration</strong> (details for connecting to the broker).</p>
+<section id="kafka-trigger-configuration-td-kafkatrigger">
+<h3>1. Kafka Trigger Configuration (<code class="docutils literal notranslate"><span class="pre">td.KafkaTrigger</span></code>)</h3>
+<p>These parameters control <em>how</em> data is consumed and when it is committed to the table.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Parameter</p></th>
+<th class="head"><p>Type</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">conn</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">KafkaConn</span></code></p></td>
+<td><p><strong>Required.</strong> The connection object containing server and credential details.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">topic</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">str</span></code></p></td>
+<td><p><strong>Required.</strong> The Kafka topic to consume from.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">data_format</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">str</span></code></p></td>
+<td><p><strong>Required.</strong> Format of the messages. Options: <code class="docutils literal notranslate"><span class="pre">&quot;avro&quot;</span></code>, <code class="docutils literal notranslate"><span class="pre">&quot;json&quot;</span></code>, <code class="docutils literal notranslate"><span class="pre">&quot;protobuf&quot;</span></code>.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">schema</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">str</span></code></p></td>
+<td><p>The schema string used to deserialize the messages (if not using a registry).</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">group_id</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">str</span></code></p></td>
+<td><p>Optional. Overrides the consumer group ID specified in the connection.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">dlq_topic</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">str</span></code></p></td>
+<td><p>Optional. A topic to send messages that fail deserialization (Dead Letter Queue).</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><strong>Rollover Strategies (Buffering)</strong>
+<em>You must define at least the time rollover strategy.</em></p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Parameter</p></th>
+<th class="head"><p>Default</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">time_rollover_secs</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">60</span></code></p></td>
+<td><p>The maximum time (in seconds) to buffer messages before committing.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">size_rollover_mb</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">None</span></code></p></td>
+<td><p>The maximum size (in MB) of the buffer before committing.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">messages_rollover</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">None</span></code></p></td>
+<td><p>The maximum number of messages to buffer before committing.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><strong>Scheduling</strong></p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Parameter</p></th>
+<th class="head"><p>Type</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">start</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">datetime</span></code></p></td>
+<td><p>Optional. The specific time to <strong>start</strong> consuming.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">end</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">datetime</span></code></p></td>
+<td><p>Optional. The specific time to <strong>stop</strong> consuming.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<blockquote>
+<div><p><strong>Note on Scheduling:</strong> <code class="docutils literal notranslate"><span class="pre">start</span></code> and <code class="docutils literal notranslate"><span class="pre">end</span></code> accept Python <code class="docutils literal notranslate"><span class="pre">datetime</span></code> objects with timezone info or ISO 8601 strings (e.g., <code class="docutils literal notranslate"><span class="pre">2024-01-01T12:00:00Z</span></code>). If omitted, the trigger runs indefinitely from the moment it is registered.</p>
+</div></blockquote>
+</section>
+<section id="kafka-connection-configuration-td-kafkaconn">
+<h3>2. Kafka Connection Configuration (<code class="docutils literal notranslate"><span class="pre">td.KafkaConn</span></code>)</h3>
+<p>These parameters control the connection to the Kafka Broker.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Parameter</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">servers</span></code></p></td>
+<td><p><strong>Required.</strong> The Kafka bootstrap servers (e.g., <code class="docutils literal notranslate"><span class="pre">localhost:9092</span></code>).</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">credentials</span></code></p></td>
+<td><p>Optional. Authentication credentials (e.g., <code class="docutils literal notranslate"><span class="pre">td.UserPasswordCredentials</span></code>).</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">group_id</span></code></p></td>
+<td><p>Optional. The default consumer group ID for this connection.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">schema_registry</span></code></p></td>
+<td><p>Optional. Configuration object for Confluent or AWS Glue Schema Registry (see section below).</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">enforce_connection_params</span></code></p></td>
+<td><p>Boolean. Whether to strictly enforce connection parameters.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">cx_src_configs</span></code></p></td>
+<td><p>Source-specific configuration parameters (defaults to <code class="docutils literal notranslate"><span class="pre">None</span></code>).</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+</section>
+<hr class="docutils" />
+<section id="schema-registry-configuration">
+<h2>Schema Registry Configuration</h2>
+<p>If your Kafka messages rely on an external schema registry for deserialization (e.g., Avro or Protobuf), you can configure the <code class="docutils literal notranslate"><span class="pre">schema_registry</span></code> parameter within the <code class="docutils literal notranslate"><span class="pre">td.KafkaConn</span></code> object.</p>
+<p>Tabsdata supports both <strong>Confluent Schema Registry</strong> and <strong>AWS Glue Schema Registry</strong>.</p>
+<section id="confluent-schema-registry">
+<h3>Confluent Schema Registry</h3>
+<p>Use this configuration when connecting to a self-hosted or Confluent Cloud schema registry.</p>
+<p><strong>Configuration Object:</strong> <code class="docutils literal notranslate"><span class="pre">td.ConfluentSchemaRegistry</span></code></p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Parameter</p></th>
+<th class="head"><p>Type</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">url</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">str</span></code></p></td>
+<td><p><strong>Required.</strong> The full URL of the Confluent Schema Registry.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">credentials</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">ConfluentSchemaRegistryCredentialsSpec</span></code></p></td>
+<td><p>Optional. Credentials object containing the API Key and Secret.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">configs</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">dict</span></code></p></td>
+<td><p>Optional. A dictionary of additional configuration properties.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><strong>Example Snippet:</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">conn</span> <span class="o">=</span> <span class="n">td</span><span class="o">.</span><span class="n">KafkaConn</span><span class="p">(</span>
+    <span class="c1"># ... basic kafka params ...</span>
+    <span class="n">schema_registry</span><span class="o">=</span><span class="n">td</span><span class="o">.</span><span class="n">ConfluentSchemaRegistry</span><span class="p">(</span>
+        <span class="n">url</span><span class="o">=</span><span class="s2">&quot;https://my-registry:8081&quot;</span><span class="p">,</span>
+        <span class="n">credentials</span><span class="o">=</span><span class="n">td</span><span class="o">.</span><span class="n">ConfluentSchemaRegistryCredentialsSpec</span><span class="p">(</span><span class="n">key</span><span class="o">=</span><span class="s2">&quot;KEY&quot;</span><span class="p">,</span> <span class="n">secret</span><span class="o">=</span><span class="s2">&quot;SECRET&quot;</span><span class="p">)</span>
+    <span class="p">)</span>
+<span class="p">)</span>
+
+</pre></div>
+</div>
+</section>
+<section id="aws-glue-schema-registry">
+<h3>AWS Glue Schema Registry</h3>
+<p>Use this configuration when schemas are stored in the AWS Glue Schema Registry.</p>
+<p><strong>Configuration Object:</strong> <code class="docutils literal notranslate"><span class="pre">td.AwsGlueSchemaRegistry</span></code></p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Parameter</p></th>
+<th class="head"><p>Type</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">region_name</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">str</span></code></p></td>
+<td><p><strong>Required.</strong> The AWS region where the registry resides (e.g., <code class="docutils literal notranslate"><span class="pre">us-east-1</span></code>).</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">registry_name</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">str</span></code></p></td>
+<td><p><strong>Required.</strong> The name of the registry in AWS Glue.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">schema_name</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">str</span></code></p></td>
+<td><p><strong>Required.</strong> The specific schema name to retrieve.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">credentials</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">AwsGlueSchemaRegistryCredentialsSpec</span></code></p></td>
+<td><p><strong>Required.</strong> AWS credentials (access key, secret key, session token).</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">configs</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">dict</span></code></p></td>
+<td><p>Optional. A dictionary of additional configuration properties.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><strong>Example Snippet:</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">conn</span> <span class="o">=</span> <span class="n">td</span><span class="o">.</span><span class="n">KafkaConn</span><span class="p">(</span>
+    <span class="c1"># ... basic kafka params ...</span>
+    <span class="n">schema_registry</span><span class="o">=</span><span class="n">td</span><span class="o">.</span><span class="n">AwsGlueSchemaRegistry</span><span class="p">(</span>
+        <span class="n">region_name</span><span class="o">=</span><span class="s2">&quot;us-west-2&quot;</span><span class="p">,</span>
+        <span class="n">registry_name</span><span class="o">=</span><span class="s2">&quot;my-glue-registry&quot;</span><span class="p">,</span>
+        <span class="n">schema_name</span><span class="o">=</span><span class="s2">&quot;flight-events-schema&quot;</span><span class="p">,</span>
+        <span class="n">credentials</span><span class="o">=</span><span class="n">td</span><span class="o">.</span><span class="n">AwsGlueSchemaRegistryCredentialsSpec</span><span class="p">(</span>
+            <span class="n">access_key</span><span class="o">=</span><span class="s2">&quot;ACCESS_KEY&quot;</span><span class="p">,</span> 
+            <span class="n">secret_key</span><span class="o">=</span><span class="s2">&quot;SECRET_KEY&quot;</span>
+        <span class="p">)</span>
+    <span class="p">)</span>
+<span class="p">)</span>
+
+</pre></div>
+</div>
+</section>
+</section>
+<hr class="docutils" />
+<section id="lifecycle-management-cli">
+<h2>Lifecycle Management (CLI)</h2>
+<p>You can manage the execution state of your Kafka Triggers using the Tabsdata CLI.</p>
+<p><strong>Starting and Stopping Triggers</strong>
+To manually pause or resume the ingestion of data without deleting the publisher:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Stop a specific function trigger</span>
+td<span class="w"> </span>stage<span class="w"> </span>stop<span class="w"> </span>--coll<span class="w"> </span>&lt;COLLECTION_NAME&gt;<span class="w"> </span>--name<span class="w"> </span>&lt;FUNCTION_NAME&gt;
+
+<span class="c1"># Start a specific function trigger</span>
+td<span class="w"> </span>stage<span class="w"> </span>start<span class="w"> </span>--coll<span class="w"> </span>&lt;COLLECTION_NAME&gt;<span class="w"> </span>--name<span class="w"> </span>&lt;FUNCTION_NAME&gt;
+</pre></div>
+</div>
+<p><strong>Deploying in a Disabled State</strong>
+If you wish to register a publisher but prevent it from immediately consuming data, use the <code class="docutils literal notranslate"><span class="pre">--disabled</span></code> flag during registration. You can then manually start it later using the CLI command above.</p>
+</section>
+</section>
+
+
+                </article>
+              
+              
+              
+              
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+<div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#how-it-works">How It Works</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#supported-formats">Supported Formats</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#basic-configuration-example">Basic Configuration Example</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#configuration-reference">Configuration Reference</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#kafka-trigger-configuration-td-kafkatrigger">1. Kafka Trigger Configuration (<code class="docutils literal notranslate"><span class="pre">td.KafkaTrigger</span></code>)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#kafka-connection-configuration-td-kafkaconn">2. Kafka Connection Configuration (<code class="docutils literal notranslate"><span class="pre">td.KafkaConn</span></code>)</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#schema-registry-configuration">Schema Registry Configuration</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#confluent-schema-registry">Confluent Schema Registry</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#aws-glue-schema-registry">AWS Glue Schema Registry</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lifecycle-management-cli">Lifecycle Management (CLI)</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+
+<!-- Your custom footer content here -->
+
+  </body>
+</html>

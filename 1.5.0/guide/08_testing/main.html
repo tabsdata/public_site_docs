@@ -1,0 +1,545 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Testing &#8212; Tabsdata  documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=8f2a1f02" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=5a027c77" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="../../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+
+    <script src="../../_static/jquery.js?v=5d32c60e"></script>
+    <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+    <script src="../../_static/documentation_options.js?v=7f41d439"></script>
+    <script src="../../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=a56c686a"></script>
+    <script src="../../_static/design-tabs.js?v=f930bc37"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'guide/08_testing/main';</script>
+    <script>
+        DOCUMENTATION_OPTIONS.theme_version = '0.16.1';
+        DOCUMENTATION_OPTIONS.theme_switcher_json_url = 'https://docs.tabsdata.com/version.json';
+        DOCUMENTATION_OPTIONS.theme_switcher_version_match = '1.5.0';
+        DOCUMENTATION_OPTIONS.show_version_warning_banner =
+            false;
+        </script>
+    <script src="../../_static/custom.js?v=ac098f57"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Troubleshooting" href="../10_troubleshooting/main.html" />
+    <link rel="prev" title="Setting up Tabsdata over HTTPS" href="../security/main.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="1.5.0" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+
+
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+     
+  
+
+<a class="navbar-brand logo" href=" https://tabsdata.com/?utm_source=docs">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../_static/tabsdata_root.png" class="logo__image only-light" alt="Tabsdata  documentation - Home"/>
+    <img src="../../_static/tabsdata_root_light.png" class="logo__image only-dark pst-js-only" alt="Tabsdata  documentation - Home"/>
+  
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="../intro.html">
+    Guide
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../api_ref/index.html">
+    API Reference
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../tutorials/index.html">
+    Tutorials
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+        <div class="navbar-item">
+<div class="version-switcher__container dropdown pst-js-only">
+  <button id="pst-version-switcher-button-2"
+    type="button"
+    class="version-switcher__button btn btn-sm dropdown-toggle"
+    data-bs-toggle="dropdown"
+    aria-haspopup="listbox"
+    aria-controls="pst-version-switcher-list-2"
+    aria-label="Version switcher list"
+  >
+    Choose version  <!-- this text may get changed later by javascript -->
+    <span class="caret"></span>
+  </button>
+  <div id="pst-version-switcher-list-2"
+    class="version-switcher__menu dropdown-menu list-group-flush py-0"
+    role="listbox" aria-labelledby="pst-version-switcher-button-2">
+    <!-- dropdown will be populated by javascript on page load -->
+  </div>
+</div></div>
+      
+        <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="../intro.html">
+    Guide
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../api_ref/index.html">
+    API Reference
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../tutorials/index.html">
+    Tutorials
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+<div class="version-switcher__container dropdown pst-js-only">
+  <button id="pst-version-switcher-button-3"
+    type="button"
+    class="version-switcher__button btn btn-sm dropdown-toggle"
+    data-bs-toggle="dropdown"
+    aria-haspopup="listbox"
+    aria-controls="pst-version-switcher-list-3"
+    aria-label="Version switcher list"
+  >
+    Choose version  <!-- this text may get changed later by javascript -->
+    <span class="caret"></span>
+  </button>
+  <div id="pst-version-switcher-list-3"
+    class="version-switcher__menu dropdown-menu list-group-flush py-0"
+    role="listbox" aria-labelledby="pst-version-switcher-button-3">
+    <!-- dropdown will be populated by javascript on page load -->
+  </div>
+</div></div>
+        
+          <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+<nav class="bd-docs-nav bd-links"
+     aria-label="Section Navigation">
+  <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
+  <div class="bd-toc-item navbar-nav"><ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../01_overview/main.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../02_getting_started/main.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../03_key_concepts/main.html">Key Concepts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../04_working_with_functions/main.html">Working with Functions</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../04_01_working_with_publishers/main.html">Publishers</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../04_01_working_with_publishers/local_file_system/main.html">Local File System</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../04_01_working_with_publishers/amazon_s3/main.html">Amazon S3</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../04_01_working_with_publishers/azure/main.html">Azure Blob Storage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../04_01_working_with_publishers/gcp/main.html">Google Cloud Storage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../04_01_working_with_publishers/mariadb/main.html">MariaDB</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../04_01_working_with_publishers/mssql/main.html">Microsoft SQL Server</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../04_01_working_with_publishers/mysql/main.html">MySQL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../04_01_working_with_publishers/oracle/main.html">Oracle</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../04_01_working_with_publishers/postgres/main.html">Postgres</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../04_01_working_with_publishers/salesforce/main.html">Salesforce SOQL Query</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../04_01_working_with_publishers/salesforce_reports/main.html">Salesforce Reports</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../04_01_working_with_publishers/grok_for_log_files/main.html">Grok for Log Files</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="../04_02_working_with_transformers/main.html">Transformers</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../04_03_working_with_subscribers/main.html">Subscribers</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../04_03_working_with_subscribers/local_file_system/main.html">Local File System</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../04_03_working_with_subscribers/aws_iceberg/main.html">AWS Glue - Iceberg tables</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../04_03_working_with_subscribers/amazon_s3/main.html">Amazon S3</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../04_03_working_with_subscribers/azure/main.html">Azure Blob Storage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../04_03_working_with_subscribers/bigquery/main.html">Big Query</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../04_03_working_with_subscribers/databricks/main.html">Databricks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../04_03_working_with_subscribers/gcp/main.html">Google Cloud Storage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../04_03_working_with_subscribers/mariadb/main.html">MariaDB</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../04_03_working_with_subscribers/mongodb/main.html">MongoDB</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../04_03_working_with_subscribers/mssql/main.html">Microsoft SQL Server</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../04_03_working_with_subscribers/mysql/main.html">MySQL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../04_03_working_with_subscribers/oracle/main.html">Oracle</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../04_03_working_with_subscribers/postgres/main.html">Postgres</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../04_03_working_with_subscribers/snowflake/main.html">Snowflake</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="../05_working_with_triggers/main.html">Working with Triggers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../06_working_with_tables/table_frame.html">Working with Tables</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../06_working_with_tables/user_defined_functions.html">User-defined Functions (UDFs)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../07_working_with_connector_plugins/main.html">Working with Plugins</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../catalogs/main.html">Catalogs</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../catalogs/aws_glue/main.html">AWS Glue Catalog</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../catalogs/unity_catalog/main.html">Unity Catalog</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="../user_interface/main.html">User Interface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ai_agent/main.html">Tabsdata AI Agent (Tabby)</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../secrets_management/main.html">Secrets Management</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../secrets_management/env_variables/main.html">Environment Variables</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../secrets_management/hashicorp/main.html">HashiCorp Secret</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="../permissioning/main.html">Role Based Access Control (RBAC)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../security/main.html">Setting up Tabsdata over HTTPS</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Testing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../10_troubleshooting/main.html">Troubleshooting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cli_commands/main.html">CLI Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../09_contact_support/main.html">Contact Us</a></li>
+</ul>
+</div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../../index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    
+    <li class="breadcrumb-item"><a href="../intro.html" class="nav-link">User Guide</a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">Testing</span></li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="testing">
+<h1>Testing<a class="headerlink" href="#testing" title="Link to this heading">#</a></h1>
+<p>You can use the <a class="reference external" href="https://docs.pola.rs/">polars</a> or <a class="reference external" href="https://pandas.pydata.org/docs/index.html">pandas</a> Python package to test out your function logic before registering and executing your functions on the server. When testing, the accepted input types are pandas.DataFrame, polars.DataFrame, and polars.LazyFrame, and the type of the returned output will match the input type. Regardless of the input type, the function itself always receives a Tabsdata TableFrame when executed on the server.</p>
+<p>Here is an example of how to do that.</p>
+<p>Let’s take the function logic of the transformer code from the Getting Started section <a class="reference internal" href="../02_getting_started/main.html#getting-started-transformer"><span class="std std-ref">here</span></a>. You can test the function logic using the following code:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">polars</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pl</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">tabsdata</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">td</span>
+
+<span class="nd">@td</span><span class="o">.</span><span class="n">transformer</span><span class="p">(</span>
+    <span class="n">input_tables</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;persons&quot;</span><span class="p">],</span>
+    <span class="n">output_tables</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;spanish&quot;</span><span class="p">,</span> <span class="s2">&quot;french&quot;</span><span class="p">,</span> <span class="s2">&quot;german&quot;</span><span class="p">]</span>
+    <span class="p">)</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">tfr</span><span class="p">(</span><span class="n">persons</span><span class="p">:</span> <span class="n">td</span><span class="o">.</span><span class="n">TableFrame</span><span class="p">):</span>
+    <span class="n">persons</span> <span class="o">=</span> <span class="n">persons</span><span class="o">.</span><span class="n">select</span><span class="p">(</span>
+        <span class="p">[</span><span class="s2">&quot;identifier&quot;</span><span class="p">,</span> <span class="s2">&quot;name&quot;</span><span class="p">,</span> <span class="s2">&quot;surname&quot;</span><span class="p">,</span> <span class="s2">&quot;nationality&quot;</span><span class="p">,</span> <span class="s2">&quot;language&quot;</span><span class="p">]</span>
+    <span class="p">)</span>
+    <span class="n">res</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="k">for</span> <span class="n">nationality</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;Spanish&quot;</span><span class="p">,</span> <span class="s2">&quot;French&quot;</span><span class="p">,</span> <span class="s2">&quot;German&quot;</span><span class="p">]:</span>
+        <span class="n">res</span><span class="p">[</span><span class="n">nationality</span><span class="p">]</span> <span class="o">=</span> <span class="n">persons</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">td</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;nationality&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">eq</span><span class="p">(</span><span class="n">nationality</span><span class="p">))</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span>
+            <span class="p">[</span><span class="s2">&quot;nationality&quot;</span><span class="p">]</span>
+        <span class="p">)</span>
+    <span class="k">return</span> <span class="n">res</span><span class="p">[</span><span class="s2">&quot;Spanish&quot;</span><span class="p">],</span> <span class="n">res</span><span class="p">[</span><span class="s2">&quot;French&quot;</span><span class="p">],</span> <span class="n">res</span><span class="p">[</span><span class="s2">&quot;German&quot;</span><span class="p">]</span>
+
+<span class="c1"># Local test (optional)</span>
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+
+    <span class="n">tf</span> <span class="o">=</span> <span class="n">pl</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;&lt;&lt;path_to_persons.csv&gt;&gt;&quot;</span><span class="p">)</span>
+
+    <span class="n">s</span><span class="p">,</span> <span class="n">f</span><span class="p">,</span> <span class="n">g</span> <span class="o">=</span> <span class="n">tfr</span><span class="p">(</span><span class="n">tf</span><span class="p">)</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;--------- Spanish ---------</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">s</span><span class="o">.</span><span class="n">sample</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;--------- French ---------</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">f</span><span class="o">.</span><span class="n">sample</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;--------- German ---------</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">g</span><span class="o">.</span><span class="n">sample</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Note:</p>
+<ul class="simple">
+<li><p>This method is only applicable to test the function logic, and not the input and output to the function.</p></li>
+<li><p>Remember to update the path to your input file (<code class="docutils literal notranslate"><span class="pre">&lt;&lt;path_to_persons.csv&gt;&gt;</span></code>) as needed.</p></li>
+</ul>
+<p>Here Polars <code class="docutils literal notranslate"><span class="pre">read_csv</span></code> is used to read the csv file and store the resultant dataframe in a variable called <code class="docutils literal notranslate"><span class="pre">tf</span></code>. This <code class="docutils literal notranslate"><span class="pre">tf</span></code> dataframe is passed to the <code class="docutils literal notranslate"><span class="pre">tfr</span></code> function as input, and the resultant output tables from the function are stored as s,f and g variables. Subsequently a sample is printed from these. You can check the output as per your requirement to confirm if the function is generating the output as needed.</p>
+<p>Once the correcteness of output is confirmed, you just need to define the Python decorator (<code class="docutils literal notranslate"><span class="pre">&#64;td.publisher</span></code>, <code class="docutils literal notranslate"><span class="pre">&#64;td.transformer</span></code>, <code class="docutils literal notranslate"><span class="pre">&#64;td.subscriber</span></code>) with the relevant paramters to create the connections.</p>
+</section>
+
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="../security/main.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Setting up Tabsdata over HTTPS</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="../10_troubleshooting/main.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Troubleshooting</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+
+<!-- Your custom footer content here -->
+
+  </body>
+</html>

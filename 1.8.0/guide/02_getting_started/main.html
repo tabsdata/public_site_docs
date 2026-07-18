@@ -1,0 +1,1059 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Getting Started &#8212; Tabsdata  documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=8f2a1f02" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../../_static/tabs.css?v=a5c4661c" />
+    <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=8305e08e" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="../../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+
+    <script src="../../_static/jquery.js?v=5d32c60e"></script>
+    <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+    <script src="../../_static/documentation_options.js?v=7f41d439"></script>
+    <script src="../../_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=a56c686a"></script>
+    <script src="../../_static/design-tabs.js?v=f930bc37"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'guide/02_getting_started/main';</script>
+    <script>
+        DOCUMENTATION_OPTIONS.theme_version = '0.16.1';
+        DOCUMENTATION_OPTIONS.theme_switcher_json_url = 'https://docs.tabsdata.com/version.json';
+        DOCUMENTATION_OPTIONS.theme_switcher_version_match = '1.8.0';
+        DOCUMENTATION_OPTIONS.show_version_warning_banner =
+            false;
+        </script>
+    <script src="../../_static/tabs.js?v=3030b3cb"></script>
+    <script src="../../_static/custom.js?v=ac098f57"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Server Configuration" href="../server_configuration/main.html" />
+    <link rel="prev" title="Overview" href="../01_overview/main.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="1.8.0" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+
+
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+     
+  
+
+<a class="navbar-brand logo" href=" https://tabsdata.com/?utm_source=docs">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../_static/tabsdata_root.png" class="logo__image only-light" alt="Tabsdata  documentation - Home"/>
+    <img src="../../_static/tabsdata_root_light.png" class="logo__image only-dark pst-js-only" alt="Tabsdata  documentation - Home"/>
+  
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="../index.html">
+    User Guide
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../ref/index.html">
+    API Reference
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../tutorials/index.html">
+    Tutorials
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+        <div class="navbar-item">
+<div class="version-switcher__container dropdown pst-js-only">
+  <button id="pst-version-switcher-button-2"
+    type="button"
+    class="version-switcher__button btn btn-sm dropdown-toggle"
+    data-bs-toggle="dropdown"
+    aria-haspopup="listbox"
+    aria-controls="pst-version-switcher-list-2"
+    aria-label="Version switcher list"
+  >
+    Choose version  <!-- this text may get changed later by javascript -->
+    <span class="caret"></span>
+  </button>
+  <div id="pst-version-switcher-list-2"
+    class="version-switcher__menu dropdown-menu list-group-flush py-0"
+    role="listbox" aria-labelledby="pst-version-switcher-button-2">
+    <!-- dropdown will be populated by javascript on page load -->
+  </div>
+</div></div>
+      
+        <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="../index.html">
+    User Guide
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../ref/index.html">
+    API Reference
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../tutorials/index.html">
+    Tutorials
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+<div class="version-switcher__container dropdown pst-js-only">
+  <button id="pst-version-switcher-button-3"
+    type="button"
+    class="version-switcher__button btn btn-sm dropdown-toggle"
+    data-bs-toggle="dropdown"
+    aria-haspopup="listbox"
+    aria-controls="pst-version-switcher-list-3"
+    aria-label="Version switcher list"
+  >
+    Choose version  <!-- this text may get changed later by javascript -->
+    <span class="caret"></span>
+  </button>
+  <div id="pst-version-switcher-list-3"
+    class="version-switcher__menu dropdown-menu list-group-flush py-0"
+    role="listbox" aria-labelledby="pst-version-switcher-button-3">
+    <!-- dropdown will be populated by javascript on page load -->
+  </div>
+</div></div>
+        
+          <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+<nav class="bd-docs-nav bd-links"
+     aria-label="Section Navigation">
+  <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
+  <div class="bd-toc-item navbar-nav"><ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../01_overview/main.html">Overview</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../server_configuration/main.html">Server Configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../03_key_concepts/main.html">Key Concepts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../04_working_with_functions/main.html">Working with Functions</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../04_01_working_with_publishers/main.html">Publishers</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../04_01_working_with_publishers/local_file_system/main.html">Local File System</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../04_01_working_with_publishers/amazon_s3/main.html">Amazon S3</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../04_01_working_with_publishers/azure/main.html">Azure Blob Storage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../04_01_working_with_publishers/gcp/main.html">Google Cloud Storage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../04_01_working_with_publishers/grok_for_log_files/main.html">Grok for Log Files</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../04_01_working_with_publishers/db2/main.html">Db2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../04_01_working_with_publishers/db2_cdc/main.html">Db2 CDC</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../working_with_kafka/main.html">Kafka</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../04_01_working_with_publishers/mariadb/main.html">MariaDB</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../04_01_working_with_publishers/mssql/main.html">Microsoft SQL Server</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../04_01_working_with_publishers/mysql/main.html">MySQL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../04_01_working_with_publishers/mysql_cdc/main.html">MySQL CDC</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../04_01_working_with_publishers/oracle/main.html">Oracle</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../04_01_working_with_publishers/postgres/main.html">Postgres</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../04_01_working_with_publishers/postgres_cdc/main.html">PostgreSQL CDC</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../04_01_working_with_publishers/salesforce/main.html">Salesforce SOQL Query</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../04_01_working_with_publishers/salesforce_reports/main.html">Salesforce Reports</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="../04_02_working_with_transformers/main.html">Transformers</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../04_03_working_with_subscribers/main.html">Subscribers</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../04_03_working_with_subscribers/local_file_system/main.html">Local File System</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../04_03_working_with_subscribers/amazon_s3/main.html">Amazon S3</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../04_03_working_with_subscribers/azure/main.html">Azure Blob Storage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../04_03_working_with_subscribers/gcp/main.html">Google Cloud Storage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../04_03_working_with_subscribers/aws_iceberg/main.html">AWS Glue - Iceberg tables</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../04_03_working_with_subscribers/bigquery/main.html">Big Query</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../04_03_working_with_subscribers/clickhouse/main.html">ClickHouse</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../04_03_working_with_subscribers/databricks/main.html">Databricks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../04_03_working_with_subscribers/druid/main.html">Apache Druid</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../04_03_working_with_subscribers/mariadb/main.html">MariaDB</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../04_03_working_with_subscribers/mongodb/main.html">MongoDB</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../04_03_working_with_subscribers/mssql/main.html">Microsoft SQL Server</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../04_03_working_with_subscribers/mysql/main.html">MySQL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../04_03_working_with_subscribers/oracle/main.html">Oracle</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../04_03_working_with_subscribers/postgres/main.html">Postgres</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../04_03_working_with_subscribers/snowflake/main.html">Snowflake</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../04_03_working_with_subscribers/starrocks/main.html">StarRocks</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="../working_with_kafka/main.html">Working with Kafka</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../05_working_with_triggers/main.html">Working with Triggers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../06_working_with_tables/table_frame.html">Working with Tables</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../06_working_with_tables/tableframe_guide.html">TableFrame API Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../06_working_with_tables/user_defined_functions.html">User-defined Functions (UDFs)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../07_working_with_connector_plugins/main.html">Working with Plugins</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../data_quality/main.html">Data Quality</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../catalogs/main.html">Catalogs</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../catalogs/aws_glue/main.html">AWS Glue Catalog</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../catalogs/unity_catalog/main.html">Unity Catalog</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="../user_interface/main.html">User Interface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ai_agent/main.html">Tabsdata AI Agent (Tabby)</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../secrets_management/main.html">Secrets Management</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../secrets_management/env_variables/main.html">Environment Variables</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../secrets_management/hashicorp/main.html">HashiCorp Secret</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="../permissioning/main.html">Role Based Access Control (RBAC)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../security/main.html">Setting up Tabsdata over HTTPS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../08_testing/main.html">Testing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../10_troubleshooting/main.html">Troubleshooting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cli_commands/main.html">CLI Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../release_notes/main.html">Release Notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../09_contact_support/main.html">Contact Us</a></li>
+</ul>
+</div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../../index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    
+    <li class="breadcrumb-item"><a href="../index.html" class="nav-link">User Guide</a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">Getting Started</span></li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="getting-started">
+<span id="id1"></span><h1>Getting Started</h1>
+<p>This chapter provides a tutorial to walk you through essential Tabsdata operations.</p>
+<p>In this tutorial, you create a collection to store the Tabsdata functions and tables. Then, you implement:</p>
+<ul class="simple">
+<li><p>a publisher to read the data from an external system and write to Tabsdata,</p></li>
+<li><p>a transformer to modify the data, and</p></li>
+<li><p>a subscriber to read the tables from Tabsdata and write the modified data to an external system.</p></li>
+</ul>
+<p>The tutorial shows you how to define, register, and trigger the functions. It also demonstrates how the downstream dependencies are automatically managed by Tabsdata.</p>
+<p>If you encounter any trouble with the tutorial, you might find help in <a class="reference internal" href="../10_troubleshooting/main.html#troubleshooting"><span class="std std-ref">Troubleshooting</span></a>, and reach out to us on <a class="reference external" href="https://join.slack.com/t/tabsdata-community/shared_invite/zt-322toyigx-ZGFioMV2Gbza4bJDAR7wSQ">Slack</a>.</p>
+<section id="a-note-on-tabsdata-ui">
+<h2>A Note on Tabsdata UI</h2>
+<p>Once you have started the Tabsdata server using CLI, you can use the Tabsdata UI to work with the platform. The following section on <strong>Getting Started</strong> covers in detail the basic capabilities of the UI including e.g. <a class="reference internal" href="#execute-publisher-using-ui"><span class="std std-ref">executing functions</span></a> or <a class="reference internal" href="#check-table-using-ui"><span class="std std-ref">checking table data</span></a>. You can also see a walkthrough of the UI <a class="reference internal" href="../user_interface/main.html#ui"><span class="std std-ref">here</span></a>.</p>
+<img alt="../../_images/table_details.png" src="../../_images/table_details.png" />
+</section>
+<section id="step-1-install-tabsdata">
+<span id="install-tabsdata"></span><h2>Step 1. Install Tabsdata</h2>
+<p><strong>Note:</strong> The following tutorial is meant for CMD shell. You might need to adapt some commands if using PowerShell. You can use <cite>bash</cite> such as MinGW, CygWIn or Bash for Git, and follow the steps for Linux/macOS.</p>
+<p>While not required, you should install the Tabsdata Python package in a clean virtual environment. You can use <a class="reference external" href="https://docs.python.org/3/library/venv.html">python venv</a>, <a class="reference external" href="https://docs.conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html">conda</a> or other similar tools to create and manage your virtual environment.</p>
+<p>The commands in this tutorial assume that the user is running the tabsdata server in the same machine as the one in which doing the tutorial.</p>
+<p><strong>Important</strong>: The virtual environment or alternative installation location must have <strong>Python 3.12 or later</strong>.</p>
+<p>[Optional and Recommended] Setup virtual environment</p>
+<div class="sphinx-tabs docutils container">
+<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-0-0-0" aria-selected="true" class="sphinx-tabs-tab" id="tab-0-0-0" name="0-0" role="tab" tabindex="0">Conda:</button><button aria-controls="panel-0-0-1" aria-selected="false" class="sphinx-tabs-tab" id="tab-0-0-1" name="0-1" role="tab" tabindex="-1">Python:</button></div><div aria-labelledby="tab-0-0-0" class="sphinx-tabs-panel" id="panel-0-0-0" name="0-0" role="tabpanel" tabindex="0"><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>conda<span class="w"> </span>create<span class="w"> </span>--name<span class="w"> </span>tabsdata_env<span class="w"> </span><span class="nv">python</span><span class="o">=</span><span class="m">3</span>.12
+$<span class="w"> </span>conda<span class="w"> </span>activate<span class="w"> </span>tabsdata_env
+</pre></div>
+</div>
+</div><div aria-labelledby="tab-0-0-1" class="sphinx-tabs-panel" hidden="true" id="panel-0-0-1" name="0-1" role="tabpanel" tabindex="0"><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>python3.12<span class="w"> </span>-m<span class="w"> </span>venv<span class="w"> </span>.venv
+$<span class="w"> </span><span class="nb">source</span><span class="w"> </span>.venv/bin/activate<span class="w">    </span><span class="c1"># On Linux/Mac</span>
+$<span class="w"> </span>.<span class="se">\.</span>venv<span class="se">\S</span>cripts<span class="se">\a</span>ctivate<span class="w">     </span><span class="c1"># On Windows</span>
+</pre></div>
+</div>
+</div></div>
+<p>To install Tabsdata, run the following command in your command line interface (CLI):</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>tabsdata
+</pre></div>
+</div>
+<p>Tabsdata installation can be done as an ‘all’ installation or as an ‘only what you need’ installation.</p>
+<p>The ‘full’ instalation installs all Tabsdata and the third party libraries for all Tabsdata connectors. The ‘only what you need’ installation installs all Tabsdata but none of the third party connectors. This is done for two reasons, one is to keep the packages small. And second, some third party libraries require the users to accept their terms.</p>
+<p>The ‘full’ installation is done with the command <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">'tabsdata[all]'</span></code>. The ‘only what you need’ installation is done using the command <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">tabsdata</span></code> followed by installations for specific components, for example <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">'tabsdata[salesforce]'</span></code>.</p>
+</section>
+<section id="step-2-start-the-server">
+<h2>Step 2. Start the Server</h2>
+<p>In case you have started the Tabsdata server earlier, it is suggested that you remove the older Tabsdata instance. This enables you to start from scratch, reducing the possibilities of error or conflicts.</p>
+<section id="clearing-the-old-tabsdata-instance">
+<h3>1. Clearing the old Tabsdata instance</h3>
+<p><strong>[Applicable only if you have started a Tabsdata server before]</strong></p>
+<p>Run the following commands in your CLI, to stop the Tabsdata server and clear the instance:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>tdserver<span class="w"> </span>stop
+$<span class="w"> </span>tdserver<span class="w"> </span>clean
+$<span class="w"> </span>tdserver<span class="w"> </span>delete
+</pre></div>
+</div>
+</section>
+<section id="starting-the-server">
+<h3>2. Starting the server</h3>
+<p>To start the Tabsdata server, use the following command:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>tdserver<span class="w"> </span>start
+</pre></div>
+</div>
+<p>The command will run until all the required components are running. You can also stop the monitoring and check the status using the command below.</p>
+<p>To verify that the Tabsdata server instance is running:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>tdserver<span class="w"> </span>status
+</pre></div>
+</div>
+<p>Output:</p>
+<img alt="../../_images/tdserver_status.png" src="../../_images/tdserver_status.png" />
+</section>
+</section>
+<section id="step-3-setup-tutorial">
+<span id="setup-tutorial"></span><h2>Step 3. Setup Tutorial</h2>
+<p>To setup the tutorial run the following commands in your CLI from your desired directory.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">td</span> <span class="pre">examples</span> <span class="pre">--dir</span> <span class="pre">examples</span></code> command creates the <code class="docutils literal notranslate"><span class="pre">examples</span></code> directory, <code class="docutils literal notranslate"><span class="pre">input</span></code> and <code class="docutils literal notranslate"><span class="pre">output</span></code> directories and create the function configuration files called <code class="docutils literal notranslate"><span class="pre">publisher.py</span></code>, <code class="docutils literal notranslate"><span class="pre">tranformer.py</span></code>, and <code class="docutils literal notranslate"><span class="pre">subscriber.py</span></code> for the tutorial. This step is needed only in the context of this tutorial. You can choose a different setup for your own projects. The <code class="docutils literal notranslate"><span class="pre">--dir</span></code> flag specifies the directory where the examples will be created. You can change the directory name to your preference.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>td<span class="w"> </span>examples<span class="w"> </span>--dir<span class="w"> </span>examples
+$<span class="w"> </span><span class="nb">cd</span><span class="w"> </span>examples/example-000
+</pre></div>
+</div>
+</section>
+<section id="step-4-log-in-and-create-a-collection">
+<h2>Step 4. Log in and Create a Collection</h2>
+<p>Collections are logical containers for Tabsdata <a class="reference internal" href="../06_working_with_tables/table_frame.html#working-with-tables"><span class="std std-ref">tables</span></a> and <a class="reference internal" href="../04_working_with_functions/main.html#working-with-functions"><span class="std std-ref">functions</span></a>. You use collections to enable different business domains to have their own organizational space.</p>
+<section id="using-cli">
+<h3>Using CLI</h3>
+<p>Use the following steps to create a collection for the tutorial.</p>
+<ol class="arabic simple">
+<li><p>If you are not logged in, use the following command to log in to Tabsdata:</p></li>
+</ol>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>td<span class="w"> </span>login<span class="w"> </span>--server<span class="w"> </span>localhost<span class="w"> </span>--user<span class="w"> </span>admin<span class="w"> </span>--role<span class="w"> </span>sys_admin<span class="w"> </span>--password<span class="w"> </span>tabsdata
+</pre></div>
+</div>
+<ol class="arabic simple" start="2">
+<li><p>To create a collection called tutorial, run the following command:</p></li>
+</ol>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>td<span class="w"> </span>collection<span class="w"> </span>create<span class="w"> </span>--name<span class="w"> </span>tutorial
+</pre></div>
+</div>
+</section>
+<section id="using-ui">
+<span id="login-ui"></span><h3>Using UI</h3>
+<p>You can create a collection through the Tabsdata UI as well.</p>
+<section id="open-the-url">
+<h4>1. Open the URL</h4>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">localhost</span><span class="p">:</span><span class="mi">2457</span>
+</pre></div>
+</div>
+<img alt="../../_images/login_page.png" src="../../_images/login_page.png" />
+</section>
+<section id="credentials-to-login">
+<h4>2. Credentials to login</h4>
+<p>Username</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">admin</span>
+</pre></div>
+</div>
+<p>Password:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">tabsdata</span>
+</pre></div>
+</div>
+<p>Role</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">sys_admin</span>
+</pre></div>
+</div>
+</section>
+<section id="create-the-collection">
+<h4>3. Create the collection</h4>
+<p>The collection page will open up by default. Click on “Create Collection” in the top right</p>
+<img alt="../../_images/create_coll_ui.png" src="../../_images/create_coll_ui.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Fill out the name and description (optional). Click on “Create” in the top right.</p>
+<img alt="../../_images/coll_name.png" src="../../_images/coll_name.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Collection is created.</p>
+<img alt="../../_images/coll_created.png" src="../../_images/coll_created.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Now that you have created a collection, you’re ready to implement a publisher.</p>
+</section>
+</section>
+</section>
+<section id="step-5-implement-a-publisher">
+<h2>Step 5. Implement a Publisher</h2>
+<p>Publishers import data from external systems such as local file systems, databases, and cloud storage, and publish the data as tables in the Tabsdata server.</p>
+<p>Use the following steps to create a publisher that reads the sample data from local system, register the publisher in the tutorial collection, and manually trigger the publisher to execute.</p>
+<section id="define-the-publisher">
+<h3>1. Define the publisher</h3>
+<p>In the <code class="docutils literal notranslate"><span class="pre">publisher.py</span></code> file in your <cite>examples</cite> directory, the following code is used to define a publisher.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">tabsdata</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">td</span>
+
+<span class="nd">@td</span><span class="o">.</span><span class="n">publisher</span><span class="p">(</span>
+    <span class="n">source</span> <span class="o">=</span> <span class="n">td</span><span class="o">.</span><span class="n">LocalFileSource</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">(),</span> <span class="s2">&quot;input&quot;</span><span class="p">,</span> <span class="s2">&quot;persons.csv&quot;</span><span class="p">)),</span>
+    <span class="n">tables</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;persons&quot;</span><span class="p">]</span>
+<span class="p">)</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">pub</span><span class="p">(</span><span class="n">persons</span><span class="p">:</span> <span class="n">td</span><span class="o">.</span><span class="n">TableFrame</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">persons</span>
+</pre></div>
+</div>
+<p>This publisher, named <code class="docutils literal notranslate"><span class="pre">pub</span></code>, reads the “persons.csv” file in the input folder and writes it to the Tabsdata server as a table called <code class="docutils literal notranslate"><span class="pre">persons</span></code>.</p>
+<p>You can configure publishers to read data from many external systems. For details, <a class="reference internal" href="../04_01_working_with_publishers/main.html#working-with-publishers"><span class="std std-ref">Publishers</span></a>.</p>
+</section>
+<section id="register-the-publisher">
+<h3>2. Register the publisher</h3>
+<p>Before you execute a publisher, you need to register it with a collection. Publishers write all of their output tables to the collection that they are registered with.</p>
+<p>Use the following command to register your pub publisher with the tutorial collection:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>td<span class="w"> </span>fn<span class="w"> </span>register<span class="w"> </span>--coll<span class="w"> </span>tutorial<span class="w"> </span>--path<span class="w"> </span>publisher.py::pub
+</pre></div>
+</div>
+</section>
+<section id="execute-the-publisher">
+<h3>3. Execute the publisher</h3>
+<p>Use the following command to manually trigger the publisher to execute:</p>
+<section id="id2">
+<h4>Using CLI</h4>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>td<span class="w"> </span>fn<span class="w"> </span>trigger<span class="w"> </span>--coll<span class="w"> </span>tutorial<span class="w"> </span>--name<span class="w"> </span>pub
+</pre></div>
+</div>
+<p>The command triggers the function and polls the transaction status. Once successful, the polling returns the following transaction data:</p>
+<img alt="../../_images/pub_trx.png" src="../../_images/pub_trx.png" />
+</section>
+<section id="execute-publisher-using-ui">
+<span id="id3"></span><h4>Using UI</h4>
+<p>Click on the collection name “tutorial” on the left hand side or from the collection list to open the view containing further details regarding the collection.</p>
+<img alt="../../_images/coll_details_view.png" src="../../_images/coll_details_view.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Click on “Publishers” to open the publishers registered in the collection.</p>
+<img alt="../../_images/coll_publisher_list.png" src="../../_images/coll_publisher_list.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Open the publisher details by clicking on “pub” in the list. Click on trigger on the top right to trigger the execution of the publisher.</p>
+<img alt="../../_images/coll_publisher_trigger.png" src="../../_images/coll_publisher_trigger.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>You can monitor the status of trigger through this diagram.</p>
+<img alt="../../_images/monitor_the_trigger.png" src="../../_images/monitor_the_trigger.png" />
+</section>
+</section>
+<section id="view-the-new-persons-tabsdata-table">
+<h3>4. View the new persons Tabsdata table</h3>
+<section id="id4">
+<h4>Using CLI</h4>
+<p>To view the schema of the new persons table, run the following command:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>td<span class="w"> </span>table<span class="w"> </span>schema<span class="w"> </span>--coll<span class="w"> </span>tutorial<span class="w"> </span>--name<span class="w"> </span>persons
+</pre></div>
+</div>
+<p>The results should look like this:</p>
+<a class="reference internal image-reference" href="../../_images/pub_schema.png"><img alt="../../_images/pub_schema.png" src="../../_images/pub_schema.png" style="width: 50%;" />
+</a>
+<p>To view the data in the table, use the following command:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>td<span class="w"> </span>table<span class="w"> </span>sample<span class="w"> </span>--coll<span class="w"> </span>tutorial<span class="w"> </span>--name<span class="w"> </span>persons
+</pre></div>
+</div>
+<p>The results should look like this:</p>
+<img alt="../../_images/sample_persons.png" src="../../_images/sample_persons.png" />
+</section>
+<section id="check-table-using-ui">
+<span id="id5"></span><h4>Using UI</h4>
+<p>You can access the tables by clicking on the collection name “tutorial” from the left panel. You will see the list of tables contained in the collection.</p>
+<img alt="../../_images/coll_details_view.png" src="../../_images/coll_details_view.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>You can check the table details by clicking on “persons” from the list.</p>
+<img alt="../../_images/table_details.png" src="../../_images/table_details.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>You can check the sample data and run various SQL queries by clicking on the “Sample” tab.</p>
+<img alt="../../_images/table_sample_ui.png" src="../../_images/table_sample_ui.png" />
+<p>Now that you have successfully defined, registered, and executed a publisher, you’re ready to do the same for a transformer.</p>
+</section>
+</section>
+</section>
+<section id="step-6-implement-a-transformer">
+<span id="getting-started-transformer"></span><h2>Step 6. Implement a Transformer</h2>
+<p>Transformers modify tables inside the Tabsdata server. They can read from one or more Tabsdata tables, transform the data, and write to new Tabsdata tables.</p>
+<p>Use the following steps to create a transformer that modifies the tutorial data and writes the results to new tables, register the transformer with the tutorial collection, and manually trigger the transformer to execute.</p>
+<section id="define-a-transformer">
+<h3>1. Define a transformer</h3>
+<p>In the <code class="docutils literal notranslate"><span class="pre">transformer.py</span></code> file in your <cite>examples</cite> directory, the following code defines a transformer.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">tabsdata</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">td</span>
+
+<span class="nd">@td</span><span class="o">.</span><span class="n">transformer</span><span class="p">(</span>
+    <span class="n">input_tables</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;persons&quot;</span><span class="p">],</span>
+    <span class="n">output_tables</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;spanish&quot;</span><span class="p">,</span> <span class="s2">&quot;french&quot;</span><span class="p">,</span> <span class="s2">&quot;german&quot;</span><span class="p">]</span>
+<span class="p">)</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">tfr</span><span class="p">(</span><span class="n">persons</span><span class="p">:</span> <span class="n">td</span><span class="o">.</span><span class="n">TableFrame</span><span class="p">):</span>
+    <span class="n">persons</span> <span class="o">=</span> <span class="n">persons</span><span class="o">.</span><span class="n">select</span><span class="p">([</span><span class="s2">&quot;identifier&quot;</span><span class="p">,</span> <span class="s2">&quot;name&quot;</span><span class="p">,</span> <span class="s2">&quot;surname&quot;</span><span class="p">,</span> <span class="s2">&quot;nationality&quot;</span><span class="p">,</span> <span class="s2">&quot;language&quot;</span><span class="p">])</span>
+    <span class="n">res</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="k">for</span> <span class="n">nationality</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;Spanish&quot;</span><span class="p">,</span> <span class="s2">&quot;French&quot;</span><span class="p">,</span> <span class="s2">&quot;German&quot;</span><span class="p">]:</span>
+        <span class="n">res</span><span class="p">[</span><span class="n">nationality</span><span class="p">]</span> <span class="o">=</span> <span class="n">persons</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">td</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;nationality&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">eq</span><span class="p">(</span><span class="n">nationality</span><span class="p">))</span><span class="o">.</span><span class="n">drop</span><span class="p">([</span><span class="s2">&quot;nationality&quot;</span><span class="p">])</span>
+    <span class="k">return</span> <span class="n">res</span><span class="p">[</span><span class="s2">&quot;Spanish&quot;</span><span class="p">],</span> <span class="n">res</span><span class="p">[</span><span class="s2">&quot;French&quot;</span><span class="p">],</span> <span class="n">res</span><span class="p">[</span><span class="s2">&quot;German&quot;</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>This transformer, named <code class="docutils literal notranslate"><span class="pre">tfr</span></code>, reads data from the persons Tabsdata table, transforms it, and writes the results to three output tables. The transformer performs the following processing:</p>
+<ul class="simple">
+<li><p>Selects specific columns, omitting the other columns from the data</p></li>
+<li><p>Filters data by nationality</p></li>
+<li><p>Writes country-specific data to the appropriate table</p></li>
+</ul>
+<p>Since no trigger is explicitly defined, the transformer is triggered by a commit to the specified input table: <code class="docutils literal notranslate"><span class="pre">persons</span></code>. You can use a <code class="docutils literal notranslate"><span class="pre">trigger_by</span></code> command to define different trigger tables or to prevent automated triggering. For more information, see <a class="reference internal" href="../05_working_with_triggers/main.html#working-with-triggers"><span class="std std-ref">Working with Triggers</span></a>.</p>
+<p>You can configure transformers to perform a range of operations. For details, see <a class="reference internal" href="../04_02_working_with_transformers/main.html#working-with-transformers"><span class="std std-ref">Transformers</span></a>.</p>
+</section>
+<section id="register-the-transformer-with-a-tabsdata-collection">
+<h3>2. Register the transformer with a Tabsdata collection</h3>
+<p>Before you execute a transformer, you need to register it with a collection. Transformers can read data from any Tabsdata collection. And like publishers, they write all of their output tables to the collection that they are registered with.</p>
+<p>Use the following command to register the <code class="docutils literal notranslate"><span class="pre">tfr</span></code> transformer with the <code class="docutils literal notranslate"><span class="pre">tutorial</span></code> collection:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>td<span class="w"> </span>fn<span class="w"> </span>register<span class="w"> </span>--coll<span class="w"> </span>tutorial<span class="w"> </span>--path<span class="w"> </span>transformer.py::tfr
+</pre></div>
+</div>
+</section>
+<section id="execute-the-transformer">
+<h3>3. Execute the transformer</h3>
+<section id="id6">
+<h4>Using CLI</h4>
+<p>Use the trigger command to manually trigger the transformer to execute. The command syntax is the same for all Tabsdata functions:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>td<span class="w"> </span>fn<span class="w"> </span>trigger<span class="w"> </span>--coll<span class="w"> </span>tutorial<span class="w"> </span>--name<span class="w"> </span>tfr
+</pre></div>
+</div>
+<p>The command triggers the function and polls the transaction status. Once successful, the polling returns the transaction data such as the following:</p>
+<img alt="../../_images/tfr_new.png" src="../../_images/tfr_new.png" />
+</section>
+<section id="id7">
+<h4>Using UI</h4>
+<p>You can also use UI to trigger the transformer in the same way as shown for publisher <a class="reference internal" href="#execute-publisher-using-ui"><span class="std std-ref">here</span></a>.</p>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>If you face any issues, make sure to check out the <a class="reference internal" href="../10_troubleshooting/main.html#troubleshooting"><span class="std std-ref">Troubleshooting guide</span></a>.</p>
+</section>
+</section>
+<section id="view-the-output-tables">
+<h3>4. View the output tables</h3>
+<section id="id8">
+<h4>Using CLI</h4>
+<p>To view the schema of the spanish output table, run the following command:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>td<span class="w"> </span>table<span class="w"> </span>schema<span class="w"> </span>--coll<span class="w"> </span>tutorial<span class="w"> </span>--name<span class="w"> </span>spanish
+</pre></div>
+</div>
+<p>The results should look like this:</p>
+<a class="reference internal image-reference" href="../../_images/transf_schema.png"><img alt="../../_images/transf_schema.png" src="../../_images/transf_schema.png" style="width: 50%;" />
+</a>
+<p>If you like, you can use the command to check the schema for all of the new tables.</p>
+<p>To view the data in the table, use the following command:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>td<span class="w"> </span>table<span class="w"> </span>sample<span class="w"> </span>--coll<span class="w"> </span>tutorial<span class="w"> </span>--name<span class="w"> </span>spanish
+</pre></div>
+</div>
+<p>The results should look like this:</p>
+<img alt="../../_images/sample_spanish.png" src="../../_images/sample_spanish.png" />
+</section>
+<section id="id9">
+<h4>Using UI</h4>
+<p>You can also use UI to view the sample table data as shown <a class="reference internal" href="#check-table-using-ui"><span class="std std-ref">here</span></a>.</p>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Now that you have implemented a transformer, it’s time to work with a subscriber….</p>
+</section>
+</section>
+</section>
+<section id="step-7-implement-a-subscriber">
+<h2>Step 7. Implement a Subscriber</h2>
+<p>Subscribers export tables from the Tabsdata server to external systems such as local systems, databases, and cloud storage. Use subscribers to provide prepared data to data consumer teams.</p>
+<p>Use the following steps to create a subscriber that exports the tutorial tables, register the subscriber with the tutorial collection, and manually trigger the subscriber to execute.</p>
+<section id="define-a-subscriber">
+<h3>1. Define a subscriber</h3>
+<p>In the subscriber.py file in your <cite>examples</cite> directory, the following code defines a subscriber.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">tabsdata</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">td</span>
+
+<span class="nd">@td</span><span class="o">.</span><span class="n">subscriber</span><span class="p">(</span>
+    <span class="p">[</span><span class="s2">&quot;spanish&quot;</span><span class="p">,</span> <span class="s2">&quot;french&quot;</span><span class="p">],</span>
+    <span class="n">td</span><span class="o">.</span><span class="n">LocalFileDestination</span><span class="p">(</span>
+        <span class="p">[</span>
+            <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">(),</span> <span class="s2">&quot;output&quot;</span><span class="p">,</span> <span class="s2">&quot;spanish.jsonl&quot;</span><span class="p">),</span>
+            <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">(),</span> <span class="s2">&quot;output&quot;</span><span class="p">,</span> <span class="s2">&quot;french.jsonl&quot;</span><span class="p">)</span>
+        <span class="p">]</span>
+    <span class="p">)</span>
+<span class="p">)</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">sub</span><span class="p">(</span><span class="n">spanish</span><span class="p">:</span> <span class="n">td</span><span class="o">.</span><span class="n">TableFrame</span><span class="p">,</span> <span class="n">french</span><span class="p">:</span> <span class="n">td</span><span class="o">.</span><span class="n">TableFrame</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="p">(</span><span class="n">td</span><span class="o">.</span><span class="n">TableFrame</span><span class="p">,</span> <span class="n">td</span><span class="o">.</span><span class="n">TableFrame</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">spanish</span><span class="p">,</span> <span class="n">french</span>
+</pre></div>
+</div>
+<p>This subscriber, named sub, reads data from the spanish and french tables in the Tabsdata server and writes the output files spanish.json1 and french.ndjson to the output folder in the <cite>examples</cite> directory.</p>
+<p>Since no trigger is explicitly defined, the subscriber is triggered by a commit to any of the specified input tables: spanish or french. You can use a trigger_by command to define different trigger tables or to prevent automated triggering.</p>
+<p>You can configure subscribers to export data to many external systems. For details, see <a class="reference internal" href="../05_working_with_triggers/main.html#working-with-triggers"><span class="std std-ref">Working with Triggers</span></a>.</p>
+</section>
+<section id="register-the-subscriber">
+<h3>2. Register the subscriber</h3>
+<p>Before you execute a subscriber, you need to register it with a collection. Subscribers can read data from any Tabsdata collection.</p>
+<p>Use the following command to register the sub subscriber with the tutorial collection:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>td<span class="w"> </span>fn<span class="w"> </span>register<span class="w"> </span>--coll<span class="w"> </span>tutorial<span class="w"> </span>--path<span class="w"> </span>subscriber.py::sub
+</pre></div>
+</div>
+</section>
+<section id="execute-the-subscriber">
+<h3>3. Execute the subscriber</h3>
+<section id="id10">
+<h4>Using CLI</h4>
+<p>Use the trigger command to manually trigger the subscriber:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>td<span class="w"> </span>fn<span class="w"> </span>trigger<span class="w"> </span>--coll<span class="w"> </span>tutorial<span class="w"> </span>--name<span class="w"> </span>sub
+</pre></div>
+</div>
+<p>The command triggers the function and polls the transaction status. Once successful, the polling returns the transaction data such as the following:</p>
+<img alt="../../_images/sub_trx.png" src="../../_images/sub_trx.png" />
+<p>If you face any issues, make sure to check out the <a class="reference internal" href="../10_troubleshooting/main.html#troubleshooting"><span class="std std-ref">Troubleshooting guide</span></a>.</p>
+</section>
+<section id="id11">
+<h4>Using UI</h4>
+<p>You can also use UI to trigger the subscriber in the same way as shown for publisher <a class="reference internal" href="#execute-publisher-using-ui"><span class="std std-ref">here</span></a>.</p>
+</section>
+</section>
+<section id="verify-subscriber-execution">
+<h3>4. Verify subscriber execution</h3>
+<p>You can verify that the spanish.json1 and french.ndjson output files have been created by listing files in the output directory:</p>
+<div class="sphinx-tabs docutils container">
+<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-1-1-0" aria-selected="true" class="sphinx-tabs-tab" id="tab-1-1-0" name="1-0" role="tab" tabindex="0">For Linux or macOS:</button><button aria-controls="panel-1-1-1" aria-selected="false" class="sphinx-tabs-tab" id="tab-1-1-1" name="1-1" role="tab" tabindex="-1">For Windows (CMD):</button></div><div aria-labelledby="tab-1-1-0" class="sphinx-tabs-panel" id="panel-1-1-0" name="1-0" role="tabpanel" tabindex="0"><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>ls<span class="w"> </span>output
+</pre></div>
+</div>
+</div><div aria-labelledby="tab-1-1-1" class="sphinx-tabs-panel" hidden="true" id="panel-1-1-1" name="1-1" role="tabpanel" tabindex="0"><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>dir<span class="w"> </span>output
+</pre></div>
+</div>
+</div></div>
+<p>You can use your favorite editor to view the contents of the files.</p>
+</section>
+</section>
+<section id="step-8-initiate-automated-triggers">
+<h2>Step 8. Initiate Automated Triggers</h2>
+<p>So far, you have used manual triggers to execute the functions in this tutorial.</p>
+<p>As mentioned earlier, transformer and subscriber functions have default automated triggers: when a trigger is not explicitly defined, the input tables for the function act as trigger tables. Publishers do not include a default trigger like transformers and subscribers, but you can define them when needed. For more information, see <a class="reference internal" href="../05_working_with_triggers/main.html#working-with-triggers"><span class="std std-ref">Working with Triggers</span></a>.</p>
+<p>Since the tutorial transformer does not have a specified trigger, it is triggered by a commit to its input table, persons. Similarly, since the tutorial subscriber does not have a specified trigger, it is triggered by a commit to either of its input tables: french or spanish.</p>
+<p>So when the tutorial publisher executes, it writes to the persons table and creates a commit to that table. The commit to the persons table automatically triggers the transformer. The transformer processes the data and generates commits to the french and spanish tables. This automatically triggers the subscriber, which exports the data to files in the output directory. As a result, the manual execution of the tutorial publisher results in the automatic processing of the data and the writing of the desired output files.</p>
+<p>To see this in action, clear the output folder and test the automated triggers for this tutorial:</p>
+<section id="remove-the-existing-files-from-the-output-directory">
+<h3>1. Remove the existing files from the output directory</h3>
+<p>You can do this manually or by running the following command:</p>
+<div class="sphinx-tabs docutils container">
+<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-2-2-0" aria-selected="true" class="sphinx-tabs-tab" id="tab-2-2-0" name="2-0" role="tab" tabindex="0">For Linux or macOS:</button><button aria-controls="panel-2-2-1" aria-selected="false" class="sphinx-tabs-tab" id="tab-2-2-1" name="2-1" role="tab" tabindex="-1">For Windows (CMD):</button></div><div aria-labelledby="tab-2-2-0" class="sphinx-tabs-panel" id="panel-2-2-0" name="2-0" role="tabpanel" tabindex="0"><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>rm<span class="w"> </span>output/*
+</pre></div>
+</div>
+</div><div aria-labelledby="tab-2-2-1" class="sphinx-tabs-panel" hidden="true" id="panel-2-2-1" name="2-1" role="tabpanel" tabindex="0"><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>del<span class="w"> </span>output<span class="se">\*</span>
+</pre></div>
+</div>
+</div></div>
+</section>
+<section id="id12">
+<h3>2. Execute the publisher</h3>
+<section id="id13">
+<h4>Using CLI</h4>
+<p>To run the entire tutorial workflow, use the following command to manually trigger the publisher:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>td<span class="w"> </span>fn<span class="w"> </span>trigger<span class="w"> </span>--coll<span class="w"> </span>tutorial<span class="w"> </span>--name<span class="w"> </span>pub
+</pre></div>
+</div>
+</section>
+<section id="id14">
+<h4>Using UI</h4>
+<p>You can also use UI to trigger the publisher as shown <a class="reference internal" href="#execute-publisher-using-ui"><span class="std std-ref">here</span></a>.</p>
+</section>
+</section>
+<section id="view-the-list-of-functions-related-to-the-manual-trigger-of-the-publisher">
+<h3>3. View the list of functions related to the manual trigger of the publisher</h3>
+<p>The command triggers the function and polls the transaction status. Once successful, the polling returns the transaction for your publisher, transformer, and subscriber functions. The transaction data looks like the following:</p>
+<img alt="../../_images/pub_trx_full.png" src="../../_images/pub_trx_full.png" />
+</section>
+<section id="verify-the-output">
+<h3>4. Verify the output</h3>
+<p>You can verify that the spanish.json1 and french.ndjson files have been written to the output folder with the following command:</p>
+<div class="sphinx-tabs docutils container">
+<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-3-3-0" aria-selected="true" class="sphinx-tabs-tab" id="tab-3-3-0" name="3-0" role="tab" tabindex="0">For Linux or macOS:</button><button aria-controls="panel-3-3-1" aria-selected="false" class="sphinx-tabs-tab" id="tab-3-3-1" name="3-1" role="tab" tabindex="-1">For Windows (CMD):</button></div><div aria-labelledby="tab-3-3-0" class="sphinx-tabs-panel" id="panel-3-3-0" name="3-0" role="tabpanel" tabindex="0"><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>ls<span class="w"> </span>output
+</pre></div>
+</div>
+</div><div aria-labelledby="tab-3-3-1" class="sphinx-tabs-panel" hidden="true" id="panel-3-3-1" name="3-1" role="tabpanel" tabindex="0"><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>dir<span class="w"> </span>output
+</pre></div>
+</div>
+</div></div>
+<p>And you can once again check the contents of those files with your favorite editor.</p>
+</section>
+</section>
+<section id="step-9-check-the-lineage-graph">
+<h2>Step 9. Check the lineage graph</h2>
+<p>You can check the lienage graph in the Tabsdata browser UI. You can see more details on <a class="reference internal" href="../user_interface/main.html#ui"><span class="std std-ref">User Interface</span></a>.</p>
+<img alt="../../_images/lineage_graph.png" src="../../_images/lineage_graph.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>To check the graph:</p>
+<p><strong>1. Open the execution graphs.</strong></p>
+<p>On the left dropdown, select ‘Finished’ used ‘Execution Plans’.</p>
+<p><strong>2. Click on the execution plan.</strong></p>
+<p>Click on the first one to open the latest linegae graph with all functions and tables.</p>
+</section>
+<section id="next-steps">
+<h2>Next Steps</h2>
+<p>Congratulations on working with Tabsdata functions and creating an automated workflow!</p>
+<p>Here are some suggestions for your next steps:</p>
+<ul class="simple">
+<li><p>For a broader understanding of Tabsdata, see <a class="reference internal" href="../03_key_concepts/main.html#key-concepts"><span class="std std-ref">Key Concepts</span></a>.</p></li>
+<li><p>Learn more about defining <a class="reference internal" href="../04_01_working_with_publishers/main.html#working-with-publishers"><span class="std std-ref">publishers</span></a>, <a class="reference internal" href="../04_02_working_with_transformers/main.html#working-with-transformers"><span class="std std-ref">transformers</span></a>, and <a class="reference internal" href="../04_03_working_with_subscribers/main.html#working-with-subscribers"><span class="std std-ref">subscribers</span></a>.</p></li>
+<li><p>Dive deeper into the processing that you can do with transformers <a class="reference internal" href="../06_working_with_tables/table_frame.html#working-with-tables"><span class="std std-ref">here</span></a>.</p></li>
+<li><p>Want to access an external system that does not have built-in support? You can build your own <a class="reference internal" href="../07_working_with_connector_plugins/main.html#working-with-connector-plugins"><span class="std std-ref">connector plugins</span></a>.</p></li>
+<li><p>If you run into problems, check out our <a class="reference internal" href="../10_troubleshooting/main.html#troubleshooting"><span class="std std-ref">Troubleshooting</span></a> chapter.</p></li>
+</ul>
+</section>
+</section>
+
+
+                </article>
+              
+              
+              
+              
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+<div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#a-note-on-tabsdata-ui">A Note on Tabsdata UI</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-1-install-tabsdata">Step 1. Install Tabsdata</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-2-start-the-server">Step 2. Start the Server</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#clearing-the-old-tabsdata-instance">1. Clearing the old Tabsdata instance</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#starting-the-server">2. Starting the server</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-3-setup-tutorial">Step 3. Setup Tutorial</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-4-log-in-and-create-a-collection">Step 4. Log in and Create a Collection</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#using-cli">Using CLI</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#using-ui">Using UI</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#open-the-url">1. Open the URL</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#credentials-to-login">2. Credentials to login</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#create-the-collection">3. Create the collection</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-5-implement-a-publisher">Step 5. Implement a Publisher</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#define-the-publisher">1. Define the publisher</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#register-the-publisher">2. Register the publisher</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#execute-the-publisher">3. Execute the publisher</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Using CLI</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#execute-publisher-using-ui">Using UI</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#view-the-new-persons-tabsdata-table">4. View the new persons Tabsdata table</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">Using CLI</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#check-table-using-ui">Using UI</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-6-implement-a-transformer">Step 6. Implement a Transformer</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#define-a-transformer">1. Define a transformer</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#register-the-transformer-with-a-tabsdata-collection">2. Register the transformer with a Tabsdata collection</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#execute-the-transformer">3. Execute the transformer</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">Using CLI</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">Using UI</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#view-the-output-tables">4. View the output tables</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">Using CLI</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">Using UI</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-7-implement-a-subscriber">Step 7. Implement a Subscriber</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#define-a-subscriber">1. Define a subscriber</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#register-the-subscriber">2. Register the subscriber</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#execute-the-subscriber">3. Execute the subscriber</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id10">Using CLI</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id11">Using UI</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#verify-subscriber-execution">4. Verify subscriber execution</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-8-initiate-automated-triggers">Step 8. Initiate Automated Triggers</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#remove-the-existing-files-from-the-output-directory">1. Remove the existing files from the output directory</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id12">2. Execute the publisher</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id13">Using CLI</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id14">Using UI</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#view-the-list-of-functions-related-to-the-manual-trigger-of-the-publisher">3. View the list of functions related to the manual trigger of the publisher</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#verify-the-output">4. Verify the output</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-9-check-the-lineage-graph">Step 9. Check the lineage graph</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#next-steps">Next Steps</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+
+<!-- Your custom footer content here -->
+
+  </body>
+</html>

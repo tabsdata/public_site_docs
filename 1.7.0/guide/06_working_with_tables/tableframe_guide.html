@@ -1,0 +1,1636 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>TableFrame API Guide &#8212; Tabsdata  documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=8f2a1f02" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=b7af4508" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="../../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+
+    <script src="../../_static/jquery.js?v=5d32c60e"></script>
+    <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+    <script src="../../_static/documentation_options.js?v=7f41d439"></script>
+    <script src="../../_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=a56c686a"></script>
+    <script src="../../_static/design-tabs.js?v=f930bc37"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'guide/06_working_with_tables/tableframe_guide';</script>
+    <script>
+        DOCUMENTATION_OPTIONS.theme_version = '0.16.1';
+        DOCUMENTATION_OPTIONS.theme_switcher_json_url = 'https://docs.tabsdata.com/version.json';
+        DOCUMENTATION_OPTIONS.theme_switcher_version_match = '1.7.0';
+        DOCUMENTATION_OPTIONS.show_version_warning_banner =
+            false;
+        </script>
+    <script src="../../_static/custom.js?v=ac098f57"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="User-defined Functions (UDFs)" href="user_defined_functions.html" />
+    <link rel="prev" title="Working with Tables" href="table_frame.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="1.7.0" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+
+
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+     
+  
+
+<a class="navbar-brand logo" href=" https://tabsdata.com/?utm_source=docs">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../_static/tabsdata_root.png" class="logo__image only-light" alt="Tabsdata  documentation - Home"/>
+    <img src="../../_static/tabsdata_root_light.png" class="logo__image only-dark pst-js-only" alt="Tabsdata  documentation - Home"/>
+  
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="../index.html">
+    User Guide
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../ref/index.html">
+    API Reference
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../tutorials/index.html">
+    Tutorials
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+        <div class="navbar-item">
+<div class="version-switcher__container dropdown pst-js-only">
+  <button id="pst-version-switcher-button-2"
+    type="button"
+    class="version-switcher__button btn btn-sm dropdown-toggle"
+    data-bs-toggle="dropdown"
+    aria-haspopup="listbox"
+    aria-controls="pst-version-switcher-list-2"
+    aria-label="Version switcher list"
+  >
+    Choose version  <!-- this text may get changed later by javascript -->
+    <span class="caret"></span>
+  </button>
+  <div id="pst-version-switcher-list-2"
+    class="version-switcher__menu dropdown-menu list-group-flush py-0"
+    role="listbox" aria-labelledby="pst-version-switcher-button-2">
+    <!-- dropdown will be populated by javascript on page load -->
+  </div>
+</div></div>
+      
+        <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="../index.html">
+    User Guide
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../ref/index.html">
+    API Reference
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../tutorials/index.html">
+    Tutorials
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+<div class="version-switcher__container dropdown pst-js-only">
+  <button id="pst-version-switcher-button-3"
+    type="button"
+    class="version-switcher__button btn btn-sm dropdown-toggle"
+    data-bs-toggle="dropdown"
+    aria-haspopup="listbox"
+    aria-controls="pst-version-switcher-list-3"
+    aria-label="Version switcher list"
+  >
+    Choose version  <!-- this text may get changed later by javascript -->
+    <span class="caret"></span>
+  </button>
+  <div id="pst-version-switcher-list-3"
+    class="version-switcher__menu dropdown-menu list-group-flush py-0"
+    role="listbox" aria-labelledby="pst-version-switcher-button-3">
+    <!-- dropdown will be populated by javascript on page load -->
+  </div>
+</div></div>
+        
+          <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+<nav class="bd-docs-nav bd-links"
+     aria-label="Section Navigation">
+  <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
+  <div class="bd-toc-item navbar-nav"><ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../01_overview/main.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../02_getting_started/main.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../server_configuration/main.html">Server Configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../03_key_concepts/main.html">Key Concepts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../04_working_with_functions/main.html">Working with Functions</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../04_01_working_with_publishers/main.html">Publishers</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../04_01_working_with_publishers/local_file_system/main.html">Local File System</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../04_01_working_with_publishers/amazon_s3/main.html">Amazon S3</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../04_01_working_with_publishers/azure/main.html">Azure Blob Storage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../04_01_working_with_publishers/gcp/main.html">Google Cloud Storage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../04_01_working_with_publishers/grok_for_log_files/main.html">Grok for Log Files</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../working_with_kafka/main.html">Kafka</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../04_01_working_with_publishers/mariadb/main.html">MariaDB</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../04_01_working_with_publishers/mssql/main.html">Microsoft SQL Server</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../04_01_working_with_publishers/mysql/main.html">MySQL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../04_01_working_with_publishers/oracle/main.html">Oracle</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../04_01_working_with_publishers/postgres/main.html">Postgres</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../04_01_working_with_publishers/salesforce/main.html">Salesforce SOQL Query</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../04_01_working_with_publishers/salesforce_reports/main.html">Salesforce Reports</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="../04_02_working_with_transformers/main.html">Transformers</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../04_03_working_with_subscribers/main.html">Subscribers</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../04_03_working_with_subscribers/local_file_system/main.html">Local File System</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../04_03_working_with_subscribers/amazon_s3/main.html">Amazon S3</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../04_03_working_with_subscribers/azure/main.html">Azure Blob Storage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../04_03_working_with_subscribers/gcp/main.html">Google Cloud Storage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../04_03_working_with_subscribers/aws_iceberg/main.html">AWS Glue - Iceberg tables</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../04_03_working_with_subscribers/bigquery/main.html">Big Query</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../04_03_working_with_subscribers/databricks/main.html">Databricks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../04_03_working_with_subscribers/mariadb/main.html">MariaDB</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../04_03_working_with_subscribers/mongodb/main.html">MongoDB</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../04_03_working_with_subscribers/mssql/main.html">Microsoft SQL Server</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../04_03_working_with_subscribers/mysql/main.html">MySQL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../04_03_working_with_subscribers/oracle/main.html">Oracle</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../04_03_working_with_subscribers/postgres/main.html">Postgres</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../04_03_working_with_subscribers/snowflake/main.html">Snowflake</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="../working_with_kafka/main.html">Working with Kafka</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../05_working_with_triggers/main.html">Working with Triggers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="table_frame.html">Working with Tables</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">TableFrame API Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="user_defined_functions.html">User-defined Functions (UDFs)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../07_working_with_connector_plugins/main.html">Working with Plugins</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../data_quality/main.html">Data Quality</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../catalogs/main.html">Catalogs</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../catalogs/aws_glue/main.html">AWS Glue Catalog</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../catalogs/unity_catalog/main.html">Unity Catalog</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="../user_interface/main.html">User Interface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ai_agent/main.html">Tabsdata AI Agent (Tabby)</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../secrets_management/main.html">Secrets Management</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../secrets_management/env_variables/main.html">Environment Variables</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../secrets_management/hashicorp/main.html">HashiCorp Secret</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="../permissioning/main.html">Role Based Access Control (RBAC)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../security/main.html">Setting up Tabsdata over HTTPS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../08_testing/main.html">Testing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../10_troubleshooting/main.html">Troubleshooting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_cli_commands/main.html">CLI Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../release_notes/main.html">Release Notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../09_contact_support/main.html">Contact Us</a></li>
+</ul>
+</div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../../index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    
+    <li class="breadcrumb-item"><a href="../index.html" class="nav-link">User Guide</a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">TableFrame API Guide</span></li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="tableframe-api-guide">
+<span id="tableframe-guide"></span><h1>TableFrame API Guide</h1>
+<p>This guide provides an in-depth exploration of the Tabsdata TableFrame API, extending the concepts introduced in <a class="reference internal" href="table_frame.html#working-with-tables"><span class="std std-ref">Working with Tables</span></a>. The TableFrame is the core data structure in Tabsdata for representing and manipulating tabular data within Tabsdata functions.</p>
+<nav class="contents local" id="on-this-page">
+<p class="topic-title">On this page</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#overview" id="id1">Overview</a></p></li>
+<li><p><a class="reference internal" href="#creating-tableframes" id="id2">Creating TableFrames</a></p>
+<ul>
+<li><p><a class="reference internal" href="#from-a-dictionary" id="id3">From a Dictionary</a></p></li>
+<li><p><a class="reference internal" href="#from-pandas" id="id4">From Pandas</a></p></li>
+<li><p><a class="reference internal" href="#from-polars" id="id5">From Polars</a></p></li>
+<li><p><a class="reference internal" href="#converting-tableframes" id="id6">Converting TableFrames</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#column-selection-and-projection" id="id7">Column Selection and Projection</a></p>
+<ul>
+<li><p><a class="reference internal" href="#selecting-columns" id="id8">Selecting Columns</a></p></li>
+<li><p><a class="reference internal" href="#column-selectors" id="id9">Column Selectors</a></p></li>
+<li><p><a class="reference internal" href="#adding-and-modifying-columns" id="id10">Adding and Modifying Columns</a></p></li>
+<li><p><a class="reference internal" href="#dropping-columns" id="id11">Dropping Columns</a></p></li>
+<li><p><a class="reference internal" href="#renaming-columns" id="id12">Renaming Columns</a></p></li>
+<li><p><a class="reference internal" href="#column-aliasing" id="id13">Column Aliasing</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#filtering-data" id="id14">Filtering Data</a></p>
+<ul>
+<li><p><a class="reference internal" href="#basic-filtering" id="id15">Basic Filtering</a></p></li>
+<li><p><a class="reference internal" href="#combining-conditions" id="id16">Combining Conditions</a></p></li>
+<li><p><a class="reference internal" href="#range-and-membership-checks" id="id17">Range and Membership Checks</a></p></li>
+<li><p><a class="reference internal" href="#limiting-results" id="id18">Limiting Results</a></p></li>
+<li><p><a class="reference internal" href="#unique-values" id="id19">Unique Values</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#string-operations" id="id20">String Operations</a></p>
+<ul>
+<li><p><a class="reference internal" href="#case-transformations" id="id21">Case Transformations</a></p></li>
+<li><p><a class="reference internal" href="#pattern-matching" id="id22">Pattern Matching</a></p></li>
+<li><p><a class="reference internal" href="#string-extraction-and-replacement" id="id23">String Extraction and Replacement</a></p></li>
+<li><p><a class="reference internal" href="#string-manipulation" id="id24">String Manipulation</a></p></li>
+<li><p><a class="reference internal" href="#string-length-and-position" id="id25">String Length and Position</a></p></li>
+<li><p><a class="reference internal" href="#grok-parsing" id="id26">Grok Parsing</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#numeric-operations" id="id27">Numeric Operations</a></p>
+<ul>
+<li><p><a class="reference internal" href="#arithmetic-operations" id="id28">Arithmetic Operations</a></p></li>
+<li><p><a class="reference internal" href="#rounding-and-clipping" id="id29">Rounding and Clipping</a></p></li>
+<li><p><a class="reference internal" href="#mathematical-functions" id="id30">Mathematical Functions</a></p></li>
+<li><p><a class="reference internal" href="#trigonometric-functions" id="id31">Trigonometric Functions</a></p></li>
+<li><p><a class="reference internal" href="#difference-and-comparison" id="id32">Difference and Comparison</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#date-and-time-operations" id="id33">Date and Time Operations</a></p>
+<ul>
+<li><p><a class="reference internal" href="#extracting-components" id="id34">Extracting Components</a></p></li>
+<li><p><a class="reference internal" href="#date-arithmetic" id="id35">Date Arithmetic</a></p></li>
+<li><p><a class="reference internal" href="#truncation" id="id36">Truncation</a></p></li>
+<li><p><a class="reference internal" href="#total-durations" id="id37">Total Durations</a></p></li>
+<li><p><a class="reference internal" href="#timezone-operations" id="id38">Timezone Operations</a></p></li>
+<li><p><a class="reference internal" href="#formatting" id="id39">Formatting</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#aggregation-and-grouping" id="id40">Aggregation and Grouping</a></p>
+<ul>
+<li><p><a class="reference internal" href="#basic-aggregations" id="id41">Basic Aggregations</a></p></li>
+<li><p><a class="reference internal" href="#group-by-operations" id="id42">Group By Operations</a></p></li>
+<li><p><a class="reference internal" href="#shorthand-group-aggregations" id="id43">Shorthand Group Aggregations</a></p></li>
+<li><p><a class="reference internal" href="#ranking" id="id44">Ranking</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#joining-tables" id="id45">Joining Tables</a></p>
+<ul>
+<li><p><a class="reference internal" href="#join-types" id="id46">Join Types</a></p></li>
+<li><p><a class="reference internal" href="#join-on-multiple-columns" id="id47">Join on Multiple Columns</a></p></li>
+<li><p><a class="reference internal" href="#handling-duplicate-column-names" id="id48">Handling Duplicate Column Names</a></p></li>
+<li><p><a class="reference internal" href="#join-example" id="id49">Join Example</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#union-operations" id="id50">Union Operations</a></p>
+<ul>
+<li><p><a class="reference internal" href="#concatenation" id="id51">Concatenation</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#data-manipulation" id="id52">Data Manipulation</a></p>
+<ul>
+<li><p><a class="reference internal" href="#handling-null-values" id="id53">Handling Null Values</a></p></li>
+<li><p><a class="reference internal" href="#handling-nan-values" id="id54">Handling NaN Values</a></p></li>
+<li><p><a class="reference internal" href="#sorting" id="id55">Sorting</a></p></li>
+<li><p><a class="reference internal" href="#type-casting" id="id56">Type Casting</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#tableframe-attributes" id="id57">TableFrame Attributes</a></p>
+<ul>
+<li><p><a class="reference internal" href="#schema-information" id="id58">Schema Information</a></p></li>
+<li><p><a class="reference internal" href="#empty-checks" id="id59">Empty Checks</a></p></li>
+<li><p><a class="reference internal" href="#query-explanation" id="id60">Query Explanation</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#literal-values" id="id61">Literal Values</a></p></li>
+<li><p><a class="reference internal" href="#extracting-data" id="id62">Extracting Data</a></p>
+<ul>
+<li><p><a class="reference internal" href="#extract-as-columns" id="id63">Extract as Columns</a></p></li>
+<li><p><a class="reference internal" href="#extract-as-rows" id="id64">Extract as Rows</a></p></li>
+<li><p><a class="reference internal" href="#unnesting" id="id65">Unnesting</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#best-practices" id="id66">Best Practices</a></p></li>
+<li><p><a class="reference internal" href="#see-also" id="id67">See Also</a></p></li>
+</ul>
+</nav>
+<section id="overview">
+<h2><a class="toc-backref" href="#id1" role="doc-backlink">Overview</a></h2>
+<p>A TableFrame is Tabsdata’s lazy evaluation data structure that represents tabular data organized in rows and columns. Unlike eager evaluation frameworks, TableFrame operations are not executed immediately—instead, they build a query plan that is optimized and executed when the data is materialized.</p>
+<p>Key characteristics:</p>
+<ul class="simple">
+<li><p><strong>Lazy Evaluation</strong>: Operations are deferred until explicitly collected, enabling query optimization.</p></li>
+<li><p><strong>Immutable</strong>: Each operation returns a new TableFrame; the original is unchanged.</p></li>
+<li><p><strong>Columnar</strong>: Data is stored and processed column-wise for efficient analytical operations.</p></li>
+<li><p><strong>Type-safe</strong>: Each column has a defined data type that is enforced throughout operations.</p></li>
+</ul>
+</section>
+<section id="creating-tableframes">
+<h2><a class="toc-backref" href="#id2" role="doc-backlink">Creating TableFrames</a></h2>
+<p>While TableFrames are typically received as input in publishers and transformers, you can also create them programmatically for testing or data generation purposes.</p>
+<section id="from-a-dictionary">
+<h3><a class="toc-backref" href="#id3" role="doc-backlink">From a Dictionary</a></h3>
+<p>Use <code class="docutils literal notranslate"><span class="pre">TableFrame.from_dict()</span></code> to create a TableFrame from a Python dictionary:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">tabsdata</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">td</span>
+
+<span class="n">data</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;Alice&quot;</span><span class="p">,</span> <span class="s2">&quot;Bob&quot;</span><span class="p">,</span> <span class="s2">&quot;Charlie&quot;</span><span class="p">],</span>
+    <span class="s2">&quot;age&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">25</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="mi">35</span><span class="p">],</span>
+    <span class="s2">&quot;city&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;New York&quot;</span><span class="p">,</span> <span class="s2">&quot;London&quot;</span><span class="p">,</span> <span class="s2">&quot;Paris&quot;</span><span class="p">]</span>
+<span class="p">}</span>
+
+<span class="n">tf</span> <span class="o">=</span> <span class="n">td</span><span class="o">.</span><span class="n">TableFrame</span><span class="o">.</span><span class="n">from_dict</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="from-pandas">
+<h3><a class="toc-backref" href="#id4" role="doc-backlink">From Pandas</a></h3>
+<p>Convert a Pandas DataFrame to a TableFrame:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">tabsdata</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">td</span>
+
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span>
+    <span class="s2">&quot;product&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;Widget&quot;</span><span class="p">,</span> <span class="s2">&quot;Gadget&quot;</span><span class="p">],</span>
+    <span class="s2">&quot;price&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mf">19.99</span><span class="p">,</span> <span class="mf">29.99</span><span class="p">]</span>
+<span class="p">})</span>
+
+<span class="n">tf</span> <span class="o">=</span> <span class="n">td</span><span class="o">.</span><span class="n">TableFrame</span><span class="o">.</span><span class="n">from_pandas</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="from-polars">
+<h3><a class="toc-backref" href="#id5" role="doc-backlink">From Polars</a></h3>
+<p>Convert from Polars LazyFrame or DataFrame:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">polars</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pl</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">tabsdata</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">td</span>
+
+<span class="c1"># From Polars LazyFrame</span>
+<span class="n">lf</span> <span class="o">=</span> <span class="n">pl</span><span class="o">.</span><span class="n">LazyFrame</span><span class="p">({</span><span class="s2">&quot;x&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="s2">&quot;y&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">]})</span>
+<span class="n">tf</span> <span class="o">=</span> <span class="n">td</span><span class="o">.</span><span class="n">TableFrame</span><span class="o">.</span><span class="n">from_polars</span><span class="p">(</span><span class="n">lf</span><span class="p">)</span>
+
+<span class="c1"># From Polars DataFrame</span>
+<span class="n">pdf</span> <span class="o">=</span> <span class="n">pl</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s2">&quot;x&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="s2">&quot;y&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">]})</span>
+<span class="n">tf</span> <span class="o">=</span> <span class="n">td</span><span class="o">.</span><span class="n">TableFrame</span><span class="o">.</span><span class="n">from_polars</span><span class="p">(</span><span class="n">pdf</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="converting-tableframes">
+<h3><a class="toc-backref" href="#id6" role="doc-backlink">Converting TableFrames</a></h3>
+<p>Export TableFrames to other formats:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># To dictionary</span>
+<span class="n">data_dict</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">to_dict</span><span class="p">()</span>
+
+<span class="c1"># To Pandas DataFrame</span>
+<span class="n">pandas_df</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">to_pandas</span><span class="p">()</span>
+
+<span class="c1"># To Polars DataFrame</span>
+<span class="n">polars_df</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">to_polars_df</span><span class="p">()</span>
+
+<span class="c1"># To Polars LazyFrame</span>
+<span class="n">polars_lf</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">to_polars_lf</span><span class="p">()</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="column-selection-and-projection">
+<h2><a class="toc-backref" href="#id7" role="doc-backlink">Column Selection and Projection</a></h2>
+<p>Projection operations allow you to select, transform, and reshape columns in your data.</p>
+<section id="selecting-columns">
+<h3><a class="toc-backref" href="#id8" role="doc-backlink">Selecting Columns</a></h3>
+<p>Use <code class="docutils literal notranslate"><span class="pre">select()</span></code> to choose specific columns. Multiple syntax forms are supported:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Using td.col() expressions</span>
+<span class="n">tf</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="n">td</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;first_name&quot;</span><span class="p">),</span> <span class="n">td</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;last_name&quot;</span><span class="p">))</span>
+
+<span class="c1"># Using column names directly</span>
+<span class="n">tf</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="s2">&quot;first_name&quot;</span><span class="p">,</span> <span class="s2">&quot;last_name&quot;</span><span class="p">)</span>
+
+<span class="c1"># Using a list of column names</span>
+<span class="n">tf</span><span class="o">.</span><span class="n">select</span><span class="p">([</span><span class="s2">&quot;first_name&quot;</span><span class="p">,</span> <span class="s2">&quot;last_name&quot;</span><span class="p">])</span>
+</pre></div>
+</div>
+</section>
+<section id="column-selectors">
+<h3><a class="toc-backref" href="#id9" role="doc-backlink">Column Selectors</a></h3>
+<p>Tabsdata provides powerful selectors to dynamically select columns by type or pattern:</p>
+<p><strong>By Data Type:</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">tabsdata.tableframe.selectors</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">cs</span>
+
+<span class="c1"># Select all numeric columns</span>
+<span class="n">tf</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="n">cs</span><span class="o">.</span><span class="n">numeric</span><span class="p">())</span>
+
+<span class="c1"># Select all string columns</span>
+<span class="n">tf</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="n">cs</span><span class="o">.</span><span class="n">string</span><span class="p">())</span>
+
+<span class="c1"># Select all temporal columns (date, datetime, time)</span>
+<span class="n">tf</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="n">cs</span><span class="o">.</span><span class="n">temporal</span><span class="p">())</span>
+
+<span class="c1"># Select by specific dtype</span>
+<span class="n">tf</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="n">cs</span><span class="o">.</span><span class="n">by_dtype</span><span class="p">(</span><span class="n">td</span><span class="o">.</span><span class="n">Int64</span><span class="p">,</span> <span class="n">td</span><span class="o">.</span><span class="n">Float64</span><span class="p">))</span>
+</pre></div>
+</div>
+<p><strong>By Pattern:</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Columns starting with a prefix</span>
+<span class="n">tf</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="n">cs</span><span class="o">.</span><span class="n">starts_with</span><span class="p">(</span><span class="s2">&quot;customer_&quot;</span><span class="p">))</span>
+
+<span class="c1"># Columns ending with a suffix</span>
+<span class="n">tf</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="n">cs</span><span class="o">.</span><span class="n">ends_with</span><span class="p">(</span><span class="s2">&quot;_id&quot;</span><span class="p">))</span>
+
+<span class="c1"># Columns containing a substring</span>
+<span class="n">tf</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="n">cs</span><span class="o">.</span><span class="n">contains</span><span class="p">(</span><span class="s2">&quot;price&quot;</span><span class="p">))</span>
+
+<span class="c1"># Columns matching a regex pattern</span>
+<span class="n">tf</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="n">cs</span><span class="o">.</span><span class="n">matches</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;^amount_\d+$&quot;</span><span class="p">))</span>
+</pre></div>
+</div>
+<p><strong>By Position:</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># First N columns</span>
+<span class="n">tf</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="n">cs</span><span class="o">.</span><span class="n">first</span><span class="p">(</span><span class="mi">3</span><span class="p">))</span>
+
+<span class="c1"># Last N columns</span>
+<span class="n">tf</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="n">cs</span><span class="o">.</span><span class="n">last</span><span class="p">(</span><span class="mi">2</span><span class="p">))</span>
+
+<span class="c1"># By index (0-based)</span>
+<span class="n">tf</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="n">cs</span><span class="o">.</span><span class="n">by_index</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+</pre></div>
+</div>
+<p><strong>Excluding Columns:</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># All columns except specific ones</span>
+<span class="n">tf</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="n">cs</span><span class="o">.</span><span class="n">exclude</span><span class="p">(</span><span class="s2">&quot;internal_id&quot;</span><span class="p">,</span> <span class="s2">&quot;metadata&quot;</span><span class="p">))</span>
+
+<span class="c1"># Combine with other selectors</span>
+<span class="n">tf</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="n">cs</span><span class="o">.</span><span class="n">numeric</span><span class="p">()</span> <span class="o">-</span> <span class="n">cs</span><span class="o">.</span><span class="n">ends_with</span><span class="p">(</span><span class="s2">&quot;_raw&quot;</span><span class="p">))</span>
+</pre></div>
+</div>
+</section>
+<section id="adding-and-modifying-columns">
+<h3><a class="toc-backref" href="#id10" role="doc-backlink">Adding and Modifying Columns</a></h3>
+<p>Use <code class="docutils literal notranslate"><span class="pre">with_columns()</span></code> to add new columns or modify existing ones without dropping other columns:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">tf</span><span class="o">.</span><span class="n">with_columns</span><span class="p">(</span>
+    <span class="c1"># Add a new calculated column</span>
+    <span class="p">(</span><span class="n">td</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;price&quot;</span><span class="p">)</span> <span class="o">*</span> <span class="n">td</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;quantity&quot;</span><span class="p">))</span><span class="o">.</span><span class="n">alias</span><span class="p">(</span><span class="s2">&quot;total&quot;</span><span class="p">),</span>
+
+    <span class="c1"># Modify an existing column</span>
+    <span class="n">td</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;name&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">to_uppercase</span><span class="p">()</span><span class="o">.</span><span class="n">alias</span><span class="p">(</span><span class="s2">&quot;name&quot;</span><span class="p">),</span>
+
+    <span class="c1"># Add a literal value column</span>
+    <span class="n">td</span><span class="o">.</span><span class="n">lit</span><span class="p">(</span><span class="s2">&quot;USD&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">alias</span><span class="p">(</span><span class="s2">&quot;currency&quot;</span><span class="p">)</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="dropping-columns">
+<h3><a class="toc-backref" href="#id11" role="doc-backlink">Dropping Columns</a></h3>
+<p>Use <code class="docutils literal notranslate"><span class="pre">drop()</span></code> to remove columns:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Drop single column</span>
+<span class="n">tf</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="s2">&quot;temporary_column&quot;</span><span class="p">)</span>
+
+<span class="c1"># Drop multiple columns</span>
+<span class="n">tf</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="s2">&quot;col1&quot;</span><span class="p">,</span> <span class="s2">&quot;col2&quot;</span><span class="p">,</span> <span class="s2">&quot;col3&quot;</span><span class="p">)</span>
+
+<span class="c1"># Drop using selectors</span>
+<span class="n">tf</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">cs</span><span class="o">.</span><span class="n">ends_with</span><span class="p">(</span><span class="s2">&quot;_raw&quot;</span><span class="p">))</span>
+</pre></div>
+</div>
+</section>
+<section id="renaming-columns">
+<h3><a class="toc-backref" href="#id12" role="doc-backlink">Renaming Columns</a></h3>
+<p>Use <code class="docutils literal notranslate"><span class="pre">rename()</span></code> to change column names:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">tf</span><span class="o">.</span><span class="n">rename</span><span class="p">({</span>
+    <span class="s2">&quot;old_name&quot;</span><span class="p">:</span> <span class="s2">&quot;new_name&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;customer_id&quot;</span><span class="p">:</span> <span class="s2">&quot;cust_id&quot;</span>
+<span class="p">})</span>
+</pre></div>
+</div>
+</section>
+<section id="column-aliasing">
+<h3><a class="toc-backref" href="#id13" role="doc-backlink">Column Aliasing</a></h3>
+<p>Use <code class="docutils literal notranslate"><span class="pre">alias()</span></code> on expressions to name computed columns:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">tf</span><span class="o">.</span><span class="n">select</span><span class="p">(</span>
+    <span class="p">(</span><span class="n">td</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;first_name&quot;</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot; &quot;</span> <span class="o">+</span> <span class="n">td</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;last_name&quot;</span><span class="p">))</span><span class="o">.</span><span class="n">alias</span><span class="p">(</span><span class="s2">&quot;full_name&quot;</span><span class="p">),</span>
+    <span class="p">(</span><span class="n">td</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;price&quot;</span><span class="p">)</span> <span class="o">*</span> <span class="mf">1.1</span><span class="p">)</span><span class="o">.</span><span class="n">alias</span><span class="p">(</span><span class="s2">&quot;price_with_tax&quot;</span><span class="p">)</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="filtering-data">
+<h2><a class="toc-backref" href="#id14" role="doc-backlink">Filtering Data</a></h2>
+<p>Filter operations allow you to select rows based on conditions.</p>
+<section id="basic-filtering">
+<h3><a class="toc-backref" href="#id15" role="doc-backlink">Basic Filtering</a></h3>
+<p>Use <code class="docutils literal notranslate"><span class="pre">filter()</span></code> with boolean expressions:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Simple comparison</span>
+<span class="n">tf</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">td</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;age&quot;</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">18</span><span class="p">)</span>
+
+<span class="c1"># Equality check</span>
+<span class="n">tf</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">td</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;status&quot;</span><span class="p">)</span> <span class="o">==</span> <span class="s2">&quot;active&quot;</span><span class="p">)</span>
+
+<span class="c1"># Not equal</span>
+<span class="n">tf</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">td</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;category&quot;</span><span class="p">)</span> <span class="o">!=</span> <span class="s2">&quot;archived&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="combining-conditions">
+<h3><a class="toc-backref" href="#id16" role="doc-backlink">Combining Conditions</a></h3>
+<p>Combine multiple conditions using logical operators:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># AND conditions (two syntaxes)</span>
+<span class="n">tf</span><span class="o">.</span><span class="n">filter</span><span class="p">((</span><span class="n">td</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;age&quot;</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">18</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">td</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;age&quot;</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">65</span><span class="p">))</span>
+<span class="n">tf</span><span class="o">.</span><span class="n">filter</span><span class="p">((</span><span class="n">td</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;age&quot;</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">18</span><span class="p">)</span><span class="o">.</span><span class="n">and_</span><span class="p">(</span><span class="n">td</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;age&quot;</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">65</span><span class="p">))</span>
+
+<span class="c1"># OR conditions</span>
+<span class="n">tf</span><span class="o">.</span><span class="n">filter</span><span class="p">((</span><span class="n">td</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;status&quot;</span><span class="p">)</span> <span class="o">==</span> <span class="s2">&quot;active&quot;</span><span class="p">)</span> <span class="o">|</span> <span class="p">(</span><span class="n">td</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;status&quot;</span><span class="p">)</span> <span class="o">==</span> <span class="s2">&quot;pending&quot;</span><span class="p">))</span>
+<span class="n">tf</span><span class="o">.</span><span class="n">filter</span><span class="p">((</span><span class="n">td</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;status&quot;</span><span class="p">)</span> <span class="o">==</span> <span class="s2">&quot;active&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">or_</span><span class="p">(</span><span class="n">td</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;status&quot;</span><span class="p">)</span> <span class="o">==</span> <span class="s2">&quot;pending&quot;</span><span class="p">))</span>
+
+<span class="c1"># NOT condition</span>
+<span class="n">tf</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="o">~</span><span class="p">(</span><span class="n">td</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;is_deleted&quot;</span><span class="p">)))</span>
+<span class="n">tf</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">td</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;is_deleted&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">not_</span><span class="p">())</span>
+
+<span class="c1"># XOR condition</span>
+<span class="n">tf</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">td</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;flag_a&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">xor</span><span class="p">(</span><span class="n">td</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;flag_b&quot;</span><span class="p">)))</span>
+</pre></div>
+</div>
+</section>
+<section id="range-and-membership-checks">
+<h3><a class="toc-backref" href="#id17" role="doc-backlink">Range and Membership Checks</a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Between (inclusive)</span>
+<span class="n">tf</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">td</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;price&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">is_between</span><span class="p">(</span><span class="mf">10.0</span><span class="p">,</span> <span class="mf">100.0</span><span class="p">))</span>
+
+<span class="c1"># In a set of values</span>
+<span class="n">tf</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">td</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;country&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">is_in</span><span class="p">([</span><span class="s2">&quot;USA&quot;</span><span class="p">,</span> <span class="s2">&quot;Canada&quot;</span><span class="p">,</span> <span class="s2">&quot;Mexico&quot;</span><span class="p">]))</span>
+
+<span class="c1"># Null checks</span>
+<span class="n">tf</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">td</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;email&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">is_not_null</span><span class="p">())</span>
+<span class="n">tf</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">td</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;optional_field&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">is_null</span><span class="p">())</span>
+
+<span class="c1"># NaN checks (for floating point)</span>
+<span class="n">tf</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">td</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;ratio&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">is_not_nan</span><span class="p">())</span>
+</pre></div>
+</div>
+</section>
+<section id="limiting-results">
+<h3><a class="toc-backref" href="#id18" role="doc-backlink">Limiting Results</a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># First N rows</span>
+<span class="n">tf</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+<span class="n">tf</span><span class="o">.</span><span class="n">limit</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+<span class="n">tf</span><span class="o">.</span><span class="n">first</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+
+<span class="c1"># Last N rows</span>
+<span class="n">tf</span><span class="o">.</span><span class="n">tail</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+<span class="n">tf</span><span class="o">.</span><span class="n">last</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+
+<span class="c1"># Slice with offset</span>
+<span class="n">tf</span><span class="o">.</span><span class="n">slice</span><span class="p">(</span><span class="n">offset</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">length</span><span class="o">=</span><span class="mi">50</span><span class="p">)</span>
+
+<span class="c1"># Single row access</span>
+<span class="n">first_row</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">first_row</span><span class="p">()</span>
+<span class="n">last_row</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">last_row</span><span class="p">()</span>
+</pre></div>
+</div>
+</section>
+<section id="unique-values">
+<h3><a class="toc-backref" href="#id19" role="doc-backlink">Unique Values</a></h3>
+<p>Remove duplicate rows (De-duplication):</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Unique across all columns</span>
+<span class="n">tf</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span>
+
+<span class="c1"># Unique based on specific columns</span>
+<span class="n">tf</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">subset</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;customer_id&quot;</span><span class="p">,</span> <span class="s2">&quot;date&quot;</span><span class="p">])</span>
+
+<span class="c1"># Keep first or last occurrence</span>
+<span class="n">tf</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">subset</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;customer_id&quot;</span><span class="p">],</span> <span class="n">keep</span><span class="o">=</span><span class="s2">&quot;first&quot;</span><span class="p">)</span>
+<span class="n">tf</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">subset</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;customer_id&quot;</span><span class="p">],</span> <span class="n">keep</span><span class="o">=</span><span class="s2">&quot;last&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="string-operations">
+<h2><a class="toc-backref" href="#id20" role="doc-backlink">String Operations</a></h2>
+<p>The <code class="docutils literal notranslate"><span class="pre">.str</span></code> namespace provides comprehensive string manipulation functions.</p>
+<section id="case-transformations">
+<h3><a class="toc-backref" href="#id21" role="doc-backlink">Case Transformations</a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">td</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;name&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">to_uppercase</span><span class="p">()</span>
+<span class="n">td</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;name&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">to_lowercase</span><span class="p">()</span>
+<span class="n">td</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;name&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">to_titlecase</span><span class="p">()</span>
+</pre></div>
+</div>
+</section>
+<section id="pattern-matching">
+<h3><a class="toc-backref" href="#id22" role="doc-backlink">Pattern Matching</a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Check if string starts/ends with pattern</span>
+<span class="n">td</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;email&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">ends_with</span><span class="p">(</span><span class="s2">&quot;@example.com&quot;</span><span class="p">)</span>
+<span class="n">td</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;phone&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">starts_with</span><span class="p">(</span><span class="s2">&quot;+1&quot;</span><span class="p">)</span>
+
+<span class="c1"># Contains substring</span>
+<span class="n">td</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;description&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">contains</span><span class="p">(</span><span class="s2">&quot;urgent&quot;</span><span class="p">)</span>
+
+<span class="c1"># Contains any of multiple patterns</span>
+<span class="n">td</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;text&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">contains_any</span><span class="p">([</span><span class="s2">&quot;error&quot;</span><span class="p">,</span> <span class="s2">&quot;warning&quot;</span><span class="p">,</span> <span class="s2">&quot;critical&quot;</span><span class="p">])</span>
+
+<span class="c1"># Regex matching</span>
+<span class="n">td</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;code&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">contains</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;^[A-Z]</span><span class="si">{3}</span><span class="s2">-\d</span><span class="si">{4}</span><span class="s2">$&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="string-extraction-and-replacement">
+<h3><a class="toc-backref" href="#id23" role="doc-backlink">String Extraction and Replacement</a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Extract using regex groups</span>
+<span class="n">td</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;email&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">extract</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;@(\w+)\.&quot;</span><span class="p">,</span> <span class="n">group_index</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="c1"># Replace patterns</span>
+<span class="n">td</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;text&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;old&quot;</span><span class="p">,</span> <span class="s2">&quot;new&quot;</span><span class="p">)</span>
+<span class="n">td</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;text&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">replace_all</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;\s+&quot;</span><span class="p">,</span> <span class="s2">&quot; &quot;</span><span class="p">)</span>  <span class="c1"># Replace all whitespace</span>
+
+<span class="c1"># Replace multiple patterns</span>
+<span class="n">td</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;text&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">replace_many</span><span class="p">([</span><span class="s2">&quot;a&quot;</span><span class="p">,</span> <span class="s2">&quot;b&quot;</span><span class="p">,</span> <span class="s2">&quot;c&quot;</span><span class="p">],</span> <span class="p">[</span><span class="s2">&quot;x&quot;</span><span class="p">,</span> <span class="s2">&quot;y&quot;</span><span class="p">,</span> <span class="s2">&quot;z&quot;</span><span class="p">])</span>
+</pre></div>
+</div>
+</section>
+<section id="string-manipulation">
+<h3><a class="toc-backref" href="#id24" role="doc-backlink">String Manipulation</a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Trimming</span>
+<span class="n">td</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;name&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">strip_chars</span><span class="p">()</span>                    <span class="c1"># Both sides</span>
+<span class="n">td</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;name&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">strip_chars_start</span><span class="p">()</span>              <span class="c1"># Left side</span>
+<span class="n">td</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;name&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">strip_chars_end</span><span class="p">()</span>                <span class="c1"># Right side</span>
+<span class="n">td</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;path&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">strip_prefix</span><span class="p">(</span><span class="s2">&quot;/api/&quot;</span><span class="p">)</span>
+<span class="n">td</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;filename&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">strip_suffix</span><span class="p">(</span><span class="s2">&quot;.txt&quot;</span><span class="p">)</span>
+
+<span class="c1"># Padding</span>
+<span class="n">td</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;id&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">pad_start</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="s2">&quot;0&quot;</span><span class="p">)</span>                 <span class="c1"># Left pad with zeros</span>
+<span class="n">td</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;code&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">pad_end</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span> <span class="s2">&quot; &quot;</span><span class="p">)</span>                 <span class="c1"># Right pad with spaces</span>
+<span class="n">td</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;number&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">zfill</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>                       <span class="c1"># Zero-fill to length</span>
+
+<span class="c1"># Slicing</span>
+<span class="n">td</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;text&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>                         <span class="c1"># First 10 characters</span>
+<span class="n">td</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;text&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">tail</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>                          <span class="c1"># Last 5 characters</span>
+<span class="n">td</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;text&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">slice</span><span class="p">(</span><span class="n">offset</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">length</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>       <span class="c1"># Substring</span>
+
+<span class="c1"># Reverse</span>
+<span class="n">td</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;text&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">reverse</span><span class="p">()</span>
+</pre></div>
+</div>
+</section>
+<section id="string-length-and-position">
+<h3><a class="toc-backref" href="#id25" role="doc-backlink">String Length and Position</a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Length</span>
+<span class="n">td</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;description&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">len_chars</span><span class="p">()</span>               <span class="c1"># Character count</span>
+<span class="n">td</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;data&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">len_bytes</span><span class="p">()</span>                      <span class="c1"># Byte count</span>
+
+<span class="c1"># Find position</span>
+<span class="n">td</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;text&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s2">&quot;@&quot;</span><span class="p">)</span>                        <span class="c1"># First occurrence index</span>
+
+<span class="c1"># Count matches</span>
+<span class="n">td</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;log&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">count_matches</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;\berror\b&quot;</span><span class="p">)</span>       <span class="c1"># Count pattern matches</span>
+</pre></div>
+</div>
+</section>
+<section id="grok-parsing">
+<h3><a class="toc-backref" href="#id26" role="doc-backlink">Grok Parsing</a></h3>
+<p>Parse semi-structured text using Grok patterns:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Parse Apache log format</span>
+<span class="n">tf</span><span class="o">.</span><span class="n">grok</span><span class="p">(</span>
+    <span class="s2">&quot;log_line&quot;</span><span class="p">,</span>
+    <span class="sa">r</span><span class="s2">&quot;%{IP:client_ip} - - \[%{HTTPDATE:timestamp}\] </span><span class="se">\&quot;</span><span class="s2">%{WORD:method} %{URIPATHPARAM:path}</span><span class="se">\&quot;</span><span class="s2">&quot;</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="numeric-operations">
+<h2><a class="toc-backref" href="#id27" role="doc-backlink">Numeric Operations</a></h2>
+<p>Mathematical and numeric operations on columns.</p>
+<section id="arithmetic-operations">
+<h3><a class="toc-backref" href="#id28" role="doc-backlink">Arithmetic Operations</a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Basic arithmetic</span>
+<span class="n">td</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;price&quot;</span><span class="p">)</span> <span class="o">+</span> <span class="mi">10</span>
+<span class="n">td</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;price&quot;</span><span class="p">)</span> <span class="o">-</span> <span class="n">td</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;discount&quot;</span><span class="p">)</span>
+<span class="n">td</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;quantity&quot;</span><span class="p">)</span> <span class="o">*</span> <span class="n">td</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;unit_price&quot;</span><span class="p">)</span>
+<span class="n">td</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;total&quot;</span><span class="p">)</span> <span class="o">/</span> <span class="n">td</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;count&quot;</span><span class="p">)</span>
+
+<span class="c1"># Method syntax</span>
+<span class="n">td</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;a&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">td</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;b&quot;</span><span class="p">))</span>
+<span class="n">td</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;a&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="n">td</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;b&quot;</span><span class="p">))</span>
+<span class="n">td</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;a&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">mul</span><span class="p">(</span><span class="n">td</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;b&quot;</span><span class="p">))</span>
+<span class="n">td</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;a&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">truediv</span><span class="p">(</span><span class="n">td</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;b&quot;</span><span class="p">))</span>
+<span class="n">td</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;a&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">mod</span><span class="p">(</span><span class="n">td</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;b&quot;</span><span class="p">))</span>          <span class="c1"># Modulo</span>
+</pre></div>
+</div>
+</section>
+<section id="rounding-and-clipping">
+<h3><a class="toc-backref" href="#id29" role="doc-backlink">Rounding and Clipping</a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Rounding</span>
+<span class="n">td</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;price&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>                           <span class="c1"># Round to 2 decimal places</span>
+<span class="n">td</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;value&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">round_sig_figs</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>                  <span class="c1"># Round to 3 significant figures</span>
+<span class="n">td</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;amount&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">floor</span><span class="p">()</span>                           <span class="c1"># Round down</span>
+<span class="n">td</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;amount&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">ceil</span><span class="p">()</span>                            <span class="c1"># Round up</span>
+
+<span class="c1"># Clipping (constrain to range)</span>
+<span class="n">td</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;score&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">clip</span><span class="p">(</span><span class="n">lower_bound</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">upper_bound</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="mathematical-functions">
+<h3><a class="toc-backref" href="#id30" role="doc-backlink">Mathematical Functions</a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Absolute value and sign</span>
+<span class="n">td</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;change&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">abs</span><span class="p">()</span>
+<span class="n">td</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;value&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">sign</span><span class="p">()</span>                             <span class="c1"># Returns -1, 0, or 1</span>
+<span class="n">td</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;value&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">neg</span><span class="p">()</span>                              <span class="c1"># Negate</span>
+
+<span class="c1"># Powers and roots</span>
+<span class="n">td</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;x&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">pow</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>                                 <span class="c1"># Square</span>
+<span class="n">td</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;x&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">sqrt</span><span class="p">()</span>                                 <span class="c1"># Square root</span>
+<span class="n">td</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;x&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">cbrt</span><span class="p">()</span>                                 <span class="c1"># Cube root</span>
+
+<span class="c1"># Logarithms</span>
+<span class="n">td</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;x&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">log</span><span class="p">()</span>                                  <span class="c1"># Natural logarithm</span>
+<span class="n">td</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;x&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">log10</span><span class="p">()</span>                                <span class="c1"># Base-10 logarithm</span>
+<span class="n">td</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;x&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">log1p</span><span class="p">()</span>                                <span class="c1"># log(1 + x)</span>
+<span class="n">td</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;x&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">exp</span><span class="p">()</span>                                  <span class="c1"># e^x</span>
+</pre></div>
+</div>
+</section>
+<section id="trigonometric-functions">
+<h3><a class="toc-backref" href="#id31" role="doc-backlink">Trigonometric Functions</a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Basic trig functions</span>
+<span class="n">td</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;angle&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">sin</span><span class="p">()</span>
+<span class="n">td</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;angle&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">cos</span><span class="p">()</span>
+<span class="n">td</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;angle&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">tan</span><span class="p">()</span>
+<span class="n">td</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;angle&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">cot</span><span class="p">()</span>
+
+<span class="c1"># Inverse trig functions</span>
+<span class="n">td</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;x&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">arcsin</span><span class="p">()</span>
+<span class="n">td</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;x&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">arccos</span><span class="p">()</span>
+<span class="n">td</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;x&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">arctan</span><span class="p">()</span>
+
+<span class="c1"># Hyperbolic functions</span>
+<span class="n">td</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;x&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">sinh</span><span class="p">()</span>
+<span class="n">td</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;x&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">cosh</span><span class="p">()</span>
+<span class="n">td</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;x&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">tanh</span><span class="p">()</span>
+
+<span class="c1"># Angle conversions</span>
+<span class="n">td</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;degrees&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">radians</span><span class="p">()</span>                        <span class="c1"># Degrees to radians</span>
+<span class="n">td</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;radians&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">degrees</span><span class="p">()</span>                        <span class="c1"># Radians to degrees</span>
+</pre></div>
+</div>
+</section>
+<section id="difference-and-comparison">
+<h3><a class="toc-backref" href="#id32" role="doc-backlink">Difference and Comparison</a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Row-to-row difference</span>
+<span class="n">td</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;value&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">diff</span><span class="p">()</span>                             <span class="c1"># Difference from previous row</span>
+<span class="n">td</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;value&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>                          <span class="c1"># Difference from 2 rows ago</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="date-and-time-operations">
+<h2><a class="toc-backref" href="#id33" role="doc-backlink">Date and Time Operations</a></h2>
+<p>The <code class="docutils literal notranslate"><span class="pre">.dt</span></code> namespace provides datetime manipulation functions.</p>
+<section id="extracting-components">
+<h3><a class="toc-backref" href="#id34" role="doc-backlink">Extracting Components</a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Date components</span>
+<span class="n">td</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;date&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">year</span><span class="p">()</span>
+<span class="n">td</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;date&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">month</span><span class="p">()</span>
+<span class="n">td</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;date&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">day</span><span class="p">()</span>
+<span class="n">td</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;date&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">quarter</span><span class="p">()</span>
+<span class="n">td</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;date&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">week</span><span class="p">()</span>
+<span class="n">td</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;date&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">weekday</span><span class="p">()</span>                        <span class="c1"># 0 = Monday</span>
+<span class="n">td</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;date&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">ordinal_day</span><span class="p">()</span>                    <span class="c1"># Day of year (1-366)</span>
+<span class="n">td</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;date&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">is_leap_year</span><span class="p">()</span>
+
+<span class="c1"># Time components</span>
+<span class="n">td</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;timestamp&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">hour</span><span class="p">()</span>
+<span class="n">td</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;timestamp&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">minute</span><span class="p">()</span>
+<span class="n">td</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;timestamp&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">second</span><span class="p">()</span>
+<span class="n">td</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;timestamp&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">millisecond</span><span class="p">()</span>
+<span class="n">td</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;timestamp&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">microsecond</span><span class="p">()</span>
+<span class="n">td</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;timestamp&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">nanosecond</span><span class="p">()</span>
+
+<span class="c1"># ISO calendar</span>
+<span class="n">td</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;date&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">iso_year</span><span class="p">()</span>
+</pre></div>
+</div>
+</section>
+<section id="date-arithmetic">
+<h3><a class="toc-backref" href="#id35" role="doc-backlink">Date Arithmetic</a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Add/subtract time intervals</span>
+<span class="n">td</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;date&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">offset_by</span><span class="p">(</span><span class="s2">&quot;1w&quot;</span><span class="p">)</span>                  <span class="c1"># Add 1 week</span>
+<span class="n">td</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;date&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">offset_by</span><span class="p">(</span><span class="s2">&quot;-3d&quot;</span><span class="p">)</span>                 <span class="c1"># Subtract 3 days</span>
+<span class="n">td</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;date&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">offset_by</span><span class="p">(</span><span class="s2">&quot;2mo&quot;</span><span class="p">)</span>                 <span class="c1"># Add 2 months</span>
+
+<span class="c1"># Business days</span>
+<span class="n">td</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;date&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">add_business_days</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+
+<span class="c1"># Month boundaries</span>
+<span class="n">td</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;date&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">month_start</span><span class="p">()</span>                    <span class="c1"># First day of month</span>
+<span class="n">td</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;date&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">month_end</span><span class="p">()</span>                      <span class="c1"># Last day of month</span>
+</pre></div>
+</div>
+</section>
+<section id="truncation">
+<h3><a class="toc-backref" href="#id36" role="doc-backlink">Truncation</a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Truncate to time unit</span>
+<span class="n">td</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;timestamp&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">truncate</span><span class="p">(</span><span class="s2">&quot;1h&quot;</span><span class="p">)</span>              <span class="c1"># Truncate to hour</span>
+<span class="n">td</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;timestamp&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">truncate</span><span class="p">(</span><span class="s2">&quot;1d&quot;</span><span class="p">)</span>              <span class="c1"># Truncate to day</span>
+<span class="n">td</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;timestamp&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">truncate</span><span class="p">(</span><span class="s2">&quot;1mo&quot;</span><span class="p">)</span>             <span class="c1"># Truncate to month</span>
+<span class="n">td</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;timestamp&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">truncate</span><span class="p">(</span><span class="s2">&quot;1w&quot;</span><span class="p">)</span>              <span class="c1"># Truncate to week</span>
+</pre></div>
+</div>
+</section>
+<section id="total-durations">
+<h3><a class="toc-backref" href="#id37" role="doc-backlink">Total Durations</a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Convert duration to total units</span>
+<span class="n">td</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;duration&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">total_days</span><span class="p">()</span>
+<span class="n">td</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;duration&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">total_hours</span><span class="p">()</span>
+<span class="n">td</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;duration&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">total_minutes</span><span class="p">()</span>
+<span class="n">td</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;duration&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">total_seconds</span><span class="p">()</span>
+<span class="n">td</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;duration&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">total_milliseconds</span><span class="p">()</span>
+<span class="n">td</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;duration&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">total_microseconds</span><span class="p">()</span>
+</pre></div>
+</div>
+</section>
+<section id="timezone-operations">
+<h3><a class="toc-backref" href="#id38" role="doc-backlink">Timezone Operations</a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Convert timezone</span>
+<span class="n">td</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;timestamp&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">convert_time_zone</span><span class="p">(</span><span class="s2">&quot;America/New_York&quot;</span><span class="p">)</span>
+
+<span class="c1"># Replace timezone (without conversion)</span>
+<span class="n">td</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;timestamp&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">replace_time_zone</span><span class="p">(</span><span class="s2">&quot;UTC&quot;</span><span class="p">)</span>
+
+<span class="c1"># Get timezone offsets</span>
+<span class="n">td</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;timestamp&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">base_utc_offset</span><span class="p">()</span>
+<span class="n">td</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;timestamp&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">dst_offset</span><span class="p">()</span>
+</pre></div>
+</div>
+</section>
+<section id="formatting">
+<h3><a class="toc-backref" href="#id39" role="doc-backlink">Formatting</a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Format as string</span>
+<span class="n">td</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;date&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">to_string</span><span class="p">(</span><span class="s2">&quot;%Y-%m-</span><span class="si">%d</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="n">td</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;timestamp&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s2">&quot;%Y-%m-</span><span class="si">%d</span><span class="s2"> %H:%M:%S&quot;</span><span class="p">)</span>
+
+<span class="c1"># Get epoch timestamp</span>
+<span class="n">td</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;timestamp&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">epoch</span><span class="p">(</span><span class="n">time_unit</span><span class="o">=</span><span class="s2">&quot;s&quot;</span><span class="p">)</span>        <span class="c1"># Seconds since epoch</span>
+<span class="n">td</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;timestamp&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">timestamp</span><span class="p">()</span>                 <span class="c1"># Microseconds since epoch</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="aggregation-and-grouping">
+<h2><a class="toc-backref" href="#id40" role="doc-backlink">Aggregation and Grouping</a></h2>
+<p>Aggregate data to compute summary statistics.</p>
+<section id="basic-aggregations">
+<h3><a class="toc-backref" href="#id41" role="doc-backlink">Basic Aggregations</a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Count</span>
+<span class="n">td</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;id&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">count</span><span class="p">()</span>                               <span class="c1"># Non-null count</span>
+<span class="n">td</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;id&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">len</span><span class="p">()</span>                                 <span class="c1"># Total count including nulls</span>
+
+<span class="c1"># Sum and mean</span>
+<span class="n">td</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;amount&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+<span class="n">td</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;amount&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+<span class="n">td</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;amount&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">median</span><span class="p">()</span>
+
+<span class="c1"># Min and max</span>
+<span class="n">td</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;date&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">min</span><span class="p">()</span>
+<span class="n">td</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;value&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">max</span><span class="p">()</span>
+
+<span class="c1"># First and last</span>
+<span class="n">td</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;timestamp&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">first</span><span class="p">()</span>
+<span class="n">td</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;timestamp&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">last</span><span class="p">()</span>
+
+<span class="c1"># Unique counts</span>
+<span class="n">td</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;category&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">n_unique</span><span class="p">()</span>
+</pre></div>
+</div>
+</section>
+<section id="group-by-operations">
+<h3><a class="toc-backref" href="#id42" role="doc-backlink">Group By Operations</a></h3>
+<p>Use <code class="docutils literal notranslate"><span class="pre">group_by()</span></code> to aggregate by groups:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Single column grouping</span>
+<span class="n">tf</span><span class="o">.</span><span class="n">group_by</span><span class="p">(</span><span class="s2">&quot;category&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">agg</span><span class="p">(</span>
+    <span class="n">td</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;sales&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span><span class="o">.</span><span class="n">alias</span><span class="p">(</span><span class="s2">&quot;total_sales&quot;</span><span class="p">),</span>
+    <span class="n">td</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;quantity&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="o">.</span><span class="n">alias</span><span class="p">(</span><span class="s2">&quot;avg_quantity&quot;</span><span class="p">)</span>
+<span class="p">)</span>
+
+<span class="c1"># Multiple column grouping</span>
+<span class="n">tf</span><span class="o">.</span><span class="n">group_by</span><span class="p">(</span><span class="s2">&quot;region&quot;</span><span class="p">,</span> <span class="s2">&quot;product_type&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">agg</span><span class="p">(</span>
+    <span class="n">td</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;revenue&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span><span class="o">.</span><span class="n">alias</span><span class="p">(</span><span class="s2">&quot;total_revenue&quot;</span><span class="p">),</span>
+    <span class="n">td</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;order_id&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">count</span><span class="p">()</span><span class="o">.</span><span class="n">alias</span><span class="p">(</span><span class="s2">&quot;order_count&quot;</span><span class="p">)</span>
+<span class="p">)</span>
+
+<span class="c1"># Group by expression</span>
+<span class="n">tf</span><span class="o">.</span><span class="n">group_by</span><span class="p">(</span>
+    <span class="n">td</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;timestamp&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">year</span><span class="p">()</span><span class="o">.</span><span class="n">alias</span><span class="p">(</span><span class="s2">&quot;year&quot;</span><span class="p">),</span>
+    <span class="n">td</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;timestamp&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">month</span><span class="p">()</span><span class="o">.</span><span class="n">alias</span><span class="p">(</span><span class="s2">&quot;month&quot;</span><span class="p">)</span>
+<span class="p">)</span><span class="o">.</span><span class="n">agg</span><span class="p">(</span>
+    <span class="n">td</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;amount&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span><span class="o">.</span><span class="n">alias</span><span class="p">(</span><span class="s2">&quot;monthly_total&quot;</span><span class="p">)</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="shorthand-group-aggregations">
+<h3><a class="toc-backref" href="#id43" role="doc-backlink">Shorthand Group Aggregations</a></h3>
+<p>For simple aggregations:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Count per group</span>
+<span class="n">tf</span><span class="o">.</span><span class="n">group_by</span><span class="p">(</span><span class="s2">&quot;category&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">count</span><span class="p">()</span>
+
+<span class="c1"># Sum per group</span>
+<span class="n">tf</span><span class="o">.</span><span class="n">group_by</span><span class="p">(</span><span class="s2">&quot;category&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+
+<span class="c1"># Mean per group</span>
+<span class="n">tf</span><span class="o">.</span><span class="n">group_by</span><span class="p">(</span><span class="s2">&quot;category&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+
+<span class="c1"># Min/Max per group</span>
+<span class="n">tf</span><span class="o">.</span><span class="n">group_by</span><span class="p">(</span><span class="s2">&quot;category&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">min</span><span class="p">()</span>
+<span class="n">tf</span><span class="o">.</span><span class="n">group_by</span><span class="p">(</span><span class="s2">&quot;category&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">max</span><span class="p">()</span>
+</pre></div>
+</div>
+</section>
+<section id="ranking">
+<h3><a class="toc-backref" href="#id44" role="doc-backlink">Ranking</a></h3>
+<p>Assign ranks to values:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">tf</span><span class="o">.</span><span class="n">with_columns</span><span class="p">(</span>
+    <span class="n">td</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;score&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">rank</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="s2">&quot;ordinal&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">alias</span><span class="p">(</span><span class="s2">&quot;rank&quot;</span><span class="p">),</span>
+    <span class="n">td</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;score&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">rank</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="s2">&quot;dense&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">alias</span><span class="p">(</span><span class="s2">&quot;dense_rank&quot;</span><span class="p">),</span>
+    <span class="n">td</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;score&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">rank</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="s2">&quot;min&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">alias</span><span class="p">(</span><span class="s2">&quot;min_rank&quot;</span><span class="p">),</span>
+    <span class="n">td</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;score&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">rank</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="s2">&quot;max&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">alias</span><span class="p">(</span><span class="s2">&quot;max_rank&quot;</span><span class="p">),</span>
+    <span class="n">td</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;score&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">rank</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="s2">&quot;average&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">alias</span><span class="p">(</span><span class="s2">&quot;avg_rank&quot;</span><span class="p">)</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="joining-tables">
+<h2><a class="toc-backref" href="#id45" role="doc-backlink">Joining Tables</a></h2>
+<p>Combine data from multiple TableFrames.</p>
+<section id="join-types">
+<h3><a class="toc-backref" href="#id46" role="doc-backlink">Join Types</a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Inner join (default)</span>
+<span class="n">tf1</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">tf2</span><span class="p">,</span> <span class="n">on</span><span class="o">=</span><span class="s2">&quot;key_column&quot;</span><span class="p">)</span>
+<span class="n">tf1</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">tf2</span><span class="p">,</span> <span class="n">on</span><span class="o">=</span><span class="s2">&quot;key_column&quot;</span><span class="p">,</span> <span class="n">how</span><span class="o">=</span><span class="s2">&quot;inner&quot;</span><span class="p">)</span>
+
+<span class="c1"># Left join</span>
+<span class="n">tf1</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">tf2</span><span class="p">,</span> <span class="n">on</span><span class="o">=</span><span class="s2">&quot;key_column&quot;</span><span class="p">,</span> <span class="n">how</span><span class="o">=</span><span class="s2">&quot;left&quot;</span><span class="p">)</span>
+
+<span class="c1"># Right join</span>
+<span class="n">tf1</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">tf2</span><span class="p">,</span> <span class="n">on</span><span class="o">=</span><span class="s2">&quot;key_column&quot;</span><span class="p">,</span> <span class="n">how</span><span class="o">=</span><span class="s2">&quot;right&quot;</span><span class="p">)</span>
+
+<span class="c1"># Outer (full) join</span>
+<span class="n">tf1</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">tf2</span><span class="p">,</span> <span class="n">on</span><span class="o">=</span><span class="s2">&quot;key_column&quot;</span><span class="p">,</span> <span class="n">how</span><span class="o">=</span><span class="s2">&quot;full&quot;</span><span class="p">)</span>
+
+<span class="c1"># Semi join (keep left rows that have matches)</span>
+<span class="n">tf1</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">tf2</span><span class="p">,</span> <span class="n">on</span><span class="o">=</span><span class="s2">&quot;key_column&quot;</span><span class="p">,</span> <span class="n">how</span><span class="o">=</span><span class="s2">&quot;semi&quot;</span><span class="p">)</span>
+
+<span class="c1"># Anti join (keep left rows that don&#39;t have matches)</span>
+<span class="n">tf1</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">tf2</span><span class="p">,</span> <span class="n">on</span><span class="o">=</span><span class="s2">&quot;key_column&quot;</span><span class="p">,</span> <span class="n">how</span><span class="o">=</span><span class="s2">&quot;anti&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="join-on-multiple-columns">
+<h3><a class="toc-backref" href="#id47" role="doc-backlink">Join on Multiple Columns</a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Same column names in both tables</span>
+<span class="n">tf1</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">tf2</span><span class="p">,</span> <span class="n">on</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;customer_id&quot;</span><span class="p">,</span> <span class="s2">&quot;date&quot;</span><span class="p">])</span>
+
+<span class="c1"># Different column names</span>
+<span class="n">tf1</span><span class="o">.</span><span class="n">join</span><span class="p">(</span>
+    <span class="n">tf2</span><span class="p">,</span>
+    <span class="n">left_on</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;cust_id&quot;</span><span class="p">,</span> <span class="s2">&quot;order_date&quot;</span><span class="p">],</span>
+    <span class="n">right_on</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;customer_id&quot;</span><span class="p">,</span> <span class="s2">&quot;date&quot;</span><span class="p">]</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="handling-duplicate-column-names">
+<h3><a class="toc-backref" href="#id48" role="doc-backlink">Handling Duplicate Column Names</a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Add suffix to duplicate columns</span>
+<span class="n">tf1</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">tf2</span><span class="p">,</span> <span class="n">on</span><span class="o">=</span><span class="s2">&quot;id&quot;</span><span class="p">,</span> <span class="n">suffix</span><span class="o">=</span><span class="s2">&quot;_right&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="join-example">
+<h3><a class="toc-backref" href="#id49" role="doc-backlink">Join Example</a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">tabsdata</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">td</span>
+
+<span class="nd">@td</span><span class="o">.</span><span class="n">transformer</span><span class="p">(</span>
+    <span class="n">input_tables</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;orders&quot;</span><span class="p">,</span> <span class="s2">&quot;customers&quot;</span><span class="p">],</span>
+    <span class="n">output_tables</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;order_details&quot;</span><span class="p">],</span>
+<span class="p">)</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">enrich_orders</span><span class="p">(</span><span class="n">orders</span><span class="p">:</span> <span class="n">td</span><span class="o">.</span><span class="n">TableFrame</span><span class="p">,</span> <span class="n">customers</span><span class="p">:</span> <span class="n">td</span><span class="o">.</span><span class="n">TableFrame</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">orders</span><span class="o">.</span><span class="n">join</span><span class="p">(</span>
+        <span class="n">customers</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="s2">&quot;customer_id&quot;</span><span class="p">,</span> <span class="s2">&quot;name&quot;</span><span class="p">,</span> <span class="s2">&quot;region&quot;</span><span class="p">),</span>
+        <span class="n">on</span><span class="o">=</span><span class="s2">&quot;customer_id&quot;</span><span class="p">,</span>
+        <span class="n">how</span><span class="o">=</span><span class="s2">&quot;left&quot;</span>
+    <span class="p">)</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="union-operations">
+<h2><a class="toc-backref" href="#id50" role="doc-backlink">Union Operations</a></h2>
+<p>Combine rows from multiple TableFrames.</p>
+<section id="concatenation">
+<h3><a class="toc-backref" href="#id51" role="doc-backlink">Concatenation</a></h3>
+<p>Use <code class="docutils literal notranslate"><span class="pre">td.concat()</span></code> to stack TableFrames vertically:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">tabsdata</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">td</span>
+
+<span class="c1"># Concatenate multiple TableFrames</span>
+<span class="n">combined</span> <span class="o">=</span> <span class="n">td</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">tf1</span><span class="p">,</span> <span class="n">tf2</span><span class="p">,</span> <span class="n">tf3</span><span class="p">])</span>
+
+<span class="c1"># With rechunking for optimization</span>
+<span class="n">combined</span> <span class="o">=</span> <span class="n">td</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">tf1</span><span class="p">,</span> <span class="n">tf2</span><span class="p">,</span> <span class="n">tf3</span><span class="p">],</span> <span class="n">rechunk</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>All TableFrames must have the same schema (column names and types) for concatenation.</p>
+</div>
+</section>
+</section>
+<section id="data-manipulation">
+<h2><a class="toc-backref" href="#id52" role="doc-backlink">Data Manipulation</a></h2>
+<p>Handle missing values and transform data.</p>
+<section id="handling-null-values">
+<h3><a class="toc-backref" href="#id53" role="doc-backlink">Handling Null Values</a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Drop rows with any null values</span>
+<span class="n">tf</span><span class="o">.</span><span class="n">drop_nulls</span><span class="p">()</span>
+
+<span class="c1"># Drop rows with nulls in specific columns</span>
+<span class="n">tf</span><span class="o">.</span><span class="n">drop_nulls</span><span class="p">(</span><span class="n">subset</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;email&quot;</span><span class="p">,</span> <span class="s2">&quot;phone&quot;</span><span class="p">])</span>
+
+<span class="c1"># Fill null values with a constant</span>
+<span class="n">tf</span><span class="o">.</span><span class="n">fill_null</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">td</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;status&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">fill_null</span><span class="p">(</span><span class="s2">&quot;unknown&quot;</span><span class="p">)</span>
+
+<span class="c1"># Fill nulls in the entire TableFrame</span>
+<span class="n">tf</span><span class="o">.</span><span class="n">fill_null</span><span class="p">({</span>
+    <span class="s2">&quot;quantity&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+    <span class="s2">&quot;status&quot;</span><span class="p">:</span> <span class="s2">&quot;pending&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;price&quot;</span><span class="p">:</span> <span class="mf">0.0</span>
+<span class="p">})</span>
+</pre></div>
+</div>
+</section>
+<section id="handling-nan-values">
+<h3><a class="toc-backref" href="#id54" role="doc-backlink">Handling NaN Values</a></h3>
+<p>For floating-point columns:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Drop rows with NaN values</span>
+<span class="n">tf</span><span class="o">.</span><span class="n">drop_nans</span><span class="p">()</span>
+<span class="n">tf</span><span class="o">.</span><span class="n">drop_nans</span><span class="p">(</span><span class="n">subset</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;ratio&quot;</span><span class="p">,</span> <span class="s2">&quot;percentage&quot;</span><span class="p">])</span>
+
+<span class="c1"># Fill NaN values</span>
+<span class="n">tf</span><span class="o">.</span><span class="n">fill_nan</span><span class="p">(</span><span class="mf">0.0</span><span class="p">)</span>
+<span class="n">td</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;rate&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">fill_nan</span><span class="p">(</span><span class="mf">0.0</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="sorting">
+<h3><a class="toc-backref" href="#id55" role="doc-backlink">Sorting</a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Sort by single column (ascending)</span>
+<span class="n">tf</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="s2">&quot;date&quot;</span><span class="p">)</span>
+
+<span class="c1"># Sort descending</span>
+<span class="n">tf</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="s2">&quot;date&quot;</span><span class="p">,</span> <span class="n">descending</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="c1"># Sort by multiple columns</span>
+<span class="n">tf</span><span class="o">.</span><span class="n">sort</span><span class="p">([</span><span class="s2">&quot;category&quot;</span><span class="p">,</span> <span class="s2">&quot;date&quot;</span><span class="p">],</span> <span class="n">descending</span><span class="o">=</span><span class="p">[</span><span class="kc">False</span><span class="p">,</span> <span class="kc">True</span><span class="p">])</span>
+
+<span class="c1"># Nulls placement</span>
+<span class="n">tf</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="s2">&quot;value&quot;</span><span class="p">,</span> <span class="n">nulls_last</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="type-casting">
+<h3><a class="toc-backref" href="#id56" role="doc-backlink">Type Casting</a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Cast expression type</span>
+<span class="n">td</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;id&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">cast</span><span class="p">(</span><span class="n">td</span><span class="o">.</span><span class="n">Int64</span><span class="p">)</span>
+<span class="n">td</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;price&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">cast</span><span class="p">(</span><span class="n">td</span><span class="o">.</span><span class="n">Float64</span><span class="p">)</span>
+<span class="n">td</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;is_active&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">cast</span><span class="p">(</span><span class="n">td</span><span class="o">.</span><span class="n">Boolean</span><span class="p">)</span>
+
+<span class="c1"># Cast entire TableFrame columns</span>
+<span class="n">tf</span><span class="o">.</span><span class="n">cast</span><span class="p">({</span><span class="s2">&quot;id&quot;</span><span class="p">:</span> <span class="n">td</span><span class="o">.</span><span class="n">String</span><span class="p">,</span> <span class="s2">&quot;amount&quot;</span><span class="p">:</span> <span class="n">td</span><span class="o">.</span><span class="n">Float64</span><span class="p">})</span>
+
+<span class="c1"># String to date/time</span>
+<span class="n">td</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;date_str&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">to_date</span><span class="p">(</span><span class="s2">&quot;%Y-%m-</span><span class="si">%d</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="n">td</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;ts_str&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="s2">&quot;%Y-%m-</span><span class="si">%d</span><span class="s2"> %H:%M:%S&quot;</span><span class="p">)</span>
+<span class="n">td</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;time_str&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">to_time</span><span class="p">(</span><span class="s2">&quot;%H:%M:%S&quot;</span><span class="p">)</span>
+<span class="n">td</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;num_str&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">to_integer</span><span class="p">()</span>
+
+<span class="c1"># Date to string</span>
+<span class="n">td</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;date&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">to_string</span><span class="p">(</span><span class="s2">&quot;%Y-%m-</span><span class="si">%d</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="tableframe-attributes">
+<h2><a class="toc-backref" href="#id57" role="doc-backlink">TableFrame Attributes</a></h2>
+<p>Access metadata about your TableFrame.</p>
+<section id="schema-information">
+<h3><a class="toc-backref" href="#id58" role="doc-backlink">Schema Information</a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Get column data types</span>
+<span class="n">dtypes</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">dtypes</span>
+
+<span class="c1"># Check if columns exist</span>
+<span class="n">tf</span><span class="o">.</span><span class="n">has_cols</span><span class="p">(</span><span class="s2">&quot;column_name&quot;</span><span class="p">)</span>
+<span class="n">tf</span><span class="o">.</span><span class="n">has_cols</span><span class="p">([</span><span class="s2">&quot;col1&quot;</span><span class="p">,</span> <span class="s2">&quot;col2&quot;</span><span class="p">])</span>
+
+<span class="c1"># Assert columns exist (raises error if not)</span>
+<span class="n">tf</span><span class="o">.</span><span class="n">assert_has_cols</span><span class="p">([</span><span class="s2">&quot;required_col1&quot;</span><span class="p">,</span> <span class="s2">&quot;required_col2&quot;</span><span class="p">])</span>
+
+<span class="c1"># Compare schemas</span>
+<span class="n">tf</span><span class="o">.</span><span class="n">has_same_schema</span><span class="p">(</span><span class="n">other_tf</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="empty-checks">
+<h3><a class="toc-backref" href="#id59" role="doc-backlink">Empty Checks</a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Check if TableFrame is empty</span>
+<span class="n">tf</span><span class="o">.</span><span class="n">is_empty</span><span class="p">()</span>
+
+<span class="c1"># Create an empty TableFrame with same schema</span>
+<span class="n">empty_tf</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">empty</span><span class="p">()</span>
+
+<span class="c1"># Clear all rows</span>
+<span class="n">cleared_tf</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>
+</pre></div>
+</div>
+</section>
+<section id="query-explanation">
+<h3><a class="toc-backref" href="#id60" role="doc-backlink">Query Explanation</a></h3>
+<p>For debugging and optimization:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Get query plan explanation</span>
+<span class="n">plan</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">explain</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">plan</span><span class="p">)</span>
+
+<span class="c1"># Visualize query graph</span>
+<span class="n">tf</span><span class="o">.</span><span class="n">show_graph</span><span class="p">()</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="literal-values">
+<h2><a class="toc-backref" href="#id61" role="doc-backlink">Literal Values</a></h2>
+<p>Create constant value columns:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Add literal value columns</span>
+<span class="n">tf</span><span class="o">.</span><span class="n">with_columns</span><span class="p">(</span>
+    <span class="n">td</span><span class="o">.</span><span class="n">lit</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">alias</span><span class="p">(</span><span class="s2">&quot;version&quot;</span><span class="p">),</span>
+    <span class="n">td</span><span class="o">.</span><span class="n">lit</span><span class="p">(</span><span class="s2">&quot;active&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">alias</span><span class="p">(</span><span class="s2">&quot;status&quot;</span><span class="p">),</span>
+    <span class="n">td</span><span class="o">.</span><span class="n">lit</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span><span class="o">.</span><span class="n">alias</span><span class="p">(</span><span class="s2">&quot;is_valid&quot;</span><span class="p">),</span>
+    <span class="n">td</span><span class="o">.</span><span class="n">lit</span><span class="p">(</span><span class="mf">3.14159</span><span class="p">)</span><span class="o">.</span><span class="n">alias</span><span class="p">(</span><span class="s2">&quot;pi&quot;</span><span class="p">)</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="extracting-data">
+<h2><a class="toc-backref" href="#id62" role="doc-backlink">Extracting Data</a></h2>
+<p>Extract specific data patterns from tables.</p>
+<section id="extract-as-columns">
+<h3><a class="toc-backref" href="#id63" role="doc-backlink">Extract as Columns</a></h3>
+<p>Pivot unique values into columns:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Extract unique values from a column as separate columns</span>
+<span class="n">tf</span><span class="o">.</span><span class="n">extract_as_columns</span><span class="p">(</span>
+    <span class="n">column</span><span class="o">=</span><span class="s2">&quot;metric_name&quot;</span><span class="p">,</span>
+    <span class="n">value_column</span><span class="o">=</span><span class="s2">&quot;metric_value&quot;</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="extract-as-rows">
+<h3><a class="toc-backref" href="#id64" role="doc-backlink">Extract as Rows</a></h3>
+<p>Unpivot columns into rows:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Melt multiple columns into rows</span>
+<span class="n">tf</span><span class="o">.</span><span class="n">extract_as_rows</span><span class="p">(</span>
+    <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;jan_sales&quot;</span><span class="p">,</span> <span class="s2">&quot;feb_sales&quot;</span><span class="p">,</span> <span class="s2">&quot;mar_sales&quot;</span><span class="p">],</span>
+    <span class="n">variable_name</span><span class="o">=</span><span class="s2">&quot;month&quot;</span><span class="p">,</span>
+    <span class="n">value_name</span><span class="o">=</span><span class="s2">&quot;sales&quot;</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="unnesting">
+<h3><a class="toc-backref" href="#id65" role="doc-backlink">Unnesting</a></h3>
+<p>Flatten nested structures:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Unnest struct columns</span>
+<span class="n">tf</span><span class="o">.</span><span class="n">unnest</span><span class="p">(</span><span class="s2">&quot;address&quot;</span><span class="p">)</span>  <span class="c1"># Expands struct fields to columns</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="best-practices">
+<h2><a class="toc-backref" href="#id66" role="doc-backlink">Best Practices</a></h2>
+<ol class="arabic">
+<li><p><strong>Chain Operations</strong>: TableFrame operations return new TableFrames, enabling fluent method chaining:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">result</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="n">tf</span>
+    <span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">td</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;status&quot;</span><span class="p">)</span> <span class="o">==</span> <span class="s2">&quot;active&quot;</span><span class="p">)</span>
+    <span class="o">.</span><span class="n">with_columns</span><span class="p">(</span>
+        <span class="p">(</span><span class="n">td</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;price&quot;</span><span class="p">)</span> <span class="o">*</span> <span class="n">td</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;quantity&quot;</span><span class="p">))</span><span class="o">.</span><span class="n">alias</span><span class="p">(</span><span class="s2">&quot;total&quot;</span><span class="p">)</span>
+    <span class="p">)</span>
+    <span class="o">.</span><span class="n">group_by</span><span class="p">(</span><span class="s2">&quot;category&quot;</span><span class="p">)</span>
+    <span class="o">.</span><span class="n">agg</span><span class="p">(</span><span class="n">td</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;total&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span><span class="o">.</span><span class="n">alias</span><span class="p">(</span><span class="s2">&quot;category_total&quot;</span><span class="p">))</span>
+    <span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="s2">&quot;category_total&quot;</span><span class="p">,</span> <span class="n">descending</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</li>
+<li><p><strong>Use Selectors for Dynamic Column Selection</strong>: Instead of hardcoding column names, use selectors for more maintainable code.</p></li>
+<li><p><strong>Prefer Native Operations Over UDFs</strong>: TableFrame expressions are optimized; use UDFs only when necessary.</p></li>
+<li><p><strong>Filter Early</strong>: Apply filters as early as possible in your pipeline to reduce data volume.</p></li>
+<li><p><strong>Use Aliases</strong>: Always alias computed columns for clarity and to avoid naming conflicts.</p></li>
+</ol>
+</section>
+<section id="see-also">
+<h2><a class="toc-backref" href="#id67" role="doc-backlink">See Also</a></h2>
+<ul class="simple">
+<li><p><a class="reference internal" href="table_frame.html#working-with-tables"><span class="std std-ref">Working with Tables</span></a> - Basic table operations and CLI commands</p></li>
+<li><p><a class="reference internal" href="user_defined_functions.html#user-defined-functions"><span class="std std-ref">User-defined Functions (UDFs)</span></a> - Custom UDF implementation</p></li>
+<li><p><a class="reference external" href="https://docs.tabsdata.com/latest/api_ref/tableframe_api/index.html">TableFrame API Reference</a> - Complete API documentation</p></li>
+</ul>
+</section>
+</section>
+
+
+                </article>
+              
+              
+              
+              
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+<div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#overview">Overview</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#creating-tableframes">Creating TableFrames</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#from-a-dictionary">From a Dictionary</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#from-pandas">From Pandas</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#from-polars">From Polars</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#converting-tableframes">Converting TableFrames</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#column-selection-and-projection">Column Selection and Projection</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#selecting-columns">Selecting Columns</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#column-selectors">Column Selectors</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#adding-and-modifying-columns">Adding and Modifying Columns</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dropping-columns">Dropping Columns</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#renaming-columns">Renaming Columns</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#column-aliasing">Column Aliasing</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#filtering-data">Filtering Data</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#basic-filtering">Basic Filtering</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#combining-conditions">Combining Conditions</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#range-and-membership-checks">Range and Membership Checks</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#limiting-results">Limiting Results</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#unique-values">Unique Values</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#string-operations">String Operations</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#case-transformations">Case Transformations</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pattern-matching">Pattern Matching</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#string-extraction-and-replacement">String Extraction and Replacement</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#string-manipulation">String Manipulation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#string-length-and-position">String Length and Position</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#grok-parsing">Grok Parsing</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#numeric-operations">Numeric Operations</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#arithmetic-operations">Arithmetic Operations</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#rounding-and-clipping">Rounding and Clipping</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mathematical-functions">Mathematical Functions</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#trigonometric-functions">Trigonometric Functions</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#difference-and-comparison">Difference and Comparison</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#date-and-time-operations">Date and Time Operations</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#extracting-components">Extracting Components</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#date-arithmetic">Date Arithmetic</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#truncation">Truncation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#total-durations">Total Durations</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#timezone-operations">Timezone Operations</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#formatting">Formatting</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#aggregation-and-grouping">Aggregation and Grouping</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#basic-aggregations">Basic Aggregations</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#group-by-operations">Group By Operations</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#shorthand-group-aggregations">Shorthand Group Aggregations</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ranking">Ranking</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#joining-tables">Joining Tables</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#join-types">Join Types</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#join-on-multiple-columns">Join on Multiple Columns</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#handling-duplicate-column-names">Handling Duplicate Column Names</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#join-example">Join Example</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#union-operations">Union Operations</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#concatenation">Concatenation</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data-manipulation">Data Manipulation</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#handling-null-values">Handling Null Values</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#handling-nan-values">Handling NaN Values</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#sorting">Sorting</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#type-casting">Type Casting</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tableframe-attributes">TableFrame Attributes</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#schema-information">Schema Information</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#empty-checks">Empty Checks</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#query-explanation">Query Explanation</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#literal-values">Literal Values</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#extracting-data">Extracting Data</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#extract-as-columns">Extract as Columns</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#extract-as-rows">Extract as Rows</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#unnesting">Unnesting</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#best-practices">Best Practices</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#see-also">See Also</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+
+<!-- Your custom footer content here -->
+
+  </body>
+</html>

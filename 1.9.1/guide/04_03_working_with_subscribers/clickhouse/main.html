@@ -1,0 +1,1041 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>ClickHouse &#8212; Tabsdata  documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=8f2a1f02" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/custom.css?v=8305e08e" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="../../../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+
+    <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+    <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+    <script src="../../../_static/documentation_options.js?v=7f41d439"></script>
+    <script src="../../../_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="../../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../../_static/copybutton.js?v=a56c686a"></script>
+    <script src="../../../_static/design-tabs.js?v=f930bc37"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'guide/04_03_working_with_subscribers/clickhouse/main';</script>
+    <script>
+        DOCUMENTATION_OPTIONS.theme_version = '0.16.1';
+        DOCUMENTATION_OPTIONS.theme_switcher_json_url = 'https://docs.tabsdata.com/version.json';
+        DOCUMENTATION_OPTIONS.theme_switcher_version_match = '1.9.1';
+        DOCUMENTATION_OPTIONS.show_version_warning_banner =
+            false;
+        </script>
+    <script src="../../../_static/custom.js?v=ac098f57"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="Databricks" href="../databricks/main.html" />
+    <link rel="prev" title="Big Query" href="../bigquery/main.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="1.9.1" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+
+
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+     
+  
+
+<a class="navbar-brand logo" href=" https://tabsdata.com/?utm_source=docs">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../../_static/tabsdata_root.png" class="logo__image only-light" alt="Tabsdata  documentation - Home"/>
+    <img src="../../../_static/tabsdata_root_light.png" class="logo__image only-dark pst-js-only" alt="Tabsdata  documentation - Home"/>
+  
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="../../index.html">
+    User Guide
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../ref/index.html">
+    API Reference
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../tutorials/index.html">
+    Tutorials
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+        <div class="navbar-item">
+<div class="version-switcher__container dropdown pst-js-only">
+  <button id="pst-version-switcher-button-2"
+    type="button"
+    class="version-switcher__button btn btn-sm dropdown-toggle"
+    data-bs-toggle="dropdown"
+    aria-haspopup="listbox"
+    aria-controls="pst-version-switcher-list-2"
+    aria-label="Version switcher list"
+  >
+    Choose version  <!-- this text may get changed later by javascript -->
+    <span class="caret"></span>
+  </button>
+  <div id="pst-version-switcher-list-2"
+    class="version-switcher__menu dropdown-menu list-group-flush py-0"
+    role="listbox" aria-labelledby="pst-version-switcher-button-2">
+    <!-- dropdown will be populated by javascript on page load -->
+  </div>
+</div></div>
+      
+        <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="../../index.html">
+    User Guide
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../ref/index.html">
+    API Reference
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../tutorials/index.html">
+    Tutorials
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+<div class="version-switcher__container dropdown pst-js-only">
+  <button id="pst-version-switcher-button-3"
+    type="button"
+    class="version-switcher__button btn btn-sm dropdown-toggle"
+    data-bs-toggle="dropdown"
+    aria-haspopup="listbox"
+    aria-controls="pst-version-switcher-list-3"
+    aria-label="Version switcher list"
+  >
+    Choose version  <!-- this text may get changed later by javascript -->
+    <span class="caret"></span>
+  </button>
+  <div id="pst-version-switcher-list-3"
+    class="version-switcher__menu dropdown-menu list-group-flush py-0"
+    role="listbox" aria-labelledby="pst-version-switcher-button-3">
+    <!-- dropdown will be populated by javascript on page load -->
+  </div>
+</div></div>
+        
+          <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+<nav class="bd-docs-nav bd-links"
+     aria-label="Section Navigation">
+  <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
+  <div class="bd-toc-item navbar-nav"><ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../01_overview/main.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../02_getting_started/main.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../server_configuration/main.html">Server Configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../03_key_concepts/main.html">Key Concepts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../04_working_with_functions/main.html">Working with Functions</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../04_01_working_with_publishers/main.html">Publishers</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../04_01_working_with_publishers/local_file_system/main.html">Local File System</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../04_01_working_with_publishers/amazon_s3/main.html">Amazon S3</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../04_01_working_with_publishers/azure/main.html">Azure Blob Storage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../04_01_working_with_publishers/databricks/main.html">Databricks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../04_01_working_with_publishers/db2/main.html">Db2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../04_01_working_with_publishers/db2_cdc/main.html">Db2 CDC</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../04_01_working_with_publishers/gcp/main.html">Google Cloud Storage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../working_with_kafka/main.html">Kafka</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../04_01_working_with_publishers/mariadb/main.html">MariaDB</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../04_01_working_with_publishers/mssql/main.html">Microsoft SQL Server</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../04_01_working_with_publishers/mysql_cdc/main.html">MySQL CDC</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../04_01_working_with_publishers/mysql/main.html">MySQL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../04_01_working_with_publishers/oracle/main.html">Oracle</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../04_01_working_with_publishers/postgres/main.html">Postgres</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../04_01_working_with_publishers/postgres_cdc/main.html">PostgreSQL CDC</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../04_01_working_with_publishers/salesforce/main.html">Salesforce SOQL Query</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../04_01_working_with_publishers/salesforce_reports/main.html">Salesforce Reports</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../04_01_working_with_publishers/grok_for_log_files/main.html">Grok for Log Files</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="../../04_02_working_with_transformers/main.html">Transformers</a></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="../main.html">Subscribers</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../local_file_system/main.html">Local File System</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../amazon_s3/main.html">Amazon S3</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../aws_iceberg/main.html">AWS Glue - Iceberg tables</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../azure/main.html">Azure Blob Storage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../bigquery/main.html">Big Query</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">ClickHouse</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../databricks/main.html">Databricks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../druid/main.html">Apache Druid</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../gcp/main.html">Google Cloud Storage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../mariadb/main.html">MariaDB</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../mongodb/main.html">MongoDB</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../mssql/main.html">Microsoft SQL Server</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../mysql/main.html">MySQL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../oracle/main.html">Oracle</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../postgres/main.html">Postgres</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../snowflake/main.html">Snowflake</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../starrocks/main.html">StarRocks</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="../../working_with_kafka/main.html">Working with Kafka</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../05_working_with_triggers/main.html">Working with Triggers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../06_working_with_tables/table_frame.html">Working with Tables</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../06_working_with_tables/tableframe_guide.html">TableFrame API Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../06_working_with_tables/user_defined_functions.html">User-defined Functions (UDFs)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../07_working_with_connector_plugins/main.html">Working with Plugins</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../data_quality/main.html">Data Quality</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../catalogs/main.html">Catalogs</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../catalogs/aws_glue/main.html">AWS Glue Catalog</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../catalogs/unity_catalog/main.html">Unity Catalog</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user_interface/main.html">User Interface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ai_agent/main.html">Tabsdata AI Agent (Tabby)</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../secrets_management/main.html">Secrets Management</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../secrets_management/env_variables/main.html">Environment Variables</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../secrets_management/hashicorp/main.html">HashiCorp Secret</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="../../permissioning/main.html">Role Based Access Control (RBAC)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../security/main.html">Setting up Tabsdata over HTTPS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../08_testing/main.html">Testing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../10_troubleshooting/main.html">Troubleshooting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../11_cli_commands/main.html">CLI Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../release_notes/main.html">Release Notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../09_contact_support/main.html">Contact Us</a></li>
+</ul>
+</div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../../../index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    
+    <li class="breadcrumb-item"><a href="../../index.html" class="nav-link">User Guide</a></li>
+    
+    
+    <li class="breadcrumb-item"><a href="../main.html" class="nav-link">Subscribers</a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">ClickHouse</span></li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="clickhouse">
+<span id="clickhouse-subscriber"></span><h1>ClickHouse</h1>
+<p>You can use this built-in Tabsdata subscriber to write to a ClickHouse database.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><code class="docutils literal notranslate"><span class="pre">ClickHouseDest</span></code> is currently marked as <strong>unstable</strong> and is subject to change in future releases.</p>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">ClickHouseDest</span></code> works by first uploading the output data as Parquet files to a cloud staging area (Amazon S3,
+Azure Blob Storage, or Google Cloud Storage), and then loading them into ClickHouse using its native table functions
+(<code class="docutils literal notranslate"><span class="pre">s3()</span></code>, <code class="docutils literal notranslate"><span class="pre">azureBlobStorage()</span></code>). This approach leverages ClickHouse’s optimized parallel read capabilities from
+cloud storage.</p>
+<section id="installing-the-connector">
+<h2>Installing the connector</h2>
+<p>To work with the ClickHouse connector you are required to install the dependencies separately. This is to manage the
+size of the core package. Please run the following command in your terminal to install the dependencies.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span><span class="s1">&#39;tabsdata[clickhouse]&#39;</span>
+</pre></div>
+</div>
+</section>
+<section id="example-subscriber-clickhouse">
+<h2>Example (Subscriber - ClickHouse)</h2>
+<p>The following example creates a subscriber named <code class="docutils literal notranslate"><span class="pre">write_sales</span></code>. It writes two Tabsdata tables to the database. The subscriber is automatically triggered by a <a class="reference internal" href="../../06_working_with_tables/table_frame.html#working-with-table-commits"><span class="std std-ref">new commit</span></a> to any of its input tables, and writes data to the database without any modification.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">tabsdata</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">td</span>
+
+
+<span class="nd">@td</span><span class="o">.</span><span class="n">subscriber</span><span class="p">(</span>
+    <span class="n">tables</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;vendors&quot;</span><span class="p">,</span> <span class="s2">&quot;items&quot;</span><span class="p">],</span>
+    <span class="n">destination</span><span class="o">=</span><span class="n">td</span><span class="o">.</span><span class="n">ClickHouseDest</span><span class="p">(</span>
+        <span class="n">td</span><span class="o">.</span><span class="n">ClickHouseConn</span><span class="p">(</span>
+            <span class="n">host</span><span class="o">=</span><span class="s2">&quot;clickhouse.acme-inc.com&quot;</span><span class="p">,</span>
+            <span class="n">staging</span><span class="o">=</span><span class="n">td</span><span class="o">.</span><span class="n">S3Config</span><span class="p">(</span>
+                <span class="n">bucket</span><span class="o">=</span><span class="s2">&quot;acme-staging&quot;</span><span class="p">,</span>
+                <span class="n">region</span><span class="o">=</span><span class="s2">&quot;us-east-1&quot;</span><span class="p">,</span>
+                <span class="n">base_path</span><span class="o">=</span><span class="s2">&quot;staging/clickhouse&quot;</span><span class="p">,</span>
+                <span class="n">credentials</span><span class="o">=</span><span class="n">td</span><span class="o">.</span><span class="n">S3AccessKeyCredentials</span><span class="p">(</span><span class="s2">&quot;&lt;ACCESS_KEY&gt;&quot;</span><span class="p">,</span> <span class="s2">&quot;&lt;SECRET_KEY&gt;&quot;</span><span class="p">),</span>
+            <span class="p">),</span>
+            <span class="n">port</span><span class="o">=</span><span class="mi">8123</span><span class="p">,</span>
+            <span class="n">database</span><span class="o">=</span><span class="s2">&quot;procurement&quot;</span><span class="p">,</span>
+            <span class="n">credentials</span><span class="o">=</span><span class="n">td</span><span class="o">.</span><span class="n">UserPasswordCredentials</span><span class="p">(</span><span class="s2">&quot;&lt;USER&gt;&quot;</span><span class="p">,</span> <span class="s2">&quot;&lt;PASSWORD&gt;&quot;</span><span class="p">),</span>
+            <span class="n">secure</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+        <span class="p">),</span>
+        <span class="n">destination_tables</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;vendors&quot;</span><span class="p">,</span> <span class="s2">&quot;items&quot;</span><span class="p">],</span>
+        <span class="n">if_table_exists</span><span class="o">=</span><span class="s2">&quot;replace&quot;</span><span class="p">,</span>
+    <span class="p">),</span>
+<span class="p">)</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">write_sales</span><span class="p">(</span><span class="n">tf1</span><span class="p">:</span> <span class="n">td</span><span class="o">.</span><span class="n">TableFrame</span><span class="p">,</span> <span class="n">tf2</span><span class="p">:</span> <span class="n">td</span><span class="o">.</span><span class="n">TableFrame</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">tf1</span><span class="p">,</span> <span class="n">tf2</span>
+</pre></div>
+</div>
+<p><strong>Note:</strong> After defining the function, you need to register it with a Tabsdata collection and execute it. For more information, see <a class="reference internal" href="../../04_working_with_functions/main.html#register-a-function"><span class="std std-ref">Register a Function</span></a> and <a class="reference internal" href="../../04_working_with_functions/main.html#execute-a-function"><span class="std std-ref">Execute a Function</span></a>.</p>
+</section>
+<section id="setup-subscriber-clickhouse">
+<h2>Setup (Subscriber - ClickHouse)</h2>
+<p>To use <code class="docutils literal notranslate"><span class="pre">ClickHouseDest</span></code>, you need two objects:</p>
+<ol class="arabic simple">
+<li><p>A <code class="docutils literal notranslate"><span class="pre">ClickHouseConn</span></code> that defines how to connect to the ClickHouse server and where to stage files in the cloud.</p></li>
+<li><p>A <code class="docutils literal notranslate"><span class="pre">ClickHouseDest</span></code> that references the connection and specifies which table(s) to write to.</p></li>
+</ol>
+<p>The following code uses placeholder values for defining a subscriber that reads Tabsdata tables and writes to
+ClickHouse:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">tabsdata</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">td</span>
+
+<span class="n">conn</span> <span class="o">=</span> <span class="n">td</span><span class="o">.</span><span class="n">ClickHouseConn</span><span class="p">(</span>
+    <span class="n">host</span><span class="o">=</span><span class="s2">&quot;&lt;clickhouse_host&gt;&quot;</span><span class="p">,</span>
+    <span class="n">staging</span><span class="o">=</span><span class="s2">&quot;&lt;S3Config | AzureConfig | GCSConfig&gt;&quot;</span><span class="p">,</span>
+    <span class="n">port</span><span class="o">=</span><span class="s2">&quot;&lt;port&gt;&quot;</span><span class="p">,</span>
+    <span class="n">database</span><span class="o">=</span><span class="s2">&quot;&lt;database_name&gt;&quot;</span><span class="p">,</span>
+    <span class="n">credentials</span><span class="o">=</span><span class="n">td</span><span class="o">.</span><span class="n">UserPasswordCredentials</span><span class="p">(</span><span class="s2">&quot;&lt;db_username&gt;&quot;</span><span class="p">,</span> <span class="s2">&quot;&lt;db_password&gt;&quot;</span><span class="p">),</span>
+    <span class="n">secure</span><span class="o">=</span><span class="s2">&quot;&lt;secure_boolean&gt;&quot;</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="nd">@td</span><span class="o">.</span><span class="n">subscriber</span><span class="p">(</span>
+    <span class="n">tables</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;&lt;input_table1&gt;&quot;</span><span class="p">,</span> <span class="s2">&quot;&lt;input_table2&gt;&quot;</span><span class="p">],</span>
+    <span class="n">destination</span><span class="o">=</span><span class="n">td</span><span class="o">.</span><span class="n">ClickHouseDest</span><span class="p">(</span>
+        <span class="n">conn</span><span class="o">=</span><span class="n">conn</span><span class="p">,</span>
+        <span class="n">destination_tables</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;&lt;destination_table1&gt;&quot;</span><span class="p">,</span> <span class="s2">&quot;&lt;destination_table2&gt;&quot;</span><span class="p">],</span>
+        <span class="n">if_table_exists</span><span class="o">=</span><span class="s2">&quot;&lt;value&gt;&quot;</span><span class="p">,</span>
+        <span class="n">schema_evolution</span><span class="o">=</span><span class="s2">&quot;&lt;none|iceberg&gt;&quot;</span><span class="p">,</span>
+    <span class="p">),</span>
+    <span class="n">trigger_by</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;&lt;trigger_table1&gt;&quot;</span><span class="p">,</span> <span class="s2">&quot;&lt;trigger_table2&gt;&quot;</span><span class="p">],</span>
+<span class="p">)</span>
+<span class="k">def</span><span class="w"> </span><span class="o">&lt;</span><span class="n">subscriber_name</span><span class="o">&gt;</span><span class="p">(</span><span class="o">&lt;</span><span class="n">table_frame1</span><span class="o">&gt;</span><span class="p">:</span> <span class="n">td</span><span class="o">.</span><span class="n">TableFrame</span><span class="p">,</span> <span class="o">&lt;</span><span class="n">table_frame2</span><span class="o">&gt;</span><span class="p">:</span> <span class="n">td</span><span class="o">.</span><span class="n">TableFrame</span><span class="p">):</span>
+    <span class="o">&lt;</span><span class="n">function_logic</span><span class="o">&gt;</span>
+    <span class="k">return</span> <span class="o">&lt;</span><span class="n">table_frame_output1</span><span class="o">&gt;</span><span class="p">,</span> <span class="o">&lt;</span><span class="n">table_frame_output2</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<p><strong>Note:</strong> After defining the function, you need to register it with a Tabsdata collection and execute it. For more information, see <a class="reference internal" href="../../04_working_with_functions/main.html#register-a-function"><span class="std std-ref">Register a Function</span></a> and <a class="reference internal" href="../../04_working_with_functions/main.html#execute-a-function"><span class="std std-ref">Execute a Function</span></a>.</p>
+<p>Following properties are defined in the code above:</p>
+<section id="tables">
+<h3>tables</h3>
+<p><code class="docutils literal notranslate"><span class="pre">&lt;input_table1&gt;</span></code>, <code class="docutils literal notranslate"><span class="pre">&lt;input_table2&gt;</span></code>… are the names of the Tabsdata tables to be written to the external system.</p>
+</section>
+<section id="destination">
+<h3>destination</h3>
+<p><code class="docutils literal notranslate"><span class="pre">ClickHouseConn</span></code> holds the ClickHouse server details and the cloud staging configuration.</p>
+<section id="host">
+<h4><code class="docutils literal notranslate"><span class="pre">host</span></code></h4>
+<p>The hostname or IP address of the ClickHouse server.</p>
+</section>
+<section id="staging">
+<h4><code class="docutils literal notranslate"><span class="pre">staging</span></code></h4>
+<p>The cloud storage configuration for staging Parquet files before loading them into ClickHouse. Must be one of
+<code class="docutils literal notranslate"><span class="pre">td.S3Config</span></code>, <code class="docutils literal notranslate"><span class="pre">td.AzureConfig</span></code>, or <code class="docutils literal notranslate"><span class="pre">td.GCSConfig</span></code>.</p>
+<p><strong>S3 (Amazon S3)</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">staging</span> <span class="o">=</span> <span class="n">td</span><span class="o">.</span><span class="n">S3Config</span><span class="p">(</span>
+    <span class="n">bucket</span><span class="o">=</span><span class="s2">&quot;my-data-bucket&quot;</span><span class="p">,</span>
+    <span class="n">region</span><span class="o">=</span><span class="s2">&quot;us-east-1&quot;</span><span class="p">,</span>
+    <span class="n">base_path</span><span class="o">=</span><span class="s2">&quot;staging/clickhouse&quot;</span><span class="p">,</span>
+    <span class="n">credentials</span><span class="o">=</span><span class="n">td</span><span class="o">.</span><span class="n">S3AccessKeyCredentials</span><span class="p">(</span>
+        <span class="n">td</span><span class="o">.</span><span class="n">EnvironmentSecret</span><span class="p">(</span><span class="s2">&quot;AWS_ACCESS_KEY_ID&quot;</span><span class="p">),</span>
+        <span class="n">td</span><span class="o">.</span><span class="n">EnvironmentSecret</span><span class="p">(</span><span class="s2">&quot;AWS_SECRET_ACCESS_KEY&quot;</span><span class="p">),</span>
+    <span class="p">),</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">bucket</span></code> — The S3 bucket name.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">region</span></code> — The AWS region (e.g. <code class="docutils literal notranslate"><span class="pre">&quot;us-east-1&quot;</span></code>).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">base_path</span></code> — The key prefix under which staged files are stored (e.g. <code class="docutils literal notranslate"><span class="pre">&quot;staging/clickhouse&quot;</span></code>).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">credentials</span></code> (<code class="docutils literal notranslate"><span class="pre">S3AccessKeyCredentials</span></code>) — AWS access key credentials for uploading files to S3.</p></li>
+</ul>
+<p><strong>Azure Blob Storage</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">staging</span> <span class="o">=</span> <span class="n">td</span><span class="o">.</span><span class="n">AzureConfig</span><span class="p">(</span>
+    <span class="n">container</span><span class="o">=</span><span class="s2">&quot;my-container&quot;</span><span class="p">,</span>
+    <span class="n">base_path</span><span class="o">=</span><span class="s2">&quot;staging/clickhouse&quot;</span><span class="p">,</span>
+    <span class="n">credentials</span><span class="o">=</span><span class="n">td</span><span class="o">.</span><span class="n">AzureAccountKeyCredentials</span><span class="p">(</span>
+        <span class="n">td</span><span class="o">.</span><span class="n">EnvironmentSecret</span><span class="p">(</span><span class="s2">&quot;AZURE_ACCOUNT_NAME&quot;</span><span class="p">),</span>
+        <span class="n">td</span><span class="o">.</span><span class="n">EnvironmentSecret</span><span class="p">(</span><span class="s2">&quot;AZURE_ACCOUNT_KEY&quot;</span><span class="p">),</span>
+    <span class="p">),</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">container</span></code> — The Azure Blob container name.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">base_path</span></code> — The blob path prefix for staged files (e.g. <code class="docutils literal notranslate"><span class="pre">&quot;staging/clickhouse&quot;</span></code>).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">credentials</span></code> (<code class="docutils literal notranslate"><span class="pre">AzureAccountKeyCredentials</span></code>) — Azure account key credentials for uploading files.</p></li>
+</ul>
+<p><strong>Google Cloud Storage (GCS)</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">staging</span> <span class="o">=</span> <span class="n">td</span><span class="o">.</span><span class="n">GCSConfig</span><span class="p">(</span>
+    <span class="n">bucket</span><span class="o">=</span><span class="s2">&quot;my-gcs-bucket&quot;</span><span class="p">,</span>
+    <span class="n">base_path</span><span class="o">=</span><span class="s2">&quot;staging/clickhouse&quot;</span><span class="p">,</span>
+    <span class="n">upload_credentials</span><span class="o">=</span><span class="n">td</span><span class="o">.</span><span class="n">GCPServiceAccountKeyCredentials</span><span class="p">(</span>
+        <span class="n">td</span><span class="o">.</span><span class="n">EnvironmentSecret</span><span class="p">(</span><span class="s2">&quot;GCP_SERVICE_ACCOUNT_JSON&quot;</span><span class="p">),</span>
+    <span class="p">),</span>
+    <span class="n">hmac_credentials</span><span class="o">=</span><span class="n">td</span><span class="o">.</span><span class="n">HMACCredentials</span><span class="p">(</span>
+        <span class="n">td</span><span class="o">.</span><span class="n">EnvironmentSecret</span><span class="p">(</span><span class="s2">&quot;GCS_HMAC_ACCESS_KEY&quot;</span><span class="p">),</span>
+        <span class="n">td</span><span class="o">.</span><span class="n">EnvironmentSecret</span><span class="p">(</span><span class="s2">&quot;GCS_HMAC_SECRET_KEY&quot;</span><span class="p">),</span>
+    <span class="p">),</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">bucket</span></code> — The GCS bucket name.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">base_path</span></code> — The object path prefix for staged files (e.g. <code class="docutils literal notranslate"><span class="pre">&quot;staging/clickhouse&quot;</span></code>).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">upload_credentials</span></code> (<code class="docutils literal notranslate"><span class="pre">GCPServiceAccountKeyCredentials</span></code>, optional) — GCP service account credentials for
+uploading files via the GCS SDK. When not provided, application default credentials (ADC) are used.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">hmac_credentials</span></code> (<code class="docutils literal notranslate"><span class="pre">HMACCredentials</span></code>, optional) — GCS HMAC credentials for S3-compatible access, which
+ClickHouse uses to read files from GCS via its <code class="docutils literal notranslate"><span class="pre">s3()</span></code> table function.</p></li>
+</ul>
+</section>
+<section id="optional-port">
+<h4>[optional]``port``</h4>
+<p>The HTTP(S) port of the ClickHouse server. Use <code class="docutils literal notranslate"><span class="pre">8123</span></code> for plain HTTP (default) and <code class="docutils literal notranslate"><span class="pre">8443</span></code> for HTTPS/TLS.
+Defaults to <code class="docutils literal notranslate"><span class="pre">8123</span></code>.</p>
+</section>
+<section id="optional-database">
+<h4>[optional]``database``</h4>
+<p>The target database name. Defaults to <code class="docutils literal notranslate"><span class="pre">&quot;default&quot;</span></code>.</p>
+</section>
+<section id="optional-credentials">
+<h4>[optional]``credentials``</h4>
+<p><code class="docutils literal notranslate"><span class="pre">UserPasswordCredentials</span></code> for ClickHouse authentication. When not provided, the ClickHouse <code class="docutils literal notranslate"><span class="pre">default</span></code> user with
+no password is used. For more information, see <a class="reference internal" href="../../secrets_management/main.html#credentials"><span class="std std-ref">Secrets Management</span></a>.</p>
+<p>For quick testing with plain strings:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">conn</span> <span class="o">=</span> <span class="n">td</span><span class="o">.</span><span class="n">ClickHouseConn</span><span class="p">(</span>
+    <span class="n">host</span><span class="o">=</span><span class="s2">&quot;clickhouse.example.com&quot;</span><span class="p">,</span>
+    <span class="n">staging</span><span class="o">=</span><span class="n">staging</span><span class="p">,</span>
+    <span class="n">port</span><span class="o">=</span><span class="mi">8123</span><span class="p">,</span>
+    <span class="n">database</span><span class="o">=</span><span class="s2">&quot;analytics&quot;</span><span class="p">,</span>
+    <span class="n">credentials</span><span class="o">=</span><span class="n">td</span><span class="o">.</span><span class="n">UserPasswordCredentials</span><span class="p">(</span><span class="s2">&quot;admin&quot;</span><span class="p">,</span> <span class="s2">&quot;my_password&quot;</span><span class="p">),</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<p>For production, credentials should be wrapped in <code class="docutils literal notranslate"><span class="pre">EnvironmentSecret</span></code> to avoid hardcoding secrets:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">conn</span> <span class="o">=</span> <span class="n">td</span><span class="o">.</span><span class="n">ClickHouseConn</span><span class="p">(</span>
+    <span class="n">host</span><span class="o">=</span><span class="s2">&quot;clickhouse.example.com&quot;</span><span class="p">,</span>
+    <span class="n">staging</span><span class="o">=</span><span class="n">staging</span><span class="p">,</span>
+    <span class="n">database</span><span class="o">=</span><span class="s2">&quot;analytics&quot;</span><span class="p">,</span>
+    <span class="n">credentials</span><span class="o">=</span><span class="n">td</span><span class="o">.</span><span class="n">UserPasswordCredentials</span><span class="p">(</span>
+        <span class="n">td</span><span class="o">.</span><span class="n">EnvironmentSecret</span><span class="p">(</span><span class="s2">&quot;CLICKHOUSE_USER&quot;</span><span class="p">),</span>
+        <span class="n">td</span><span class="o">.</span><span class="n">EnvironmentSecret</span><span class="p">(</span><span class="s2">&quot;CLICKHOUSE_PASSWORD&quot;</span><span class="p">),</span>
+    <span class="p">),</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<p>For a secure HTTPS connection:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">conn</span> <span class="o">=</span> <span class="n">td</span><span class="o">.</span><span class="n">ClickHouseConn</span><span class="p">(</span>
+    <span class="n">host</span><span class="o">=</span><span class="s2">&quot;clickhouse.example.com&quot;</span><span class="p">,</span>
+    <span class="n">staging</span><span class="o">=</span><span class="n">staging</span><span class="p">,</span>
+    <span class="n">port</span><span class="o">=</span><span class="mi">8443</span><span class="p">,</span>
+    <span class="n">database</span><span class="o">=</span><span class="s2">&quot;analytics&quot;</span><span class="p">,</span>
+    <span class="n">secure</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">credentials</span><span class="o">=</span><span class="n">td</span><span class="o">.</span><span class="n">UserPasswordCredentials</span><span class="p">(</span>
+        <span class="n">td</span><span class="o">.</span><span class="n">EnvironmentSecret</span><span class="p">(</span><span class="s2">&quot;CLICKHOUSE_USER&quot;</span><span class="p">),</span>
+        <span class="n">td</span><span class="o">.</span><span class="n">EnvironmentSecret</span><span class="p">(</span><span class="s2">&quot;CLICKHOUSE_PASSWORD&quot;</span><span class="p">),</span>
+    <span class="p">),</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="optional-secure">
+<h4>[optional]``secure``</h4>
+<p>If <code class="docutils literal notranslate"><span class="pre">True</span></code>, connect to ClickHouse over HTTPS/TLS. Defaults to <code class="docutils literal notranslate"><span class="pre">False</span></code>.</p>
+</section>
+<section id="optional-advanced-parameters">
+<h4>[Optional] Advanced parameters</h4>
+<p>There are also some advanced options for more technical use cases:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">enforce_connection_params</span></code> — Controls whether the database parameter is enforced when qualifying table names.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">cx_src_configs_clickhouse</span></code> — Additional source-specific configuration parameters for the ClickHouse connection.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">cx_dst_configs_clickhouse</span></code> — Additional destination-specific configuration parameters for the ClickHouse
+connection.</p></li>
+</ul>
+</section>
+<section id="destination-tables">
+<h4><code class="docutils literal notranslate"><span class="pre">destination_tables</span></code></h4>
+<p>The name of the table(s) to load data into. A single table can be provided as a string; multiple tables must be
+provided as a list.</p>
+<p>Example with a single table:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">destination</span> <span class="o">=</span> <span class="n">td</span><span class="o">.</span><span class="n">ClickHouseDest</span><span class="p">(</span>
+    <span class="n">conn</span><span class="o">=</span><span class="n">conn</span><span class="p">,</span>
+    <span class="n">destination_tables</span><span class="o">=</span><span class="s2">&quot;events&quot;</span><span class="p">,</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<p>Example with multiple tables:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">destination</span> <span class="o">=</span> <span class="n">td</span><span class="o">.</span><span class="n">ClickHouseDest</span><span class="p">(</span>
+    <span class="n">conn</span><span class="o">=</span><span class="n">conn</span><span class="p">,</span>
+    <span class="n">destination_tables</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;events&quot;</span><span class="p">,</span> <span class="s2">&quot;users&quot;</span><span class="p">],</span>
+    <span class="n">if_table_exists</span><span class="o">=</span><span class="s2">&quot;replace&quot;</span><span class="p">,</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="optional-if-table-exists">
+<h4>[Optional] <code class="docutils literal notranslate"><span class="pre">if_table_exists</span></code></h4>
+<p>This is an optional property to define the strategy to follow when the table already exists. <code class="docutils literal notranslate"><span class="pre">'replace'</span></code> will
+truncate the table before loading new rows, and <code class="docutils literal notranslate"><span class="pre">'append'</span></code> will insert new rows into the existing table. Defaults
+to <code class="docutils literal notranslate"><span class="pre">'append'</span></code>.</p>
+<p>If the destination table does not exist, it will be created automatically based on the schema of the data being
+written.</p>
+</section>
+<section id="optional-schema-evolution">
+<h4>[Optional] <code class="docutils literal notranslate"><span class="pre">schema_evolution</span></code></h4>
+<p>Configures automatic schema evolution when the incoming data schema differs from the existing table schema.
+When set to <code class="docutils literal notranslate"><span class="pre">&quot;iceberg&quot;</span></code>, Tabsdata automatically applies safe schema changes (add/drop columns, widen types,
+make columns nullable) before loading data. Unsafe changes (narrow types, incompatible type changes) are rejected
+with an error. Defaults to <code class="docutils literal notranslate"><span class="pre">&quot;none&quot;</span></code>.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">destination</span> <span class="o">=</span> <span class="n">td</span><span class="o">.</span><span class="n">ClickHouseDest</span><span class="p">(</span>
+    <span class="n">conn</span><span class="o">=</span><span class="n">conn</span><span class="p">,</span>
+    <span class="n">destination_tables</span><span class="o">=</span><span class="s2">&quot;events&quot;</span><span class="p">,</span>
+    <span class="n">schema_evolution</span><span class="o">=</span><span class="s2">&quot;iceberg&quot;</span><span class="p">,</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<p>For the full list of safe and unsafe changes, type widening tables, and database-specific notes, see
+<a class="reference internal" href="#clickhouse-schema-evolution"><span class="std std-ref">Schema Evolution</span></a> below.</p>
+</section>
+</section>
+<section id="none-as-an-input-and-output">
+<h3><code class="docutils literal notranslate"><span class="pre">None</span></code> as an input and output</h3>
+<p>A subscriber may receive and return a <code class="docutils literal notranslate"><span class="pre">None</span></code> value instead of TableFrames.</p>
+<p>When a subscriber receives a <code class="docutils literal notranslate"><span class="pre">None</span></code> value instead of a TableFrame it means that the requested table dependency version does not exist.</p>
+<p>When a subscriber returns a <code class="docutils literal notranslate"><span class="pre">None</span></code> value instead of a TableFrame it means there is no new data to write to the external system. This helps in avoiding the creation of multiple copies of the same data.</p>
+</section>
+<section id="optional-trigger-by">
+<h3>[Optional] trigger_by</h3>
+<p><code class="docutils literal notranslate"><span class="pre">&lt;trigger_table1&gt;</span></code>, <code class="docutils literal notranslate"><span class="pre">&lt;trigger_table2&gt;</span></code>… are the names of the tables in the Tabsdata server. A new commit to any of these tables triggers the subscriber. All listed trigger tables must exist in the server before registering the subscriber.</p>
+<p>Defining trigger tables is optional. If you don’t define the <code class="docutils literal notranslate"><span class="pre">trigger_by</span></code> property, the subscriber will be triggered by any of its input tables. If you define the <code class="docutils literal notranslate"><span class="pre">trigger_by</span></code> property, then only those tables listed in the property can automatically trigger the subscriber.</p>
+<p>For more information, see <a class="reference internal" href="../../05_working_with_triggers/main.html#working-with-triggers"><span class="std std-ref">Working with Triggers</span></a>.</p>
+</section>
+<section id="subscriber-name">
+<h3>&lt;subscriber_name&gt;</h3>
+<p><code class="docutils literal notranslate"><span class="pre">&lt;subscriber_name&gt;</span></code> is the name for the subscriber that you are configuring.</p>
+</section>
+<section id="function-logic">
+<h3>&lt;function_logic&gt;</h3>
+<p><code class="docutils literal notranslate"><span class="pre">&lt;function_logic&gt;</span></code> governs the processing performed by the subscriber. You can specify function logic to be a simple write or to perform additional processing as needed. For more information about the function logic that you can include, see <a class="reference internal" href="../../06_working_with_tables/table_frame.html#working-with-tables"><span class="std std-ref">Working with Tables</span></a>.</p>
+<p><code class="docutils literal notranslate"><span class="pre">&lt;table_frame1&gt;</span></code>, <code class="docutils literal notranslate"><span class="pre">&lt;table_frame2&gt;</span></code>… are the names for the variables that temporarily store source data for processing.</p>
+<p><code class="docutils literal notranslate"><span class="pre">&lt;table_frame_output1&gt;</span></code>, <code class="docutils literal notranslate"><span class="pre">&lt;table_frame_output2&gt;</span></code>… are the output from the function that are written to the external system.</p>
+</section>
+</section>
+<section id="writing-to-multiple-tables">
+<h2>Writing to Multiple Tables</h2>
+<p>When writing to multiple tables, the subscriber function must return one result per destination table, in the same
+order as they are listed in <code class="docutils literal notranslate"><span class="pre">destination_tables</span></code>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nd">@td</span><span class="o">.</span><span class="n">subscriber</span><span class="p">(</span>
+    <span class="n">name</span><span class="o">=</span><span class="s2">&quot;write_to_clickhouse&quot;</span><span class="p">,</span>
+    <span class="n">tables</span><span class="o">=</span><span class="s2">&quot;collection/raw_data&quot;</span><span class="p">,</span>
+    <span class="n">destination</span><span class="o">=</span><span class="n">td</span><span class="o">.</span><span class="n">ClickHouseDest</span><span class="p">(</span>
+        <span class="n">conn</span><span class="o">=</span><span class="n">conn</span><span class="p">,</span>
+        <span class="n">destination_tables</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;events&quot;</span><span class="p">,</span> <span class="s2">&quot;users&quot;</span><span class="p">],</span>
+    <span class="p">),</span>
+<span class="p">)</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">write_to_clickhouse</span><span class="p">(</span><span class="n">df</span><span class="p">:</span> <span class="n">td</span><span class="o">.</span><span class="n">TableFrame</span><span class="p">):</span>
+    <span class="n">events</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">td</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;type&quot;</span><span class="p">)</span> <span class="o">==</span> <span class="s2">&quot;event&quot;</span><span class="p">)</span>
+    <span class="n">users</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">td</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;type&quot;</span><span class="p">)</span> <span class="o">==</span> <span class="s2">&quot;user&quot;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">events</span><span class="p">,</span> <span class="n">users</span>
+</pre></div>
+</div>
+</section>
+<section id="skipping-a-table-with-none">
+<h2>Skipping a Table with None</h2>
+<p>If a subscriber returns <code class="docutils literal notranslate"><span class="pre">None</span></code> for a particular output, the corresponding destination table is skipped entirely
+(not created, not written to):</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nd">@td</span><span class="o">.</span><span class="n">subscriber</span><span class="p">(</span>
+    <span class="n">name</span><span class="o">=</span><span class="s2">&quot;conditional_write&quot;</span><span class="p">,</span>
+    <span class="n">tables</span><span class="o">=</span><span class="s2">&quot;collection/data&quot;</span><span class="p">,</span>
+    <span class="n">destination</span><span class="o">=</span><span class="n">td</span><span class="o">.</span><span class="n">ClickHouseDest</span><span class="p">(</span>
+        <span class="n">conn</span><span class="o">=</span><span class="n">conn</span><span class="p">,</span>
+        <span class="n">destination_tables</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;primary&quot;</span><span class="p">,</span> <span class="s2">&quot;secondary&quot;</span><span class="p">],</span>
+    <span class="p">),</span>
+<span class="p">)</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">conditional_write</span><span class="p">(</span><span class="n">df</span><span class="p">:</span> <span class="n">td</span><span class="o">.</span><span class="n">TableFrame</span><span class="p">):</span>
+    <span class="n">primary</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">drop_nulls</span><span class="p">()</span>
+    <span class="k">return</span> <span class="n">primary</span><span class="p">,</span> <span class="kc">None</span>  <span class="c1"># &quot;secondary&quot; table is skipped</span>
+</pre></div>
+</div>
+</section>
+<section id="schema-evolution">
+<span id="clickhouse-schema-evolution"></span><h2>Schema Evolution</h2>
+<p>When writing data to external databases, the schema of the data being written may change over time — for example, new columns may be added, old columns may be removed, or column types may need to be widened to accommodate larger values. By default, Tabsdata raises an error when the incoming data schema does not match the existing table schema. Schema evolution allows these changes to be applied automatically, following safety rules inspired by Apache Iceberg’s schema evolution specification.</p>
+<p>Schema evolution is configured through the <code class="docutils literal notranslate"><span class="pre">schema_evolution</span></code> parameter on the destination. When enabled, Tabsdata automatically detects differences between the incoming data schema and the existing table schema, and applies safe changes before loading the data. Unsafe changes are rejected with an error.</p>
+<section id="id1">
+<h3>[Optional] <code class="docutils literal notranslate"><span class="pre">schema_evolution</span></code></h3>
+<div class="pst-scrollable-table-container"><table class="table">
+<colgroup>
+<col style="width: 20.0%" />
+<col style="width: 80.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Value</p></th>
+<th class="head"><p>Behavior</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">&quot;none&quot;</span></code> (default)</p></td>
+<td><p>Raise an error if the incoming data schema does not exactly match the existing table schema.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">&quot;iceberg&quot;</span></code></p></td>
+<td><p>Automatically apply safe schema changes (add columns, drop columns, widen types, make columns nullable). Reject unsafe changes with an error.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Schema evolution can be combined with any <code class="docutils literal notranslate"><span class="pre">if_table_exists</span></code> strategy (<code class="docutils literal notranslate"><span class="pre">&quot;append&quot;</span></code> or <code class="docutils literal notranslate"><span class="pre">&quot;replace&quot;</span></code>).</p>
+<section id="safe-changes-applied-automatically">
+<h4>Safe Changes (Applied Automatically)</h4>
+<ul class="simple">
+<li><p><strong>Add a column:</strong> A new column in the incoming data that does not exist in the table is added. New columns are always created as nullable, since existing rows will have no value for the new column.</p></li>
+<li><p><strong>Drop a column:</strong> A column that exists in the table but is absent from the incoming data is dropped from the table.</p></li>
+<li><p><strong>Widen a column type:</strong> A column type is changed to a wider type (e.g., <code class="docutils literal notranslate"><span class="pre">INT</span></code> to <code class="docutils literal notranslate"><span class="pre">BIGINT</span></code>, or <code class="docutils literal notranslate"><span class="pre">FLOAT</span></code> to <code class="docutils literal notranslate"><span class="pre">DOUBLE</span></code>). Only specific widening paths are allowed — see the type widening reference below.</p></li>
+<li><p><strong>Make a column nullable:</strong> A <code class="docutils literal notranslate"><span class="pre">NOT</span> <span class="pre">NULL</span></code> column becomes nullable. This happens when the incoming data contains null values in a column that was previously <code class="docutils literal notranslate"><span class="pre">NOT</span> <span class="pre">NULL</span></code>.</p></li>
+<li><p><strong>Add or change a default value:</strong> A default expression is added to or changed on a column.</p></li>
+<li><p><strong>Remove a default value:</strong> A default expression is removed from a column.</p></li>
+</ul>
+</section>
+<section id="unsafe-changes-rejected-with-error">
+<h4>Unsafe Changes (Rejected with Error)</h4>
+<ul class="simple">
+<li><p><strong>Narrow a column type:</strong> Changing a column to a narrower type (e.g., <code class="docutils literal notranslate"><span class="pre">BIGINT</span></code> to <code class="docutils literal notranslate"><span class="pre">INT</span></code>) is rejected because existing data may not fit in the smaller type.</p></li>
+<li><p><strong>Incompatible type change:</strong> Changing a column to an unrelated type (e.g., <code class="docutils literal notranslate"><span class="pre">INT</span></code> to <code class="docutils literal notranslate"><span class="pre">STRING</span></code>, or across type families like <code class="docutils literal notranslate"><span class="pre">INT</span></code> to <code class="docutils literal notranslate"><span class="pre">DOUBLE</span></code>) is rejected.</p></li>
+<li><p><strong>Make a column NOT NULL:</strong> Removing nullability from a column that was previously nullable is rejected, since existing rows may contain null values.</p></li>
+</ul>
+<p>When an unsafe change is detected, the entire operation is aborted — no partial changes are applied to the table.</p>
+</section>
+<section id="how-nullability-is-determined">
+<h4>How Nullability Is Determined</h4>
+<p>Tabsdata determines column nullability from the actual data being written, not from metadata flags. It reads Parquet file statistics to check whether each column contains any null values:</p>
+<ul class="simple">
+<li><p>If a column contains null values, it is treated as nullable.</p></li>
+<li><p>If a column contains no null values, it is treated as NOT NULL.</p></li>
+<li><p>If statistics are unavailable for a column, it is conservatively treated as nullable.</p></li>
+</ul>
+<p>This means that a <code class="docutils literal notranslate"><span class="pre">NOT</span> <span class="pre">NULL</span></code> column in the existing table will only become nullable if the incoming data actually contains nulls in that column. Conversely, a column that is already nullable in the table will never be tightened back to <code class="docutils literal notranslate"><span class="pre">NOT</span> <span class="pre">NULL</span></code>, even if the current batch of data has no nulls.</p>
+</section>
+<section id="known-limitations">
+<h4>Known Limitations</h4>
+<ul class="simple">
+<li><p><strong>No column rename detection:</strong> If a column is renamed in the source data, Tabsdata sees it as a drop of the old column and an addition of the new column. The data in the old column is not migrated to the new column.</p></li>
+<li><p><strong>No type narrowing:</strong> It is not possible to change a column to a narrower type (e.g., <code class="docutils literal notranslate"><span class="pre">BIGINT</span></code> to <code class="docutils literal notranslate"><span class="pre">INT</span></code>). This requires manual intervention outside of Tabsdata.</p></li>
+<li><p><strong>Nullable columns cannot be made NOT NULL:</strong> Once a column becomes nullable, schema evolution will never tighten it back to <code class="docutils literal notranslate"><span class="pre">NOT</span> <span class="pre">NULL</span></code>, even if all subsequent data batches contain no nulls. This is consistent with Apache Iceberg’s safety rules.</p></li>
+<li><p><strong>Limited type widening:</strong> Only integer and float type families support widening. String, Date, Boolean, Decimal, and other types cannot be widened. Cross-family widening (e.g., <code class="docutils literal notranslate"><span class="pre">INT</span></code> to <code class="docutils literal notranslate"><span class="pre">DOUBLE</span></code>) is not supported.</p></li>
+<li><p><strong>New columns are always nullable:</strong> When a new column is added to an existing table, it is always created as nullable — even if the incoming data has no nulls in that column. This is because existing rows in the table have no value for the new column and need <code class="docutils literal notranslate"><span class="pre">NULL</span></code>.</p></li>
+</ul>
+</section>
+<section id="enabling-schema-evolution-clickhouse">
+<h4>Enabling Schema Evolution (ClickHouse)</h4>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">destination</span> <span class="o">=</span> <span class="n">td</span><span class="o">.</span><span class="n">ClickHouseDest</span><span class="p">(</span>
+    <span class="n">conn</span><span class="o">=</span><span class="n">conn</span><span class="p">,</span>
+    <span class="n">destination_tables</span><span class="o">=</span><span class="s2">&quot;events&quot;</span><span class="p">,</span>
+    <span class="n">schema_evolution</span><span class="o">=</span><span class="s2">&quot;iceberg&quot;</span><span class="p">,</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="clickhouse-type-widening">
+<h4>ClickHouse Type Widening</h4>
+<div class="pst-scrollable-table-container"><table class="table">
+<colgroup>
+<col style="width: 30.0%" />
+<col style="width: 70.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Target Type</p></th>
+<th class="head"><p>Can Be Widened From</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">Int16</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">Int8</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">Int32</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">Int8</span></code>, <code class="docutils literal notranslate"><span class="pre">Int16</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">Int64</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">Int8</span></code>, <code class="docutils literal notranslate"><span class="pre">Int16</span></code>, <code class="docutils literal notranslate"><span class="pre">Int32</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">UInt16</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">UInt8</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">UInt32</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">UInt8</span></code>, <code class="docutils literal notranslate"><span class="pre">UInt16</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">UInt64</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">UInt8</span></code>, <code class="docutils literal notranslate"><span class="pre">UInt16</span></code>, <code class="docutils literal notranslate"><span class="pre">UInt32</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">Float64</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">Float32</span></code></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>String, Date, Boolean, and Decimal types do not support widening. Cross-family widening (e.g., <code class="docutils literal notranslate"><span class="pre">INT</span></code> to <code class="docutils literal notranslate"><span class="pre">DOUBLE</span></code>, or unsigned to signed integer families) is not supported.</p>
+</div>
+</section>
+<section id="clickhouse-specific-notes">
+<h4>ClickHouse-Specific Notes</h4>
+<ul class="simple">
+<li><p>Table creation uses <code class="docutils literal notranslate"><span class="pre">MergeTree</span></code> engine with <code class="docutils literal notranslate"><span class="pre">ORDER</span> <span class="pre">BY</span> <span class="pre">tuple()</span></code>. If you need a different engine or ordering key, create the table manually before running with schema evolution.</p></li>
+<li><p>ClickHouse does not support making a nullable column <code class="docutils literal notranslate"><span class="pre">NOT</span> <span class="pre">NULL</span></code>. This action is silently skipped.</p></li>
+<li><p>ClickHouse wraps nullable columns with <code class="docutils literal notranslate"><span class="pre">Nullable()</span></code> (e.g., <code class="docutils literal notranslate"><span class="pre">Nullable(Int64)</span></code>). This is handled automatically.</p></li>
+<li><p>Dropping a default from a column uses <code class="docutils literal notranslate"><span class="pre">ALTER</span> <span class="pre">TABLE</span> <span class="pre">...</span> <span class="pre">MODIFY</span> <span class="pre">COLUMN</span> <span class="pre">...</span> <span class="pre">REMOVE</span> <span class="pre">DEFAULT</span></code>.</p></li>
+</ul>
+</section>
+</section>
+</section>
+<section id="data-drift-support">
+<h2>Data Drift Support</h2>
+<p>This section talks about how Tabsdata handles data drift in the output data for this Subscriber connector when <code class="docutils literal notranslate"><span class="pre">schema_evolution</span></code> is set to <code class="docutils literal notranslate"><span class="pre">&quot;none&quot;</span></code> (the default).</p>
+<p>Here, the schema from the first execution (or pre-existing table) is preserved irrespective of the value of any
+function property such as <code class="docutils literal notranslate"><span class="pre">if_table_exists</span></code>.</p>
+<p>Here is how the system will respond to various kinds of changes due to data drift:</p>
+<ul class="simple">
+<li><p>New columns introduced by data drift are ignored.</p></li>
+<li><p>Columns removed from the source remain in the table, with missing values populated as <code class="docutils literal notranslate"><span class="pre">NULL</span></code>.</p></li>
+<li><p>Changes to column data types (type drift) cause execution to fail, as the subscriber does not automatically
+reconcile type mismatches.</p></li>
+</ul>
+<p>When <code class="docutils literal notranslate"><span class="pre">schema_evolution=&quot;iceberg&quot;</span></code> is enabled, the schema evolution rules described above govern how schema differences are handled instead.</p>
+</section>
+<section id="important-notes">
+<h2>Important Notes</h2>
+<p><strong>Nullable columns</strong></p>
+<p>ClickHouse wraps nullable columns with <code class="docutils literal notranslate"><span class="pre">Nullable()</span></code> (e.g. <code class="docutils literal notranslate"><span class="pre">Nullable(Int32)</span></code>). This is handled automatically
+when creating tables from the data schema.</p>
+<p><strong>Table creation</strong></p>
+<p>When a destination table does not exist, it is automatically created using the <code class="docutils literal notranslate"><span class="pre">MergeTree</span></code> engine with
+<code class="docutils literal notranslate"><span class="pre">ORDER</span> <span class="pre">BY</span> <span class="pre">tuple()</span></code>. If you need a different engine or ordering key, create the table manually in ClickHouse
+before running the function.</p>
+<p><strong>HTTPS/TLS</strong></p>
+<p>For secure connections, set <code class="docutils literal notranslate"><span class="pre">secure=True</span></code> and use port <code class="docutils literal notranslate"><span class="pre">8443</span></code> (the ClickHouse HTTPS port). The default port
+<code class="docutils literal notranslate"><span class="pre">8123</span></code> uses plain HTTP.</p>
+</section>
+</section>
+
+
+                </article>
+              
+              
+              
+              
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+<div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#installing-the-connector">Installing the connector</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-subscriber-clickhouse">Example (Subscriber - ClickHouse)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#setup-subscriber-clickhouse">Setup (Subscriber - ClickHouse)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tables">tables</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#destination">destination</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#host"><code class="docutils literal notranslate"><span class="pre">host</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#staging"><code class="docutils literal notranslate"><span class="pre">staging</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#optional-port">[optional]``port``</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#optional-database">[optional]``database``</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#optional-credentials">[optional]``credentials``</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#optional-secure">[optional]``secure``</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#optional-advanced-parameters">[Optional] Advanced parameters</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#destination-tables"><code class="docutils literal notranslate"><span class="pre">destination_tables</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#optional-if-table-exists">[Optional] <code class="docutils literal notranslate"><span class="pre">if_table_exists</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#optional-schema-evolution">[Optional] <code class="docutils literal notranslate"><span class="pre">schema_evolution</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#none-as-an-input-and-output"><code class="docutils literal notranslate"><span class="pre">None</span></code> as an input and output</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#optional-trigger-by">[Optional] trigger_by</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#subscriber-name">&lt;subscriber_name&gt;</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#function-logic">&lt;function_logic&gt;</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#writing-to-multiple-tables">Writing to Multiple Tables</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#skipping-a-table-with-none">Skipping a Table with None</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#schema-evolution">Schema Evolution</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">[Optional] <code class="docutils literal notranslate"><span class="pre">schema_evolution</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#safe-changes-applied-automatically">Safe Changes (Applied Automatically)</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#unsafe-changes-rejected-with-error">Unsafe Changes (Rejected with Error)</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#how-nullability-is-determined">How Nullability Is Determined</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#known-limitations">Known Limitations</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#enabling-schema-evolution-clickhouse">Enabling Schema Evolution (ClickHouse)</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#clickhouse-type-widening">ClickHouse Type Widening</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#clickhouse-specific-notes">ClickHouse-Specific Notes</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data-drift-support">Data Drift Support</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#important-notes">Important Notes</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="../../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+
+<!-- Your custom footer content here -->
+
+  </body>
+</html>
