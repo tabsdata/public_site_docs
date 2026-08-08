@@ -1,0 +1,46 @@
+"use strict";(self.webpackChunktabsdata_docs=self.webpackChunktabsdata_docs||[]).push([["141113"],{556436(e,s,t){t.r(s),t.d(s,{metadata:()=>i,default:()=>b,toc:()=>p,assets:()=>r,WRITE_SALES_PY:()=>u,frontMatter:()=>l,CONN_FILLED:()=>d,contentTitle:()=>o});var i=JSON.parse('{"id":"developer/guide/subscribers/clickhouse","title":"Subscribe data to ClickHouse","description":"The ClickHouse connector is destination-only. It stages Parquet files in cloud","source":"@site/docs/developer/guide/subscribers/clickhouse.mdx","sourceDirName":"developer/guide/subscribers","slug":"/developer/guide/subscribers/clickhouse","permalink":"/developer/guide/subscribers/clickhouse","draft":false,"unlisted":false,"tags":[],"version":"current","frontMatter":{"title":"Subscribe data to ClickHouse","sidebarTitle":"Subscribe data to ClickHouse"},"sidebar":"devTutorialsSidebar","previous":{"title":"Databricks","permalink":"/developer/guide/subscribers/databricks"},"next":{"title":"StarRocks","permalink":"/developer/guide/subscribers/starrocks"}}'),n=t(474848),a=t(28453),c=t(515563);let l={title:"Subscribe data to ClickHouse",sidebarTitle:"Subscribe data to ClickHouse"},o,r={},d=`kind: connectionDef
+apiVersion: '1.0'
+type: tabsdatak.conn.clickhouse:ClickHouseDestConn
+spec:
+  host: 'clickhouse.internal'
+  port: '8123'
+  secure: 'false'
+  database: 'analytics'
+  credentials:
+    kind: userPasswordCredentials
+    apiVersion: '1.0'
+    type: tabsdatak.conn.common.types:UserPassword
+    spec:
+      user: '$secret:CLICKHOUSE_USER'
+      password: '$secret:CLICKHOUSE_PASSWORD'
+  staging:
+    kind: clickHouseS3Location
+    apiVersion: '1.0'
+    type: tabsdatak.conn.clickhouse:S3Location
+    spec:
+      bucket: 'acme-staging'
+      region: 'us-east-1'
+      credentials:
+        kind: awsAccessSecretKeyCredentials
+        apiVersion: '1.0'
+        type: tabsdatak.conn.common.types:AwsAccessSecretKey
+        spec:
+          access_key_id: '$secret:AWS_ACCESS_KEY_ID'
+          secret_access_key: '$secret:AWS_SECRET_ACCESS_KEY'
+      base_path: '/clickhouse'`,u=`from tabsdatak.api import subscriber, TableFrameSpec
+from tabsdatak.conn.clickhouse import ClickHouseDest
+
+
+@subscriber(
+    destination=ClickHouseDest(
+        tables=["vendors", "items"],
+        if_table_exists="replace",
+        schema_evolution="strict",
+    ),
+    input_tables=["sales/vendors", "sales/items"],
+)
+def write_sales(
+    vendors: TableFrameSpec,
+    items: TableFrameSpec,
+) -> tuple[TableFrameSpec, TableFrameSpec]:
+    return (vendors, items)`,p=[{value:"Staging Distinctions",id:"staging-distinctions",level:2},{value:"Schema Evolution",id:"schema-evolution",level:2}];function h(e){let s={code:"code",h2:"h2",li:"li",p:"p",pre:"pre",ul:"ul",...(0,a.R)(),...e.components};return(0,n.jsxs)(n.Fragment,{children:[(0,n.jsxs)(s.p,{children:["The ClickHouse connector is destination-only. It stages Parquet files in cloud\nstorage and then loads them through ClickHouse table functions such as\n",(0,n.jsx)("code",{children:"s3()"})," or ",(0,n.jsx)("code",{children:"azureBlobStorage()"}),". The connector currently\nsupports S3, Azure Blob, and GCS staging."]}),"\n",(0,n.jsx)(s.pre,{children:(0,n.jsx)(s.code,{className:"language-bash",children:"pip install 'tabsdata[clickhouse]'\n"})}),"\n","\n","\n",(0,n.jsx)(c.A,{stages:[{label:"Configure Connection Template",detail:"Create the ClickHouse destination connection, including the cloud staging location.",parts:[{kind:"code",code:"tdk connection template --type clickhouse-bulk-out --file conn-clickhouse.yaml",step:"Generate a connection template"},{kind:"file",name:"conn-clickhouse.yaml",content:d}],connectors:["fill in the host, credentials, and staging location"]},{label:"Create Collection",detail:"Bind that connection to the destination collection.",parts:[{kind:"file",name:"conn-clickhouse.yaml",content:d,collapsed:!0},{kind:"code",code:"tdk collection create --name analytics --group destinations --conn-file conn-clickhouse.yaml",step:"Create the collection and upload the connection"}],connectors:["then attach it to the destination collection"]},{label:"Configure Subscriber",detail:"Map Tabsdata input tables onto ClickHouse tables.",parts:[{kind:"file",name:"write_sales.py",content:u,lang:"python",step:"Build the subscriber locally"},{kind:"code",code:"tdk fn register --coll analytics --path write_sales.py::write_sales",step:"Register the subscriber"}],connectors:["then register it"]},{label:"Run Subscriber",detail:"Trigger the export and verify the destination rows.",parts:[{kind:"code",code:"tdk fn trigger --coll analytics --name write_sales",step:"Run the subscriber"},{kind:"code",code:'clickhouse-client --query "select * from analytics.vendors limit 5"',step:"Verify the rows in ClickHouse"}],connectors:["then verify the load"]}]}),"\n",(0,n.jsx)(s.h2,{id:"staging-distinctions",children:"Staging Distinctions"}),"\n",(0,n.jsx)(s.p,{children:"The staging location is the key connector-specific detail:"}),"\n",(0,n.jsxs)(s.ul,{children:["\n",(0,n.jsxs)(s.li,{children:["S3 staging uses ",(0,n.jsx)("code",{children:"S3Location"})," with bucket, region, and AWS access keys."]}),"\n",(0,n.jsxs)(s.li,{children:["Azure staging uses ",(0,n.jsx)("code",{children:"AzBlobLocation"})," with container and account-key credentials."]}),"\n",(0,n.jsxs)(s.li,{children:["GCS staging uses ",(0,n.jsx)("code",{children:"GCSLocation"})," and requires both service-account JSON for uploads and HMAC credentials for ClickHouse\u2019s S3-compatible reads."]}),"\n"]}),"\n",(0,n.jsx)(s.h2,{id:"schema-evolution",children:"Schema Evolution"}),"\n",(0,n.jsxs)(s.p,{children:[(0,n.jsx)("code",{children:"ClickHouseDest"})," supports ",(0,n.jsx)("code",{children:'schema_evolution="strict"'})," and\n",(0,n.jsx)("code",{children:'"iceberg"'}),". Strict mode rejects schema changes; Iceberg mode applies\nIceberg-style schema deltas during writes."]})]})}function b(e={}){let{wrapper:s}={...(0,a.R)(),...e.components};return s?(0,n.jsx)(s,{...e,children:(0,n.jsx)(h,{...e})}):h(e)}},515563(e,s,t){t.d(s,{A:()=>o});var i=t(474848),n=t(296540),a=t(634164),c=t(1113);let l={workflow:"workflow_LAgt",intro:"intro_PBU5",notes:"notes_lKFY",stages:"stages_HK50",stage:"stage_iCQL",stageActive:"stageActive_tf1L",stageNumber:"stageNumber_ikab",arrow:"arrow__6rS",panel:"panel_eEPP",stepRow:"stepRow_JGRz",stepTitle:"stepTitle_CeTU",stepTag:"stepTag__ZSB",detail:"detail_XCYr",fileConnector:"fileConnector_VqtD",fileConnectorArrow:"fileConnectorArrow_Eg_D",fileConnectorLabel:"fileConnectorLabel_PaZC",fileWindow:"fileWindow_gmCp",fileTitleBar:"fileTitleBar_xv2n",fileDots:"fileDots_IGks",fileDot:"fileDot_Jmv5",fileDotRed:"fileDotRed_eGkI",fileDotYellow:"fileDotYellow_OKSs",fileDotGreen:"fileDotGreen_vnyh",fileTitleName:"fileTitleName_nbWh",fileReadsNote:"fileReadsNote_axMK"};function o({intro:e,stages:s}){let[t,r]=(0,n.useState)(0),d=s[t],u=0,p=d.parts.map(e=>e.step?`${t+1}${String.fromCharCode(97+u++)}`:null);return(0,i.jsxs)("div",{className:l.workflow,children:[e&&(0,i.jsx)("div",{className:l.intro,children:e}),(0,i.jsx)("div",{className:l.stages,children:s.map((e,c)=>(0,i.jsxs)(n.Fragment,{children:[(0,i.jsxs)("button",{type:"button",className:(0,a.A)(l.stage,c===t&&l.stageActive),"aria-current":c===t,onClick:()=>r(c),children:[(0,i.jsx)("span",{className:l.stageNumber,children:c+1}),(0,i.jsx)("span",{className:l.stageLabel,children:e.label})]}),c<s.length-1&&(0,i.jsx)("span",{className:l.arrow,"aria-hidden":"true",children:"\u2192"})]},e.label))}),(0,i.jsxs)("div",{className:l.panel,children:[d.detail&&(0,i.jsx)("p",{className:l.detail,children:d.detail}),d.parts.map((e,s)=>(0,i.jsxs)(n.Fragment,{children:[s>0&&(0,i.jsxs)("div",{className:l.fileConnector,"aria-hidden":"true",children:[(0,i.jsx)("span",{className:l.fileConnectorArrow,children:"\u2193"}),(0,i.jsx)("p",{className:l.fileConnectorLabel,children:d.connectors?.[s-1]})]}),p[s]&&(0,i.jsxs)("div",{className:l.stepRow,children:[(0,i.jsxs)("span",{className:l.stepTag,children:["Step ",p[s]]}),"string"==typeof e.step&&(0,i.jsx)("span",{className:l.stepTitle,children:e.step})]}),"code"===e.kind?(0,i.jsx)(c.A,{language:e.lang??"bash",children:e.code}):(0,i.jsxs)("div",{className:l.fileWindow,children:[(0,i.jsxs)("div",{className:l.fileTitleBar,children:[(0,i.jsxs)("span",{className:l.fileDots,children:[(0,i.jsx)("span",{className:(0,a.A)(l.fileDot,l.fileDotRed)}),(0,i.jsx)("span",{className:(0,a.A)(l.fileDot,l.fileDotYellow)}),(0,i.jsx)("span",{className:(0,a.A)(l.fileDot,l.fileDotGreen)})]}),(0,i.jsx)("span",{className:l.fileTitleName,children:e.name})]}),e.collapsed?(0,i.jsx)("p",{className:l.fileReadsNote,children:"Shown in an earlier step, unchanged here."}):(0,i.jsx)(c.A,{language:e.lang??"yaml",children:e.content})]})]},s)),d.notes&&(0,i.jsx)("div",{className:l.notes,children:d.notes})]})]})}},28453(e,s,t){t.d(s,{R:()=>c,x:()=>l});var i=t(296540);let n={},a=i.createContext(n);function c(e){let s=i.useContext(a);return i.useMemo(function(){return"function"==typeof e?e(s):{...s,...e}},[s,e])}function l(e){let s;return s=e.disableParentContext?"function"==typeof e.components?e.components(n):e.components||n:c(e.components),i.createElement(a.Provider,{value:s},e.children)}}}]);
