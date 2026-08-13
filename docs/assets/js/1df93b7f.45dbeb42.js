@@ -1,1 +1,0 @@
-"use strict";(self.webpackChunktabsdata_docs=self.webpackChunktabsdata_docs||[]).push([["819452"],{105146(e,a,t){t.r(a),t.d(a,{default:()=>d});var s=t(296540),u=t(956347),c=t(366497);function d(){let e=(0,u.W6)(),a=(0,c.Ay)("/guide/");return(0,s.useEffect)(()=>{e.replace(a)},[e,a]),null}}}]);
