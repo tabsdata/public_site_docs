@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunktabsdata_docs=self.webpackChunktabsdata_docs||[]).push([["190942"],{586733(e,a,t){t.r(a),t.d(a,{default:()=>l});var s=t(296540),u=t(956347),c=t(366497);function l(){let e=(0,u.W6)(),a=(0,c.Ay)("/");return(0,s.useEffect)(()=>{e.replace(a)},[e,a]),null}}}]);
