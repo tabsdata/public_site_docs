@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<script>
+			(function () {
+				var m = location.pathname.match(/^(.*?\/ui-demo\/)/);
+				window.__TD_BASE = m ? m[1].replace(/\/$/, "") : "";
+				document.write('<base href="' + window.__TD_BASE + '/" />');
+			})();
+		</script>
+		<link rel="icon" href="images/favicon/tabsdata-favicon.svg" type="image/svg+xml" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<meta name="robots" content="noindex" />
+		<title>Tabsdata</title>
+		<script src="shim.js"></script>
+		<script type="module" crossorigin src="assets/index.js"></script>
+		<link rel="stylesheet" crossorigin href="assets/index.css" />
+	</head>
+	<body>
+		<div id="root"></div>
+		<a id="td-demo-back" href="#"><span>&larr; Back to docs</span></a>
+		<style>
+			/* Same ripple as the docs site's PulsatingButton
+			   (src/components/PulsatingButton), and the same audience accents
+			   as the navbar's Agentic/Developer toggle (custom.css). */
+			#td-demo-back {
+				--accent: #15803d; --accent-hover: #0f6930;
+				position: fixed; right: 32px; bottom: 32px; z-index: 2147483647;
+				display: inline-flex; align-items: center;
+				padding: 16px 28px; border-radius: 12px;
+				background: var(--accent); color: #fff; text-decoration: none;
+				font: 600 18px/1 "IBM Plex Sans", system-ui, sans-serif;
+				animation: td-demo-ripple 1.5s cubic-bezier(0.16, 1, 0.3, 1) infinite;
+				transition: background-color 0.15s;
+			}
+			#td-demo-back:hover { background: var(--accent-hover); }
+			#td-demo-back.developer { --accent: #1d4ed8; --accent-hover: #1739ab; }
+			@keyframes td-demo-ripple {
+				0% { box-shadow: 0 0 0 0 oklch(from var(--accent) l c h / 1); }
+				100% { box-shadow: 0 0 0 14px oklch(from var(--accent) l c h / 0); }
+			}
+			@media (prefers-reduced-motion: reduce) {
+				#td-demo-back { animation: none; }
+			}
+		</style>
+		<script>
+			// Back to the docs page the reader came from, remembered for the
+			// session because in-demo reloads replace the referrer. Falls back
+			// to the User Interface page. The docs site root is the demo
+			// folder's parent, so this works under any baseUrl.
+			(function () {
+				var KEY = "td-demo-return";
+				var docsRoot = window.__TD_BASE.replace(/[^/]*$/, "");
+				var back = docsRoot + "guide/platform/user-interface";
+				try {
+					var ref = document.referrer ? new URL(document.referrer) : null;
+					if (ref && ref.origin === location.origin && ref.pathname.indexOf(window.__TD_BASE + "/") !== 0) {
+						sessionStorage.setItem(KEY, ref.pathname + ref.search + ref.hash);
+					}
+					back = sessionStorage.getItem(KEY) || back;
+				} catch (e) {}
+				var a = document.getElementById("td-demo-back");
+				a.href = back;
+				// The docs site picks the audience from the path: /developer/... is
+				// the Developer mirror, everything else is Agentic.
+				if (back.indexOf(docsRoot + "developer/") === 0) a.classList.add("developer");
+			})();
+		</script>
+	</body>
+</html>
