@@ -16,8 +16,23 @@
 		<script src="shim.js"></script>
 		<script type="module" crossorigin src="assets/index.js"></script>
 		<link rel="stylesheet" crossorigin href="assets/index.css" />
+		<style>
+			/* Demo banner. The UI sizes itself with ":root, body, #root
+			   { height: 100% }", so the body becomes a column: the banner takes
+			   its own height and #root gets the rest instead of spilling below
+			   the fold. Tabby's screen is the one view hard-coded to 100vh. */
+			body { display: flex; flex-direction: column; margin: 0; }
+			body > #root { flex: 1 1 auto; height: auto; min-height: 0; }
+			[class*="_tabby-container_"] { height: 100%; }
+			#td-demo-banner {
+				flex: none; padding: 8px 16px;
+				background: #fef3c7; color: #78350f; border-bottom: 1px solid #fcd34d;
+				font: 500 14px/20px "IBM Plex Sans", system-ui, sans-serif; text-align: center;
+			}
+		</style>
 	</head>
 	<body>
+		<div id="td-demo-banner" role="note">This is a demo mockup of the Tabsdata UI and not a live Tabsdata Server.</div>
 		<div id="root"></div>
 		<a id="td-demo-back" href="#"><span>&larr; Back to docs</span></a>
 		<style>
