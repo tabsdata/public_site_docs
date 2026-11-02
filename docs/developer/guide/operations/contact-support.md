@@ -1,0 +1,11 @@
+# Contact Us
+
+Source: https://docs.tabsdata.com/developer/guide/operations/contact-support
+
+You can connect with us on:
+
+[Website](https://www.tabsdata.com/)
+
+[Slack](https://join.slack.com/t/tabsdata-community/shared_invite/zt-322toyigx-ZGFioMV2Gbza4bJDAR7wSQ)
+
+[Github](https://www.github.com/tabsdata/tabsdata/)

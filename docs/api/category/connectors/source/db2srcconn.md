@@ -1,0 +1,50 @@
+# Db2SrcConn
+
+> Db2 connection used by `Db2Src`.
+
+Source: https://docs.tabsdata.com/api/category/connectors/source/db2srcconn
+
+class
+
+```python
+class Db2SrcConn(
+    uri: UriSpec,
+    credentials: CredentialsSpec,
+    entity_whitelist: EntityWhitelistSpec | None = None,
+    conn_cfg: CfgSpec | None = None,
+)
+```
+
+Bases: [Conn](https://docs.tabsdata.com/api/category/spi/spi/conn)
+
+**Categories:** source
+
+Db2 connection used by [`Db2Src`](https://docs.tabsdata.com/api/category/connectors/source/db2src).
+
+Registered on a collection; the runtime resolves it and hands it to the plugin at run time.
+
+## Parameters
+
+parameter
+
+`uri`[UriSpec](https://docs.tabsdata.com/api/module/tabsdatak-conn-db2#tabsdatak.conn.db2.UriSpec) ([str](https://docs.python.org/3/library/stdtypes.html#str) | [Secret](https://docs.tabsdata.com/api/category/connectors/credentials/secret))
+
+SQLAlchemy-style Db2 URI (`db2+ibm_db://host:port/db`). Accepts a plain string or a [`Secret`](https://docs.tabsdata.com/api/category/connectors/credentials/secret).
+
+parameter
+
+`credentials`[CredentialsSpec](https://docs.tabsdata.com/api/module/tabsdatak-conn-db2#tabsdatak.conn.db2.CredentialsSpec) ([UserPassword](https://docs.tabsdata.com/api/category/connectors/credentials/userpassword))
+
+[`UserPassword`](https://docs.tabsdata.com/api/category/connectors/credentials/userpassword) -- user + password spliced into the URI by the engine factory.
+
+parameter
+
+`entity_whitelist`[EntityWhitelistSpec](https://docs.tabsdata.com/api/module/tabsdatak-conn-common-types#tabsdatak.conn.common.types.EntityWhitelistSpec) | None ([list](https://docs.python.org/3/library/stdtypes.html#list)\[[str](https://docs.python.org/3/library/stdtypes.html#str)\] | None)
+
+Optional list of regex patterns narrowing which tables this connection contributes to discovery. `None` (the default) means no filtering.
+
+parameter
+
+`conn_cfg`[CfgSpec](https://docs.tabsdata.com/api/module/tabsdatak-conn-common-types#tabsdatak.conn.common.types.CfgSpec) | None ([dict](https://docs.python.org/3/library/stdtypes.html#dict) | None)
+
+Optional driver-side config forwarded to SQLAlchemy as `connect_args`.

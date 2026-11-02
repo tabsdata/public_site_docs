@@ -1,0 +1,228 @@
+# Tabsdata documentation
+
+> Documentation for Tabsdata 2.2.1, an AI-first data integration (ETL/ELT) platform built for agentic data engineering: an AI agent carries a data request end to end inside one system, from discovery through build to regression test, and a human approves every change. Python functions publish data from sources into versioned tables, transform them and subscribe them to destinations. Orchestration, execution, monitoring, lineage, data quality and versioning are native to the same server and the same `tdk` CLI, with one data model and one set of ids, so an agent works from one vocabulary. Two views of the guide: the Agentic guide at /guide gives steps an agent can follow; the Developer guide at /developer/guide gives concepts, configuration and reference for engineers working by hand.
+
+Local quick start: Python 3.12, `pip install "tabsdata[all]"`, `tdkserver quickstart -y --details false`, then `tdk login --server localhost --user admin --password tabsdata`. The UI is at http://localhost:2457, the API on the same port. The default instance is named `tabsdata`. The `tabsdata` package on PyPI is Tabsdata Enterprise, built on the Apache-licensed open source Tabsdata on GitHub; the full platform is free for self-supported deployments, with no feature gates.
+
+Vocabulary: a project holds collections; a collection holds functions and the tables they produce, and a source or destination collection carries the connection (address and credentials) its functions share. A publisher reads an external system into tables, a transformer reads tables and writes tables, a subscriber writes tables to an external system, a stream publisher consumes Kafka or CDC continuously. Triggering a function builds an execution plan over every downstream function; it runs as transactions, function runs and workers, and table versions commit only when the whole plan succeeds.
+
+Every page is also available as markdown: append `.md` to its URL, as in https://docs.tabsdata.com/guide/lineage.md. [llms-full.txt](https://docs.tabsdata.com/llms-full.txt) holds every page listed below in one file.
+
+## Tasks
+
+- [Load CSV or Parquet files from S3 into Snowflake every night](https://docs.tabsdata.com/tutorials/publishers/amazon-s3): a publisher from S3, a subscriber to Snowflake, a cron trigger.
+- [Replicate a Postgres, MySQL or Db2 database to a warehouse with change data capture](https://docs.tabsdata.com/tutorials/publishers/postgres-cdc): consistent full load, then change capture.
+- [Pull Salesforce reports or SOQL queries into a database](https://docs.tabsdata.com/tutorials/publishers/salesforce-reports): `SalesforceReportSrc`, a report found by name or id, incremental reads on a last-modified column.
+- [Stream Kafka topics into tables](https://docs.tabsdata.com/tutorials/publishers/kafka): a stream publisher with `KafkaStreamSrc`, a schema, and a dead-letter topic for messages that fail to decode.
+- [Join, dedupe and clean tables from two systems before loading them](https://docs.tabsdata.com/tutorials/transformations/join-tables): Python over a TableFrame.
+- [Run a transformation whenever an upstream table gets new data](https://docs.tabsdata.com/tutorials/trigger-setup/table-commit): `trigger_by` picks which input tables start the function; an empty list turns automatic runs off.
+- [Deliver tables to BigQuery, Databricks, ClickHouse, Postgres, S3 or a catalog](https://docs.tabsdata.com/tutorials/subscribers/): one subscriber per destination, Unity Catalog included.
+- [Find out why last night's load failed or produced no data](https://docs.tabsdata.com/cli/tdk): `tdk plan get`, `tdk plan logs`, `tdk worker logs`, execution plans.
+- [See what changed in a table since the last run, and where a row came from](https://docs.tabsdata.com/guide/lineage): every run is a new version; lineage comes from execution.
+- [Track data quality over time](https://docs.tabsdata.com/guide/data-quality-trends): metrics kept by run, week and month.
+
+
+## For AI agents
+
+- [Connect Claude Code or Codex](https://docs.tabsdata.com/guide/connect-agent): `pip install tabsdata-agent` in the virtual environment that has `tabsdata[all]`, then `claude mcp add tabsdata -- python -m tabsdatak.ag.mcp -`, or for Codex `codex mcp add tabsdata -- "$(python -c 'import sys; print(sys.executable)')" -m tabsdatak.ag.mcp -`. The user logs in from their own terminal with `tdk login`; the agent acts through that session, so it can only do what the user can, and the server's AI agent service must be running. Any other MCP client (Claude, ChatGPT, Copilot) connects the same way. The agent runs the whole request inside Tabsdata: discovery, a check that it is not already built, the build with every intermediate step a versioned table to inspect, and regression tests against prior versions before it lands.
+- [tdk CLI reference](https://docs.tabsdata.com/cli/tdk): every command: projects, groups, collections, connections, functions and their runs, plans, transactions, workers, tables, streams, crons, permissions, users, metrics, examples; `tdk login`, `tdk settings`, `tdk shell`.
+- [Python API reference](https://docs.tabsdata.com/api/): decorators, TableFrame, connector classes and credentials, with an alphabetical index.
+
+## Guide
+
+- [Contact Support](https://docs.tabsdata.com/guide/operations/contact-support): Lists the Tabsdata contact channels: the company website, the community Slack workspace invite, and the GitHub repository.
+
+## Getting Started
+
+- [Introduction](https://docs.tabsdata.com/guide/introduction): Introduction to Tabsdata, an open-source Python data integration platform: deployment requirements, Python functions with Polars expressions, automatic DAG orchestration, data versioning, MCP integration, and connectors.
+- [Install Tabsdata](https://docs.tabsdata.com/guide/install): Installs Tabsdata with pip or uv into a Python 3.12 virtual environment, sets the Anthropic or OpenAI key, runs tdkserver quickstart with the kminus provider, and logs in.
+- [Connect to MCP](https://docs.tabsdata.com/guide/connect-agent): Installs the tabsdata-agent package and registers the Tabsdata MCP Server with Claude Code or Codex, with per-shell commands for Linux, macOS, and Windows.
+- [Run Your First Data Integration](https://docs.tabsdata.com/guide/run-your-first-data-integration): Quickstart that has an LLM agent via Tabsdata MCP build and run a workflow: CSV publisher, age-dropping transformer adding full_name, and JSONL subscriber to local files.
+
+## Architecture
+
+- [Architecture Overview](https://docs.tabsdata.com/guide/architecture): Describes Tabsdata's system architecture: the resource layer (Functions as publisher, transformer, subscriber; Tables with versioned schemas) and execution layer (Execution Plans, Transactions, Function Runs), plus deployment providers.
+- [Server](https://docs.tabsdata.com/guide/server): What a Tabsdata server contains, how it runs workflows, and how clients connect to it.
+- [Projects](https://docs.tabsdata.com/guide/projects): How Projects organize and isolate resources within a Tabsdata Server.
+- [Groups](https://docs.tabsdata.com/guide/groups): How Groups organize Collections by data direction and transformation stage.
+- [Collections](https://docs.tabsdata.com/guide/collections): How Collections contain Functions, Tables, and Connections and define transaction boundaries.
+- [Connections](https://docs.tabsdata.com/guide/connections): How Connections provide Publisher and Subscriber Functions with access to external systems.
+- [Functions](https://docs.tabsdata.com/guide/functions/): How Tabsdata Functions define, connect, and execute the steps in a data workflow.
+- [Publishers](https://docs.tabsdata.com/guide/functions/publishers): How @publisher reads an external system, maps source slots to function parameters, and writes versioned Tabsdata tables.
+- [Stream Publishers](https://docs.tabsdata.com/guide/functions/stream-publishers): How @stream_publisher reads a CDC log or a Kafka topic continuously, and how the batch parameters decide when the function runs.
+- [Transformers](https://docs.tabsdata.com/guide/functions/transformers): How @transformer reads Tabsdata tables, maps versions to function parameters, and commits transformed output tables.
+- [Subscribers](https://docs.tabsdata.com/guide/functions/subscribers): How @subscriber reads Tabsdata tables, maps function returns to destination slots, and writes to an external system.
+- [SQL Merge](https://docs.tabsdata.com/guide/functions/sql-merge): How Subscriber Functions apply inserts, updates, and deletes to Snowflake, BigQuery, and Databricks tables.
+- [Tables](https://docs.tabsdata.com/guide/tables): Covers Tabsdata Tables as persistent, versioned stores of function output: version history, the table reference format (`collection/table@version` with HEAD, INITIAL, and ranges), private `_` tables, and commit-based triggers.
+- [Execution Plans](https://docs.tabsdata.com/guide/execution/execution-plans): Explains the execution plan DAG Tabsdata builds when a Function is triggered, how Functions pass data through Tables, determinism, and the tdk plan, trx, fnrun, and worker commands.
+- [Transactions](https://docs.tabsdata.com/guide/execution/transactions): Explains how transactions group Table changes within a Collection so they commit together, preserve pristine state on failure, and make execution plans multi-transactional across Collections.
+- [Function Runs](https://docs.tabsdata.com/guide/execution/function-runs): Function Runs cover how each Function execution in an Execution Plan is tracked, including status, logs, Worker assignment, recovery, and replay, with CLI commands linked.
+- [Workers](https://docs.tabsdata.com/guide/execution/workers): Explains what a Tabsdata worker is, how retries work (three attempts by default), and the tdk worker logs, recover, and list commands with their filters.
+
+## Connectors
+
+- [Connectors](https://docs.tabsdata.com/guide/connectors/): The connectors built into Tabsdata, and the source and destination classes each one provides.
+- [Connector Overview](https://docs.tabsdata.com/guide/connectors/): The connectors built into Tabsdata, and the source and destination classes each one provides.
+- [Amazon S3](https://docs.tabsdata.com/guide/connectors/amazon-s3): Reference for the Tabsdata Amazon S3 connector.
+- [Apache Druid](https://docs.tabsdata.com/guide/connectors/druid): Reference for the Tabsdata Apache Druid destination connector, cloud staging, and subscriber configuration.
+- [Azure](https://docs.tabsdata.com/guide/connectors/azure): Reference for the Tabsdata Azure Blob Storage connector.
+- [BigQuery](https://docs.tabsdata.com/guide/connectors/bigquery): Reference for the Tabsdata BigQuery connector.
+- [ClickHouse](https://docs.tabsdata.com/guide/connectors/clickhouse): Reference for the Tabsdata ClickHouse destination connector, cloud staging, and subscriber configuration.
+- [Databricks](https://docs.tabsdata.com/guide/connectors/databricks): Reference for the Tabsdata Databricks connector.
+- [Db2](https://docs.tabsdata.com/guide/connectors/db2): Reference for the Tabsdata Db2 connector.
+- [Db2 CDC](https://docs.tabsdata.com/guide/connectors/db2-cdc): Reference for the Tabsdata Db2 CDC stream source: SQL Replication prerequisites, the full load, change rows, and the connection.
+- [Google Cloud Storage](https://docs.tabsdata.com/guide/connectors/gcp): Reference for the Tabsdata Google Cloud Storage connector.
+- [Kafka](https://docs.tabsdata.com/guide/connectors/kafka): Reference for the Tabsdata Kafka stream source: message formats, schema registries, dead letter topics, consumer groups, and the connection.
+- [Local File System](https://docs.tabsdata.com/guide/connectors/local-file-system): Reference for the Tabsdata Local File System connector.
+- [MariaDB](https://docs.tabsdata.com/guide/connectors/mariadb): Reference for the Tabsdata MariaDB connector.
+- [MongoDB](https://docs.tabsdata.com/guide/connectors/mongodb): Reference for the Tabsdata MongoDB destination connector and subscriber configuration.
+- [MSSQL](https://docs.tabsdata.com/guide/connectors/mssql): Reference for the Tabsdata MSSQL connector.
+- [MySQL](https://docs.tabsdata.com/guide/connectors/mysql): Reference for the Tabsdata MySQL connector.
+- [MySQL CDC](https://docs.tabsdata.com/guide/connectors/mysql-cdc): Reference for the Tabsdata MySQL CDC stream source: prerequisites, the full load, change rows, and the connection.
+- [Oracle](https://docs.tabsdata.com/guide/connectors/oracle): Reference for the Tabsdata Oracle connector.
+- [Postgres](https://docs.tabsdata.com/guide/connectors/postgres): Reference for the Tabsdata Postgres connector.
+- [Postgres CDC](https://docs.tabsdata.com/guide/connectors/postgres-cdc): Reference for the Tabsdata Postgres CDC stream source: prerequisites, the full load, change rows, and the connection.
+- [Salesforce](https://docs.tabsdata.com/guide/connectors/salesforce): Reference for the Tabsdata Salesforce connectors: SOQL queries, reports, and the shared connection.
+- [Snowflake](https://docs.tabsdata.com/guide/connectors/snowflake): Reference for the Tabsdata Snowflake connector.
+- [StarRocks](https://docs.tabsdata.com/guide/connectors/starrocks): Reference for the Tabsdata StarRocks destination connector, cloud staging, and subscriber configuration.
+- [Grok for Log Files](https://docs.tabsdata.com/guide/grok-for-log-files): Grok method of TableFrame parses string columns into typed columns using Grok patterns and a ColumnDefinition schema, with predefined patterns, repeated captures, and null handling for non-matching rows.
+- [Custom Connectors](https://docs.tabsdata.com/guide/plugins): Walkthrough for building a custom Tabsdata connector as a Python package: SQLite source and destination, pyproject entry points, error codes, config classes, plugin logic, and installation.
+
+## Orchestration and Triggers
+
+- [Automatic Orchestration](https://docs.tabsdata.com/guide/automatic-orchestration): How Tabsdata determines which functions to run and in what order based on the tables they read and write.
+- [Trigger Overview](https://docs.tabsdata.com/guide/execution-and-triggers): Covers the four Tabsdata function trigger types (manual via `tdk fn trigger` or the UI, CRON schedule, new-data on input table versions, and stream workers such as SQL CDC and Kafka), plus automatic execution plans and streaming publishers.
+- [Manual Triggers](https://docs.tabsdata.com/guide/triggers/manual): Covers triggering a Tabsdata Function by hand with `tdk fn trigger` from the CLI or the UI, the default for Publishers without `trigger_by`, and how the resulting Execution Plan runs downstream Functions.
+- [Cron Triggers](https://docs.tabsdata.com/guide/triggers/cron): Cron triggers in Tabsdata: crontab mask syntax with UTC schedules, optional start and end window, and enabling or disabling Functions with tdk fn enable and disable. Wait, that's over-long and has a colon-style fragment. Corrected: Cron Triggers: five-field Unix crontab masks run in UTC, optional start and end windows, and enabling or disabling Functions with tdk fn enable/disable.
+- [Table Commit Triggers](https://docs.tabsdata.com/guide/triggers/table-commit): Configures Table commit triggers via the `trigger_by` decorator option: default, empty-list, and named-Table behavior, cross-Collection `collection/table` references, and returning None to skip commits.
+- [Stream Triggers](https://docs.tabsdata.com/guide/triggers/stream): Stream trigger page: when a @stream_publisher batch is due (batch_min_secs, batch_max_secs, batch_max_rows, batch_max_bytes, batch_idle_secs) and the Kafka, MySQL CDC, Postgres CDC, and Db2 CDC stream sources.
+
+## Features
+
+- [Secrets Management](https://docs.tabsdata.com/guide/secrets-management/): Explains how Tabsdata stores credentials in Connections (dehydrated into a secret store), how to register them with tdk connection template and tdk collection create/update, and the security tradeoffs of passing secrets to an LLM via MCP, environment variables, or files.
+- [Service Tokens](https://docs.tabsdata.com/guide/service-tokens): How a service token lets CI jobs, schedulers and scripts call Tabsdata as its owner without a password, and which of the owner's permissions it carries.
+- [User Interface](https://docs.tabsdata.com/guide/user-interface): Tabsdata web UI pages for the Overview, Projects, Collections, Functions, Tables, Executions, Worker logs, Triggers, Search, Tabby, Security, System, and Account, plus the local URL and demo.
+- [Tabby](https://docs.tabsdata.com/guide/tabby): The built-in operational agent, opened from the UI. It answers questions about the server's resources, monitors dataflows, traces failures to root cause and suggests fixes, and, when the server allows it, creates and changes resources on request. It runs in the server's AI agent service (port 2459) and needs an Anthropic or OpenAI key, set with `tdkserver quickstart --config anthropic-key=env:ANTHROPIC_API_KEY`.
+- [MCP](https://docs.tabsdata.com/guide/mcp): The MCP page covers the `python -m tabsdatak.ag.mcp -` proxy command, its use of `tdk login` sessions, the `/ai-agent/proxy/mcp` endpoint on port 2459, and the API key and connection troubleshooting steps.
+- [Data Quality](https://docs.tabsdata.com/guide/data-quality): Data quality checks in Tabsdata: DataQuality classifiers (IsNotNull, IsBetween, IsIn, Matches, ScaleCategorizer) and operators (Filter, Select, Summary, Fail, Enrich) passed via on_tables to publishers and transformers.
+- [Data Quality Trends](https://docs.tabsdata.com/guide/data-quality-trends): How Summary(trends=Trends()) keeps a history of data quality checks in a trend Table, and how the Tabsdata UI charts it.
+- [Lineage](https://docs.tabsdata.com/guide/lineage): How Tabsdata records where each table version came from and how to view that lineage in the Tabsdata UI.
+- [Living Semantic Catalog](https://docs.tabsdata.com/guide/living-semantic-catalog): How Tabsdata builds a catalog of what every connected source and destination holds, keeps it current as those systems change, and how agents use it.
+
+## Tutorials: Publish data from
+
+- [Amazon S3](https://docs.tabsdata.com/tutorials/publishers/amazon-s3): Publish data from Amazon S3 covers the S3 source connection setup, the S3Src publisher with paths and globs, and format handling for mixed or extensionless objects.
+- [Azure Blob Storage](https://docs.tabsdata.com/tutorials/publishers/azure): Publishes CSV blobs from an Azure Blob Storage container into Tabsdata tables using AzureBlobSrc, covering paths and globs, base_path, file_info="uri", and initial_last_modified.
+- [Databricks](https://docs.tabsdata.com/tutorials/publishers/databricks): Publishes Databricks SQL query results to Tabsdata tables using the DatabricksSrc connector, with {placeholder} substitution via initial_values, staging volumes, and warehouse or warehouse_id options.
+- [Db2](https://docs.tabsdata.com/tutorials/publishers/db2): Publishes query results from IBM Db2 into Tabsdata tables through the Db2Src source and db2+ibm_db connection URI, one output table per query in `queries`.
+- [Db2 CDC](https://docs.tabsdata.com/tutorials/publishers/db2-cdc): Publishes Db2 change data capture into Tabsdata with @stream_publisher and Db2CdcStreamSrc, covering tables, start_from options (tail, full, head, explicit position), batch_max_secs, and output_tables.
+- [Google Cloud Storage](https://docs.tabsdata.com/tutorials/publishers/gcp): Publishes objects from a Google Cloud Storage bucket into Tabsdata tables using a GCS source connection with a service account JSON key, `paths` globs, and `initial_last_modified`.
+- [Grok for Log Files](https://docs.tabsdata.com/tutorials/publishers/grok-for-log-files): Parses single-column log text into typed TableFrame columns with the grok function, using Elasticsearch-style patterns, named captures, and a schema, with local file and object storage publishers.
+- [Kafka](https://docs.tabsdata.com/tutorials/publishers/kafka): Publishes a Kafka topic into a Tabsdata table with the @stream_publisher decorator and KafkaStreamSrc, covering schema, dlq_topic, and batch_max_secs/batch_max_bytes settings.
+- [Local Files](https://docs.tabsdata.com/tutorials/publishers/local-file-system): Shows how to publish a local CSV file as a Tabsdata table by defining a LocalFileSrcConn connection with base_path, a publisher with LocalFileSrc source, and output_tables, and verifying the result.
+- [MariaDB](https://docs.tabsdata.com/tutorials/publishers/mariadb): Publishes MariaDB query results as Tabsdata tables through the MySQL connector, covering the MySQLSrcConn connection, MySQLSrc source, and the mysql-connector-python driver requirement.
+- [MSSQL](https://docs.tabsdata.com/tutorials/publishers/mssql): Publishes SQL Server query results to Tabsdata using the MSSQLSrc source and MSSQLSrcConn connection, covering the ODBC driver URI, credentials, and queries.
+- [MySQL](https://docs.tabsdata.com/tutorials/publishers/mysql): Publishes query results from a MySQL database into Tabsdata tables using MySQLSrc, with a MySQLSrcConn connection and the mysql-connector-python driver requirement.
+- [MySQL CDC](https://docs.tabsdata.com/tutorials/publishers/mysql-cdc): Publishes MySQL binlog changes to Tabsdata tables with @stream_publisher and MySQLCdcStreamSrc, covering start_from options, batch_max_secs, output_tables, and the mysql-connector-python driver requirement.
+- [Oracle](https://docs.tabsdata.com/tutorials/publishers/oracle): Publishes query results from Oracle databases into Tabsdata tables using the OracleSrc connector, covering the `oracledb` driver install, the connection YAML, and the publisher `queries` and `output_tables` arguments.
+- [Postgres](https://docs.tabsdata.com/tutorials/publishers/postgres): Publishes query results from a PostgreSQL database into Tabsdata with the PostgresSrc source, PostgresSrcConn connection, and psycopg2-binary driver requirement.
+- [Postgres CDC](https://docs.tabsdata.com/tutorials/publishers/postgres-cdc): Postgres CDC stream publisher setup with @stream_publisher, PostgresCdcStreamSrc, replication slot options, start_from values, and slot cleanup.
+- [Salesforce Reports](https://docs.tabsdata.com/tutorials/publishers/salesforce-reports): Publishes Salesforce report data into Tabsdata using SalesforceReportSrc, covering report name or id lookup with find_report_by, column_name_strategy, filter and filter_logic grouping, and last_modified_column for incremental reads.
+- [Salesforce SOQL Query](https://docs.tabsdata.com/tutorials/publishers/salesforce): Publishes Salesforce SOQL query results into Tabsdata tables with the SalesforceSrc source, covering queries, initial_last_modified, the $lastModified incremental filter, include_deleted, and the tabsdata[salesforce] install.
+
+## Tutorials: Transform data
+
+- [Create a TableFrame](https://docs.tabsdata.com/tutorials/transformations/create-a-tableframe): Shows how to create a TableFrame programmatically from a Python dict, Pandas DataFrame, or Polars LazyFrame/DataFrame via `from_dict`, `from_pandas`, and `from_polars`, and how to convert back with `to_dict`, `to_pandas`, `to_polars_df`, and `to_polars_lf`.
+- [Select and Modify Columns](https://docs.tabsdata.com/tutorials/transformations/select-columns): Covers Tabsdata column projection in transformers: select() with names, data-type and name-pattern selectors, position selectors, exclude(), drop(), with_columns(), lit(), and rename().
+- [Filter Rows](https://docs.tabsdata.com/tutorials/transformations/filter-rows): Filter rows in a Tabsdata transformer with filter() using col() comparisons, &, |, ~, xor, is_in, is_between, is_null, is_not_nan, and unique() with subset and keep.
+- [Transform Strings](https://docs.tabsdata.com/tutorials/transformations/strings): Covers Tabsdata string transformations via the str accessor: changing case, matching and extracting with contains, starts_with, ends_with and regex, replacing, trimming, padding, slicing, measuring lengths and finding positions, and parsing log lines with grok.
+- [Transform Numbers](https://docs.tabsdata.com/tutorials/transformations/numbers): Arithmetic, rounding, powers, logs, trigonometry, and row-to-row differences for Tabsdata table columns, with the transformer code for each operator and method.
+- [Transform Dates and Times](https://docs.tabsdata.com/tutorials/transformations/dates-and-times): Extracts date and time components, shifts dates, truncates timestamps, converts durations to totals, handles time zones, and formats dates with dt accessors in Tabsdata.
+- [Aggregate and Group](https://docs.tabsdata.com/tutorials/transformations/aggregate-and-group): Aggregation expressions (count, len, sum, mean, median, min, max, first, last, n_unique), group_by with agg, whole-group aggregates, and rank methods in Tabsdata transformers.
+- [Join Tables](https://docs.tabsdata.com/tutorials/transformations/join-tables): Joins two Tabsdata tables with `join()` on one or more key columns, covering the inner, left, right, full, semi and anti join types, `left_on`/`right_on`, and `suffix` for duplicate names.
+- [Concatenate Tables](https://docs.tabsdata.com/tutorials/transformations/concatenate-tables): Concatenate tables with `concat()` and its `how` modes (vertical, vertical_relaxed, diagonal, diagonal_relaxed), with transformer examples and the None-handling rules.
+- [Clean and Sort Data](https://docs.tabsdata.com/tutorials/transformations/clean-data): Covers handling null and NaN values, sorting rows with sort() and its descending and nulls_last options, and changing column types with cast(), str.to_date/to_datetime/to_time/to_integer, and dt.to_string in Tabsdata transformers.
+- [Inspect a TableFrame](https://docs.tabsdata.com/tutorials/transformations/inspect-a-tableframe): Inspect a TableFrame's schema, dtypes, column checks, emptiness, and query plan with tf.dtypes, has_cols, assert_has_cols, has_same_schema, is_empty, empty, clear, explain, and show_graph.
+- [Reshape Data](https://docs.tabsdata.com/tutorials/transformations/reshape-data): Covers reshaping Tabsdata tables with transformers: pivoting rows to columns with extract_as_columns(), unpivoting with extract_as_rows(), and expanding structs with unnest().
+
+## Tutorials: Subscribe data to
+
+- [Amazon S3](https://docs.tabsdata.com/tutorials/subscribers/amazon-s3): Writes Tabsdata tables to Amazon S3 as Parquet objects using an S3Dest subscriber, covering the paths, input_tables, connection YAML, and trigger_by options.
+- [Apache Druid](https://docs.tabsdata.com/tutorials/subscribers/druid): Writes Tabsdata tables out to Apache Druid with the DruidDest subscriber, covering the DruidDestConn connection, S3 staging, if_table_exists, and time_column settings.
+- [AWS Glue](https://docs.tabsdata.com/tutorials/catalogs/aws-glue): Subscriber setup for writing Tabsdata tables to Amazon S3 as Parquet files and registering them in AWS Glue Data Catalog as Iceberg tables, using td.S3Destination and td.AWSGlue.
+- [Azure Blob Storage](https://docs.tabsdata.com/tutorials/subscribers/azure): Writes Tabsdata tables to Azure Blob Storage as Parquet files using an @subscriber with AzureBlobDest, covering connection YAML, account key credentials, paths, and trigger_by.
+- [BigQuery](https://docs.tabsdata.com/tutorials/subscribers/bigquery): Writes Tabsdata tables to BigQuery with a subscriber: BigQueryDest connection config, GCP service account credentials, if_table_exists and schema_evolution options, and merge pointers.
+- [ClickHouse](https://docs.tabsdata.com/tutorials/subscribers/clickhouse): Writes Tabsdata subscriber output to ClickHouse tables using ClickHouseDest, with S3 staging, if_table_exists and schema_evolution options, and the tabsdata[clickhouse] install requirement.
+- [Databricks](https://docs.tabsdata.com/tutorials/subscribers/databricks): Writes Tabsdata tables to Databricks with a subscriber using DatabricksDest, covering connection spec fields (host_url, token, volume, warehouse, catalog, schema), table options, and merging by key.
+- [Google Cloud Storage](https://docs.tabsdata.com/tutorials/subscribers/gcp): Covers writing Tabsdata tables to Google Cloud Storage as Parquet objects via a subscriber with GCSDest, including connection YAML, service account credentials, paths, and input tables.
+- [Iceberg on AWS Glue](https://docs.tabsdata.com/tutorials/subscribers/aws-iceberg): Subscriber connector that writes Tabsdata tables to Amazon S3 as Parquet files and registers them in AWS Glue Iceberg tables, with catalog, partition, and schema options.
+- [Local Files](https://docs.tabsdata.com/tutorials/subscribers/local-file-system): Writes Tabsdata tables to local Parquet files using a subscriber with LocalFileDest, covering paths, input_tables, output handling, and trigger_by.
+- [MariaDB](https://docs.tabsdata.com/tutorials/subscribers/mariadb): Writes Tabsdata input tables to MariaDB with the @subscriber decorator and MySQLDest connector, covering table mapping, if_table_exists="replace", connection YAML, and the mysql-connector-python driver requirement.
+- [MongoDB](https://docs.tabsdata.com/tutorials/subscribers/mongodb): Covers writing Tabsdata input tables to MongoDB with the @subscriber decorator and MongoDBDest, including collections_with_ids, if_collection_exists, update_existing, and connection setup.
+- [MSSQL](https://docs.tabsdata.com/tutorials/subscribers/mssql): Writes Tabsdata tables to SQL Server with the @subscriber decorator and MSSQLDest, covering connection URI and credentials, if_table_exists options, and the collection/table input format.
+- [MySQL](https://docs.tabsdata.com/tutorials/subscribers/mysql): Writes Tabsdata table frames to MySQL tables through the MySQL destination connector, covering the connection setup, the `MySQLDest` options such as `if_table_exists`, and the `@subscriber` decorator.
+- [Oracle](https://docs.tabsdata.com/tutorials/subscribers/oracle): Writes Tabsdata input tables to Oracle with the `OracleDest` destination, covering the `oracledb` driver requirement, `if_table_exists` replace behavior, and `@subscriber` setup.
+- [Postgres](https://docs.tabsdata.com/tutorials/subscribers/postgres): Documents how to write Tabsdata input tables out to a PostgreSQL destination with the `@subscriber` decorator and PostgresDest, including if_table_exists options and the psycopg2-binary driver requirement.
+- [Snowflake](https://docs.tabsdata.com/tutorials/subscribers/snowflake): Writes Tabsdata tables out to Snowflake using a subscriber with SnowflakeDest, covering connection YAML, the tables and if_table_exists options, and secrets handling.
+- [StarRocks](https://docs.tabsdata.com/tutorials/subscribers/starrocks): Writes Tabsdata tables to StarRocks with the StarRocksDest connector, covering the subscriber decorator, if_table_exists and schema_evolution options, S3 staging, and tabsdata[starrocks] install.
+- [Unity Catalog](https://docs.tabsdata.com/tutorials/catalogs/unity-catalog): Tabsdata subscriber that writes Tabsdata tables to Unity Catalog managed Delta tables in Databricks via DatabricksDestination, covering its host, token, volume, warehouse, and schema options.
+
+## Tutorials: Trigger your functions
+
+- [Manually Trigger a Function](https://docs.tabsdata.com/tutorials/trigger-setup/manual): Explains how to trigger a Tabsdata function or publisher manually to run it on demand, including scheduled functions, with the default no-trigger behavior.
+- [Schedule a Cron Trigger](https://docs.tabsdata.com/tutorials/trigger-setup/cron): Schedules a Tabsdata publisher to run at fixed times with a CronTrigger crontab mask read in UTC, for sources with no upstream change signal.
+- [Trigger a Function from a Table Commit](https://docs.tabsdata.com/tutorials/trigger-setup/table-commit): Controls which input tables fire a Tabsdata function on commit using the trigger_by parameter, including an empty list to disable automatic triggering.
+- [Trigger off CDC in an SQL Database](https://docs.tabsdata.com/tutorials/trigger-setup/cdc): Covers CDC stream sources for MySQL, PostgreSQL, and IBM Db2 (`MySQLCdcStreamSrc`, `PostgresCdcStreamSrc`, `Db2CdcStreamSrc`) with `start_from`, replication slots, and batch timing for `@stream_publisher`.
+- [Trigger off a Kafka Stream](https://docs.tabsdata.com/tutorials/trigger-setup/kafka): Covers triggering a stream publisher from a Kafka topic with KafkaStreamSrc: the kafka-topic-in connection, required servers and group_id, schema, batch_min/max_secs/rows/bytes, and dlq_topic.
+
+## Tutorials: Manage your resources
+
+- [Create a Project](https://docs.tabsdata.com/tutorials/managing-projects/create): Shows how to create a Tabsdata project from an agent session via MCP, covering the project name, description, ID, and the active-project setting.
+- [Update a Project](https://docs.tabsdata.com/tutorials/managing-projects/update): Updates a Tabsdata project's name and description through an MCP agent session, noting that the project id and its groups and collections are preserved on rename.
+- [Delete a Project](https://docs.tabsdata.com/tutorials/managing-projects/delete): Shows how to delete a Tabsdata project through the MCP agent, including the confirmation step and the removal of its groups and collections, with prerequisites for installing and creating projects.
+- [Create a Group](https://docs.tabsdata.com/tutorials/managing-groups/create): Shows how to create a group in a Tabsdata project via the MCP agent, covering the name and description fields, the data product collection type, and the seeded sources and destinations groups.
+- [Update a Group](https://docs.tabsdata.com/tutorials/managing-groups/update): Updates an existing Tabsdata group's name and description, with notes on which system groups (default, sources, destinations) cannot be renamed.
+- [Delete a Group](https://docs.tabsdata.com/tutorials/managing-groups/delete): Explains how to delete a Tabsdata group, including that deleting it also removes its collections and their contents, and that dependent functions in other collections are frozen.
+- [Create a Collection](https://docs.tabsdata.com/tutorials/managing-collections/create): Explains how to create a Tabsdata collection through the MCP agent, covering collection types (data product vs. source or destination), the default group, connection requirements, and storage path. Wait, that's over 160 characters and too vague. Here is the corrected sentence: Creates a Tabsdata collection through the agent, covering data product versus source or destination types, group and connection rules, and the storage path field.
+- [Update a Collection](https://docs.tabsdata.com/tutorials/managing-collections/update): Explains how to rename a Tabsdata collection and update its description using an agent session, noting that a rename does not change the group and that a source or destination collection's connection is renamed with it. Wait, that's over 160 characters and too long. Corrected: Renames a Tabsdata collection and updates its description, with notes that the group cannot change and that renaming a source or destination collection also renames its connection.
+- [Delete a Collection](https://docs.tabsdata.com/tutorials/managing-collections/delete): Deletes a Tabsdata collection and its functions and tables, showing the confirmation prompt, the dependent functions that get frozen in other collections, and the name becoming reusable.
+- [Register a Function](https://docs.tabsdata.com/tutorials/managing-functions/register): Registers a Tabsdata function from a Python file into a collection, covering the register command, the name, description, and collection options, and how versions and updates behave.
+- [Delete a Function](https://docs.tabsdata.com/tutorials/managing-functions/delete): Explains how to delete a registered Tabsdata function, noting that its output tables remain and downstream functions are frozen rather than deleted.
+
+## Server administration: Dependency Installation
+
+- [Install Tabsdata](https://docs.tabsdata.com/server-admin/install): Installs the tabsdata Python package and tabsdata-agent into a virtual environment using uv, pip, conda, pyenv, or venv on Linux, macOS, and Windows.
+- [Install Third-Party Database Drivers](https://docs.tabsdata.com/server-admin/third-party-database-drivers): Install third-party database drivers (mysql-connector-python, psycopg2-binary, oracledb) for MySQL, PostgreSQL, Oracle and CDC connectors using a requirements file and `tdkserver venv update`.
+
+## Server administration: Connect to MCP
+
+- [Connect to MCP](https://docs.tabsdata.com/server-admin/connect-agent): Registers the Tabsdata MCP server (tabsdata-agent) with Claude Code or Codex using `claude mcp add` or `codex mcp add`, with shell-specific commands for Linux, macOS, PowerShell, and cmd.exe.
+
+## Server administration: Deploy a Server
+
+- [Deploy on k-minus](https://docs.tabsdata.com/server-admin/kminus): Quickstart a local Tabsdata Server or manage its k-minus lifecycle step by step.
+- [Deploy on AWS EKS](https://docs.tabsdata.com/server-admin/eks-install): Installs Tabsdata on AWS EKS: priority classes, kubeconfig access, RDS PostgreSQL and S3 config files, tdkserver init/assess/create/start, port-forward, and login.
+- [Deploy on Azure AKS](https://docs.tabsdata.com/server-admin/aks-install): Installs Tabsdata on Azure AKS: required Azure resources, priority classes, node pools, database and Blob storage configuration, tdkserver init/assess/create/start, and verification.
+- [Deploy on Google GKE](https://docs.tabsdata.com/server-admin/gke-install): Installs Tabsdata on Google GKE with Cloud SQL for PostgreSQL and GCS: priority classes, node pools, tdkserver init/assess/create/start, GKE database and storage config.
+- Deployment: your cloud, hybrid or fully on-premises, on Kubernetes (kminus locally, EKS, AKS, GKE); your data never leaves your network.
+
+## Server administration: Server Management
+
+- [Quickstart a Server](https://docs.tabsdata.com/server-admin/quickstart): Quickstart a Tabsdata server with `tdkserver quickstart`, covering the default kminus, eks, aks and gke providers, the `--config`, `--fill` and `--yes` options, and login.
+- [Initialize a Server](https://docs.tabsdata.com/server-admin/initialize): Covers `tdkserver init`, which writes an editable config folder under ~/.tabsdata/instances/<name> with default settings, using options like --instance and --provider, before creating and starting a server.
+- [Create a Server](https://docs.tabsdata.com/server-admin/create): Covers `tdkserver create --instance`, which builds a server instance from the init config folder, setting the LLM API key, port assignment with `--port`, and checking with `tdkserver list`.
+- [Start a Server](https://docs.tabsdata.com/server-admin/start): Describes starting a Tabsdata server instance with the `tdkserver start` command, including the `--instance` option, after an instance has been built by `tdkserver create`.
+- [Stop a Server](https://docs.tabsdata.com/server-admin/stop): Explains how to stop a running Tabsdata server with `tdkserver stop` while keeping its registration, configuration, tables and functions, plus checking runs with `tdk fnrun list` and restarting after config changes.
+- [Delete a Server](https://docs.tabsdata.com/server-admin/delete): Deletes a local kminus server instance with `tdkserver trash`, covering the stop and confirmation steps, the irreversible data loss, and the EKS exception.
+
+## Reference
+
+- [CLI reference](https://docs.tabsdata.com/cli/): [tdk](https://docs.tabsdata.com/cli/tdk) for functions, tables, plans and logs; [tdkserver](https://docs.tabsdata.com/cli/tdkserver) for servers; [interactive CLI](https://docs.tabsdata.com/cli/explorer).
+- [API reference](https://docs.tabsdata.com/api/)
+- [Release notes](https://docs.tabsdata.com/release-notes): 2.2.1 fixed Kafka schema-registry sources, merge initial load and truncate on Databricks, Snowflake and BigQuery, and a stream publisher data-loss case; 2.2.0 added CDC full load for Postgres, MySQL and Db2, data quality trends, service tokens and `tdkserver quickstart --config` and `--fill`.
+
+## Optional
+
+- [Developer guide](https://docs.tabsdata.com/developer/guide/): the same guide written for engineers working by hand.
+- Docs for earlier versions: [2.2.0](https://docs.tabsdata.com/2.2.0/guide/), [2.1.0](https://docs.tabsdata.com/2.1.0/guide/), [2.0.1](https://docs.tabsdata.com/2.0.1/guide/), [2.0.0](https://docs.tabsdata.com/2.0.0/guide/).
+- [Product site](https://tabsdata.com), [pricing](https://tabsdata.com/pricing) (free for self-supported deployments; paid contracts add 24/7 support, a private Slack channel and full indemnification) and [GitHub](https://github.com/tabsdata): the open source Tabsdata, Apache licensed.

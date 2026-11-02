@@ -1,0 +1,142 @@
+# Subscribe data to Databricks
+
+Source: https://docs.tabsdata.com/developer/tutorials/subscribers/databricks
+
+Before you begin
+
+[Quickstart a Server](https://docs.tabsdata.com/developer/server-admin/quickstart) or [Start a Server](https://docs.tabsdata.com/developer/server-admin/start)
+
+[Create a Project](https://docs.tabsdata.com/developer/tutorials/managing-projects/create)
+
+This tutorial shows how to set up a Databricks subscriber that writes one or more Tabsdata Tables into Databricks.
+
+What you’ll do
+
+1.  [Configure a connection to Databricks](#configure-a-connection-to-databricks)
+2.  [Write and Register a Subscriber Function](#write-and-register-a-subscriber-function)
+3.  [Trigger the subscriber function](#trigger-the-subscriber-function)
+
+## Configure a connection to Databricks
+
+A **Connection** is a resource that stores the configuration and credentials needed to access an external system. Subscribers use the credentials stored in a connection to authenticate with Databricks.
+
+Step 1Generate a connection template
+
+```bash
+tdk connection template --type databricks-bulk-out --file conn-databricks.yaml
+```
+
+This creates a connection document within your working directory under the file name specified in the `--file` cli command.
+
+Step 2Fill in the workspace URL, token, volume, and warehouse within the connection document
+
+tip
+
+Click a field to expand its details and highlight where it sits in the file; type your own values to build a file you can copy straight out. Toggle optional fields to add or remove them. Credential fields show a sample value and cannot be edited here.
+
+conn-databricks.yaml
+
+```yaml
+kind: connectionDef
+apiVersion: '1.0'
+type: tabsdatak.conn.databricks:DatabricksDestConn
+spec:
+  host_url: 'secret:https://dbc-00000000.cloud.databricks.com'
+  token: 'secret:dapi0example0token0000'
+  volume: 'main.default.tabsdata_stage'
+```
+
+-   required
+    
+-   required
+    
+-   required
+    
+-   optional
+    
+-   optional
+    
+-   optional
+    
+-   optional
+    
+
+Fill in the workspace URL, token, volume, and warehouse.
+
+Credentials are written as `secret:<value>`, a literal secret. The CLI strips the value out of the document before it reaches the server and stores it separately, so the file you keep on disk is the only place the plain value ever appears. Reads return the secret's name, never its value. See [Connections](https://docs.tabsdata.com/developer/guide/connections) for the full syntax.
+
+Step 3Validate the filled-in connection document (optional)
+
+```bash
+tdk connection validate --file conn-databricks.yaml
+```
+
+## Bind connection document to a collection
+
+The filled-in connection document must be attached to a collection that contains (or will contain) the function using the connection credentials.
+
+Step 4Bind connection to a new or existing collection
+
+-   Create a New Collection
+-   Attach to an Existing Collection
+
+```bash
+tdk collection create --name warehouse --group destinations --conn-file conn-databricks.yaml
+```
+
+```bash
+tdk collection update --name warehouse --conn-file conn-databricks.yaml
+```
+
+## Write and Register a Subscriber Function
+
+Step 5Build the subscriber file locally
+
+write\_sales.py
+
+```
+1from tabsdatak.api import subscriber, TableFrameSpec2from tabsdatak.conn.databricks import DatabricksDest3 4 5@subscriber(6  destination=DatabricksDest(1      tables=["vendors", "items"],8      if_table_exists="append",9      schema_evolution="update",10  ),2  input_tables=["sales/vendors", "sales/items"],12)3def write_sales(vendors, items):4  return (vendors, items)
+```
+
+-   Destination tables to write to. Each element positionally maps to a function argument on line 13.
+    
+-   Tabsdata tables function input is read from. Each name maps positionally to a function argument on line 13.
+    
+-   Data read from the input tables, positionally mapped and represented as Python function arguments.
+    
+-   Data the function writes, mapped positionally to destination tables defined on line 7.
+    
+
+Each entry in the `tables` parameter represents a destination table in Databricks. Each `tables` entry maps positionally to an argument in the function body. Destination table names can be fully qualified or completed from the connection's `catalog` / `schema` defaults.
+
+`if_table_exists="append"` (the default) adds rows, and `"replace"` overwrites the table. `schema_evolution="update"` (the default) merges new columns into the destination schema, while `"strict"` rejects schema changes.
+
+Variables listed in the function body's return statement represent input data and map positionally to the destination tables declared in the `tables` parameter.
+
+Step 6Register the subscriber into the collection
+
+```bash
+tdk fn register --coll warehouse --path write_sales.py::write_sales
+```
+
+## Trigger the subscriber function
+
+Step 7Trigger the subscriber
+
+```bash
+tdk fn trigger --coll warehouse --name write_sales
+```
+
+Tabsdata writes one destination table per entry on the server.
+
+## Triggering the Subscriber
+
+Without an explicit `trigger_by`, a subscriber runs only on a manual trigger. Add `trigger_by=[...]` when you need it to run automatically as its input tables get new commits.
+
+## None and Schema Changes
+
+If an input table dependency does not exist for a run, the subscriber can receive `None` instead of a frame. Returning `None` means there is nothing to write for that output slot, which avoids unnecessary duplicate writes.
+
+## Merge changes into the destination
+
+To apply inserts, updates, and deletes by key, see [Merging into SQL destinations](https://docs.tabsdata.com/developer/guide/functions/sql-merge). The guide covers merge configuration, schema evolution, and retry watermarks.

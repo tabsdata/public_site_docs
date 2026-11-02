@@ -1,0 +1,28 @@
+# tdkserver create
+
+> Create a tabsdata instance
+
+Source: https://docs.tabsdata.com/cli/tdkserver/create
+
+Create a tabsdata instance
+
+```bash
+tdkserver create \
+  --instance tabsdata \
+  --port 2457 \
+  --details true \
+  --yes true \
+  --accept-terms yes \
+  --verbose \
+  --keep-progress true
+```
+
+| Flag | Type | Required | Description |
+| --- | --- | --- | --- |
+| `--instance` | string | Optional | Name of the instance to create. Defaults to 'tabsdata'. |
+| `--port` | integer | Optional | Base HTTP/HTTPS port. Ports for the instance services are assigned sequentially starting from this value. Defaults to `2457`. |
+| `--details` | true \| false | Optional | Show the summary of resolved values before creating the instance. Defaults to 'true'. Pass '--details false' to skip the summary. |
+| `-y, --yes` | true \| false | Optional | Skip the interactive confirmation prompt and proceed immediately. |
+| `--accept-terms` | string | Optional | Accept or decline the license terms without interactive prompt \[y/yes/n/no\]. |
+| `--verbose` | flag | Optional | Show the output of each step that this command runs. |
+| `--keep-progress` | true \| false | Optional | Keep the progress line of each step that this command runs, instead of clearing it when the step finishes \[true/false\]. Defaults to `true`. |
