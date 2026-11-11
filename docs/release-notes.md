@@ -4,22 +4,6 @@ Source: https://docs.tabsdata.com/release-notes
 
 ## Tabsdata 2.3.0
 
-Tabsdata 2.3.0 installation in MS Windows ONLY
-
-Tabsdata 2.3.0 for MS Windows is unavailable on PyPI because the release exceeded PyPI's upload constraints. Until it is available there, the 2.3.0 packages are hosted on the Tabsdata package index at `https://pypi.tabsdata.com/simple/`.
-
-### 1\. Configure the Tabsdata package index
-
-Before installing Tabsdata, configure `pip` and `uv` to resolve packages from the Tabsdata package index in addition to PyPI:
-
-```bash
-export PIP_EXTRA_INDEX_URL=https://pypi.tabsdata.com/simple/
-export UV_INDEX=https://pypi.tabsdata.com/simple/
-export UV_INDEX_STRATEGY=unsafe-best-match
-```
-
-Keep these environment variables set while running `tdkserver quickstart`. When a Tabsdata instance is created, it installs its own Tabsdata environment and also needs access to the Tabsdata package index.
-
 **New:**
 
 -   Full streaming data processing. Local file system is not used during function execution for caching and staging data anymore. Data is directly read and written from external systems and the configured data storage system.
