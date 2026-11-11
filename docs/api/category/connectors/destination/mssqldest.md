@@ -11,6 +11,7 @@ class MSSQLDest(
     tables: MSSQLTableNamesSpec,
     if_table_exists: IfTableExistsSpec = 'append',
     transactional: bool = True,
+    schema_evolution: SchemaEvolutionSpec = 'strict',
     dest_cfg: DestCfgSpec | None = None,
 )
 ```
@@ -43,6 +44,12 @@ When `True` (the default), wrap every table write in one transactional session.
 
 parameter
 
-`dest_cfg`[DestCfgSpec](https://docs.tabsdata.com/api/module/tabsdatak-conn-mssql#tabsdatak.conn.mssql.DestCfgSpec) | None (Mapping\[Literal\['mssql.logging\_level', 'tabsdata.sql.write\_engine', 'tabsdata.sql.chunk\_size'\], [Any](https://docs.python.org/3/library/typing.html#typing.Any)\] | None)
+`schema_evolution`[SchemaEvolutionSpec](https://docs.tabsdata.com/api/module/tabsdatak-conn-mssql#tabsdatak.conn.mssql.SchemaEvolutionSpec) (Literal\['strict', 'update'\])
 
-Optional connector config; supported keys are `mssql.logging_level`, `tabsdata.sql.write_engine` and `tabsdata.sql.chunk_size`.
+What a write does when the batch's columns differ from the table's. `"replace"` makes the table the batch's own, so it is not affected. `"strict"` (the default) refuses a batch with a column the table lacks; `"update"` adds the column and widens a number column the batch has outgrown (a larger integer, double precision, a decimal that keeps every digit); other type differences are left to the database, where a value a column cannot hold fails the write. A column the batch lacks is written NULL either way.
+
+parameter
+
+`dest_cfg`[DestCfgSpec](https://docs.tabsdata.com/api/module/tabsdatak-conn-mssql#tabsdatak.conn.mssql.DestCfgSpec) | None (Mapping\[Literal\['mssql.logging\_level', 'mssql.schema\_evolution\_engine', 'tabsdata.sql.write\_engine', 'tabsdata.sql.chunk\_size'\], [Any](https://docs.python.org/3/library/typing.html#typing.Any)\] | None)
+
+Optional connector config; supported keys are `mssql.logging_level`, `tabsdata.sql.write_engine` and `tabsdata.sql.chunk_size`. `mssql.schema_evolution_engine` takes only `"iceberg"`, the default.

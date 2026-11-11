@@ -105,9 +105,9 @@ find\_big\_cities.py
 
 A transformer function has one parameter per input table and returns one frame per output table.
 
--   **Parameters.** Inputs are passed to the function in `input_tables` order. Annotate a parameter as `TableFrameSpec` for one frame or `TableFramesSpec` for a list of frames. An input can be `None` when the requested upstream batch is absent.
--   **Context.** The function can have a final `ctx: TrxCtx` parameter to keep values between successful runs.
--   **Return value.** Return values map to `output_tables` in order. One output can be returned on its own; several outputs are returned as a tuple. Returning `None` for one output leaves that table's current version unchanged.
+-   **Parameters.** Inputs are passed to the function in `input_tables` order. Annotate a parameter as `TableFrameSpec` for one frame or `TableFramesSpec` for a list of frames. An input read at `@NEW`, a `v..v` range or a `v,v` list must be typed `TableFramesSpec`; `TableFrameSpec` is refused at registration. An input is `None` when the requested version does not exist or has no data; see [`None` inputs and outputs](https://docs.tabsdata.com/developer/guide/functions/#none-inputs-and-outputs).
+-   **Context.** The function can have a final `ctx: TransactionCtx` parameter to keep values between successful runs. Type it `FunctionCtx` to also read the run's identifiers and the project's secrets.
+-   **Return value.** Return values map to `output_tables` in order. One output can be returned on its own; several outputs are returned as a tuple. Returning `None` for one output commits a new version that keeps that table's previous data.
 
 Tabsdata checks the input count, output count, and function signature when the transformer is registered.
 

@@ -8,7 +8,7 @@ Before you begin
 
 [Quickstart a Server](https://docs.tabsdata.com/server-admin/quickstart) or [Start a Server](https://docs.tabsdata.com/server-admin/start)
 
-[Connect to MCP](https://docs.tabsdata.com/guide/connect-agent)
+[Configure Your AI Agent](https://docs.tabsdata.com/guide/connect-agent)
 
 ## Ingest a topic continuously
 

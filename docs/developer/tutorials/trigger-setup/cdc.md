@@ -96,7 +96,7 @@ PostgreSQL logical replication is slot-based, so `PostgresCdcStreamSrc` takes fi
 
 warning
 
-MySQL CDC needs the `mysql-connector-python` driver and PostgreSQL CDC needs the `psycopg2-binary` driver, which Tabsdata does not redistribute. Add the driver with `tdkserver venv update`, as described in [Installing Third-Party Database Drivers](https://docs.tabsdata.com/developer/server-admin/third-party-database-drivers).
+PostgreSQL CDC needs the `psycopg2-binary` driver, which Tabsdata does not redistribute. Add the driver with `tdkserver venv update`, as described in [Installing Third-Party Database Drivers](https://docs.tabsdata.com/developer/server-admin/third-party-database-drivers).
 
 ## What to do next
 

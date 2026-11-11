@@ -466,22 +466,6 @@ tf.select(col("ts").dt.date().alias("date"))
 
 method
 
-`datetime`
-
-```python
-def datetime() -> Expr
-```
-
-Extract the datetime value.
-
-**Example:**
-
-```python
-tf.select(col("ts").dt.datetime().alias("moment"))
-```
-
-method
-
 `hour`
 
 ```python
@@ -636,36 +620,6 @@ Output unit: `ns`, `us` or `ms`.
 
 ```python
 tf.select(col("ts").dt.timestamp("ms").alias("stamp"))
-```
-
-method
-
-`with_time_unit`
-
-```python
-def with_time_unit(time_unit: TimeUnit) -> Expr
-```
-
-Relabel the time unit without changing the stored values.
-
-**Parameters:**
-
-parameter
-
-`time_unit`TimeUnit (Literal\['ns', 'us', 'ms'\])
-
-New unit: `ns`, `us` or `ms`.
-
-**Example:**
-
-```python
-tf.select(col("ts").dt.with_time_unit("ms"))
-```
-
-This relabels the unit and therefore reinterprets the stored numbers; use `cast_time_unit` to keep the same instant:
-
-```python
-tf.select(col("ts").dt.cast_time_unit("ms"))
 ```
 
 method

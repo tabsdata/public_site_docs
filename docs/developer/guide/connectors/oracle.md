@@ -113,7 +113,7 @@ The subscriber is registered in a collection created with a `OracleDestConn` con
 ### Prerequisites
 
 -   The Oracle server is reachable from the Tabsdata server.
--   The connection user can create missing destination tables and insert rows. With `if_table_exists="replace"`, it can also truncate existing tables.
+-   The connection user can create missing destination tables and insert rows. With `if_table_exists="replace"`, it also needs to drop and create tables, and with `schema_evolution="update"`, to alter them.
 
 ### Subscriber
 
@@ -165,7 +165,11 @@ OracleDest(
 
 #### `if_table_exists`
 
-Controls what happens when the destination table already has rows. `"append"` (the default) keeps inserting into the existing rows. `"replace"` truncates the table before inserting. Neither mode changes the destination table's schema, so the returned frame's columns need to match the table Oracle already has.
+Controls what happens when the destination table already has rows. `"append"` (the default) keeps inserting into the existing rows. `"replace"` drops the table and creates it again from the returned frame, so the table's schema follows the frame. The drop and the create commit implicitly, so a failed write is not undone. On `"append"`, `schema_evolution` decides what happens to a new or wider column.
+
+#### `schema_evolution`
+
+`"strict"` (the default) or `"update"`. A refused write fails with `SQL_COMMON_10` before anything is written. The `ALTER` statements `"update"` runs commit implicitly, so they are not undone if the write fails. See [Schema evolution](#schema-evolution).
 
 #### `dest_cfg`
 
@@ -181,7 +185,11 @@ Queries run when the publisher is triggered. They are not a continuous change fe
 
 Each entry in `tables` is one destination slot and maps by position to a value returned by the subscriber function. Returning `None` for a slot skips that write.
 
-`if_table_exists="append"` keeps the rows already in the destination and inserts the returned rows. `"replace"` truncates the table before inserting. Neither mode changes an existing table's schema, so column additions, removals, and type changes need a database migration before the subscriber runs.
+`if_table_exists="append"` keeps the rows already in the destination and inserts the returned rows. `"replace"` drops the table and creates it again from the returned frame. On `"append"`, `schema_evolution="update"` adds new columns and widens number types; removing a column or changing a non-number type still needs a database migration before the subscriber runs.
+
+### Schema evolution
+
+`schema_evolution` decides what a write does when the returned frame has a column the destination table lacks, or a type wider than the column's. `"strict"`, the default, refuses a new column, and refuses a wider type unless its values fit the column. `"update"` changes the table to fit the frame. On Oracle, `"update"` uses [Iceberg schema evolution](https://docs.tabsdata.com/developer/guide/connectors/schema-evolution#native-and-iceberg-schema-evolution), applied by the connector, on `"append"` and `"replace"`: `ALTER TABLE … ADD` adds columns, and integers, decimals and floats are widened by digits or width. It never drops a column or changes a non-number type. `"merge"` is not supported.
 
 ## Operational notes
 
@@ -255,7 +263,7 @@ tdk fn register --coll oracle_in --path publish_orders.py::publish_orders
 
 #### `uri`
 
-The SQLAlchemy-style connection URI: `oracle://host:port/database`. Written as a plain value here, but accepts `secret:` too.
+The SQLAlchemy-style connection URI: `oracle://host:port/sid`. A pluggable database takes `oracle://host:port/?service_name=name`. Written as a plain value here, but accepts `secret:` too.
 
 #### `credentials`
 
@@ -335,7 +343,7 @@ tdk fn register --coll oracle_out --path write_orders.py::write_orders
 
 #### `uri`
 
-The SQLAlchemy-style connection URI: `oracle://host:port/database`. Written as a plain value here, but accepts `secret:` too.
+The SQLAlchemy-style connection URI: `oracle://host:port/sid`. A pluggable database takes `oracle://host:port/?service_name=name`. Written as a plain value here, but accepts `secret:` too.
 
 #### `credentials`
 

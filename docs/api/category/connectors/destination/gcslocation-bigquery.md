@@ -21,7 +21,7 @@ Bases: [CloudLocation](https://docs.tabsdata.com/api/category/connectors/destina
 
 GCS staging area for [`BigQueryDest`](https://docs.tabsdata.com/api/category/connectors/destination/bigquerydest).
 
-The plugin uploads parquet here, then runs a `load_table_from_uri` load job against BigQuery referencing the object.
+The plugin writes parquet here, then runs a `load_table_from_uri` load job against BigQuery referencing the object.
 
 ## Parameters
 
@@ -47,4 +47,4 @@ parameter
 
 `cfg`[CfgSpec](https://docs.tabsdata.com/api/module/tabsdatak-conn-common-types#tabsdatak.conn.common.types.CfgSpec) | None ([dict](https://docs.python.org/3/library/stdtypes.html#dict) | None)
 
-Optional connector-config dict for the GCS client.
+Optional config dict; its `obstore.*` keys configure the object store parquet is staged through (a custom endpoint, `allow_http`, ...). Other keys are ignored.

@@ -107,9 +107,9 @@ sales-sub.py
 
 A subscriber function has one parameter per input table and returns one frame per destination slot.
 
--   **Parameters.** Inputs are passed to the function in `input_tables` order. Each parameter is a `TableFrameSpec`. An input can be `None` when the requested upstream batch is absent.
--   **Context.** The function can have a final `ctx: TrxCtx` parameter to keep values between successful runs.
--   **Return value.** Return values map to the destination slots in destination order. One slot can be returned on its own; several slots are returned as a tuple. Returning `None` for a slot skips that write.
+-   **Parameters.** Inputs are passed to the function in `input_tables` order. Annotate a parameter as `TableFrameSpec` for one frame or `TableFramesSpec` for a list of frames. An input read at `@NEW`, a `v..v` range or a `v,v` list must be typed `TableFramesSpec`; `TableFrameSpec` is refused at registration. An input is `None` when the requested version does not exist or has no data; see [`None` inputs and outputs](https://docs.tabsdata.com/guide/functions/#none-inputs-and-outputs).
+-   **Context.** The function can have a final `ctx: TransactionCtx` parameter to keep values between successful runs. Type it `FunctionCtx` to also read the run's identifiers and the project's secrets.
+-   **Return value.** Return values map to the destination slots in destination order. One slot can be returned on its own; several slots are returned as a tuple. Returning `None` for a slot sends no new data to it, and the Connector decides what that does to the external system.
 -   **Slot counts.** The number of input tables does not have to match the number of destination slots. The function can combine several inputs into one write or create several destination tables from one input.
 
 Tabsdata checks the slot counts and function signature when the subscriber is registered.

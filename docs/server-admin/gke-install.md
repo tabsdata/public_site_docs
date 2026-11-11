@@ -1,6 +1,6 @@
 # Install Tabsdata on Google GKE
 
-> Installs Tabsdata on Google GKE with Cloud SQL for PostgreSQL and GCS: priority classes, node pools, tdkserver init/assess/create/start, GKE database and storage config.
+> Install Tabsdata on Google GKE: required GCP resources, priority classes, node pools, optional Cloud Logging worker logs, Cloud SQL and GCS configuration, tdkserver assess, create and start.
 
 Source: https://docs.tabsdata.com/server-admin/gke-install
 
@@ -22,6 +22,7 @@ Tabsdata runs on Kubernetes as deployments containing an API server, AI agent, a
 -   GCS bucket, preferably in the same region
 -   A service account with read/write access to the bucket (for example `roles/storage.objectAdmin` on the bucket), and a JSON key for it
 -   Network access between the GKE cluster and the Cloud SQL instance, and between the client and the GKE cluster
+-   Optional, to keep function logs after the function run ends: workload logging and Workload Identity on the cluster, and a Cloud Logging log view for each instance (see [Worker Log Store](#worker-log-store-optional)). If it is not configured, function logs are lost when the function run ends.
 
 ### Priority Classes
 
@@ -66,6 +67,31 @@ gcloud container node-pools create tabsdata-functions \
 
 Size the machine types for the largest single pod (see the sizing appendix). To place pods differently, edit `placement.selectors` in `tabsdata.yaml` instead.
 
+### Worker Log Store (optional)
+
+This is optional. If it is not configured, function logs are lost when the function run ends. With it, the apiserver reads them from Cloud Logging, which the GKE logging agent already feeds. Tabsdata needs no log shipper of its own on GKE.
+
+**For each cluster (one time)**
+
+| Item | Requirement |
+| --- | --- |
+| Workload logging | The cluster's logged components include `WORKLOADS` (the GKE default) |
+| Workload Identity | The cluster has the workload pool `<GCP_PROJECT>.svc.id.goog`, and every node pool that runs Tabsdata uses the `GKE_METADATA` metadata mode |
+| Log bucket | Know which bucket holds the Tabsdata pod logs and where it is: `_Default` (usually `global`, or the project's default storage region), or a dedicated bucket |
+| Retention (optional) | `_Default` keeps logs for 30 days. For a different retention, route `(log_id("stdout") OR log_id("stderr")) AND labels."k8s-pod/app_kubernetes_io/part-of"="tabsdata"` to a dedicated bucket with a sink, and exclude it from `_Default`. Do this before you create the instance views |
+
+**For each instance**
+
+| Item | Requirement |
+| --- | --- |
+| Log view | `tabsdata-<TABSDATA_NAMESPACE>`, in the bucket that holds the logs, with filter `resource.type="k8s_container" AND resource.labels.namespace_name="<TABSDATA_NAMESPACE>"` |
+| Google service account | `<GCP_APISERVER_SERVICE_ACCOUNT>` (account name 6 to 30 characters) |
+| Read grant | `roles/logging.viewAccessor` on the project, with an IAM condition `resource.name == "projects/<GCP_PROJECT>/locations/<LOCATION>/buckets/<BUCKET>/views/tabsdata-<TABSDATA_NAMESPACE>"` |
+| Workload Identity binding | `roles/iam.workloadIdentityUser` on the service account for `serviceAccount:<GCP_PROJECT>.svc.id.goog[<TABSDATA_NAMESPACE>/aut-apiserver]` |
+| Must not have | `roles/logging.viewer`. It opens the full `_Default` view, which has the logs of every instance and the rest of the project |
+
+Creating the view needs `roles/logging.configWriter`.
+
 ### Cluster Access
 
 Fetch the cluster credentials into your kubeconfig:
@@ -85,16 +111,16 @@ From a machine with GKE cluster access, create a Python virtual environment and 
 **Using uv:**
 
 ```text
-uv pip install "tabsdata[all]" tabsdata-agent
+uv pip install "tabsdata[all]"
 ```
 
 **Using pip:**
 
 ```text
-pip install "tabsdata[all]" tabsdata-agent
+pip install "tabsdata[all]"
 ```
 
-**Note:** MySQL and PostgreSQL CDC connectors require database drivers that Tabsdata cannot redistribute. See "Installing Third-Party Database Drivers" if needed before proceeding.
+**Note:** PostgreSQL connectors require a database driver that Tabsdata cannot redistribute. See "Installing Third-Party Database Drivers" if needed before proceeding.
 
 ## Configuration Values Needed
 
@@ -117,6 +143,9 @@ Gather these before starting:
 |  | `<TABSDATA_NAMESPACE>` | Empty reserved namespace |
 |  | `<KUBECONFIG>` | Path to kubeconfig file |
 | LLM Provider | `<OPENAI_API_KEY>` / `<ANTHROPIC_API_KEY>` | LLM API key if AI integration enabled |
+| Worker Logs (optional) | `<GCP_APISERVER_SERVICE_ACCOUNT>` | Email of the apiserver Google service account for this instance |
+|  | `<GCP_LOG_BUCKET>` | Bucket of the log view. Empty for `_Default` |
+|  | `<GCP_LOG_LOCATION>` | Location of that bucket. Empty for `global` |
 | Chosen During Install | `<TABSDATA_INSTANCE>` | Tabsdata instance name |
 
 ### Cloud SQL Server CA
@@ -237,6 +266,34 @@ hybrid_search:
   cache_dir: null
   offline: false
 ```
+
+### Configure Worker Logs (optional)
+
+Skip this if the cluster has no worker log store. Without it, function logs are lost when the function run ends.
+
+Edit `tabsdata.yaml` and set the service account and, if needed, the bucket. Add these keys to the existing `pods.service.apiserver` block. Do not replace the block:
+
+```yaml
+pods:
+  service:
+    apiserver:
+      service_account:
+        annotations:
+          iam.gke.io/gcp-service-account: <GCP_APISERVER_SERVICE_ACCOUNT>
+      worker_logs:
+        bucket: <GCP_LOG_BUCKET>
+        location: <GCP_LOG_LOCATION>
+```
+
+| Logs are in | `bucket` | `location` |
+| --- | --- | --- |
+| `_Default` in `global` | empty | empty |
+| `_Default` in a region | empty | the region |
+| A dedicated bucket | its name | its region |
+
+The values must match the bucket and location of the instance's log view. tdkserver writes the annotation on the `aut-apiserver` service account before the apiserver pod starts, so the pod runs as the Google service account. The apiserver gets the project and cluster from the GKE metadata server.
+
+To add it to an existing instance, make the same edit after `tdkserver config get --instance <TABSDATA_INSTANCE>`, then run `tdkserver config put --instance <TABSDATA_INSTANCE> --apply`, which restarts the apiserver.
 
 ### Preflight Check
 
@@ -377,3 +434,5 @@ pods:
 ```
 
 Set values based on actual component footprints and confirm node pools can satisfy the largest single pod. A tolerations list replaces the one Tabsdata would apply, so it must be complete. Use `tdkserver config get` and `tdkserver config put` to manage the file.
+
+`pods.service.apiserver` can also hold `service_account` and `worker_logs`; see [Configure Worker Logs](#configure-worker-logs-optional).

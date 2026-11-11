@@ -1,6 +1,6 @@
 # Create a Collection
 
-> Explains how to create a Tabsdata collection through the MCP agent, covering collection types (data product vs. source or destination), the default group, connection requirements, and storage path. Wait, that's over 160 characters and too vague. Here is the corrected sentence: Creates a Tabsdata collection through the agent, covering data product versus source or destination types, group and connection rules, and the storage path field.
+> Shows how to create a Tabsdata collection through an AI agent, covering collection types (data product vs. source/destination), the default group, connection requirements, and the group-connection mismatch error.
 
 Source: https://docs.tabsdata.com/tutorials/managing-collections/create
 
@@ -8,7 +8,7 @@ Before you begin
 
 [Install Tabsdata](https://docs.tabsdata.com/server-admin/install)
 
-[Connect to MCP](https://docs.tabsdata.com/guide/connect-agent)
+[Configure Your AI Agent](https://docs.tabsdata.com/guide/connect-agent)
 
 [Create a Project](https://docs.tabsdata.com/tutorials/managing-projects/create)
 

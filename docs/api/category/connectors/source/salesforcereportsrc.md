@@ -25,6 +25,8 @@ Bases: [Src](https://docs.tabsdata.com/api/category/connectors/source/src)
 
 Salesforce report source for `@publisher` -- Tabular reports only.
 
+Salesforce's Reports API returns at most 2,000 detail rows per run; a report that holds more fails the read rather than landing part of it. Narrow it with `filter` or `last_modified_column`, or read the object with [`SalesforceSrc`](https://docs.tabsdata.com/api/category/connectors/source/salesforcesrc).
+
 Every table this source publishes automatically carries two metadata columns: `@td.salesforce.report_id`, the resolved report id that produced the row (even when `reports` named the report by name), and `@td.salesforce.last_modified`, the source's `initial_last_modified` cutoff (empty when unset). Setting the `src_cfg` key `tabsdata.src_metadata.drop` to `True` leaves them off.
 
 ## Examples
@@ -79,13 +81,13 @@ parameter
 
 `last_modified_column`[str](https://docs.python.org/3/builtins/stdtypes.html#str) | None
 
-Optional column for incremental last-modified filtering; requires `initial_last_modified` (and vice versa).
+Optional column, named per `column_name_strategy`, for incremental reads: only rows whose value is after `initial_last_modified` are read, filtered on the server and ANDed onto `filter` / `filter_logic`. Requires `initial_last_modified` (and vice versa).
 
 parameter
 
 `initial_last_modified`[datetime](https://docs.python.org/3/library/datetime.html#datetime.datetime) | None
 
-Cutoff datetime; requires `last_modified_column`.
+Cutoff datetime, sent to Salesforce in UTC (a naive value is taken as UTC); requires `last_modified_column`.
 
 parameter
 

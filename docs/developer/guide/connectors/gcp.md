@@ -20,6 +20,7 @@ The `GCSDest` connector can be used by a subscriber function to write data from 
 | `AVRO` | Yes | Yes |
 | `PARQUET` | Yes | Yes |
 | `LOG` | Yes | No |
+| `EXCEL` | Yes | No |
 
 ## Publisher
 
@@ -31,7 +32,7 @@ The publisher is registered in a collection created with a `GCSSrcConn` connecti
 
 -   The bucket exists and is reachable from the Tabsdata server.
 -   The service account can list the bucket and read every object matched by `paths`.
--   The object format and compression match `format` and `format_cfg`.
+-   Compressed objects need `include_compressed=True`; see [`include_compressed`](#include_compressed).
 
 ### Publisher
 
@@ -76,7 +77,8 @@ Each path is relative to the `base_path` configured in `GCSSrcConn`. Source path
 
 -   cannot begin or end with `/`
 -   cannot contain empty path segments
--   can contain a `*` glob in the final path segment
+-   cannot be `.` or `..`, or contain a `${...}` token
+-   can contain a `*` glob in the final path segment. `*` matches any run of characters and `?` matches one character; in directory segments, both are literal.
 
 For example:
 
@@ -97,17 +99,31 @@ When a path uses a glob to match multiple files, the matching files are provided
 
 Sets the format used to read the source files.
 
-Supported formats are `AUTO`, `CSV`, `JSON`, `AVRO`, `PARQUET`, and `LOG`. The default is `AUTO`, which determines the format from the file extension.
+Supported formats are `AUTO`, `CSV`, `JSON`, `AVRO`, `PARQUET`, `LOG`, and `EXCEL`. The default is `AUTO`, which determines the format from the file extension. `AUTO` resolves the format for each file from its own extension. For a compressed file, that is the extension before the compression extension. A file whose extension names no format fails the run. A source whose files resolve to different formats also fails the run. `EXCEL` reads `.xlsx` workbooks only. Pick a sheet with a `#n` suffix on the path, such as `paths=["book.xlsx#2"]`; the sheet number starts at 1 and counts hidden sheets, and `#0` is refused. Its `format_cfg` takes `has_header`.
 
 #### `format_cfg`
 
 Sets format-specific reader options. Configuration is keyed by `SrcFileFormat`.
 
+For `CSV`, `has_header=False` reads the first row as data. The columns are then named `column_0`, `column_1`, ... `skip_lines` skips that many lines at the start of each file before the header is read. A `""` field is read as an empty string.
+
+#### `include_compressed`
+
+When `True`, the publisher reads compressed objects. A path that ends in a compression extension fails validation without it. The compression extensions are `.gz`, `.zlib`, `.zst`, `.zstd`, `.bz2`, `.xz`, `.lz4` and `.br`, plus single-entry `.zip` and `.tar` archives. The format comes from the name before the compression extension, so `orders.csv.gz` is read as CSV. An archive must hold one file, and a name can have only one compression extension.
+
+#### `purge`
+
+When `True`, the publisher deletes each matched object that the cursor skipped, if its modification time is at or after `initial_last_modified`. `purge` requires `initial_last_modified`; without it the run fails with `FILE_COMMON_35`. Deletion runs for each slot after that slot's frames are read.
+
+warning
+
+`purge` deletes data, including a late object that the cursor skipped before the publisher ever read it. It needs delete permission on the source objects.
+
 #### `initial_last_modified`
 
 Sets the initial cutoff for incremental ingestion.
 
-On the first run, Tabsdata imports files modified at or after the specified timestamp. The cutoff then advances so subsequent runs only import newer files.
+On the first run, Tabsdata imports files modified at or after the specified timestamp. The cutoff then advances so subsequent runs only import newer files. The value must be timezone-aware, for example `datetime(2026, 1, 1, tzinfo=timezone.utc)`.
 
 #### `src_cfg`
 
@@ -117,7 +133,6 @@ The following options are supported:
 
 | Option | Description |
 | --- | --- |
-| `tabsdata.file.chunk_size` | Controls the size of chunks used when reading files. |
 | `tabsdata.src_metadata.drop` | When `True`, excludes the `@td.file.path` metadata column. |
 
 By default, rows read from Google Cloud Storage include a `@td.file.path` metadata column containing the source file's URI.
@@ -185,7 +200,8 @@ Destination paths can contain variables that Tabsdata substitutes when the subsc
 | --- | --- |
 | `${EXEC_PLAN_ID}` | Current execution plan ID. |
 | `${TRX_ID}` | Current transaction ID. |
-| `${EXEC_PLAN_TS}` | Timestamp when the execution plan started. |
+| `${TRIGGERED_ON}` | Timestamp in file-safe form, such as `20260604T083428.376Z`. Replaces `${EXEC_PLAN_TS}`. |
+| `${EXEC_PLAN_TS}` | Timestamp when the execution plan started. Deprecated since 2.3.0; use `${TRIGGERED_ON}`. |
 
 For example:
 
@@ -213,15 +229,13 @@ Sets format-specific writer options. Configuration is keyed by `DestFileFormat`.
 
 Sets additional destination configuration.
 
-The `tabsdata.file.chunk_size` option controls the size of chunks used when writing files.
-
 ## File behavior
 
-Each entry in a publisher's `paths` is one source slot. A literal path reads one object; a final-segment `*` glob can read several. The slots map by position to the publisher function arguments and then to `output_tables`.
+Each entry in a publisher's `paths` is one source slot. A literal path reads one object; a final-segment `*` glob can read several. The slots map by position to the publisher function arguments and then to `output_tables`. Each slot receives one frame per matched object, oldest object first by modification time and then by name. A slot with no matches receives an empty list. Subdirectories are not searched.
 
-`initial_last_modified` sets the cutoff for the first run. After a successful run, Tabsdata advances the cutoff so the same unchanged objects are not published again.
+`initial_last_modified` sets the cutoff for the first run. After a successful run, Tabsdata advances the cutoff so the same unchanged objects are not published again. Without `initial_last_modified`, every run reads every matched object. The cutoff is kept for each slot position and pattern, so reordering `paths` resets it. A late object whose modification time is older than the newest object already taken is skipped. An object that shares a modification time with another is taken once, and overlapping globs import the same object twice.
 
-Each entry in a subscriber's `paths` is one destination slot and maps by position to a returned value. Use `${EXEC_PLAN_ID}`, `${TRX_ID}`, or `${EXEC_PLAN_TS}` in a path when every run needs a new object. A fixed path writes to the same location again.
+Each entry in a subscriber's `paths` is one destination slot and maps by position to a returned value. Use `${EXEC_PLAN_ID}`, `${TRX_ID}`, or `${TRIGGERED_ON}` in a path when every run needs a new object. `${TRIGGERED_ON}` is a timestamp in file-safe form, such as `20260604T083428.376Z`. `${EXEC_PLAN_TS}` still works, but it is deprecated since 2.3.0 and logs a warning. A fixed path writes to the same location again.
 
 ## Operational notes
 
@@ -315,7 +329,7 @@ Sets the base path within the bucket. All paths configured in `GCSSrc` are relat
 
 #### `conn_cfg`
 
-Optional connector configuration overrides.
+Optional connector configuration overrides. Keys that start with `obstore.` configure the object store; see [Object Store Options](https://docs.tabsdata.com/developer/guide/connectors/object-store-options).
 
 ## Subscriber connection
 
@@ -402,4 +416,4 @@ Sets the base path within the bucket. All paths configured in `GCSDest` are rela
 
 #### `conn_cfg`
 
-Optional connector configuration overrides.
+Optional connector configuration overrides. Keys that start with `obstore.` configure the object store; see [Object Store Options](https://docs.tabsdata.com/developer/guide/connectors/object-store-options).

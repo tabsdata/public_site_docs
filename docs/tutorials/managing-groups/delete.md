@@ -1,6 +1,6 @@
 # Delete a Group
 
-> Explains how to delete a Tabsdata group, including that deleting it also removes its collections and their contents, and that dependent functions in other collections are frozen.
+> Deletes a Tabsdata group and every collection and table it contains, with a confirmation step and notes on how dependent functions are left frozen.
 
 Source: https://docs.tabsdata.com/tutorials/managing-groups/delete
 
@@ -8,7 +8,7 @@ Before you begin
 
 [Install Tabsdata](https://docs.tabsdata.com/server-admin/install)
 
-[Connect to MCP](https://docs.tabsdata.com/guide/connect-agent)
+[Configure Your AI Agent](https://docs.tabsdata.com/guide/connect-agent)
 
 [Create a Project](https://docs.tabsdata.com/tutorials/managing-projects/create)
 

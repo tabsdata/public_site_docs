@@ -216,7 +216,7 @@ A stream publisher function has one parameter per source slot, annotated `TableF
 -   **Slots.** A CDC source has one slot per entry in its `tables`, in the same order. A Kafka source has a single slot.
 -   **Parameters.** Each parameter receives a list of frames with the data read for that slot since the previous batch. For a CDC source, the list holds at most one frame. For Kafka, it can hold several, possibly with different schemas; combine them with `concat(frames, how="diagonal_relaxed")` if their columns can differ.
 -   **Empty batches.** A slot with no new data receives an empty list. `concat` of an empty list returns `None`.
--   **Return value.** A tuple with one element per output table, in the order of `output_tables`. With a single output table, the frame can be returned on its own. Returning `None` for a table means no new data: the table gets a version without data, and its previous data stays current.
+-   **Return value.** A tuple with one element per output table, in the order of `output_tables`. With a single output table, the frame can be returned on its own. Returning `None` for a table means no new data: it commits a new version that holds the same data as the previous version.
 -   **No other parameters.** A stream publisher cannot declare a `ctx` parameter or any parameter beyond its slots.
 
 `concat` is imported from `tabsdatak.tableframe.functions`.

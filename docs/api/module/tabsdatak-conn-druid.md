@@ -15,7 +15,7 @@ Source: https://docs.tabsdata.com/api/module/tabsdatak-conn-druid
 | [`DruidDest`](https://docs.tabsdata.com/api/category/connectors/destination/druiddest) | Druid destination for `@subscriber` -- one slot per datasource. |
 | [`DruidDestConn`](https://docs.tabsdata.com/api/category/connectors/destination/druiddestconn) | Druid Overlord connection used by `DruidDest`. |
 | [`DruidTableNameSpec`](#tabsdatak.conn.druid.DruidTableNameSpec) |  |
-| [`DruidTableNamesSpec`](#tabsdatak.conn.druid.DruidTableNamesSpec) |  |
+| [`DruidTableNamesSpec`](#tabsdatak.conn.druid.DruidTableNamesSpec) | A list of Druid datasources (see `DruidTableNameSpec`), each at most once; datasource names are case-sensitive. |
 | [`IfTableExistsSpec`](#tabsdatak.conn.druid.IfTableExistsSpec) |  |
 | [`S3Location`](https://docs.tabsdata.com/api/category/connectors/destination/s3location-druid) | S3 staging area for `DruidDest`. |
 | [`SegmentGranularitySpec`](#tabsdatak.conn.druid.SegmentGranularitySpec) |  |
@@ -98,6 +98,8 @@ DruidTableNamesSpec: list[DruidTableNameSpec]
 ```python
 list[str]
 ```
+
+A list of Druid datasources (see [`DruidTableNameSpec`](https://docs.tabsdata.com/api/module/tabsdatak-conn-druid#tabsdatak.conn.druid.DruidTableNameSpec)), each at most once; datasource names are case-sensitive.
 
 * * *
 

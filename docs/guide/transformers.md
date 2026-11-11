@@ -111,11 +111,11 @@ Tabsdata stores all the commits of a table in the Tabsdata server. Hence, you ca
 
 A transformer may receive and return a `None` value instead of a TableFrame parameter or return value.
 
-When a transformer receives a `None` value instead of a TableFrame it means that the requested table dependency version does not exist.
+When a transformer receives a `None` value instead of a TableFrame it means that the requested version does not exist, the input table has never been produced, or the table had no data up to that version.
 
 For example, a transformer that has a dependency on the previous version of one the tables it produces, has a `None` value as an input on its first execution since the input table doesn’t exist yet.
 
-When a transformer returns a `None` value instead of a TableFrame it means that the associated table will preserve the existing data from the previous commit. This helps in avoiding the creation of multiple copies of the same data.
+When a transformer returns a `None` value instead of a TableFrame, it commits a new version of the associated table that holds the same data as the previous version. This helps in avoiding the creation of multiple copies of the same data.
 
 ### Triggers
 

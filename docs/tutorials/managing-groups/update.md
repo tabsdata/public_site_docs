@@ -1,6 +1,6 @@
 # Update a Group
 
-> Updates an existing Tabsdata group's name and description, with notes on which system groups (default, sources, destinations) cannot be renamed.
+> Renames a Tabsdata group and updates its description, covering the update command, the name and description fields, and the restriction on system groups default, sources, and destinations.
 
 Source: https://docs.tabsdata.com/tutorials/managing-groups/update
 
@@ -8,7 +8,7 @@ Before you begin
 
 [Install Tabsdata](https://docs.tabsdata.com/server-admin/install)
 
-[Connect to MCP](https://docs.tabsdata.com/guide/connect-agent)
+[Configure Your AI Agent](https://docs.tabsdata.com/guide/connect-agent)
 
 [Create a Project](https://docs.tabsdata.com/tutorials/managing-projects/create)
 

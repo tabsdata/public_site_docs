@@ -17,6 +17,7 @@ The subscriber is registered in a collection created with a `DruidDestConn` conn
 -   The Druid Overlord API is reachable from the Tabsdata server.
 -   The Overlord credentials can submit and inspect ingestion tasks.
 -   Tabsdata can write to the S3 or Azure staging location and Druid can read the staged Parquet files.
+-   The Druid cluster has the `druid-parquet-extensions` extension loaded, plus the S3 or Azure extension for the staging location.
 
 ### Subscriber
 
@@ -73,7 +74,7 @@ Each element in `tables` represents one destination slot and maps positionally t
 
 #### `time_column`
 
-The column Druid uses as its primary `__time` field. Druid requires a time column on every datasource; when the rows have none, leave `time_column` unset and the ingest time is used instead.
+The column Druid uses as its primary `__time` field. Druid requires a time column on every datasource. Without one, every row gets the fixed timestamp `2000-01-01T00:00:00Z`, so set `time_column` to a column that holds a timestamp for every row.
 
 #### `segment_granularity`
 
@@ -85,18 +86,23 @@ Tuning for the ingestion task: its concurrency (default `1`), the row cap per se
 
 #### `dest_cfg`
 
-Sets additional destination configuration. The accepted keys are `druid.logging_level`, `druid.poll_interval_seconds`, `druid.retry_attempts` and `druid.retry_backoff_seconds`.
+Sets additional destination configuration. The only accepted key is `druid.logging_level`. The keys `druid.poll_interval_seconds`, `druid.retry_attempts` and `druid.retry_backoff_seconds` are accepted but have no effect. The connector polls the task every 2 seconds and makes 3 attempts, with 2-second exponential backoff, on 429, 502, 503 and 504 responses and on connection or timeout errors.
 
 ## Write behavior
 
 Each entry in `tables` is one destination slot and maps by position to a value returned by the subscriber function. Returning `None` for a slot skips that write.
 
-`if_table_exists="append"` adds data to the datasource. `"replace"` overwrites it. `time_column` selects the row timestamp used as Druid `__time`; without it, the connector uses the ingest time.
+`if_table_exists="append"` adds data to the datasource. `"replace"` overwrites it: the ingestion task drops the existing segments in the range 1970-01-01 to 2100-01-01, and rows outside that range are discarded. Datasources are written one after another. `time_column` selects the row timestamp used as Druid `__time`; without it, every row gets `__time` set to `2000-01-01T00:00:00Z`.
+
+### Schema evolution
+
+Druid cannot enforce a schema, so `"update"` is its only `schema_evolution` value and its default; `"strict"` is refused at registration. On `"append"` and `"replace"`, Druid's native schema discovery adds a new column to the datasource, and a column the batch lacks reads as NULL. Druid has no keyed upsert, so `"merge"` is not supported.
 
 ## Operational notes
 
 -   The connection is to the Overlord API, not a SQL endpoint.
--   A write finishes only after the submitted ingestion task finishes. `http_timeout_sec`, polling, retry, and backoff settings control how Tabsdata waits for it.
+-   A write finishes only after the submitted ingestion task finishes. The task is polled with no overall timeout. `http_timeout_sec` limits each HTTP request, not the whole wait.
+-   Staged files are deleted when the ingestion task ends, whether it succeeds or fails with `DRUID_9`. If the outcome is unknown, the files are kept, so a lifecycle rule on the staging prefix can clear them. The staging credentials need delete permission.
 -   `segment_granularity` and the row limits change the ingestion task, not the Tabsdata input table.
 -   Tabsdata does not contact Druid or the staging service when the collection is created. Those checks happen when the subscriber runs.
 
@@ -189,8 +195,8 @@ A `UserPassword` used for HTTP basic authentication with the Overlord. Cloud sto
 
 #### `staging`
 
-An `S3Location` or an `AzBlobLocation` from `tabsdatak.conn.druid`, where the Parquet files are staged before ingestion. Tabsdata must be able to upload the staged files, and Druid must be able to read them.
+An `S3Location` or an `AzBlobLocation` from `tabsdatak.conn.druid`, where the Parquet files are staged before ingestion. Tabsdata must be able to upload the staged files, and Druid must be able to read them. Keys under `cfg` on the location configure the upload; see [Object Store Options](https://docs.tabsdata.com/developer/guide/connectors/object-store-options).
 
 #### `conn_cfg`
 
-Optional connector configuration.
+Optional connector configuration. It affects only the explorer, not writes.

@@ -1,6 +1,6 @@
 # TablesTrigger
 
-> Fire when one of a named set of upstream tables produces a new batch.
+> Fire on a new version of any of the named tables.
 
 Source: https://docs.tabsdata.com/api/category/functions/trigger/tablestrigger
 
@@ -14,7 +14,7 @@ Bases: [Trigger](https://docs.tabsdata.com/api/category/functions/trigger/trigge
 
 **Categories:** trigger
 
-Fire when one of a named set of upstream tables produces a new batch.
+Fire on a new version of any of the named tables.
 
 ## Parameters
 
@@ -22,4 +22,4 @@ parameter
 
 `tables`[CollTableNamesSpec](https://docs.tabsdata.com/api/module/tabsdatak-api#tabsdatak.api.CollTableNamesSpec) ([list](https://docs.python.org/3/library/stdtypes.html#list)\[[str](https://docs.python.org/3/library/stdtypes.html#str)\])
 
-`collection/table` references to watch.
+`[collection/]table` references to watch; they need not be inputs of the function. An empty list never fires: the function runs only when run manually.

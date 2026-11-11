@@ -22,6 +22,8 @@ Source: https://docs.tabsdata.com/api/category/connectors/destination/
 | [`Db2Dest`](https://docs.tabsdata.com/api/category/connectors/destination/db2dest) | Db2 destination for `@subscriber` -- one target table per slot. |
 | [`Db2DestConn`](https://docs.tabsdata.com/api/category/connectors/destination/db2destconn) | Db2 connection used by `Db2Dest`. |
 | [`Dest`](https://docs.tabsdata.com/api/category/connectors/destination/dest) | Abstract destination. |
+| [`DevFrameDest`](https://docs.tabsdata.com/api/category/connectors/destination/devframedest) | Destination reporting the `LazyFrame`\\ s a `@subscriber` hands it -- it writes no data. |
+| [`DevFrameDestConn`](https://docs.tabsdata.com/api/category/connectors/destination/devframedestconn) | Connection for `DevFrameDest` -- the folder its reports go to. |
 | [`DruidDest`](https://docs.tabsdata.com/api/category/connectors/destination/druiddest) | Druid destination for `@subscriber` -- one slot per datasource. |
 | [`DruidDestConn`](https://docs.tabsdata.com/api/category/connectors/destination/druiddestconn) | Druid Overlord connection used by `DruidDest`. |
 | [`GCSDest`](https://docs.tabsdata.com/api/category/connectors/destination/gcsdest) | GCS destination for `@subscriber` -- one target file per path. |

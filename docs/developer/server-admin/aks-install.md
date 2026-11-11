@@ -19,6 +19,7 @@ Tabsdata runs on Kubernetes as deployments containing an API server, AI agent, a
 -   Azure Database for PostgreSQL **Flexible Server** running version 18, in the same region as AKS (Single Server is not supported)
 -   Azure storage account with a Blob container, preferably in the same region
 -   Network access between the AKS cluster and the flexible server (VNet integration or a private endpoint), and between the client and the AKS cluster
+-   Optional, to keep function logs after the function run ends: a Log Analytics workspace fed by Container Insights, and Workload Identity on the cluster (see [Worker Log Store](#worker-log-store-optional)). If it is not configured, function logs are lost when the function run ends.
 
 ### Priority Classes
 
@@ -63,6 +64,37 @@ az aks nodepool add --subscription <AZ_SUBSCRIPTION> --resource-group <AZ_RESOUR
 
 Size the VM sizes for the largest single pod (see the sizing appendix). To place pods differently, edit `placement.selectors` in `tabsdata.yaml` instead.
 
+### Worker Log Store (optional)
+
+This is optional. If it is not configured, function logs are lost when the function run ends. With it, the apiserver reads them from the `ContainerLogV2` table of a Log Analytics workspace. Tabsdata needs no log shipper of its own on AKS.
+
+**For each subscription (one time)**
+
+-   The resource providers `Microsoft.OperationalInsights` and `Microsoft.Insights` are registered.
+
+**For each cluster (one time)**
+
+| Item | Requirement |
+| --- | --- |
+| Workspace | A Log Analytics workspace `<AZ_LOG_WORKSPACE_ID>`. Access control mode **"Use resource or workspace permissions"** (`enableLogAccessUsingOnlyResourcePermissions: true`), otherwise the per-namespace condition below does not apply |
+| Container Insights | The `monitoring` add-on sends to that workspace with **managed identity authentication** (`--enable-msi-auth-for-monitoring`) |
+| Agent config | ConfigMap `kube-system/container-azm-ms-agentconfig`: stdout and stderr enabled, `containerlog_schema_version = "v2"`, `metadata_collection` enabled with `include_fields = ["podLabels"]`, and Tabsdata namespaces not in `exclude_namespaces` |
+| Workload Identity | OIDC issuer and Workload Identity enabled on the cluster |
+| Retention | `ContainerLogV2` table retention at least as long as worker logs must stay available (the workspace default is 30 days) |
+
+Set up the cluster before you create instances. Enabling the add-on can replace nodes and be blocked by the instance's `aut-services` PodDisruptionBudget. Workload Identity applies only to pods started after it is enabled.
+
+**For each instance**
+
+| Item | Requirement |
+| --- | --- |
+| Managed identity | A user-assigned managed identity, with client ID `<AZ_APISERVER_CLIENT_ID>` |
+| Federated credential | On that identity: issuer = the cluster's OIDC issuer URL, subject = `system:serviceaccount:<TABSDATA_NAMESPACE>:aut-apiserver`, audience = `api://AzureADTokenExchange` |
+| Role | **Log Analytics Data Reader** on the workspace, with an ABAC condition (version 2.0) that limits table data reads to `ContainerLogV2` rows whose `PodNamespace` equals `<TABSDATA_NAMESPACE>` |
+| Must not have | **Log Analytics Reader** at the workspace, resource group or subscription scope. Role assignments add up, so it would cancel the condition |
+
+Creating the role assignment needs `Microsoft.Authorization/roleAssignments/write` (Owner, User Access Administrator, or a constrained Role Based Access Control Administrator). Contributor does not have it.
+
 ### Cluster Access
 
 Fetch the cluster credentials into your kubeconfig. Name the subscription explicitly: the cluster's subscription is not necessarily the one `az account show` reports.
@@ -81,16 +113,16 @@ From a machine with AKS cluster access, create a Python virtual environment and 
 **Using uv:**
 
 ```text
-uv pip install "tabsdata[all]" tabsdata-agent
+uv pip install "tabsdata[all]"
 ```
 
 **Using pip:**
 
 ```text
-pip install "tabsdata[all]" tabsdata-agent
+pip install "tabsdata[all]"
 ```
 
-**Note:** MySQL and PostgreSQL CDC connectors require database drivers that Tabsdata cannot redistribute. See "Installing Third-Party Database Drivers" if needed before proceeding.
+**Note:** PostgreSQL connectors require a database driver that Tabsdata cannot redistribute. See "Installing Third-Party Database Drivers" if needed before proceeding.
 
 ## Configuration Values Needed
 
@@ -112,6 +144,8 @@ Gather these before starting:
 |  | `<TABSDATA_NAMESPACE>` | Empty reserved namespace |
 |  | `<KUBECONFIG>` | Path to kubeconfig file |
 | LLM Provider | `<OPENAI_API_KEY>` / `<ANTHROPIC_API_KEY>` | LLM API key if AI integration enabled |
+| Worker Logs (optional) | `<AZ_APISERVER_CLIENT_ID>` | Client ID of the apiserver managed identity for this instance |
+|  | `<AZ_LOG_WORKSPACE_ID>` | Workspace ID (the GUID, `customerId`), not the resource ID |
 | Chosen During Install | `<TABSDATA_INSTANCE>` | Tabsdata instance name |
 
 ### Database TLS
@@ -214,6 +248,29 @@ hybrid_search:
   cache_dir: null
   offline: false
 ```
+
+### Configure Worker Logs (optional)
+
+Skip this if the cluster has no worker log store. Without it, function logs are lost when the function run ends.
+
+Edit `tabsdata.yaml` and set the identity and the workspace. Add these keys to the existing `pods.service.apiserver` block. Do not replace the block:
+
+```yaml
+pods:
+  service:
+    apiserver:
+      service_account:
+        annotations:
+          azure.workload.identity/client-id: <AZ_APISERVER_CLIENT_ID>
+      worker_logs:
+        workspace: <AZ_LOG_WORKSPACE_ID>
+```
+
+tdkserver writes the annotation on the `aut-apiserver` service account and adds the label `azure.workload.identity/use: "true"` to the apiserver pod, so the pod runs as the identity. The apiserver uses Log Analytics only when both values are set.
+
+Rows reach the workspace one to two minutes after they are written, so logs read right after a pod is deleted can be empty for a short time.
+
+To add it to an existing instance, make the same edit after `tdkserver config get --instance <TABSDATA_INSTANCE>`, then run `tdkserver config put --instance <TABSDATA_INSTANCE> --apply`, which restarts the apiserver.
 
 ### Preflight Check
 
@@ -353,3 +410,5 @@ pods:
 ```
 
 Set values based on actual component footprints and confirm node pools can satisfy the largest single pod. A tolerations list replaces the one Tabsdata would apply, so it must be complete. Use `tdkserver config get` and `tdkserver config put` to manage the file.
+
+`pods.service.apiserver` can also hold `service_account` and `worker_logs`; see [Configure Worker Logs](#configure-worker-logs-optional).

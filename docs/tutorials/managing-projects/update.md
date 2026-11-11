@@ -1,6 +1,6 @@
 # Update a Project
 
-> Updates a Tabsdata project's name and description through an MCP agent session, noting that the project id and its groups and collections are preserved on rename.
+> Explains how to update a Tabsdata project's name and description with an AI agent, noting that the project id and its groups and collections are preserved.
 
 Source: https://docs.tabsdata.com/tutorials/managing-projects/update
 
@@ -8,7 +8,7 @@ Before you begin
 
 [Install Tabsdata](https://docs.tabsdata.com/server-admin/install)
 
-[Connect to MCP](https://docs.tabsdata.com/guide/connect-agent)
+[Configure Your AI Agent](https://docs.tabsdata.com/guide/connect-agent)
 
 [Create a Project](https://docs.tabsdata.com/tutorials/managing-projects/create)
 

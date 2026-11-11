@@ -27,8 +27,7 @@ class ApiErrorCode(
     API_24 = ErrorDef(ApiInitException, 'not a valid table name (1-64 chars, must start with a letter, alphanumeric and underscore only): {value!r}'),
     API_25 = ErrorDef(ApiInitException, 'not a valid collection-qualified table name (<identifier> or <identifier>/<identifier>, no whitespace): {value!r}'),
     API_26 = ErrorDef(ApiInitException, 'not a valid collection-qualified table reference ([<collection>/]<table>[@<versions>], with <versions> a single version, a <version>..<version> range, the special range NEW or a comma-separated list, and a version HEAD / INITIAL with an optional ^ or ~N offset, or a fixed id): {value!r}'),
-    API_27 = ErrorDef(ApiInitException, 'not a Kubernetes CronJob schedule (5 whitespace-separated fields, or one of @yearly / @annually / @monthly / @weekly / @daily / @midnight / @hourly): {value!r}'),
-    API_28 = ErrorDef(ApiInitException, 'invalid cron expression: {value!r}'),
+    API_28 = ErrorDef(ApiInitException, '{reason}'),
     API_29 = ErrorDef(ApiInitException, '@stream_publisher thresholds validation failed'),
     API_30 = ErrorDef(ApiInitException, 'flush_interval_mins is deprecated and cannot be given together with the batch thresholds; set batch_max_secs instead of flush_interval_mins'),
 )
@@ -119,10 +118,6 @@ parameter
 parameter
 
 `API_26`
-
-parameter
-
-`API_27`
 
 parameter
 

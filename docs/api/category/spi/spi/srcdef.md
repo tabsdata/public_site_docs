@@ -63,7 +63,7 @@ parameter
 
 `table_mode`[TableMode](https://docs.tabsdata.com/api/category/spi/spi/tablemode)
 
-Whether `read_in` produces one file per slot or many; see [`TableMode`](https://docs.tabsdata.com/api/category/spi/spi/tablemode).
+How the data landed for each publisher input is served: one table or a list of tables; see [`TableMode`](https://docs.tabsdata.com/api/category/spi/spi/tablemode).
 
 parameter
 

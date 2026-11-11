@@ -10,13 +10,13 @@ class
 class PluginCtx
 ```
 
-Bases: [FlowCtx](https://docs.tabsdata.com/api/category/spi/spi/flowctx), [ABC](https://docs.python.org/3/library/abc.html#abc.ABC)
+Bases: [ABC](https://docs.python.org/3/library/abc.html#abc.ABC)
 
 **Categories:** spi
 
 Common context surface shared by every plugin variant (batch source, stream source, destination).
 
-Extends [`FlowCtx`](https://docs.tabsdata.com/api/category/spi/spi/flowctx) with the per-trx working directory where the plugin materialises parquet files.
+Extends [`FlowCtx`](https://docs.tabsdata.com/api/category/functions/functions/flowctx) with the per-trx working directory where the plugin materialises parquet files.
 
 ## Properties
 
@@ -24,4 +24,4 @@ property
 
 `work_dir`[Path](https://docs.python.org/3/library/pathlib.html#pathlib.Path)
 
-Per-trx scratch directory the plugin writes parquet to. Cleaned up by the runtime after the trx completes.
+Per-trx working directory the plugin writes parquet to. Cleaned up by the runtime after the trx completes.

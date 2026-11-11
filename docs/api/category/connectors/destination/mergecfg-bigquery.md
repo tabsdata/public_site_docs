@@ -23,6 +23,10 @@ Every incoming row carries a marker in `op_column` saying what to do with it, an
 -   `'i'` -- insert the row, if it matches no key.
 -   `'u'` -- update the row it matches.
 -   `'d'` -- delete the row it matches.
+-   `'l'` -- load: the table is reloaded from the rows that follow.
+-   `'t'` -- truncate: the table is emptied.
+
+A load or truncate row carries no data of its own -- its other columns are null -- and resets the table at its position: the changes ahead of it in the batch are void, and the target's rows are replaced, in one statement, by what the batch holds after it. A flow between a CDC stream and this destination has to pass these rows through.
 
 The idempotency watermark is named on the destination rather than here -- see `BigQueryDest.watermark_column`. It belongs to the write, not to the way one table's rows are matched, so a [`BigQueryDest`](https://docs.tabsdata.com/api/category/connectors/destination/bigquerydest) naming a list of configs still stamps every one of its targets with the same column.
 
@@ -46,7 +50,7 @@ parameter
 
 `op_column`[MergeColumnSpec](https://docs.tabsdata.com/api/module/tabsdatak-conn-bigquery#tabsdatak.conn.bigquery.MergeColumnSpec) ([str](https://docs.python.org/3/library/stdtypes.html#str))
 
-The column holding each row's `i` / `u` / `d` marker. Read to decide each row's fate and never written, so the target does not need the column and will not gain it.
+The column holding each row's `i` / `u` / `d` / `l` / `t` marker. Read to decide each row's fate and never written, so the target does not need the column and will not gain it.
 
 ## Methods
 

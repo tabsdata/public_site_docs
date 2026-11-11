@@ -1,6 +1,6 @@
 # Register a Function
 
-> Registers a Tabsdata function from a Python file into a collection, covering the register command, the name, description, and collection options, and how versions and updates behave.
+> Registers a Tabsdata function from a Python file into a collection, covering the transformer and function registration steps, naming, versioning, and the update option.
 
 Source: https://docs.tabsdata.com/tutorials/managing-functions/register
 
@@ -8,7 +8,7 @@ Before you begin
 
 [Install Tabsdata](https://docs.tabsdata.com/server-admin/install)
 
-[Connect to MCP](https://docs.tabsdata.com/guide/connect-agent)
+[Configure Your AI Agent](https://docs.tabsdata.com/guide/connect-agent)
 
 [Create a Collection](https://docs.tabsdata.com/tutorials/managing-collections/create)
 

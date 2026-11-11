@@ -1,6 +1,6 @@
 # Schedule a Cron Trigger
 
-> Schedules a Tabsdata publisher to run at fixed times with a CronTrigger crontab mask read in UTC, for sources with no upstream change signal.
+> Explains how to schedule a Tabsdata publisher or function with a CronTrigger using crontab masks evaluated in UTC, with a worked example of an hourly publisher.
 
 Source: https://docs.tabsdata.com/tutorials/trigger-setup/cron
 
@@ -8,7 +8,7 @@ Before you begin
 
 [Quickstart a Server](https://docs.tabsdata.com/server-admin/quickstart) or [Start a Server](https://docs.tabsdata.com/server-admin/start)
 
-[Connect to MCP](https://docs.tabsdata.com/guide/connect-agent)
+[Configure Your AI Agent](https://docs.tabsdata.com/guide/connect-agent)
 
 A scheduled trigger runs a function at fixed times whether or not any upstream data changed. It is the right trigger for a publisher, which has nothing inside Tabsdata to signal that its external system has new rows.
 

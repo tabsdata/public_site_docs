@@ -7,7 +7,7 @@ Source: https://docs.tabsdata.com/api/module/tabsdatak-conn-mongodb
 |  |  |
 | --- | --- |
 | [`CollectionSpec`](#tabsdatak.conn.mongodb.CollectionSpec) |  |
-| [`CollectionsWithIdsSpec`](#tabsdatak.conn.mongodb.CollectionsWithIdsSpec) |  |
+| [`CollectionsWithIdsSpec`](#tabsdatak.conn.mongodb.CollectionsWithIdsSpec) | The collections a MongoDB destination writes, each with its optional id field, each collection at most once; collection names are case-sensitive. |
 | [`ColumnNameSpec`](#tabsdatak.conn.mongodb.ColumnNameSpec) |  |
 | [`CredentialsSpec`](#tabsdatak.conn.mongodb.CredentialsSpec) |  |
 | [`DestCfgKey`](#tabsdatak.conn.mongodb.DestCfgKey) |  |
@@ -42,6 +42,8 @@ CollectionsWithIdsSpec: list[tuple[CollectionSpec, ColumnNameSpec | None]]
 ```python
 list[tuple[str, str | None]]
 ```
+
+The collections a MongoDB destination writes, each with its optional id field, each collection at most once; collection names are case-sensitive.
 
 * * *
 

@@ -151,7 +151,7 @@ Controls what happens when the destination table already exists. `"append"` (the
 
 #### `schema_evolution`
 
-Controls how new columns in the returned frame are handled. `"update"` forwards `mergeSchema=true` to `COPY INTO` so new columns are added. `"strict"` is the default and leaves existing data columns unchanged. See [Merging into SQL destinations](https://docs.tabsdata.com/developer/guide/functions/sql-merge#schema-evolution) for merge-specific behavior.
+Controls what happens when the returned frame has a column the table lacks or a wider type. `"update"` forwards `mergeSchema=true` to `COPY INTO` and sets `delta.enableTypeWidening`, so new columns are added and types widened. `"strict"` is the default: an append fails inside `COPY INTO` (`DATABRICKS_9`), and a merge is refused before it runs (`SQL_COMMON_10`). See [Schema Evolution](https://docs.tabsdata.com/developer/guide/connectors/schema-evolution).
 
 #### `dest_cfg`
 
@@ -167,7 +167,11 @@ For incremental reads, put named parameters such as `:last_id` in a query, set t
 
 Each entry in `tables` is one destination slot and maps by position to a returned value. Returning `None` for a slot skips that write.
 
-`if_table_exists="append"` adds rows, `"replace"` overwrites the table, and `"merge"` applies inserts, updates, and deletes by key. With `schema_evolution="update"`, append-style writes can add columns; `"strict"` does not change existing data columns.
+`if_table_exists="append"` adds rows, `"replace"` overwrites the table, and `"merge"` applies inserts, updates, and deletes by key. With `schema_evolution="update"`, writes can add columns and widen types; under `"strict"` a new column, or a wider type whose values do not fit, fails the write.
+
+### Schema evolution
+
+`schema_evolution` decides what a write does when the returned frame has a column the destination table lacks, or a type wider than the column's. `"strict"`, the default, refuses a new column, and refuses a wider type unless its values fit the column. `"update"` changes the table to fit the frame. On Databricks, `"update"` uses Databricks' native schema evolution on every `if_table_exists` mode: Delta `mergeSchema` with type widening on `"append"` and `"replace"`, and `MERGE WITH SCHEMA EVOLUTION` on `"merge"`. It adds columns and widens the types Delta type widening supports. Databricks takes no `schema_evolution_engine` setting.
 
 ## Operational notes
 

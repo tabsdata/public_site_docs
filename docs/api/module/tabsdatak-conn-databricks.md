@@ -13,7 +13,7 @@ Source: https://docs.tabsdata.com/api/module/tabsdatak-conn-databricks
 | [`DatabricksSrc`](https://docs.tabsdata.com/api/category/connectors/source/databrickssrc) | Databricks source for `@publisher` -- one output slot per query. |
 | [`DatabricksSrcConn`](https://docs.tabsdata.com/api/category/connectors/source/databrickssrcconn) | Databricks workspace connection used by `DatabricksSrc`. |
 | [`DatabricksTableNameSpec`](#tabsdatak.conn.databricks.DatabricksTableNameSpec) |  |
-| [`DatabricksTableNamesSpec`](#tabsdatak.conn.databricks.DatabricksTableNamesSpec) |  |
+| [`DatabricksTableNamesSpec`](#tabsdatak.conn.databricks.DatabricksTableNamesSpec) | A list of Databricks table names (see `DatabricksTableNameSpec`), each at most once: names that differ only in quoting or in case are the same table, as Databricks ignores the case of a name, quoted or not. |
 | [`DatabricksTokenSpec`](#tabsdatak.conn.databricks.DatabricksTokenSpec) |  |
 | [`DestCfgKey`](#tabsdatak.conn.databricks.DestCfgKey) |  |
 | [`DestCfgSpec`](#tabsdatak.conn.databricks.DestCfgSpec) |  |
@@ -85,6 +85,8 @@ DatabricksTableNamesSpec: list[DatabricksTableNameSpec]
 ```python
 list[str]
 ```
+
+A list of Databricks table names (see [`DatabricksTableNameSpec`](https://docs.tabsdata.com/api/module/tabsdatak-conn-databricks#tabsdatak.conn.databricks.DatabricksTableNameSpec)), each at most once: names that differ only in quoting or in case are the same table, as Databricks ignores the case of a name, quoted or not.
 
 * * *
 

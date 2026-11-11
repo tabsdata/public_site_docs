@@ -10,7 +10,7 @@ Source: https://docs.tabsdata.com/api/module/tabsdatak-conn-clickhouse
 | [`ClickHouseDest`](https://docs.tabsdata.com/api/category/connectors/destination/clickhousedest) | ClickHouse destination for `@subscriber` -- one output slot per table. |
 | [`ClickHouseDestConn`](https://docs.tabsdata.com/api/category/connectors/destination/clickhousedestconn) | ClickHouse connection. |
 | [`ClickHouseTableNameSpec`](#tabsdatak.conn.clickhouse.ClickHouseTableNameSpec) |  |
-| [`ClickHouseTableNamesSpec`](#tabsdatak.conn.clickhouse.ClickHouseTableNamesSpec) |  |
+| [`ClickHouseTableNamesSpec`](#tabsdatak.conn.clickhouse.ClickHouseTableNamesSpec) | A list of ClickHouse table names (see `ClickHouseTableNameSpec`), each at most once: names that differ only in quoting, or in the case of an unquoted part (unchanged, as ClickHouse names are case-sensitive), are the same table. |
 | [`CloudLocation`](https://docs.tabsdata.com/api/category/connectors/destination/cloudlocation-clickhouse) | Abstract base for a ClickHouse `staging` cloud location. |
 | [`CredentialsSpec`](#tabsdatak.conn.clickhouse.CredentialsSpec) | The credential type for ClickHouse connections: `UserPassword` (user + password). |
 | [`DatabaseSpec`](#tabsdatak.conn.clickhouse.DatabaseSpec) |  |
@@ -19,6 +19,7 @@ Source: https://docs.tabsdata.com/api/module/tabsdatak-conn-clickhouse
 | [`GCSLocation`](https://docs.tabsdata.com/api/category/connectors/destination/gcslocation-clickhouse) | GCS staging area for `ClickHouseDest`. |
 | [`IfTableExistsSpec`](#tabsdatak.conn.clickhouse.IfTableExistsSpec) |  |
 | [`S3Location`](https://docs.tabsdata.com/api/category/connectors/destination/s3location-clickhouse) | S3 staging area for `ClickHouseDest`. |
+| [`SchemaEvolutionEngineSpec`](#tabsdatak.conn.clickhouse.SchemaEvolutionEngineSpec) | Which machinery evolves the target's schema. |
 | [`SchemaEvolutionSpec`](#tabsdatak.conn.clickhouse.SchemaEvolutionSpec) |  |
 
 * * *
@@ -46,6 +47,8 @@ ClickHouseTableNamesSpec: list[ClickHouseTableNameSpec]
 ```python
 list[str]
 ```
+
+A list of ClickHouse table names (see [`ClickHouseTableNameSpec`](https://docs.tabsdata.com/api/module/tabsdatak-conn-clickhouse#tabsdatak.conn.clickhouse.ClickHouseTableNameSpec)), each at most once: names that differ only in quoting, or in the case of an unquoted part (unchanged, as ClickHouse names are case-sensitive), are the same table.
 
 * * *
 
@@ -82,7 +85,7 @@ str | Secret
 type\_alias
 
 ```python
-DestCfgKey: Literal['clickhouse.logging_level']
+DestCfgKey: Literal['clickhouse.logging_level', 'clickhouse.schema_evolution_engine']
 ```
 
 * * *
@@ -98,7 +101,7 @@ DestCfgSpec: Mapping[DestCfgKey, Any]
 **Resolved type:**
 
 ```python
-Mapping[Literal['clickhouse.logging_level'], Any]
+Mapping[Literal['clickhouse.logging_level', 'clickhouse.schema_evolution_engine'], Any]
 ```
 
 * * *
@@ -113,10 +116,22 @@ IfTableExistsSpec: Literal['append', 'replace']
 
 * * *
 
+## SchemaEvolutionEngineSpec
+
+type\_alias
+
+```python
+SchemaEvolutionEngineSpec: Literal['iceberg']
+```
+
+Which machinery evolves the target's schema. ClickHouse has no schema evolution of its own, so the only engine is `"iceberg"`: the connector diffs the target against the incoming batch and emits the `ALTER` statements itself.
+
+* * *
+
 ## SchemaEvolutionSpec
 
 type\_alias
 
 ```python
-SchemaEvolutionSpec: Literal['strict', 'iceberg']
+SchemaEvolutionSpec: Literal['strict', 'update']
 ```

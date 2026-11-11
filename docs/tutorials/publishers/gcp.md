@@ -1,6 +1,6 @@
 # Publish data from Google Cloud Storage
 
-> Publishes objects from a Google Cloud Storage bucket into Tabsdata tables using a GCS source connection with a service account JSON key, `paths` globs, and `initial_last_modified`.
+> Publishes objects from a Google Cloud Storage bucket into Tabsdata tables, covering GCSSrc paths, service account JSON credentials, base_path, and initial_last_modified.
 
 Source: https://docs.tabsdata.com/tutorials/publishers/gcp
 
@@ -8,7 +8,7 @@ Before you begin
 
 [Quickstart a Server](https://docs.tabsdata.com/server-admin/quickstart) or [Start a Server](https://docs.tabsdata.com/server-admin/start)
 
-[Connect to MCP](https://docs.tabsdata.com/guide/connect-agent)
+[Configure Your AI Agent](https://docs.tabsdata.com/guide/connect-agent)
 
 ## Ingest objects from a bucket
 

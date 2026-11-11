@@ -4,13 +4,15 @@ Source: https://docs.tabsdata.com/developer/guide/secrets-management/
 
 Credentials used by Publisher and Subscriber Functions are stored in Connections. Connections are credential stores that are attached to collections, which enable the function inside the collection to use the credentials.
 
+A Project can also hold secrets that its Functions read directly. See [Project Secrets](https://docs.tabsdata.com/developer/guide/projects#project-secrets).
+
 To register a connection into Tabsdata, the user must generate a `.yaml` connection document template through the `tdk connection template` cli command and fill in the required credentials. Once the document is completed, it must be attached to a collection through the `tdk collection create` or `tdk collection update` cli command.
 
 During connection registration, Tabsdata **dehydrates** the Connection document by extracting its credentials into a separate secret store and replacing them in the stored Connection with references to those secrets.
 
 Once stored, credentials are only made available to a Function when it runs. In fact, once credentials are in Tabsdata, there is no way to read them out of the system. This is by design, ensuring your secrets are always secure.
 
-When creating workflows through MCP, it is important to remember that you must provide your credentials to your LLM in order for it to pass those credentials into Tabsdata. It is important to understand the security implications of doing so.
+When a coding agent builds workflows for you, it can only pass credentials into Tabsdata that you give it. Understand the security implications of providing credentials to your LLM before you do.
 
 There are several ways to pass secrets to an LLM for creating connections.
 

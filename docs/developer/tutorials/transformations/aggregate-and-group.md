@@ -481,7 +481,7 @@ from tabsdatak.api import TableFrameSpec, transformer
     output_tables=["result"],
 )
 def transform(tf: TableFrameSpec) -> TableFrameSpec:
-    result = tf.group_by("category").count()
+    result = tf.group_by("category").len(name="count")
     return result
 ```
 
@@ -497,7 +497,7 @@ sales
 
 result
 
-| category | sales |
+| category | count |
 | --- | --- |
 | tools | 2 |
 | toys | 1 |

@@ -14,17 +14,19 @@ Source: https://docs.tabsdata.com/api/module/tabsdatak-conn-db2
 | [`Db2CdcStartFromSpec`](#tabsdatak.conn.db2.Db2CdcStartFromSpec) | Where a Db2 CDC stream begins: `"full"` (a snapshot of every tracked source table, then the changes after it), a `"head"` / `"tail"` keyword, a `CommitSeqPosition`, a `TableCommitSeqPosition` or a `TimestampPosition`. |
 | [`Db2CdcStreamSrc`](https://docs.tabsdata.com/api/category/connectors/source/db2cdcstreamsrc) | Db2 CDC stream source for `@stream_publisher`. |
 | [`Db2CdcStreamSrcConn`](https://docs.tabsdata.com/api/category/connectors/source/db2cdcstreamsrcconn) | Db2 CDC connection used by `Db2CdcStreamSrc`. |
+| [`Db2CdcTableNamesSpec`](#tabsdatak.conn.db2.Db2CdcTableNamesSpec) | The tables a Db2 CDC stream tracks (see `Db2TableNameSpec`), each at most once: names that differ only in quoting, or in the case of an unquoted part (upper-cased, as Db2 folds them), are the same table. |
 | [`Db2Dest`](https://docs.tabsdata.com/api/category/connectors/destination/db2dest) | Db2 destination for `@subscriber` -- one target table per slot. |
 | [`Db2DestConn`](https://docs.tabsdata.com/api/category/connectors/destination/db2destconn) | Db2 connection used by `Db2Dest`. |
 | [`Db2Src`](https://docs.tabsdata.com/api/category/connectors/source/db2src) | Db2 source for `@publisher` -- one output slot per query. |
 | [`Db2SrcConn`](https://docs.tabsdata.com/api/category/connectors/source/db2srcconn) | Db2 connection used by `Db2Src`. |
 | [`Db2TableNameSpec`](#tabsdatak.conn.db2.Db2TableNameSpec) | A Db2 table name, either `table` or `schema.table` (at most two dot-separated parts). |
-| [`Db2TableNamesSpec`](#tabsdatak.conn.db2.Db2TableNamesSpec) | A list of Db2 table names (see `Db2TableNameSpec`). |
+| [`Db2TableNamesSpec`](#tabsdatak.conn.db2.Db2TableNamesSpec) | A list of Db2 table names (see `Db2TableNameSpec`), each at most once: names that differ only in quoting, or in the case of an unquoted part (upper-cased, as Db2 folds them), are the same table. |
 | [`DestCfgKey`](#tabsdatak.conn.db2.DestCfgKey) |  |
 | [`DestCfgSpec`](#tabsdatak.conn.db2.DestCfgSpec) |  |
-| [`IfTableExistsSpec`](#tabsdatak.conn.db2.IfTableExistsSpec) | Write disposition when the target table exists: `"append"` adds rows; `"replace"` truncates before insert. |
+| [`IfTableExistsSpec`](#tabsdatak.conn.db2.IfTableExistsSpec) |  |
 | [`QueriesSpec`](#tabsdatak.conn.db2.QueriesSpec) | A non-empty, ordered list of SELECT statements -- one output slot per query. |
 | [`RelativePositionSpec`](#tabsdatak.conn.db2.RelativePositionSpec) | Relative CDC start position: `"head"` rewinds to the oldest row still retained in each tracked CD table; `"tail"` skips to each CD table's current watermark (only later changes are emitted). |
+| [`SchemaEvolutionSpec`](#tabsdatak.conn.db2.SchemaEvolutionSpec) | Write disposition when the target table exists: `"append"` adds rows; `"replace"` truncates before insert. |
 | [`SrcCfgKey`](#tabsdatak.conn.db2.SrcCfgKey) |  |
 | [`SrcCfgSpec`](#tabsdatak.conn.db2.SrcCfgSpec) |  |
 | [`TableCommitSeqPosition`](https://docs.tabsdata.com/api/category/connectors/source/tablecommitseqposition) | CDC start position: independent commit sequence per table. |
@@ -105,6 +107,24 @@ Where a Db2 CDC stream begins: `"full"` (a snapshot of every tracked source tabl
 
 * * *
 
+## Db2CdcTableNamesSpec
+
+type\_alias
+
+```python
+Db2CdcTableNamesSpec: list[Db2TableNameSpec]
+```
+
+**Resolved type:**
+
+```python
+list[str]
+```
+
+The tables a Db2 CDC stream tracks (see [`Db2TableNameSpec`](https://docs.tabsdata.com/api/module/tabsdatak-conn-db2#tabsdatak.conn.db2.Db2TableNameSpec)), each at most once: names that differ only in quoting, or in the case of an unquoted part (upper-cased, as Db2 folds them), are the same table.
+
+* * *
+
 ## Db2TableNameSpec
 
 type\_alias
@@ -131,7 +151,7 @@ Db2TableNamesSpec: list[Db2TableNameSpec]
 list[str]
 ```
 
-A list of Db2 table names (see [`Db2TableNameSpec`](https://docs.tabsdata.com/api/module/tabsdatak-conn-db2#tabsdatak.conn.db2.Db2TableNameSpec)).
+A list of Db2 table names (see [`Db2TableNameSpec`](https://docs.tabsdata.com/api/module/tabsdatak-conn-db2#tabsdatak.conn.db2.Db2TableNameSpec)), each at most once: names that differ only in quoting, or in the case of an unquoted part (upper-cased, as Db2 folds them), are the same table.
 
 * * *
 
@@ -140,7 +160,7 @@ A list of Db2 table names (see [`Db2TableNameSpec`](https://docs.tabsdata.com/ap
 type\_alias
 
 ```python
-DestCfgKey: Literal['db2.logging_level', 'tabsdata.sql.write_engine', 'tabsdata.sql.chunk_size']
+DestCfgKey: Literal['db2.logging_level', 'db2.schema_evolution_engine', 'tabsdata.sql.write_engine', 'tabsdata.sql.chunk_size']
 ```
 
 * * *
@@ -156,7 +176,7 @@ DestCfgSpec: Mapping[DestCfgKey, Any]
 **Resolved type:**
 
 ```python
-Mapping[Literal['db2.logging_level', 'tabsdata.sql.write_engine', 'tabsdata.sql.chunk_size'], Any]
+Mapping[Literal['db2.logging_level', 'db2.schema_evolution_engine', 'tabsdata.sql.write_engine', 'tabsdata.sql.chunk_size'], Any]
 ```
 
 * * *
@@ -168,8 +188,6 @@ type\_alias
 ```python
 IfTableExistsSpec: Literal['append', 'replace']
 ```
-
-Write disposition when the target table exists: `"append"` adds rows; `"replace"` truncates before insert.
 
 * * *
 
@@ -194,6 +212,18 @@ RelativePositionSpec: Literal['head', 'tail']
 ```
 
 Relative CDC start position: `"head"` rewinds to the oldest row still retained in each tracked CD table; `"tail"` skips to each CD table's current watermark (only later changes are emitted).
+
+* * *
+
+## SchemaEvolutionSpec
+
+type\_alias
+
+```python
+SchemaEvolutionSpec: Literal['strict', 'update']
+```
+
+Write disposition when the target table exists: `"append"` adds rows; `"replace"` truncates before insert.
 
 * * *
 

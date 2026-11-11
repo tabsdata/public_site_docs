@@ -1,6 +1,6 @@
 # Create a Project
 
-> Shows how to create a Tabsdata project from an agent session via MCP, covering the project name, description, ID, and the active-project setting.
+> Explains how to create a Tabsdata project through an AI agent, covering the name and description fields, the generated project ID, and setting the new project as active.
 
 Source: https://docs.tabsdata.com/tutorials/managing-projects/create
 
@@ -8,7 +8,7 @@ Before you begin
 
 [Install Tabsdata](https://docs.tabsdata.com/server-admin/install)
 
-[Connect to MCP](https://docs.tabsdata.com/guide/connect-agent)
+[Configure Your AI Agent](https://docs.tabsdata.com/guide/connect-agent)
 
 AI agent session
 

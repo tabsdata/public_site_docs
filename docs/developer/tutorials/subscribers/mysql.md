@@ -10,10 +10,6 @@ Before you begin
 
 This tutorial shows how to set up a MySQL subscriber that writes one or more Tabsdata Tables into a MySQL or MariaDB database.
 
-warning
-
-The MySQL connector needs the `mysql-connector-python` driver, which Tabsdata does not redistribute. See [Installing Third-Party Database Drivers](https://docs.tabsdata.com/developer/server-admin/third-party-database-drivers) to add it to your Tabsdata server.
-
 What you’ll do
 
 1.  [Configure a connection to MySQL](#configure-a-connection-to-mysql)

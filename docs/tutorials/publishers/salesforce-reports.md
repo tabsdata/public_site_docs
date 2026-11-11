@@ -1,6 +1,6 @@
 # Publish data from Salesforce Reports
 
-> Publishes Salesforce report data into Tabsdata using SalesforceReportSrc, covering report name or id lookup with find_report_by, column_name_strategy, filter and filter_logic grouping, and last_modified_column for incremental reads.
+> Publishes Salesforce report data into Tabsdata using SalesforceReportSrc, covering report name or id lookup with find_report_by, column_name_strategy, filter and filter_logic options, and incremental last_modified_column.
 
 Source: https://docs.tabsdata.com/tutorials/publishers/salesforce-reports
 
@@ -8,7 +8,7 @@ Before you begin
 
 [Quickstart a Server](https://docs.tabsdata.com/server-admin/quickstart) or [Start a Server](https://docs.tabsdata.com/server-admin/start)
 
-[Connect to MCP](https://docs.tabsdata.com/guide/connect-agent)
+[Configure Your AI Agent](https://docs.tabsdata.com/guide/connect-agent)
 
 ## Ingest a Salesforce report
 

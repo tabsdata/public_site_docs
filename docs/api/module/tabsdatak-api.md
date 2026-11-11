@@ -6,7 +6,7 @@ Source: https://docs.tabsdata.com/api/module/tabsdatak-api
 
 |  |  |
 | --- | --- |
-| [`AllTablesTrigger`](https://docs.tabsdata.com/api/category/functions/trigger/alltablestrigger) | Fire when _any_ upstream table the function reads from produces a new batch. |
+| [`AllTablesTrigger`](https://docs.tabsdata.com/api/category/functions/trigger/alltablestrigger) | Fire on a new version of any table the function reads, other than the ones it writes. |
 | [`BasicDictSpec`](#tabsdatak.api.BasicDictSpec) |  |
 | [`BasicTypeSpec`](#tabsdatak.api.BasicTypeSpec) |  |
 | [`BatchBytesSpec`](#tabsdatak.api.BatchBytesSpec) |  |
@@ -22,7 +22,9 @@ Source: https://docs.tabsdata.com/api/module/tabsdatak-api
 | [`CronMaskSpec`](#tabsdatak.api.CronMaskSpec) |  |
 | [`CronTrigger`](https://docs.tabsdata.com/api/category/functions/trigger/crontrigger) | Fire on a cron schedule. |
 | [`Dest`](https://docs.tabsdata.com/api/category/connectors/destination/dest) | Abstract destination. |
+| [`FlowCtx`](https://docs.tabsdata.com/api/category/functions/functions/flowctx) | Flow-level identifiers (project / collection / function) shared by every role that runs inside a trx -- plugins _and_ user-decorated functions. |
 | [`FlushIntervalSpec`](#tabsdatak.api.FlushIntervalSpec) |  |
+| [`FunctionCtx`](https://docs.tabsdata.com/api/category/functions/functions/functionctx) | Context handed to a user-decorated function (`@publisher` / `@transformer` / `@subscriber`) that declares a trailing `ctx` parameter. |
 | [`OnTablesAction`](#tabsdatak.api.OnTablesAction) | Abstract base for declarative table-side-effect actions. |
 | [`OnTablesActionSpec`](#tabsdatak.api.OnTablesActionSpec) |  |
 | [`PollThresholds`](https://docs.tabsdata.com/api/category/functions/functions/pollthresholds) | How a stream publisher polls its source: `max_secs` is the budget of one ingestion iteration, `idle_secs` the wait before the next one when the iteration read nothing. |
@@ -40,11 +42,11 @@ Source: https://docs.tabsdata.com/api/module/tabsdatak-api
 | [`TableFramesSpec`](#tabsdatak.api.TableFramesSpec) |  |
 | [`TableNameSpec`](#tabsdatak.api.TableNameSpec) |  |
 | [`TableNamesSpec`](#tabsdatak.api.TableNamesSpec) |  |
-| [`TablesTrigger`](https://docs.tabsdata.com/api/category/functions/trigger/tablestrigger) | Fire when one of a named set of upstream tables produces a new batch. |
+| [`TablesTrigger`](https://docs.tabsdata.com/api/category/functions/trigger/tablestrigger) | Fire on a new version of any of the named tables. |
+| [`TransactionCtx`](#tabsdatak.api.TransactionCtx) | Per-trx context handed by the runtime to every decorated function and connector plugin. |
 | [`transformer`](https://docs.tabsdata.com/api/category/functions/functions/transformer) | Decorate a function as a transformer (table-to-table, no external connection). |
 | [`TransformerTriggerBySpec`](#tabsdatak.api.TransformerTriggerBySpec) |  |
 | [`Trigger`](https://docs.tabsdata.com/api/category/functions/trigger/trigger) | Abstract base for the trigger family. |
-| [`TrxCtx`](#tabsdatak.api.TrxCtx) | Per-trx context handed by the runtime to every decorated function and connector plugin. |
 
 * * *
 
@@ -296,53 +298,55 @@ list[str]
 
 * * *
 
-## TransformerTriggerBySpec
-
-type\_alias
-
-```python
-TransformerTriggerBySpec: Union[CronTrigger, TablesTrigger, AllTablesTrigger]
-```
-
-**Resolved type:**
-
-```python
-CronTrigger | TablesTrigger | AllTablesTrigger
-```
-
-* * *
-
-## TrxCtx
+## TransactionCtx
 
 class
 
 ```python
-class TrxCtx
+class TransactionCtx
 ```
 
-Bases: [ABC](https://docs.python.org/3/library/abc.html#abc.ABC)
+Bases: `TransactionCtxLegacy`, [ABC](https://docs.python.org/3/library/abc.html#abc.ABC)
 
 Per-trx context handed by the runtime to every decorated function and connector plugin.
 
-A function receives it by declaring a trailing `ctx: TrxCtx` parameter (not allowed on `@stream_publisher`). Carries trx-level identifiers (`exec_plan_id`, `trx_id`, `exec_plan_ts`), a per-flow scratch store that survives across invocations (`get_attr` / `set_attr`), and a metadata sink (`add_metadata`).
+A function receives it by declaring a trailing `ctx: TransactionCtx` parameter (not allowed on `@stream_publisher`). Carries the identifiers of the execution, transaction and function run it belongs to (named as the server API names them), a per-flow attribute store that survives across invocations (`get_attr` / `set_attr`), and a metadata sink (`add_metadata`).
 
 property
 
-`exec_plan_id`[str](https://docs.python.org/3/builtins/stdtypes.html#str)
+`execution_id`[str](https://docs.python.org/3/builtins/stdtypes.html#str)
 
-Unique id of the running execution plan.
-
-property
-
-`trx_id`[str](https://docs.python.org/3/builtins/stdtypes.html#str)
-
-Unique id of the current trx within the plan.
+Unique id of the execution the run belongs to.
 
 property
 
-`exec_plan_ts`[str](https://docs.python.org/3/builtins/stdtypes.html#str)
+`execution`[str](https://docs.python.org/3/builtins/stdtypes.html#str) | None
 
-ISO-8601 timestamp of when the plan started.
+Execution name, or `None` when the execution has none.
+
+property
+
+`transaction_id`[str](https://docs.python.org/3/builtins/stdtypes.html#str)
+
+Unique id of the transaction the run belongs to.
+
+property
+
+`logical_function_run_id`[str](https://docs.python.org/3/builtins/stdtypes.html#str)
+
+Unique id of the function run, the same across its retries.
+
+property
+
+`physical_function_run_id`[str](https://docs.python.org/3/builtins/stdtypes.html#str)
+
+Unique id of this attempt of the function run; each retry gets a new one.
+
+property
+
+`triggered_on`[datetime](https://docs.python.org/3/library/datetime.html#datetime.datetime)
+
+When the function run was triggered, as a timezone-aware UTC `datetime`.
 
 method
 
@@ -352,7 +356,7 @@ method
 def get_attr(attr: ContextKeySpec) -> BasicTypeSpec | None
 ```
 
-Read a per-flow scratch value (returns `None` if unset).
+Read a per-flow attribute (returns `None` if unset).
 
 **Parameters:**
 
@@ -368,9 +372,9 @@ method
 def set_attr(attr: ContextKeySpec, val: BasicTypeSpec | None)
 ```
 
-Write a per-flow scratch value -- persists across trx invocations within the same flow.
+Write a per-flow attribute -- persists across trx invocations within the same flow.
 
-Connectors may reserve namespaces under this scratch store for their own internal bookkeeping (`file-lastmod.*` is the only one today). Writing to such names from user code can corrupt connector state -- pick names that don't collide with these prefixes.
+Connectors may reserve namespaces under this attribute store for their own internal bookkeeping (`file-lastmod.*` is the only one today). Writing to such names from user code can corrupt connector state -- pick names that don't collide with these prefixes.
 
 **Parameters:**
 
@@ -401,3 +405,19 @@ parameter
 parameter
 
 `val`[BasicTypeSpec](https://docs.tabsdata.com/api/module/tabsdatak-api#tabsdatak.api.BasicTypeSpec) | None ([str](https://docs.python.org/3/library/stdtypes.html#str) | [int](https://docs.python.org/3/library/functions.html#int) | [float](https://docs.python.org/3/library/functions.html#float) | [bool](https://docs.python.org/3/library/functions.html#bool) | None)
+
+* * *
+
+## TransformerTriggerBySpec
+
+type\_alias
+
+```python
+TransformerTriggerBySpec: Union[CronTrigger, TablesTrigger, AllTablesTrigger]
+```
+
+**Resolved type:**
+
+```python
+CronTrigger | TablesTrigger | AllTablesTrigger
+```

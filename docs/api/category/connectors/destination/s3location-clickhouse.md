@@ -54,4 +54,4 @@ parameter
 
 `cfg`[CfgSpec](https://docs.tabsdata.com/api/module/tabsdatak-conn-common-types#tabsdatak.conn.common.types.CfgSpec) | None ([dict](https://docs.python.org/3/library/stdtypes.html#dict) | None)
 
-Optional connector-config dict for the S3 client.
+Optional config dict; its `obstore.*` keys configure the store parquet is staged through. `obstore.endpoint` (an S3-compatible service) also becomes the address ClickHouse reads the staged file from, path-style unless `obstore.virtual_hosted_style_request` is true.

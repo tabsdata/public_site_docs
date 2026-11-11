@@ -2,6 +2,39 @@
 
 Source: https://docs.tabsdata.com/release-notes
 
+## Tabsdata 2.3.0
+
+Tabsdata 2.3.0 installation in MS Windows ONLY
+
+Tabsdata 2.3.0 for MS Windows is unavailable on PyPI because the release exceeded PyPI's upload constraints. Until it is available there, the 2.3.0 packages are hosted on the Tabsdata package index at `https://pypi.tabsdata.com/simple/`.
+
+### 1\. Configure the Tabsdata package index
+
+Before installing Tabsdata, configure `pip` and `uv` to resolve packages from the Tabsdata package index in addition to PyPI:
+
+```bash
+export PIP_EXTRA_INDEX_URL=https://pypi.tabsdata.com/simple/
+export UV_INDEX=https://pypi.tabsdata.com/simple/
+export UV_INDEX_STRATEGY=unsafe-best-match
+```
+
+Keep these environment variables set while running `tdkserver quickstart`. When a Tabsdata instance is created, it installs its own Tabsdata environment and also needs access to the Tabsdata package index.
+
+**New:**
+
+-   Full streaming data processing. Local file system is not used during function execution for caching and staging data anymore. Data is directly read and written from external systems and the configured data storage system.
+-   When running in a cloud Kubernetes, Tabsdata system logs and functions logs are accessible in the cloud Log Management Service and accessible via Tabsdata UI and CLI.
+-   SQL destination connectors (MySQL, MS SqlServer, Postgres, Oracle, DB2) now support schema evolution (Iceberg semantics).
+-   Project secrets. A project can store secrets, function within the project can access those secrets through their context. See [Project secrets](https://docs.tabsdata.com/guide/projects#project-secrets).
+
+**Fixes and improvements:**
+
+-   Simplified AI agent: Tabsdata integration, a skill replaces Tabsdata MCP delivering additional functionality.
+-   Performance improvements calculating execution plans.
+-   Scalability improvements.
+-   Lighter Kubernetes jobs, reduced the number of containers in function execution pods.
+-   Unified type inference and schema evolution handling across connectors.
+
 ## Tabsdata 2.2.1
 
 **Fixes and improvements:**
@@ -319,7 +352,7 @@ Tabsdata 2.0 also adds:
 **New:**
 
 -   New Source connector: Databricks.
--   ClickHouse and StarRocks destination connectors support Iceberg schema evolution.
+-   ClickHouse destination connector supports Iceberg schema evolution. StarRocks did not apply its `schema_evolution` setting until 2.3.0.
 -   MySQL CDC, Postgres CDC, and Db2 CDC triggers support schema changes.
 -   File-based sources (Local, S3, Azure, GCS) can add columns with file URI/name and row position.
 -   New UI functionality: lineage tracking — given a table data version or a function version, it is possible to see all execution plans where they were used.

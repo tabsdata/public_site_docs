@@ -47,4 +47,4 @@ parameter
 
 `cfg`[CfgSpec](https://docs.tabsdata.com/api/module/tabsdatak-conn-common-types#tabsdatak.conn.common.types.CfgSpec) | None ([dict](https://docs.python.org/3/library/stdtypes.html#dict) | None)
 
-Optional connector-config dict for the Azure Blob client.
+Optional config dict; its `obstore.*` keys configure the store parquet is staged through. `obstore.endpoint` (e.g. Azurite) also becomes the account URL ClickHouse reads the staged file from.

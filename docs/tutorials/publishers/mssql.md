@@ -1,6 +1,6 @@
 # Publish data from SQL Server
 
-> Publishes SQL Server query results to Tabsdata using the MSSQLSrc source and MSSQLSrcConn connection, covering the ODBC driver URI, credentials, and queries.
+> Publishes SQL Server query results to Tabsdata with an MSSQLSrc source, covering the mssql+pyodbc connection URI, ODBC driver setting, credentials, and the queries and output_tables options.
 
 Source: https://docs.tabsdata.com/tutorials/publishers/mssql
 
@@ -8,7 +8,7 @@ Before you begin
 
 [Quickstart a Server](https://docs.tabsdata.com/server-admin/quickstart) or [Start a Server](https://docs.tabsdata.com/server-admin/start)
 
-[Connect to MCP](https://docs.tabsdata.com/guide/connect-agent)
+[Configure Your AI Agent](https://docs.tabsdata.com/guide/connect-agent)
 
 ## Ingest query results from SQL Server
 

@@ -27,7 +27,7 @@ parameter
 
 `paths`DestPathsSpec ([list](https://docs.python.org/3/library/stdtypes.html#list)\[[str](https://docs.python.org/3/library/stdtypes.html#str)\])
 
-Target paths relative to the connection's `base_path`, one write slot per entry. Each path is relative (no leading `/`), must not end with `/`, and must not contain empty segments (`//`). Globs are not allowed; the tokens `${EXEC_PLAN_ID}`, `${TRX_ID}` and `${EXEC_PLAN_TS}` are substituted at write time. Backslashes and NUL are not allowed.
+Target paths relative to the connection's `base_path`, one write slot per entry. Each path is relative (no leading `/`), must not end with `/`, and must not contain empty segments (`//`). Globs are not allowed; the tokens `${EXEC_PLAN_ID}`, `${TRX_ID}` and `${TRIGGERED_ON}` are substituted at write time. Backslashes and NUL are not allowed.
 
 parameter
 

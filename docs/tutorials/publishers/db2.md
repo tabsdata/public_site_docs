@@ -1,6 +1,6 @@
 # Publish data from Db2
 
-> Publishes query results from IBM Db2 into Tabsdata tables through the Db2Src source and db2+ibm_db connection URI, one output table per query in `queries`.
+> Publishes query results from a Db2 database into Tabsdata via the db2+ibm_db connector, with Db2Src queries, output tables, and connection setup.
 
 Source: https://docs.tabsdata.com/tutorials/publishers/db2
 
@@ -8,7 +8,7 @@ Before you begin
 
 [Quickstart a Server](https://docs.tabsdata.com/server-admin/quickstart) or [Start a Server](https://docs.tabsdata.com/server-admin/start)
 
-[Connect to MCP](https://docs.tabsdata.com/guide/connect-agent)
+[Configure Your AI Agent](https://docs.tabsdata.com/guide/connect-agent)
 
 ## Ingest query results from Db2
 

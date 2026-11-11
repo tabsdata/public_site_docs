@@ -1,70 +1,39 @@
-# Connect to MCP
+# Configure Your AI Agent
 
-> Installs the tabsdata-agent package and registers the Tabsdata MCP Server with Claude Code or Codex, with per-shell commands for Linux, macOS, and Windows.
+> Install the Tabsdata skill so a coding agent works with Tabsdata through tdk in its own shell, then log in so the agent acts through your session.
 
 Source: https://docs.tabsdata.com/guide/connect-agent
 
-Connect your coding agent to the [Tabsdata MCP Server](https://docs.tabsdata.com/guide/mcp) to build and run data workflows. Claude Code and Codex are currently supported.
+Tabsdata provides a skill that enables your AI agent to use the `tdk` CLI for development. Supported agents are Claude Code, Codex, Cursor, VS Code, Gemini CLI and Antigravity. Your AI Agent can use Tabsdata's CLI without the skill installation, but the skill file provides the available commands for an easier experience.
 
-Step 1Install the Tabsdata MCP package
+Step 1Install the Tabsdata skill
 
-Install `tabsdata-agent` in the virtual environment containing `tabsdata[all]` from [Install Tabsdata](https://docs.tabsdata.com/guide/install).
-
--   uv
--   pip
+After installing `tabsdata[all]` from [Install Tabsdata](https://docs.tabsdata.com/guide/install), install the Tabsdata skill files into your shared agents folder. You can also just ask your agent to do this step for you:
 
 ```bash
-uv pip install tabsdata-agent
+tdk ai agents install
 ```
+
+The skill is installed for every supported agent on the machine. See [tdk ai agents install](https://docs.tabsdata.com/cli/tdk/ai/agents-install) for its options.
+
+note
+
+Upgrading from an earlier version of Tabsdata? Remove the old MCP connection with `claude mcp remove tabsdata` or `codex mcp remove tabsdata`, then follow this step.
+
+Step 2Log in to the Tabsdata Server
+
+Use the password you have configured for the `--password` flag
 
 ```bash
-pip install tabsdata-agent
+tdk login --server http://127.0.0.1:2457 --user admin --password tabsdata
 ```
 
-Step 2Connect your agent to MCP
+Step 3Use you AI Agent for building Tabsdata Workflows
 
-Start the agent from a shell whose virtual environment has Tabsdata installed.
-
--   Claude Code
--   Codex
+Start your agent and describe what you need.
 
 ```bash
-claude mcp add tabsdata -- python -m tabsdatak.ag.mcp -
-```
-
--   Linux / macOS
--   Windows PowerShell
--   Windows cmd.exe
-
-```bash
-codex mcp add tabsdata -- "$(python -c 'import sys; print(sys.executable)')" -m tabsdatak.ag.mcp -
-```
-
-```powershell
-codex mcp add tabsdata -- (python -c "import sys; print(sys.executable)") -m tabsdatak.ag.mcp -
-```
-
-```bat
-for /f "delims=" %i in ('python -c "import sys; print(sys.executable)"') do codex mcp add tabsdata -- "%i" -m tabsdatak.ag.mcp -
-```
-
-Step 3Use the agent
-
-You need an active session with the Tabsdata server before starting your agent. Log in, then start it from the same terminal:
-
--   Claude Code
--   Codex
-
-```bash
-tdk login --server localhost --user admin --password tabsdata
 claude
 ```
-
-```bash
-tdk login --server localhost --user admin --password tabsdata
-codex
-```
-
-The agent authenticates through your session, so it can only do what you're authorized to do. The Server's AI agent service must be running. See [MCP Server requirements](https://docs.tabsdata.com/guide/mcp#server-requirements).
 
 Next: [Run Your First Data Integration](https://docs.tabsdata.com/guide/run-your-first-data-integration)

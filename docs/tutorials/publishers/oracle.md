@@ -1,6 +1,6 @@
 # Publish data from Oracle
 
-> Publishes query results from Oracle databases into Tabsdata tables using the OracleSrc connector, covering the `oracledb` driver install, the connection YAML, and the publisher `queries` and `output_tables` arguments.
+> Publishes query results from an Oracle database into Tabsdata with the OracleSrc source, covering the oracledb driver requirement, connection YAML, and the queries and output_tables arguments of @publisher.
 
 Source: https://docs.tabsdata.com/tutorials/publishers/oracle
 
@@ -8,7 +8,7 @@ Before you begin
 
 [Quickstart a Server](https://docs.tabsdata.com/server-admin/quickstart) or [Start a Server](https://docs.tabsdata.com/server-admin/start)
 
-[Connect to MCP](https://docs.tabsdata.com/guide/connect-agent)
+[Configure Your AI Agent](https://docs.tabsdata.com/guide/connect-agent)
 
 warning
 

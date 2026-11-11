@@ -75,7 +75,7 @@ To describe one source or destination collection, the agent lists the collection
 
 To propose a function, the agent works from the entities in the catalog. For a source, the agent proposes a publisher over the entities that matter, with the real column names and types. For a destination, the agent proposes a subscriber for the tables to deliver, written to the entities the destination exposes.
 
-See [MCP](https://docs.tabsdata.com/developer/guide/mcp) to connect an agent to Tabsdata.
+See [Configure Your AI Agent](https://docs.tabsdata.com/guide/connect-agent) to set up an agent with Tabsdata.
 
 ## Working With the Catalog in tdk
 

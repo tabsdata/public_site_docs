@@ -92,7 +92,7 @@ parameter
 
 `schema_evolution`[SchemaEvolutionSpec](https://docs.tabsdata.com/api/module/tabsdatak-conn-databricks#tabsdatak.conn.databricks.SchemaEvolutionSpec) (Literal\['update', 'strict'\])
 
-`"strict"` (the default) rejects schema changes; `"update"` adds new columns and performs type widening on existing columns of the target to match the schema of the incoming data.
+What a write does when the batch's columns differ from the table's. `"replace"` makes the table the batch's own, so it is not affected. `"strict"` (the default) refuses a batch with a column the table lacks or a wider type; `"update"` adds the column and widens the type, and refuses a change Databricks cannot make. A column the batch lacks is written NULL either way, and a merge keeps its stored value in the rows it updates.
 
 parameter
 

@@ -16,6 +16,8 @@ Bases: [ABC](https://docs.python.org/3/library/abc.html#abc.ABC)
 
 Plugin implementing the read-side of a [`Src`](https://docs.tabsdata.com/api/category/connectors/source/src) subclass.
 
+The return annotation of `read_in` is the plugin's contract with the runtime: `list[Iterable[LazyFrameInput]]` returns `LazyFrame`\\ s, which the runtime lands as `read_in` produces them; `list[list[TableFileInput]]`, or no annotation, is the legacy form, local parquet files.
+
 ## Methods
 
 method
@@ -23,10 +25,10 @@ method
 `read_in`
 
 ```python
-def read_in(ctx: SrcPluginCtx, conn: C, src: S) -> list[list[TableFileInput]]
+def read_in(ctx: SrcPluginCtx, conn: C, src: S) -> SrcTablesSpec
 ```
 
-Materialise `src`'s output slots to parquet under `ctx.work_dir`.
+Read `src` into the publisher's inputs.
 
 **Parameters:**
 
@@ -50,4 +52,4 @@ The [`Src`](https://docs.tabsdata.com/api/category/connectors/source/src) config
 
 **Returns:**
 
-One inner list of [`TableFileInput`](https://docs.tabsdata.com/api/category/spi/spi/tablefileinput) per output slot. In
+One entry per input, by position: position `i` is the `i`\-th

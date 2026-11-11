@@ -1,6 +1,6 @@
 # Subscribe data to MySQL
 
-> Writes Tabsdata table frames to MySQL tables through the MySQL destination connector, covering the connection setup, the `MySQLDest` options such as `if_table_exists`, and the `@subscriber` decorator.
+> Writes Tabsdata input tables to MySQL destination tables using the MySQLDest connector, covering the tables list, if_table_exists options, connection setup, and driver requirements.
 
 Source: https://docs.tabsdata.com/tutorials/subscribers/mysql
 
@@ -8,15 +8,11 @@ Before you begin
 
 [Quickstart a Server](https://docs.tabsdata.com/server-admin/quickstart) or [Start a Server](https://docs.tabsdata.com/server-admin/start)
 
-[Connect to MCP](https://docs.tabsdata.com/guide/connect-agent)
-
-warning
-
-The MySQL connector needs the `mysql-connector-python` driver, which Tabsdata does not redistribute. See [Installing Third-Party Database Drivers](https://docs.tabsdata.com/server-admin/third-party-database-drivers) to add it to your Tabsdata server.
+[Configure Your AI Agent](https://docs.tabsdata.com/guide/connect-agent)
 
 ## Write tables out to MySQL
 
-One entry in `tables` per input table, in order. `if_table_exists="replace"` rebuilds each destination table from the frame, so a changed schema does not fail the run.
+One entry in `tables` per input table, in order. `if_table_exists="replace"` overwrites each destination table with the frame. How a changed schema is handled depends on the destination; see [Schema Evolution](https://docs.tabsdata.com/guide/connectors/schema-evolution).
 
 warning
 

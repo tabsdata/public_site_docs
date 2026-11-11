@@ -1,6 +1,6 @@
 # Subscribe data to Postgres
 
-> Documents how to write Tabsdata input tables out to a PostgreSQL destination with the `@subscriber` decorator and PostgresDest, including if_table_exists options and the psycopg2-binary driver requirement.
+> Writes Tabsdata table frames to PostgreSQL with the @subscriber decorator and PostgresDest, covering tables, if_table_exists, the psycopg2-binary driver requirement, and connection setup.
 
 Source: https://docs.tabsdata.com/tutorials/subscribers/postgres
 
@@ -8,7 +8,7 @@ Before you begin
 
 [Quickstart a Server](https://docs.tabsdata.com/server-admin/quickstart) or [Start a Server](https://docs.tabsdata.com/server-admin/start)
 
-[Connect to MCP](https://docs.tabsdata.com/guide/connect-agent)
+[Configure Your AI Agent](https://docs.tabsdata.com/guide/connect-agent)
 
 warning
 
@@ -16,7 +16,7 @@ The PostgreSQL connector needs the `psycopg2-binary` driver, which Tabsdata does
 
 ## Write tables out to Postgres
 
-One entry in `tables` per input table, in order. `if_table_exists="replace"` rebuilds each destination table from the frame, so a changed schema does not fail the run.
+One entry in `tables` per input table, in order. `if_table_exists="replace"` overwrites each destination table with the frame. How a changed schema is handled depends on the destination; see [Schema Evolution](https://docs.tabsdata.com/guide/connectors/schema-evolution).
 
 warning
 

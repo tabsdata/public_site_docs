@@ -10,9 +10,9 @@ If you use one of the affected connectors, you must install its driver explicitl
 
 | Connector | Required package |
 | --- | --- |
-| MySQL, MySQL CDC, MariaDB | `mysql-connector-python` |
 | PostgreSQL, PostgreSQL CDC | `psycopg2-binary` |
 | Oracle | `oracledb` |
+| SQL Server | Microsoft ODBC Driver 18 for SQL Server, installed on the server (not a Python package) |
 
 ## Declaring the drivers
 
@@ -21,14 +21,23 @@ The Tabsdata package must be installed twice when creating a Tabsdata server: on
 requirements-td.txt
 
 ```txt
-mysql-connector-python==9.6.0
 psycopg2-binary==2.9.12
 oracledb==3.2.0
 ```
 
+## Adding drivers when creating a Tabsdata server
+
+Pass the requirements file with `--requirements` on `tdkserver quickstart` or `tdkserver init`. Its packages are added to every Tabsdata virtual environment of the new instance. They are installed when the instance is created.
+
+Requirements File
+
+```bash
+tdkserver quickstart --requirements <REQS_FILE>
+```
+
 ## Adding a driver to a Tabsdata server
 
-Use `tdkserver venv update` to add or change database drivers, whether the instance was just created or has been running for a while:
+Use `tdkserver venv update` to add or change database drivers on an instance that already exists. `--name` takes a comma-separated list of virtual environments, such as `fn,ag`. Leave it out to update all of them.
 
 Step 1Create a requirements file with your additional drivers
 
@@ -39,11 +48,10 @@ Step 2Run
 Tabsdata InstanceRequirements File
 
 ```bash
-tdkserver venv update --instance <TABSDATA_INSTANCE> --name fn --requirements <REQS_FILE>
-tdkserver venv update --instance <TABSDATA_INSTANCE> --name ag --requirements <REQS_FILE>
+tdkserver venv update --instance <TABSDATA_INSTANCE> --name fn,ag --requirements <REQS_FILE>
 ```
 
-You need to add the requirements to both `fn` and `ag`, otherwise the Tabsdata AI Agent and MCP server won't be able to access your external systems to fetch metadata and sample data.
+You need to add the requirements to both `fn` and `ag`, otherwise the Tabsdata AI Agent won't be able to access your external systems to fetch metadata and sample data.
 
 Until the driver is present in the environment that executes functions, any connector that needs it will fail at run time.
 
@@ -74,7 +82,6 @@ Add the necessary database drivers as shown in [Declaring the drivers](#declarin
 requirements-td.txt
 
 ```txt
-mysql-connector-python==9.6.0
 psycopg2-binary==2.9.12
 oracledb==3.2.0
 ```
@@ -87,7 +94,7 @@ The drivers are baked into the function runner environment during setup, so they
 
 note
 
-Unlike the quick start flow, there is no command-line option here and the location is fixed. Tabsdata always reads `requirements-td.txt` from the instance configs directory; a file under any other name, or in any other directory, is ignored.
+Tabsdata always reads `requirements-td.txt` from the instance configs directory; a file under any other name, or in any other directory, is ignored.
 
 ## Troubleshooting
 

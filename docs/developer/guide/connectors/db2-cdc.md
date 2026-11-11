@@ -6,7 +6,7 @@ Source: https://docs.tabsdata.com/developer/guide/connectors/db2-cdc
 
 The Db2 CDC connector lets Tabsdata capture the changes made to Db2 tables (inserts, updates and deletes) and publish them into Tabsdata tables.
 
-With `start_from="full"`, the stream starts with a full load: it takes a consistent snapshot of the tracked tables and then switches to change capture from the exact point of that snapshot, with no gaps and no duplicates. The full load and the change capture are one stream publisher, so there is nothing to reconcile between them.
+With `start_from="full"`, the stream starts with a full load: it takes a consistent snapshot of the tracked tables and then switches to change capture from the exact point of that snapshot, with no gaps. Duplicates are removed under the rules in [Full load limits](#full-load-limits).
 
 The `Db2CdcStreamSrc` connector can be used by a [stream publisher](https://docs.tabsdata.com/developer/guide/functions/stream-publishers) function to read the change-data (CD) tables that Db2 SQL Replication fills, and write every captured change into a Tabsdata table.
 
@@ -81,7 +81,7 @@ A stream publisher differs from a regular publisher in three ways:
 
 Defines the CD tables to read, as qualified `cd_schema.cd_table` names. These are the change-data tables, not the source tables. The connector finds each CD table's source table through `ASN.IBMSNAP_REGISTER`. Db2 folds unquoted names to uppercase, so write them in uppercase.
 
-Each element in `tables` represents one source slot and maps positionally to an argument in the publisher function and to an entry in `output_tables`.
+Each element in `tables` represents one source slot and maps positionally to an argument in the publisher function and to an entry in `output_tables`. A table listed twice is refused with `CONN_37`.
 
 For example:
 
@@ -108,10 +108,10 @@ Where the stream starts the first time it runs. Later runs resume from the posit
 
 #### Full load
 
-With `start_from="full"`, the stream first emits every row of each tracked source table and then captures the changes from the exact position of that snapshot. The snapshot is consistent across all the tracked tables, and no change is missed or repeated between the snapshot and the change capture.
+With `start_from="full"`, the stream first emits every row of each tracked source table and then captures the changes from the CD tables. No change is missed between the load and the change capture. Duplicates are removed under the rules in [Full load limits](#full-load-limits).
 
 -   Each table's snapshot is preceded by one `LOAD` row (`@td.cdc.meta.op = "l"`), and its rows arrive as inserts. A `LOAD` row tells the consumer to empty its copy of the table before applying the rows that follow.
--   The full load reads the source tables rather than the CD tables, and locks nothing. The changes committed while the tables are read are taken from the CD tables and reconciled with the rows read, so that every change is published once.
+-   The full load reads the source tables rather than the CD tables, and locks nothing. The changes committed while the tables are read are taken from the CD tables and reconciled with the rows read, and duplicates are removed under the rules in [Full load limits](#full-load-limits).
 -   `asncap` must be running, since the load waits for Capture to reach the end of the load before handing over to the change stream.
 
 To resynchronize a destination later, keep `start_from="full"` and reset the function's stage:
@@ -121,6 +121,16 @@ tdk fn update --reset-stage <other options>
 ```
 
 The stream then starts again with a new full load and its `LOAD` rows. Resetting the stage with any other `start_from` restarts at that position and sends no `LOAD` row.
+
+#### Full load limits
+
+The load holds no snapshot. A change committed while the tables are read is loaded and replayed, then deduplicated under the rules of the MySQL lockless load. The limits are:
+
+-   A keyless table cannot be matched row by row, so its changes inside the window arrive twice.
+-   The `map` format fails the load with `CDC_26`.
+-   A DDL change or a `TRUNCATE` during the load fails the stream with `CDC_23` to `CDC_25`.
+-   A change that Db2 records as `CHG_UPD_TO_DEL_INS` fails the stream with `DB2_35`.
+-   A load with more changes than `tabsdata.cdc.initial_load.max_window_changes` fails with `CDC_29`.
 
 #### `columns_format`
 
@@ -144,6 +154,7 @@ Sets additional source configuration. Only these keys are accepted:
 | `tabsdata.cdc.fetch_size` | `100000` | Rows fetched per round trip. |
 | `tabsdata.cdc.chunk_size` | `100000` | Rows per chunk while writing the full load. |
 | `tabsdata.cdc.initial_load.max_window_changes` | `100000` | Most changes that may be committed to the tracked tables while the full load reads them. Above it, the load fails; run it again at a quieter time or raise the limit. |
+| `tabsdata.cdc.max_large_text_length` | `1024` | Longest value, in characters, accepted from an unbounded text column. A longer value fails the stream. |
 | `db2.cdc.logging_level` | `40` | Logging verbosity of the connector, as a Python logging level number (`10` debug, `20` info, `30` warning, `40` error). |
 
 The buffer settings control when captured changes are written to files inside the worker. When those files are handed to the function is controlled by the [batch parameters](https://docs.tabsdata.com/developer/guide/functions/stream-publishers#batch-parameters) of `@stream_publisher`.
@@ -187,6 +198,8 @@ Empty values are null columns with `"columns"`, a struct whose fields are all nu
 A `LOAD` row tells the consumer to empty its copy of the table before applying the rows that follow.
 
 SQL Replication does not copy LOB or XML values into the CD tables, so those columns always arrive as null.
+
+`TRUNCATE` is not captured. To pick up a truncated table, reset the stage with `start_from="full"`.
 
 Use `"columns"` with `flatten_columns=True` for changes that land in a table and get queried. Use `"struct"` or `"map"` when the source table's schema may change while the stream runs, to carry the values opaquely instead of changing the output table's columns.
 

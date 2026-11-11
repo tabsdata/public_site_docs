@@ -1,6 +1,6 @@
 # Install Third-Party Database Drivers
 
-> Install third-party database drivers (mysql-connector-python, psycopg2-binary, oracledb) for MySQL, PostgreSQL, Oracle and CDC connectors using a requirements file and `tdkserver venv update`.
+> Explains how to install third-party database drivers (MySQL, PostgreSQL, Oracle, SQL Server ODBC) for Tabsdata connectors using a requirements file with `tdkserver venv update` and the EKS init configs.
 
 Source: https://docs.tabsdata.com/server-admin/third-party-database-drivers
 
@@ -12,24 +12,33 @@ If you use one of the affected connectors, you must install its driver explicitl
 
 | Connector | Required package |
 | --- | --- |
-| MySQL, MySQL CDC, MariaDB | `mysql-connector-python` |
 | PostgreSQL, PostgreSQL CDC | `psycopg2-binary` |
 | Oracle | `oracledb` |
+| SQL Server | Microsoft ODBC Driver 18 for SQL Server, installed on the server (not a Python package) |
 
 ## Declaring the drivers
 
 The Tabsdata package must be installed twice when creating a Tabsdata server: once in your own terminal before running `tdkserver quickstart`, and once more by the Tabsdata server's own shell process when it is being created. As a result, driver installation instructions must be passed as a plain [pip requirements file](https://pip.pypa.io/en/stable/reference/requirements-file-format/) listing the drivers and their versions that should be installed on Tabsdata's shell process.
 
+## Adding drivers when creating a Tabsdata server
+
+Pass the requirements file with `--requirements` on `tdkserver quickstart` or `tdkserver init`. Its packages are added to every Tabsdata virtual environment of the new instance. They are installed when the instance is created.
+
+Requirements File
+
+```bash
+tdkserver quickstart --requirements <REQS_FILE>
+```
+
 ## Adding a driver to a Tabsdata server
 
-Use `tdkserver venv update` to add or change database drivers.
+Use `tdkserver venv update` to add or change database drivers on an instance that already exists. `--name` takes a comma-separated list of virtual environments, such as `fn,ag`. Leave it out to update all of them.
 
 Step 1Create a requirements file with your additional drivers
 
 requirements-td.txt
 
 ```txt
-mysql-connector-python==9.6.0
 psycopg2-binary==2.9.12
 oracledb==3.2.0
 ```
@@ -39,11 +48,10 @@ Step 2pass the file path into the `tdkserver venv update` command
 Tabsdata InstanceRequirements File
 
 ```bash
-tdkserver venv update --instance <TABSDATA_INSTANCE> --name fn --requirements <REQS_FILE>
-tdkserver venv update --instance <TABSDATA_INSTANCE> --name ag --requirements <REQS_FILE>
+tdkserver venv update --instance <TABSDATA_INSTANCE> --name fn,ag --requirements <REQS_FILE>
 ```
 
-You need to add the requirements to both `fn` and `ag`, otherwise the Tabsdata AI Agent and MCP server won't be able to access your external systems to fetch metadata and sample data.
+You need to add the requirements to both `fn` and `ag`, otherwise the Tabsdata AI Agent won't be able to access your external systems to fetch metadata and sample data.
 
 Until the driver is present in the environment that executes functions, any connector that needs it will fail at run time.
 
@@ -74,7 +82,6 @@ Add the necessary database drivers as shown in [Declaring the drivers](#declarin
 requirements-td.txt
 
 ```txt
-mysql-connector-python==9.6.0
 psycopg2-binary==2.9.12
 oracledb==3.2.0
 ```

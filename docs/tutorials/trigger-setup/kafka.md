@@ -1,6 +1,6 @@
 # Trigger off a Kafka Stream
 
-> Covers triggering a stream publisher from a Kafka topic with KafkaStreamSrc: the kafka-topic-in connection, required servers and group_id, schema, batch_min/max_secs/rows/bytes, and dlq_topic.
+> Tabsdata Kafka stream source guide: setting up a kafka-topic-in connection and a stream publisher with KafkaStreamSrc, batch_* parameters, schema, and dlq_topic for failed messages.
 
 Source: https://docs.tabsdata.com/tutorials/trigger-setup/kafka
 
@@ -8,7 +8,7 @@ Before you begin
 
 [Quickstart a Server](https://docs.tabsdata.com/server-admin/quickstart) or [Start a Server](https://docs.tabsdata.com/server-admin/start)
 
-[Connect to MCP](https://docs.tabsdata.com/guide/connect-agent)
+[Configure Your AI Agent](https://docs.tabsdata.com/guide/connect-agent)
 
 A Kafka stream source consumes one topic continuously and writes it into one Tabsdata table, named in `output_tables`. What runs the publisher is neither a clock nor an upstream commit but a **batch**: the stream worker reads messages as they arrive, and when a batch is due, by the `batch_*` parameters of `@stream_publisher`, it hands the messages read since the previous batch to the publisher.
 

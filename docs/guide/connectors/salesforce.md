@@ -67,7 +67,7 @@ When `True`, the query also reads deleted rows, through the `queryAll` endpoint.
 
 #### `initial_last_modified`
 
-A cutoff substituted for any `$lastModified` token in the query, for example `WHERE SystemModStamp > $lastModified`, so a run reads only the records changed after it.
+A cutoff substituted for any `$lastModified` token in the query, for example `WHERE SystemModStamp > $lastModified`, so a run reads only the records changed after it. The cutoff stays the same on every run; the connector does not move it forward. A query that uses `$lastModified` without `initial_last_modified` fails with `SALESFORCE_11`.
 
 #### `api_version`
 
@@ -154,7 +154,7 @@ A boolean expression over the `filter` entries, numbered from 1, for example `"(
 
 #### `last_modified_column` and `initial_last_modified`
 
-An incremental read: only the rows whose `last_modified_column` is after `initial_last_modified` are read. Each of the two requires the other.
+An incremental read: only the rows whose `last_modified_column` is after `initial_last_modified` are read. Each of the two requires the other. The cutoff is fixed, so every run filters on the same `initial_last_modified` value. The condition is added as one more filter, combined with AND onto `filter_logic`. A naive datetime is read as UTC. If the column is not in the report, the run fails with `SALESFORCE_19`.
 
 #### `src_cfg`
 
@@ -164,7 +164,7 @@ Sets additional source configuration. The accepted keys are `salesforce.logging_
 
 `SalesforceSrc.queries` currently takes one SOQL query, which produces the publisher's one source slot. The selected Salesforce fields become columns in that slot.
 
-For incremental SOQL reads, include `SystemModStamp` in the selected fields and compare it with `$lastModified`. The first run uses `initial_last_modified`; later runs use the highest `SystemModStamp` already seen. Set `include_deleted=True` when deleted records also need to be returned.
+For incremental SOQL reads, include `SystemModStamp` in the selected fields and compare it with `$lastModified`. The first run uses `initial_last_modified`; every run uses `initial_last_modified` as the cutoff, so the read does not move forward on its own. To read from a later point, change `initial_last_modified` in the function. Set `include_deleted=True` when deleted records also need to be returned.
 
 Each entry in `SalesforceReportSrc.reports` produces one source slot. Report ids or names, publisher arguments, and `output_tables` map by position. Report filters are applied by Salesforce before the rows are downloaded.
 
@@ -172,7 +172,9 @@ Each entry in `SalesforceReportSrc.reports` produces one source slot. Report ids
 
 -   SOQL and report publishers use the same `SalesforceSrcConn`, so both can be registered in one source collection.
 -   A report incremental read needs both `last_modified_column` and `initial_last_modified`. Without them, the full report is read on each run.
--   Returning `None` from the publisher means there is no new table version to publish.
+-   A report with more than 2,000 detail rows fails with `SALESFORCE_21`; it is not truncated. Narrow the report with `filter` or `last_modified_column`, or read the data with a SOQL query through `SalesforceSrc`.
+-   Report generation is polled every 5 seconds and fails with `SALESFORCE_20` after 600 seconds. HTTP requests time out after 30 seconds to connect and 300 seconds to read.
+-   Returning `None` from the publisher commits a new table version that keeps the previous data.
 -   Tabsdata does not contact Salesforce when the collection is created. Login, object, report, field, and API-version errors appear when the function runs.
 
 ## Connection
@@ -189,7 +191,7 @@ spec:
   credentials:
     kind: salesforceTokenCredentials
     apiVersion: '1.0'
-    type: tabsdatak.conn.common.types:SalesforceToken
+    type: tabsdatak.conn.salesforce:SalesforceTokenCredentials
     spec:
       username: 'secret:integration@acme.com'
       password: 'secret:example-password'
@@ -246,7 +248,7 @@ tdk fn register --coll salesforce_in --path publish_accounts.py::publish_account
 
 #### `credentials`
 
-A `SalesforceToken` with the `username`, `password` and `security_token` of the Salesforce user.
+A `SalesforceTokenCredentials` with the `username`, `password` and `security_token` of the Salesforce user.
 
 #### `instance_url`
 
@@ -254,7 +256,7 @@ An explicit instance URL. It must be an `https://` URL on a Salesforce domain (`
 
 #### `category` and `objects`
 
-Hints for entity discovery. `category` is a category name. `objects` is a non-empty list of Salesforce object API names, each 1 to 80 characters, starting with a letter, optionally ending in `__c` or `__r`. Only one of the two can be set.
+Hints for entity discovery, used only by the explorer. `category` has no effect yet. `objects` is a non-empty list of Salesforce object API names, each 1 to 80 characters, starting with a letter, optionally ending in `__c` or `__r`.
 
 #### `entity_whitelist`
 

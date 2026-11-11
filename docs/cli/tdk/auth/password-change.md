@@ -19,6 +19,6 @@ tdk auth password-change \
 | --- | --- | --- | --- |
 | `--user, -u` | string | Required | Username for the Tabsdata Server. Will be prompted for it if not provided. |
 | `--old-password, -p` | string | Optional | Old password for the Tabsdata Server. It is discouraged to send the password as a plain argument, it should be either sent as the value of an environment variable or written through the prompt. Will be prompted for it if not provided. |
-| `--new-password, -n` | string | Optional | New password for the Tabsdata Server. It is discouraged to send the password as a plain argument, it should be either sent as the value of an environment variable or written through the prompt. Will be prompted for it if not provided. |
-| `--profile` | string | Optional | Profile whose connection and settings this command uses: '<NAME>-connection.json' and '<NAME>-options.json' under the Tabsdata directory. Default: the profile set with 'tdk set --profile', else 'connection.json' and 'options.json'. |
+| `--new-password` | string | Optional | New password for the Tabsdata Server. It is discouraged to send the password as a plain argument, it should be either sent as the value of an environment variable or written through the prompt. Will be prompted for it if not provided. |
+| `--profile` | string | Optional | Profile whose login and pinned project and collection this command uses; with no NAME, the default profile. Default: the profile set with 'tdk set --profile', else the default profile. |
 | `<server_url>` | string | Required |  |

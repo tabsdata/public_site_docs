@@ -1,6 +1,6 @@
 # Trigger off CDC in an SQL Database
 
-> Covers CDC stream sources for MySQL, PostgreSQL, and IBM Db2 (`MySQLCdcStreamSrc`, `PostgresCdcStreamSrc`, `Db2CdcStreamSrc`) with `start_from`, replication slots, and batch timing for `@stream_publisher`.
+> Covers CDC stream sources for MySQL, PostgreSQL, and IBM Db2 (`MySQLCdcStreamSrc`, `PostgresCdcStreamSrc`, `Db2CdcStreamSrc`), their `start_from` options, PostgreSQL replication slots, and batch timing.
 
 Source: https://docs.tabsdata.com/tutorials/trigger-setup/cdc
 
@@ -8,7 +8,7 @@ Before you begin
 
 [Quickstart a Server](https://docs.tabsdata.com/server-admin/quickstart) or [Start a Server](https://docs.tabsdata.com/server-admin/start)
 
-[Connect to MCP](https://docs.tabsdata.com/guide/connect-agent)
+[Configure Your AI Agent](https://docs.tabsdata.com/guide/connect-agent)
 
 A CDC stream source reads a database's replication log and emits one Tabsdata table per tracked table. Every insert, update, and delete arrives, rather than whatever a `SELECT` happens to see when it runs.
 
@@ -143,7 +143,7 @@ Switched to `PostgresCdcStreamSrc`, which needs a logical replication slot. The 
 
 warning
 
-MySQL CDC needs the `mysql-connector-python` driver and PostgreSQL CDC needs the `psycopg2-binary` driver, which Tabsdata does not redistribute. Add the driver with `tdkserver venv update`, as described in [Installing Third-Party Database Drivers](https://docs.tabsdata.com/server-admin/third-party-database-drivers).
+PostgreSQL CDC needs the `psycopg2-binary` driver, which Tabsdata does not redistribute. Add the driver with `tdkserver venv update`, as described in [Installing Third-Party Database Drivers](https://docs.tabsdata.com/server-admin/third-party-database-drivers).
 
 ## What to do next
 

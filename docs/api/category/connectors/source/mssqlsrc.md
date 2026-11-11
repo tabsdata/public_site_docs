@@ -55,7 +55,7 @@ Incremental read -- SQL Server has no `LIMIT`, so page with `OFFSET ... FETCH NE
     ),
     output_tables=["ms_city_inc"],
 )
-def ingest_inc(city: TableFrameSpec, ctx: TrxCtx):
+def ingest_inc(city: TableFrameSpec, ctx: TransactionCtx):
     if city is not None:
         row = city.max_for("id")
         if row is not None and row["id"] is not None:

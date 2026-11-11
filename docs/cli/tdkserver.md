@@ -33,7 +33,7 @@ Source: https://docs.tabsdata.com/cli/tdkserver/
 | [`start`](https://docs.tabsdata.com/cli/tdkserver/start) | Start a tabsdata instance |
 | [`status`](https://docs.tabsdata.com/cli/tdkserver/status) | Show the running workloads of a tabsdata instance |
 | [`stop`](https://docs.tabsdata.com/cli/tdkserver/stop) | Stop a tabsdata instance |
-| [`stubs`](https://docs.tabsdata.com/cli/tdkserver/stubs) | Copy the configuration stubs for '--config' into the tabsdata home folder |
+| [`stubs`](https://docs.tabsdata.com/cli/tdkserver/stubs) | Copy the configuration stubs for '--config', and the project secrets stub, into the tabsdata home folder |
 | [`trash`](https://docs.tabsdata.com/cli/tdkserver/trash) | Trash a local kminus tabsdata instance |
 | [`unset`](https://docs.tabsdata.com/cli/tdkserver/unset) | Unset a session setting |
 | [`upgrade`](https://docs.tabsdata.com/cli/tdkserver/upgrade) | Upgrade a tabsdata instance to the running tabsdata version |

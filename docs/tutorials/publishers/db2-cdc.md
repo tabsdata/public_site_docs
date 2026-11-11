@@ -1,6 +1,6 @@
 # Publish data from Db2 CDC
 
-> Publishes Db2 change data capture into Tabsdata with @stream_publisher and Db2CdcStreamSrc, covering tables, start_from options (tail, full, head, explicit position), batch_max_secs, and output_tables.
+> Covers publishing Db2 change data capture with @stream_publisher and Db2CdcStreamSrc: tables, start_from options (tail, full, head), batch_max_secs, and output_tables.
 
 Source: https://docs.tabsdata.com/tutorials/publishers/db2-cdc
 
@@ -8,7 +8,7 @@ Before you begin
 
 [Quickstart a Server](https://docs.tabsdata.com/server-admin/quickstart) or [Start a Server](https://docs.tabsdata.com/server-admin/start)
 
-[Connect to MCP](https://docs.tabsdata.com/guide/connect-agent)
+[Configure Your AI Agent](https://docs.tabsdata.com/guide/connect-agent)
 
 ## Follow the change log instead of re-reading tables
 

@@ -1,6 +1,6 @@
 # Publish data from a Salesforce SOQL query
 
-> Publishes Salesforce SOQL query results into Tabsdata tables with the SalesforceSrc source, covering queries, initial_last_modified, the $lastModified incremental filter, include_deleted, and the tabsdata[salesforce] install.
+> Publishes Salesforce SOQL query results into Tabsdata tables with incremental reads via SystemModStamp and $lastModified, initial_last_modified, and include_deleted options.
 
 Source: https://docs.tabsdata.com/tutorials/publishers/salesforce
 
@@ -8,7 +8,7 @@ Before you begin
 
 [Quickstart a Server](https://docs.tabsdata.com/server-admin/quickstart) or [Start a Server](https://docs.tabsdata.com/server-admin/start)
 
-[Connect to MCP](https://docs.tabsdata.com/guide/connect-agent)
+[Configure Your AI Agent](https://docs.tabsdata.com/guide/connect-agent)
 
 ## Ingest SOQL query results
 

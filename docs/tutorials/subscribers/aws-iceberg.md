@@ -1,6 +1,6 @@
 # Subscribe data to Iceberg on AWS Glue
 
-> Subscriber connector that writes Tabsdata tables to Amazon S3 as Parquet files and registers them in AWS Glue Iceberg tables, with catalog, partition, and schema options.
+> Tabsdata subscriber that writes tables to Amazon S3 as Parquet files and registers them in AWS Glue Iceberg tables, with catalog, auto-create, partition and schema strategy options.
 
 Source: https://docs.tabsdata.com/tutorials/subscribers/aws-iceberg
 
@@ -8,7 +8,7 @@ Before you begin
 
 [Quickstart a Server](https://docs.tabsdata.com/server-admin/quickstart) or [Start a Server](https://docs.tabsdata.com/server-admin/start)
 
-[Connect to MCP](https://docs.tabsdata.com/guide/connect-agent)
+[Configure Your AI Agent](https://docs.tabsdata.com/guide/connect-agent)
 
 You can use this built-in Tabsdata subscriber to write tables from the Tabsdata server to Amazon S3 as parquet files and add those files to AWS Glue Iceberg tables.
 
@@ -221,7 +221,7 @@ Schema strategy indicates if the schema in iceberg will be modified (augmented) 
 
 A subscriber may receive and return a `None` value instead of TableFrames.
 
-When a subscriber receives a `None` value instead of a TableFrame it means that the requested table dependency version does not exist.
+When a subscriber receives a `None` value instead of a TableFrame it means that the requested version does not exist, the input table has never been produced, or the table had no data up to that version.
 
 When a subscriber returns a `None` value instead of a TableFrame it means there is no new data to write to the external system. This helps in avoiding the creation of multiple copies of the same data.
 

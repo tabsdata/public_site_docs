@@ -1,6 +1,6 @@
 # TableMode
 
-> How a `SrcPlugin` returns slot contents -- the length of each inner list in `SrcPlugin.read_in`'s return.
+> How the data a `SrcPlugin` lands for one publisher input is served to the function.
 
 Source: https://docs.tabsdata.com/api/category/spi/spi/tablemode
 
@@ -14,10 +14,10 @@ Bases: [Enum](https://docs.python.org/3/library/enum.html#enum.Enum)
 
 **Categories:** spi
 
-How a [`SrcPlugin`](https://docs.tabsdata.com/api/category/spi/spi/srcplugin) returns slot contents -- the length of each inner list in `SrcPlugin.read_in`'s return.
+How the data a [`SrcPlugin`](https://docs.tabsdata.com/api/category/spi/spi/srcplugin) lands for one publisher input is served to the function. Declared once, on the [`SrcDef`](https://docs.tabsdata.com/api/category/spi/spi/srcdef).
 
--   `SINGLE` -- exactly one [`TableFileInput`](https://docs.tabsdata.com/api/category/spi/spi/tablefileinput) per output slot.
--   `ARRAY` -- one or more [`TableFileInput`](https://docs.tabsdata.com/api/category/spi/spi/tablefileinput) per output slot (file-shard style).
+-   `SINGLE` -- one table: the frames (or files) `read_in` returns for the input are chunks of that table, concatenated.
+-   `ARRAY` -- a list of tables, one per frame (or file).
 
 ## Parameters
 

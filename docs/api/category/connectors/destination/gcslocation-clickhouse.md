@@ -54,4 +54,18 @@ parameter
 
 `cfg`[CfgSpec](https://docs.tabsdata.com/api/module/tabsdatak-conn-common-types#tabsdatak.conn.common.types.CfgSpec) | None ([dict](https://docs.python.org/3/library/stdtypes.html#dict) | None)
 
-Optional connector-config dict for the GCS client.
+Optional config dict; its `obstore.*` keys configure the store parquet is staged through. An endpoint key is refused: ClickHouse reads GCS through Google's S3-compatible endpoint.
+
+## Methods
+
+method
+
+`validate`
+
+```python
+def validate()
+```
+
+Refuse an `obstore.*` key that moves the store elsewhere.
+
+Called by the framework; raises `ClickHouseValidateException`.

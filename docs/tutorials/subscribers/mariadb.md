@@ -1,6 +1,6 @@
 # Subscribe data to MariaDB
 
-> Writes Tabsdata input tables to MariaDB with the @subscriber decorator and MySQLDest connector, covering table mapping, if_table_exists="replace", connection YAML, and the mysql-connector-python driver requirement.
+> Shows how to subscribe a Tabsdata collection to write its tables out to MariaDB with the MySQLDest connector, covering if_table_exists options and subscriber code.
 
 Source: https://docs.tabsdata.com/tutorials/subscribers/mariadb
 
@@ -8,15 +8,11 @@ Before you begin
 
 [Quickstart a Server](https://docs.tabsdata.com/server-admin/quickstart) or [Start a Server](https://docs.tabsdata.com/server-admin/start)
 
-[Connect to MCP](https://docs.tabsdata.com/guide/connect-agent)
-
-warning
-
-The MariaDB connector needs the `mysql-connector-python` driver, which Tabsdata does not redistribute. See [Installing Third-Party Database Drivers](https://docs.tabsdata.com/server-admin/third-party-database-drivers) to add it to your Tabsdata server.
+[Configure Your AI Agent](https://docs.tabsdata.com/guide/connect-agent)
 
 ## Write tables out to MariaDB
 
-One entry in `tables` per input table, in order. `if_table_exists="replace"` rebuilds each destination table from the frame, so a changed schema does not fail the run.
+One entry in `tables` per input table, in order. `if_table_exists="replace"` overwrites each destination table with the frame. How a changed schema is handled depends on the destination; see [Schema Evolution](https://docs.tabsdata.com/guide/connectors/schema-evolution).
 
 warning
 

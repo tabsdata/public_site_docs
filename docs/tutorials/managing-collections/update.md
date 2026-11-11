@@ -1,6 +1,6 @@
 # Update a Collection
 
-> Explains how to rename a Tabsdata collection and update its description using an agent session, noting that a rename does not change the group and that a source or destination collection's connection is renamed with it. Wait, that's over 160 characters and too long. Corrected: Renames a Tabsdata collection and updates its description, with notes that the group cannot change and that renaming a source or destination collection also renames its connection.
+> Updates an existing Tabsdata collection's name and description through the agent or CLI, covering rename behavior, the group and type limits, and connection side effects.
 
 Source: https://docs.tabsdata.com/tutorials/managing-collections/update
 
@@ -8,7 +8,7 @@ Before you begin
 
 [Install Tabsdata](https://docs.tabsdata.com/server-admin/install)
 
-[Connect to MCP](https://docs.tabsdata.com/guide/connect-agent)
+[Configure Your AI Agent](https://docs.tabsdata.com/guide/connect-agent)
 
 [Create a Project](https://docs.tabsdata.com/tutorials/managing-projects/create)
 

@@ -15,8 +15,9 @@ Source: https://docs.tabsdata.com/api/module/tabsdatak-conn-mssql
 | [`MSSQLSrc`](https://docs.tabsdata.com/api/category/connectors/source/mssqlsrc) | MSSQL source for `@publisher` -- one output slot per query. |
 | [`MSSQLSrcConn`](https://docs.tabsdata.com/api/category/connectors/source/mssqlsrcconn) | MSSQL connection used by `MSSQLSrc`. |
 | [`MSSQLTableNameSpec`](#tabsdatak.conn.mssql.MSSQLTableNameSpec) |  |
-| [`MSSQLTableNamesSpec`](#tabsdatak.conn.mssql.MSSQLTableNamesSpec) |  |
+| [`MSSQLTableNamesSpec`](#tabsdatak.conn.mssql.MSSQLTableNamesSpec) | A list of MSSQL table names (see `MSSQLTableNameSpec`), each at most once: names that differ only in quoting or in case are the same table, as SQL Server's default collation ignores the case of a name, quoted or not. |
 | [`QueriesSpec`](#tabsdatak.conn.mssql.QueriesSpec) |  |
+| [`SchemaEvolutionSpec`](#tabsdatak.conn.mssql.SchemaEvolutionSpec) |  |
 | [`SrcCfgKey`](#tabsdatak.conn.mssql.SrcCfgKey) |  |
 | [`SrcCfgSpec`](#tabsdatak.conn.mssql.SrcCfgSpec) |  |
 | [`UriSpec`](#tabsdatak.conn.mssql.UriSpec) |  |
@@ -40,7 +41,7 @@ The credential type for MSSQL connections: [`UserPassword`](https://docs.tabsdat
 type\_alias
 
 ```python
-DestCfgKey: Literal['mssql.logging_level', 'tabsdata.sql.write_engine', 'tabsdata.sql.chunk_size']
+DestCfgKey: Literal['mssql.logging_level', 'mssql.schema_evolution_engine', 'tabsdata.sql.write_engine', 'tabsdata.sql.chunk_size']
 ```
 
 * * *
@@ -56,7 +57,7 @@ DestCfgSpec: Mapping[DestCfgKey, Any]
 **Resolved type:**
 
 ```python
-Mapping[Literal['mssql.logging_level', 'tabsdata.sql.write_engine', 'tabsdata.sql.chunk_size'], Any]
+Mapping[Literal['mssql.logging_level', 'mssql.schema_evolution_engine', 'tabsdata.sql.write_engine', 'tabsdata.sql.chunk_size'], Any]
 ```
 
 * * *
@@ -95,6 +96,8 @@ MSSQLTableNamesSpec: list[MSSQLTableNameSpec]
 list[str]
 ```
 
+A list of MSSQL table names (see [`MSSQLTableNameSpec`](https://docs.tabsdata.com/api/module/tabsdatak-conn-mssql#tabsdatak.conn.mssql.MSSQLTableNameSpec)), each at most once: names that differ only in quoting or in case are the same table, as SQL Server's default collation ignores the case of a name, quoted or not.
+
 * * *
 
 ## QueriesSpec
@@ -103,6 +106,16 @@ type\_alias
 
 ```python
 QueriesSpec: list[str]
+```
+
+* * *
+
+## SchemaEvolutionSpec
+
+type\_alias
+
+```python
+SchemaEvolutionSpec: Literal['strict', 'update']
 ```
 
 * * *

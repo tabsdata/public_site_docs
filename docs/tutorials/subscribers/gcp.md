@@ -1,6 +1,6 @@
 # Subscribe data to Google Cloud Storage
 
-> Covers writing Tabsdata tables to Google Cloud Storage as Parquet objects via a subscriber with GCSDest, including connection YAML, service account credentials, paths, and input tables.
+> Writes Tabsdata tables to Google Cloud Storage as Parquet objects using a GCSDest subscriber, with bucket, project, base path, service account credentials, and the paths option.
 
 Source: https://docs.tabsdata.com/tutorials/subscribers/gcp
 
@@ -8,7 +8,7 @@ Before you begin
 
 [Quickstart a Server](https://docs.tabsdata.com/server-admin/quickstart) or [Start a Server](https://docs.tabsdata.com/server-admin/start)
 
-[Connect to MCP](https://docs.tabsdata.com/guide/connect-agent)
+[Configure Your AI Agent](https://docs.tabsdata.com/guide/connect-agent)
 
 ## Write tables out to Google Cloud Storage
 

@@ -39,12 +39,12 @@ SCHEMA = {
     "timestamp": ColumnDefinition("request_time", String),
 }
 
-parsed = lines.grok("column_1", PATTERN, SCHEMA)
+parsed = lines.grok("column_0", PATTERN, SCHEMA)
 ```
 
 lines
 
-| column\_1 |
+| column\_0 |
 | --- |
 | 203.0.113.10 - - \[10/Oct/2026:13:55:01 +0000\] "GET /index.html HTTP/1.1" 200 512 |
 | not a log line |
@@ -53,7 +53,7 @@ lines
 
 parsed
 
-| column\_1str | ip\_addressstr | http\_methodstr | status\_codei32 | response\_bytesi64 | request\_timestr |
+| column\_0str | ip\_addressstr | http\_methodstr | status\_codei32 | response\_bytesi64 | request\_timestr |
 | --- | --- | --- | --- | --- | --- |
 | 203.0.113.10 - - \[10/Oct/2026:13:55:01 +0000\] "GET /index.html HTTP/1.1" 200 512 | 203.0.113.10 | GET | 200 | 512 | 10/Oct/2026:13:55:01 +0000 |
 | not a log line | null | null | null | null | null |

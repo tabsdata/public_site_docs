@@ -10,7 +10,7 @@ Source: https://docs.tabsdata.com/api/module/tabsdatak-conn-bigquery
 | [`BigQueryDest`](https://docs.tabsdata.com/api/category/connectors/destination/bigquerydest) | BigQuery destination for `@subscriber` -- one output slot per table. |
 | [`BigQueryDestConn`](https://docs.tabsdata.com/api/category/connectors/destination/bigquerydestconn) | BigQuery connection. |
 | [`BigQueryTableNameSpec`](#tabsdatak.conn.bigquery.BigQueryTableNameSpec) |  |
-| [`BigQueryTableNamesSpec`](#tabsdatak.conn.bigquery.BigQueryTableNamesSpec) |  |
+| [`BigQueryTableNamesSpec`](#tabsdatak.conn.bigquery.BigQueryTableNamesSpec) | A list of BigQuery table names (see `BigQueryTableNameSpec`), each at most once; table names are case-sensitive. |
 | [`CloudLocation`](https://docs.tabsdata.com/api/category/connectors/destination/cloudlocation-bigquery) | Abstract base for a BigQuery `staging` location. |
 | [`CredentialsSpec`](#tabsdatak.conn.bigquery.CredentialsSpec) | The credential type for BigQuery connections: `GCPJson` (service-account JSON key). |
 | [`DatasetSpec`](#tabsdatak.conn.bigquery.DatasetSpec) |  |
@@ -61,6 +61,8 @@ BigQueryTableNamesSpec: list[BigQueryTableNameSpec]
 ```python
 list[str]
 ```
+
+A list of BigQuery table names (see [`BigQueryTableNameSpec`](https://docs.tabsdata.com/api/module/tabsdatak-conn-bigquery#tabsdatak.conn.bigquery.BigQueryTableNameSpec)), each at most once; table names are case-sensitive.
 
 * * *
 

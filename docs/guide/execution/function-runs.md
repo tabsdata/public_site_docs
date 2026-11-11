@@ -31,7 +31,7 @@ Function Runs are executed by [Workers](https://docs.tabsdata.com/guide/executio
 
 When a Function is ready to run, Tabsdata assigns its Function Run to a Worker. The Worker performs the actual processing required by the Function and reports the status of the Function Run back to Tabsdata.
 
-This separation allows multiple Function Runs to be processed independently and, when possible, in parallel. In case of failures, function runs can be assigned to new workers and retried.
+This separation allows multiple Function Runs to be processed independently and, when possible, in parallel. Runs of the same function run one at a time, in trigger order (best effort). In case of failures, function runs can be assigned to new workers and retried.
 
 ## Function Runs and Transactions
 

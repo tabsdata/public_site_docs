@@ -1,6 +1,6 @@
 # Delete a Function
 
-> Explains how to delete a registered Tabsdata function, noting that its output tables remain and downstream functions are frozen rather than deleted.
+> Explains how to delete a registered function, noting that its output tables remain and downstream functions that read them stop running until re-registered.
 
 Source: https://docs.tabsdata.com/tutorials/managing-functions/delete
 
@@ -8,7 +8,7 @@ Before you begin
 
 [Install Tabsdata](https://docs.tabsdata.com/server-admin/install)
 
-[Connect to MCP](https://docs.tabsdata.com/guide/connect-agent)
+[Configure Your AI Agent](https://docs.tabsdata.com/guide/connect-agent)
 
 [Register a Function](https://docs.tabsdata.com/tutorials/managing-functions/register)
 

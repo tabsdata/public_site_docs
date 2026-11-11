@@ -10,10 +10,6 @@ Before you begin
 
 This tutorial shows how to set up a MySQL publisher that runs one or more `SELECT` queries against a MySQL or MariaDB database and writes the results into Tabsdata Tables.
 
-warning
-
-The MySQL connector needs the `mysql-connector-python` driver, which Tabsdata does not redistribute. See [Installing Third-Party Database Drivers](https://docs.tabsdata.com/developer/server-admin/third-party-database-drivers) to add it to your Tabsdata server.
-
 What you’ll do
 
 1.  [Configure a connection to MySQL](#configure-a-connection-to-mysql)

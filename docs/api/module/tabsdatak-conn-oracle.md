@@ -9,14 +9,15 @@ Source: https://docs.tabsdata.com/api/module/tabsdatak-conn-oracle
 | [`CredentialsSpec`](#tabsdatak.conn.oracle.CredentialsSpec) | The credential type for Oracle connections: `UserPassword` (user + password), spliced into the URI by the engine factory. |
 | [`DestCfgKey`](#tabsdatak.conn.oracle.DestCfgKey) |  |
 | [`DestCfgSpec`](#tabsdatak.conn.oracle.DestCfgSpec) |  |
-| [`IfTableExistsSpec`](#tabsdatak.conn.oracle.IfTableExistsSpec) | Write disposition when the target table exists: `"append"` adds rows; `"replace"` truncates before insert. |
+| [`IfTableExistsSpec`](#tabsdatak.conn.oracle.IfTableExistsSpec) |  |
 | [`OracleDest`](https://docs.tabsdata.com/api/category/connectors/destination/oracledest) | Oracle destination for `@subscriber` -- one target table per slot. |
 | [`OracleDestConn`](https://docs.tabsdata.com/api/category/connectors/destination/oracledestconn) | Oracle connection used by `OracleDest`. |
 | [`OracleSrc`](https://docs.tabsdata.com/api/category/connectors/source/oraclesrc) | Oracle source for `@publisher` -- one output slot per query. |
 | [`OracleSrcConn`](https://docs.tabsdata.com/api/category/connectors/source/oraclesrcconn) | Oracle connection used by `OracleSrc`. |
 | [`OracleTableNameSpec`](#tabsdatak.conn.oracle.OracleTableNameSpec) | An Oracle table name, either `table` or `schema.table` (at most two dot-separated parts). |
-| [`OracleTableNamesSpec`](#tabsdatak.conn.oracle.OracleTableNamesSpec) | A list of Oracle table names (see `OracleTableNameSpec`). |
+| [`OracleTableNamesSpec`](#tabsdatak.conn.oracle.OracleTableNamesSpec) | A list of Oracle table names (see `OracleTableNameSpec`), each at most once: names that differ only in quoting, or in the case of an unquoted part (upper-cased, as Oracle folds them), are the same table. |
 | [`QueriesSpec`](#tabsdatak.conn.oracle.QueriesSpec) | A non-empty, ordered list of SELECT statements -- one output slot per query. |
+| [`SchemaEvolutionSpec`](#tabsdatak.conn.oracle.SchemaEvolutionSpec) | Write disposition when the target table exists: `"append"` adds rows; `"replace"` truncates before insert. |
 | [`SrcCfgKey`](#tabsdatak.conn.oracle.SrcCfgKey) |  |
 | [`SrcCfgSpec`](#tabsdatak.conn.oracle.SrcCfgSpec) |  |
 | [`UriSpec`](#tabsdatak.conn.oracle.UriSpec) | A SQLAlchemy-style Oracle URI, e.g. |
@@ -40,7 +41,7 @@ The credential type for Oracle connections: [`UserPassword`](https://docs.tabsda
 type\_alias
 
 ```python
-DestCfgKey: Literal['oracle.logging_level', 'tabsdata.sql.write_engine', 'tabsdata.sql.chunk_size']
+DestCfgKey: Literal['oracle.logging_level', 'oracle.schema_evolution_engine', 'tabsdata.sql.write_engine', 'tabsdata.sql.chunk_size']
 ```
 
 * * *
@@ -56,7 +57,7 @@ DestCfgSpec: Mapping[DestCfgKey, Any]
 **Resolved type:**
 
 ```python
-Mapping[Literal['oracle.logging_level', 'tabsdata.sql.write_engine', 'tabsdata.sql.chunk_size'], Any]
+Mapping[Literal['oracle.logging_level', 'oracle.schema_evolution_engine', 'tabsdata.sql.write_engine', 'tabsdata.sql.chunk_size'], Any]
 ```
 
 * * *
@@ -68,8 +69,6 @@ type\_alias
 ```python
 IfTableExistsSpec: Literal['append', 'replace']
 ```
-
-Write disposition when the target table exists: `"append"` adds rows; `"replace"` truncates before insert.
 
 * * *
 
@@ -99,7 +98,7 @@ OracleTableNamesSpec: list[OracleTableNameSpec]
 list[str]
 ```
 
-A list of Oracle table names (see [`OracleTableNameSpec`](https://docs.tabsdata.com/api/module/tabsdatak-conn-oracle#tabsdatak.conn.oracle.OracleTableNameSpec)).
+A list of Oracle table names (see [`OracleTableNameSpec`](https://docs.tabsdata.com/api/module/tabsdatak-conn-oracle#tabsdatak.conn.oracle.OracleTableNameSpec)), each at most once: names that differ only in quoting, or in the case of an unquoted part (upper-cased, as Oracle folds them), are the same table.
 
 * * *
 
@@ -112,6 +111,18 @@ QueriesSpec: list[str]
 ```
 
 A non-empty, ordered list of SELECT statements -- one output slot per query.
+
+* * *
+
+## SchemaEvolutionSpec
+
+type\_alias
+
+```python
+SchemaEvolutionSpec: Literal['strict', 'update']
+```
+
+Write disposition when the target table exists: `"append"` adds rows; `"replace"` truncates before insert.
 
 * * *
 

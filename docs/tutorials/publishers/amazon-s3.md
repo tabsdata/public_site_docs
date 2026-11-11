@@ -1,6 +1,6 @@
 # Publish data from Amazon S3
 
-> Publish data from Amazon S3 covers the S3 source connection setup, the S3Src publisher with paths and globs, and format handling for mixed or extensionless objects.
+> Publish data from Amazon S3 into Tabsdata with S3Src publishers, covering bucket connection setup, glob paths like trips_*.parquet, multiple files, and the format option.
 
 Source: https://docs.tabsdata.com/tutorials/publishers/amazon-s3
 
@@ -8,7 +8,7 @@ Before you begin
 
 [Quickstart a Server](https://docs.tabsdata.com/server-admin/quickstart) or [Start a Server](https://docs.tabsdata.com/server-admin/start)
 
-[Connect to MCP](https://docs.tabsdata.com/guide/connect-agent)
+[Configure Your AI Agent](https://docs.tabsdata.com/guide/connect-agent)
 
 ## Ingest objects from a bucket
 

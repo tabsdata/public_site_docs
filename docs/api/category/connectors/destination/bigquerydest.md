@@ -92,7 +92,7 @@ parameter
 
 `schema_evolution`[SchemaEvolutionSpec](https://docs.tabsdata.com/api/module/tabsdatak-conn-bigquery#tabsdatak.conn.bigquery.SchemaEvolutionSpec) (Literal\['update', 'strict'\])
 
-`"strict"` (the default) rejects schema changes; `"update"` allows new columns.
+What a write does when the batch's columns differ from the table's. `"replace"` makes the table the batch's own, so it is not affected. `"strict"` (the default) refuses a batch with a column the table lacks or a wider type; `"update"` adds the column and widens the type, and refuses a change BigQuery cannot make. A column the batch lacks is written NULL either way, and a merge keeps its stored value in the rows it updates.
 
 parameter
 
@@ -112,7 +112,7 @@ parameter
 
 `dest_cfg`[DestCfgSpec](https://docs.tabsdata.com/api/module/tabsdatak-conn-bigquery#tabsdatak.conn.bigquery.DestCfgSpec) | None (Mapping\[Literal\['bigquery.logging\_level', 'bigquery.schema\_evolution\_engine'\], [Any](https://docs.python.org/3/library/typing.html#typing.Any)\] | None)
 
-Optional connector config. Supported keys: `bigquery.logging_level`, and `bigquery.schema_evolution_engine` -- `"native"` (the default when unset) or `"iceberg"`. Native evolution is BigQuery's `schema_update_options` on the load job, which only ever adds a column or relaxes one to nullable. `"iceberg"` has the connector diff the target against the incoming batch instead, which also widens a column whose type the batch has outgrown and refuses a change BigQuery could not make. It applies only where the schema is allowed to move, so it does nothing under `schema_evolution="strict"`; `if_table_exists="merge"` requires `bigquery.schema_evolution_engine="iceberg"`, since a `MERGE` takes no load-job options at all.
+Optional connector config. Supported keys: `bigquery.logging_level`, and `bigquery.schema_evolution_engine` -- `"iceberg"` (the default when unset) or `"native"`. `"iceberg"` diffs the target against the incoming batch and runs the `ALTER` statements itself: it adds a column and widens one whose type the batch has outgrown, and refuses a change BigQuery could not make. `"native"` leaves `schema_evolution="update"` to BigQuery's `schema_update_options` on the load job, which only ever adds a column or relaxes one to nullable, never widens one; a `MERGE` takes no load-job options, so `if_table_exists="merge"` refuses `"native"`. Under `schema_evolution="strict"` both engines refuse a batch with a new column or a wider type.
 
 ## Methods
 
@@ -124,6 +124,6 @@ method
 def validate()
 ```
 
-Cross-field validation: `merge_cfg` and `if_table_exists="merge"` require each other, a list of configs must line up with `tables`, `watermark_column` is not a replace's to name, and merging requires `schema_evolution_engine="iceberg"`.
+Cross-field validation: `merge_cfg` and `if_table_exists="merge"` require each other, a list of configs must line up with `tables`, `watermark_column` is not a replace's to name, and merging refuses `schema_evolution_engine="native"`.
 
 Called by the framework; raises `BigQueryValidateException`.

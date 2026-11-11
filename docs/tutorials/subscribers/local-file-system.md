@@ -1,6 +1,6 @@
 # Subscribe data to local files
 
-> Writes Tabsdata tables to local Parquet files using a subscriber with LocalFileDest, covering paths, input_tables, output handling, and trigger_by.
+> Writes Tabsdata tables to local Parquet files using a LocalFileDest subscriber, covering paths, input_tables, connection config, and the trigger_by default.
 
 Source: https://docs.tabsdata.com/tutorials/subscribers/local-file-system
 
@@ -8,7 +8,7 @@ Before you begin
 
 [Quickstart a Server](https://docs.tabsdata.com/server-admin/quickstart) or [Start a Server](https://docs.tabsdata.com/server-admin/start)
 
-[Connect to MCP](https://docs.tabsdata.com/guide/connect-agent)
+[Configure Your AI Agent](https://docs.tabsdata.com/guide/connect-agent)
 
 ## Write tables out to local files
 

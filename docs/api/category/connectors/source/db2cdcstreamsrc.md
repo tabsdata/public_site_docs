@@ -8,7 +8,7 @@ class
 
 ```python
 class Db2CdcStreamSrc(
-    tables: list[Db2TableNameSpec],
+    tables: Db2CdcTableNamesSpec,
     start_from: Db2CdcStartFromSpec,
     columns_format: CdcColumnsFormatSpec = 'columns',
     flatten_columns: bool = True,
@@ -28,9 +28,9 @@ A streaming change-data-capture source: it emits one tableframe-batch per captur
 
 parameter
 
-`tables`[list](https://docs.python.org/3/builtins/stdtypes.html#list)\[[Db2TableNameSpec](https://docs.tabsdata.com/api/module/tabsdatak-conn-db2#tabsdatak.conn.db2.Db2TableNameSpec)\] ([list](https://docs.python.org/3/library/stdtypes.html#list)\[[str](https://docs.python.org/3/library/stdtypes.html#str)\])
+`tables`[Db2CdcTableNamesSpec](https://docs.tabsdata.com/api/module/tabsdatak-conn-db2#tabsdatak.conn.db2.Db2CdcTableNamesSpec) ([list](https://docs.python.org/3/library/stdtypes.html#list)\[[str](https://docs.python.org/3/library/stdtypes.html#str)\])
 
-Qualified `cd_schema.cd_table` CD table names.
+Qualified `cd_schema.cd_table` CD table names, each listed once.
 
 parameter
 

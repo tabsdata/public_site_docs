@@ -55,7 +55,7 @@ Incremental read: an `initial_values` bind seeds the `:wm` watermark, `FETCH FIR
     ),
     output_tables=["or_city_inc"],
 )
-def ingest_inc(city: TableFrameSpec, ctx: TrxCtx):
+def ingest_inc(city: TableFrameSpec, ctx: TransactionCtx):
     if city is not None:
         row = city.max_for("ID")
         if row is not None and row["ID"] is not None:

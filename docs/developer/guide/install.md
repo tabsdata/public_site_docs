@@ -100,7 +100,7 @@ Tabsdata runs on Kubernetes, and this install uses `kminus`: a lightweight provi
 
 note
 
-If you plan to use the MySQL, PostgreSQL, or Oracle connectors, they need database drivers that Tabsdata cannot redistribute. See [Installing Third-Party Database Drivers](https://docs.tabsdata.com/developer/server-admin/third-party-database-drivers).
+If you plan to use the PostgreSQL or Oracle connectors, they need database drivers that Tabsdata cannot redistribute. See [Installing Third-Party Database Drivers](https://docs.tabsdata.com/developer/server-admin/third-party-database-drivers).
 
 ### Check Tabsdata Server Status
 
@@ -130,35 +130,39 @@ tdkserver status
 Output
 
 ```
-Deployments                              
-┌───────────────┬─────────┬───────┬─────┐
-│ Name          │ Status  │ Ready │ Age │
-├───────────────┼─────────┼───────┼─────┤
-│ srv-aiagent   │ Running │ 1/1   │ 15s │
-│ srv-apiserver │ Running │ 1/1   │ 15s │
-│ srv-database  │ Running │ 1/1   │ 24s │
-└───────────────┴─────────┴───────┴─────┘
-Pods                                                      
-┌────────────────────────────────┬─────────┬───────┬─────┐
-│ Name                           │ Status  │ Ready │ Age │
-├────────────────────────────────┼─────────┼───────┼─────┤
-│ srv-aiagent-7476c88484-4klx8   │ Running │ 2/2   │ 15s │
-│ srv-apiserver-56bbbb559d-8cnxl │ Running │ 1/1   │ 15s │
-│ srv-database-fd4f8f85-dsxcj    │ Running │ 1/1   │ 24s │
-└────────────────────────────────┴─────────┴───────┴─────┘
-CronJobs                                                            
-┌──────────────────┬─────────┬─────────────┬─────────────────┬─────┐
-│ Name             │ Status  │ Expression  │ Explanation     │ Age │
-├──────────────────┼─────────┼─────────────┼─────────────────┼─────┤
-│ srv-aiembeddings │ Running │ */5 * * * * │ Every 5 minutes │ 6s  │
-│ srv-aimetadata   │ Running │ */5 * * * * │ Every 5 minutes │ 6s  │
-└──────────────────┴─────────┴─────────────┴─────────────────┴─────┘
-Jobs                                             
+Deployments
+┌──────────────────────┬─────────┬───────┬─────┐
+│ Name                 │ Status  │ Ready │ Age │
+├──────────────────────┼─────────┼───────┼─────┤
+│ srv-aiagent          │ Running │ 1/1   │ 1m  │
+│ srv-aitdk            │ Running │ 1/1   │ 1m  │
+│ srv-apiserver        │ Running │ 1/1   │ 1m  │
+│ srv-catalog-classify │ Running │ 1/1   │ 1m  │
+│ srv-database         │ Running │ 1/1   │ 1m  │
+│ srv-embedder         │ Running │ 1/1   │ 1m  │
+└──────────────────────┴─────────┴───────┴─────┘
+
+Pods
+┌───────────────────────────────────────┬─────────┬───────┬─────┐
+│ Name                                  │ Status  │ Ready │ Age │
+├───────────────────────────────────────┼─────────┼───────┼─────┤
+│ srv-aiagent-6c9697fcc4-2wl6n          │ Running │ 1/1   │ 1m  │
+│ srv-aitdk-6b8b6764c-8wlzt             │ Running │ 1/1   │ 1m  │
+│ srv-apiserver-597b4799cf-x6btf        │ Running │ 1/1   │ 1m  │
+│ srv-catalog-classify-587769cd89-cnr8d │ Running │ 1/1   │ 1m  │
+│ srv-database-8448f99777-8tsbj         │ Running │ 1/1   │ 1m  │
+│ srv-embedder-5d7b9bcc7c-xg977         │ Running │ 1/1   │ 1m  │
+└───────────────────────────────────────┴─────────┴───────┴─────┘
+
+CronJobs
+No rows found.
+
+Jobs
 ┌────────────────┬──────────┬─────────────┬─────┐
 │ Name           │ Status   │ Completions │ Age │
 ├────────────────┼──────────┼─────────────┼─────┤
-│ ini-inspector  │ Complete │ 1/1         │ 16s │
-│ ini-venvloader │ Complete │ 1/1         │ 17s │
+│ ini-inspector  │ Complete │ 1/1         │ 1m  │
+│ ini-venvloader │ Complete │ 1/1         │ 1m  │
 └────────────────┴──────────┴─────────────┴─────┘
 ```
 
@@ -173,3 +177,41 @@ tdk login --server localhost --user admin --password tabsdata
 ```
 
 Next: [Run Your First Data Integration](https://docs.tabsdata.com/developer/guide/run-your-first-data-integration). Register and run your first pipeline.
+
+## Upgrade Tabsdata
+
+To upgrade Tabsdata, install the new version in a clean virtual environment and run `tdkserver upgrade` from it. The upgrade keeps the instance's custom configuration, for example additional virtual environment requirements.
+
+### Create a new virtual environment
+
+Create a new, clean virtual environment for the new version, as in [Create a Python virtual environment](#create-a-python-virtual-environment), with a new name such as `tabsdata-new` or `.venv-new`. Do not install the new version in the environment of the version you are upgrading from.
+
+### Install the new version
+
+In the new virtual environment, install Tabsdata as in [Install Tabsdata](#install-tabsdata).
+
+### Upgrade the server
+
+From the new virtual environment, run:
+
+```bash
+tdkserver upgrade
+```
+
+The upgrade stops the Tabsdata Server and leaves it stopped. To start it again as soon as the upgrade completes, pass `--apply true`:
+
+```bash
+tdkserver upgrade --apply true
+```
+
+Without `--apply true`, start the server with `tdkserver start` when you are ready. `tdkserver upgrade` upgrades the instance named `tabsdata` unless `--instance` names another; see [tdkserver upgrade](https://docs.tabsdata.com/cli/tdkserver/upgrade) for every option.
+
+### Remove the previous virtual environment
+
+Once the upgrade is complete, the virtual environment of the previous version is no longer used and can be deleted.
+
+### Upgrade the clients
+
+Every machine that runs `tdk` needs the new version too. On each one, create a new virtual environment and install the new version, as in the first two steps.
+
+Then run the AI agent configuration again from the new virtual environment, starting with `tdk ai agents install`. See [Configure Your AI Agent](https://docs.tabsdata.com/guide/connect-agent).

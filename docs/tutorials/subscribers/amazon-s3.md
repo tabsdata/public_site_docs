@@ -1,6 +1,6 @@
 # Subscribe data to Amazon S3
 
-> Writes Tabsdata tables to Amazon S3 as Parquet objects using an S3Dest subscriber, covering the paths, input_tables, connection YAML, and trigger_by options.
+> Writes Tabsdata tables to Amazon S3 as Parquet files using an S3 destination connection and the @subscriber decorator, covering paths, input_tables, and trigger_by.
 
 Source: https://docs.tabsdata.com/tutorials/subscribers/amazon-s3
 
@@ -8,7 +8,7 @@ Before you begin
 
 [Quickstart a Server](https://docs.tabsdata.com/server-admin/quickstart) or [Start a Server](https://docs.tabsdata.com/server-admin/start)
 
-[Connect to MCP](https://docs.tabsdata.com/guide/connect-agent)
+[Configure Your AI Agent](https://docs.tabsdata.com/guide/connect-agent)
 
 ## Write tables out to Amazon S3
 

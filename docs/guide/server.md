@@ -6,7 +6,7 @@ Source: https://docs.tabsdata.com/guide/server
 
 A **Tabsdata Server** is the top-level Tabsdata process deployed on a machine. It stores and manages Tabsdata resources, executes workflows, stores tabular data, and isolates Tabsdata processes from other processes running on the machine.
 
-You can interact with a Server through the Tabsdata UI, CLI, Python API, or MCP integration.
+You can interact with a Server through the Tabsdata UI, the `tdk` CLI, or the Python API, and coding agents work with it through `tdk`.
 
 ## Resources in a Server
 
@@ -45,7 +45,7 @@ You can connect to a Server using several interfaces:
 -   The **Tabsdata UI** provides a browser-based interface for managing resources, running workflows, and inspecting results.
 -   The **`tdk` CLI** provides command-line access to the Server.
 -   The **Python API** provides programmatic access from Python applications.
--   The **Tabsdata MCP integration** allows AI agents to interact with the Server through tools.
+-   **Coding agents** work with the Server through `tdk`, guided by the Tabsdata skill.
 
 ## Managing a Server
 
@@ -53,4 +53,4 @@ The `tdkserver` CLI manages the Server lifecycle, including initializing, creati
 
 See [Deploy Tabsdata on k-minus](https://docs.tabsdata.com/server-admin/kminus) for Quickstart and the complete local Server lifecycle. For a managed Kubernetes deployment, choose [AWS EKS](https://docs.tabsdata.com/server-admin/eks-install), [Azure AKS](https://docs.tabsdata.com/server-admin/aks-install), or [Google GKE](https://docs.tabsdata.com/server-admin/gke-install).
 
-To connect an AI agent, see [Connect to MCP](https://docs.tabsdata.com/server-admin/connect-agent).
+To connect an AI agent, see [Configure Your AI Agent](https://docs.tabsdata.com/server-admin/connect-agent).

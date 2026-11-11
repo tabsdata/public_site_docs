@@ -1,6 +1,6 @@
 # Subscribe data to Azure Blob Storage
 
-> Writes Tabsdata tables to Azure Blob Storage as Parquet files using an @subscriber with AzureBlobDest, covering connection YAML, account key credentials, paths, and trigger_by.
+> Writes Tabsdata tables to Azure Blob Storage as Parquet files using `@subscriber`, `AzureBlobDest`, and an Azure account key connection definition.
 
 Source: https://docs.tabsdata.com/tutorials/subscribers/azure
 
@@ -8,7 +8,7 @@ Before you begin
 
 [Quickstart a Server](https://docs.tabsdata.com/server-admin/quickstart) or [Start a Server](https://docs.tabsdata.com/server-admin/start)
 
-[Connect to MCP](https://docs.tabsdata.com/guide/connect-agent)
+[Configure Your AI Agent](https://docs.tabsdata.com/guide/connect-agent)
 
 ## Write tables out to Azure Blob Storage
 

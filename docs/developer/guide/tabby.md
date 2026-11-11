@@ -49,7 +49,7 @@ tdkserver config get --with-secrets
 tdkserver config put --apply
 ```
 
-The [MCP Server](https://docs.tabsdata.com/developer/guide/mcp) runs in the same AI agent service. A key must be configured for the service to start, but a placeholder is sufficient when only using an external agent. Tabby requires a valid key.
+Tabby runs in the Server's AI agent service, which starts only when a key is configured. Tabby requires the key to be valid.
 
 ## Starting a chat
 

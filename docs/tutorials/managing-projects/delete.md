@@ -1,6 +1,6 @@
 # Delete a Project
 
-> Shows how to delete a Tabsdata project through the MCP agent, including the confirmation step and the removal of its groups and collections, with prerequisites for installing and creating projects.
+> Deletes a Tabsdata project through the AI agent, showing the confirmation step and the groups and collections removed with it, and that the name becomes available for reuse.
 
 Source: https://docs.tabsdata.com/tutorials/managing-projects/delete
 
@@ -8,7 +8,7 @@ Before you begin
 
 [Install Tabsdata](https://docs.tabsdata.com/server-admin/install)
 
-[Connect to MCP](https://docs.tabsdata.com/guide/connect-agent)
+[Configure Your AI Agent](https://docs.tabsdata.com/guide/connect-agent)
 
 [Create a Project](https://docs.tabsdata.com/tutorials/managing-projects/create)
 

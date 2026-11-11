@@ -21,8 +21,8 @@ tdkserver venv update \
 | Flag | Type | Required | Description |
 | --- | --- | --- | --- |
 | `--instance` | string | Optional | Name of the instance whose virtual environment is updated. Defaults to 'tabsdata'. |
-| `--name` | td \| fn \| ag | Required | Virtual environment to update. Run 'tdkserver venv list' to see the virtual environments and what each one is used for. |
-| `--requirements` | string | Required | File with the complementary packages of the virtual environment, in pip requirements format. It replaces the requirements file the instance currently holds for the virtual environment. |
+| `--name` | td \| fn \| ag | Required | Comma-separated list of the virtual environments to update, such as 'fn,ag'. Without it, every virtual environment is updated. Run 'tdkserver venv list' to see the virtual environments and what each one is used for. |
+| `--requirements` | string | Required | File with the complementary packages of the virtual environment, in pip requirements format. It replaces the requirements file the instance currently holds for each virtual environment updated. |
 | `--details` | true \| false | Optional | Show the summary of resolved values before the update. Defaults to 'true'. Pass '--details false' to skip the summary. |
 | `-y, --yes` | true \| false | Optional | Skip the interactive confirmation prompt and proceed immediately. |
 | `--accept-terms` | string | Optional | Accept or decline the license terms without interactive prompt \[y/yes/n/no\]. |

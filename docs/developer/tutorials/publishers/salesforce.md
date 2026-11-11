@@ -148,9 +148,9 @@ Deletions are invisible to that comparison, because a deleted row stops appearin
 | `instance_url` | no | Disambiguates the org when the credentials map to several |
 | `version` | no | Salesforce API version. Defaults to the latest |
 
-## None, and "no new version"
+## None, and keeping the previous data
 
-A query that returns no rows fills its slot with `None` rather than an empty frame. Returning `None` for a table tells Tabsdata to keep the previous version as current instead of committing a new one, which is the usual outcome of an incremental run with nothing new to read:
+A query that returns no rows fills its slot with `None` rather than an empty frame. Returning `None` for a table commits a new version that keeps the previous data, which is the usual outcome of an incremental run with nothing new to read:
 
 read\_when\_available.py
 

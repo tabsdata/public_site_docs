@@ -14,7 +14,7 @@ class DestDef(
     conn: Type[Conn],
     dest: Type[D],
     cardinality: Callable[[D], int],
-    plugin: Type[DestPlugin],
+    plugin: _AnyDestPlugin,
     explorer: Type[Explorer] | None,
     icon: str | None,
 )
@@ -66,7 +66,7 @@ Callable returning the number of input slots `dest` declares (e.g. `lambda d: le
 
 parameter
 
-`plugin`[Type](https://docs.python.org/3/library/typing.html#typing.Type)\[[DestPlugin](https://docs.tabsdata.com/api/category/spi/spi/destplugin)\]
+`plugin`\_AnyDestPlugin (Type\[[DestPlugin](https://docs.tabsdata.com/api/category/spi/spi/destplugin)\[[Any](https://docs.python.org/3/library/typing.html#typing.Any), [Any](https://docs.python.org/3/library/typing.html#typing.Any), [Any](https://docs.python.org/3/library/typing.html#typing.Any)\]\])
 
 [`DestPlugin`](https://docs.tabsdata.com/api/category/spi/spi/destplugin) subclass implementing `write_out`.
 

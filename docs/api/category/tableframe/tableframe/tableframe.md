@@ -70,25 +70,12 @@ def explain(
     *,
     format: ExplainFormat = 'plain',
     optimized: bool = True,
-    type_coercion: bool = True,
-    predicate_pushdown: bool = True,
-    projection_pushdown: bool = True,
-    simplify_expression: bool = True,
-    slice_pushdown: bool = True,
-    comm_subplan_elim: bool = True,
-    comm_subexpr_elim: bool = True,
-    cluster_with_columns: bool = True,
-    collapse_joins: bool = True,
-    streaming: bool = False,
     engine: EngineType = 'auto',
-    tree_format: bool | None = None,
     optimizations: Any = ...,
 ) -> str
 ```
 
 Return the query plan of this [`TableFrame`](https://docs.tabsdata.com/api/category/tableframe/tableframe/tableframe) as text.
-
-The remaining boolean flags each toggle one query-plan optimization (predicate/projection pushdown, common-subplan elimination, ...); leave them at their defaults unless diagnosing the plan.
 
 **Parameters:**
 
@@ -106,59 +93,15 @@ Show the optimized plan (default) rather than the raw logical plan.
 
 parameter
 
-`type_coercion`[bool](https://docs.python.org/3/builtins/functions.html#bool)
-
-parameter
-
-`predicate_pushdown`[bool](https://docs.python.org/3/builtins/functions.html#bool)
-
-parameter
-
-`projection_pushdown`[bool](https://docs.python.org/3/builtins/functions.html#bool)
-
-parameter
-
-`simplify_expression`[bool](https://docs.python.org/3/builtins/functions.html#bool)
-
-parameter
-
-`slice_pushdown`[bool](https://docs.python.org/3/builtins/functions.html#bool)
-
-parameter
-
-`comm_subplan_elim`[bool](https://docs.python.org/3/builtins/functions.html#bool)
-
-parameter
-
-`comm_subexpr_elim`[bool](https://docs.python.org/3/builtins/functions.html#bool)
-
-parameter
-
-`cluster_with_columns`[bool](https://docs.python.org/3/builtins/functions.html#bool)
-
-parameter
-
-`collapse_joins`[bool](https://docs.python.org/3/builtins/functions.html#bool)
-
-parameter
-
-`streaming`[bool](https://docs.python.org/3/builtins/functions.html#bool)
-
-Show the plan for streaming execution.
-
-parameter
-
 `engine`EngineType (Literal\['auto', 'in-memory', 'streaming', 'gpu'\])
 
 Target engine -- `"auto"`, `"in-memory"`, `"streaming"` or `"gpu"`.
 
 parameter
 
-`tree_format`[bool](https://docs.python.org/3/builtins/functions.html#bool) | None
-
-parameter
-
 `optimizations`[Any](https://docs.python.org/3/library/typing.html#typing.Any)
+
+The query-plan optimizations to apply (predicate and projection pushdown, common-subplan elimination, ...); leave the default unless diagnosing the plan.
 
 **Example:**
 
@@ -184,26 +127,13 @@ def show_graph(
     output_path: str | Path | None = None,
     raw_output: bool = False,
     figsize: tuple[float, float] = (16.0, 12.0),
-    type_coercion: bool = True,
-    _type_check: bool = True,
-    predicate_pushdown: bool = True,
-    projection_pushdown: bool = True,
-    simplify_expression: bool = True,
-    slice_pushdown: bool = True,
-    comm_subplan_elim: bool = True,
-    comm_subexpr_elim: bool = True,
-    cluster_with_columns: bool = True,
-    collapse_joins: bool = True,
     engine: EngineType = 'auto',
-    plan_stage: PlanStage | None = None,
-    _check_order: bool = True,
+    plan_stage: PlanStage = 'physical',
     optimizations: Any = ...,
 ) -> str | None
 ```
 
 Render the query plan of this [`TableFrame`](https://docs.tabsdata.com/api/category/tableframe/tableframe/tableframe) as a graph.
-
-The remaining boolean flags toggle individual query-plan optimizations; leave them at their defaults unless diagnosing the plan.
 
 **Parameters:**
 
@@ -239,63 +169,21 @@ Figure size as `(width, height)` in inches.
 
 parameter
 
-`type_coercion`[bool](https://docs.python.org/3/builtins/functions.html#bool)
-
-parameter
-
-`_type_check`[bool](https://docs.python.org/3/builtins/functions.html#bool)
-
-parameter
-
-`predicate_pushdown`[bool](https://docs.python.org/3/builtins/functions.html#bool)
-
-parameter
-
-`projection_pushdown`[bool](https://docs.python.org/3/builtins/functions.html#bool)
-
-parameter
-
-`simplify_expression`[bool](https://docs.python.org/3/builtins/functions.html#bool)
-
-parameter
-
-`slice_pushdown`[bool](https://docs.python.org/3/builtins/functions.html#bool)
-
-parameter
-
-`comm_subplan_elim`[bool](https://docs.python.org/3/builtins/functions.html#bool)
-
-parameter
-
-`comm_subexpr_elim`[bool](https://docs.python.org/3/builtins/functions.html#bool)
-
-parameter
-
-`cluster_with_columns`[bool](https://docs.python.org/3/builtins/functions.html#bool)
-
-parameter
-
-`collapse_joins`[bool](https://docs.python.org/3/builtins/functions.html#bool)
-
-parameter
-
 `engine`EngineType (Literal\['auto', 'in-memory', 'streaming', 'gpu'\])
 
 Engine whose plan is graphed; `"auto"` by default.
 
 parameter
 
-`plan_stage`PlanStage | None (Literal\['ir', 'physical'\] | None)
+`plan_stage`PlanStage (Literal\['ir', 'physical'\])
 
-Plan stage to graph, `"ir"` or `"physical"`. Only the streaming engine has a separate physical stage. When omitted it graphs the `"ir"` stage and polars warns that the default becomes `"physical"` in Polars 2.0; pass `plan_stage="ir"` to keep the current output without the warning.
-
-parameter
-
-`_check_order`[bool](https://docs.python.org/3/builtins/functions.html#bool)
+Plan stage to graph, `"physical"` (default) or `"ir"`. Only the streaming engine has a separate physical stage.
 
 parameter
 
 `optimizations`[Any](https://docs.python.org/3/library/typing.html#typing.Any)
+
+The query-plan optimizations to apply; leave the default unless diagnosing the plan.
 
 **Example:**
 
@@ -611,7 +499,7 @@ Key column(s) present in BOTH frames. Use this OR `left_on`/`right_on`, never bo
 
 parameter
 
-`how`JoinStrategy (Literal\['inner', 'left', 'right', 'full', 'semi', 'anti', 'cross', 'outer'\])
+`how`JoinStrategy (Literal\['inner', 'left', 'right', 'full', 'semi', 'anti', 'cross'\])
 
 Join strategy -- one of `"inner"`, `"left"`, `"right"`, `"full"` (a.k.a. `"outer"`), `"cross"`, `"semi"` or `"anti"`. `"semi"` keeps left rows that have a match, `"anti"` keeps those that do not, and `"cross"` is the cartesian product (takes no keys).
 

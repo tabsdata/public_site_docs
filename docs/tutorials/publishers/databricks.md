@@ -1,6 +1,6 @@
 # Publish data from Databricks
 
-> Publishes Databricks SQL query results to Tabsdata tables using the DatabricksSrc connector, with {placeholder} substitution via initial_values, staging volumes, and warehouse or warehouse_id options.
+> Publishes Databricks SQL query results into Tabsdata tables via the DatabricksSrc connector, covering `queries`, `initial_values` placeholders, warehouse and staging volume settings.
 
 Source: https://docs.tabsdata.com/tutorials/publishers/databricks
 
@@ -8,7 +8,7 @@ Before you begin
 
 [Quickstart a Server](https://docs.tabsdata.com/server-admin/quickstart) or [Start a Server](https://docs.tabsdata.com/server-admin/start)
 
-[Connect to MCP](https://docs.tabsdata.com/guide/connect-agent)
+[Configure Your AI Agent](https://docs.tabsdata.com/guide/connect-agent)
 
 ## Ingest query results from Databricks
 

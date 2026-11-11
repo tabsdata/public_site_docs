@@ -105,6 +105,38 @@ tf.select(col("v").exp().alias("growth"))
 
 method
 
+`erf`
+
+```python
+def erf() -> Expr
+```
+
+Error function of each element.
+
+**Example:**
+
+```python
+tf.select(col("v").erf().alias("erf"))
+```
+
+method
+
+`erfc`
+
+```python
+def erfc() -> Expr
+```
+
+Complementary error function (`1 - erf`) of each element.
+
+**Example:**
+
+```python
+tf.select(col("v").erfc().alias("erfc"))
+```
+
+method
+
 `alias`
 
 ```python
@@ -1247,12 +1279,7 @@ method
 `hash`
 
 ```python
-def hash(
-    seed: int = 0,
-    seed_1: int | None = None,
-    seed_2: int | None = None,
-    seed_3: int | None = None,
-) -> Expr
+def hash(seed: int = 0) -> Expr
 ```
 
 Hash each element to a 64-bit unsigned integer.
@@ -1263,25 +1290,7 @@ parameter
 
 `seed`[int](https://docs.python.org/3/builtins/functions.html#int)
 
-Base seed for the hash.
-
-parameter
-
-`seed_1`[int](https://docs.python.org/3/builtins/functions.html#int) | None
-
-Optional additional seed.
-
-parameter
-
-`seed_2`[int](https://docs.python.org/3/builtins/functions.html#int) | None
-
-Optional additional seed.
-
-parameter
-
-`seed_3`[int](https://docs.python.org/3/builtins/functions.html#int) | None
-
-Optional additional seed.
+Seed for the hash.
 
 **Example:**
 

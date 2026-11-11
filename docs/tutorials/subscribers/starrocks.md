@@ -1,6 +1,6 @@
 # Subscribe data to StarRocks
 
-> Writes Tabsdata tables to StarRocks with the StarRocksDest connector, covering the subscriber decorator, if_table_exists and schema_evolution options, S3 staging, and tabsdata[starrocks] install.
+> Writes Tabsdata tables to StarRocks via a subscriber with StarRocksDest, covering connection YAML, staging to S3, if_table_exists, schema_evolution, and the tabsdata[starrocks] install.
 
 Source: https://docs.tabsdata.com/tutorials/subscribers/starrocks
 
@@ -8,11 +8,11 @@ Before you begin
 
 [Quickstart a Server](https://docs.tabsdata.com/server-admin/quickstart) or [Start a Server](https://docs.tabsdata.com/server-admin/start)
 
-[Connect to MCP](https://docs.tabsdata.com/guide/connect-agent)
+[Configure Your AI Agent](https://docs.tabsdata.com/guide/connect-agent)
 
 ## Write tables out to StarRocks
 
-One entry in `tables` per input table, in order. `if_table_exists="replace"` rebuilds each destination table from the frame, so a changed schema does not fail the run.
+One entry in `tables` per input table, in order. `if_table_exists="replace"` overwrites each destination table with the frame. How a changed schema is handled depends on the destination; see [Schema Evolution](https://docs.tabsdata.com/guide/connectors/schema-evolution).
 
 warning
 

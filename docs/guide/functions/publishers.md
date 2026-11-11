@@ -111,9 +111,9 @@ read\_world.py
 
 A publisher function has one parameter per source slot and returns one frame per output table.
 
--   **Parameters.** Source slots are passed to the function in source order. Annotate a parameter as `TableFrameSpec` for one frame or `TableFramesSpec` for a list of frames. A slot can be `None` when there is no batch for it.
--   **Context.** The function can have a final `ctx: TrxCtx` parameter. Use `ctx` to keep values between successful runs. For example, an incremental SQL publisher can save its last processed ID with `ctx.set_attr()` and use it in the next query.
--   **Return value.** Return values map to `output_tables` in order. One output can be returned on its own; several outputs are returned as a tuple. Returning `None` for one output leaves that table's current version unchanged.
+-   **Parameters.** Source slots are passed to the function in source order. Annotate a parameter as `TableFrameSpec` for one frame or `TableFramesSpec` for a list of frames. A slot is `None` when the external system has no new data for it; see [`None` inputs and outputs](https://docs.tabsdata.com/guide/functions/#none-inputs-and-outputs).
+-   **Context.** The function can have a final `ctx: TransactionCtx` parameter. Use `ctx` to keep values between successful runs. For example, an incremental SQL publisher can save its last processed ID with `ctx.set_attr()` and use it in the next query. Type it `FunctionCtx` to also read the run's identifiers and the project's secrets.
+-   **Return value.** Return values map to `output_tables` in order. One output can be returned on its own; several outputs are returned as a tuple. Returning `None` for one output commits a new version that keeps that table's previous data.
 -   **Slot counts.** The number of source slots does not have to match the number of output tables. The function can combine several inputs into one table or create several tables from one input.
 
 Tabsdata checks the slot counts and function signature when the publisher is registered.

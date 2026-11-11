@@ -19,7 +19,7 @@ tdkserver create \
 
 | Flag | Type | Required | Description |
 | --- | --- | --- | --- |
-| `--instance` | string | Optional | Name of the instance to create. Defaults to 'tabsdata'. |
+| `--instance` | string | Optional | Name of the instance to create. Defaults to 'tabsdata'. On Windows, a 'kminus' instance is rejected before anything is created when the paths of its executables, built from the home folder, the user name and the instance name, would exceed the Windows path limit. |
 | `--port` | integer | Optional | Base HTTP/HTTPS port. Ports for the instance services are assigned sequentially starting from this value. Defaults to `2457`. |
 | `--details` | true \| false | Optional | Show the summary of resolved values before creating the instance. Defaults to 'true'. Pass '--details false' to skip the summary. |
 | `-y, --yes` | true \| false | Optional | Skip the interactive confirmation prompt and proceed immediately. |

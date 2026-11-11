@@ -41,7 +41,7 @@ Each connector's page covers its connection fields and the options of its classe
 
 note
 
-The MariaDB, MySQL, Oracle, and Postgres connectors need a database driver that Tabsdata does not redistribute. See [Installing Third-Party Database Drivers](https://docs.tabsdata.com/server-admin/third-party-database-drivers) to add the driver to your Tabsdata server.
+The Oracle and Postgres connectors need a database driver that Tabsdata does not redistribute. See [Installing Third-Party Database Drivers](https://docs.tabsdata.com/server-admin/third-party-database-drivers) to add the driver to your Tabsdata server.
 
 ## Other systems
 

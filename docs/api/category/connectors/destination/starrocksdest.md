@@ -67,12 +67,12 @@ parameter
 
 parameter
 
-`schema_evolution`[SchemaEvolutionSpec](https://docs.tabsdata.com/api/module/tabsdatak-conn-starrocks#tabsdatak.conn.starrocks.SchemaEvolutionSpec) (Literal\['strict', 'iceberg'\])
+`schema_evolution`[SchemaEvolutionSpec](https://docs.tabsdata.com/api/module/tabsdatak-conn-starrocks#tabsdatak.conn.starrocks.SchemaEvolutionSpec) (Literal\['strict', 'update'\])
 
-`"strict"` (the default) rejects schema changes; `"iceberg"` applies Iceberg-style schema deltas.
+What a write does when the batch's columns differ from the table's. `"strict"` (the default) refuses a batch with a column the table lacks or a wider type, except that a text column takes any text (StarRocks refuses a value too long for it) and a narrower number column takes a batch whose values all fit it; `"update"` adds the column and widens the type, and refuses a change StarRocks cannot make. A column the batch lacks is written NULL either way.
 
 parameter
 
-`dest_cfg`[DestCfgSpec](https://docs.tabsdata.com/api/module/tabsdatak-conn-starrocks#tabsdatak.conn.starrocks.DestCfgSpec) | None (Mapping\[Literal\['starrocks.logging\_level'\], [Any](https://docs.python.org/3/library/typing.html#typing.Any)\] | None)
+`dest_cfg`[DestCfgSpec](https://docs.tabsdata.com/api/module/tabsdatak-conn-starrocks#tabsdatak.conn.starrocks.DestCfgSpec) | None (Mapping\[Literal\['starrocks.logging\_level', 'starrocks.schema\_evolution\_engine'\], [Any](https://docs.python.org/3/library/typing.html#typing.Any)\] | None)
 
-Optional connector config; the only supported key is `starrocks.logging_level`.
+Optional connector config. Supported keys: `starrocks.logging_level`, and `starrocks.schema_evolution_engine` -- `"iceberg"`, the default and only engine: StarRocks has no schema evolution of its own. A column type change runs as a StarRocks job, which the write waits for before loading.

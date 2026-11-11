@@ -22,4 +22,4 @@ parameter
 
 `mask`[CronMaskSpec](https://docs.tabsdata.com/api/module/tabsdatak-api#tabsdatak.api.CronMaskSpec) ([str](https://docs.python.org/3/library/stdtypes.html#str))
 
-Five-field cron expression (UTC).
+A Kubernetes CronJob schedule: five fields, one of `@yearly`, `@annually`, `@monthly`, `@weekly`, `@daily`, `@midnight`, `@hourly`, or `@every <duration>`. Always UTC.

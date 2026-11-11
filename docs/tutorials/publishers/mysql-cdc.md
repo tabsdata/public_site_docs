@@ -1,6 +1,6 @@
 # Publish data from MySQL CDC
 
-> Publishes MySQL binlog changes to Tabsdata tables with @stream_publisher and MySQLCdcStreamSrc, covering start_from options, batch_max_secs, output_tables, and the mysql-connector-python driver requirement.
+> Publishes MySQL binlog changes to Tabsdata tables with @stream_publisher and MySQLCdcStreamSrc, covering start_from options and batch_max_secs.
 
 Source: https://docs.tabsdata.com/tutorials/publishers/mysql-cdc
 
@@ -8,11 +8,7 @@ Before you begin
 
 [Quickstart a Server](https://docs.tabsdata.com/server-admin/quickstart) or [Start a Server](https://docs.tabsdata.com/server-admin/start)
 
-[Connect to MCP](https://docs.tabsdata.com/guide/connect-agent)
-
-warning
-
-The MySQL CDC connector needs the `mysql-connector-python` driver, which Tabsdata does not redistribute. See [Installing Third-Party Database Drivers](https://docs.tabsdata.com/server-admin/third-party-database-drivers) to add it to your Tabsdata server.
+[Configure Your AI Agent](https://docs.tabsdata.com/guide/connect-agent)
 
 ## Follow the binlog instead of re-reading tables
 

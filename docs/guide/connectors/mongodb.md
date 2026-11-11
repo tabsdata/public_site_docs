@@ -65,7 +65,7 @@ Each pair in `collections_with_ids` represents one destination slot and maps pos
 
 #### `if_collection_exists`
 
-`"append"` (the default) leaves the existing documents in place. `"replace"` drops the collection before writing.
+`"append"` (the default) leaves the existing documents in place. `"replace"` drops the collection before writing, and its indexes and validators go with it.
 
 #### `update_existing`
 
@@ -81,11 +81,11 @@ When `True`, documents are inserted in input order. Slower, but the server-side 
 
 #### `fail_on_duplicate_key`
 
-When `True` (the default), a duplicate-key error fails the write. When `False`, it is logged and the batch continues.
+When `True` (the default), a duplicate-key error fails the write. When `False`, the outcome depends on the other settings. With `use_trxs=True`, the transaction is aborted, so the whole batch that holds the duplicate is rolled back and skipped. With `maintain_order=True`, the write stops at the first duplicate, so the rows after it are skipped.
 
 #### `log_intermediate_files`
 
-When `True`, each intermediate JSONL file is logged before upload, for debugging large writes.
+When `True`, each flushed batch is logged with its document count, for debugging large writes.
 
 #### `dest_cfg`
 
@@ -95,13 +95,14 @@ Sets additional destination configuration. The only accepted key is `mongodb.log
 
 Each `(collection, id_field)` entry in `collections_with_ids` is one destination slot. A named `id_field` becomes the document `_id`; `None` lets MongoDB generate it.
 
-`if_collection_exists="append"` keeps existing documents. `"replace"` drops the collection first. With `update_existing=True`, matching ids are upserted; with it disabled, the connector inserts and an id collision fails the batch.
+`if_collection_exists="append"` keeps existing documents. `"replace"` drops the collection first. With `update_existing=True`, matching ids are upserted with `$set`, so fields the row lacks keep their stored values; a missing column fails with `MONGODB_21`. With it disabled, the connector inserts and an id collision fails the batch.
 
 ## Operational notes
 
 -   `docs_per_trx` is both the write-batch size and, when transactions are enabled, the number of documents per transaction.
 -   `maintain_order=True` keeps input order but gives up some write throughput.
--   `fail_on_duplicate_key=False` logs duplicate-key errors and continues the batch. Use it only when skipping those documents is acceptable.
+-   `fail_on_duplicate_key=False` with `use_trxs=True` drops the whole batch that holds the duplicate, not only the duplicate. Use it only when the other documents in that batch can be skipped.
+-   Collections are written one after another in one session. Each `docs_per_trx` batch is its own transaction, so a failure leaves earlier batches committed; nothing rolls back across batches.
 -   Tabsdata does not connect to MongoDB when the collection is created. URI, credential, topology, and permission errors appear when the subscriber runs.
 
 ## Connection

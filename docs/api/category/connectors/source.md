@@ -10,7 +10,7 @@ Source: https://docs.tabsdata.com/api/category/connectors/source/
 | [`BinlogPosition`](https://docs.tabsdata.com/api/category/connectors/source/binlogposition) | CDC start position: a binlog file + byte offset. |
 | [`CommitSeqPosition`](https://docs.tabsdata.com/api/category/connectors/source/commitseqposition) | CDC start position: one global commit sequence for every table. |
 | [`ConfluentSchemaRegistry`](https://docs.tabsdata.com/api/category/connectors/source/confluentschemaregistry) | Confluent-style schema registry attached to a `KafkaStreamSrcConn`. |
-| [`Data`](https://docs.tabsdata.com/api/category/connectors/source/data) | One dataframe emitted by `DataGenSrc`, optionally chunked. |
+| [`Data`](https://docs.tabsdata.com/api/category/connectors/source/data) | One dataframe emitted by `DataGenSrc` or `DevFrameSrc`, optionally chunked. |
 | [`DatabricksSrc`](https://docs.tabsdata.com/api/category/connectors/source/databrickssrc) | Databricks source for `@publisher` -- one output slot per query. |
 | [`DatabricksSrcConn`](https://docs.tabsdata.com/api/category/connectors/source/databrickssrcconn) | Databricks workspace connection used by `DatabricksSrc`. |
 | [`DataGenSrc`](https://docs.tabsdata.com/api/category/connectors/source/datagensrc) | Source emitting in-line dataframes for `@publisher` -- one slot per `Data`. |
@@ -19,6 +19,8 @@ Source: https://docs.tabsdata.com/api/category/connectors/source/
 | [`Db2CdcStreamSrcConn`](https://docs.tabsdata.com/api/category/connectors/source/db2cdcstreamsrcconn) | Db2 CDC connection used by `Db2CdcStreamSrc`. |
 | [`Db2Src`](https://docs.tabsdata.com/api/category/connectors/source/db2src) | Db2 source for `@publisher` -- one output slot per query. |
 | [`Db2SrcConn`](https://docs.tabsdata.com/api/category/connectors/source/db2srcconn) | Db2 connection used by `Db2Src`. |
+| [`DevFrameSrc`](https://docs.tabsdata.com/api/category/connectors/source/devframesrc) | Source emitting in-line dataframes for `@publisher` as `LazyFrame`\\ s -- one slot per `Data`. |
+| [`DevFrameSrcConn`](https://docs.tabsdata.com/api/category/connectors/source/devframesrcconn) | Connection for `DevFrameSrc` -- no configuration. |
 | [`GCSSrc`](https://docs.tabsdata.com/api/category/connectors/source/gcssrc) | GCS source for `@publisher` -- one output slot per path. |
 | [`GCSSrcConn`](https://docs.tabsdata.com/api/category/connectors/source/gcssrcconn) | GCS connection used by `GCSSrc`. |
 | [`GtidPosition`](https://docs.tabsdata.com/api/category/connectors/source/gtidposition) | CDC start position: a MySQL Global Transaction ID. |
@@ -27,8 +29,6 @@ Source: https://docs.tabsdata.com/api/category/connectors/source/
 | [`LocalFileSrc`](https://docs.tabsdata.com/api/category/connectors/source/localfilesrc) | LocalFile source for `@publisher` -- one output slot per path. |
 | [`LocalFileSrcConn`](https://docs.tabsdata.com/api/category/connectors/source/localfilesrcconn) | LocalFile connection used by `LocalFileSrc`. |
 | [`LsnPosition`](https://docs.tabsdata.com/api/category/connectors/source/lsnposition) | CDC start position: a WAL Log Sequence Number. |
-| [`ManifestStageConn`](https://docs.tabsdata.com/api/category/connectors/source/manifeststageconn) | Connection for `ManifestStageSrc` -- one stage backend. |
-| [`ManifestStageSrc`](https://docs.tabsdata.com/api/category/connectors/source/manifeststagesrc) | Stream-stage source -- materialises the files in one manifest. |
 | [`MSSQLSrc`](https://docs.tabsdata.com/api/category/connectors/source/mssqlsrc) | MSSQL source for `@publisher` -- one output slot per query. |
 | [`MSSQLSrcConn`](https://docs.tabsdata.com/api/category/connectors/source/mssqlsrcconn) | MSSQL connection used by `MSSQLSrc`. |
 | [`MySQLCdcStreamSrc`](https://docs.tabsdata.com/api/category/connectors/source/mysqlcdcstreamsrc) | MySQL CDC stream source for `@stream_publisher`. |

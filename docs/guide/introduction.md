@@ -1,6 +1,6 @@
 # Introduction
 
-> Introduction to Tabsdata, an open-source Python data integration platform: deployment requirements, Python functions with Polars expressions, automatic DAG orchestration, data versioning, MCP integration, and connectors.
+> Tabsdata overview covering Python functions as workflows, Polars expression transforms, automatic DAG orchestration, data versioning, the tdk coding agent skill, and built-in connectors for Snowflake, S3, Postgres, MySQL, and Databricks.
 
 Source: https://docs.tabsdata.com/guide/introduction
 
@@ -8,7 +8,7 @@ Tabsdata is an open-source, distributed, horizontally scalable data integration 
 
 Built atop [Kubernetes](https://kubernetes.io/) and the [Polars](https://pola.rs/) DataFrame API, Tabsdata can be deployed on almost any machine that runs Python, requires no admin permissions or Docker dependency, and allows users to move and transform tabular data through an expression-based Pythonic interface.
 
-Through Tabsdata's MCP integration, users can also use AI to build and analyze their workflows.
+With the Tabsdata skill installed, a coding agent can also build and analyze workflows through `tdk`.
 
 _Video: Leads data pipeline animation_
 
@@ -29,7 +29,7 @@ See [Architecture Overview](https://docs.tabsdata.com/guide/architecture) for mo
 ## Next steps
 
 1.  [Install Tabsdata](https://docs.tabsdata.com/guide/install) -- get the server running locally.
-2.  [Connect to MCP](https://docs.tabsdata.com/guide/connect-agent) -- point your LLM at the MCP server.
+2.  [Configure Your AI Agent](https://docs.tabsdata.com/guide/connect-agent) -- install the Tabsdata skill for your coding agent.
 3.  [Run Your First Data Integration](https://docs.tabsdata.com/guide/run-your-first-data-integration) -- build a working flow end to end.
 
 ## LLM-friendly formats

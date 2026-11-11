@@ -1,6 +1,6 @@
 # Subscribe data to ClickHouse
 
-> Writes Tabsdata subscriber output to ClickHouse tables using ClickHouseDest, with S3 staging, if_table_exists and schema_evolution options, and the tabsdata[clickhouse] install requirement.
+> Writes Tabsdata tables out to ClickHouse with the ClickHouseDest subscriber destination, covering table mapping, if_table_exists and schema_evolution options, S3 staging, and the tabsdata[clickhouse] install.
 
 Source: https://docs.tabsdata.com/tutorials/subscribers/clickhouse
 
@@ -8,11 +8,11 @@ Before you begin
 
 [Quickstart a Server](https://docs.tabsdata.com/server-admin/quickstart) or [Start a Server](https://docs.tabsdata.com/server-admin/start)
 
-[Connect to MCP](https://docs.tabsdata.com/guide/connect-agent)
+[Configure Your AI Agent](https://docs.tabsdata.com/guide/connect-agent)
 
 ## Write tables out to ClickHouse
 
-One entry in `tables` per input table, in order. `if_table_exists="replace"` rebuilds each destination table from the frame, so a changed schema does not fail the run.
+One entry in `tables` per input table, in order. `if_table_exists="replace"` overwrites each destination table with the frame. How a changed schema is handled depends on the destination; see [Schema Evolution](https://docs.tabsdata.com/guide/connectors/schema-evolution).
 
 warning
 

@@ -1,6 +1,6 @@
 # Subscribe data to MongoDB
 
-> Covers writing Tabsdata input tables to MongoDB with the @subscriber decorator and MongoDBDest, including collections_with_ids, if_collection_exists, update_existing, and connection setup.
+> Writes Tabsdata input tables to MongoDB collections using a @subscriber with MongoDBDest, covering collections_with_ids, if_collection_exists, update_existing, and the connectionDef YAML.
 
 Source: https://docs.tabsdata.com/tutorials/subscribers/mongodb
 
@@ -8,7 +8,7 @@ Before you begin
 
 [Quickstart a Server](https://docs.tabsdata.com/server-admin/quickstart) or [Start a Server](https://docs.tabsdata.com/server-admin/start)
 
-[Connect to MCP](https://docs.tabsdata.com/guide/connect-agent)
+[Configure Your AI Agent](https://docs.tabsdata.com/guide/connect-agent)
 
 ## Write tables out to MongoDB
 

@@ -15,11 +15,12 @@ Source: https://docs.tabsdata.com/api/module/tabsdatak-conn-starrocks
 | [`GCSLocation`](https://docs.tabsdata.com/api/category/connectors/destination/gcslocation-starrocks) | GCS staging area for `StarRocksDest`. |
 | [`IfTableExistsSpec`](#tabsdatak.conn.starrocks.IfTableExistsSpec) |  |
 | [`S3Location`](https://docs.tabsdata.com/api/category/connectors/destination/s3location-starrocks) | S3 staging area for `StarRocksDest`. |
+| [`SchemaEvolutionEngineSpec`](#tabsdatak.conn.starrocks.SchemaEvolutionEngineSpec) | Which machinery evolves the target's schema. |
 | [`SchemaEvolutionSpec`](#tabsdatak.conn.starrocks.SchemaEvolutionSpec) |  |
 | [`StarRocksDest`](https://docs.tabsdata.com/api/category/connectors/destination/starrocksdest) | StarRocks destination for `@subscriber` -- one output slot per table. |
 | [`StarRocksDestConn`](https://docs.tabsdata.com/api/category/connectors/destination/starrocksdestconn) | StarRocks connection. |
 | [`StarRocksTableNameSpec`](#tabsdatak.conn.starrocks.StarRocksTableNameSpec) |  |
-| [`StarRocksTableNamesSpec`](#tabsdatak.conn.starrocks.StarRocksTableNamesSpec) |  |
+| [`StarRocksTableNamesSpec`](#tabsdatak.conn.starrocks.StarRocksTableNamesSpec) | A list of StarRocks table names (see `StarRocksTableNameSpec`), each at most once: names that differ only in quoting, or in the case of an unquoted part (unchanged, as StarRocks table names are case-sensitive), are the same table. |
 
 * * *
 
@@ -56,7 +57,7 @@ str | Secret
 type\_alias
 
 ```python
-DestCfgKey: Literal['starrocks.logging_level']
+DestCfgKey: Literal['starrocks.logging_level', 'starrocks.schema_evolution_engine']
 ```
 
 * * *
@@ -72,7 +73,7 @@ DestCfgSpec: Mapping[DestCfgKey, Any]
 **Resolved type:**
 
 ```python
-Mapping[Literal['starrocks.logging_level'], Any]
+Mapping[Literal['starrocks.logging_level', 'starrocks.schema_evolution_engine'], Any]
 ```
 
 * * *
@@ -87,12 +88,24 @@ IfTableExistsSpec: Literal['append', 'replace']
 
 * * *
 
+## SchemaEvolutionEngineSpec
+
+type\_alias
+
+```python
+SchemaEvolutionEngineSpec: Literal['iceberg']
+```
+
+Which machinery evolves the target's schema. StarRocks has no schema evolution of its own, so the only engine is `"iceberg"`: the connector diffs the target against the incoming batch and emits the `ALTER` statements itself.
+
+* * *
+
 ## SchemaEvolutionSpec
 
 type\_alias
 
 ```python
-SchemaEvolutionSpec: Literal['strict', 'iceberg']
+SchemaEvolutionSpec: Literal['strict', 'update']
 ```
 
 * * *
@@ -120,3 +133,5 @@ StarRocksTableNamesSpec: list[StarRocksTableNameSpec]
 ```python
 list[str]
 ```
+
+A list of StarRocks table names (see [`StarRocksTableNameSpec`](https://docs.tabsdata.com/api/module/tabsdatak-conn-starrocks#tabsdatak.conn.starrocks.StarRocksTableNameSpec)), each at most once: names that differ only in quoting, or in the case of an unquoted part (unchanged, as StarRocks table names are case-sensitive), are the same table.

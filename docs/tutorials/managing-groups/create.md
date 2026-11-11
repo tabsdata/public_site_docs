@@ -1,6 +1,6 @@
 # Create a Group
 
-> Shows how to create a group in a Tabsdata project via the MCP agent, covering the name and description fields, the data product collection type, and the seeded sources and destinations groups.
+> Creates a Tabsdata group inside a project, covering the group name and description fields, the data product collection type, and how the seeded sources and destinations groups differ.
 
 Source: https://docs.tabsdata.com/tutorials/managing-groups/create
 
@@ -8,7 +8,7 @@ Before you begin
 
 [Install Tabsdata](https://docs.tabsdata.com/server-admin/install)
 
-[Connect to MCP](https://docs.tabsdata.com/guide/connect-agent)
+[Configure Your AI Agent](https://docs.tabsdata.com/guide/connect-agent)
 
 [Create a Project](https://docs.tabsdata.com/tutorials/managing-projects/create)
 

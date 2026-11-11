@@ -8,7 +8,7 @@ Tabsdata is an open-source, distributed, horizontally scalable data integration 
 
 Built atop [Kubernetes](https://kubernetes.io/) and the [Polars](https://pola.rs/) DataFrame API, Tabsdata can be deployed on almost any machine that runs Python, requires no admin permissions or Docker dependency, and allows users to move and transform tabular data through an expression-based Pythonic interface.
 
-Through Tabsdata's MCP integration, users can also use AI to build and analyze their workflows.
+With the Tabsdata skill installed, a coding agent can also build and analyze workflows through `tdk`.
 
 ## Key Features
 

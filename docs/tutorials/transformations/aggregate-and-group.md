@@ -883,7 +883,7 @@ Called tabsdata 2 times (ctrl+o to expand)
 
 ⏺
 
-Generating — the shorthand form. `group_by("category").count()` applies to the frame rather than to a named expression, so you get a count without writing an agg.
+Generating — `group_by("category").len(name="count")` counts the rows in each group into a column named `count`. That gives a count without writing an agg.
 
 Called tabsdata 3 times (ctrl+o to expand)
 
@@ -897,7 +897,7 @@ The transformer, registered in subscriptions:
   output_tables=["sales_counts"],
 )
 def count_by_category(sales: TableFrameSpec) -> TableFrameSpec:
-  return sales.group_by("category").count()
+  return sales.group_by("category").len(name="count")
 ```
 
 ⏺
@@ -910,7 +910,7 @@ subscriptions/sales\_counts is live — one row per category with its row count:
 
 ```
 ┌──────────┬───────┐
-│ category │ sales │
+│ category │ count │
 ├──────────┼───────┤
 │ tools    │ 2     │
 ├──────────┼───────┤
@@ -932,7 +932,7 @@ sales
 
 sales\_counts
 
-| category | sales |
+| category | count |
 | --- | --- |
 | tools | 2 |
 | toys | 1 |

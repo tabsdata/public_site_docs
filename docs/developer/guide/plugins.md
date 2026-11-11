@@ -4,7 +4,7 @@ Source: https://docs.tabsdata.com/developer/guide/plugins
 
 A **custom connector** allows Tabsdata to connect to external systems that are not officially supported by the current suite of Tabsdata connectors.
 
-Custom Connectors are python packages that can be coded by hand or by AI agents connected through Tabsdata's MCP Server.
+Custom Connectors are Python packages that can be coded by hand or by coding agents working with Tabsdata through `tdk`.
 
 ## File structure
 
@@ -236,8 +236,8 @@ source=SqliteSrc(
 `SqliteSrcPlugin.read_in`:
 
 1.  Runs each query from the Publisher configuration.
-2.  Writes each query result to a Parquet file in `ctx.work_dir`.
-3.  Returns those files in the same order as `src.queries`.
+2.  Wraps each query result as a polars `LazyFrame`.
+3.  Returns the frames as `LazyFrameInput`s with `to_lazy_frame_inputs`, in the same order as `src.queries`.
 
 If a query fails, the plugin raises `SQLITE_5` with the query index and original exception.
 
@@ -253,7 +253,7 @@ If a query fails, the plugin raises `SQLITE_5` with the query index and original
 
 ```python
 import sqlite3
-from pathlib import Path
+from collections.abc import Iterable
 
 import polars as pl
 
@@ -261,12 +261,13 @@ from tabsdatak.spi import (
   DestContext,
   DestDef,
   DestPlugin,
+  LazyFrameInput,
   SrcDef,
   SrcPlugin,
   SrcPluginCtx,
-  TableFileInput,
   TableFileSpec,
   TableMode,
+  to_lazy_frame_inputs,
 )
 from tabsdata_sqlite import (
   SqliteDest,
@@ -288,19 +289,17 @@ class SqliteSrcPlugin(SrcPlugin[SqliteSrcConn, SqliteSrc]):
       ctx: SrcPluginCtx,
       conn: SqliteSrcConn,
       src: SqliteSrc,
-  ) -> list[list[TableFileInput]]:
+  ) -> list[Iterable[LazyFrameInput]]:
       con = connect(conn)
       try:
-          slots = []
+          frames = []
           for index, query in enumerate(src.queries):
               try:
                   frame = pl.read_database(query, con)
               except Exception as e:
                   raise SqliteErrorCode.SQLITE_5.exception(cause=e, index=index)
-              parquet = Path(ctx.work_dir) / f"{index}.parquet"
-              frame.write_parquet(parquet)
-              slots.append([TableFileInput(file=parquet)])
-          return slots
+              frames.append([frame.lazy()])
+          return to_lazy_frame_inputs(frames)
       finally:
           con.close()
 

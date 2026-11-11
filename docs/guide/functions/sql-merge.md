@@ -41,7 +41,7 @@ Because a Subscriber can write to several tables, the `MergeCfg` entries must fo
 
 The `on` setting requires at least one key column, and those columns must exist in both the incoming data and the destination when the merge runs. If several columns form the key, all their values must match.
 
-`MergeCfg` is imported from the same connector module as the destination. For Snowflake and BigQuery, merge writes also require an Iceberg schema evolution setting in `dest_cfg`, as described under [Schema evolution](#schema-evolution).
+`MergeCfg` is imported from the same connector module as the destination. On Snowflake and BigQuery, a merge under `schema_evolution="update"` needs `"iceberg"` set as the schema evolution engine in `dest_cfg`. See [Schema evolution](#schema-evolution).
 
 ## Row operations
 
@@ -52,12 +52,18 @@ After matching records by key, Tabsdata uses the operation column to decide what
 | `i` | Insert the row if its key does not exist in the destination. |
 | `u` | Update the row matching its key. |
 | `d` | Delete the row matching its key. |
+| `l` | Load: the row comes from an initial load. The destination is emptied before the load's rows are inserted. |
+| `t` | Truncate: the destination is emptied. |
 
 An insert leaves an existing record unchanged, while an update or delete does nothing if the record is missing.
 
-Uppercase `I`, `U`, and `D` are also accepted, but spaces are not removed, so `" d "` is invalid. Tabsdata removes rows with invalid or null operations before processing the batch.
+Uppercase `I`, `U`, `D`, `L` and `T` are also accepted, but spaces are not removed, so `" d "` is invalid. Tabsdata removes rows with invalid or null operations before processing the batch.
 
 Because the operation column is used to control the write, Tabsdata excludes it when creating the destination table or updating its schema.
+
+### Load and truncate markers
+
+`l` and `t` reset the table. When a batch contains one, the changes before the last reset are discarded, and the destination's rows are replaced in one statement by what follows it. A CDC stream that uses `start_from="full"` or captures table truncates sends these markers.
 
 ## Multiple changes to one record
 
@@ -86,22 +92,24 @@ For existing tables, Snowflake and BigQuery write columns shared by the incoming
 
 Columns found only in the destination are left unchanged on updates and omitted from inserts, where the destination's defaults and constraints apply.
 
-For columns found only in the incoming data, `schema_evolution="strict"` excludes them from the write. Values written to shared columns must still satisfy the destination's types and constraints.
+A batch with a column the destination lacks is refused under `schema_evolution="strict"`, with `SQL_COMMON_10`, before the merge runs; under `update` the column is added. Values written to shared columns must still satisfy the destination's types and constraints.
 
-Databricks handles column matching through Delta's merge rules. With `strict`, it uses `UPDATE SET *` and `INSERT *`, while `update` enables schema evolution and excludes the operation column. The operation marker should therefore use a separate column from the data being written.
+Databricks handles column matching through Delta's merge rules, and `update` uses `MERGE WITH SCHEMA EVOLUTION`, which excludes the operation column. The operation marker should therefore use a separate column from the data being written.
 
 ## Schema evolution
 
 Incoming data may contain new columns or values too large for the destination's current column types. **Schema evolution** controls whether Tabsdata can change the table to accept that data.
 
-Set `schema_evolution` on the destination to choose the behavior. All three destinations default to `"strict"` in Tabsdata 2.1.0:
+Set `schema_evolution` on the destination to choose the behavior. All three destinations default to `"strict"`:
 
 | Setting | Behavior |
 | --- | --- |
-| `"strict"` | Does not add or widen data columns on an existing table. A configured watermark column is an exception. |
+| `"strict"` | Refuses a new column, and a wider type unless its values fit the column, with `SQL_COMMON_10`, before the merge runs. A configured watermark column is an exception. |
 | `"update"` | Allows new data columns and supported type widening. |
 
-For Snowflake and BigQuery, the connector uses an Iceberg schema evolution engine to compare the incoming and destination schemas. This engine must be configured for merge writes even when `schema_evolution="strict"`:
+`strict` accepts a wider type when its values fit the column, and an incoming type narrower than the column's. Making a column nullable counts as widening and is refused. A column the batch lacks keeps its stored value. [Schema Evolution](https://docs.tabsdata.com/guide/connectors/schema-evolution) has the same policy for every table destination and write mode.
+
+Snowflake's and BigQuery's native schema evolution does not apply to `MERGE`. A Snowflake or BigQuery merge under `"update"` needs the `iceberg` engine set in `dest_cfg`, and is refused at registration without it:
 
 ```python
 # SnowflakeDest
@@ -111,7 +119,7 @@ dest_cfg={"snowflake.schema_evolution_engine": "iceberg"}
 dest_cfg={"bigquery.schema_evolution_engine": "iceberg"}
 ```
 
-When `schema_evolution="update"`, the engine uses that comparison to apply supported changes through `ALTER TABLE`. The Iceberg setting controls how schemas are compared; it does not convert the destination into an Apache Iceberg table.
+The `iceberg` engine compares the incoming and destination schemas and applies supported changes through `ALTER TABLE`. It controls how schemas are compared; it does not convert the destination into an Apache Iceberg table. Under `"strict"`, a merge that sets the engine is refused at registration.
 
 Databricks uses Delta's `MERGE WITH SCHEMA EVOLUTION` for `schema_evolution="update"`, so it does not require a `schema_evolution_engine` setting. On each merge, Tabsdata also sets the destination table's `delta.enableTypeWidening` property to `true` for `update` or `false` for `strict`.
 
@@ -139,7 +147,6 @@ SnowflakeDest(
     if_table_exists="merge",
     merge_cfg=[MergeCfg(on=["order_id"], op_column="op")],
     watermark_column="wm",
-    dest_cfg={"snowflake.schema_evolution_engine": "iceberg"},
 )
 ```
 
@@ -155,10 +162,12 @@ The connectors differ in how they stage data, change schemas, and match column n
 
 | Behavior | Snowflake | BigQuery | Databricks |
 | --- | --- | --- | --- |
-| Staging | Snowflake stage, then a temporary table | GCS, then a temporary table | Unity Catalog volume, then a temporary staging table |
+| Staging | Snowflake stage, then a `TEMPORARY` table | GCS, then a staging table `<target>_<8 hex characters>` beside the target | Unity Catalog volume, then a staging table `<target>_<8 hex characters>` beside the target |
 | Schema changes under `update` | Connector applies `ALTER TABLE` using Iceberg schema comparison | Connector applies `ALTER TABLE` using Iceberg schema comparison | Delta merge schema evolution |
-| Required merge setting | `snowflake.schema_evolution_engine="iceberg"` | `bigquery.schema_evolution_engine="iceberg"` | No engine setting |
+| Engine for merge | `iceberg`, required under `update` | `iceberg`, required under `update` | No engine setting |
 | Column names | Unquoted names resolve as uppercase; double quotes preserve case | Case-insensitive; backticks quote names | Case-insensitive; backticks quote names |
+
+The BigQuery and Databricks staging tables are real tables, so the Connection needs permission to create and drop them, and a run that is killed can leave one behind.
 
 For example, Snowflake resolves an unquoted `order_id` as uppercase, so `on=["order_id"]` matches a stored `ORDER_ID` column. BigQuery and Databricks match column names without considering case, including when those names are quoted.
 
@@ -173,9 +182,11 @@ Tabsdata checks the configuration before writing and validates the incoming data
 | Merge mode without `merge_cfg`, or `merge_cfg` without merge mode | Configuration error. |
 | `merge_cfg` is not a list, or its length differs from `tables` | Configuration error. |
 | Empty `on`, or an operation column that matches a key | Configuration error. |
-| Snowflake or BigQuery merge without the required Iceberg engine setting | Configuration error. |
+| Snowflake or BigQuery merge under `update` without `schema_evolution_engine="iceberg"`, or under `strict` with an engine set | Refused at registration. |
+| The same table listed twice in `tables` | Refused at registration (`CONN_37`). Databricks compares names ignoring case, Snowflake folds unquoted parts to uppercase, and BigQuery compares them verbatim. |
 | A watermark with `replace`, or a watermark name that matches a key or operation column | Configuration error. |
 | Missing operation or key columns in the incoming batch | Runtime error. |
+| A new column, or a wider type whose values do not fit, under `strict` | Refused before the merge (`SQL_COMMON_10`). |
 | No shared data columns between the batch and destination | Runtime error. |
 | Several incoming columns match the same configured column name | Runtime error. |
 

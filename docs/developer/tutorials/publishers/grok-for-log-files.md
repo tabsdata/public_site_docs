@@ -72,7 +72,7 @@ The publisher function ingests the log file as a single-column tableframe and ap
 read\_access\_logs.py
 
 ```
-1from tabsdatak.api import publisher, TableFrameSpec, TableFramesSpec2from tabsdatak.conn.localfile import LocalFileSrc, SrcFileFormat3from tabsdatak.tableframe.grok import ColumnDefinition4from tabsdatak.tableframe.datatypes import String, Int32, Int645 6PATTERN = (7  r"%{IPV4:client_ip} "8  r"%{USER:ident} "9  r"%{USER:auth} "10  r"\[%{HTTPDATE:timestamp}\] "11  r'"%{WORD:method} '12  r'%{URIPATHPARAM:request} '13  r'HTTP/%{NUMBER:http_version}" '14  r"%{INT:response_code} %{INT:bytes}"15)16 17SCHEMA = {18  "client_ip": ColumnDefinition("ip_address", String),19  "method": ColumnDefinition("http_method", String),20  "response_code": ColumnDefinition("status_code", Int32),21  "bytes": ColumnDefinition("response_bytes", Int64),22  "timestamp": ColumnDefinition("request_time", String),23}24 25 26@publisher(27  source=LocalFileSrc(1      paths=["access.log"],29      format=SrcFileFormat.CSV,30      format_cfg={31          SrcFileFormat.CSV: {"has_header": False, "separator": "\\x00"},32      },33  ),2  output_tables=["access_logs"],35)3def read_access_logs(lines):37  if lines is None:38      return (None,)4  return (lines[0].grok("column_1", PATTERN, SCHEMA),)
+1from tabsdatak.api import publisher, TableFrameSpec, TableFramesSpec2from tabsdatak.conn.localfile import LocalFileSrc, SrcFileFormat3from tabsdatak.tableframe.grok import ColumnDefinition4from tabsdatak.tableframe.datatypes import String, Int32, Int645 6PATTERN = (7  r"%{IPV4:client_ip} "8  r"%{USER:ident} "9  r"%{USER:auth} "10  r"\[%{HTTPDATE:timestamp}\] "11  r'"%{WORD:method} '12  r'%{URIPATHPARAM:request} '13  r'HTTP/%{NUMBER:http_version}" '14  r"%{INT:response_code} %{INT:bytes}"15)16 17SCHEMA = {18  "client_ip": ColumnDefinition("ip_address", String),19  "method": ColumnDefinition("http_method", String),20  "response_code": ColumnDefinition("status_code", Int32),21  "bytes": ColumnDefinition("response_bytes", Int64),22  "timestamp": ColumnDefinition("request_time", String),23}24 25 26@publisher(27  source=LocalFileSrc(1      paths=["access.log"],29      format=SrcFileFormat.CSV,30      format_cfg={31          SrcFileFormat.CSV: {"has_header": False, "separator": "\\x00"},32      },33  ),2  output_tables=["access_logs"],35)3def read_access_logs(lines):37  if lines is None:38      return (None,)4  return (lines[0].grok("column_0", PATTERN, SCHEMA),)
 ```
 
 -   Local file path to read. Its single element maps to the function argument on line 36.
@@ -86,7 +86,7 @@ read\_access\_logs.py
 
 lines
 
-| column\_1 |
+| column\_0 |
 | --- |
 | 203.0.113.10 - - \[10/Oct/2026:13:55:01 +0000\] "GET /index.html HTTP/1.1" 200 512 |
 

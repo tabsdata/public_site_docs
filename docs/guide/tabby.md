@@ -49,9 +49,7 @@ tdkserver config put --apply
 
 note
 
-The [MCP Server](https://docs.tabsdata.com/guide/mcp) and the conversational agent both run within the same AI Agent process. Although only the conversational agent requires a valid API key, an API key must still be provided during server initialization. Otherwise, the AI Agent process will not start on port `2459`.
-
-To use the MCP Server, ensure that an API key is passed to the server during initialization. If the conversational agent is not being used, this can be a placeholder or dummy key.
+Tabby runs in the Server's AI Agent process, on port `2459`. The process starts only when an API key is provided during server initialization, and Tabby needs that key to be valid.
 
 ## Starting a chat
 

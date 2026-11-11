@@ -1,6 +1,6 @@
 # Install Tabsdata on AWS EKS
 
-> Installs Tabsdata on AWS EKS: priority classes, kubeconfig access, RDS PostgreSQL and S3 config files, tdkserver init/assess/create/start, port-forward, and login.
+> Covers installing Tabsdata on AWS EKS: priority classes, kubeconfig access, RDS PostgreSQL and S3 configuration, tdkserver init/assess/create/start, port-forward login, and optional worker log setup.
 
 Source: https://docs.tabsdata.com/server-admin/eks-install
 
@@ -23,6 +23,7 @@ Tabsdata runs on Kubernetes as deployments containing an API server, AI agent, a
 -   AWS RDS for PostgreSQL instance running version 18.4 in the same region as EKS
 -   AWS S3 bucket, preferably in the same region
 -   Network access between the EKS cluster and the RDS instance, and between the client and the EKS cluster
+-   Optional, to keep function logs after the function run ends: Fluent Bit shipping Tabsdata container logs to CloudWatch Logs, and IAM Roles for Service Accounts (IRSA) on the cluster (see [Worker log store](#worker-log-store-optional)). If it is not configured, function logs are lost when the function run ends.
 
 ### Priority Classes
 
@@ -68,16 +69,16 @@ From a machine with EKS cluster access, create a Python virtual environment and 
 **Using uv:**
 
 ```text
-uv pip install "tabsdata[all]" tabsdata-agent
+uv pip install "tabsdata[all]"
 ```
 
 **Using pip:**
 
 ```text
-pip install "tabsdata[all]" tabsdata-agent
+pip install "tabsdata[all]"
 ```
 
-**Note:** MySQL and PostgreSQL CDC connectors require database drivers that Tabsdata cannot redistribute. See "Installing Third-Party Database Drivers" if needed before proceeding.
+**Note:** PostgreSQL connectors require a database driver that Tabsdata cannot redistribute. See "Installing Third-Party Database Drivers" if needed before proceeding.
 
 ## Configuration Values Needed
 
@@ -99,6 +100,7 @@ Gather these before starting:
 |  | `<TABSDATA_NAMESPACE>` | Empty reserved namespace |
 |  | `<KUBECONFIG>` | Path to kubeconfig file |
 | LLM Provider | `<OPENAI_API_KEY>` / `<ANTHROPIC_API_KEY>` | LLM API key if AI integration enabled |
+| Worker Logs (optional) | `<TABSDATA_APISERVER_ROLE_ARN>` | ARN of the apiserver IAM role for this instance |
 | Chosen During Install | `<TABSDATA_INSTANCE>` | Tabsdata instance name |
 
 ### Database TLS
@@ -204,6 +206,25 @@ hybrid_search:
   cache_dir: null
   offline: false
 ```
+
+### Configure Worker Logs (optional)
+
+Skip this if the cluster has no worker log store. Without it, function logs are lost when the function run ends.
+
+Edit `tabsdata.yaml` and set the apiserver IAM role. Add these keys to the existing `pods.service.apiserver` block. Do not replace the block:
+
+```yaml
+pods:
+  service:
+    apiserver:
+      service_account:
+        annotations:
+          eks.amazonaws.com/role-arn: <TABSDATA_APISERVER_ROLE_ARN>
+```
+
+tdkserver writes the annotation on the `aut-apiserver` service account before the apiserver pod starts, and EKS gives the pod the role's credentials. The apiserver reads `/tabsdata/<TABSDATA_NAMESPACE>` in the cluster's region and needs no other setting.
+
+To add it to an existing instance, make the same edit after `tdkserver config get --instance <TABSDATA_INSTANCE>`, then run `tdkserver config put --instance <TABSDATA_INSTANCE> --apply`, which restarts the apiserver.
 
 ### Preflight Check
 
@@ -339,6 +360,8 @@ pods:
 ```
 
 Set values based on actual component footprints and confirm node pools can satisfy the largest single pod. A tolerations list replaces the one Tabsdata would apply, so it must be complete. Use `tdkserver config get` and `tdkserver config put` to manage the file.
+
+`pods.service.apiserver` can also hold `service_account`; see [Configure Worker Logs](#configure-worker-logs-optional).
 
 ## AWS Services Setup for Tabsdata on EKS
 
@@ -537,6 +560,35 @@ The two login roles are the identities Tabsdata authenticates as, one per compon
 Tabsdata uses AWS S3 bucket(s) for data storage.
 
 You need an S3 bucket `<S3_BUCKET>` in region `<S3_REGION>`, and full-access credentials for it: `<S3_ACCESS_KEY>` and `<S3_SECRET_KEY>`.
+
+### Worker log store (optional)
+
+(EKS admin, IAM admin)
+
+This is optional. If it is not configured, function logs are lost when the function run ends. With it, the apiserver reads them from CloudWatch Logs.
+
+**For each cluster (one time)**
+
+| Item | Requirement |
+| --- | --- |
+| IRSA | The cluster's OIDC issuer is registered as an IAM OIDC identity provider |
+| Fluent Bit | Runs as a DaemonSet (`aws-for-fluent-bit`) on every node that runs Tabsdata pods, including function nodes that scale up from zero |
+| Fluent Bit IAM role | Trusted by the Fluent Bit service account through IRSA. Allows `logs:CreateLogGroup`, `CreateLogStream`, `PutLogEvents`, `DescribeLogStreams` and `PutRetentionPolicy` on `log-group:/tabsdata/*` |
+| Log group | `/tabsdata/<namespace>`, one for each instance (`logGroupTemplate: /tabsdata/$kubernetes['namespace_name']`) |
+| Log stream | The pod label `tabsdata.com/log-id` (`logStreamTemplate: $kubernetes['labels']['tabsdata.com/log-id']`) |
+| Selection | Keep only pods labeled `app.kubernetes.io/part-of=tabsdata` |
+| Kubernetes filter | `filter.bufferSize: "0"`. Tabsdata pod metadata is larger than the 32 KB default, and without this the labels are dropped and the logs are filtered out |
+| Input | `Read_from_Head On`, so the lines written before Fluent Bit starts on a new node are not lost. Keep `filter.keepLog` at `On` |
+| Retention | `logRetentionDays` at least as long as worker logs must stay available |
+
+**For each instance**
+
+| Item | Requirement |
+| --- | --- |
+| Apiserver IAM role | `<TABSDATA_APISERVER_ROLE_ARN>`, trusted through the cluster's OIDC provider for exactly `system:serviceaccount:<TABSDATA_NAMESPACE>:aut-apiserver` (audience `sts.amazonaws.com`) |
+| Permissions | `logs:GetLogEvents` on `arn:aws:logs:<EKS_REGION>:<AWS_ACCOUNT>:log-group:/tabsdata/<TABSDATA_NAMESPACE>:*` only, so an instance cannot read another instance's logs |
+
+The namespace must exist before the role is created, because the trust names it.
 
 ### Configure access from outside the cluster (over HTTPS)
 

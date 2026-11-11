@@ -25,7 +25,7 @@ def stream_publisher(
 
 Decorate a function as a stream publisher.
 
-Consumes a long-lived change stream (CDC, log/queue tail). The function takes one [`TableFramesSpec`](https://docs.tabsdata.com/api/module/tabsdatak-api#tabsdatak.api.TableFramesSpec) parameter per source slot (always array mode) and returns one [`TableFrame`](https://docs.tabsdata.com/api/category/tableframe/tableframe/tableframe) per output table. Unlike the other decorators it must **not** declare a `ctx` parameter -- it runs inside the runtime's stream loop, not per-trx, so no [`TrxCtx`](https://docs.tabsdata.com/api/module/tabsdatak-api#tabsdatak.api.TrxCtx) exists at the call boundary.
+Consumes a long-lived change stream (CDC, log/queue tail). The function takes one [`TableFramesSpec`](https://docs.tabsdata.com/api/module/tabsdatak-api#tabsdatak.api.TableFramesSpec) parameter per source slot (always array mode) and returns one [`TableFrame`](https://docs.tabsdata.com/api/category/tableframe/tableframe/tableframe) per output table. Unlike the other decorators it must **not** declare a `ctx` parameter -- it runs inside the runtime's stream loop, not per-trx, so no [`TransactionCtx`](https://docs.tabsdata.com/api/module/tabsdatak-api#tabsdatak.api.TransactionCtx) exists at the call boundary.
 
 The batch thresholds bound the batches the function receives, the same way for every stream source (see [`BatchThresholds`](https://docs.tabsdata.com/api/category/functions/functions/batchthresholds)): at least one of `batch_max_secs`, `batch_max_rows` and `batch_max_bytes` is required.
 

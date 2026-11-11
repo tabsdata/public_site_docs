@@ -1,6 +1,6 @@
 # Subscribe data to Databricks
 
-> Writes Tabsdata tables to Databricks with a subscriber using DatabricksDest, covering connection spec fields (host_url, token, volume, warehouse, catalog, schema), table options, and merging by key.
+> Writes Tabsdata tables out to Databricks with a subscriber, covering DatabricksDestConn, if_table_exists, schema_evolution, and merging by key.
 
 Source: https://docs.tabsdata.com/tutorials/subscribers/databricks
 
@@ -8,11 +8,11 @@ Before you begin
 
 [Quickstart a Server](https://docs.tabsdata.com/server-admin/quickstart) or [Start a Server](https://docs.tabsdata.com/server-admin/start)
 
-[Connect to MCP](https://docs.tabsdata.com/guide/connect-agent)
+[Configure Your AI Agent](https://docs.tabsdata.com/guide/connect-agent)
 
 ## Write tables out to Databricks
 
-One entry in `tables` per input table, in order. `if_table_exists="replace"` rebuilds each destination table from the frame, so a changed schema does not fail the run.
+One entry in `tables` per input table, in order. `if_table_exists="replace"` overwrites each destination table with the frame. How a changed schema is handled depends on the destination; see [Schema Evolution](https://docs.tabsdata.com/guide/connectors/schema-evolution).
 
 warning
 

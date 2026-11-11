@@ -28,6 +28,7 @@ Source: https://docs.tabsdata.com/api/module/tabsdatak-tableframe-datatypes
 | [`Int64`](#tabsdatak.tableframe.datatypes.Int64) |  |
 | [`Int8`](#tabsdatak.tableframe.datatypes.Int8) |  |
 | [`List`](#tabsdatak.tableframe.datatypes.List) |  |
+| [`Map`](#tabsdatak.tableframe.datatypes.Map) |  |
 | [`Null`](#tabsdatak.tableframe.datatypes.Null) |  |
 | [`Object`](#tabsdatak.tableframe.datatypes.Object) |  |
 | [`String`](#tabsdatak.tableframe.datatypes.String) |  |
@@ -249,6 +250,16 @@ attribute
 
 ```python
 List = pl.List
+```
+
+* * *
+
+## Map
+
+attribute
+
+```python
+Map = pl.Map
 ```
 
 * * *

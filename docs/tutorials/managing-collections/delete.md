@@ -1,6 +1,6 @@
 # Delete a Collection
 
-> Deletes a Tabsdata collection and its functions and tables, showing the confirmation prompt, the dependent functions that get frozen in other collections, and the name becoming reusable.
+> Deletes a Tabsdata collection through an AI agent session, showing the dependency check, confirmation step, cascade of functions and tables, and frozen functions in other collections.
 
 Source: https://docs.tabsdata.com/tutorials/managing-collections/delete
 
@@ -8,7 +8,7 @@ Before you begin
 
 [Install Tabsdata](https://docs.tabsdata.com/server-admin/install)
 
-[Connect to MCP](https://docs.tabsdata.com/guide/connect-agent)
+[Configure Your AI Agent](https://docs.tabsdata.com/guide/connect-agent)
 
 [Create a Project](https://docs.tabsdata.com/tutorials/managing-projects/create)
 

@@ -110,24 +110,6 @@ tf.group_by("g").len("rows")
 
 method
 
-`count`
-
-```python
-def count() -> TableFrame
-```
-
-Count the non-null values of each column within each group.
-
-Yields one count column per non-key column. Safe on any [`TableFrame`](https://docs.tabsdata.com/api/category/tableframe/tableframe/tableframe) (it counts values, not reduces them).
-
-**Example:**
-
-```python
-tf.group_by("g").count()
-```
-
-method
-
 `max`
 
 ```python

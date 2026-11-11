@@ -10,11 +10,13 @@ class
 class DestPlugin
 ```
 
-Bases: [ABC](https://docs.python.org/3/library/abc.html#abc.ABC)
+Bases: [ABC](https://docs.python.org/3/library/abc.html#abc.ABC), [Generic](https://docs.python.org/3/library/typing.html#typing.Generic)
 
 **Categories:** spi
 
 Plugin implementing the write-side of a [`Dest`](https://docs.tabsdata.com/api/category/connectors/destination/dest) subclass.
+
+The third type argument is the plugin's contract with the runtime: `list[pl.LazyFrame]` (`DestPlugin[MyConn, MyDest, list[pl.LazyFrame]]`) receives each of the subscriber's outputs as a `LazyFrame` scanning it from storage, and `write_out`'s `tables` is annotated with the same type. Without it, the legacy form, `tables` is a list of local parquet files. [`DestDef`](https://docs.tabsdata.com/api/category/spi/spi/destdef) refuses any other type, and a `tables` annotation that differs. Import polars at module level, so the annotation resolves at runtime.
 
 ## Methods
 
@@ -23,10 +25,10 @@ method
 `write_out`
 
 ```python
-def write_out(ctx: DestContext, conn: C, dest: D, tables: list[TableFileSpec])
+def write_out(ctx: DestContext, conn: _C, dest: _D, tables: _T)
 ```
 
-Push the per-slot parquet files in `tables` to `dest`.
+Push the subscriber's outputs in `tables` to `dest`.
 
 **Parameters:**
 
@@ -38,18 +40,18 @@ The [`DestContext`](https://docs.tabsdata.com/api/category/spi/spi/destcontext) 
 
 parameter
 
-`conn`C
+`conn`\_C
 
 The resolved connection.
 
 parameter
 
-`dest`D
+`dest`\_D
 
 The [`Dest`](https://docs.tabsdata.com/api/category/connectors/destination/dest) config declared on the flow.
 
 parameter
 
-`tables`[list](https://docs.python.org/3/builtins/stdtypes.html#list)\[[TableFileSpec](https://docs.tabsdata.com/api/module/tabsdatak-spi#tabsdatak.spi.TableFileSpec)\] ([list](https://docs.python.org/3/library/stdtypes.html#list)\[Path\])
+`tables`\_T
 
-One parquet file per target; the runtime guarantees `len(tables)` equals `dest`'s declared target count.
+One table per target, by position, in the form the plugin declares: `LazyFrame`s, or local parquet files. The runtime guarantees as many tables as `dest`'s declared target count.

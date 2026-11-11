@@ -1,12 +1,12 @@
 # Select and Modify Columns
 
-> Covers Tabsdata column projection in transformers: select() with names, data-type and name-pattern selectors, position selectors, exclude(), drop(), with_columns(), lit(), and rename().
+> Projection in Tabsdata transformers: select(), drop(), with_columns(), rename(), and the cs selectors (cs.numeric, cs.starts_with, cs.by_index, cs.exclude, lit).
 
 Source: https://docs.tabsdata.com/tutorials/transformations/select-columns
 
 Projection operations allow you to select, transform, and reshape columns in your data.
 
-Use the Tabsdata MCP Integration with claude code or openai codex to easily create new tables
+Ask a coding agent with the Tabsdata skill, such as Claude Code or Codex, to create new tables from the columns you select.
 
 ## Select columns by name
 

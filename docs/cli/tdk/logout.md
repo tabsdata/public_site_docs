@@ -1,16 +1,20 @@
 # tdk logout
 
-> Logout from the Tabsdata Server
+> Logout from the Tabsdata Server: the login stored here always goes; the
 
 Source: https://docs.tabsdata.com/cli/tdk/logout
 
-Logout from the Tabsdata Server
+Logout from the Tabsdata Server: the login stored here always goes; the
+
+server is asked to end the session, which otherwise expires on its own
 
 ```bash
 tdk logout \
+  --format table \
   --profile production
 ```
 
 | Flag | Type | Required | Description |
 | --- | --- | --- | --- |
-| `--profile` | string | Optional | Profile whose connection and settings this command uses: '<NAME>-connection.json' and '<NAME>-options.json' under the Tabsdata directory. Default: the profile set with 'tdk set --profile', else 'connection.json' and 'options.json'. |
+| `-o, --format` | table \| json \| yaml | Optional | Output format. 'json' and 'yaml' give a listing as an array and table data as one object per row. |
+| `--profile` | string | Optional | Profile whose login and pinned project and collection this command uses; with no NAME, the default profile. Default: the profile set with 'tdk set --profile', else the default profile. |

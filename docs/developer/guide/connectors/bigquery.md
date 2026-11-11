@@ -65,11 +65,11 @@ Controls what happens when the destination table already exists. `"append"` (the
 
 #### `schema_evolution`
 
-Controls how new columns in the returned frame are handled. `"update"` allows new columns. `"strict"` is the default and leaves existing data columns unchanged. See [Merging into SQL destinations](https://docs.tabsdata.com/developer/guide/functions/sql-merge#schema-evolution) for merge-specific behavior.
+Controls what happens when the returned frame has a column the table lacks or a wider type. `"update"` adds and widens columns. `"strict"` is the default: an append fails in the load job (`BIGQUERY_7`), and a merge is refused before it runs (`SQL_COMMON_10`). See [Schema Evolution](https://docs.tabsdata.com/developer/guide/connectors/schema-evolution).
 
 #### `dest_cfg`
 
-Sets additional destination configuration. Supported keys include `bigquery.logging_level` and `bigquery.schema_evolution_engine`. Merge mode requires `bigquery.schema_evolution_engine="iceberg"`.
+Sets additional destination configuration. Supported keys include `bigquery.logging_level` and `bigquery.schema_evolution_engine`. The engine key is only for a merge under `schema_evolution="update"`, where it must be `"iceberg"`. See [Schema evolution](#schema-evolution).
 
 ## Write behavior
 
@@ -77,7 +77,18 @@ Each entry in `tables` is one destination slot and maps by position to a value r
 
 `if_table_exists="append"` adds rows. `"replace"` drops and recreates the table. `"merge"` applies inserts, updates, and deletes by key and needs `merge_cfg`.
 
-With `schema_evolution="strict"`, new columns are not added to an existing table. `"update"` allows new columns during append-style writes.
+With `schema_evolution="strict"`, a frame with a new column, or a wider type whose values do not fit, fails instead of changing the table. `"update"` adds and widens columns before the load.
+
+### Schema evolution
+
+`schema_evolution` decides what a write does when the returned frame has a column the destination table lacks, or a type wider than the column's. `"strict"`, the default, refuses a new column, and refuses a wider type unless its values fit the column. `"update"` changes the table to fit the frame. On BigQuery, the schema evolution `"update"` uses depends on `if_table_exists`:
+
+| `if_table_exists` | `"update"` uses | Changes to the table |
+| --- | --- | --- |
+| `"append"`, `"replace"` | BigQuery's native schema evolution | Adds columns and makes columns nullable. It never widens a type. |
+| `"merge"` | [Iceberg schema evolution](https://docs.tabsdata.com/developer/guide/connectors/schema-evolution#native-and-iceberg-schema-evolution), applied by the connector through `ALTER TABLE`. Needs `dest_cfg={"bigquery.schema_evolution_engine": "iceberg"}`. | Adds columns and widens types. |
+
+BigQuery's native schema evolution does not apply to `MERGE`, so a merge under `"update"` without the `iceberg` engine is refused at registration. `bigquery.schema_evolution_engine` is accepted only on a merge under `"update"`: setting it on `"append"` or `"replace"`, or on a merge under `"strict"`, is also refused at registration. See [Schema Evolution](https://docs.tabsdata.com/developer/guide/connectors/schema-evolution) for the types each destination widens.
 
 ## Operational notes
 

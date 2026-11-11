@@ -95,7 +95,7 @@ trigger_by=[]
 
 ## A commit does not mean the data changed
 
-A publisher writing three tables commits all three on every run, whether or not the rows in a given table differ from last time, and every commit triggers whatever watches that table. A run that returns `None` for a table is the exception: that keeps the current version instead of committing a new one, so nothing downstream fires.
+A publisher writing three tables commits all three on every run, whether or not the rows in a given table differ from last time, and every commit triggers whatever watches that table. A run that returns `None` for a table commits too: the new version keeps the previous data, and it triggers whatever watches that table like any other commit.
 
 ## What to do next
 

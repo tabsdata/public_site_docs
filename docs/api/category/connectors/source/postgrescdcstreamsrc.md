@@ -8,7 +8,7 @@ class
 
 ```python
 class PostgresCdcStreamSrc(
-    tables: list[PostgresTableNameSpec],
+    tables: PostgresCdcTableNamesSpec,
     replication_slot: str,
     start_from: PostgresCdcStartFromSpec,
     replication_slot_behavior: ReplicationSlotBehaviorSpec = 'reuse',
@@ -31,9 +31,9 @@ A streaming change-data-capture source: it emits one tableframe-batch per WAL fl
 
 parameter
 
-`tables`[list](https://docs.python.org/3/builtins/stdtypes.html#list)\[[PostgresTableNameSpec](https://docs.tabsdata.com/api/module/tabsdatak-conn-postgres#tabsdatak.conn.postgres.PostgresTableNameSpec)\] ([list](https://docs.python.org/3/library/stdtypes.html#list)\[[str](https://docs.python.org/3/library/stdtypes.html#str)\])
+`tables`[PostgresCdcTableNamesSpec](https://docs.tabsdata.com/api/module/tabsdatak-conn-postgres#tabsdatak.conn.postgres.PostgresCdcTableNamesSpec) ([list](https://docs.python.org/3/library/stdtypes.html#list)\[[str](https://docs.python.org/3/library/stdtypes.html#str)\])
 
-Qualified `schema.table` names to track.
+Qualified `schema.table` names to track, each listed once.
 
 parameter
 
@@ -81,6 +81,6 @@ When `True` (default), the new columns are inlined as top-level columns.
 
 parameter
 
-`src_cfg`[CdcSrcCfgSpec](https://docs.tabsdata.com/api/module/tabsdatak-conn-postgres#tabsdatak.conn.postgres.CdcSrcCfgSpec) | None (Mapping\[Literal\['tabsdata.cdc.poll.max\_secs', 'postgres.cdc.logging\_level', 'postgres.cdc.wal2json\_format\_version', 'postgres.cdc.unchanged\_large\_text\_as\_null', 'postgres.cdc.accept\_gap', 'tabsdata.cdc.buffer.max\_rows', 'tabsdata.cdc.buffer.max\_bytes', 'tabsdata.cdc.buffer.max\_secs', 'tabsdata.cdc.poll.idle\_secs', 'tabsdata.cdc.max\_large\_text\_length', 'tabsdata.cdc.fetch\_size', 'tabsdata.cdc.chunk\_size', 'tabsdata.cdc.initial\_load.max\_window\_changes'\], [Any](https://docs.python.org/3/library/typing.html#typing.Any)\] | None)
+`src_cfg`[CdcSrcCfgSpec](https://docs.tabsdata.com/api/module/tabsdatak-conn-postgres#tabsdatak.conn.postgres.CdcSrcCfgSpec) | None (Mapping\[Literal\['tabsdata.cdc.poll.max\_secs', 'postgres.cdc.logging\_level', 'postgres.cdc.wal2json\_format\_version', 'postgres.cdc.unchanged\_large\_text\_as\_null', 'postgres.cdc.accept\_gap', 'tabsdata.cdc.buffer.max\_rows', 'tabsdata.cdc.buffer.max\_bytes', 'tabsdata.cdc.buffer.max\_secs', 'tabsdata.cdc.poll.idle\_secs', 'tabsdata.cdc.max\_large\_text\_length', 'tabsdata.cdc.fetch\_size', 'tabsdata.cdc.chunk\_size'\], [Any](https://docs.python.org/3/library/typing.html#typing.Any)\] | None)
 
 Optional config mapping over the allowed CDC keys only -- buffer thresholds (the batch limits are the `@stream_publisher` batch settings), polling cadence, wal2json format version, the large text length limit and `postgres.cdc.unchanged_large_text_as_null`. A byte threshold is measured on every change and slows ingestion down; bounding by rows is the cheap option and the preferred one. `postgres.cdc.unchanged_large_text_as_null` accepts that, on a table without `REPLICA IDENTITY FULL`, an UPDATE not touching a large text column delivers it as null; when unset, such a table refuses to start the stream. `postgres.cdc.accept_gap` lets a stream resume past the one gap a POSTGRES\_25 failure names, given as that failure prints it; it matches no later gap.

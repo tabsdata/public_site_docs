@@ -1,6 +1,6 @@
 # Subscribe data to BigQuery
 
-> Writes Tabsdata tables to BigQuery with a subscriber: BigQueryDest connection config, GCP service account credentials, if_table_exists and schema_evolution options, and merge pointers.
+> Subscribes Tabsdata tables to BigQuery: the BigQueryDestConn connection spec with GCS staging and service account credentials, the @subscriber decorator with BigQueryDest, if_table_exists, and schema_evolution options.
 
 Source: https://docs.tabsdata.com/tutorials/subscribers/bigquery
 
@@ -8,11 +8,11 @@ Before you begin
 
 [Quickstart a Server](https://docs.tabsdata.com/server-admin/quickstart) or [Start a Server](https://docs.tabsdata.com/server-admin/start)
 
-[Connect to MCP](https://docs.tabsdata.com/guide/connect-agent)
+[Configure Your AI Agent](https://docs.tabsdata.com/guide/connect-agent)
 
 ## Write tables out to BigQuery
 
-One entry in `tables` per input table, in order. `if_table_exists="replace"` rebuilds each destination table from the frame, so a changed schema does not fail the run.
+One entry in `tables` per input table, in order. `if_table_exists="replace"` overwrites each destination table with the frame. How a changed schema is handled depends on the destination; see [Schema Evolution](https://docs.tabsdata.com/guide/connectors/schema-evolution).
 
 warning
 

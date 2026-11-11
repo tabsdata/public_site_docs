@@ -19,7 +19,7 @@ def transformer(
 
 Decorate a function as a transformer (table-to-table, no external connection).
 
-Reads `input_tables` and emits `output_tables`. The function takes one parameter per input table ([`TableFrameSpec`](https://docs.tabsdata.com/api/module/tabsdatak-api#tabsdatak.api.TableFrameSpec) or [`TableFramesSpec`](https://docs.tabsdata.com/api/module/tabsdatak-api#tabsdatak.api.TableFramesSpec)) plus an _optional_ trailing `ctx: TrxCtx`, and returns one [`TableFrame`](https://docs.tabsdata.com/api/category/tableframe/tableframe/tableframe) per output table. Any input slot may be `None` when the upstream table produced no batch.
+Reads `input_tables` and emits `output_tables`. The function takes one parameter per input table ([`TableFrameSpec`](https://docs.tabsdata.com/api/module/tabsdatak-api#tabsdatak.api.TableFrameSpec) or [`TableFramesSpec`](https://docs.tabsdata.com/api/module/tabsdatak-api#tabsdatak.api.TableFramesSpec)) plus an _optional_ trailing `ctx: TransactionCtx`, and returns one [`TableFrame`](https://docs.tabsdata.com/api/category/tableframe/tableframe/tableframe) per output table. Any input slot may be `None` when the upstream table produced no batch.
 
 ## Parameters
 
@@ -39,7 +39,12 @@ parameter
 
 `trigger_by`[TransformerTriggerBySpec](https://docs.tabsdata.com/api/module/tabsdatak-api#tabsdatak.api.TransformerTriggerBySpec) | None ([CronTrigger](https://docs.tabsdata.com/api/category/functions/trigger/crontrigger) | [TablesTrigger](https://docs.tabsdata.com/api/category/functions/trigger/tablestrigger) | [AllTablesTrigger](https://docs.tabsdata.com/api/category/functions/trigger/alltablestrigger) | None)
 
-Optional [`CronTrigger`](https://docs.tabsdata.com/api/category/functions/trigger/crontrigger) / [`TablesTrigger`](https://docs.tabsdata.com/api/category/functions/trigger/tablestrigger) / [`AllTablesTrigger`](https://docs.tabsdata.com/api/category/functions/trigger/alltablestrigger); if omitted, a commit to any input table triggers the function.
+When the function runs on its own:
+
+-   `None` (default) or `AllTablesTrigger()`: on a new version of any input table, other than the ones it writes.
+-   `TablesTrigger(tables=[...])`: on a new version of any of those tables only, inputs or not.
+-   `CronTrigger(mask=...)`: on the schedule only.
+-   `TablesTrigger(tables=[])`: never; only when run manually.
 
 parameter
 

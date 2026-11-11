@@ -1,6 +1,6 @@
 # Subscribe data to Oracle
 
-> Writes Tabsdata input tables to Oracle with the `OracleDest` destination, covering the `oracledb` driver requirement, `if_table_exists` replace behavior, and `@subscriber` setup.
+> Writes Tabsdata input tables to Oracle with the `OracleDest` destination, covering the `oracledb` driver requirement, `if_table_exists` options, and subscriber registration.
 
 Source: https://docs.tabsdata.com/tutorials/subscribers/oracle
 
@@ -8,7 +8,7 @@ Before you begin
 
 [Quickstart a Server](https://docs.tabsdata.com/server-admin/quickstart) or [Start a Server](https://docs.tabsdata.com/server-admin/start)
 
-[Connect to MCP](https://docs.tabsdata.com/guide/connect-agent)
+[Configure Your AI Agent](https://docs.tabsdata.com/guide/connect-agent)
 
 warning
 
@@ -16,7 +16,7 @@ The Oracle connector needs the `oracledb` driver, which Tabsdata does not redist
 
 ## Write tables out to Oracle
 
-One entry in `tables` per input table, in order. `if_table_exists="replace"` rebuilds each destination table from the frame, so a changed schema does not fail the run.
+One entry in `tables` per input table, in order. `if_table_exists="replace"` overwrites each destination table with the frame. How a changed schema is handled depends on the destination; see [Schema Evolution](https://docs.tabsdata.com/guide/connectors/schema-evolution).
 
 warning
 

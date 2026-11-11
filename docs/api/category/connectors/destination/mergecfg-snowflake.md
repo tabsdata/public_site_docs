@@ -25,6 +25,10 @@ Every incoming row carries a marker in `op_column` saying what to do with it, an
 -   `'i'` -- insert the row, if it matches no key.
 -   `'u'` -- update the row it matches.
 -   `'d'` -- delete the row it matches.
+-   `'l'` -- load: the table is reloaded from the rows that follow.
+-   `'t'` -- truncate: the table is emptied.
+
+A load or truncate row carries no data of its own -- its other columns are null -- and resets the table at its position: the changes ahead of it in the batch are void, and the target's rows are replaced, in one statement, by what the batch holds after it. A flow between a CDC stream and this destination has to pass these rows through.
 
 The marker is lower-cased before it is compared, so a feed emitting `'I'` / `'U'` / `'D'` works as well as one emitting lower case. Anything else matches no clause and the row is passed over.
 
@@ -52,7 +56,7 @@ parameter
 
 `op_column`[MergeColumnSpec](https://docs.tabsdata.com/api/module/tabsdatak-conn-snowflake#tabsdatak.conn.snowflake.MergeColumnSpec) ([str](https://docs.python.org/3/library/stdtypes.html#str))
 
-The column holding each row's `i` / `u` / `d` marker. Read to decide each row's fate and never written, so the target does not need the column and will not gain it.
+The column holding each row's `i` / `u` / `d` / `l` / `t` marker. Read to decide each row's fate and never written, so the target does not need the column and will not gain it.
 
 ## Methods
 

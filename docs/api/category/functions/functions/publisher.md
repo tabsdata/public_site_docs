@@ -19,7 +19,7 @@ def publisher(
 
 Decorate a function as a batch publisher.
 
-Pulls from `source` and emits `output_tables`. The function takes one parameter per source slot -- [`TableFrameSpec`](https://docs.tabsdata.com/api/module/tabsdatak-api#tabsdatak.api.TableFrameSpec) (single mode) or [`TableFramesSpec`](https://docs.tabsdata.com/api/module/tabsdatak-api#tabsdatak.api.TableFramesSpec) (array mode) -- plus an _optional_ trailing `ctx: TrxCtx`, and returns one [`TableFrame`](https://docs.tabsdata.com/api/category/tableframe/tableframe/tableframe) per output table (a lone output may be returned bare rather than as a 1-tuple). A slot may be `None` when an upstream batch is absent.
+Pulls from `source` and emits `output_tables`. The function takes one parameter per source slot -- [`TableFrameSpec`](https://docs.tabsdata.com/api/module/tabsdatak-api#tabsdatak.api.TableFrameSpec) (single mode) or [`TableFramesSpec`](https://docs.tabsdata.com/api/module/tabsdatak-api#tabsdatak.api.TableFramesSpec) (array mode) -- plus an _optional_ trailing `ctx: TransactionCtx`, and returns one [`TableFrame`](https://docs.tabsdata.com/api/category/tableframe/tableframe/tableframe) per output table (a lone output may be returned bare rather than as a 1-tuple). A slot may be `None` when an upstream batch is absent.
 
 ## Parameters
 
@@ -39,7 +39,11 @@ parameter
 
 `trigger_by`[PublisherTriggerBySpec](https://docs.tabsdata.com/api/module/tabsdatak-api#tabsdatak.api.PublisherTriggerBySpec) | None ([CronTrigger](https://docs.tabsdata.com/api/category/functions/trigger/crontrigger) | [TablesTrigger](https://docs.tabsdata.com/api/category/functions/trigger/tablestrigger) | None)
 
-Optional [`CronTrigger`](https://docs.tabsdata.com/api/category/functions/trigger/crontrigger) / [`TablesTrigger`](https://docs.tabsdata.com/api/category/functions/trigger/tablestrigger); if omitted the function fires only on a manual run.
+When the function runs on its own:
+
+-   `None` (default) or `TablesTrigger(tables=[])`: never; only when run manually.
+-   `TablesTrigger(tables=[...])`: on a new version of any of those tables.
+-   `CronTrigger(mask=...)`: on the schedule.
 
 parameter
 

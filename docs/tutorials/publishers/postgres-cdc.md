@@ -1,6 +1,6 @@
 # Publish data from Postgres CDC
 
-> Postgres CDC stream publisher setup with @stream_publisher, PostgresCdcStreamSrc, replication slot options, start_from values, and slot cleanup.
+> Publishes Postgres CDC changes from tracked tables via @stream_publisher and a logical replication slot, covering PostgresCdcStreamSrc options, start_from, and slot behavior.
 
 Source: https://docs.tabsdata.com/tutorials/publishers/postgres-cdc
 
@@ -8,7 +8,7 @@ Before you begin
 
 [Quickstart a Server](https://docs.tabsdata.com/server-admin/quickstart) or [Start a Server](https://docs.tabsdata.com/server-admin/start)
 
-[Connect to MCP](https://docs.tabsdata.com/guide/connect-agent)
+[Configure Your AI Agent](https://docs.tabsdata.com/guide/connect-agent)
 
 warning
 

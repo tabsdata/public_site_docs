@@ -37,14 +37,14 @@ def out_replace(rows: TableFrameSpec) -> TableFrameSpec:
     return rows
 ```
 
-Append rows with a wider schema and let ClickHouse evolve the table -- `schema_evolution="iceberg"` adds the new column rather than failing on the mismatch (`"strict"` would reject it):
+Append rows with a wider schema and let ClickHouse evolve the table -- `schema_evolution="update"` adds the new column rather than failing on the mismatch (`"strict"` would reject it):
 
 ```python
 @subscriber(
     destination=ClickHouseDest(
         tables=["cap_evolve"],
         if_table_exists="append",
-        schema_evolution="iceberg",
+        schema_evolution="update",
     ),
     input_tables=["caps_input/cap_evo_v2"],
 )
@@ -68,15 +68,15 @@ parameter
 
 parameter
 
-`schema_evolution`[SchemaEvolutionSpec](https://docs.tabsdata.com/api/module/tabsdatak-conn-clickhouse#tabsdatak.conn.clickhouse.SchemaEvolutionSpec) (Literal\['strict', 'iceberg'\])
+`schema_evolution`[SchemaEvolutionSpec](https://docs.tabsdata.com/api/module/tabsdatak-conn-clickhouse#tabsdatak.conn.clickhouse.SchemaEvolutionSpec) (Literal\['strict', 'update'\])
 
-`"strict"` (the default) rejects schema changes; `"iceberg"` applies Iceberg-style schema deltas.
+What a write does when the batch's columns differ from the table's. `"replace"` makes the table the batch's own, so it is not affected. `"strict"` (the default) refuses a batch with a column the table lacks or a wider type; `"update"` adds the column and widens the type, and refuses a change ClickHouse cannot make. A column the batch lacks is written NULL either way.
 
 parameter
 
-`dest_cfg`[DestCfgSpec](https://docs.tabsdata.com/api/module/tabsdatak-conn-clickhouse#tabsdatak.conn.clickhouse.DestCfgSpec) | None (Mapping\[Literal\['clickhouse.logging\_level'\], [Any](https://docs.python.org/3/library/typing.html#typing.Any)\] | None)
+`dest_cfg`[DestCfgSpec](https://docs.tabsdata.com/api/module/tabsdatak-conn-clickhouse#tabsdatak.conn.clickhouse.DestCfgSpec) | None (Mapping\[Literal\['clickhouse.logging\_level', 'clickhouse.schema\_evolution\_engine'\], [Any](https://docs.python.org/3/library/typing.html#typing.Any)\] | None)
 
-Optional connector config; the only supported key is `clickhouse.logging_level`.
+Optional connector config. Supported keys: `clickhouse.logging_level`, and `clickhouse.schema_evolution_engine` -- `"iceberg"`, the default and only engine: ClickHouse has no schema evolution of its own.
 
 ## Methods
 

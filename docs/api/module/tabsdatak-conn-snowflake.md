@@ -23,7 +23,7 @@ Source: https://docs.tabsdata.com/api/module/tabsdatak-conn-snowflake
 | [`SnowflakeDest`](https://docs.tabsdata.com/api/category/connectors/destination/snowflakedest) | Snowflake destination for `@subscriber` -- one output slot per table. |
 | [`SnowflakeDestConn`](https://docs.tabsdata.com/api/category/connectors/destination/snowflakedestconn) | Snowflake account connection. |
 | [`SnowflakeTableNameSpec`](#tabsdatak.conn.snowflake.SnowflakeTableNameSpec) |  |
-| [`SnowflakeTableNamesSpec`](#tabsdatak.conn.snowflake.SnowflakeTableNamesSpec) |  |
+| [`SnowflakeTableNamesSpec`](#tabsdatak.conn.snowflake.SnowflakeTableNamesSpec) | A list of Snowflake table names (see `SnowflakeTableNameSpec`), each at most once: names that differ only in quoting, or in the case of an unquoted part (upper-cased, as Snowflake folds them), are the same table. |
 
 * * *
 
@@ -224,3 +224,5 @@ SnowflakeTableNamesSpec: list[SnowflakeTableNameSpec]
 ```python
 list[str]
 ```
+
+A list of Snowflake table names (see [`SnowflakeTableNameSpec`](https://docs.tabsdata.com/api/module/tabsdatak-conn-snowflake#tabsdatak.conn.snowflake.SnowflakeTableNameSpec)), each at most once: names that differ only in quoting, or in the case of an unquoted part (upper-cased, as Snowflake folds them), are the same table.

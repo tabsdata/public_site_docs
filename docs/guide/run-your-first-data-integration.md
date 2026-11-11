@@ -1,14 +1,14 @@
 # Run Your First Data Integration
 
-> Quickstart that has an LLM agent via Tabsdata MCP build and run a workflow: CSV publisher, age-dropping transformer adding full_name, and JSONL subscriber to local files.
+> Quickstart that has a coding agent build a Tabsdata workflow from a CSV: publisher, transformer adding full_name and dropping age, and subscriber writing people.jsonl, then checking the UI.
 
 Source: https://docs.tabsdata.com/guide/run-your-first-data-integration
 
 Before you start
 
-Finish [Install Tabsdata](https://docs.tabsdata.com/guide/install) and [Connect to MCP](https://docs.tabsdata.com/guide/connect-agent) first, and make sure the server is running.
+Finish [Install Tabsdata](https://docs.tabsdata.com/guide/install) and [Configure Your AI Agent](https://docs.tabsdata.com/guide/connect-agent) first, and make sure the server is running.
 
-This quickstart uses the Tabsdata MCP integration. To deploy and run Tabsdata without an LLM, switch to the developer doc mirror.
+This quickstart uses a coding agent with the Tabsdata skill. To deploy and run Tabsdata without an LLM, switch to the developer doc mirror.
 
 We will be building a Tabsdata Workflow that:
 
@@ -172,11 +172,11 @@ Registering the subscriber.
 
 ```python
 @subscriber(
-  tables=["people"],
-  destination=LocalFileDst(path="people.jsonl", format=DstFileFormat.NDJSON),
+  input_tables=["people"],
+  destination=LocalFileDest(paths=["people.jsonl"], format=DestFileFormat.JSON),
 )
-def export_people(people: TableFrameSpec) -> None:
-  pass
+def export_people(people: TableFrameSpec) -> TableFrameSpec:
+  return people
 ```
 
 Called tabsdata 3 times (ctrl+o to expand)

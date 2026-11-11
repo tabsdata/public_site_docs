@@ -1,6 +1,6 @@
 # Publish data from Azure Blob Storage
 
-> Publishes CSV blobs from an Azure Blob Storage container into Tabsdata tables using AzureBlobSrc, covering paths and globs, base_path, file_info="uri", and initial_last_modified.
+> Publishes CSV and other blobs from an Azure Blob Storage container into Tabsdata tables, covering `AzureBlobSrc` paths and globs, the `AzureBlobSrcConn` connection, account key credentials, `file_info`, and `initial_last_modified`.
 
 Source: https://docs.tabsdata.com/tutorials/publishers/azure
 
@@ -8,7 +8,7 @@ Before you begin
 
 [Quickstart a Server](https://docs.tabsdata.com/server-admin/quickstart) or [Start a Server](https://docs.tabsdata.com/server-admin/start)
 
-[Connect to MCP](https://docs.tabsdata.com/guide/connect-agent)
+[Configure Your AI Agent](https://docs.tabsdata.com/guide/connect-agent)
 
 ## Ingest blobs from a container
 

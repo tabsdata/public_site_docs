@@ -1,6 +1,6 @@
 # Trigger a Function from a Table Commit
 
-> Controls which input tables fire a Tabsdata function on commit using the trigger_by parameter, including an empty list to disable automatic triggering.
+> Explains the trigger_by parameter for Tabsdata functions, which narrows automatic runs to chosen input tables, names non-input tables, or disables table-commit triggering with an empty list.
 
 Source: https://docs.tabsdata.com/tutorials/trigger-setup/table-commit
 
@@ -8,7 +8,7 @@ Before you begin
 
 [Quickstart a Server](https://docs.tabsdata.com/server-admin/quickstart) or [Start a Server](https://docs.tabsdata.com/server-admin/start)
 
-[Connect to MCP](https://docs.tabsdata.com/guide/connect-agent)
+[Configure Your AI Agent](https://docs.tabsdata.com/guide/connect-agent)
 
 By default, functions trigger when any of their input tables receives new data. The `trigger_by` parameter lets users specify a subset of input tables that should trigger the function instead, or disable automatic triggering entirely.
 

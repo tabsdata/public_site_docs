@@ -104,7 +104,7 @@ Following properties are defined in the code above:
 
 A subscriber may receive and return a `None` value instead of TableFrames.
 
-When a subscriber receives a `None` value instead of a TableFrame it means that the requested table dependency version does not exist.
+When a subscriber receives a `None` value instead of a TableFrame it means that the requested version does not exist, the input table has never been produced, or the table had no data up to that version.
 
 When a subscriber returns a `None` value instead of a TableFrame it means there is no new data to write to the external system. This helps in avoiding the creation of multiple copies of the same data.
 

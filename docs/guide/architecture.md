@@ -1,6 +1,6 @@
 # Architecture Overview
 
-> Describes Tabsdata's system architecture: the resource layer (Functions as publisher, transformer, subscriber; Tables with versioned schemas) and execution layer (Execution Plans, Transactions, Function Runs), plus deployment providers.
+> Tabsdata system architecture: resource layer (Functions, Tables) and execution layer (Execution Plans, Transactions, Function Runs), plus scalability, security, deployment providers, and AI integration.
 
 Source: https://docs.tabsdata.com/guide/architecture
 
@@ -154,12 +154,12 @@ Tabsdata runs on **Linux** for production and **macOS** or **Windows** for devel
 
 ## AI integration
 
-Tabsdata includes a built-in **Model Context Protocol (MCP) Server** that allows AI agents to interact with your Tabsdata Server. The MCP Server is backed by a skills library and vector database, providing agents with the context needed to understand and operate on your data workflows. See [Connect to MCP](https://docs.tabsdata.com/guide/connect-agent) to get started.
+Coding agents use your Tabsdata Server through the **`tdk` CLI**, in their own shell. The **Tabsdata skill** tells an agent when Tabsdata fits a task and how to use it, and before any work against a Server the agent loads that Server's own skills, so its instructions always match the Server it works on. See [Configure Your AI Agent](https://docs.tabsdata.com/guide/connect-agent) to get started.
 
 There are two ways to use AI in Tabsdata:
 
 -   A **built-in agent** called Tabby for operational tasks within Tabsdata.
--   External coding agents, such as **Claude** and **Codex**, connected through the MCP Server.
+-   External coding agents, such as **Claude Code** and **Codex**, working through `tdk` with the Tabsdata skill.
 
 ## Community & contributing
 

@@ -1,10 +1,10 @@
 # tdkserver stubs
 
-> Copy the configuration stubs for '--config' into the tabsdata home folder
+> Copy the configuration stubs for '--config', and the project secrets stub, into the tabsdata home folder
 
 Source: https://docs.tabsdata.com/cli/tdkserver/stubs
 
-Copy the configuration stubs for '--config' into the tabsdata home folder
+Copy the configuration stubs for '--config', and the project secrets stub, into the tabsdata home folder
 
 ```bash
 tdkserver stubs \

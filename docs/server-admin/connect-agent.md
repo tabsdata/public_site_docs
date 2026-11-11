@@ -1,6 +1,6 @@
-# Connect to MCP
+# Configure Your AI Agent
 
-> Registers the Tabsdata MCP server (tabsdata-agent) with Claude Code or Codex using `claude mcp add` or `codex mcp add`, with shell-specific commands for Linux, macOS, PowerShell, and cmd.exe.
+> Install the Tabsdata skill for your coding agents with tdk ai agents install, then log in so each agent acts through your session.
 
 Source: https://docs.tabsdata.com/server-admin/connect-agent
 
@@ -8,46 +8,22 @@ Before you begin
 
 [Install Tabsdata](https://docs.tabsdata.com/server-admin/install)
 
-Tabsdata's agentic workflow uses an MCP server so a coding agent builds and runs your workflows for you. Install it into your agent before deploying a server. Claude Code and Codex are currently supported.
+A coding agent uses Tabsdata through `tdk`, in its own shell, and the Tabsdata skill tells it when Tabsdata fits a task and how to use it. Supported agents are Claude Code, Codex, Cursor, VS Code, Gemini CLI and Antigravity.
 
-Start the agent from a shell whose virtual environment has Tabsdata installed.
+Install the skill from the virtual environment that has `tabsdata[all]`. It is installed for every supported agent on the machine:
+
+```bash
+tdk ai agents install
+```
+
+`tdk ai agents status` shows where the skill is installed and for which agents, and `tdk ai agents uninstall` removes it. See [tdk ai agents install](https://docs.tabsdata.com/cli/tdk/ai/agents-install) for the options.
 
 note
 
-The MCP server needs `tabsdata-agent`, which ships as its own package and is not yet pulled in by `tabsdata[all]`. Install it if you have not done so yet:
+Upgrading from an earlier version of Tabsdata? Remove the old MCP connection with `claude mcp remove tabsdata` or `codex mcp remove tabsdata` before installing the skill.
 
--   uv
--   pip
-
-```bash
-uv pip install tabsdata-agent
-```
+The agent works through the session of the user who logs in, so it can only do what that user is authorized to do. Log in from your own terminal before starting the agent:
 
 ```bash
-pip install tabsdata-agent
-```
-
-[Install Tabsdata](https://docs.tabsdata.com/server-admin/install) covers this as part of the full install, so skip this if you followed that page.
-
--   Claude Code
--   Codex
-
-```bash
-claude mcp add tabsdata -- python -m tabsdatak.ag.mcp -
-```
-
--   Linux / macOS
--   Windows PowerShell
--   Windows cmd.exe
-
-```bash
-codex mcp add tabsdata -- "$(python -c 'import sys; print(sys.executable)')" -m tabsdatak.ag.mcp -
-```
-
-```powershell
-codex mcp add tabsdata -- (python -c "import sys; print(sys.executable)") -m tabsdatak.ag.mcp -
-```
-
-```bat
-for /f "delims=" %i in ('python -c "import sys; print(sys.executable)"') do codex mcp add tabsdata -- "%i" -m tabsdatak.ag.mcp -
+tdk login --server http://127.0.0.1:2457 --user admin --password tabsdata
 ```

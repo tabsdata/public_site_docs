@@ -8,10 +8,6 @@ Before you begin
 
 [Create a Project](https://docs.tabsdata.com/developer/tutorials/managing-projects/create)
 
-warning
-
-The MySQL CDC connector needs the `mysql-connector-python` driver, which Tabsdata does not redistribute. See [Installing Third-Party Database Drivers](https://docs.tabsdata.com/developer/server-admin/third-party-database-drivers) to add it to your Tabsdata server.
-
 The MySQL CDC publisher captures row-level changes (inserts, updates, deletes) from a MySQL database by reading its binary log (binlog) in real time. A long-lived stream worker follows the binlog and hands the captured changes to the publisher in batches, so this uses `@stream_publisher` rather than `@publisher`.
 
 What you’ll do

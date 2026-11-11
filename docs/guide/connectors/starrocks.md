@@ -54,7 +54,7 @@ def write_orders(orders):
 
 #### `tables`
 
-Names of existing StarRocks tables, one per returned frame. Names can be `table` or `database.table`; an unqualified name uses the Connection's `database`. Backtick-quote individual name parts containing special characters.
+Names of existing StarRocks tables, one per returned frame. A table cannot be listed twice. Names can be `table` or `database.table`; an unqualified name uses the Connection's `database`. Backtick-quote individual name parts containing special characters.
 
 Create the destination tables before running the Subscriber. StarRocks table creation requires a physical layout, including a key definition and distribution strategy, that the connector cannot infer from a frame.
 
@@ -64,11 +64,11 @@ Create the destination tables before running the Subscriber. StarRocks table cre
 
 #### `schema_evolution`
 
-`"strict"` (the default) rejects schema changes. `"iceberg"` applies Iceberg-style schema changes to the existing destination table; it does not change the destination into an Iceberg table.
+`"strict"` (the default) refuses a write that adds a column, or brings a wider type whose values do not fit the column, with `SQL_COMMON_10`, before anything is loaded; a column the frame lacks gets its default or NULL. `"update"` adds nullable columns and widens integers, `FLOAT` to `DOUBLE`, `VARCHAR` and `DECIMAL`, waiting up to 30 minutes for the `ALTER` job to finish. Before 2.3.0 `"update"` was called `"iceberg"`, which now fails validation. See [Schema Evolution](https://docs.tabsdata.com/guide/connectors/schema-evolution).
 
 #### `dest_cfg`
 
-Optional destination configuration. The supported key is `starrocks.logging_level`.
+Optional destination configuration. The supported key is `starrocks.logging_level`. StarRocks always uses Iceberg schema evolution, so `starrocks.schema_evolution_engine` is refused at registration.
 
 ## Write behavior
 
@@ -76,11 +76,15 @@ Each entry in `tables` is one destination slot and maps by position to a value r
 
 `if_table_exists="append"` inserts rows into the existing table. `"replace"` truncates it first. Neither mode creates a missing table.
 
-`schema_evolution="strict"` rejects schema changes. `"iceberg"` applies supported Iceberg-style changes to the StarRocks table; it does not turn the table into an Iceberg table.
+`schema_evolution="strict"` refuses a new column, or a wider type whose values do not fit, before the load, on `"replace"` too, where the check runs before the truncate. Writes are not atomic: a failed `"replace"` can leave the table empty, and tables load one after another. `"update"` applies supported changes to the table.
+
+### Schema evolution
+
+`schema_evolution` decides what a write does when the returned frame has a column the destination table lacks, or a type wider than the column's. `"strict"`, the default, refuses a new column, and refuses a wider type unless its values fit the column. `"update"` changes the table to fit the frame. On StarRocks, `"update"` uses [Iceberg schema evolution](https://docs.tabsdata.com/guide/connectors/schema-evolution#native-and-iceberg-schema-evolution), applied by the connector, on `"append"` and `"replace"`: `ADD COLUMN … NULL` adds columns, and `MODIFY COLUMN` widens integers, `FLOAT` to `DOUBLE`, `VARCHAR` and `DECIMAL`, waiting up to 30 minutes for the `ALTER` job. `"merge"` is not supported.
 
 ## Operational notes
 
--   Writes are staged as Parquet, then loaded through StarRocks `FILES()`.
+-   Writes are staged as Parquet, then loaded through StarRocks `FILES()`. The staged files are deleted after each table's load, whether it succeeded or failed, so the staging credentials need delete permission.
 -   S3 and Azure staging use one credential set. GCS needs service-account JSON for the upload and HMAC credentials for StarRocks's S3-compatible read.
 -   Tabsdata does not contact StarRocks or the staging service when the collection is created. Those checks happen when the subscriber runs.
 
@@ -189,7 +193,7 @@ Use one of the location classes from `tabsdatak.conn.starrocks`:
 
 Tabsdata must be able to upload the staged files, and StarRocks must be able to read them. For GCS, both credential types are required: uploads use the native GCS API, while StarRocks reads through the S3-compatible endpoint.
 
-Each location accepts `base_path`, which defaults to `/`, and an optional `cfg` dictionary for storage-client configuration. A non-root `base_path` starts with `/`, has no trailing `/`, and contains no empty path segments.
+Each location accepts `base_path`, which defaults to `/`, and an optional `cfg` dictionary for storage-client configuration. The keys are listed in [Object Store Options](https://docs.tabsdata.com/guide/connectors/object-store-options). A non-root `base_path` starts with `/`, has no trailing `/`, and contains no empty path segments.
 
 #### `entity_whitelist`
 

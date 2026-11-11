@@ -1,6 +1,6 @@
 # Publish data from log files with Grok
 
-> Parses single-column log text into typed TableFrame columns with the grok function, using Elasticsearch-style patterns, named captures, and a schema, with local file and object storage publishers.
+> Parses single-column log files into typed TableFrame columns with the grok function, using Elasticsearch-style patterns, named captures, and a schema, from LocalFileSrc or object storage publishers.
 
 Source: https://docs.tabsdata.com/tutorials/publishers/grok-for-log-files
 
@@ -8,7 +8,7 @@ Before you begin
 
 [Quickstart a Server](https://docs.tabsdata.com/server-admin/quickstart) or [Start a Server](https://docs.tabsdata.com/server-admin/start)
 
-[Connect to MCP](https://docs.tabsdata.com/guide/connect-agent)
+[Configure Your AI Agent](https://docs.tabsdata.com/guide/connect-agent)
 
 ## Ingest log files as typed columns
 
@@ -104,7 +104,7 @@ SCHEMA = {
 def read_access_logs(lines: TableFramesSpec) -> tuple[TableFrameSpec]:
   if lines is None:
       return (None,)
-  return (lines[0].grok("column_1", PATTERN, SCHEMA),)
+  return (lines[0].grok("column_0", PATTERN, SCHEMA),)
 ```
 
 ⏺
