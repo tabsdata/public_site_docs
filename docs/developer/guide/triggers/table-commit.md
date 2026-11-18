@@ -36,6 +36,6 @@ A Table cannot trigger the Function that writes it.
 
 ## A commit is not the same as a change
 
-Every run that returns data commits a new Version, whether or not the rows differ from the previous one. A Publisher writing three Tables commits all three on every run, so a Function watching any of them fires each time, even for the Tables whose contents were identical.
+Every successful run commits a new Version, whether or not the rows differ from the previous one. A Publisher writing three Tables commits all three on every run, so a Function watching any of them fires each time, even for the Tables whose contents were identical.
 
 Returning `None` from a slot also commits a new Version, one that keeps the Table's previous data, so downstream Functions watching that Table fire for it too. See [`None` inputs and outputs](https://docs.tabsdata.com/developer/guide/functions/#none-inputs-and-outputs).

@@ -80,7 +80,7 @@ snowflake
 
 A unique feature of Tabsdata is that it has its own internal storage for all data produced by functions.
 
-Tabsdata tables persistently store the data produced by functions. Every successful function run that returns data creates a new table version that sits alongside all previous versions of the table.
+Tabsdata tables persistently store the data produced by functions. Every successful function run creates a new version of each of its output tables. A new version sits alongside all previous versions of the table.
 
 persons
 

@@ -151,7 +151,7 @@ When a transformer receives a `None` value instead of a TableFrame it means that
 
 For example, a transformer that has a dependency on the previous version of one the tables it produces, has a `None` value as an input on its first execution since the input table doesn’t exist yet.
 
-When a transformer returns a `None` value instead of a TableFrame, it commits a new version of the associated table that holds the same data as the previous version. This helps in avoiding the creation of multiple copies of the same data.
+When a transformer returns a `None` value instead of a TableFrame, it commits a new version of the associated table that holds no data of its own. Reading it gives the data of the last version that did change the table. This helps in avoiding the creation of multiple copies of the same data.
 
 ### Triggers
 

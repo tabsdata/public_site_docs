@@ -105,7 +105,7 @@ find\_big\_cities.py
 
 A transformer function has one parameter per input table and returns one frame per output table.
 
--   **Parameters.** Inputs are passed to the function in `input_tables` order. Annotate a parameter as `TableFrameSpec` for one frame or `TableFramesSpec` for a list of frames. An input read at `@NEW`, a `v..v` range or a `v,v` list must be typed `TableFramesSpec`; `TableFrameSpec` is refused at registration. An input is `None` when the requested version does not exist or has no data; see [`None` inputs and outputs](https://docs.tabsdata.com/guide/functions/#none-inputs-and-outputs).
+-   **Parameters.** Inputs are passed to the function in `input_tables` order. Annotate a parameter as `TableFrameSpec` for one frame or `TableFramesSpec` for a list of frames. An input read at `@NEW`, a `v..v` range or a `v,v` list must be typed `TableFramesSpec`; `TableFrameSpec` is refused at registration. An input is `None` when the requested version does not exist or has no data; see [`None` inputs and outputs](https://docs.tabsdata.com/guide/functions/#none-inputs-and-outputs). If no version has ever had data, a `None` version has nothing to fall back to, and readers get `None` instead of a frame.
 -   **Context.** The function can have a final `ctx: TransactionCtx` parameter to keep values between successful runs. Type it `FunctionCtx` to also read the run's identifiers and the project's secrets.
 -   **Return value.** Return values map to `output_tables` in order. One output can be returned on its own; several outputs are returned as a tuple. Returning `None` for one output commits a new version that keeps that table's previous data.
 

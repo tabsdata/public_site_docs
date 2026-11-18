@@ -63,14 +63,16 @@ A `None` parameter has a different meaning for each Function type:
 
 A version range, such as `orders@HEAD~3..HEAD`, reaches a Transformer or Subscriber as a list with one element per version, oldest first. A `None` element is a version that does not exist or that has no data yet. A range of a fixed size, such as `HEAD~3..HEAD`, always has that many elements, and its `None` elements are always at the oldest end, because once a Table has data every later version has data too. A range from `INITIAL`, such as `INITIAL..HEAD`, has one element per existing version and can be empty.
 
-A returned `None` has a different meaning for each Function type:
+### Returning `None`
 
-| Function | Returning `None` for an output |
-| --- | --- |
-| Publisher, Transformer | Commits a new version of the output Table that holds the same data as the previous version. If the Table has never had data, the new version has no data either. |
-| Subscriber | Sends no new data to that destination slot. The Connector still runs and decides what `None` does to the external system; each Connector page describes it under **Write behavior**. |
+Every successful run commits a new version of each of its output tables. What you return for a table decides what that version holds:
 
-Any returned `TableFrame` is new data, including an input `TableFrame` returned unchanged; only `None` keeps the previous data. A Transformer or Subscriber that reads a version committed from a `None` receives the previous data as a `TableFrame`, not `None`. Such a version also triggers dependent Transformers and Subscribers like any other commit, so a Subscriber runs for it too: return `None` to leave the external system as it is, or the frame to write the data again.
+-   A `TableFrame` is new data. The version holds it, and it replaces the table's previous data. This is true even for a frame with zero rows: the table is now empty.
+-   `None` means "no changes for this table". The version is still committed, but it holds no data of its own. Reading it gives the data of the last version that did change the table.
+
+A version committed with `None` is a version like any other. It triggers the functions that depend on the table, and a function reading the table at `@NEW` receives it, with the unchanged data, as one of the new versions.
+
+A Subscriber has destination slots instead of output Tables. Returning `None` for a slot sends no new data to it. The Connector still runs and decides what `None` does to the external system; each Connector page describes it under **Write behavior**. A Subscriber also runs for a version committed with `None`: return `None` to leave the external system as it is, or the frame to write the data again.
 
 When a Table version has no data, the UI and `tdk` say so, and say whether the version does not exist or has no data, instead of showing an empty table. `tdk` writes that message to stderr and exits with a non-zero code.
 
