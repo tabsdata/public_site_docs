@@ -24,7 +24,7 @@ Called tabsdata 2 times (ctrl+o to expand)
 
 ⏺
 
-Generating — trigger\_by narrows the default trigger set to orders alone. regions is still read on every run and still supplies its current data, it just no longer starts one.
+Generating — trigger\_by narrows the default trigger set to orders alone. regions is still read on every run, it just no longer starts one.
 
 Called tabsdata 3 times (ctrl+o to expand)
 
@@ -36,7 +36,7 @@ The transformer, registered in sales:
 @transformer(
   input_tables=["orders", "regions"],
   output_tables=["orders_by_region"],
-  trigger_by=["orders"],
+  trigger_by=TablesTrigger(tables=["orders"]),
 )
 def summarize(orders: TableFrameSpec, regions: TableFrameSpec) -> TableFrameSpec:
   return orders.group_by("region").agg(col("amount").sum())
@@ -44,7 +44,7 @@ def summarize(orders: TableFrameSpec, regions: TableFrameSpec) -> TableFrameSpec
 
 ⏺
 
-This is not about avoiding duplicate runs. A plan that commits both tables runs the transformer once either way, since the plan covers every downstream function and orders them by dependency rather than firing one run per committed table.
+regions no longer orders the run either. If the same plan writes regions, the transformer reads its version from before the plan. Add regions to trigger\_by to get the new one.
 
 AI agent session
 
@@ -70,7 +70,7 @@ The transformer, registered in sales:
 @transformer(
   input_tables=["orders", "regions"],
   output_tables=["orders_by_region"],
-  trigger_by=["purchases"],
+  trigger_by=TablesTrigger(tables=["purchases"]),
 )
 def summarize(orders: TableFrameSpec, regions: TableFrameSpec) -> TableFrameSpec:
   return orders.group_by("region").agg(col("amount").sum())
@@ -96,7 +96,7 @@ Called tabsdata 2 times (ctrl+o to expand)
 
 ⏺
 
-Generating — an empty trigger\_by. Orders and regions are both still read as inputs, and neither commit starts a run any more.
+Generating — an empty TablesTrigger. Orders and regions are both still read as inputs, and neither commit starts a run any more.
 
 Called tabsdata 3 times (ctrl+o to expand)
 
@@ -108,7 +108,7 @@ The transformer, registered in sales:
 @transformer(
   input_tables=["orders", "regions"],
   output_tables=["orders_by_region"],
-  trigger_by=[],
+  trigger_by=TablesTrigger(tables=[]),
 )
 def summarize(orders: TableFrameSpec, regions: TableFrameSpec) -> TableFrameSpec:
   return orders.group_by("region").agg(col("amount").sum())

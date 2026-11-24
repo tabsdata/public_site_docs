@@ -168,15 +168,32 @@ input/persons@HEAD
 
 The version can be used to select a specific version or set of versions of the Table:
 
--   `HEAD` selects the latest version.
+-   `HEAD` selects the latest version. A version committed with `None` reads as the last version that had data.
 -   `HEAD^` selects the version immediately before `HEAD`.
 -   `HEAD~N` selects a version relative to `HEAD`.
 -   `INITIAL` selects the first version.
 -   A specific version ID selects that version.
 -   Comma-separated version IDs select multiple versions.
 -   `a..b` selects a range of versions.
+-   `NEW` selects every version committed since the Function's previous run, oldest first, as a list. On the Function's first run, it selects every version the Table has. It includes versions committed with `None`, which read as the previous data. It is an empty list when no version was committed. See [Registering Functions in a pipeline](https://docs.tabsdata.com/guide/functions/#registering-functions-in-a-pipeline).
+
+| Table reference | Table state | Function input |
+| --- | --- | --- |
+| `persons` | `[v1, v2, v3, v4]` | `v4` |
+| `persons@HEAD` | `[v1, v2, v3, None]` | `v3` |
+| `persons@HEAD^` | `[v1, v2, v3, v4]` | `v3` |
+| `persons@HEAD~2` | `[v1, v2, v3, v4]` | `v2` |
+| `persons@INITIAL` | `[v1, v2, v3, v4]` | `v1` |
+| `persons@HEAD~3,HEAD~1` | `[v1, v2, v3, v4]` | `[v1, v3]` |
+| `persons@HEAD~2..HEAD` | `[v1, v2, v3, v4]` | `[v2, v3, v4]` |
+| `persons@NEW` | `[v1, v2 ǀ v3, v4]` | `[v3, v4]` |
+| `persons@NEW` | `[v1, v2 ǀ None, v4]` | `[v2, v4]` |
+| `persons@NEW` | `[ǀ v1, v2]` | `[v1, v2]` |
+| `persons@NEW` | `[v1, v2 ǀ]` | `[]` |
 
 If no version is specified, the Function reads from `HEAD`.
+
+`HEAD` is resolved when the execution plan starts. A Table the same plan writes, but not upstream of the Function's triggers, resolves to its version from before the plan; `HEAD^`, `HEAD~N` and ranges shift back the same way. See [Table Commit Triggers](https://docs.tabsdata.com/guide/triggers/table-commit#table-commit-triggers-and-dependency-configuration).
 
 Tables can also be referenced across Collections within the same Project. Tables in another Project cannot be referenced.
 
@@ -202,6 +219,8 @@ Transformers and Subscribers are automatically triggered when a new commit is ma
 
 A commit does not necessarily mean that the data itself changed. When a Publisher writes multiple Tables, it creates a new commit for each Table on every successful execution, even if the rows in a Table are identical to its previous version.
 
+Such a commit still triggers the Functions that read the Table, and a Function reading it at `@NEW` receives it. A commit from returning `None` holds the previous data. A commit from an empty frame has no rows. See [`None` as output](https://docs.tabsdata.com/guide/functions/#none-as-output).
+
 Each commit can trigger Functions that use that Table as an input.
 
-See [Working with Triggers](https://docs.tabsdata.com/guide/triggers) to control which input Tables trigger a Function.
+See [Trigger Overview](https://docs.tabsdata.com/guide/execution-and-triggers#trigger_by) to control which input Tables trigger a Function.

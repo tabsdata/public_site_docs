@@ -113,13 +113,13 @@ From a machine with AKS cluster access, create a Python virtual environment and 
 **Using uv:**
 
 ```text
-uv pip install "tabsdata[all]"
+uv pip install tabsdata
 ```
 
 **Using pip:**
 
 ```text
-pip install "tabsdata[all]"
+pip install tabsdata
 ```
 
 **Note:** PostgreSQL connectors require a database driver that Tabsdata cannot redistribute. See "Installing Third-Party Database Drivers" if needed before proceeding.

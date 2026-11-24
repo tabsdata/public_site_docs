@@ -18,7 +18,7 @@ A patch is the only way to change the code a planned run executes: both 'tdk fnr
 tdk fn patch \
   --proj quickstart \
   --format table \
-  --coll <function pinned.<locals>.default at 0x10b614d60> \
+  --coll <function pinned.<locals>.default at 0x10b62e2a0> \
   --name read_world \
   --fn-version fv-9d21ac \
   --path functions/read_world.py::read_world \
@@ -36,7 +36,7 @@ tdk fn patch \
 | --- | --- | --- | --- |
 | `--proj, -P` | string | Optional | Project to target; overrides the pinned project. Prompted for when a command needs one and neither is set. |
 | `-o, --format` | table \| json \| yaml | Optional | Output format. 'json' and 'yaml' give a listing as an array and table data as one object per row. |
-| `--coll, -c` | string | Optional | Name of the collection to which the function belongs. Defaults to `<function pinned.<locals>.default at 0x10b614d60>`. |
+| `--coll, -c` | string | Optional | Name of the collection to which the function belongs. Defaults to `<function pinned.<locals>.default at 0x10b62e2a0>`. |
 | `--name, -n` | string | Required | Name of the function to patch. |
 | `--fn-version` | string | Required | Function-version id (fvid) this patch overrides. Use 'tdk fn get --show-history' to find available fvids. |
 | `--path` | string | Required | Path to the function file. Must be of the form '/path/to/file.py::function\_name'. Will be prompted for it if not provided. |

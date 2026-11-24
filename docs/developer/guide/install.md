@@ -79,11 +79,11 @@ python -m venv .venv
 -   pip
 
 ```bash
-uv pip install "tabsdata[all]"
+uv pip install tabsdata
 ```
 
 ```bash
-pip install "tabsdata[all]"
+pip install tabsdata
 ```
 
 ### Start the Tabsdata server
@@ -117,7 +117,7 @@ Instances
 ┌──────────┬──────────────────────────────────────────────────┬──────────┬─────────┬─────────┬─────────┬─────────────────┬───────────────┬───────────────────────┐
 │ Name     │ Folder                                           │ Provider │ Version │ State   │ Status  │ API Server Port │ Database Port │ API Server URL        │
 ├──────────┼──────────────────────────────────────────────────┼──────────┼─────────┼─────────┼─────────┼─────────────────┼───────────────┼───────────────────────┤
-│ tabsdata │ ~/.tabsdata/instances/tabsdata                   │ kminus   │ 2.0.2   │ created │ Running │ 2457            │ 2460          │ http://localhost:2457 │
+│ tabsdata │ ~/.tabsdata/instances/tabsdata                   │ kminus   │ 2.4.1   │ created │ Running │ 2457            │ 2460          │ http://localhost:2457 │
 └──────────┴──────────────────────────────────────────────────┴──────────┴─────────┴─────────┴─────────┴─────────────────┴───────────────┴───────────────────────┘
 ```
 
@@ -180,38 +180,84 @@ Next: [Run Your First Data Integration](https://docs.tabsdata.com/developer/guid
 
 ## Upgrade Tabsdata
 
-To upgrade Tabsdata, install the new version in a clean virtual environment and run `tdkserver upgrade` from it. The upgrade keeps the instance's custom configuration, for example additional virtual environment requirements.
+To upgrade Tabsdata, follow the steps below:
 
 ### Create a new virtual environment
 
-Create a new, clean virtual environment for the new version, as in [Create a Python virtual environment](#create-a-python-virtual-environment), with a new name such as `tabsdata-new` or `.venv-new`. Do not install the new version in the environment of the version you are upgrading from.
+-   macOS / Linux
+-   Windows (PowerShell)
 
-### Install the new version
+-   conda
+-   uv
+-   pyenv
+-   venv
 
-In the new virtual environment, install Tabsdata as in [Install Tabsdata](#install-tabsdata).
+```bash
+conda create -n tabsdata-new python=3.12 -y
+conda activate tabsdata-new
+```
 
-### Upgrade the server
+```bash
+uv venv --python 3.12.13 .venv-new
+source .venv-new/bin/activate
+```
+
+```bash
+pyenv install 3.12.13
+pyenv local 3.12.13
+python -m venv .venv-new
+source .venv-new/bin/activate
+```
+
+```bash
+python3 -m venv .venv-new
+source .venv-new/bin/activate
+```
+
+-   conda
+-   uv
+-   pyenv
+-   venv
+
+```powershell
+conda create -n tabsdata-new python=3.12 -y
+conda activate tabsdata-new
+```
+
+```powershell
+uv venv --python 3.12.13 .venv-new
+.venv-new\Scripts\activate
+```
+
+```powershell
+pyenv install 3.12.13
+pyenv local 3.12.13
+python -m venv .venv-new
+.venv-new\Scripts\activate
+```
+
+```powershell
+python -m venv .venv-new
+.venv-new\Scripts\activate
+```
+
+### Install the new version of Tabsdata
+
+-   uv
+-   pip
+
+```bash
+uv pip install tabsdata
+```
+
+```bash
+pip install tabsdata
+```
+
+### Upgrade your Tabsdata Server
 
 From the new virtual environment, run:
 
 ```bash
-tdkserver upgrade
-```
-
-The upgrade stops the Tabsdata Server and leaves it stopped. To start it again as soon as the upgrade completes, pass `--apply true`:
-
-```bash
 tdkserver upgrade --apply true
 ```
-
-Without `--apply true`, start the server with `tdkserver start` when you are ready. `tdkserver upgrade` upgrades the instance named `tabsdata` unless `--instance` names another; see [tdkserver upgrade](https://docs.tabsdata.com/cli/tdkserver/upgrade) for every option.
-
-### Remove the previous virtual environment
-
-Once the upgrade is complete, the virtual environment of the previous version is no longer used and can be deleted.
-
-### Upgrade the clients
-
-Every machine that runs `tdk` needs the new version too. On each one, create a new virtual environment and install the new version, as in the first two steps.
-
-Then run the AI agent configuration again from the new virtual environment, starting with `tdk ai agents install`. See [Configure Your AI Agent](https://docs.tabsdata.com/guide/connect-agent).

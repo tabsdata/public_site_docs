@@ -70,7 +70,7 @@ If the `trigger_by` property is not defined, the behavior depends on the default
 #### Defining an Empty Array
 
 ```python
-trigger_by = []
+trigger_by = TablesTrigger(tables=[])
 ```
 
 Setting `trigger_by` to an empty array disables automatic triggering. This is useful for transformers and subscribers when you want to prevent them from being triggered by their input tables.
@@ -78,7 +78,7 @@ Setting `trigger_by` to an empty array disables automatic triggering. This is us
 #### Defining a Non-Empty Array
 
 ```python
-trigger_by = ["<table_name>", "<collection_name>/<table_name>"]
+trigger_by = TablesTrigger(tables=["<table_name>", "<collection_name>/<table_name>"])
 ```
 
 Setting `trigger_by` to a non-empty array explicitly defines which tables can trigger the function. If you want the functions to be triggered by a subset of their input tables or by external tables, list them in the array. To reference tables outside the function’s collection, use the format `<collection_name>/<table_name>`.
@@ -127,6 +127,17 @@ These optional parameters define a specific window of time during which the sche
 -   An ISO 8601 string in the **UTC timezone** (e.g., `2024-01-01T12:00:00Z`).
 -   **Behavior:** - **If specified:** Tabsdata will only trigger the function based on the mask between the `start` and `end` times.
 -   **If omitted:** Tabsdata will trigger the function indefinitely based on the mask, starting from the moment the function is successfully registered.
+
+### Enabled and disabled Functions
+
+A Function is registered enabled unless `tdk fn register` is given `--disabled`, and `tdk fn enable` / `tdk fn disable` switch it later (`tdk stream` and `tdk cron` have the same commands for their Functions). A disabled Function is not run by any trigger:
+
+-   a commit to one of its trigger Tables does not plan it, and Functions downstream of it do not run through it;
+-   its cron schedule is ignored;
+-   a stream publisher's worker is stopped, and does not consume;
+-   `tdk fn trigger` refuses it.
+
+Enabling a Function does not run it; its next run comes from its next trigger. `tdk fn update` enables a disabled Function unless `--disabled` is given again.
 
 ### Trigger Scheduling Lifecycle
 

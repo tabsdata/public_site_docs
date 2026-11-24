@@ -17,7 +17,7 @@ Source: https://docs.tabsdata.com/api/module/tabsdatak-conn-snowflake
 | [`MergeColumnSpec`](#tabsdatak.conn.snowflake.MergeColumnSpec) |  |
 | [`MergeColumnsSpec`](#tabsdatak.conn.snowflake.MergeColumnsSpec) |  |
 | [`NameSpec`](#tabsdatak.conn.snowflake.NameSpec) |  |
-| [`SchemaEvolutionEngineSpec`](#tabsdatak.conn.snowflake.SchemaEvolutionEngineSpec) | Which machinery evolves the target's schema. |
+| [`SchemaEvolutionEngineSpec`](#tabsdatak.conn.snowflake.SchemaEvolutionEngineSpec) | The only engine a user writes, and only to evolve a merge: append and replace evolve natively, through Snowflake's own `ENABLE_SCHEMA_EVOLUTION`, which `COPY INTO` honours, and a `MERGE` takes no such option, so the connector diffs the target against the batch and emits the `ALTER` statements itself. |
 | [`SchemaEvolutionSpec`](#tabsdatak.conn.snowflake.SchemaEvolutionSpec) |  |
 | [`SnowflakeColumnSpec`](#tabsdatak.conn.snowflake.SnowflakeColumnSpec) |  |
 | [`SnowflakeDest`](https://docs.tabsdata.com/api/category/connectors/destination/snowflakedest) | Snowflake destination for `@subscriber` -- one output slot per table. |
@@ -174,10 +174,10 @@ str | Secret
 type\_alias
 
 ```python
-SchemaEvolutionEngineSpec: Literal['native', 'iceberg']
+SchemaEvolutionEngineSpec: Literal['iceberg']
 ```
 
-Which machinery evolves the target's schema. `"native"` leans on Snowflake's own `ENABLE_SCHEMA_EVOLUTION`, which `COPY INTO` honours; `"iceberg"` has the connector diff the target against the incoming file and emit the `ALTER` statements itself.
+The only engine a user writes, and only to evolve a merge: append and replace evolve natively, through Snowflake's own `ENABLE_SCHEMA_EVOLUTION`, which `COPY INTO` honours, and a `MERGE` takes no such option, so the connector diffs the target against the batch and emits the `ALTER` statements itself.
 
 * * *
 

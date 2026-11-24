@@ -31,33 +31,33 @@ property
 
 `columns`[list](https://docs.python.org/3/builtins/stdtypes.html#list)\[[str](https://docs.python.org/3/builtins/stdtypes.html#str)\]
 
-Names of this [`TableFrame`](https://docs.tabsdata.com/api/category/tableframe/tableframe/tableframe)'s columns, in column order.
+Names of this [`TableFrame`](https://docs.tabsdata.com/api/category/tableframe/tableframe/tableframe)'s user columns, in column order.
 
-#VERIFY: may expose hidden `$TD.*` system columns; the old API filtered to user columns only.
+The `@td.*` meta and `$td.*` internal columns are left out; use `get_columns` to include them.
 
 property
 
 `dtypes`[list](https://docs.python.org/3/builtins/stdtypes.html#list)\[[DataType](https://docs.tabsdata.com/api/module/tabsdatak-tableframe-datatypes#tabsdatak.tableframe.datatypes.DataType)\]
 
-Data type of each column, in column order.
+Data type of each user column, in column order.
 
-#VERIFY: may expose hidden `$TD.*` system columns; the old API filtered to user columns only.
+The `@td.*` meta and `$td.*` internal columns are left out; use `get_dtypes` to include them.
 
 property
 
 `schema`[Schema](https://docs.tabsdata.com/api/category/tableframe/schema)
 
-Ordered mapping of column name to data type, as a [`Schema`](https://docs.tabsdata.com/api/category/tableframe/schema).
+Ordered mapping of user column name to data type, as a [`Schema`](https://docs.tabsdata.com/api/category/tableframe/schema).
 
-#VERIFY: may expose hidden `$TD.*` system columns; the old API filtered to user columns only.
+The `@td.*` meta and `$td.*` internal columns are left out; use `get_schema` to include them.
 
 property
 
 `width`[int](https://docs.python.org/3/builtins/functions.html#int)
 
-Number of columns in this [`TableFrame`](https://docs.tabsdata.com/api/category/tableframe/tableframe/tableframe).
+Number of user columns in this [`TableFrame`](https://docs.tabsdata.com/api/category/tableframe/tableframe/tableframe).
 
-#VERIFY: may count hidden `$TD.*` system columns; the old API filtered to user columns only.
+The `@td.*` meta and `$td.*` internal columns are not counted; use `get_width` to count them.
 
 ## Methods
 
@@ -577,6 +577,8 @@ def drop(
 ```
 
 Remove the named columns.
+
+A pattern -- `"*"`, a regular expression or a pattern selection -- drops the user and `@td.*` meta columns it matches, never the `$td.*` internal columns; naming an internal column fails with `TF6`.
 
 **Parameters:**
 
@@ -1306,7 +1308,7 @@ parameter
 
 `schema`
 
-Optional `{column: data type}` mapping giving the frame its columns. Without it the frame has no columns either.
+Optional `{column: data type}` mapping giving the frame its columns. Without it the frame has no columns either. To keep a frame's columns, use its `clear()`.
 
 **Returns:**
 
@@ -1326,32 +1328,228 @@ TableFrame.empty()
 
 method
 
-`extract_one`
+`get_columns`
 
 ```python
-def extract_one(
-    with_connector_columns: bool = False,
-    fail_if_empty: bool = False,
-) -> dict[str, DataType | None] | None
+def get_columns(
+    *,
+    with_user_columns: bool = True,
+    with_meta_columns: bool = False,
+    with_internal_columns: bool = False,
+) -> list[str]
 ```
 
-Return the only row as a column-to-value dictionary.
+Names of the selected columns, in column order.
 
-Internal columns are always dropped; connector columns are kept only when with\_connector\_columns is set. Fails if the TableFrame has more than one row. Returns None when the TableFrame is empty, unless fail\_if\_empty is set, in which case it fails.
+With no arguments it returns the same as `columns`: the user columns only.
 
 **Parameters:**
 
 parameter
 
-`with_connector_columns`[bool](https://docs.python.org/3/builtins/functions.html#bool)
+`with_user_columns`[bool](https://docs.python.org/3/builtins/functions.html#bool)
 
-Keep the connector columns a source attached to the row instead of dropping them.
+Include the columns the data carries.
+
+parameter
+
+`with_meta_columns`[bool](https://docs.python.org/3/builtins/functions.html#bool)
+
+Include the `@td.*` meta columns a source attached to the rows (for example, the file a row came from).
+
+parameter
+
+`with_internal_columns`[bool](https://docs.python.org/3/builtins/functions.html#bool)
+
+Include the `$td.*` internal columns Tabsdata manages.
+
+**Returns:**
+
+The selected column names.
+
+**Example:**
+
+```python
+tf.get_columns(with_meta_columns=True)  # ["a", "@td.file"]
+```
+
+method
+
+`get_dtypes`
+
+```python
+def get_dtypes(
+    *,
+    with_user_columns: bool = True,
+    with_meta_columns: bool = False,
+    with_internal_columns: bool = False,
+) -> list[DataType]
+```
+
+Data type of each selected column, in column order.
+
+With no arguments it returns the same as `dtypes`: the user columns only.
+
+**Parameters:**
+
+parameter
+
+`with_user_columns`[bool](https://docs.python.org/3/builtins/functions.html#bool)
+
+Include the columns the data carries.
+
+parameter
+
+`with_meta_columns`[bool](https://docs.python.org/3/builtins/functions.html#bool)
+
+Include the `@td.*` meta columns a source attached to the rows.
+
+parameter
+
+`with_internal_columns`[bool](https://docs.python.org/3/builtins/functions.html#bool)
+
+Include the `$td.*` internal columns Tabsdata manages.
+
+**Returns:**
+
+The data types of the selected columns.
+
+**Example:**
+
+```python
+tf.get_dtypes(with_meta_columns=True)  # [Int64, String]
+```
+
+method
+
+`get_schema`
+
+```python
+def get_schema(
+    *,
+    with_user_columns: bool = True,
+    with_meta_columns: bool = False,
+    with_internal_columns: bool = False,
+) -> Schema
+```
+
+Ordered mapping of selected column name to data type, as a [`Schema`](https://docs.tabsdata.com/api/category/tableframe/schema).
+
+With no arguments it returns the same as `schema`: the user columns only.
+
+**Parameters:**
+
+parameter
+
+`with_user_columns`[bool](https://docs.python.org/3/builtins/functions.html#bool)
+
+Include the columns the data carries.
+
+parameter
+
+`with_meta_columns`[bool](https://docs.python.org/3/builtins/functions.html#bool)
+
+Include the `@td.*` meta columns a source attached to the rows.
+
+parameter
+
+`with_internal_columns`[bool](https://docs.python.org/3/builtins/functions.html#bool)
+
+Include the `$td.*` internal columns Tabsdata manages.
+
+**Returns:**
+
+The names and data types of the selected columns.
+
+**Example:**
+
+```python
+tf.get_schema(with_meta_columns=True)  # {"a": Int64, "@td.file": String}
+```
+
+method
+
+`get_width`
+
+```python
+def get_width(
+    *,
+    with_user_columns: bool = True,
+    with_meta_columns: bool = False,
+    with_internal_columns: bool = False,
+) -> int
+```
+
+Number of selected columns.
+
+With no arguments it returns the same as `width`: the user columns only.
+
+**Parameters:**
+
+parameter
+
+`with_user_columns`[bool](https://docs.python.org/3/builtins/functions.html#bool)
+
+Count the columns the data carries.
+
+parameter
+
+`with_meta_columns`[bool](https://docs.python.org/3/builtins/functions.html#bool)
+
+Count the `@td.*` meta columns a source attached to the rows.
+
+parameter
+
+`with_internal_columns`[bool](https://docs.python.org/3/builtins/functions.html#bool)
+
+Count the `$td.*` internal columns Tabsdata manages.
+
+**Returns:**
+
+The number of selected columns.
+
+**Example:**
+
+```python
+tf.get_width(with_meta_columns=True)
+```
+
+method
+
+`extract_one`
+
+```python
+def extract_one(
+    with_meta_columns: bool | None = None,
+    fail_if_empty: bool = False,
+    *,
+    with_connector_columns: bool | None = None,
+) -> dict[str, DataType | None] | None
+```
+
+Return the only row as a column-to-value dictionary.
+
+Internal columns are always dropped; meta columns are kept only when with\_meta\_columns is set. Fails if the TableFrame has more than one row. Returns None when the TableFrame is empty, unless fail\_if\_empty is set, in which case it fails.
+
+**Parameters:**
+
+parameter
+
+`with_meta_columns`[bool](https://docs.python.org/3/builtins/functions.html#bool) | None
+
+Keep the `@td.*` meta columns a source attached to the row instead of dropping them.
 
 parameter
 
 `fail_if_empty`[bool](https://docs.python.org/3/builtins/functions.html#bool)
 
 Raise instead of returning `None` when there is no row to extract.
+
+parameter
+
+`with_connector_columns`[bool](https://docs.python.org/3/builtins/functions.html#bool) | None
+
+Deprecated alias of `with_meta_columns`; passing both is an error.
 
 **Returns:**
 

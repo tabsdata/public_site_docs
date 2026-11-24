@@ -15,6 +15,7 @@ class LocalFileSrc(
     src_cfg: SrcCfgSpec | None = None,
     purge: bool = False,
     include_compressed: bool = False,
+    incremental: bool = True,
 )
 ```
 
@@ -39,7 +40,7 @@ Publish one file, selecting the reader `format` explicitly. Each path is an arra
     output_tables=["cities"],
 )
 def ingest(rows: TableFramesSpec) -> TableFrameSpec:
-    return rows[0] if rows else None
+    return concat(rows)
 ```
 
 Incremental ingestion: `initial_last_modified` imports only files at or after the cutoff, advancing it on each run:
@@ -53,7 +54,7 @@ Incremental ingestion: `initial_last_modified` imports only files at or after th
     output_tables=["new_files"],
 )
 def ingest_new(rows: TableFramesSpec) -> TableFrameSpec:
-    return rows[0] if rows else None
+    return concat(rows)
 ```
 
 ## Parameters
@@ -88,7 +89,7 @@ parameter
 
 `initial_last_modified`[datetime](https://docs.python.org/3/library/datetime.html#datetime.datetime) | None
 
-Optional cutoff for incremental ingestion. The first run imports only files modified at or after this timestamp; the cutoff then advances each run so only newer files are re-imported.
+Optional cutoff that makes each run take only new files: the first run takes the files modified at or after this timestamp, each later run only the files modified since. Without it, every run takes every file a path matches. `incremental` is separate: it says what a run that takes no file hands.
 
 parameter
 
@@ -119,6 +120,15 @@ Also take compressed files and archives. A path takes a file whose name matches 
 -   `.zst`, `.zstd`: Zstandard.
 
 A file has at most one of these extensions: an archive inside a compressed file (`a.csv.tar.gz`) is not read. Defaults to `False`.
+
+parameter
+
+`incremental`[bool](https://docs.python.org/3/builtins/functions.html#bool)
+
+Whether the data of each run adds to the data of the previous runs (`True`, the default) or replaces it (`False`). The function handles the data accordingly; this option tells Tabsdata what to hand the function when a run finds no new data. It applies to each path on its own: in the same run one path can take files and another none. A path's files arrive as a list, so a run that takes no file for a path hands the function, for it:
+
+-   `True`: a list holding one empty [`TableFrame`](https://docs.tabsdata.com/api/category/tableframe/tableframe/tableframe) with the schema of the last run that had data for that path, or an empty list if no run has had data for it yet.
+-   `False`: always an empty list; the previous data of that path is still valid: [`concat`](https://docs.tabsdata.com/api/category/tableframe/concat) of it is `None`, and returning `None` keeps the table's data.
 
 ## Methods
 

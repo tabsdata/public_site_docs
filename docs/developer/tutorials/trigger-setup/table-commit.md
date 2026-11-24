@@ -59,13 +59,13 @@ A commit to any input table triggers the function, and `trigger_by` narrows that
 @transformer(
     input_tables=["orders", "regions"],
     output_tables=["orders_by_region"],
-    trigger_by=["orders"],
+    trigger_by=TablesTrigger(tables=["orders"]),
 )
 ```
 
-`regions` is still read on every run and still supplies its current data. It no longer starts one, which suits a lookup table whose edits do not warrant recomputing the summary.
+`regions` is still read on every run. It no longer starts one, which suits a lookup table whose edits do not warrant recomputing the summary.
 
-This is not about avoiding duplicate runs. A plan that commits both `orders` and `regions` runs this transformer once either way, because the plan covers every downstream function and orders them by dependency rather than firing one run per committed table.
+`regions` no longer orders the run either. If the same plan writes `regions`, the transformer reads its version from before the plan. Add `regions` to `trigger_by` to get the new one.
 
 ## Triggering off a table the function does not read
 
@@ -75,7 +75,7 @@ This is not about avoiding duplicate runs. A plan that commits both `orders` and
 @transformer(
     input_tables=["orders", "regions"],
     output_tables=["orders_by_region"],
-    trigger_by=["orders", "ops/refresh_signal"],
+    trigger_by=TablesTrigger(tables=["orders", "ops/refresh_signal"]),
 )
 def summarize(orders: TableFrameSpec, regions: TableFrameSpec) -> TableFrameSpec:
     return orders.group_by("region").agg(col("amount").sum())
@@ -90,7 +90,7 @@ Reference a table outside the function's own collection as `collection/table`. C
 An empty list disables it, leaving the function manual-only:
 
 ```python
-trigger_by=[]
+trigger_by=TablesTrigger(tables=[])
 ```
 
 ## A commit does not mean the data changed

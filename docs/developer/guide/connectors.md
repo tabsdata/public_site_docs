@@ -18,6 +18,7 @@ Each connector's page covers its connection fields and the options of its classe
 | --- | --- | --- | --- |
 | [Amazon S3](https://docs.tabsdata.com/developer/guide/connectors/amazon-s3) | `S3Src` |  | `S3Dest` |
 | [Apache Druid](https://docs.tabsdata.com/developer/guide/connectors/druid) |  |  | `DruidDest` |
+| [AWS Glue](https://docs.tabsdata.com/developer/guide/connectors/aws-glue) |  |  | `AwsGlueDest` |
 | [Azure Blob Storage](https://docs.tabsdata.com/developer/guide/connectors/azure) | `AzureBlobSrc` |  | `AzureBlobDest` |
 | [BigQuery](https://docs.tabsdata.com/developer/guide/connectors/bigquery) |  |  | `BigQueryDest` |
 | [ClickHouse](https://docs.tabsdata.com/developer/guide/connectors/clickhouse) |  |  | `ClickHouseDest` |

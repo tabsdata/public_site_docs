@@ -13,7 +13,7 @@ tdk fn patches \
   --browse \
   --wrap \
   --max-width max_width-example \
-  --coll <function pinned.<locals>.default at 0x10b614d60> \
+  --coll <function pinned.<locals>.default at 0x10b62e2a0> \
   --name read_world \
   --max-result 100 \
   --filter filter-example \
@@ -30,7 +30,7 @@ tdk fn patches \
 | `--browse, --print` | flag | Optional | Open the table in a viewer that scrolls both ways, or print it and return. |
 | `--wrap` | flag | Optional | Show every value whole, wrapping long and multi-line values inside their column instead of cutting them. |
 | `--max-width` | string | Optional | Maximum width of each column, in characters; longer values are cut and end in '…'. Use 0 for no limit. Defaults to the width each table sets. |
-| `--coll, -c` | string | Optional | Name of the collection to which the function belongs. Defaults to `<function pinned.<locals>.default at 0x10b614d60>`. |
+| `--coll, -c` | string | Optional | Name of the collection to which the function belongs. Defaults to `<function pinned.<locals>.default at 0x10b62e2a0>`. |
 | `--name, -n` | string | Required | Name of the function whose patches will be listed. |
 | `--max-result` | string | Optional | Maximum number of rows to list. Use 0 for no limit, or for the most a program running tdk allows. Defaults to `100`. |
 | `--filter` | string | Optional | Filter on a field, with OP one of eq, ne, gt, ge, lt, le, lk, btw, is. Repeatable: conditions on different fields must all hold, conditions on the same field are alternatives. Combines with the command's own filters. |

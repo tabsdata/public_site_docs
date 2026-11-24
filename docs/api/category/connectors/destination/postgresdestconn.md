@@ -21,6 +21,8 @@ Bases: [Conn](https://docs.tabsdata.com/api/category/spi/spi/conn)
 
 Postgres connection used by [`PostgresDest`](https://docs.tabsdata.com/api/category/connectors/destination/postgresdest).
 
+The database and schema must already exist.
+
 Attribute-identical to [`PostgresSrcConn`](https://docs.tabsdata.com/api/category/connectors/source/postgressrcconn) but a distinct class; source and destination connections are separate types and cannot be used in place of one another. See [`PostgresSrcConn`](https://docs.tabsdata.com/api/category/connectors/source/postgressrcconn) for the field meanings.
 
 ## Parameters

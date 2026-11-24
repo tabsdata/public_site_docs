@@ -66,7 +66,7 @@ def read_clicks(clicks: TableFramesSpec) -> TableFrameSpec:
 
 A Kafka source has a single slot, so there is one output table, named in `output_tables`. `schema` is required. Without a schema registry, every JSON message is validated against it.
 
-The function takes one `TableFramesSpec` per source slot, always in array mode. A batch can hold several frames when the messages change shape, so `concat` with `how="diagonal_relaxed"` fills the missing columns with nulls. The function must **not** declare a `ctx` parameter: it runs inside the runtime's stream loop rather than per-transaction, so no transaction context exists at the call boundary.
+The function takes one `TableFramesSpec` per source slot, always in array mode. A batch can hold several frames when the messages change shape, so `concat` with `how="diagonal_relaxed"` fills the missing columns with nulls.
 
 Step 3Register it
 

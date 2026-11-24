@@ -16,7 +16,7 @@ Bases: [Dest](https://docs.tabsdata.com/api/category/connectors/destination/dest
 
 Destination reporting the `LazyFrame`\\ s a `@subscriber` hands it -- it writes no data.
 
-Each run writes one JSON report to its connection's folder with, per output and by position, the type of the table it received, its row count and its column names. Useful to check what a destination receives without an external system.
+Each run writes one JSON report to its connection's folder with, per output and by position, the type of the table it received, its row count and its column names, or `null` for an output the subscriber returned as `None`. Useful to check what a destination receives without an external system.
 
 ## Examples
 

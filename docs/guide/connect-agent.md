@@ -8,17 +8,11 @@ Tabsdata provides a skill that enables your AI agent to use the `tdk` CLI for de
 
 Step 1Install the Tabsdata skill
 
-After installing `tabsdata[all]` from [Install Tabsdata](https://docs.tabsdata.com/guide/install), install the Tabsdata skill files into your shared agents folder. You can also just ask your agent to do this step for you:
+After installing `tabsdata` from [Install Tabsdata](https://docs.tabsdata.com/guide/install), install the Tabsdata skill files into your shared agents folder. You can also ask your agent to do this step for you:
 
 ```bash
 tdk ai agents install
 ```
-
-The skill is installed for every supported agent on the machine. See [tdk ai agents install](https://docs.tabsdata.com/cli/tdk/ai/agents-install) for its options.
-
-note
-
-Upgrading from an earlier version of Tabsdata? Remove the old MCP connection with `claude mcp remove tabsdata` or `codex mcp remove tabsdata`, then follow this step.
 
 Step 2Log in to the Tabsdata Server
 
@@ -30,10 +24,6 @@ tdk login --server http://127.0.0.1:2457 --user admin --password tabsdata
 
 Step 3Use you AI Agent for building Tabsdata Workflows
 
-Start your agent and describe what you need.
-
-```bash
-claude
-```
+Once your session is logged in, your agents are able to connect to Tabsdata through the CLI.
 
 Next: [Run Your First Data Integration](https://docs.tabsdata.com/guide/run-your-first-data-integration)

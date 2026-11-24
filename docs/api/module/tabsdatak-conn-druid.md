@@ -18,6 +18,7 @@ Source: https://docs.tabsdata.com/api/module/tabsdatak-conn-druid
 | [`DruidTableNamesSpec`](#tabsdatak.conn.druid.DruidTableNamesSpec) | A list of Druid datasources (see `DruidTableNameSpec`), each at most once; datasource names are case-sensitive. |
 | [`IfTableExistsSpec`](#tabsdatak.conn.druid.IfTableExistsSpec) |  |
 | [`S3Location`](https://docs.tabsdata.com/api/category/connectors/destination/s3location-druid) | S3 staging area for `DruidDest`. |
+| [`SchemaEvolutionSpec`](#tabsdatak.conn.druid.SchemaEvolutionSpec) | Druid cannot enforce a schema: a datasource takes whatever columns a batch brings, so `"update"` is the only policy. |
 | [`SegmentGranularitySpec`](#tabsdatak.conn.druid.SegmentGranularitySpec) |  |
 | [`UrlSpec`](#tabsdatak.conn.druid.UrlSpec) |  |
 
@@ -110,6 +111,18 @@ type\_alias
 ```python
 IfTableExistsSpec: Literal['append', 'replace']
 ```
+
+* * *
+
+## SchemaEvolutionSpec
+
+type\_alias
+
+```python
+SchemaEvolutionSpec: Literal['update']
+```
+
+Druid cannot enforce a schema: a datasource takes whatever columns a batch brings, so `"update"` is the only policy.
 
 * * *
 

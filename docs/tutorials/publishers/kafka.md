@@ -99,6 +99,6 @@ Stream worker started. First batch committed after 128 MB, 0 failures.
 └───────────────────┴───────────────┘
 ```
 
-`schema` is required, and messages that fail to deserialize go to `dlq_topic` while the stream carries on. Without a `dlq_topic`, such a message stops the stream. A stream publisher takes no `trigger_by` at all, and it must not declare a `ctx` parameter, because it runs inside the stream loop rather than once per transaction.
+`schema` is required, and messages that fail to deserialize go to `dlq_topic` while the stream carries on. Without a `dlq_topic`, such a message stops the stream. A stream publisher takes no `trigger_by` at all.
 
 See [Kafka](https://docs.tabsdata.com/guide/connectors/kafka) for every option of the source and the connection, and [Batch parameters](https://docs.tabsdata.com/guide/functions/stream-publishers#batch-parameters) for when a batch is due.

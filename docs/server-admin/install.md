@@ -84,11 +84,11 @@ After installing, add the Tabsdata skill for your coding agent; see [Configure Y
 -   pip
 
 ```bash
-uv pip install "tabsdata[all]"
+uv pip install tabsdata
 ```
 
 ```bash
-pip install "tabsdata[all]"
+pip install tabsdata
 ```
 
 Some Notes on Tabsdata Server Providers

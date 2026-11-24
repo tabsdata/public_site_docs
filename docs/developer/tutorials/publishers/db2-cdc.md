@@ -47,12 +47,12 @@ read\_sales\_changes.py
     
 -   One output table per tracked CD table, in the same order.
     
--   One TableFramesSpec parameter per source slot, always array mode. No ctx parameter.
+-   One TableFramesSpec parameter per source slot, always array mode.
     
 -   One frame per output table, the same order as output\_tables. concat folds each slot's list of frames into one, or returns None when the batch carried nothing for that table.
     
 
-`start_from` also accepts `"full"` for a full load of the tracked tables followed by their changes, `"head"` to replay each tracked CD table from the origin, or an explicit `CommitSeqPosition(seq=...)`, `TableCommitSeqPosition(seqs={...})`, or `TimestampPosition(ts=...)`. A stream publisher takes no `trigger_by` and must not declare a `ctx` parameter — it runs inside the runtime's stream loop rather than per-transaction.
+`start_from` also accepts `"full"` for a full load of the tracked tables followed by their changes, `"head"` to replay each tracked CD table from the origin, or an explicit `CommitSeqPosition(seq=...)`, `TableCommitSeqPosition(seqs={...})`, or `TimestampPosition(ts=...)`. A stream publisher takes no `trigger_by`.
 
 Step 4Register the stream publisher into the collection
 

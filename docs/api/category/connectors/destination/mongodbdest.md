@@ -35,10 +35,10 @@ Append documents, letting MongoDB auto-generate `_id` (the id field is `None`):
     destination=MongoDBDest(
         collections_with_ids=[("cap_append", None)],
     ),
-    input_tables=["caps_input/cap_rows"],
+    input_tables=["caps_input/cap_rows@NEW"],
 )
-def publish(rows: TableFrameSpec) -> TableFrameSpec:
-    return rows
+def publish(rows: TableFramesSpec) -> TableFrameSpec:
+    return concat(rows)
 ```
 
 Upsert on a natural key -- `code` becomes each document's `_id`, so re-runs update the same documents instead of inserting duplicates:
@@ -67,7 +67,7 @@ parameter
 
 `if_collection_exists`[IfTableExistsSpec](https://docs.tabsdata.com/api/module/tabsdatak-conn-mongodb#tabsdatak.conn.mongodb.IfTableExistsSpec) (Literal\['append', 'replace'\])
 
-`"append"` (default) leaves existing documents in place; `"replace"` drops the collection first.
+`"append"` (default) leaves existing documents in place; `"replace"` drops the collection first, so an empty frame empties it. A slot returned as `None` leaves its collection as it is.
 
 parameter
 

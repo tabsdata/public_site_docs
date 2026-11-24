@@ -14,8 +14,6 @@ We will be building a Tabsdata Workflow that:
 2.  builds a second table called `people` that drops the `age` column and adds a `full_name` column
 3.  writes the `people` table back to your file system as `people.jsonl`
 
-Click any node for what it does
-
 Local File
 
 Local File

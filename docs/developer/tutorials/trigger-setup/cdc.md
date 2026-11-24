@@ -60,7 +60,7 @@ def read_changes(
     return concat(products), concat(stock)
 ```
 
-One output table per tracked table, in order, and one `TableFramesSpec` parameter per slot. Each parameter is a list of frames, and `concat` folds it into one, or returns `None` when the batch carried nothing for that table. The function must **not** declare a `ctx` parameter: it runs inside the runtime's stream loop rather than per-transaction.
+One output table per tracked table, in order, and one `TableFramesSpec` parameter per slot. Each parameter is a list of frames, and `concat` folds it into one, or returns `None` when the batch carried nothing for that table.
 
 Step 3Register it
 

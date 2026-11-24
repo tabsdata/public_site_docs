@@ -4,7 +4,7 @@
 
 Source: https://docs.tabsdata.com/guide/connectors/schema-evolution
 
-Every table destination takes a `schema_evolution` setting that decides what happens when a write brings a column the destination table does not have, or a value type wider than the column's. The table destinations are Databricks, Snowflake, BigQuery, ClickHouse, StarRocks, Postgres, MySQL, MariaDB, Microsoft SQL Server, Oracle and Db2. The same two values apply to append, replace and merge on all of them, but what each one does differs by destination. Druid cannot enforce a schema, so `"update"` is its only value and its default.
+Every table destination takes a `schema_evolution` setting that decides what happens when a write brings a column the destination table does not have, or a value type wider than the column's. The table destinations are Databricks, Snowflake, BigQuery, AWS Glue, ClickHouse, StarRocks, Postgres, MySQL, MariaDB, Microsoft SQL Server, Oracle and Db2. The same two values apply to append, replace and merge on all of them, but what each one does differs by destination. Druid cannot enforce a schema, so `"update"` is its only value and its default.
 
 ## Policies
 
@@ -30,6 +30,7 @@ What each destination does with a new or wider column, and how it carries out `r
 | Databricks | Fails in `COPY INTO` (`DATABRICKS_9`) | Schema follows the batch | Refused before the `MERGE` (`SQL_COMMON_10`) | Append: `mergeSchema` and `delta.enableTypeWidening`. Merge: `MERGE WITH SCHEMA EVOLUTION` and widening | `CREATE OR REPLACE … read_files() LIMIT 0`, then `COPY INTO` | No |
 | Snowflake | Refused before `COPY` | Refused: the schema check runs before the `TRUNCATE` | Refused | Append and replace: native `ENABLE_SCHEMA_EVOLUTION`, adds columns and makes columns nullable. Merge: Iceberg engine, set in `dest_cfg`; `ALTER` adds columns and widens `VARCHAR` length and `NUMBER` precision | `TRUNCATE`, then `COPY INTO`; the table definition is kept | No |
 | BigQuery | Fails in the load job (`BIGQUERY_7`) | Schema replaced | Refused | Append and replace: native, adds columns and relaxes `REQUIRED`, never widens. Merge: Iceberg engine, set in `dest_cfg`; `ALTER` adds and widens, and `REQUIRED` stays `REQUIRED` | `WRITE_TRUNCATE` load job | Yes |
+| AWS Glue | A new column is refused before the upload (`SQL_COMMON_10`). A wider type is written when its values fit the column, and fails the write when one does not. A missing column is NULL | Same check, before the table is emptied | Not supported | Iceberg's own schema update: adds columns and widens types | Removes every row and adds the batch in one Iceberg commit; the table and its columns are kept | Yes |
 | ClickHouse | Refused before the load on a new column, a wider type whose values do not fit, or a NULL into a non-`Nullable` column. Column order is ignored, a narrower type fits, a missing column is NULL | Schema follows the batch | Not supported | Adds `Nullable` columns, makes columns nullable, widens `Int8` up to `Int64`, `UInt` likewise, and `Float32` to `Float64` | Stage, `DROP TABLE IF EXISTS`, `CREATE … MergeTree() ORDER BY tuple()`, `INSERT` by name | No |
 | StarRocks | Refused before the load on a new column, or a wider type whose values do not fit. A missing column gets its default or NULL | Same check, then `TRUNCATE` and `INSERT`; the table must exist | Not supported | `ADD COLUMN … NULL`; `MODIFY COLUMN` widens integers, `FLOAT` to `DOUBLE`, `VARCHAR` and `DECIMAL`, waiting up to 30 minutes for the `ALTER` job | `TRUNCATE`, then `INSERT … SELECT FROM FILES()` | No |
 | Druid | Refused at registration | Refused at registration | Not supported | The default and only value: schema discovery adds columns, and a missing column reads as NULL | `index_parallel` with `dropExisting` over 1970 to 2100 | Per datasource |
@@ -45,6 +46,7 @@ Each destination widens only these types:
 | --- | --- |
 | Snowflake | `VARCHAR` length and `NUMBER` precision, on merge |
 | BigQuery | `INT64` to `BIGNUMERIC` to `FLOAT64`, on merge |
+| AWS Glue | `int` to `long`, `float` to `double`, and decimal precision |
 | ClickHouse | Integers up to 64 bits, signed and unsigned, and `Float32` to `Float64` |
 | StarRocks | Integers, `FLOAT` to `DOUBLE`, `VARCHAR` and `DECIMAL` |
 | Postgres, MySQL, MariaDB, SQL Server, Oracle, Db2 | Integers, decimals and floats, by digits or width |
@@ -60,6 +62,7 @@ Under `"update"`, a destination changes the table in one of two ways. Native sch
 | Databricks | Native | Native |
 | Snowflake, BigQuery | Native | Iceberg, set in `dest_cfg` |
 | ClickHouse, StarRocks, Postgres, MySQL, MariaDB, SQL Server, Oracle, Db2 | Iceberg | Not supported |
+| AWS Glue | Native, Iceberg's own schema update | Not supported |
 | Druid | Native | Not supported |
 
 Snowflake's and BigQuery's native schema evolution adds columns and makes columns nullable, but never widens a type, and does not apply to `MERGE`. A Snowflake or BigQuery merge under `"update"` needs the Iceberg engine set in `dest_cfg`:

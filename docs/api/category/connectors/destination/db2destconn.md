@@ -21,6 +21,8 @@ Bases: [Conn](https://docs.tabsdata.com/api/category/spi/spi/conn)
 
 Db2 connection used by [`Db2Dest`](https://docs.tabsdata.com/api/category/connectors/destination/db2dest).
 
+The database and schema must already exist.
+
 Attribute-identical to [`Db2SrcConn`](https://docs.tabsdata.com/api/category/connectors/source/db2srcconn) but a distinct class; source and destination connections are separate types and cannot be used in place of one another. See [`Db2SrcConn`](https://docs.tabsdata.com/api/category/connectors/source/db2srcconn) for the field meanings.
 
 ## Parameters

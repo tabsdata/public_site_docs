@@ -79,11 +79,11 @@ python -m venv .venv
 -   pip
 
 ```bash
-uv pip install "tabsdata[all]"
+uv pip install tabsdata
 ```
 
 ```bash
-pip install "tabsdata[all]"
+pip install tabsdata
 ```
 
 Where the server runs

@@ -42,9 +42,9 @@ See [Execution and Triggers](https://docs.tabsdata.com/developer/guide/execution
 
 Whenever a Function is triggered, Tabsdata uses the declared Table dependencies to build an [Execution Plan](https://docs.tabsdata.com/developer/guide/execution/execution-plans) containing all the downstream Functions that need to run.
 
-The Execution Plan determines the order in which Functions execute, including Functions across different Collections, so that each Function runs after the Tables it depends on have been updated.
+The Execution Plan determines the order in which Functions execute, including Functions across different Collections. It orders Functions by their triggers: each Function runs after the Functions that write its trigger Tables.
 
-As the plan executes, each Function reads the data written by the upstream Functions in that same execution. However, Tabsdata does not commit any of the new Table versions until every Function in the Execution Plan has completed successfully.
+As the plan executes, each Function reads the data written by the upstream Functions in that same execution. An input that is not a trigger Table, and whose writer is not upstream of one, is read at its version from before the plan. However, Tabsdata does not commit any of the new Table versions until every Function in the Execution Plan has completed successfully.
 
 If any Function fails, none of the new Table versions are committed. This prevents partially completed workflows from leaving Tables in inconsistent states.
 

@@ -113,7 +113,8 @@ The subscriber is registered in a collection created with a `MySQLDestConn` conn
 ### Prerequisites
 
 -   The MySQL server is reachable from the Tabsdata server.
--   The connection user can create missing destination tables and insert rows. With `if_table_exists="replace"`, it also needs to drop and create tables, and with `schema_evolution="update"`, to alter them.
+-   The target database exists. The connector creates missing tables, but not the database.
+-   The connection user can create missing destination tables and insert rows. With `if_table_exists="replace"`, it also needs to truncate tables, and with `schema_evolution="update"`, to alter them.
 
 ### Subscriber
 
@@ -165,7 +166,9 @@ MySQLDest(
 
 #### `if_table_exists`
 
-Controls what happens when the destination table already has rows. `"append"` (the default) keeps inserting into the existing rows. `"replace"` drops the table and creates it again from the returned frame, so the table's schema follows the frame. The drop and the create commit implicitly, so a failed write is not undone. On `"append"`, `schema_evolution` decides what happens to a new or wider column.
+Controls what happens when the destination table already has rows. `"append"` (the default) keeps inserting into the existing rows. `"replace"` empties the table (`TRUNCATE TABLE`) and inserts the returned frame; the table and its definition are kept. On both modes, `schema_evolution` decides what happens to a new or wider column. `TRUNCATE` commits implicitly, so if the insert fails the table is left empty.
+
+A table the connector creates gets its column types from the returned frame, with every column nullable and no primary key. To choose keys, indexes or partitioning, create the table before the subscriber's first run; the connector writes into an existing table by column name, and `"replace"` keeps its definition. `if_table_exists` applies to every table the subscriber writes; use two subscribers to replace some tables and append to others.
 
 #### `schema_evolution`
 
@@ -185,7 +188,7 @@ Queries run when the publisher is triggered. They are not a continuous change fe
 
 Each entry in `tables` is one destination slot and maps by position to a value returned by the subscriber function. Returning `None` for a slot skips that write.
 
-`if_table_exists="append"` keeps the rows already in the destination and inserts the returned rows. `"replace"` drops the table and creates it again from the returned frame. On `"append"`, `schema_evolution="update"` adds new columns and widens number types; removing a column or changing a non-number type still needs a database migration before the subscriber runs.
+`if_table_exists="append"` keeps the rows already in the destination and inserts the returned rows. `"replace"` empties the table and inserts the returned frame, keeping the table's definition. On both modes, `schema_evolution="update"` adds new columns and widens number types; removing a column or changing a non-number type still needs a database migration before the subscriber runs.
 
 ### Schema evolution
 

@@ -103,7 +103,7 @@ Default MySQL replica `server_id` for the binlog stream (512). Each concurrent C
 type\_alias
 
 ```python
-DestCfgKey: Literal['mysql.logging_level', 'mysql.schema_evolution_engine', 'tabsdata.sql.write_engine', 'tabsdata.sql.chunk_size']
+DestCfgKey: Literal['mysql.logging_level', 'tabsdata.sql.write_engine', 'tabsdata.sql.chunk_size']
 ```
 
 * * *
@@ -119,7 +119,7 @@ DestCfgSpec: Mapping[DestCfgKey, Any]
 **Resolved type:**
 
 ```python
-Mapping[Literal['mysql.logging_level', 'mysql.schema_evolution_engine', 'tabsdata.sql.write_engine', 'tabsdata.sql.chunk_size'], Any]
+Mapping[Literal['mysql.logging_level', 'tabsdata.sql.write_engine', 'tabsdata.sql.chunk_size'], Any]
 ```
 
 * * *
@@ -280,4 +280,4 @@ UriSpec: StrOrSecretSpec
 str | Secret
 ```
 
-A SQLAlchemy-style MySQL URI, e.g. `mysql+mysqlconnector://host:port/db`. The scheme must be `mysql` or `mariadb` (an optional `+driver` is allowed). Accepts a plain string or a [`Secret`](https://docs.tabsdata.com/api/category/connectors/credentials/secret).
+A SQLAlchemy-style MySQL URI, e.g. `mysql+pymysql://host:port/db`. The scheme must be `mysql` or `mariadb` (an optional `+driver` is allowed). Accepts a plain string or a [`Secret`](https://docs.tabsdata.com/api/category/connectors/credentials/secret).

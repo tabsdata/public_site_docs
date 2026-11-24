@@ -29,7 +29,7 @@ parameter
 
 `uri`[UriSpec](https://docs.tabsdata.com/api/module/tabsdatak-conn-mysql#tabsdatak.conn.mysql.UriSpec) ([str](https://docs.python.org/3/library/stdtypes.html#str) | [Secret](https://docs.tabsdata.com/api/category/connectors/credentials/secret))
 
-SQLAlchemy-style MySQL URI (`mysql+mysqlconnector://host:port/db`). Accepts a plain string or a [`Secret`](https://docs.tabsdata.com/api/category/connectors/credentials/secret).
+SQLAlchemy-style MySQL URI (`mysql+pymysql://host:port/db`). Accepts a plain string or a [`Secret`](https://docs.tabsdata.com/api/category/connectors/credentials/secret).
 
 parameter
 

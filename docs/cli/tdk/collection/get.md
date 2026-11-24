@@ -24,5 +24,5 @@ tdk collection get \
 | `--browse, --print` | flag | Optional | Open the table in a viewer that scrolls both ways, or print it and return. |
 | `--wrap` | flag | Optional | Show every value whole, wrapping long and multi-line values inside their column instead of cutting them. |
 | `--max-width` | string | Optional | Maximum width of each column, in characters; longer values are cut and end in '…'. Use 0 for no limit. Defaults to the width each table sets. |
-| `--name, -n` | string | Optional | Name of the collection to display. Defaults to `<function pinned.<locals>.default at 0x105b96d40>`. |
+| `--name, -n` | string | Optional | Name of the collection to display. Defaults to `<function pinned.<locals>.default at 0x105aff600>`. |
 | `--profile` | string | Optional | Profile whose login and pinned project and collection this command uses; with no NAME, the default profile. Default: the profile set with 'tdk set --profile', else the default profile. |

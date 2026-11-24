@@ -97,7 +97,7 @@ inventory/products and inventory/stock are live — the worker is reading the bi
 └───────────────┴──────────────┴───────┘
 ```
 
-One output table per tracked table, in order, and one input slot per output table. The function declares no transaction context, since it runs inside the runtime's stream loop rather than per-transaction.
+One output table per tracked table, in order, and one input slot per output table.
 
 ## Where the stream starts
 

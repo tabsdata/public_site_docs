@@ -24,7 +24,7 @@ Kafka streaming source for `@stream_publisher` -- one batch per due batch limit.
 
 Consumes a Kafka `topic` (every topic matching it when it starts with `^`) in two levels. The `buffer` keys decide when the buffered messages are written to a parquet file; the `@stream_publisher` batch settings decide when the written files are staged as one tableframe batch. Messages of incompatible schemas land in separate files of the same batch; the files of one schema keep the column types of the run's earlier files of that schema, and a row whose values do not fit them is a dead letter.
 
-Used as the `source` of a `@stream_publisher`; that function receives the batch as a list of frames and must NOT declare a `ctx` parameter. The emitted table name is the `topic`.
+Used as the `source` of a `@stream_publisher`; that function receives the batch as a list of frames. A batch without messages (as `batch_idle_secs` stages) hands a list holding one empty frame with the columns last staged, or `[]` while none was staged. The emitted table name is the `topic`.
 
 Every batch this source stages automatically carries a `@td.kafka.topic` column holding the topic the message was consumed from.
 
@@ -86,7 +86,7 @@ parameter
 
 `dlq_topic`[KafkaTopicSpec](https://docs.tabsdata.com/api/module/tabsdatak-conn-kafka#tabsdatak.conn.kafka.KafkaTopicSpec) | None ([str](https://docs.python.org/3/library/stdtypes.html#str) | None)
 
-Optional dead-letter topic for the messages the source cannot stage: the ones that fail to decode, that the schema refuses, or whose values do not fit the types of their table (the envelope then carries the decoded `record`). Without it such a message stops the stream. A broker error is never a dead letter.
+Optional dead-letter topic for the messages the source cannot stage: the ones that fail to decode, that the schema refuses, or whose values do not fit the types of their table (the envelope then carries the decoded `record`). Without it such a message stops the stream. A broker error is never a dead letter. Dead letters are written at least once: when a batch is read again after a restart, its dead letters are sent again. Deduplicate on the source `topic`, `partition` and `offset` carried in the envelope.
 
 parameter
 

@@ -48,10 +48,10 @@ Append a wider frame; `schema_evolution="update"` adds the new column:
         if_table_exists="append",
         schema_evolution="update",
     ),
-    input_tables=["caps_input/cap_evo_v2"],
+    input_tables=["caps_input/cap_evo_v2@NEW"],
 )
-def evolve(v2: TableFrameSpec) -> TableFrameSpec:
-    return v2
+def evolve(v2: TableFramesSpec) -> TableFrameSpec:
+    return concat(v2)
 ```
 
 Merge mode merges incoming rows onto the target by the keys in `merge_cfg`:
@@ -68,10 +68,10 @@ Merge mode merges incoming rows onto the target by the keys in `merge_cfg`:
             )
         ],
     ),
-    input_tables=["caps_input/cap_merge_v2"],
+    input_tables=["caps_input/cap_merge_v2@NEW"],
 )
-def merge(rows: TableFrameSpec) -> TableFrameSpec:
-    return rows
+def merge(rows: TableFramesSpec) -> TableFrameSpec:
+    return concat(rows)
 ```
 
 ## Parameters
@@ -86,13 +86,13 @@ parameter
 
 `if_table_exists`[IfTableExistsSpec](https://docs.tabsdata.com/api/module/tabsdatak-conn-bigquery#tabsdatak.conn.bigquery.IfTableExistsSpec) (Literal\['append', 'replace', 'merge'\])
 
-`"append"` (the default) adds rows; `"replace"` drops and recreates the table; `"merge"` merges rows.
+`"append"` (the default) adds rows; `"replace"` empties the table and loads the batch; `"merge"` merges rows. A slot returned as `None` leaves its table as it is.
 
 parameter
 
 `schema_evolution`[SchemaEvolutionSpec](https://docs.tabsdata.com/api/module/tabsdatak-conn-bigquery#tabsdatak.conn.bigquery.SchemaEvolutionSpec) (Literal\['update', 'strict'\])
 
-What a write does when the batch's columns differ from the table's. `"replace"` makes the table the batch's own, so it is not affected. `"strict"` (the default) refuses a batch with a column the table lacks or a wider type; `"update"` adds the column and widens the type, and refuses a change BigQuery cannot make. A column the batch lacks is written NULL either way, and a merge keeps its stored value in the rows it updates.
+What a write does when the batch's columns differ from the table's, a replace included. `"strict"` (the default) refuses a batch with a column the table lacks or a wider type; `"update"` adds the column and widens the type, and refuses a change BigQuery cannot make. A column the batch lacks is written NULL either way, and a merge keeps its stored value in the rows it updates.
 
 parameter
 
@@ -112,7 +112,7 @@ parameter
 
 `dest_cfg`[DestCfgSpec](https://docs.tabsdata.com/api/module/tabsdatak-conn-bigquery#tabsdatak.conn.bigquery.DestCfgSpec) | None (Mapping\[Literal\['bigquery.logging\_level', 'bigquery.schema\_evolution\_engine'\], [Any](https://docs.python.org/3/library/typing.html#typing.Any)\] | None)
 
-Optional connector config. Supported keys: `bigquery.logging_level`, and `bigquery.schema_evolution_engine` -- `"iceberg"` (the default when unset) or `"native"`. `"iceberg"` diffs the target against the incoming batch and runs the `ALTER` statements itself: it adds a column and widens one whose type the batch has outgrown, and refuses a change BigQuery could not make. `"native"` leaves `schema_evolution="update"` to BigQuery's `schema_update_options` on the load job, which only ever adds a column or relaxes one to nullable, never widens one; a `MERGE` takes no load-job options, so `if_table_exists="merge"` refuses `"native"`. Under `schema_evolution="strict"` both engines refuse a batch with a new column or a wider type.
+Optional connector config. Supported keys: `bigquery.logging_level`, and `bigquery.schema_evolution_engine`, written only as `"iceberg"` and only with `if_table_exists="merge"` and `schema_evolution="update"`: a merge evolves the target by diffing it against the batch and running the `ALTER` statements itself, adding a column and widening one whose type the batch has outgrown. Append and replace always evolve natively, which only ever adds a column or relaxes one to nullable, never widens one.
 
 ## Methods
 
@@ -124,6 +124,6 @@ method
 def validate()
 ```
 
-Cross-field validation: `merge_cfg` and `if_table_exists="merge"` require each other, a list of configs must line up with `tables`, `watermark_column` is not a replace's to name, and merging refuses `schema_evolution_engine="native"`.
+Cross-field validation: `merge_cfg` and `if_table_exists="merge"` require each other, a list of configs must line up with `tables`, `watermark_column` is not a replace's to name, and the disposition, policy and engine form a combination the destination offers.
 
 Called by the framework; raises `BigQueryValidateException`.

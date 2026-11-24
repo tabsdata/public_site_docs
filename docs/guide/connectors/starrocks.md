@@ -15,7 +15,7 @@ The subscriber is registered in a collection created with a `StarRocksDestConn` 
 ### Prerequisites
 
 -   The StarRocks frontend is reachable from the Tabsdata server.
--   Every destination table already exists. The connector cannot infer its key model or distribution strategy.
+-   The target database and every destination table exist. The connector creates neither. The connector cannot infer a table's key model or distribution strategy.
 -   Tabsdata can write to the staging location and StarRocks can read the staged Parquet files.
 -   The StarRocks user can insert into the destination tables and truncate them when replace mode is used.
 

@@ -6,167 +6,65 @@ The Tabsdata **User Interface** (UI) is a web interface for inspecting and manag
 
 When running Tabsdata locally, the UI is available at `http://localhost:2457`, where `2457` is the Server's default public port. Sign in using the same username and password used with the `tdk` CLI.
 
-The UI demo provides a read-only Tabsdata Server with three Projects and existing execution history. Actions that create, modify, trigger, or delete resources are disabled.
-
-[Explore the UI](https://docs.tabsdata.com/ui-demo/)
-
-## Overview
-
-The **Overview** page summarizes activity across every Project in the Server.
-
-For each Project, the page shows:
-
--   Tables committed
--   Rows committed
--   Running Executions
--   Warnings
--   Errors
-
-Activity can be viewed across six time ranges.
-
 ## Projects
 
-The **Projects** page shows activity for the selected Project, including data that is currently in flight and data that has already been committed.
+Opening a Project shows a graph of its data flow or its execution flow. Selecting a group, Collection, Table, Function or Execution shows its details in the panel on the right.
 
-The page also includes a graph of committed data over time.
+From a Project, you can:
 
-From the UI, you can:
-
--   Create Projects
--   Share Projects
--   Switch the currently selected Project
-
-Most pages in the UI are scoped to the selected Project. Use the Project selector in the side panel to switch between Projects.
-
-## Collections
-
-The **Collections** page lists the Collections within the selected Project.
-
-Opening a Collection shows its:
-
--   Functions
--   Tables
--   Connection configuration
-
-Sensitive credentials stored in a Connection are hidden from the UI.
-
-From the UI, you can also:
-
--   Create, edit, and delete Collections
--   Grant a Collection access to Tables in another Collection
--   Remove previously granted access
-
-## Functions
-
-Opening a **Function** shows the code registered with Tabsdata and its version history.
-
-Function versions are retained so you can inspect previous versions, including the version used for a particular Function Run.
-
-From the UI, you can:
-
--   Trigger a Function
--   Delete a Function
-
-Editing a Function's code is performed using `tdk` rather than through the UI.
-
-## Tables
-
-Opening a **Table** shows its schema, sample rows, and version history.
-
-Each Table version includes the Execution that wrote it, allowing changes in the Table to be traced back to the Execution that produced them.
-
-The Table page also includes **Run SQL query**, which lets you edit and run a SQL query against the Table's sample data.
-
-From the UI, you can also delete a Table.
+-   Switch between the data flow and execution flow views
+-   View a Collection's Tables, Functions and Connection
+-   Inspect a Table's schema, versions, lineage and data quality
+-   Run a SQL query against a Table's data
+-   Read a Function's registered code
+-   Share the Project with other users
+-   Pin items for quick access
 
 ## Executions
 
-The **Executions** page shows the Execution Plans created within the selected Project.
+From the **Executions** pages, you can:
 
-Execution Plans are separated into:
-
--   Active
--   Issues
--   Finished
-
-Opening an Execution Plan shows a graph of its execution flow and provides access to the Transactions, Function Runs, and Workers created as part of the Execution.
-
-Transactions, Function Runs, and Workers can each be filtered by status.
-
-### Worker logs
-
-Opening a Worker provides access to the logs produced while it was running.
-
-Worker logs can be:
-
--   Viewed in the UI
--   Viewed in their raw form
--   Downloaded
+-   Filter Executions, Transactions, Function Runs and Workers by status
+-   Open an Execution to see the status of each run on its graph
+-   Cancel or recover an Execution
+-   Open a Worker's log
+-   View cron triggers and stream sources
 
 When a Function Run fails, its Worker logs contain the output and errors produced during execution.
 
-### Triggers
-
-The Executions area also shows the triggers configured for the Project, including:
-
--   Cron Triggers
--   Stream Sources
-
-This lets you inspect both what causes Functions to run and the Execution Plans created when they run.
-
-## Search
-
-The **Search** page searches for resources across the Tabsdata Server.
-
-Use Search to locate a resource without navigating through its Project and Collection.
-
 ## Tabby
 
-**Tabby** is the built-in Tabsdata agent for interacting with and inspecting a Tabsdata Server. See [Tabby](https://docs.tabsdata.com/developer/guide/tabby) for setup, commands, and an example chat.
-
-Tabby requires an Anthropic or OpenAI API key to be configured on the Server.
+**Tabby** is the built-in Tabsdata agent for interacting with and inspecting a Tabsdata Server. It requires an Anthropic or OpenAI API key to be configured on the Server. See [Tabby](https://docs.tabsdata.com/developer/guide/tabby) for setup, commands, and an example chat.
 
 From Tabby, you can:
 
--   Start a new chat
--   Continue existing chats
--   Stop a response while it is being generated
--   Search previous messages
--   Export a chat as Markdown
--   Use page-specific suggested prompts
--   Run a Server health check
+-   Ask about the Project you are viewing
+-   Start a new conversation or continue a past one
+-   Copy a conversation
+-   Choose the model
 
-Suggested prompts depend on the page you are viewing. For example, a Collection page may include prompts for listing Functions or creating a Publisher.
+## Search
 
-The **Run health check** action generates an AI-written report about the current health of the Server.
+**Search** finds Collections, Tables and Functions by name within a Project.
 
-## Security
+## Admin
 
-The **Security** page manages users, roles, and permissions for the Tabsdata Server.
+From **Admin**, you can:
 
-From the UI, you can:
-
--   Create, edit, and delete users
--   Create and delete roles
--   Add users to roles
--   Remove users from roles
--   Grant permissions
--   Remove permissions
-
-## System
-
-The **System** page shows the status and runtime information for the Tabsdata Server.
+-   View the Server's users
+-   Set a user's system permissions
+-   Check the Server's status and version
+-   View Executions and triggers across every Project
 
 ## Account
 
-The **Account** page shows information about the currently signed-in user.
-
-From the UI, you can also:
+From **Account**, you can:
 
 -   Change your password
--   Log out
 -   Switch between light and dark themes
--   Pin resources to the side panel
--   Clear pinned resources
+-   See your roles
+-   Set the time zone dates are shown in
+-   Create and revoke service tokens
+-   Log out
 
-The Server's SSL certificate can also be downloaded from the login page.
+A service token lets scripts and CI jobs act on your behalf. Clients send it in the `Authorization` header as a bearer token.

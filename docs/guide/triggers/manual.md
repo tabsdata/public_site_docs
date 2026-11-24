@@ -16,6 +16,8 @@ tdk fn trigger --coll <collection_name> --name <function_name>
 
 `<function_name>` is the name the Function was registered under, not the name of its file.
 
+`tdk fn trigger` refuses a [disabled Function](https://docs.tabsdata.com/guide/execution-and-triggers#enabled-and-disabled-functions).
+
 ## The default for Publishers
 
 A Publisher reads no Tabsdata Tables, so there is nothing upstream that could fire it. With no `trigger_by` on the decorator, a Publisher runs only when triggered manually.
@@ -26,4 +28,4 @@ Transformers and Subscribers behave differently, because they do have input Tabl
 
 Triggering one Function does not run only that Function. Tabsdata builds an [Execution Plan](https://docs.tabsdata.com/guide/execution/execution-plans) covering every downstream Function that has to run as a result, and nothing commits unless all of them succeed.
 
-For the UI walkthrough and the full `trigger_by` reference, see [Working with Triggers](https://docs.tabsdata.com/guide/triggers).
+For the full `trigger_by` reference, see [Trigger Overview](https://docs.tabsdata.com/guide/execution-and-triggers#trigger_by).

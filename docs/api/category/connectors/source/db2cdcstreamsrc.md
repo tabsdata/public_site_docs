@@ -22,7 +22,9 @@ Bases: [StreamSrc](https://docs.tabsdata.com/api/category/connectors/source/stre
 
 Db2 CDC stream source for `@stream_publisher`.
 
-A streaming change-data-capture source: it emits one tableframe-batch per capture-table flush across the tracked CD (change-data) tables. Db2 SQL Replication captures changes into shadow CD tables that the ASN capture program (`asncap`) populates in the background. `tables` lists the CD tables (not the source tables); the ingester resolves the source via `ASN.IBMSNAP_REGISTER`. The decorated `@stream_publisher` function receives the flushed batch as a list of frames and must NOT declare a `ctx` parameter.
+A streaming change-data-capture source: it emits one tableframe-batch per capture-table flush across the tracked CD (change-data) tables. Db2 SQL Replication captures changes into shadow CD tables that the ASN capture program (`asncap`) populates in the background. `tables` lists the CD tables (not the source tables); the ingester resolves the source via `ASN.IBMSNAP_REGISTER`. The decorated `@stream_publisher` function receives the flushed batch as a list of frames and must NOT declare a `ctx` parameter. A table without changes in the batch hands a list holding one empty frame with the columns last staged for it, or `[]` while none was staged.
+
+When a stream batch closes, it is staged for processing, and at that point its commit-sequence position is saved with it. The staged batch is then scheduled for processing, which may not start right away because a previous batch may still be processing; its table version is written when that processing ends.
 
 ## Parameters
 

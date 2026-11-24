@@ -73,11 +73,10 @@ def read_orders(orders: TableFramesSpec) -> TableFrameSpec:
 
 `batch_max_secs=120` hands the consumed messages to the function at least every two minutes. The `batch_*` parameters decide when a batch of messages is handed to the function, and are the same for every stream source. See [Stream Publishers](https://docs.tabsdata.com/developer/guide/functions/stream-publishers#batch-parameters) for all of them.
 
-A stream publisher differs from a regular publisher in three ways:
+A stream publisher differs from a regular publisher in two ways:
 
 -   It has no trigger. Registering it starts the stream worker, which runs until the function is disabled or deleted.
 -   A Kafka source has a single slot, so the function has a single parameter. It receives a list of frames: the messages consumed since the previous batch. Fold them with `concat`, which also returns `None` when the batch carried no messages.
--   The function must not declare a `ctx` parameter.
 
 The table names come from `output_tables`, not from the topic.
 
@@ -122,7 +121,7 @@ The schema of the messages, as a string. What it is used for depends on the form
 
 #### `dlq_topic`
 
-A dead letter topic. A message that cannot be decoded, does not match the schema, or does not fit the column types of the batch is written to this topic, and the stream carries on.
+A dead letter topic. A message that cannot be decoded, does not match the schema, or does not fit the column types of the batch is written to this topic, and the stream carries on. Dead letters are written at least once, even though the Tables are not: a batch read again after a restart or a rebalance sends its dead letters again. If you count, alert on or replay the dead letter topic, deduplicate on the source topic, partition and offset of each dead letter.
 
 Without a `dlq_topic`, such a message stops the stream. Tabsdata restarts the stream after a while, but it stops again on the same message, so set a `dlq_topic` for any topic that may carry malformed messages.
 
@@ -175,9 +174,9 @@ There is no start position to configure. The stream resumes from the offsets com
 
 ### Delivery
 
-A Kafka stream is at least once. The stream commits the offsets of a batch once the batch is handed over. If the stream stops between handing over a batch and committing it, the messages of that batch are published again after the restart, so remove duplicates downstream if they matter.
+A Kafka stream is at least once. When a batch closes, it is staged for processing: its files and manifest are written to the Function's stage, so it will be processed, and at that point its offsets are committed. If the stream stops after staging a batch but before committing its offsets, the batch is processed and its messages are also read again after the restart, so remove duplicates downstream if they matter. The staged batch is then scheduled for processing, which may not start right away because a previous batch may still be processing; its Table Version is written when that processing ends. See [Delivery: when the data is in the Table](https://docs.tabsdata.com/developer/guide/functions/stream-publishers#delivery-when-the-data-is-in-the-table). Consumer lag at zero means staged, not loaded. Dead letters are also at least once; see the dead letter topic option above.
 
-Disabling the function stops the stream. Messages read but not yet handed over are read again when it is enabled.
+Disabling the function stops the stream. Messages read but not yet staged are read again when it is enabled.
 
 ### One consumer group per collection
 

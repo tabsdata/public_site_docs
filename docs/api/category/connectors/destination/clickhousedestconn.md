@@ -51,13 +51,13 @@ parameter
 
 `staging`[CloudLocation](https://docs.tabsdata.com/api/category/connectors/destination/cloudlocation-clickhouse)
 
-A `CloudLocation` (`S3Location` / `AzBlobLocation` / `GCSLocation`) where parquet is staged before ingest.
+A `CloudLocation` (`S3Location` / `AzBlobLocation` / `GCSLocation`) where parquet is staged before ingest. Each subscriber stages in a folder of its own, `<base_path>/<function id>/`, one `<transaction id>_<n>.parquet` per table, and empties that folder before and after every load; nothing else under `base_path` is touched.
 
 parameter
 
 `database`[DatabaseSpec](https://docs.tabsdata.com/api/module/tabsdatak-conn-clickhouse#tabsdatak.conn.clickhouse.DatabaseSpec) ([str](https://docs.python.org/3/library/stdtypes.html#str) | [Secret](https://docs.tabsdata.com/api/category/connectors/credentials/secret))
 
-The default database (a ClickHouse identifier: a letter or underscore, then letters, digits and underscores). Defaults to `"default"`.
+The default database (a ClickHouse identifier: a letter or underscore, then letters, digits and underscores). Defaults to `"default"`. It must already exist: the connector does not create databases.
 
 parameter
 

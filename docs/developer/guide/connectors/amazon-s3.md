@@ -125,6 +125,48 @@ Sets the initial cutoff for incremental ingestion.
 
 On the first run, Tabsdata imports files modified at or after the specified timestamp. The cutoff then advances so subsequent runs only import newer files. The value must be timezone-aware, for example `datetime(2026, 1, 1, tzinfo=timezone.utc)`.
 
+#### \[Optional\] incremental
+
+`incremental` tells Tabsdata how the data read in each run relates to the data read in previous runs. It accepts the following values:
+
+-   `True` (default) - Each run brings data that adds to, or modifies, the data already read. It does not replace it.
+-   `False` - Each run brings a full replacement of the data read before.
+
+The publisher function is still responsible for handling the data accordingly, for example appending or merging incremental data. Tabsdata uses `incremental` to decide what the function receives when a run finds no new data in the source:
+
+| `incremental` | The function receives | Meaning |
+| --- | --- | --- |
+| `True` | An empty `TableFrame` with the same schema as the last one that had data. If no run has had data yet, `None`. | Nothing was added in this run. |
+| `False` | `None` | Nothing changed. The previous data is still valid. |
+
+When the source feeds several inputs to the function, this applies to each input on its own. In the same run one input can bring new data while another has none, so the function can receive a `TableFrame` with data for the first and an empty `TableFrame` or `None` for the second. The schema of an empty `TableFrame` is the one of the last run that had data for that same input.
+
+With `incremental=True` the function can run its usual logic on an empty `TableFrame`, since the columns it expects are there. In both modes the function must handle `None` for every input:
+
+```python
+import tabsdata as td
+
+@td.publisher(
+    source=td.LocalFileSource(
+        [
+            "/users/username/opt/hr/departments.csv",
+            "/users/username/opt/hr/employees.csv",
+        ],
+        initial_last_modified="2021-01-01",
+        incremental=True,
+    ),
+    tables=["departments", "employees"],
+)
+def read_hr(departments: td.TableFrame | None, employees: td.TableFrame | None):
+    if employees is not None:
+        employees = employees.filter(td.col("status") == "active")
+    return departments, employees
+```
+
+note
+
+-   `incremental` does not change what the connector reads from the source. It only changes what the function receives when there is no new data.
+
 #### `src_cfg`
 
 Sets additional source configuration.

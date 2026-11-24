@@ -13,6 +13,7 @@ The subscriber is registered in a collection created with a `SnowflakeDestConn` 
 ### Prerequisites
 
 -   The Snowflake account is reachable from the Tabsdata server.
+-   The target database, schema and warehouse exist. The connector creates missing tables, but not the database, schema or warehouse.
 -   The configured role can use the warehouse, database, and schema, and can create or write the destination tables.
 -   If `stage` is set, the configured role can use that permanent stage. If it is left out, the connector creates a session-scoped temporary stage.
 
@@ -60,6 +61,8 @@ Each element in `tables` represents one destination slot and maps positionally t
 `"merge"` applies inserts, updates, and deletes by key and requires a `merge_cfg` list. See [Merge configuration](https://docs.tabsdata.com/guide/functions/sql-merge#merge-configuration) for a complete example.
 
 Controls what happens when the destination table already exists. `"append"` (the default) adds rows. `"replace"` issues `TRUNCATE` before `COPY INTO`, so the existing schema is preserved.
+
+A table the connector creates gets its column types from the returned frame, with every column nullable and no primary key. To choose keys, indexes or partitioning, create the table before the subscriber's first run; the connector writes into an existing table by column name, and `"replace"` keeps its definition. `if_table_exists` applies to every table the subscriber writes; use two subscribers to replace some tables and append to others.
 
 #### `dest_cfg`
 
@@ -187,6 +190,8 @@ An optional warehouse the connection runs `USE WAREHOUSE` for. `USE WAREHOUSE` i
 #### `stage`
 
 An optional permanent stage used for `PUT` and `COPY INTO`. When unset, the plugin creates a session-scoped temporary stage instead.
+
+If `stage` names a stage that does not exist, the connector creates it, which needs `CREATE STAGE` on the schema; without `stage`, a temporary stage is used.
 
 #### `conn_cfg`
 

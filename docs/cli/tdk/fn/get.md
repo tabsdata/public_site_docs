@@ -14,7 +14,7 @@ tdk fn get \
   --wrap \
   --max-width max_width-example \
   --name read_world \
-  --coll <function pinned.<locals>.default at 0x10b614d60> \
+  --coll <function pinned.<locals>.default at 0x10b62e2a0> \
   --show-history \
   --profile production
 ```
@@ -27,6 +27,6 @@ tdk fn get \
 | `--wrap` | flag | Optional | Show every value whole, wrapping long and multi-line values inside their column instead of cutting them. |
 | `--max-width` | string | Optional | Maximum width of each column, in characters; longer values are cut and end in '…'. Use 0 for no limit. Defaults to the width each table sets. |
 | `--name, -n` | string | Required | Name of the function to be displayed. |
-| `--coll, -c` | string | Optional | Name of the collection to which the function belongs. Defaults to `<function pinned.<locals>.default at 0x10b614d60>`. |
+| `--coll, -c` | string | Optional | Name of the collection to which the function belongs. Defaults to `<function pinned.<locals>.default at 0x10b62e2a0>`. |
 | `--show-history` | flag | Optional | Show the history of the function, newest first. |
 | `--profile` | string | Optional | Profile whose login and pinned project and collection this command uses; with no NAME, the default profile. Default: the profile set with 'tdk set --profile', else the default profile. |

@@ -23,7 +23,7 @@ tdk connection get \
 | Flag | Type | Required | Description |
 | --- | --- | --- | --- |
 | `--proj, -P` | string | Optional | Project to target; overrides the pinned project. Prompted for when a command needs one and neither is set. |
-| `--name, -n` | string | Optional | Name of the source/destination collection whose connection to use. Default: the pinned collection. Defaults to `<function pinned.<locals>.default at 0x10b5aad40>`. |
+| `--name, -n` | string | Optional | Name of the source/destination collection whose connection to use. Default: the pinned collection. Defaults to `<function pinned.<locals>.default at 0x10b5d00e0>`. |
 | `--definition` | flag | Optional | Add the connection document, dehydrated (no secret values or names). Needs a user session with manage\_project. |
 | `-o, --format` | table \| json \| yaml | Optional | Output format. 'json' and 'yaml' give a listing as an array and table data as one object per row. |
 | `--browse, --print` | flag | Optional | Open the table in a viewer that scrolls both ways, or print it and return. |

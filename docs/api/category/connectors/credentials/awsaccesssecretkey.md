@@ -16,7 +16,7 @@ Bases: [Credentials](https://docs.tabsdata.com/api/category/connectors/credentia
 
 AWS access key ID / secret access key credentials.
 
-Used by the S3 connector ([`S3SrcConn`](https://docs.tabsdata.com/api/category/connectors/source/s3srcconn) / [`S3DestConn`](https://docs.tabsdata.com/api/category/connectors/destination/s3destconn)).
+Used by the S3 connector ([`S3SrcConn`](https://docs.tabsdata.com/api/category/connectors/source/s3srcconn) / [`S3DestConn`](https://docs.tabsdata.com/api/category/connectors/destination/s3destconn)) and the AWS Glue connector (`AwsGlueDestConn`).
 
 ## Parameters
 

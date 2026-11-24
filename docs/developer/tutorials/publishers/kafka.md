@@ -88,7 +88,7 @@ read\_flight\_events.py
     
 -   A Kafka source has a single slot, so one output table. Its name comes from here, not from the topic.
     
--   One TableFramesSpec parameter for the single source slot, always array mode. No ctx parameter.
+-   One TableFramesSpec parameter for the single source slot, always array mode.
     
 -   One frame for the output table. concat folds the batch's frames into one, filling columns a frame lacks with nulls.
     

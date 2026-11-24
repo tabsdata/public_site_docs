@@ -21,6 +21,8 @@ Bases: [Conn](https://docs.tabsdata.com/api/category/spi/spi/conn)
 
 MSSQL connection used by [`MSSQLDest`](https://docs.tabsdata.com/api/category/connectors/destination/mssqldest).
 
+The database and schema must already exist.
+
 Field-identical to [`MSSQLSrcConn`](https://docs.tabsdata.com/api/category/connectors/source/mssqlsrcconn) but a distinct class; source and destination connections are separate types and cannot be used in place of one another. See [`MSSQLSrcConn`](https://docs.tabsdata.com/api/category/connectors/source/mssqlsrcconn) for the field meanings.
 
 ## Parameters

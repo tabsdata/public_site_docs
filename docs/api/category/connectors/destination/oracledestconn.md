@@ -21,6 +21,8 @@ Bases: [Conn](https://docs.tabsdata.com/api/category/spi/spi/conn)
 
 Oracle connection used by [`OracleDest`](https://docs.tabsdata.com/api/category/connectors/destination/oracledest).
 
+The schema must already exist.
+
 Attribute-identical to [`OracleSrcConn`](https://docs.tabsdata.com/api/category/connectors/source/oraclesrcconn) but a distinct class; source and destination connections are separate types and cannot be used in place of one another. See [`OracleSrcConn`](https://docs.tabsdata.com/api/category/connectors/source/oraclesrcconn) for the field meanings.
 
 ## Parameters

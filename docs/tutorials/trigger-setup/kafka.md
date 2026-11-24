@@ -94,7 +94,7 @@ events/clicks is live — the worker is consuming, and the first batch lands wit
 └────────────────┴───────────┘
 ```
 
-`schema` is required. Without a schema registry, every JSON message is validated against it. The function takes one input slot per source, always in array mode, and declares no transaction context: it runs inside the runtime's stream loop rather than per-transaction.
+`schema` is required. Without a schema registry, every JSON message is validated against it. The function takes one input slot per source, always in array mode.
 
 ## When a batch is due
 

@@ -12,7 +12,7 @@ With no '--from' or '--against', lists the schema changes over the committed dat
 tdk table diff \
   --proj quickstart \
   --name country \
-  --coll <function pinned.<locals>.default at 0x10b6a3ec0> \
+  --coll <function pinned.<locals>.default at 0x10b6d9440> \
   --from from-example \
   --to to-example \
   --against against-example \
@@ -28,7 +28,7 @@ tdk table diff \
 | --- | --- | --- | --- |
 | `--proj, -P` | string | Optional | Project to target; overrides the pinned project. Prompted for when a command needs one and neither is set. |
 | `--name, -n` | string | Optional | Name of the table. |
-| `--coll, -c` | string | Optional | Name of the collection to which the table belongs. Defaults to `<function pinned.<locals>.default at 0x10b6a3ec0>`. |
+| `--coll, -c` | string | Optional | Name of the collection to which the table belongs. Defaults to `<function pinned.<locals>.default at 0x10b6d9440>`. |
 | `--from` | string | Optional | Compare the schema at this data version (ID, HEAD, HEAD^ or HEAD~N) with the one at '--to' instead of listing the schema history. NOTE: This argument is mutually exclusive with arguments: \[against\]. |
 | `--to` | string | Optional | The data version '--from' compares with. Defaults to the newest. NOTE: This argument is mutually exclusive with arguments: \[against\]. |
 | `--against` | string | Optional | Compare the table's schema with that of another table, as COLLECTION/TABLE or, in the same collection, TABLE. |

@@ -15,8 +15,9 @@ The subscriber is registered in a collection created with a `ClickHouseDestConn`
 ### Prerequisites
 
 -   The ClickHouse HTTP or HTTPS endpoint is reachable from the Tabsdata server.
--   The ClickHouse user can create and write destination tables, and can drop them when replace mode is used.
--   Tabsdata can write to the staging location and ClickHouse can read the staged Parquet files.
+-   The target database exists. The connector does not create databases; `database` defaults to `default`.
+-   The ClickHouse user can create tables and insert into them in that database, truncate them when replace mode is used, and alter them when `schema_evolution="update"` is used. It can read `system.tables` and `system.columns`.
+-   Tabsdata can write to the staging location, and ClickHouse can read the staged Parquet files through its `s3` or `azureBlobStorage` table functions (with the matching grant).
 
 ### Subscriber
 
@@ -59,7 +60,7 @@ Each element in `tables` represents one destination slot and maps positionally t
 
 #### `if_table_exists`
 
-`"append"` (the default) adds rows to the existing table. `"replace"` overwrites the table: the first run creates it, and later runs drop and recreate it.
+`"append"` (the default) adds rows to the existing table. `"replace"` empties the table and loads the returned rows: the first run creates the table, and later runs truncate it.
 
 #### `schema_evolution`
 
@@ -73,9 +74,39 @@ Sets additional destination configuration. The accepted key is `clickhouse.loggi
 
 Each entry in `tables` is one destination slot and maps by position to a value returned by the subscriber function. Returning `None` for a slot skips that write.
 
-`if_table_exists="append"` adds rows. `"replace"` drops and recreates the table. Because the table is recreated, any engine, `ORDER BY` or `PARTITION BY` set on it is lost; a table the connector creates uses `ENGINE = MergeTree() ORDER BY tuple()`. To keep a layout, create the table first and use `"append"`. Neither mode runs in a transaction: if the insert fails after `"replace"`, the table is left empty, and a failed create leaves no table. Multiple tables are written one after another.
+`if_table_exists="append"` adds rows. `"replace"` truncates the table and inserts, so the table's engine, `ORDER BY` and `PARTITION BY` are kept. Neither mode runs in a transaction: if the insert fails after `"replace"`, the table is left empty, and a failed create leaves no table. Multiple tables are written one after another.
 
 With `schema_evolution="strict"`, a new column, or a wider type whose values do not fit, is refused; `"update"` applies supported schema changes.
+
+### Tables the connector creates
+
+A destination table that does not exist is created on the first write as `ENGINE = MergeTree() ORDER BY tuple()`: no sorting key, no primary key and no partitioning. Every scalar column is `Nullable`, dates are `Date32`, timestamps `DateTime64`, durations `Int64` and binary values `String`.
+
+To choose the engine, the sorting or primary key, partitions or non-nullable columns, create the table before the subscriber's first run. The connector inserts into an existing table by column name, a table column the frame lacks takes its default, and `"replace"` truncates the table without changing its definition.
+
+### Replacing some tables and appending to others
+
+`if_table_exists` applies to every table a subscriber writes. To replace some tables and append to others, write them from two subscribers:
+
+```python
+from tabsdatak.api import subscriber, TableFrameSpec, TableFramesSpec
+from tabsdatak.conn.clickhouse import ClickHouseDest
+from tabsdatak.tableframe.functions import concat
+
+@subscriber(
+    destination=ClickHouseDest(tables=["daily_snapshot"], if_table_exists="replace"),
+    input_tables=["sales/daily_snapshot"],
+)
+def export_snapshot(snapshot: TableFrameSpec) -> TableFrameSpec:
+    return snapshot
+
+@subscriber(
+    destination=ClickHouseDest(tables=["events"], if_table_exists="append"),
+    input_tables=["sales/events@NEW"],
+)
+def export_events(events: TableFramesSpec) -> TableFrameSpec:
+    return concat(events)
+```
 
 ### Schema evolution
 
@@ -178,7 +209,7 @@ tdk fn register --coll clickhouse_out --path write_orders.py::write_orders
 
 #### `host`, `port`, `database` and `secure`
 
-`host` identifies the ClickHouse server. `port` is the HTTP(S) port, from 1 to 65535, and defaults to `"8123"`. `database` defaults to `"default"` and supplies the database for destination table names without one. `secure` is `"true"` for HTTPS and `"false"` (the default) for HTTP. It does not change the port, so set `port` as well; HTTPS ClickHouse is usually on 8443.
+`host` identifies the ClickHouse server. `port` is the HTTP(S) port, from 1 to 65535, and defaults to `"8123"`. `database` defaults to `"default"` and supplies the database for destination table names without one. The database must already exist. `secure` is `"true"` for HTTPS and `"false"` (the default) for HTTP. It does not change the port, so set `port` as well; HTTPS ClickHouse is usually on 8443.
 
 #### `credentials`
 

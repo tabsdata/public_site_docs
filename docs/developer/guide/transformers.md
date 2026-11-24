@@ -120,7 +120,7 @@ import tabsdata as td
             ],
         )
     ],
-    trigger_by=["<trigger_table1>", "<trigger_table2>"],
+    trigger_by=td.TablesTrigger(tables=["<trigger_table1>", "<trigger_table2>"]),
 )
 def <transformer_name>("<table_frame1>": td.TableFrame, "<table_frame2>"": td.TableFrame):
     <function_logic>

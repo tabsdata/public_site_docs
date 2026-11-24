@@ -48,10 +48,10 @@ Append rows and let `COPY INTO` add new columns via `schema_evolution`:
         if_table_exists="append",
         schema_evolution="update",
     ),
-    input_tables=["caps_input/cap_evo_v2"],
+    input_tables=["caps_input/cap_evo_v2@NEW"],
 )
-def evolve(rows: TableFrameSpec) -> TableFrameSpec:
-    return rows
+def evolve(rows: TableFramesSpec) -> TableFrameSpec:
+    return concat(rows)
 ```
 
 Merge mode merges incoming rows onto the target by the keys in `merge_cfg`:
@@ -68,10 +68,10 @@ Merge mode merges incoming rows onto the target by the keys in `merge_cfg`:
             )
         ],
     ),
-    input_tables=["caps_input/cap_merge_v2"],
+    input_tables=["caps_input/cap_merge_v2@NEW"],
 )
-def merge(rows: TableFrameSpec) -> TableFrameSpec:
-    return rows
+def merge(rows: TableFramesSpec) -> TableFrameSpec:
+    return concat(rows)
 ```
 
 ## Parameters
@@ -86,13 +86,13 @@ parameter
 
 `if_table_exists`[IfTableExistsSpec](https://docs.tabsdata.com/api/module/tabsdatak-conn-databricks#tabsdatak.conn.databricks.IfTableExistsSpec) (Literal\['append', 'replace', 'merge'\])
 
-`"append"` (the default) adds rows; `"replace"` overwrites the table. `"merge"` merges rows.
+`"append"` (the default) adds rows; `"replace"` empties the table and writes the batch, keeping the table and its columns. `"merge"` merges rows. A slot returned as `None` leaves its table as it is.
 
 parameter
 
 `schema_evolution`[SchemaEvolutionSpec](https://docs.tabsdata.com/api/module/tabsdatak-conn-databricks#tabsdatak.conn.databricks.SchemaEvolutionSpec) (Literal\['update', 'strict'\])
 
-What a write does when the batch's columns differ from the table's. `"replace"` makes the table the batch's own, so it is not affected. `"strict"` (the default) refuses a batch with a column the table lacks or a wider type; `"update"` adds the column and widens the type, and refuses a change Databricks cannot make. A column the batch lacks is written NULL either way, and a merge keeps its stored value in the rows it updates.
+What a write does when the batch's columns differ from the table's, a replace included. `"strict"` (the default) refuses a batch with a column the table lacks or a wider type, before a replace empties the table; `"update"` adds the column and widens the type, and refuses a change Databricks cannot make. A column the batch lacks is written NULL either way, and a merge keeps its stored value in the rows it updates.
 
 parameter
 
@@ -106,7 +106,7 @@ parameter
 
 An optional column stamped with the id of the trx the write belongs to, making the write idempotent: a rerun that finds the target already carrying this trx's id writes nothing rather than applying the same batch twice. Every table in `tables` is stamped in the same column. The target gains the column under either `schema_evolution` setting -- a watermark no row can be stamped in would do nothing at all -- and rows written before it existed keep a NULL there.
 
-A merge stamps through the `MERGE` itself; an append writes the column into the batch it stages, so `COPY INTO` stamps the rows it loads. A replace is refused it, having nothing to make idempotent -- it rewrites the table wholesale, so a rerun already leaves the same rows behind.
+A merge stamps through the `MERGE` itself; an append writes the column into the batch it stages, so `COPY INTO` stamps the rows it loads. A replace is refused it, having nothing to make idempotent -- it rewrites every row, so a rerun already leaves the same rows behind.
 
 parameter
 

@@ -137,17 +137,15 @@ python -m venv .venv
 
 ### Install Tabsdata
 
-After installing, add the Tabsdata skill for your coding agent; see [Configure Your AI Agent](https://docs.tabsdata.com/guide/connect-agent).
-
 -   uv
 -   pip
 
 ```bash
-uv pip install "tabsdata[all]"
+uv pip install tabsdata
 ```
 
 ```bash
-pip install "tabsdata[all]"
+pip install tabsdata
 ```
 
 ### Set LLM key as environment variable in terminal
@@ -215,7 +213,7 @@ Instances
 ┌──────────┬──────────────────────────────────────────────────┬──────────┬─────────┬─────────┬─────────┬─────────────────┬───────────────┬───────────────────────┐
 │ Name     │ Folder                                           │ Provider │ Version │ State   │ Status  │ API Server Port │ Database Port │ API Server URL        │
 ├──────────┼──────────────────────────────────────────────────┼──────────┼─────────┼─────────┼─────────┼─────────────────┼───────────────┼───────────────────────┤
-│ tabsdata │ ~/.tabsdata/instances/tabsdata                   │ kminus   │ 2.0.2   │ created │ Running │ 2457            │ 2460          │ http://localhost:2457 │
+│ tabsdata │ ~/.tabsdata/instances/tabsdata                   │ kminus   │ 2.4.1   │ created │ Running │ 2457            │ 2460          │ http://localhost:2457 │
 └──────────┴──────────────────────────────────────────────────┴──────────┴─────────┴─────────┴─────────┴─────────────────┴───────────────┴───────────────────────┘
 ```
 
@@ -280,41 +278,87 @@ Next: [Configure Your AI Agent](https://docs.tabsdata.com/guide/connect-agent). 
 
 ## Upgrade Tabsdata
 
-To upgrade Tabsdata, install the new version in a clean virtual environment and run `tdkserver upgrade` from it. The upgrade keeps the instance's custom configuration, for example additional virtual environment requirements.
+To upgrade Tabsdata, follow the steps below:
 
 ### Create a new virtual environment
 
-Create a new, clean virtual environment for the new version, as in [Create a Python virtual environment](#create-a-python-virtual-environment), with a new name such as `tabsdata-new` or `.venv-new`. Do not install the new version in the environment of the version you are upgrading from.
+-   macOS / Linux
+-   Windows (PowerShell)
 
-### Install the new version
+-   conda
+-   uv
+-   pyenv
+-   venv
 
-In the new virtual environment, install Tabsdata as in [Install Tabsdata](#install-tabsdata).
+```bash
+conda create -n tabsdata-new python=3.12 -y
+conda activate tabsdata-new
+```
 
-### Upgrade the server
+```bash
+uv venv --python 3.12.13 .venv-new
+source .venv-new/bin/activate
+```
+
+```bash
+pyenv install 3.12.13
+pyenv local 3.12.13
+python -m venv .venv-new
+source .venv-new/bin/activate
+```
+
+```bash
+python3 -m venv .venv-new
+source .venv-new/bin/activate
+```
+
+-   conda
+-   uv
+-   pyenv
+-   venv
+
+```powershell
+conda create -n tabsdata-new python=3.12 -y
+conda activate tabsdata-new
+```
+
+```powershell
+uv venv --python 3.12.13 .venv-new
+.venv-new\Scripts\activate
+```
+
+```powershell
+pyenv install 3.12.13
+pyenv local 3.12.13
+python -m venv .venv-new
+.venv-new\Scripts\activate
+```
+
+```powershell
+python -m venv .venv-new
+.venv-new\Scripts\activate
+```
+
+### Install the new version of Tabsdata
+
+-   uv
+-   pip
+
+```bash
+uv pip install tabsdata
+```
+
+```bash
+pip install tabsdata
+```
+
+### Upgrade your Tabsdata Server
 
 From the new virtual environment, run:
 
 ```bash
-tdkserver upgrade
-```
-
-The upgrade stops the Tabsdata Server and leaves it stopped. To start it again as soon as the upgrade completes, pass `--apply true`:
-
-```bash
 tdkserver upgrade --apply true
 ```
-
-Without `--apply true`, start the server with `tdkserver start` when you are ready. `tdkserver upgrade` upgrades the instance named `tabsdata` unless `--instance` names another; see [tdkserver upgrade](https://docs.tabsdata.com/cli/tdkserver/upgrade) for every option.
-
-### Remove the previous virtual environment
-
-Once the upgrade is complete, the virtual environment of the previous version is no longer used and can be deleted.
-
-### Upgrade the clients
-
-Every machine that runs `tdk` needs the new version too. On each one, create a new virtual environment and install the new version, as in the first two steps.
-
-Then run the AI agent configuration again from the new virtual environment, starting with `tdk ai agents install`. See [Configure Your AI Agent](https://docs.tabsdata.com/guide/connect-agent).
 
 ---
 
@@ -328,17 +372,11 @@ Tabsdata provides a skill that enables your AI agent to use the `tdk` CLI for de
 
 Step 1Install the Tabsdata skill
 
-After installing `tabsdata[all]` from [Install Tabsdata](https://docs.tabsdata.com/guide/install), install the Tabsdata skill files into your shared agents folder. You can also just ask your agent to do this step for you:
+After installing `tabsdata` from [Install Tabsdata](https://docs.tabsdata.com/guide/install), install the Tabsdata skill files into your shared agents folder. You can also ask your agent to do this step for you:
 
 ```bash
 tdk ai agents install
 ```
-
-The skill is installed for every supported agent on the machine. See [tdk ai agents install](https://docs.tabsdata.com/cli/tdk/ai/agents-install) for its options.
-
-note
-
-Upgrading from an earlier version of Tabsdata? Remove the old MCP connection with `claude mcp remove tabsdata` or `codex mcp remove tabsdata`, then follow this step.
 
 Step 2Log in to the Tabsdata Server
 
@@ -350,11 +388,7 @@ tdk login --server http://127.0.0.1:2457 --user admin --password tabsdata
 
 Step 3Use you AI Agent for building Tabsdata Workflows
 
-Start your agent and describe what you need.
-
-```bash
-claude
-```
+Once your session is logged in, your agents are able to connect to Tabsdata through the CLI.
 
 Next: [Run Your First Data Integration](https://docs.tabsdata.com/guide/run-your-first-data-integration)
 
@@ -377,8 +411,6 @@ We will be building a Tabsdata Workflow that:
 1.  ingests a local `persons.csv` into a Tabsdata table called `persons`
 2.  builds a second table called `people` that drops the `age` column and adds a `full_name` column
 3.  writes `people` back to your file system as `people.jsonl`
-
-Click any node for what it does
 
 Local File
 
@@ -701,8 +733,6 @@ Tabsdata does not have this issue. Function are declarative and declare their ow
 
 When a Function is triggered, Tabsdata identifies its downstream dependencies and automatically builds an **Execution Plan**, a DAG (directed acytclic graph) that finds and executes all downstream dependencies.
 
-Click any node to trace its dependencies
-
 In addition to automatically orchestrating workflows, Execution plans record everything that occurs during execution, capturing metadata such as:
 
 -   Execution start and stop time
@@ -794,7 +824,7 @@ As the the top-level process Tabsdata, Servers store Functions and Tables as wel
 
 ## Connecting to a Server
 
-A Tabsdata server uses three dedicated endpoints when running:
+A Tabsdata server uses three dedicated:
 
 -   A **public endpoint** runs on port `2457` by default. The Tabsdata UI, `tdk` CLI, and Python API use this endpoint to communicate with the Server.
 -   A **private endpoint** runs on port `2458` by default. Tabsdata services use this endpoint for internal communication.
@@ -1181,31 +1211,195 @@ Publishers and Subscribers use a Connector for the system-specific read or write
 
 Output Tables belong to the Collection where the Function is registered. Input Table references can identify Tables in other Collections within the same Project, allowing Functions to connect into a larger workflow.
 
-## `None` inputs and outputs
+### Table Version References
 
-A parameter or a returned value is `None` when there is no data at that position. `None` is not the same as a `TableFrame` with zero rows: an empty `TableFrame` is data and replaces the previous data, while `None` keeps it. `None` never invalidates data already in Tabsdata.
+Tabsdata maintains a version history for each Table, allowing Functions to read the latest version, a previous version, or multiple versions at once.
 
-A `None` parameter has a different meaning for each Function type:
+Functions reference Table versions using the following format:
 
-| Function | A parameter is `None` when |
+`[collection/]table[@version]`
+
+The Collection name is optional. If omitted, Tabsdata looks for the Table in the Function's own Collection. If no version is specified, Tabsdata uses `@HEAD`, which refers to the latest version.
+
+For example, `orders`, `orders@HEAD`, and `sales/orders@HEAD` all reference the latest version of the `orders` Table, assuming `orders` is in the `sales` Collection.
+
+**Supported version references**
+
+| Reference | Description |
 | --- | --- |
-| Publisher | The external system has no new data for that source slot. A slot that takes a list of frames receives `None`, not an empty list. The Publisher still runs, and can return data anyway. |
-| Transformer, Subscriber | The requested input version does not exist, the input Table has never been produced, or the Table had no data up to that version. The value alone does not tell these cases apart. |
+| `orders@HEAD` | The latest Table version. |
+| `orders@HEAD^` | The version immediately before `HEAD`. |
+| `orders@HEAD~3` | The version three versions before `HEAD`. |
+| `orders@INITIAL` | The first Table version. |
+| `orders@NEW` | All versions committed since the Function's previous run. |
+| `orders@HEAD~3..HEAD` | The four most recent versions, including `HEAD`. |
+| `orders@INITIAL..HEAD` | All existing versions, from the first to the latest. |
+| `orders@HEAD,HEAD~2` | A list containing the latest version and the version two versions before it. |
 
-A version range, such as `orders@HEAD~3..HEAD`, reaches a Transformer or Subscriber as a list with one element per version, oldest first. A `None` element is a version that does not exist or that has no data yet. A range of a fixed size, such as `HEAD~3..HEAD`, always has that many elements, and its `None` elements are always at the oldest end, because once a Table has data every later version has data too. A range from `INITIAL`, such as `INITIAL..HEAD`, has one element per existing version and can be empty.
+Functions can also reference a specific version using its version ID.
 
-### Returning `None`
+**Referencing multiple versions**
 
-Every successful run commits a new version of each of its output tables. What you return for a table decides what that version holds:
+Version ranges use `..` to specify a starting and ending version. Ranges are endpoint inclusive and are returned as a list of `TableFrame` objects ordered from oldest to newest.
 
--   A `TableFrame` is new data. The version holds it, and it replaces the table's previous data. This is true even for a frame with zero rows: the table is now empty.
--   `None` means "no changes for this table". The version is still committed, but it holds no data of its own. Reading it gives the data of the last version that did change the table.
+For example, `orders@HEAD~3..HEAD` returns the four latest versions of the `orders` Table.
 
-A version committed with `None` is a version like any other. It triggers the functions that depend on the table, and a function reading the table at `@NEW` receives it, with the unchanged data, as one of the new versions.
+For ranges with a defined size, if a requested version does not exist or has no data, Tabsdata returns `None` at that position in the list.
 
-A Subscriber has destination slots instead of output Tables. Returning `None` for a slot sends no new data to it. The Connector still runs and decides what `None` does to the external system; each Connector page describes it under **Write behavior**. A Subscriber also runs for a version committed with `None`: return `None` to leave the external system as it is, or the frame to write the data again.
+Ranges without a defined size, such as those starting with `INITIAL`, generally omit `None` values and only include existing versions containing data. An exception occurs when a Table has only a single commit containing `None`, in which case the returned list contains `[None]`. If no versions exist, an empty list (`[]`) is returned.
 
-When a Table version has no data, the UI and `tdk` say so, and say whether the version does not exist or has no data, instead of showing an empty table. `tdk` writes that message to stderr and exits with a non-zero code.
+The special reference `@NEW` returns all versions committed since the Function's previous run. If used on the function's first run, every version of the Table is returned. If no new versions have been committed, Tabsdata returns an empty list (`[]`).
+
+| Table reference | Table state | Function input |
+| --- | --- | --- |
+| `orders@HEAD~3..HEAD` | `[v1, v2, v3, v4]` | `[v1, v2, v3, v4]` |
+| `orders@HEAD~3..HEAD` | `[v1, v2]` | `[None, None, v1, v2]` |
+| `orders@HEAD~3..HEAD` | `[None, v2, v3, v4]` | `[None, v2, v3, v4]` |
+| `orders@INITIAL..HEAD` | `[None, v2, v3]` | `[v2, v3]` |
+| `orders@INITIAL..HEAD` | `[None]` | `[None]` |
+| `orders@INITIAL..HEAD` | `[]` | `[]` |
+| `orders@NEW` | `[v1, v2, v3, v4 ǀ v5, v6]` | `[v5, v6]` |
+| `orders@NEW` | `[ǀ v1, v2, v3]` | `[v1, v2, v3]` |
+| `orders@NEW` | `[v1, v2, v3 ǀ]` | `[]` |
+
+## `None` as input
+
+Tabsdata Functions generally accept a `TableFrameSpec`, or a `TableFramesSpec` for a list of frames as input. A `TableFrameSpec` represents tabular data, similar to a Polars `LazyFrame`. Functions can also receive `None`, depending on the Function type and whether data is available.
+
+### `None` vs. an empty `TableFrame`
+
+Tabsdata will attempt to provide an empty `TableFrame` when possible and will only default to `None` when no reference data is available.
+
+This is because a `TableFrame` requires a defined schema. If no previous run has produced data, Tabsdata will not know the expected columns and must pass `None` instead.
+
+The distinction is important:
+
+-   **`None`** indicates that no data is available.
+-   **An empty `TableFrame`** contains zero rows but has a defined schema. It is treated as data and can replace existing Table data.
+
+Empty TableFrame objects are preferable to None because they support operations like joins and concatenations without requiring additional handling. None values, on the other hand, require additional logic to handle missing data.
+
+### Publishers
+
+Publishers receive `None` when a source has never produced data for a particular input slot. For example, a file source pointing to a path where no files have appeared yet.
+
+There are a few exceptions:
+
+-   **Sources expecting a list of `TableFrame` objects** receive an empty list (`[]`) instead of `None`.
+-   **SQL queries and Salesforce sObjects** define their own schemas. Because Tabsdata already knows the expected columns, their slots receive an empty `TableFrame` even if no previous run has produced data.
+
+For file-based Publishers, the behavior also depends on the `incremental` setting:
+
+-   **`incremental=True`:** If no new files are found, Tabsdata uses the schema from the most recent run that produced data to provide an empty `TableFrame`. If no previous run has produced data, `None` is passed instead.
+-   **`incremental=False`:** If no new files are found, Tabsdata passes an empty list (`[]`), regardless of whether previous runs have produced data.
+
+### Transformers and Subscribers
+
+Transformers and Subscribers can receive `None` in three situations:
+
+1.  The input Table has never been produced because its Publisher has not run.
+2.  The requested Table version does not exist. For example, requesting `HEAD~1` when the Table only has one version.
+3.  The Publisher has run, but has only committed `None` to the input Table.
+
+In each case, `None` indicates that data is not available for the requested Table version.
+
+### Special cases: `@NEW` and version ranges
+
+**`@NEW`**
+
+Transformers and Subscribers can use `@NEW` to request all Table versions committed since the Function's previous run. On the Function's first run, `@NEW` is every version the Table has; see [Registering Functions in a pipeline](#registering-functions-in-a-pipeline).
+
+If no new versions have been committed, Tabsdata passes an empty list (`[]`) instead of `None`.
+
+**Handling empty `@NEW` inputs**
+
+A Transformer can execute even when no new versions are available for one of its `@NEW` inputs. This can happen when another input triggers the Function, when a scheduled trigger runs, or when the Function is executed manually.
+
+In these cases, the `@NEW` input receives an empty list (`[]`). If the Transformer needs an empty `TableFrame` instead, it can read the same Table using `@HEAD` and call `clear()`. This creates an empty `TableFrame` with the Table's existing schema, allowing the Transformer to perform operations that require a defined schema.
+
+| Table reference | Table state | Function input |
+| --- | --- | --- |
+| `orders@NEW` | `[v1, v2, v3, v4 ǀ v5, v6]` | `[v5, v6]` |
+| `orders@NEW` | `[ǀ v1, v2, v3]` | `[v1, v2, v3]` |
+| `orders@NEW` | `[v1, v2, v3 ǀ]` | `[]` |
+
+`ǀ` marks the Function's previous run.
+
+**Table version ranges**
+
+Transformers and Subscribers can also request multiple versions of a Table using a version range.
+
+For example, `orders@HEAD~3..HEAD` requests the four most recent versions of the `orders` Table, from oldest to newest.
+
+Tabsdata returns these versions as a list of `TableFrame` objects. If a requested version does not exist or has no data, `None` is returned at that position in the list.
+
+For example:
+
+```python
+[None, frame_v2, frame_v3, frame_v4]
+```
+
+Here, the oldest requested version is unavailable, while the other three versions contain data.
+
+Unlike a fixed range, a range beginning with `INITIAL`, such as `orders@INITIAL..HEAD`, includes only existing versions. If no versions exist, the result can be an empty list.
+
+### Registering Functions in a pipeline
+
+Functions are registered individually using `tdk fn register`. Because a Function can only reference input Tables produced by already registered Functions, pipelines must be registered in order, starting with Publishers, followed by Transformers, and finally Subscribers.
+
+Functions can begin executing as soon as their triggers are activated, meaning a Publisher might commit new Table versions before the rest of the pipeline has been registered.
+
+However, these versions are not lost. Functions reading from `@NEW` receive all Table versions committed since their previous execution. For Functions that have never run, this includes every existing Table version, ordered from oldest to newest. Keep in mind that registering a Function does not automatically trigger its first execution. For Table-triggered Functions, another commit to one of their trigger Tables is required.
+
+This is generally not an issue for Publishers using a `CronTrigger`, since they only execute on their configured schedule. Stream Publishers, however, begin consuming data immediately after registration.
+
+To prevent a stream Publisher from processing data before the rest of the pipeline is registered, you can register it in a disabled state and enable it once the downstream Functions are in place:
+
+```shell
+tdk fn register --coll sales --path stream_orders.py::stream_orders --disabled
+tdk fn register --coll sales --path clean_orders.py::clean_orders
+tdk fn register --coll sales --path export_orders.py::export_orders
+tdk stream enable --coll sales --name stream_orders
+```
+
+## `None` as output
+
+Every successful Function run commits a new version of each output Table. The value returned by the Function determines what data is stored in that version.
+
+-   **`TableFrame`:** The returned data is committed as a new version of the table.
+-   **`None`:** The Table's data remains unchanged. A new version is committed to the table. However, it doesn't contain any data of its own. Instead, it references the table's most recent version that contained data.
+
+### How `None` affects downstream Functions
+
+A Table version committed with `None` behaves like any other version. It triggers downstream Functions that depend on the Table and is included when a Function requests new versions using `@NEW`.
+
+Because `None` preserves the previous data, downstream Functions reading at `@NEW` receive that data again.
+
+For example, consider a Table that stores individual batches of data and a downstream Transformer that processes each batch using `@NEW`. If the upstream Function returns `None`, the Transformer receives the previous batch again, potentially processing the same data twice.
+
+For this reason, **Functions should return an empty `TableFrame` when there is no new batch to process**, rather than `None`.
+
+Returning `None` is appropriate when the Table's existing data should remain unchanged. For example:
+
+-   A Function produces a new snapshot, but the data fails validation. Returning `None` preserves the last valid snapshot.
+-   A Table accumulates data across runs, but the latest run has nothing new to add.
+
+### Subscribers
+
+Unlike Publishers and Transformers, Subscribers return data to destination slots rather than output Tables.
+
+Returning `None` for a destination slot indicates that no new data is being sent. However, the Connector still executes and determines how `None` affects the external system. Refer to the **Write behavior** section of each Connector's documentation for details.
+
+Subscribers also execute when an upstream Table commits a version containing `None`. Depending on the intended behavior, a Subscriber can:
+
+-   Return `None` to leave the destination unchanged, subject to the Connector's write behavior.
+-   Return a `TableFrame` to write the existing data to the destination again.
+
+### Viewing Table versions without data
+
+When a Table version does not contain data, the Tabsdata UI and `tdk` display a message instead of an empty Table. The message distinguishes between a version that does not exist and a version that exists but contains no data of its own.
+
+When using `tdk`, this message is written to stderr, and the command exits with a non-zero exit code.
 
 ## Triggers
 
@@ -1245,11 +1439,7 @@ Function code does not run in the CLI process that sends the command. The CLI re
 
 Source: https://docs.tabsdata.com/guide/functions/publishers
 
-A publisher reads data from an external system and publishes it to Tabsdata tables. Each run reads the source, calls the function, and commits the returned tables together.
-
-Unlike a stream publisher, a regular publisher does not keep reading. It reads the source only when it runs. The publisher must be registered in a source collection whose connection matches the source.
-
-## In Action
+A publisher reads data from an external system and publishes that data into Tabsdata tables.
 
 Tabsdata server
 
@@ -1298,13 +1488,6 @@ publisher(
 )
 ```
 
-| Parameter | Type |  |
-| --- | --- | --- |
-| `source` | `Src` | required |
-| `output_tables` | `list[str]` | required |
-| `trigger_by` | `CronTrigger \| TablesTrigger` | optional |
-| `on_tables` | `list[OnTablesAction]` | optional |
-
 #### `source`
 
 The source to read. The source class decides what is read and how many slots are passed to the function. A SQL source has one slot per query. A file source can read several files into one slot.
@@ -1345,16 +1528,16 @@ read\_world.py
     
     -   The `country` and `city` arguments receive the query results in the order listed in `queries`.
         
-    -   The returned data is written to the Tables listed in `output_tables`, in that order. Returning `None` for a Table leaves its current version unchanged.
+    -   The returned data is written to the Tables listed in `output_tables`, in that order. Returning `None` for a Table commits a new version that keeps its previous data. An empty frame commits a version with no rows.
         
 
 ## The function
 
 A publisher function has one parameter per source slot and returns one frame per output table.
 
--   **Parameters.** Source slots are passed to the function in source order. Annotate a parameter as `TableFrameSpec` for one frame or `TableFramesSpec` for a list of frames. A slot is `None` when the external system has no new data for it; see [`None` inputs and outputs](https://docs.tabsdata.com/guide/functions/#none-inputs-and-outputs).
+-   **Parameters.** Source slots are passed to the function in source order. Annotate a parameter as `TableFrameSpec` for one frame or `TableFramesSpec` for a list of frames. A slot with no new data receives an empty frame with the columns of the last run that had data, and `None` before any run had data; see [`None` as input](https://docs.tabsdata.com/guide/functions/#none-as-input).
 -   **Context.** The function can have a final `ctx: TransactionCtx` parameter. Use `ctx` to keep values between successful runs. For example, an incremental SQL publisher can save its last processed ID with `ctx.set_attr()` and use it in the next query. Type it `FunctionCtx` to also read the run's identifiers and the project's secrets.
--   **Return value.** Return values map to `output_tables` in order. One output can be returned on its own; several outputs are returned as a tuple. Returning `None` for one output commits a new version that keeps that table's previous data.
+-   **Return value.** Return values map to `output_tables` in order. One output can be returned on its own; several outputs are returned as a tuple. Returning `None` for one output commits a new version that keeps that table's previous data. A reader at `@NEW` receives that version, with the previous data, again. Return an empty frame when there are no rows to write.
 -   **Slot counts.** The number of source slots does not have to match the number of output tables. The function can combine several inputs into one table or create several tables from one input.
 
 Tabsdata checks the slot counts and function signature when the publisher is registered.
@@ -1594,20 +1777,28 @@ A stream publisher function has one parameter per source slot, annotated `TableF
 
 -   **Slots.** A CDC source has one slot per entry in its `tables`, in the same order. A Kafka source has a single slot.
 -   **Parameters.** Each parameter receives a list of frames with the data read for that slot since the previous batch. For a CDC source, the list holds at most one frame. For Kafka, it can hold several, possibly with different schemas; combine them with `concat(frames, how="diagonal_relaxed")` if their columns can differ.
--   **Empty batches.** A slot with no new data receives an empty list. `concat` of an empty list returns `None`.
--   **Return value.** A tuple with one element per output table, in the order of `output_tables`. With a single output table, the frame can be returned on its own. Returning `None` for a table means no new data: it commits a new version that holds no data of its own. Reading it gives the data of the last version that did change the table.
--   **No other parameters.** A stream publisher cannot declare a `ctx` parameter or any parameter beyond its slots.
+-   **Empty batches.** A slot with no new data in the batch receives a list holding one empty frame, with the columns of the last batch that had data. Before any batch has had data for the slot, it receives an empty list, and `concat` of an empty list returns `None`.
+-   **Return value.** A tuple with one element per output table, in the order of `output_tables`. With a single output table, the frame can be returned on its own. Returning `None` for a table means no new data: it commits a new version that holds no data of its own. Reading it gives the data of the last version that did change the table. A reader at `@NEW` receives that version, with the previous data, again. Return the empty frame for a table with no new data.
+-   **No other parameters.** Beyond its slots, a stream publisher can declare only an optional trailing `ctx: TransactionCtx` parameter. See [Stream Triggers](https://docs.tabsdata.com/guide/triggers/stream#constraints-on-the-function).
 
 `concat` is imported from `tabsdatak.tableframe.functions`.
 
 ## Lifecycle
 
--   **Register.** `tdk fn register` starts the worker. The function must be registered in a source collection whose connection matches the source; see the source's connector page.
+-   **Register.** `tdk fn register` starts the worker, unless the function is registered with `--disabled`; then `tdk stream enable` starts it. Register a stream publisher disabled when the functions that read its Tables are not registered yet; see [Registering Functions in a pipeline](https://docs.tabsdata.com/guide/functions/#registering-functions-in-a-pipeline). The function must be registered in a source collection whose connection matches the source; see the source's connector page.
 -   **Disable and enable.** `tdk stream disable` stops the worker; `tdk stream enable` starts it again, from where it stopped. `tdk stream list` shows the stream publishers and their state.
--   **Update.** `tdk fn update` restarts the worker with the new code and settings. It resumes from where it stopped.
+-   **Update.** `tdk fn update` restarts the worker with the new code and settings. It resumes from where it stopped. It also enables a disabled stream publisher, unless `--disabled` is given again.
 -   **Delete.** Deleting the function stops the worker. Check the source's connector page for anything left on the source system, such as a Postgres replication slot.
 -   **Failures.** If the worker fails, Tabsdata restarts it, waiting one minute after the first failure and doubling the wait after each further failure, up to 30 minutes.
 -   **Start over.** `tdk fn update --reset-stage` discards the stream's recorded position. The stream starts again as if it were new: from the source's starting position, or with a new full load for a CDC source with `start_from="full"`.
+
+### Delivery: when the data is in the Table
+
+When a stream batch closes, it is staged for processing: its files and manifest are written to the Function's stage, and from then on Tabsdata guarantees it will be processed, even if the worker or the server restarts. At that point the source's position is updated: a Kafka consumer group's offsets are committed, a Postgres replication slot is confirmed, and a MySQL binlog or Db2 commit-sequence position is saved.
+
+The staged batch is then scheduled for processing. Its processing may not start right away, because a previous batch may still be processing: batches are processed one at a time, in the order they closed, and closed batches are picked up every 30 seconds. The batch's Table Versions are committed when its processing ends.
+
+So a source that shows its data as consumed (consumer lag at zero, a slot's confirmed LSN) means the data is staged, not that it can be read in Tabsdata. To know a batch is loaded, watch the stream's plans (`tdk stream plans`) or the output Table's versions.
 
 On a restart, the stream reads again whatever it had not yet handed to the function. A CDC stream publishes every change once, even across restarts. A Kafka stream is at least once: after a restart, some messages may be published again.
 
@@ -1722,20 +1913,20 @@ find\_big\_cities.py
         
 -   Reads the country and city data, joins it, and returns cities with a population above three million.
     
-    -   The arguments receive the data from `input_tables` in the order listed. An argument is `None` if the requested Table version does not exist.
+    -   The arguments receive the data from `input_tables` in the order listed. An argument is `None` if the requested Table version does not exist or has no data. An argument read at `@NEW` is an empty list when no version was committed since the last run.
         
     -   Renames the country name column, removes unused columns, and joins the country and city data.
         
-    -   The returned data is written to the Tables listed in `output_tables`, in that order. Returning `None` for a Table leaves its current version unchanged.
+    -   The returned data is written to the Tables listed in `output_tables`, in that order. Returning `None` for a Table commits a new version that keeps its previous data. An empty frame commits a version with no rows.
         
 
 ## The function
 
 A transformer function has one parameter per input table and returns one frame per output table.
 
--   **Parameters.** Inputs are passed to the function in `input_tables` order. Annotate a parameter as `TableFrameSpec` for one frame or `TableFramesSpec` for a list of frames. An input read at `@NEW`, a `v..v` range or a `v,v` list must be typed `TableFramesSpec`; `TableFrameSpec` is refused at registration. An input is `None` when the requested version does not exist or has no data; see [`None` inputs and outputs](https://docs.tabsdata.com/guide/functions/#none-inputs-and-outputs). If no version has ever had data, a `None` version has nothing to fall back to, and readers get `None` instead of a frame.
+-   **Parameters.** Inputs are passed to the function in `input_tables` order. Annotate a parameter as `TableFrameSpec` for one frame or `TableFramesSpec` for a list of frames. An input read at `@NEW`, a `v..v` range or a `v,v` list must be typed `TableFramesSpec`; `TableFrameSpec` is refused at registration. An input is `None` when the requested version does not exist or has no data; see [`None` as input](https://docs.tabsdata.com/guide/functions/#none-as-input). If no version has ever had data, a `None` version has nothing to fall back to, and readers get `None` instead of a frame.
 -   **Context.** The function can have a final `ctx: TransactionCtx` parameter to keep values between successful runs. Type it `FunctionCtx` to also read the run's identifiers and the project's secrets.
--   **Return value.** Return values map to `output_tables` in order. One output can be returned on its own; several outputs are returned as a tuple. Returning `None` for one output commits a new version that keeps that table's previous data.
+-   **Return value.** Return values map to `output_tables` in order. One output can be returned on its own; several outputs are returned as a tuple. Returning `None` for one output commits a new version that keeps that table's previous data. A reader at `@NEW` receives that version, with the previous data, again. Return an empty frame when there are no rows to write.
 
 Tabsdata checks the input count, output count, and function signature when the transformer is registered.
 
@@ -1866,7 +2057,7 @@ sales-sub.py
 
 A subscriber function has one parameter per input table and returns one frame per destination slot.
 
--   **Parameters.** Inputs are passed to the function in `input_tables` order. Annotate a parameter as `TableFrameSpec` for one frame or `TableFramesSpec` for a list of frames. An input read at `@NEW`, a `v..v` range or a `v,v` list must be typed `TableFramesSpec`; `TableFrameSpec` is refused at registration. An input is `None` when the requested version does not exist or has no data; see [`None` inputs and outputs](https://docs.tabsdata.com/guide/functions/#none-inputs-and-outputs).
+-   **Parameters.** Inputs are passed to the function in `input_tables` order. Annotate a parameter as `TableFrameSpec` for one frame or `TableFramesSpec` for a list of frames. An input read at `@NEW`, a `v..v` range or a `v,v` list must be typed `TableFramesSpec`; `TableFrameSpec` is refused at registration. An input is `None` when the requested version does not exist or has no data; see [`None` as input](https://docs.tabsdata.com/guide/functions/#none-as-input).
 -   **Context.** The function can have a final `ctx: TransactionCtx` parameter to keep values between successful runs. Type it `FunctionCtx` to also read the run's identifiers and the project's secrets.
 -   **Return value.** Return values map to the destination slots in destination order. One slot can be returned on its own; several slots are returned as a tuple. Returning `None` for a slot sends no new data to it, and the Connector decides what that does to the external system.
 -   **Slot counts.** The number of input tables does not have to match the number of destination slots. The function can combine several inputs into one write or create several destination tables from one input.
@@ -2063,15 +2254,32 @@ input/persons@HEAD
 
 The version can be used to select a specific version or set of versions of the Table:
 
--   `HEAD` selects the latest version.
+-   `HEAD` selects the latest version. A version committed with `None` reads as the last version that had data.
 -   `HEAD^` selects the version immediately before `HEAD`.
 -   `HEAD~N` selects a version relative to `HEAD`.
 -   `INITIAL` selects the first version.
 -   A specific version ID selects that version.
 -   Comma-separated version IDs select multiple versions.
 -   `a..b` selects a range of versions.
+-   `NEW` selects every version committed since the Function's previous run, oldest first, as a list. On the Function's first run, it selects every version the Table has. It includes versions committed with `None`, which read as the previous data. It is an empty list when no version was committed. See [Registering Functions in a pipeline](https://docs.tabsdata.com/guide/functions/#registering-functions-in-a-pipeline).
+
+| Table reference | Table state | Function input |
+| --- | --- | --- |
+| `persons` | `[v1, v2, v3, v4]` | `v4` |
+| `persons@HEAD` | `[v1, v2, v3, None]` | `v3` |
+| `persons@HEAD^` | `[v1, v2, v3, v4]` | `v3` |
+| `persons@HEAD~2` | `[v1, v2, v3, v4]` | `v2` |
+| `persons@INITIAL` | `[v1, v2, v3, v4]` | `v1` |
+| `persons@HEAD~3,HEAD~1` | `[v1, v2, v3, v4]` | `[v1, v3]` |
+| `persons@HEAD~2..HEAD` | `[v1, v2, v3, v4]` | `[v2, v3, v4]` |
+| `persons@NEW` | `[v1, v2 ǀ v3, v4]` | `[v3, v4]` |
+| `persons@NEW` | `[v1, v2 ǀ None, v4]` | `[v2, v4]` |
+| `persons@NEW` | `[ǀ v1, v2]` | `[v1, v2]` |
+| `persons@NEW` | `[v1, v2 ǀ]` | `[]` |
 
 If no version is specified, the Function reads from `HEAD`.
+
+`HEAD` is resolved when the execution plan starts. A Table the same plan writes, but not upstream of the Function's triggers, resolves to its version from before the plan; `HEAD^`, `HEAD~N` and ranges shift back the same way. See [Table Commit Triggers](https://docs.tabsdata.com/guide/triggers/table-commit#table-commit-triggers-and-dependency-configuration).
 
 Tables can also be referenced across Collections within the same Project. Tables in another Project cannot be referenced.
 
@@ -2097,9 +2305,11 @@ Transformers and Subscribers are automatically triggered when a new commit is ma
 
 A commit does not necessarily mean that the data itself changed. When a Publisher writes multiple Tables, it creates a new commit for each Table on every successful execution, even if the rows in a Table are identical to its previous version.
 
+Such a commit still triggers the Functions that read the Table, and a Function reading it at `@NEW` receives it. A commit from returning `None` holds the previous data. A commit from an empty frame has no rows. See [`None` as output](https://docs.tabsdata.com/guide/functions/#none-as-output).
+
 Each commit can trigger Functions that use that Table as an input.
 
-See [Working with Triggers](https://docs.tabsdata.com/guide/triggers) to control which input Tables trigger a Function.
+See [Trigger Overview](https://docs.tabsdata.com/guide/execution-and-triggers#trigger_by) to control which input Tables trigger a Function.
 
 ---
 
@@ -2282,7 +2492,7 @@ Tabsdata deploys one worker for each execution attempt of the function code. If 
 
 A function is triggered
 
-Function runGenerated by the trigger
+Function run
 
 Worker 1Failed
 
@@ -2342,6 +2552,7 @@ Each connector's page covers its connection fields and the options of its classe
 | --- | --- | --- | --- |
 | [Amazon S3](https://docs.tabsdata.com/guide/connectors/amazon-s3) | `S3Src` |  | `S3Dest` |
 | [Apache Druid](https://docs.tabsdata.com/guide/connectors/druid) |  |  | `DruidDest` |
+| [AWS Glue](https://docs.tabsdata.com/guide/connectors/aws-glue) |  |  | `AwsGlueDest` |
 | [Azure Blob Storage](https://docs.tabsdata.com/guide/connectors/azure) | `AzureBlobSrc` |  | `AzureBlobDest` |
 | [BigQuery](https://docs.tabsdata.com/guide/connectors/bigquery) |  |  | `BigQueryDest` |
 | [ClickHouse](https://docs.tabsdata.com/guide/connectors/clickhouse) |  |  | `ClickHouseDest` |
@@ -2379,7 +2590,7 @@ To connect a system that has no built-in connector, write a custom connector. Se
 
 Source: https://docs.tabsdata.com/guide/connectors/schema-evolution
 
-Every table destination takes a `schema_evolution` setting that decides what happens when a write brings a column the destination table does not have, or a value type wider than the column's. The table destinations are Databricks, Snowflake, BigQuery, ClickHouse, StarRocks, Postgres, MySQL, MariaDB, Microsoft SQL Server, Oracle and Db2. The same two values apply to append, replace and merge on all of them, but what each one does differs by destination. Druid cannot enforce a schema, so `"update"` is its only value and its default.
+Every table destination takes a `schema_evolution` setting that decides what happens when a write brings a column the destination table does not have, or a value type wider than the column's. The table destinations are Databricks, Snowflake, BigQuery, AWS Glue, ClickHouse, StarRocks, Postgres, MySQL, MariaDB, Microsoft SQL Server, Oracle and Db2. The same two values apply to append, replace and merge on all of them, but what each one does differs by destination. Druid cannot enforce a schema, so `"update"` is its only value and its default.
 
 ## Policies
 
@@ -2405,6 +2616,7 @@ What each destination does with a new or wider column, and how it carries out `r
 | Databricks | Fails in `COPY INTO` (`DATABRICKS_9`) | Schema follows the batch | Refused before the `MERGE` (`SQL_COMMON_10`) | Append: `mergeSchema` and `delta.enableTypeWidening`. Merge: `MERGE WITH SCHEMA EVOLUTION` and widening | `CREATE OR REPLACE … read_files() LIMIT 0`, then `COPY INTO` | No |
 | Snowflake | Refused before `COPY` | Refused: the schema check runs before the `TRUNCATE` | Refused | Append and replace: native `ENABLE_SCHEMA_EVOLUTION`, adds columns and makes columns nullable. Merge: Iceberg engine, set in `dest_cfg`; `ALTER` adds columns and widens `VARCHAR` length and `NUMBER` precision | `TRUNCATE`, then `COPY INTO`; the table definition is kept | No |
 | BigQuery | Fails in the load job (`BIGQUERY_7`) | Schema replaced | Refused | Append and replace: native, adds columns and relaxes `REQUIRED`, never widens. Merge: Iceberg engine, set in `dest_cfg`; `ALTER` adds and widens, and `REQUIRED` stays `REQUIRED` | `WRITE_TRUNCATE` load job | Yes |
+| AWS Glue | A new column is refused before the upload (`SQL_COMMON_10`). A wider type is written when its values fit the column, and fails the write when one does not. A missing column is NULL | Same check, before the table is emptied | Not supported | Iceberg's own schema update: adds columns and widens types | Removes every row and adds the batch in one Iceberg commit; the table and its columns are kept | Yes |
 | ClickHouse | Refused before the load on a new column, a wider type whose values do not fit, or a NULL into a non-`Nullable` column. Column order is ignored, a narrower type fits, a missing column is NULL | Schema follows the batch | Not supported | Adds `Nullable` columns, makes columns nullable, widens `Int8` up to `Int64`, `UInt` likewise, and `Float32` to `Float64` | Stage, `DROP TABLE IF EXISTS`, `CREATE … MergeTree() ORDER BY tuple()`, `INSERT` by name | No |
 | StarRocks | Refused before the load on a new column, or a wider type whose values do not fit. A missing column gets its default or NULL | Same check, then `TRUNCATE` and `INSERT`; the table must exist | Not supported | `ADD COLUMN … NULL`; `MODIFY COLUMN` widens integers, `FLOAT` to `DOUBLE`, `VARCHAR` and `DECIMAL`, waiting up to 30 minutes for the `ALTER` job | `TRUNCATE`, then `INSERT … SELECT FROM FILES()` | No |
 | Druid | Refused at registration | Refused at registration | Not supported | The default and only value: schema discovery adds columns, and a missing column reads as NULL | `index_parallel` with `dropExisting` over 1970 to 2100 | Per datasource |
@@ -2420,6 +2632,7 @@ Each destination widens only these types:
 | --- | --- |
 | Snowflake | `VARCHAR` length and `NUMBER` precision, on merge |
 | BigQuery | `INT64` to `BIGNUMERIC` to `FLOAT64`, on merge |
+| AWS Glue | `int` to `long`, `float` to `double`, and decimal precision |
 | ClickHouse | Integers up to 64 bits, signed and unsigned, and `Float32` to `Float64` |
 | StarRocks | Integers, `FLOAT` to `DOUBLE`, `VARCHAR` and `DECIMAL` |
 | Postgres, MySQL, MariaDB, SQL Server, Oracle, Db2 | Integers, decimals and floats, by digits or width |
@@ -2435,6 +2648,7 @@ Under `"update"`, a destination changes the table in one of two ways. Native sch
 | Databricks | Native | Native |
 | Snowflake, BigQuery | Native | Iceberg, set in `dest_cfg` |
 | ClickHouse, StarRocks, Postgres, MySQL, MariaDB, SQL Server, Oracle, Db2 | Iceberg | Not supported |
+| AWS Glue | Native, Iceberg's own schema update | Not supported |
 | Druid | Native | Not supported |
 
 Snowflake's and BigQuery's native schema evolution adds columns and makes columns nullable, but never widens a type, and does not apply to `MERGE`. A Snowflake or BigQuery merge under `"update"` needs the Iceberg engine set in `dest_cfg`:
@@ -2467,6 +2681,7 @@ Several connectors read or write cloud object storage through an object store cl
 | Connector | Set with | What the keys configure |
 | --- | --- | --- |
 | Amazon S3, Google Cloud Storage, Azure Blob Storage | `conn_cfg` on the connection | Reads and writes |
+| AWS Glue | `conn_cfg` on the connection | The upload of the tables' data files. The Iceberg metadata files are written by another client, set with the `pyiceberg.s3.*` keys |
 | ClickHouse | `cfg` on the `staging` location | The staging upload, the address ClickHouse reads the files from, and the cleanup |
 | StarRocks | `cfg` on the `staging` location | The staging upload. StarRocks reads the files through its own path, which the keys do not change |
 | Druid | `cfg` on the `staging` location | The staging upload. The ingestion input source does not use them |
@@ -2816,6 +3031,48 @@ warning
 Sets the initial cutoff for incremental ingestion.
 
 On the first run, Tabsdata imports files modified at or after the specified timestamp. The cutoff then advances so subsequent runs only import newer files. The value must be timezone-aware, for example `datetime(2026, 1, 1, tzinfo=timezone.utc)`.
+
+#### \[Optional\] incremental
+
+`incremental` tells Tabsdata how the data read in each run relates to the data read in previous runs. It accepts the following values:
+
+-   `True` (default) - Each run brings data that adds to, or modifies, the data already read. It does not replace it.
+-   `False` - Each run brings a full replacement of the data read before.
+
+The publisher function is still responsible for handling the data accordingly, for example appending or merging incremental data. Tabsdata uses `incremental` to decide what the function receives when a run finds no new data in the source:
+
+| `incremental` | The function receives | Meaning |
+| --- | --- | --- |
+| `True` | An empty `TableFrame` with the same schema as the last one that had data. If no run has had data yet, `None`. | Nothing was added in this run. |
+| `False` | `None` | Nothing changed. The previous data is still valid. |
+
+When the source feeds several inputs to the function, this applies to each input on its own. In the same run one input can bring new data while another has none, so the function can receive a `TableFrame` with data for the first and an empty `TableFrame` or `None` for the second. The schema of an empty `TableFrame` is the one of the last run that had data for that same input.
+
+With `incremental=True` the function can run its usual logic on an empty `TableFrame`, since the columns it expects are there. In both modes the function must handle `None` for every input:
+
+```python
+import tabsdata as td
+
+@td.publisher(
+    source=td.LocalFileSource(
+        [
+            "/users/username/opt/hr/departments.csv",
+            "/users/username/opt/hr/employees.csv",
+        ],
+        initial_last_modified="2021-01-01",
+        incremental=True,
+    ),
+    tables=["departments", "employees"],
+)
+def read_hr(departments: td.TableFrame | None, employees: td.TableFrame | None):
+    if employees is not None:
+        employees = employees.filter(td.col("status") == "active")
+    return departments, employees
+```
+
+note
+
+-   `incremental` does not change what the connector reads from the source. It only changes what the function receives when there is no new data.
 
 #### `src_cfg`
 
@@ -3341,6 +3598,249 @@ Optional connector configuration. It affects only the explorer, not writes.
 
 ---
 
+# AWS Glue
+
+> Reference for the Tabsdata AWS Glue connector, which writes Apache Iceberg tables registered in the AWS Glue Data Catalog.
+
+Source: https://docs.tabsdata.com/guide/connectors/aws-glue
+
+The AWS Glue connector lets Tabsdata write tables as [Apache Iceberg](https://iceberg.apache.org/) tables on Amazon S3, registered in the AWS Glue Data Catalog. Once a table is registered in the catalog you can query it with Amazon Athena, and with any other engine that reads the catalog, such as Amazon Redshift Spectrum, Amazon EMR, AWS Glue jobs, Spark and Trino.
+
+AWS Glue is destination-only: there is no publisher-side connector for reading from the Glue Data Catalog.
+
+The `AwsGlueDest` connector can be used by a subscriber function to write data from a Tabsdata table into an Iceberg table.
+
+The subscriber is registered in a collection created with an `AwsGlueDestConn` connection. The connection, and how to create the collection, are described in [Connection](#connection), at the end of this page.
+
+### Prerequisites
+
+-   The Glue Data Catalog and the S3 bucket are in the same AWS region and are reachable from the Tabsdata server.
+-   The Glue database the tables go in already exists. The connector creates tables, not databases.
+-   The AWS credentials can read the database and create, read and update its tables in the Glue Data Catalog (`glue:GetDatabase`, `glue:GetDatabases`, `glue:GetTable`, `glue:GetTables`, `glue:CreateTable`, `glue:UpdateTable`).
+-   The AWS credentials can list the bucket and read, write and delete objects under the table locations (`s3:ListBucket`, `s3:GetObject`, `s3:PutObject`, `s3:DeleteObject`).
+
+### Subscriber
+
+Configure `AwsGlueDest` as the `destination` of a subscriber function to define which Iceberg tables Tabsdata writes.
+
+write\_orders.py
+
+```python
+from tabsdatak.api import subscriber
+from tabsdatak.conn.awsglue import AwsGlueDest
+
+@subscriber(
+    input_tables=["orders"],
+    destination=AwsGlueDest(
+        tables=[
+            "sales.orders",
+        ],
+    ),
+)
+def write_orders(orders):
+    return orders
+```
+
+-   required
+    
+-   optional
+    
+-   optional
+    
+-   optional
+    
+
+### Function Config Parameters
+
+#### `tables`
+
+Defines the Iceberg tables the subscriber writes to.
+
+Each element in `tables` represents one destination slot and maps positionally to a value returned by the subscriber function. Each name is `table` or `database.table`. A bare `table` is completed from the connection's `database`. Each part is 1 to 255 characters, lowercase letters, digits and underscores, which are the names Athena reads without quoting.
+
+A table that does not exist is created from the first batch, at `s3://<bucket><base_path>/<database>/<table>`.
+
+#### `if_table_exists`
+
+Controls what happens when the destination table already exists. `"append"` (the default) adds rows. `"replace"` empties the table and writes the batch; the table and its columns are kept.
+
+There is no `"merge"`: the AWS Glue connector appends and replaces only.
+
+#### `schema_evolution`
+
+Decides what a write does when the returned frame has a column the table lacks, or a type wider than the column's. See [Schema evolution](#schema-evolution).
+
+#### `dest_cfg`
+
+Sets additional destination configuration. The only supported key is `awsglue.logging_level`.
+
+## Write behavior
+
+Each entry in `tables` is one destination slot and maps by position to a value returned by the subscriber function.
+
+A write streams the batch to S3 as one Parquet file in the table's `data` folder, and then adds the file to the Iceberg table. The schema change, the emptying of the table on a replace, and the new file go in a single Iceberg commit, so a reader sees either the table as it was or the whole batch.
+
+`if_table_exists="append"` adds rows. `"replace"` removes every row and adds the batch in the same commit. The files of the removed rows stay in S3 until the table's old snapshots are expired.
+
+### Rerunning a write
+
+A write is idempotent. The snapshot it commits records the id of the Tabsdata transaction it belongs to, in the `tabsdata.trx-id` property of the snapshot summary. A rerun of the same transaction finds it and writes nothing, so a retry never duplicates rows.
+
+### Schema evolution
+
+`schema_evolution` decides what a write does when the returned frame has a column the destination table lacks, or a type wider than the column's.
+
+| `schema_evolution` | New column | Wider type |
+| --- | --- | --- |
+| `"strict"` (default) | Refused with `SQL_COMMON_10`, before anything is uploaded | Written when the values fit the column's type; the write fails when one does not |
+| `"update"` | Added to the table | The column is widened: `int` to `long`, `float` to `double`, and a decimal to a higher precision |
+
+A column the frame lacks is read as `NULL` under either setting. A change Iceberg cannot make, such as a number becoming a string, is refused under either setting. The check runs before a replace empties the table, so a refused replace leaves the table as it was.
+
+Schema evolution is applied through Iceberg's own schema update, so there is no engine to choose in `dest_cfg`. See [Schema Evolution](https://docs.tabsdata.com/guide/connectors/schema-evolution) for how the other destinations compare.
+
+### Data types
+
+Columns are stored in the types Iceberg has:
+
+| Tabsdata type | Iceberg type |
+| --- | --- |
+| `Int8`, `Int16`, `UInt8`, `UInt16`, `Int32` | `int` |
+| `UInt32`, `UInt64`, `Int64` | `long` |
+| `Float32`, `Float64` | `float`, `double` |
+| `Decimal` | `decimal` |
+| `Boolean`, `String`, `Binary`, `Date` | `boolean`, `string`, `binary`, `date` |
+| `Datetime` | `timestamp`, in microseconds |
+| `Datetime` with a time zone | `timestamptz`, in UTC |
+| `Categorical`, `Enum` | `string` |
+| `List`, `Array`, `Struct` | `list`, `list`, `struct` |
+
+A `UInt64` value above the range of `long` fails the write. A `Time`, `Duration` or all-null (`Null`) column has no Iceberg type and is refused; cast it in the function.
+
+## Query the tables with Amazon Athena
+
+The tables are regular Iceberg tables in the Glue Data Catalog, so Athena reads them without any further setup. In the Athena query editor, select the `AwsDataCatalog` data source and query the table by its database and name:
+
+```sql
+SELECT * FROM sales.orders LIMIT 10;
+```
+
+Athena also runs the Iceberg maintenance statements on these tables, for example `OPTIMIZE sales.orders REWRITE DATA USING BIN_PACK` to compact the file each write adds, and `VACUUM sales.orders` to expire old snapshots and remove the files a replace left behind.
+
+## Operational notes
+
+-   A one-part table name uses the connection's database. A two-part name names its own database.
+-   Only unpartitioned tables are written. A write to a partitioned table is refused.
+-   The connector writes to a table another Iceberg writer created, as long as the table is stored in S3. The data file goes in that table's own location.
+-   A write to several tables runs one table after another and is not atomic across tables.
+-   Tabsdata does not connect to AWS when the collection is created. Credential, permission, database and bucket errors appear when the subscriber runs.
+
+## Connection
+
+AWS Glue subscribers use `AwsGlueDestConn` to define the catalog, the credentials and the S3 location used by the subscriber.
+
+conn-awsglue.yaml
+
+```yaml
+kind: connectionDef
+apiVersion: '1.0'
+type: tabsdatak.conn.awsglue:AwsGlueDestConn
+spec:
+  region: 'us-east-1'
+  credentials:
+    kind: awsAccessSecretKeyCredentials
+    apiVersion: '1.0'
+    type: tabsdatak.conn.common.types:AwsAccessSecretKey
+    spec:
+      access_key_id: 'secret:AKIAIOSFODNN7EXAMPLE'
+      secret_access_key: 'secret:wJalrXUtnFEMI0EXAMPLEKEY'
+  bucket: 'acme-lake'
+```
+
+-   required
+    
+-   required
+    
+-   required
+    
+-   optional
+    
+-   optional
+    
+-   optional
+    
+-   optional
+    
+
+### Create the collection
+
+A subscriber is registered in a destination collection, and a destination collection is created with its connection. Every function registered in the collection uses that connection.
+
+Generate a connection template, which lists all the connection fields:
+
+```bash
+tdk connection template --type awsglue-iceberg-out --file conn-awsglue.yaml
+```
+
+Edit the template file with the AWS connection information, check it, and create the collection with it:
+
+```bash
+tdk connection validate --file conn-awsglue.yaml
+```
+
+```bash
+tdk collection create --name glue_out --conn-file conn-awsglue.yaml
+```
+
+Then register the subscriber in the collection:
+
+```bash
+tdk fn register --coll glue_out --path write_orders.py::write_orders
+```
+
+-   The collection goes in the `destinations` group, because the connection is a destination connection. `--group` can be left out; if it is given, it must be `destinations`.
+-   `secret:<value>` gives a secret value in the file itself. `$secret:<ENV_VAR>` reads it from an environment variable when the collection is created, so the value never appears in the file. Either way, Tabsdata stores the secret separately, and the stored connection only shows a placeholder.
+-   Functions in the collection must use the connector of its connection: `AwsGlueDest` for a collection created with `AwsGlueDestConn`. Transformers go in a collection of their own.
+-   To change the connection later, for example to rotate the access key, run `tdk collection update --name glue_out --conn-file conn-awsglue.yaml`. The connector cannot change; to use another one, create another collection.
+-   Creating a source or destination collection requires permission to manage the project.
+
+### Connection Config Parameters
+
+#### `region`
+
+The AWS region of the Glue Data Catalog and of the S3 bucket, such as `us-east-1`.
+
+#### `credentials`
+
+The AWS credentials used for both the Glue Data Catalog and the bucket. `AwsAccessSecretKey` requires an `access_key_id` and a `secret_access_key`.
+
+#### `bucket`
+
+The S3 bucket the table files are written to.
+
+#### `base_path`
+
+The prefix in the bucket under which new tables are created. It starts with `/` and has no trailing `/`. A table the connector creates is located at `s3://<bucket><base_path>/<database>/<table>`. Defaults to `/`.
+
+A table that already exists keeps its own location, wherever in S3 that is.
+
+#### `database`
+
+The default Glue database, used by the table names that leave the database out. The database must already exist.
+
+#### `catalog_id`
+
+The id of the Glue Data Catalog: the 12-digit id of the AWS account that owns it. Leave it out to use the catalog of the account the credentials belong to.
+
+#### `conn_cfg`
+
+Optional settings for the two clients the connector uses, told apart by the prefix of the key:
+
+-   `obstore.<option>` is forwarded to the object store client that writes the data files, for example `obstore.endpoint`. See [Object Store Options](https://docs.tabsdata.com/guide/connectors/object-store-options).
+-   `pyiceberg.<property>` is forwarded to the Iceberg catalog. `glue.*` properties reach the Glue client, for example `pyiceberg.glue.endpoint` and `pyiceberg.glue.max-retries`, and `s3.*` properties reach the client that writes the Iceberg metadata files, for example `pyiceberg.s3.endpoint`.
+
+---
+
 # Azure Blob Storage
 
 > Reference for the Tabsdata Azure Blob Storage connector.
@@ -3467,6 +3967,48 @@ warning
 Sets the initial cutoff for incremental ingestion.
 
 On the first run, Tabsdata imports files modified at or after the specified timestamp. The cutoff then advances so subsequent runs only import newer files. The value must be timezone-aware, for example `datetime(2026, 1, 1, tzinfo=timezone.utc)`.
+
+#### \[Optional\] incremental
+
+`incremental` tells Tabsdata how the data read in each run relates to the data read in previous runs. It accepts the following values:
+
+-   `True` (default) - Each run brings data that adds to, or modifies, the data already read. It does not replace it.
+-   `False` - Each run brings a full replacement of the data read before.
+
+The publisher function is still responsible for handling the data accordingly, for example appending or merging incremental data. Tabsdata uses `incremental` to decide what the function receives when a run finds no new data in the source:
+
+| `incremental` | The function receives | Meaning |
+| --- | --- | --- |
+| `True` | An empty `TableFrame` with the same schema as the last one that had data. If no run has had data yet, `None`. | Nothing was added in this run. |
+| `False` | `None` | Nothing changed. The previous data is still valid. |
+
+When the source feeds several inputs to the function, this applies to each input on its own. In the same run one input can bring new data while another has none, so the function can receive a `TableFrame` with data for the first and an empty `TableFrame` or `None` for the second. The schema of an empty `TableFrame` is the one of the last run that had data for that same input.
+
+With `incremental=True` the function can run its usual logic on an empty `TableFrame`, since the columns it expects are there. In both modes the function must handle `None` for every input:
+
+```python
+import tabsdata as td
+
+@td.publisher(
+    source=td.LocalFileSource(
+        [
+            "/users/username/opt/hr/departments.csv",
+            "/users/username/opt/hr/employees.csv",
+        ],
+        initial_last_modified="2021-01-01",
+        incremental=True,
+    ),
+    tables=["departments", "employees"],
+)
+def read_hr(departments: td.TableFrame | None, employees: td.TableFrame | None):
+    if employees is not None:
+        employees = employees.filter(td.col("status") == "active")
+    return departments, employees
+```
+
+note
+
+-   `incremental` does not change what the connector reads from the source. It only changes what the function receives when there is no new data.
 
 #### `src_cfg`
 
@@ -3767,7 +4309,7 @@ The subscriber is registered in a collection created with a `BigQueryDestConn` c
 
 ### Prerequisites
 
--   The BigQuery project and dataset exist, and the service account can create and load tables in them.
+-   The BigQuery project and dataset exist, and the service account can create and load tables in them. The connector creates missing tables, but not the dataset.
 -   The GCS staging bucket exists. The service account can write staged Parquet files there and BigQuery can load them.
 -   The project and dataset are set either in each table name or as connection defaults.
 
@@ -3814,9 +4356,11 @@ Each element in `tables` represents one destination slot and maps positionally t
 
 #### `if_table_exists`
 
-`"merge"` applies inserts, updates, and deletes by key and requires a `merge_cfg` list. See [Merge configuration](https://docs.tabsdata.com/guide/functions/sql-merge#merge-configuration) for a complete example.
+`"merge"` applies inserts, updates, and deletes by key and requires a `merge_cfg` list. See [Merge configuration](https://docs.tabsdata.com/guide/functions/sql-merge#merge-configuration) for a complete example. A merge creates a temporary table next to the target and drops it afterwards, so the user needs to create and drop tables in that dataset.
 
-Controls what happens when the destination table already exists. `"append"` (the default) adds rows. `"replace"` drops and recreates the table.
+Controls what happens when the destination table already exists. `"append"` (the default) adds rows. `"replace"` empties the table (`TRUNCATE TABLE`) and loads the returned rows; the table's partitioning and clustering are kept.
+
+A table the connector creates gets its column types from the returned frame, with every column nullable and no primary key. To choose keys, indexes or partitioning, create the table before the subscriber's first run; the connector writes into an existing table by column name, and `"replace"` keeps its definition. `if_table_exists` applies to every table the subscriber writes; use two subscribers to replace some tables and append to others.
 
 #### `schema_evolution`
 
@@ -3830,7 +4374,7 @@ Sets additional destination configuration. Supported keys include `bigquery.logg
 
 Each entry in `tables` is one destination slot and maps by position to a value returned by the subscriber function. Returning `None` for a slot skips that write.
 
-`if_table_exists="append"` adds rows. `"replace"` drops and recreates the table. `"merge"` applies inserts, updates, and deletes by key and needs `merge_cfg`.
+`if_table_exists="append"` adds rows. `"replace"` empties the table and loads the returned rows. `"merge"` applies inserts, updates, and deletes by key and needs `merge_cfg`.
 
 With `schema_evolution="strict"`, a frame with a new column, or a wider type whose values do not fit, fails instead of changing the table. `"update"` adds and widens columns before the load.
 
@@ -3969,8 +4513,9 @@ The subscriber is registered in a collection created with a `ClickHouseDestConn`
 ### Prerequisites
 
 -   The ClickHouse HTTP or HTTPS endpoint is reachable from the Tabsdata server.
--   The ClickHouse user can create and write destination tables, and can drop them when replace mode is used.
--   Tabsdata can write to the staging location and ClickHouse can read the staged Parquet files.
+-   The target database exists. The connector does not create databases; `database` defaults to `default`.
+-   The ClickHouse user can create tables and insert into them in that database, truncate them when replace mode is used, and alter them when `schema_evolution="update"` is used. It can read `system.tables` and `system.columns`.
+-   Tabsdata can write to the staging location, and ClickHouse can read the staged Parquet files through its `s3` or `azureBlobStorage` table functions (with the matching grant).
 
 ### Subscriber
 
@@ -4013,7 +4558,7 @@ Each element in `tables` represents one destination slot and maps positionally t
 
 #### `if_table_exists`
 
-`"append"` (the default) adds rows to the existing table. `"replace"` overwrites the table: the first run creates it, and later runs drop and recreate it.
+`"append"` (the default) adds rows to the existing table. `"replace"` empties the table and loads the returned rows: the first run creates the table, and later runs truncate it.
 
 #### `schema_evolution`
 
@@ -4027,9 +4572,39 @@ Sets additional destination configuration. The accepted key is `clickhouse.loggi
 
 Each entry in `tables` is one destination slot and maps by position to a value returned by the subscriber function. Returning `None` for a slot skips that write.
 
-`if_table_exists="append"` adds rows. `"replace"` drops and recreates the table. Because the table is recreated, any engine, `ORDER BY` or `PARTITION BY` set on it is lost; a table the connector creates uses `ENGINE = MergeTree() ORDER BY tuple()`. To keep a layout, create the table first and use `"append"`. Neither mode runs in a transaction: if the insert fails after `"replace"`, the table is left empty, and a failed create leaves no table. Multiple tables are written one after another.
+`if_table_exists="append"` adds rows. `"replace"` truncates the table and inserts, so the table's engine, `ORDER BY` and `PARTITION BY` are kept. Neither mode runs in a transaction: if the insert fails after `"replace"`, the table is left empty, and a failed create leaves no table. Multiple tables are written one after another.
 
 With `schema_evolution="strict"`, a new column, or a wider type whose values do not fit, is refused; `"update"` applies supported schema changes.
+
+### Tables the connector creates
+
+A destination table that does not exist is created on the first write as `ENGINE = MergeTree() ORDER BY tuple()`: no sorting key, no primary key and no partitioning. Every scalar column is `Nullable`, dates are `Date32`, timestamps `DateTime64`, durations `Int64` and binary values `String`.
+
+To choose the engine, the sorting or primary key, partitions or non-nullable columns, create the table before the subscriber's first run. The connector inserts into an existing table by column name, a table column the frame lacks takes its default, and `"replace"` truncates the table without changing its definition.
+
+### Replacing some tables and appending to others
+
+`if_table_exists` applies to every table a subscriber writes. To replace some tables and append to others, write them from two subscribers:
+
+```python
+from tabsdatak.api import subscriber, TableFrameSpec, TableFramesSpec
+from tabsdatak.conn.clickhouse import ClickHouseDest
+from tabsdatak.tableframe.functions import concat
+
+@subscriber(
+    destination=ClickHouseDest(tables=["daily_snapshot"], if_table_exists="replace"),
+    input_tables=["sales/daily_snapshot"],
+)
+def export_snapshot(snapshot: TableFrameSpec) -> TableFrameSpec:
+    return snapshot
+
+@subscriber(
+    destination=ClickHouseDest(tables=["events"], if_table_exists="append"),
+    input_tables=["sales/events@NEW"],
+)
+def export_events(events: TableFramesSpec) -> TableFrameSpec:
+    return concat(events)
+```
 
 ### Schema evolution
 
@@ -4132,7 +4707,7 @@ tdk fn register --coll clickhouse_out --path write_orders.py::write_orders
 
 #### `host`, `port`, `database` and `secure`
 
-`host` identifies the ClickHouse server. `port` is the HTTP(S) port, from 1 to 65535, and defaults to `"8123"`. `database` defaults to `"default"` and supplies the database for destination table names without one. `secure` is `"true"` for HTTPS and `"false"` (the default) for HTTP. It does not change the port, so set `port` as well; HTTPS ClickHouse is usually on 8443.
+`host` identifies the ClickHouse server. `port` is the HTTP(S) port, from 1 to 65535, and defaults to `"8123"`. `database` defaults to `"default"` and supplies the database for destination table names without one. The database must already exist. `secure` is `"true"` for HTTPS and `"false"` (the default) for HTTP. It does not change the port, so set `port` as well; HTTPS ClickHouse is usually on 8443.
 
 #### `credentials`
 
@@ -4261,6 +4836,7 @@ The subscriber is registered in a collection created with a `DatabricksDestConn`
 ### Prerequisites
 
 -   The Databricks workspace and SQL warehouse are reachable from the Tabsdata server.
+-   The target catalog and schema exist. The connector creates missing tables, but not the catalog and schema.
 -   The personal access token can use the SQL warehouse and create or write the destination tables.
 -   The configured Unity Catalog volume exists and the token can read and write its staging files.
 
@@ -4307,9 +4883,11 @@ Each element in `tables` represents one destination slot and maps positionally t
 
 #### `if_table_exists`
 
-`"merge"` applies inserts, updates, and deletes by key and requires a `merge_cfg` list. See [Merge configuration](https://docs.tabsdata.com/guide/functions/sql-merge#merge-configuration) for a complete example.
+`"merge"` applies inserts, updates, and deletes by key and requires a `merge_cfg` list. See [Merge configuration](https://docs.tabsdata.com/guide/functions/sql-merge#merge-configuration) for a complete example. A merge creates a temporary table next to the target and drops it afterwards, so the user needs to create and drop tables in that schema.
 
 Controls what happens when the destination table already exists. `"append"` (the default) adds rows. `"replace"` overwrites the table.
+
+A table the connector creates gets its column types from the returned frame, with every column nullable and no primary key. To choose keys, indexes or partitioning, create the table before the subscriber's first run; the connector writes into an existing table by column name, and `"replace"` keeps its definition. `if_table_exists` applies to every table the subscriber writes; use two subscribers to replace some tables and append to others.
 
 #### `schema_evolution`
 
@@ -4640,7 +5218,8 @@ The subscriber is registered in a collection created with a `Db2DestConn` connec
 ### Prerequisites
 
 -   The Db2 server is reachable from the Tabsdata server.
--   The connection user can create missing destination tables and insert rows. With `if_table_exists="replace"`, it also needs to drop and create tables, and with `schema_evolution="update"`, to alter them, and to run `REORG` through `ADMIN_CMD`.
+-   The target database and schema exist. The connector creates missing tables, but not the database and schema.
+-   The connection user can create missing destination tables and insert rows. With `if_table_exists="replace"`, it also needs to delete rows, and with `schema_evolution="update"`, to alter them, and to run `REORG` through `ADMIN_CMD`.
 
 ### Subscriber
 
@@ -4692,7 +5271,9 @@ Db2Dest(
 
 #### `if_table_exists`
 
-Controls what happens when the destination table already has rows. `"append"` (the default) keeps inserting into the existing rows. `"replace"` drops the table and creates it again from the returned frame, so the table's schema follows the frame. With `transactional=True`, the drop, the create and the insert run in one transaction. On `"append"`, `schema_evolution` decides what happens to a new or wider column.
+Controls what happens when the destination table already has rows. `"append"` (the default) keeps inserting into the existing rows. `"replace"` empties the table (`DELETE FROM`) and inserts the returned frame; the table and its definition are kept. On both modes, `schema_evolution` decides what happens to a new or wider column. With `transactional=True`, emptying the table and the insert run in one transaction.
+
+A table the connector creates gets its column types from the returned frame, with every column nullable and no primary key. To choose keys, indexes or partitioning, create the table before the subscriber's first run; the connector writes into an existing table by column name, and `"replace"` keeps its definition. `if_table_exists` applies to every table the subscriber writes; use two subscribers to replace some tables and append to others.
 
 #### `schema_evolution`
 
@@ -4712,7 +5293,7 @@ Queries run when the publisher is triggered. They are not a continuous change fe
 
 Each entry in `tables` is one destination slot and maps by position to a value returned by the subscriber function. Returning `None` for a slot skips that write.
 
-`if_table_exists="append"` keeps the rows already in the destination and inserts the returned rows. `"replace"` drops the table and creates it again from the returned frame. On `"append"`, `schema_evolution="update"` adds new columns and widens number types; removing a column or changing a non-number type still needs a database migration before the subscriber runs.
+`if_table_exists="append"` keeps the rows already in the destination and inserts the returned rows. `"replace"` empties the table and inserts the returned frame, keeping the table's definition. On both modes, `schema_evolution="update"` adds new columns and widens number types; removing a column or changing a non-number type still needs a database migration before the subscriber runs.
 
 ### Schema evolution
 
@@ -4957,11 +5538,10 @@ def stream_sales_changes(
 
 `batch_max_secs=120` hands the captured changes to the function at least every two minutes. The `batch_*` parameters decide when a batch of changes is handed to the function, and are the same for every stream source. See [Stream Publishers](https://docs.tabsdata.com/guide/functions/stream-publishers#batch-parameters) for all of them.
 
-A stream publisher differs from a regular publisher in three ways:
+A stream publisher differs from a regular publisher in two ways:
 
 -   It has no trigger. Registering it starts the stream worker, which runs until the function is disabled or deleted.
 -   Each element of `tables` is one function parameter, and each parameter receives a list of frames: the changes captured for that table since the previous batch. Fold them with `concat`, which also returns `None` when the batch carried nothing for that table.
--   The function must not declare a `ctx` parameter.
 
 ### Function Config Parameters
 
@@ -5096,6 +5676,8 @@ Use `"columns"` with `flatten_columns=True` for changes that land in a table and
 -   The stream reads only what `asncap` has captured. If Capture stops, the stream sees no new changes until it is running again.
 -   If a tracked table is deregistered, its registration is deactivated, Capture cold-starts, or pruning removes CD rows the stream has not read yet, the stream fails with an error explaining what happened. The fix is to restore the registration if needed and run a new full load: reset the stage with `start_from="full"`.
 -   A CD table added to `tables` after the stream started has no recorded position, so the stream fails until a new full load runs.
+
+When a stream batch closes, it is staged for processing, and at that point its commit-sequence position is saved with it. The staged batch is then scheduled for processing, which may not start right away because a previous batch may still be processing; its Table Versions are written when that processing ends; see [Delivery: when the data is in the Table](https://docs.tabsdata.com/guide/functions/stream-publishers#delivery-when-the-data-is-in-the-table).
 
 ## Connection
 
@@ -5306,6 +5888,48 @@ warning
 Sets the initial cutoff for incremental ingestion.
 
 On the first run, Tabsdata imports files modified at or after the specified timestamp. The cutoff then advances so subsequent runs only import newer files. The value must be timezone-aware, for example `datetime(2026, 1, 1, tzinfo=timezone.utc)`.
+
+#### \[Optional\] incremental
+
+`incremental` tells Tabsdata how the data read in each run relates to the data read in previous runs. It accepts the following values:
+
+-   `True` (default) - Each run brings data that adds to, or modifies, the data already read. It does not replace it.
+-   `False` - Each run brings a full replacement of the data read before.
+
+The publisher function is still responsible for handling the data accordingly, for example appending or merging incremental data. Tabsdata uses `incremental` to decide what the function receives when a run finds no new data in the source:
+
+| `incremental` | The function receives | Meaning |
+| --- | --- | --- |
+| `True` | An empty `TableFrame` with the same schema as the last one that had data. If no run has had data yet, `None`. | Nothing was added in this run. |
+| `False` | `None` | Nothing changed. The previous data is still valid. |
+
+When the source feeds several inputs to the function, this applies to each input on its own. In the same run one input can bring new data while another has none, so the function can receive a `TableFrame` with data for the first and an empty `TableFrame` or `None` for the second. The schema of an empty `TableFrame` is the one of the last run that had data for that same input.
+
+With `incremental=True` the function can run its usual logic on an empty `TableFrame`, since the columns it expects are there. In both modes the function must handle `None` for every input:
+
+```python
+import tabsdata as td
+
+@td.publisher(
+    source=td.LocalFileSource(
+        [
+            "/users/username/opt/hr/departments.csv",
+            "/users/username/opt/hr/employees.csv",
+        ],
+        initial_last_modified="2021-01-01",
+        incremental=True,
+    ),
+    tables=["departments", "employees"],
+)
+def read_hr(departments: td.TableFrame | None, employees: td.TableFrame | None):
+    if employees is not None:
+        employees = employees.filter(td.col("status") == "active")
+    return departments, employees
+```
+
+note
+
+-   `incremental` does not change what the connector reads from the source. It only changes what the function receives when there is no new data.
 
 #### `src_cfg`
 
@@ -5677,11 +6301,10 @@ def read_orders(orders: TableFramesSpec) -> TableFrameSpec:
 
 `batch_max_secs=120` hands the consumed messages to the function at least every two minutes. The `batch_*` parameters decide when a batch of messages is handed to the function, and are the same for every stream source. See [Stream Publishers](https://docs.tabsdata.com/guide/functions/stream-publishers#batch-parameters) for all of them.
 
-A stream publisher differs from a regular publisher in three ways:
+A stream publisher differs from a regular publisher in two ways:
 
 -   It has no trigger. Registering it starts the stream worker, which runs until the function is disabled or deleted.
 -   A Kafka source has a single slot, so the function has a single parameter. It receives a list of frames: the messages consumed since the previous batch. Fold them with `concat`, which also returns `None` when the batch carried no messages.
--   The function must not declare a `ctx` parameter.
 
 The table names come from `output_tables`, not from the topic.
 
@@ -5726,7 +6349,7 @@ The schema of the messages, as a string. What it is used for depends on the form
 
 #### `dlq_topic`
 
-A dead letter topic. A message that cannot be decoded, does not match the schema, or does not fit the column types of the batch is written to this topic, and the stream carries on.
+A dead letter topic. A message that cannot be decoded, does not match the schema, or does not fit the column types of the batch is written to this topic, and the stream carries on. Dead letters are written at least once, even though the Tables are not: a batch read again after a restart or a rebalance sends its dead letters again. If you count, alert on or replay the dead letter topic, deduplicate on the source topic, partition and offset of each dead letter.
 
 Without a `dlq_topic`, such a message stops the stream. Tabsdata restarts the stream after a while, but it stops again on the same message, so set a `dlq_topic` for any topic that may carry malformed messages.
 
@@ -5779,9 +6402,9 @@ There is no start position to configure. The stream resumes from the offsets com
 
 ### Delivery
 
-A Kafka stream is at least once. The stream commits the offsets of a batch once the batch is handed over. If the stream stops between handing over a batch and committing it, the messages of that batch are published again after the restart, so remove duplicates downstream if they matter.
+A Kafka stream is at least once. When a batch closes, it is staged for processing: its files and manifest are written to the Function's stage, so it will be processed, and at that point its offsets are committed. If the stream stops after staging a batch but before committing its offsets, the batch is processed and its messages are also read again after the restart, so remove duplicates downstream if they matter. The staged batch is then scheduled for processing, which may not start right away because a previous batch may still be processing; its Table Version is written when that processing ends. See [Delivery: when the data is in the Table](https://docs.tabsdata.com/guide/functions/stream-publishers#delivery-when-the-data-is-in-the-table). Consumer lag at zero means staged, not loaded. Dead letters are also at least once; see the dead letter topic option above.
 
-Disabling the function stops the stream. Messages read but not yet handed over are read again when it is enabled.
+Disabling the function stops the stream. Messages read but not yet staged are read again when it is enabled.
 
 ### One consumer group per collection
 
@@ -6069,6 +6692,48 @@ Sets the initial cutoff for incremental ingestion.
 
 On the first run, Tabsdata imports files modified at or after the specified timestamp. The cutoff then advances so subsequent runs only import newer files. The value must be timezone-aware, for example `datetime(2026, 1, 1, tzinfo=timezone.utc)`.
 
+#### \[Optional\] incremental
+
+`incremental` tells Tabsdata how the data read in each run relates to the data read in previous runs. It accepts the following values:
+
+-   `True` (default) - Each run brings data that adds to, or modifies, the data already read. It does not replace it.
+-   `False` - Each run brings a full replacement of the data read before.
+
+The publisher function is still responsible for handling the data accordingly, for example appending or merging incremental data. Tabsdata uses `incremental` to decide what the function receives when a run finds no new data in the source:
+
+| `incremental` | The function receives | Meaning |
+| --- | --- | --- |
+| `True` | An empty `TableFrame` with the same schema as the last one that had data. If no run has had data yet, `None`. | Nothing was added in this run. |
+| `False` | `None` | Nothing changed. The previous data is still valid. |
+
+When the source feeds several inputs to the function, this applies to each input on its own. In the same run one input can bring new data while another has none, so the function can receive a `TableFrame` with data for the first and an empty `TableFrame` or `None` for the second. The schema of an empty `TableFrame` is the one of the last run that had data for that same input.
+
+With `incremental=True` the function can run its usual logic on an empty `TableFrame`, since the columns it expects are there. In both modes the function must handle `None` for every input:
+
+```python
+import tabsdata as td
+
+@td.publisher(
+    source=td.LocalFileSource(
+        [
+            "/users/username/opt/hr/departments.csv",
+            "/users/username/opt/hr/employees.csv",
+        ],
+        initial_last_modified="2021-01-01",
+        incremental=True,
+    ),
+    tables=["departments", "employees"],
+)
+def read_hr(departments: td.TableFrame | None, employees: td.TableFrame | None):
+    if employees is not None:
+        employees = employees.filter(td.col("status") == "active")
+    return departments, employees
+```
+
+note
+
+-   `incremental` does not change what the connector reads from the source. It only changes what the function receives when there is no new data.
+
 #### `src_cfg`
 
 Sets additional source configuration.
@@ -6089,7 +6754,7 @@ The subscriber is registered in a collection created with a `LocalFileDestConn` 
 
 ### Prerequisites
 
--   The configured `base_path` exists on the Tabsdata server and is writable by the function worker.
+-   The function worker can write to the configured `base_path` on the Tabsdata server. The connector creates `base_path` and any folders in a destination path when they are missing.
 -   Every destination path stays under `base_path`; parent-directory segments and globs are refused.
 -   Enough disk space is available for the files written by the run.
 
@@ -6423,7 +7088,8 @@ The subscriber is registered in a collection created with a `MySQLDestConn` conn
 ### Prerequisites
 
 -   The MariaDB server is reachable from the Tabsdata server.
--   The connection user can create missing destination tables and insert rows. With `if_table_exists="replace"`, it also needs to drop and create tables, and with `schema_evolution="update"`, to alter them.
+-   The target database exists. The connector creates missing tables, but not the database.
+-   The connection user can create missing destination tables and insert rows. With `if_table_exists="replace"`, it also needs to truncate tables, and with `schema_evolution="update"`, to alter them.
 
 ### Subscriber
 
@@ -6475,7 +7141,9 @@ MySQLDest(
 
 #### `if_table_exists`
 
-Controls what happens when the destination table already has rows. `"append"` (the default) keeps inserting into the existing rows. `"replace"` drops the table and creates it again from the returned frame, so the table's schema follows the frame. The drop and the create commit implicitly, so a failed write is not undone. On `"append"`, `schema_evolution` decides what happens to a new or wider column.
+Controls what happens when the destination table already has rows. `"append"` (the default) keeps inserting into the existing rows. `"replace"` empties the table (`TRUNCATE TABLE`) and inserts the returned frame; the table and its definition are kept. On both modes, `schema_evolution` decides what happens to a new or wider column. `TRUNCATE` commits implicitly, so if the insert fails the table is left empty.
+
+A table the connector creates gets its column types from the returned frame, with every column nullable and no primary key. To choose keys, indexes or partitioning, create the table before the subscriber's first run; the connector writes into an existing table by column name, and `"replace"` keeps its definition. `if_table_exists` applies to every table the subscriber writes; use two subscribers to replace some tables and append to others.
 
 #### `schema_evolution`
 
@@ -6495,7 +7163,7 @@ Queries run when the publisher is triggered. They are not a continuous change fe
 
 Each entry in `tables` is one destination slot and maps by position to a value returned by the subscriber function. Returning `None` for a slot skips that write.
 
-`if_table_exists="append"` keeps the rows already in the destination and inserts the returned rows. `"replace"` drops the table and creates it again from the returned frame. On `"append"`, `schema_evolution="update"` adds new columns and widens number types; removing a column or changing a non-number type still needs a database migration before the subscriber runs.
+`if_table_exists="append"` keeps the rows already in the destination and inserts the returned rows. `"replace"` empties the table and inserts the returned frame, keeping the table's definition. On both modes, `schema_evolution="update"` adds new columns and widens number types; removing a column or changing a non-number type still needs a database migration before the subscriber runs.
 
 ### Schema evolution
 
@@ -6969,7 +7637,8 @@ The subscriber is registered in a collection created with a `MSSQLDestConn` conn
 
 -   The MSSQL server is reachable from the Tabsdata server.
 -   The Microsoft ODBC Driver 18 for SQL Server is installed on the Tabsdata server. The URI names it with `driver`; see [Installing Third-Party Database Drivers](https://docs.tabsdata.com/server-admin/third-party-database-drivers).
--   The connection user can create missing destination tables and insert rows. With `if_table_exists="replace"`, it also needs to drop and create tables, and with `schema_evolution="update"`, to alter them.
+-   The target database and schema exist. The connector creates missing tables, but not the database and schema.
+-   The connection user can create missing destination tables and insert rows. With `if_table_exists="replace"`, it also needs to truncate tables, and with `schema_evolution="update"`, to alter them.
 
 ### Subscriber
 
@@ -7021,7 +7690,9 @@ MSSQLDest(
 
 #### `if_table_exists`
 
-Controls what happens when the destination table already has rows. `"append"` (the default) keeps inserting into the existing rows. `"replace"` drops the table and creates it again from the returned frame, so the table's schema follows the frame. With `transactional=True`, the drop, the create and the insert run in one transaction. On `"append"`, `schema_evolution` decides what happens to a new or wider column.
+Controls what happens when the destination table already has rows. `"append"` (the default) keeps inserting into the existing rows. `"replace"` empties the table (`TRUNCATE TABLE`) and inserts the returned frame; the table and its definition are kept. On both modes, `schema_evolution` decides what happens to a new or wider column. With `transactional=True`, emptying the table and the insert run in one transaction.
+
+A table the connector creates gets its column types from the returned frame, with every column nullable and no primary key. To choose keys, indexes or partitioning, create the table before the subscriber's first run; the connector writes into an existing table by column name, and `"replace"` keeps its definition. `if_table_exists` applies to every table the subscriber writes; use two subscribers to replace some tables and append to others.
 
 #### `schema_evolution`
 
@@ -7041,7 +7712,7 @@ Queries run when the publisher is triggered. They are not a continuous change fe
 
 Each entry in `tables` is one destination slot and maps by position to a value returned by the subscriber function. Returning `None` for a slot skips that write.
 
-`if_table_exists="append"` keeps the rows already in the destination and inserts the returned rows. `"replace"` drops the table and creates it again from the returned frame. On `"append"`, `schema_evolution="update"` adds new columns and widens number types; removing a column or changing a non-number type still needs a database migration before the subscriber runs.
+`if_table_exists="append"` keeps the rows already in the destination and inserts the returned rows. `"replace"` empties the table and inserts the returned frame, keeping the table's definition. On both modes, `schema_evolution="update"` adds new columns and widens number types; removing a column or changing a non-number type still needs a database migration before the subscriber runs.
 
 ### Schema evolution
 
@@ -7330,7 +8001,8 @@ The subscriber is registered in a collection created with a `MySQLDestConn` conn
 ### Prerequisites
 
 -   The MySQL server is reachable from the Tabsdata server.
--   The connection user can create missing destination tables and insert rows. With `if_table_exists="replace"`, it also needs to drop and create tables, and with `schema_evolution="update"`, to alter them.
+-   The target database exists. The connector creates missing tables, but not the database.
+-   The connection user can create missing destination tables and insert rows. With `if_table_exists="replace"`, it also needs to truncate tables, and with `schema_evolution="update"`, to alter them.
 
 ### Subscriber
 
@@ -7382,7 +8054,9 @@ MySQLDest(
 
 #### `if_table_exists`
 
-Controls what happens when the destination table already has rows. `"append"` (the default) keeps inserting into the existing rows. `"replace"` drops the table and creates it again from the returned frame, so the table's schema follows the frame. The drop and the create commit implicitly, so a failed write is not undone. On `"append"`, `schema_evolution` decides what happens to a new or wider column.
+Controls what happens when the destination table already has rows. `"append"` (the default) keeps inserting into the existing rows. `"replace"` empties the table (`TRUNCATE TABLE`) and inserts the returned frame; the table and its definition are kept. On both modes, `schema_evolution` decides what happens to a new or wider column. `TRUNCATE` commits implicitly, so if the insert fails the table is left empty.
+
+A table the connector creates gets its column types from the returned frame, with every column nullable and no primary key. To choose keys, indexes or partitioning, create the table before the subscriber's first run; the connector writes into an existing table by column name, and `"replace"` keeps its definition. `if_table_exists` applies to every table the subscriber writes; use two subscribers to replace some tables and append to others.
 
 #### `schema_evolution`
 
@@ -7402,7 +8076,7 @@ Queries run when the publisher is triggered. They are not a continuous change fe
 
 Each entry in `tables` is one destination slot and maps by position to a value returned by the subscriber function. Returning `None` for a slot skips that write.
 
-`if_table_exists="append"` keeps the rows already in the destination and inserts the returned rows. `"replace"` drops the table and creates it again from the returned frame. On `"append"`, `schema_evolution="update"` adds new columns and widens number types; removing a column or changing a non-number type still needs a database migration before the subscriber runs.
+`if_table_exists="append"` keeps the rows already in the destination and inserts the returned rows. `"replace"` empties the table and inserts the returned frame, keeping the table's definition. On both modes, `schema_evolution="update"` adds new columns and widens number types; removing a column or changing a non-number type still needs a database migration before the subscriber runs.
 
 ### Schema evolution
 
@@ -7645,11 +8319,10 @@ def stream_sales_changes(
 
 `batch_max_secs=120` hands the captured changes to the function at least every two minutes. The `batch_*` parameters decide when a batch of changes is handed to the function, and are the same for every stream source. See [Stream Publishers](https://docs.tabsdata.com/guide/functions/stream-publishers#batch-parameters) for all of them.
 
-A stream publisher differs from a regular publisher in three ways:
+A stream publisher differs from a regular publisher in two ways:
 
 -   It has no trigger. Registering it starts the stream worker, which runs until the function is disabled or deleted.
 -   Each element of `tables` is one function parameter, and each parameter receives a list of frames: the changes captured for that table since the previous batch. Fold them with `concat`, which also returns `None` when the batch carried nothing for that table.
--   The function must not declare a `ctx` parameter.
 
 ### Function Config Parameters
 
@@ -7782,6 +8455,8 @@ Use `"columns"` with `flatten_columns=True` for changes that land in a table and
 -   MariaDB is not supported. A `mariadb://` URI is accepted, but the server check fails with `MYSQL_27`, because MariaDB has no `gtid_mode`.
 -   MySQL has no replication slot, so a stopped stream holds nothing on the server. It resumes from its recorded GTID, provided the server still retains the binlogs from that point. If they were purged, the stream fails and needs a new full load: reset the stage with `start_from="full"`.
 -   A stream follows one source server. Switching it to another server (for example after a failover) is not supported: the new server's changes would be dropped as already published. Start a new stream instead.
+
+When a stream batch closes, it is staged for processing, and at that point its binlog position is saved with it. The staged batch is then scheduled for processing, which may not start right away because a previous batch may still be processing; its Table Versions are written when that processing ends; see [Delivery: when the data is in the Table](https://docs.tabsdata.com/guide/functions/stream-publishers#delivery-when-the-data-is-in-the-table).
 
 ## Connection
 
@@ -7989,7 +8664,8 @@ The subscriber is registered in a collection created with a `OracleDestConn` con
 ### Prerequisites
 
 -   The Oracle server is reachable from the Tabsdata server.
--   The connection user can create missing destination tables and insert rows. With `if_table_exists="replace"`, it also needs to drop and create tables, and with `schema_evolution="update"`, to alter them.
+-   The target schema (user) exists. The connector creates missing tables, but not the schema (user).
+-   The connection user can create missing destination tables and insert rows. With `if_table_exists="replace"`, it also needs to truncate tables, and with `schema_evolution="update"`, to alter them.
 
 ### Subscriber
 
@@ -8041,7 +8717,9 @@ OracleDest(
 
 #### `if_table_exists`
 
-Controls what happens when the destination table already has rows. `"append"` (the default) keeps inserting into the existing rows. `"replace"` drops the table and creates it again from the returned frame, so the table's schema follows the frame. The drop and the create commit implicitly, so a failed write is not undone. On `"append"`, `schema_evolution` decides what happens to a new or wider column.
+Controls what happens when the destination table already has rows. `"append"` (the default) keeps inserting into the existing rows. `"replace"` empties the table (`TRUNCATE TABLE`) and inserts the returned frame; the table and its definition are kept. On both modes, `schema_evolution` decides what happens to a new or wider column. `TRUNCATE` commits implicitly, so if the insert fails the table is left empty.
+
+A table the connector creates gets its column types from the returned frame, with every column nullable and no primary key. To choose keys, indexes or partitioning, create the table before the subscriber's first run; the connector writes into an existing table by column name, and `"replace"` keeps its definition. `if_table_exists` applies to every table the subscriber writes; use two subscribers to replace some tables and append to others.
 
 #### `schema_evolution`
 
@@ -8061,7 +8739,7 @@ Queries run when the publisher is triggered. They are not a continuous change fe
 
 Each entry in `tables` is one destination slot and maps by position to a value returned by the subscriber function. Returning `None` for a slot skips that write.
 
-`if_table_exists="append"` keeps the rows already in the destination and inserts the returned rows. `"replace"` drops the table and creates it again from the returned frame. On `"append"`, `schema_evolution="update"` adds new columns and widens number types; removing a column or changing a non-number type still needs a database migration before the subscriber runs.
+`if_table_exists="append"` keeps the rows already in the destination and inserts the returned rows. `"replace"` empties the table and inserts the returned frame, keeping the table's definition. On both modes, `schema_evolution="update"` adds new columns and widens number types; removing a column or changing a non-number type still needs a database migration before the subscriber runs.
 
 ### Schema evolution
 
@@ -8350,7 +9028,8 @@ The subscriber is registered in a collection created with a `PostgresDestConn` c
 ### Prerequisites
 
 -   The Postgres server is reachable from the Tabsdata server.
--   The connection user can create missing destination tables and insert rows. With `if_table_exists="replace"`, it also needs to drop and create tables, and with `schema_evolution="update"`, to alter them.
+-   The target database and schema exist. The connector creates missing tables, but not the database and schema.
+-   The connection user can create missing destination tables and insert rows. With `if_table_exists="replace"`, it also needs to truncate tables, and with `schema_evolution="update"`, to alter them.
 
 ### Subscriber
 
@@ -8402,7 +9081,9 @@ PostgresDest(
 
 #### `if_table_exists`
 
-Controls what happens when the destination table already has rows. `"append"` (the default) keeps inserting into the existing rows. `"replace"` drops the table and creates it again from the returned frame, so the table's schema follows the frame. With `transactional=True`, the drop, the create and the insert run in one transaction. On `"append"`, `schema_evolution` decides what happens to a new or wider column.
+Controls what happens when the destination table already has rows. `"append"` (the default) keeps inserting into the existing rows. `"replace"` empties the table (`TRUNCATE TABLE`) and inserts the returned frame; the table and its definition are kept. On both modes, `schema_evolution` decides what happens to a new or wider column. With `transactional=True`, emptying the table and the insert run in one transaction.
+
+A table the connector creates gets its column types from the returned frame, with every column nullable and no primary key. To choose keys, indexes or partitioning, create the table before the subscriber's first run; the connector writes into an existing table by column name, and `"replace"` keeps its definition. `if_table_exists` applies to every table the subscriber writes; use two subscribers to replace some tables and append to others.
 
 #### `schema_evolution`
 
@@ -8422,7 +9103,7 @@ Queries run when the publisher is triggered. They are not a continuous change fe
 
 Each entry in `tables` is one destination slot and maps by position to a value returned by the subscriber function. Returning `None` for a slot skips that write.
 
-`if_table_exists="append"` keeps the rows already in the destination and inserts the returned rows. `"replace"` drops the table and creates it again from the returned frame. On `"append"`, `schema_evolution="update"` adds new columns and widens number types; removing a column or changing a non-number type still needs a database migration before the subscriber runs.
+`if_table_exists="append"` keeps the rows already in the destination and inserts the returned rows. `"replace"` empties the table and inserts the returned frame, keeping the table's definition. On both modes, `schema_evolution="update"` adds new columns and widens number types; removing a column or changing a non-number type still needs a database migration before the subscriber runs.
 
 ### Schema evolution
 
@@ -8674,11 +9355,10 @@ def stream_sales_changes(
 
 `batch_max_secs=120` hands the captured changes to the function at least every two minutes. The `batch_*` parameters decide when a batch of changes is handed to the function, and are the same for every stream source. See [Stream Publishers](https://docs.tabsdata.com/guide/functions/stream-publishers#batch-parameters) for all of them.
 
-A stream publisher differs from a regular publisher in three ways:
+A stream publisher differs from a regular publisher in two ways:
 
 -   It has no trigger. Registering it starts the stream worker, which runs until the function is disabled or deleted.
 -   Each element of `tables` is one function parameter, and each parameter receives a list of frames: the changes captured for that table since the previous batch. Fold them with `concat`, which also returns `None` when the batch carried nothing for that table.
--   The function must not declare a `ctx` parameter.
 
 ### Function Config Parameters
 
@@ -8815,6 +9495,8 @@ Use `"columns"` with `flatten_columns=True` for changes that land in a table and
 -   Stopping a stream does not lose changes: the slot keeps the WAL, and the stream resumes from its recorded position. The server also keeps that WAL until the stream consumes it, or until the slot is dropped.
 -   If the slot is dropped or invalidated, the server is restored from a backup, or the stream's position no longer matches the server, the stream fails with an error explaining what happened. In most of those cases the fix is a new full load: reset the stage with `start_from="full"`.
 -   A slot can only be read by one connection at a time. A stream whose slot is still held by another connection fails after a timeout.
+
+When a stream batch closes, it is staged for processing, and at that point its WAL position is saved with it and confirmed on the replication slot, so the database can release the WAL before it. The staged batch is then scheduled for processing, which may not start right away because a previous batch may still be processing; its Table Versions are written when that processing ends. A slot's confirmed LSN means staged, not loaded; see [Delivery: when the data is in the Table](https://docs.tabsdata.com/guide/functions/stream-publishers#delivery-when-the-data-is-in-the-table).
 
 ## Connection
 
@@ -9186,6 +9868,7 @@ The subscriber is registered in a collection created with a `SnowflakeDestConn` 
 ### Prerequisites
 
 -   The Snowflake account is reachable from the Tabsdata server.
+-   The target database, schema and warehouse exist. The connector creates missing tables, but not the database, schema or warehouse.
 -   The configured role can use the warehouse, database, and schema, and can create or write the destination tables.
 -   If `stage` is set, the configured role can use that permanent stage. If it is left out, the connector creates a session-scoped temporary stage.
 
@@ -9233,6 +9916,8 @@ Each element in `tables` represents one destination slot and maps positionally t
 `"merge"` applies inserts, updates, and deletes by key and requires a `merge_cfg` list. See [Merge configuration](https://docs.tabsdata.com/guide/functions/sql-merge#merge-configuration) for a complete example.
 
 Controls what happens when the destination table already exists. `"append"` (the default) adds rows. `"replace"` issues `TRUNCATE` before `COPY INTO`, so the existing schema is preserved.
+
+A table the connector creates gets its column types from the returned frame, with every column nullable and no primary key. To choose keys, indexes or partitioning, create the table before the subscriber's first run; the connector writes into an existing table by column name, and `"replace"` keeps its definition. `if_table_exists` applies to every table the subscriber writes; use two subscribers to replace some tables and append to others.
 
 #### `dest_cfg`
 
@@ -9361,6 +10046,8 @@ An optional warehouse the connection runs `USE WAREHOUSE` for. `USE WAREHOUSE` i
 
 An optional permanent stage used for `PUT` and `COPY INTO`. When unset, the plugin creates a session-scoped temporary stage instead.
 
+If `stage` names a stage that does not exist, the connector creates it, which needs `CREATE STAGE` on the schema; without `stage`, a temporary stage is used.
+
 #### `conn_cfg`
 
 Optional connector-config overrides, forwarded to `snowflake-connector-python`.
@@ -9384,7 +10071,7 @@ The subscriber is registered in a collection created with a `StarRocksDestConn` 
 ### Prerequisites
 
 -   The StarRocks frontend is reachable from the Tabsdata server.
--   Every destination table already exists. The connector cannot infer its key model or distribution strategy.
+-   The target database and every destination table exist. The connector creates neither. The connector cannot infer a table's key model or distribution strategy.
 -   Tabsdata can write to the staging location and StarRocks can read the staged Parquet files.
 -   The StarRocks user can insert into the destination tables and truncate them when replace mode is used.
 
@@ -10377,9 +11064,9 @@ See [Execution and Triggers](https://docs.tabsdata.com/guide/execution-and-trigg
 
 Whenever a Function is triggered, Tabsdata uses the declared Table dependencies to build an [Execution Plan](https://docs.tabsdata.com/guide/execution/execution-plans) containing all the downstream Functions that need to run.
 
-The Execution Plan determines the order in which Functions execute, including Functions across different Collections, so that each Function runs after the Tables it depends on have been updated.
+The Execution Plan determines the order in which Functions execute, including Functions across different Collections. It orders Functions by their triggers: each Function runs after the Functions that write its trigger Tables.
 
-As the plan executes, each Function reads the data written by the upstream Functions in that same execution. However, Tabsdata does not commit any of the new Table versions until every Function in the Execution Plan has completed successfully.
+As the plan executes, each Function reads the data written by the upstream Functions in that same execution. An input that is not a trigger Table, and whose writer is not upstream of one, is read at its version from before the plan. However, Tabsdata does not commit any of the new Table versions until every Function in the Execution Plan has completed successfully.
 
 If any Function fails, none of the new Table versions are committed. This prevents partially completed workflows from leaving Tables in inconsistent states.
 
@@ -10401,13 +11088,7 @@ Manually
 
 When you run it
 
-When a function is executed through the `tdk fn trigger` CLI Command or through the `trigger` button in the Tabsdata UI
-
-On a schedule
-
-At set times
-
-When a function is executed on a CRON schedule
+When a function is executed through the `tdk fn trigger` CLI command
 
 On new data
 
@@ -10415,23 +11096,182 @@ When an input Table receives new data
 
 Execute the Function whenever an input Table receives a new Version.
 
+On a schedule
+
+At set times
+
+When a function is executed on a CRON schedule
+
 On a stream batch
 
 When a batch of streamed data is due
 
 Execute the Function each time a stream worker, such as SQL CDC or Kafka, hands over a batch
 
-## Automatic orchestration
+## Manual Triggers
 
-No matter which trigger fires a function, Tabsdata doesn't run just that one function. It follows the data dependencies and builds an [execution plan](https://docs.tabsdata.com/guide/execution/execution-plans): the graph of every function that must run as a result, in the correct order, across collections. There is no orchestration for you to wire up.
+Manual triggers are initiated by a CLI command.
 
-## Pristine state
+For example, you can trigger a publisher to read sales data from a database table and publish it to the Tabsdata server.
 
-Every table in an execution plan stays in sync, because new data is only committed if every function in the plan succeeds. A partial failure commits nothing.
+You can manually trigger any enabled Tabsdata function, even those with a specified automated trigger.
+
+### Using CLI
+
+To trigger a function, use the following command in a command line interface:
+
+```bash
+$ tdk fn trigger --coll <collection_name> --name <function_name>
+```
+
+Where:
+
+-   `<collection_name>` is the name of the collection in the Tabsdata server that the function is registered with.
+-   `<function_name>` is the name of the function to be executed. This name is defined when the function is registered.
+
+## Automated Triggers
+
+Automated triggers are initiated by a new commit to one of the tables associated with the function. For example, you might define an inventory subscriber function that exports data from a Tabsdata inventory table to AWS S3 every time the inventory table receives a commit.
+
+Note that a commit does not always include changes in the table data. For example, a publisher that writes to three tables performs a commit to all three tables with each execution, irrespective of whether there is a change in data for any of the tables.
+
+Since the functions are automatically triggered which in turn create a new commit to other tables, Tabsdata enables a cascading workflow of updates to downstream tables.
+
+### trigger\_by
+
+Triggers in Tabsdata functions are defined using the `trigger_by` property. There are three ways to configure it:
+
+Select a configuration to see what it does and how it looks in code.
+
+Default behavior
+
+When `trigger_by` is omitted, the behavior depends on the kind of function:
+
+-   **Publishers** have no trigger by default, so the publisher can only be triggered manually.
+-   **Transformers** and **subscribers** are triggered by a commit to any of their input tables. To trigger on a different set of tables, define `trigger_by` with a non-empty array.
+
+transformer.pyNot defined
+
+```python
+@transformer(
+  input_tables=["sales"],
+  output_tables=["sales_by_rep"],
+)
+def summarize(sales: TableFrameSpec) -> TableFrameSpec:
+  return sales
+```
+
+## Cron Triggers
+
+With Cron triggers, Publishers, Subscribers, and Transformers can be configured to run periodically within Tabsdata without the need for manual triggers or external schedulers.
+
+Similar to automated triggers, you work with the `trigger_by` parameter. However, unlike automated triggers, the `trigger_by` parameter must be configured with a `CronTrigger` object.
+
+The `CronTrigger` object requires a Unix crontab `mask`.
+
+note
+
+Tabsdata uses the **UTC timezone** to interpret all crontab schedules.
+
+Select a mask to see what it does and how it looks in code.
+
+Standard crontab
+
+The `mask` parameter defines the frequency of the execution. It follows the standard Unix crontab specification consisting of 5 elements with minute precision.
+
+`0 * * * *` triggers the function at the beginning of every hour.
+
+publisher.pyFive-field mask
+
+```python
+@publisher(
+  trigger_by=CronTrigger("0 * * * *"),
+  source=MySQLSrc(queries=["SELECT * FROM my_table"]),
+  output_tables=["my_table"],
+)
+def my_publisher(my_table: TableFrameSpec) -> TableFrameSpec:
+  return my_table
+```
+
+### Configuration Parameters
+
+#### The mask Parameter
+
+The `mask` parameter defines the frequency of the execution. It follows the standard Unix crontab specification consisting of **5 elements** with minute precision.
+
+-   **Syntax:** `Minute Hour Day Month Day-of-Week`
+-   **Extensions:** `@yearly`, `@annually`, `@monthly`, `@weekly`, `@daily`, `@midnight`, `@hourly` and `@every <duration>` are also supported.
+
+##### Examples
+
+| Mask | Description |
+| --- | --- |
+| 0,30 \* \* \* \* | Runs every 30 minutes (at the top of the hour and at minute 30). |
+| 0 0 \* \* \* | Runs daily at the beginning of the day (00:00 UTC). |
+| 0 22 \* \* FRI | Runs at 10:00 PM (22:00 UTC) every Friday. |
+
+##### References
+
+-   [Open Group Base Specification: Crontab](https://pubs.opengroup.org/onlinepubs/9799919799/utilities/crontab.html)
+-   [Wikipedia: Cron](https://en.wikipedia.org/wiki/Cron)
+
+### Trigger Scheduling Lifecycle
+
+The execution of Cron triggers is dependent on the enabled status of the function.
+
+1.  **Registration:** When registering or updating a function, it can be set as **enabled** (default) or **disabled** via the `tdk` command line interface.
+    
+    ```bash
+    tdk fn register --coll <collection_name> --path <file>.py::<function_name> --disabled
+    tdk fn update --coll <collection_name> --name <function_name> --path <file>.py::<function_name> --disabled
+    ```
+    
+2.  **Runtime Control:** An existing function can be toggled between enabled and disabled states with `tdk fn enable` / `tdk fn disable`.
+    
+    ```bash
+    tdk fn enable --coll <collection_name> --name <function_name>
+    tdk fn disable --coll <collection_name> --name <function_name>
+    ```
+    
+    -   **Enabled:** Tabsdata will trigger the function according to the defined crontab mask.
+    -   **Disabled:** Tabsdata will ignore the crontab mask and the function will not trigger automatically.
+
+### Example
+
+The following is an example of a Publisher configured to trigger at the beginning of every hour.
+
+```python
+from tabsdatak.api import CronTrigger, publisher, TableFrameSpec
+from tabsdatak.conn.mysql import MySQLSrc
+
+
+@publisher(
+    trigger_by=CronTrigger("0 * * * *"),
+    source=MySQLSrc(
+        queries=["SELECT * FROM my_table"],
+    ),
+    output_tables=["my_table"],
+)
+def my_publisher(my_table: TableFrameSpec) -> TableFrameSpec:
+    return my_table
+```
+
+The connection details (host, credentials) live on the collection's connection file, not in the function. See [MySQL](https://docs.tabsdata.com/tutorials/publishers/mysql) for the full setup.
+
+## Enabled and disabled Functions
+
+A Function is registered enabled unless `tdk fn register` is given `--disabled`, and `tdk fn enable` / `tdk fn disable` switch it later (`tdk stream` and `tdk cron` have the same commands for their Functions). A disabled Function is not run by any trigger:
+
+-   a commit to one of its trigger Tables does not plan it, and Functions downstream of it do not run through it;
+-   its cron schedule is ignored;
+-   a stream publisher's worker is stopped, and does not consume;
+-   `tdk fn trigger` refuses it.
+
+Enabling a Function does not run it; its next run comes from its next trigger. `tdk fn update` enables a disabled Function unless `--disabled` is given again.
 
 ## Streaming publishers
 
-A normal publisher pulls a batch of data each time it runs. A **streaming publisher** stays running continuously, creating new table versions as data arrives: for change-data-capture feeds, log tails, and message queues like [Kafka](https://docs.tabsdata.com/tutorials/publishers/kafka).
+A normal publisher pulls a batch of data each time it runs. A **streaming publisher** stays running continuously, creating new table versions as data arrives: for change-data-capture feeds and message queues like [Kafka](https://docs.tabsdata.com/tutorials/publishers/kafka).
 
 ---
 
@@ -10453,6 +11293,8 @@ tdk fn trigger --coll <collection_name> --name <function_name>
 
 `<function_name>` is the name the Function was registered under, not the name of its file.
 
+`tdk fn trigger` refuses a [disabled Function](https://docs.tabsdata.com/guide/execution-and-triggers#enabled-and-disabled-functions).
+
 ## The default for Publishers
 
 A Publisher reads no Tabsdata Tables, so there is nothing upstream that could fire it. With no `trigger_by` on the decorator, a Publisher runs only when triggered manually.
@@ -10463,7 +11305,7 @@ Transformers and Subscribers behave differently, because they do have input Tabl
 
 Triggering one Function does not run only that Function. Tabsdata builds an [Execution Plan](https://docs.tabsdata.com/guide/execution/execution-plans) covering every downstream Function that has to run as a result, and nothing commits unless all of them succeed.
 
-For the UI walkthrough and the full `trigger_by` reference, see [Working with Triggers](https://docs.tabsdata.com/guide/triggers).
+For the full `trigger_by` reference, see [Trigger Overview](https://docs.tabsdata.com/guide/execution-and-triggers#trigger_by).
 
 ---
 
@@ -10537,43 +11379,122 @@ The example above names a MySQL query but carries no host and no password. Those
 
 Source: https://docs.tabsdata.com/guide/triggers/table-commit
 
-A Table trigger runs a Function whenever one of the Tables it watches receives a new Version. This is what makes a pipeline cascade: a Publisher commits, the Transformers reading that Table run, they commit in turn, and the chain continues to the Subscribers at the end.
+A Table Commit Trigger executes a Function whenever one of its specified Tables commits a new version. This allows functions to execute automatically as data moves between them. For example, when a Publisher commits a new Table version, it can trigger a Transformer, which then commits its own output and triggers downstream Functions.
 
 _Video: A new Table Version triggering a Function run_
 
-Configure it with the `trigger_by` list on the decorator.
+Table Commit Triggers are configured using the `trigger_by` parameter in a Function's decorator.
 
-## The three configurations
+## Configuring Table Commit Triggers
 
-**Omitted.** Transformers and Subscribers fire on a commit to any of their input Tables. Publishers have no input Tables, so they get no automatic trigger at all and run manually or on a schedule.
+There are three ways to configure a Table Commit Trigger:
 
-**An empty list.** `trigger_by=[]` disables automatic triggering. Use it when a Transformer or Subscriber should read its input Tables but not wake up when they change.
+-   **Omitting `trigger_by`:** Transformers and Subscribers automatically execute when any of their input Tables commits a new version. Publishers have no input Tables, so they do not receive automatic Table Commit Triggers.
+-   **Providing an empty list:** Setting `trigger_by=TablesTrigger(tables=[])` disables automatic Table Commit Triggers. The Function can still read its input Tables, but commits to those Tables will not trigger an execution.
+-   **Specifying a list of Tables:** The Function executes when any Table in the list commits a new version. This allows you to trigger a Function using only certain input Tables or even Tables that the Function does not read.
 
-**A non-empty list.** The Function watches exactly the Tables named and nothing else. This is how you trigger on a subset of the input Tables, or on a Table the Function does not read at all.
+For example:
+
+-   Omitted
+-   Empty list
+-   Partial input table trigger
+-   Non-input table trigger
 
 ```python
 @transformer(
-    trigger_by=["sales", "inventory/stock"],
-    input_tables=["sales"],
+    input_tables=["sales", "inventory"],
     output_tables=["sales_by_rep"],
 )
-def summarize(sales: TableFrameSpec) -> TableFrameSpec:
+def summarize(sales: TableFrameSpec, inventory: TableFrameSpec) -> TableFrameSpec:
     return sales
 ```
 
-## Referencing another Collection's Tables
+```python
+@transformer(
+    trigger_by=TablesTrigger(tables=[]),
+    input_tables=["sales", "inventory"],
+    output_tables=["sales_by_rep"],
+)
+def summarize(sales: TableFrameSpec, inventory: TableFrameSpec) -> TableFrameSpec:
+    return sales
+```
 
-Write a Table outside the Function's own Collection as `collection/table`, as `inventory/stock` does above. Unqualified names resolve inside the Function's own Collection.
+```python
+@transformer(
+    trigger_by=TablesTrigger(tables=["sales"]),
+    input_tables=["sales", "inventory"],
+    output_tables=["sales_by_rep"],
+)
+def summarize(sales: TableFrameSpec, inventory: TableFrameSpec) -> TableFrameSpec:
+    return sales
+```
 
-Cross-Collection references work only within a single Project. A reference that crosses Projects surfaces as `Dependency table '<x>' does not exist`, because the row is not visible rather than missing.
+```python
+@transformer(
+    trigger_by=TablesTrigger(tables=["ops/refresh_signal"]),
+    input_tables=["sales", "inventory"],
+    output_tables=["sales_by_rep"],
+)
+def summarize(sales: TableFrameSpec, inventory: TableFrameSpec) -> TableFrameSpec:
+    return sales
+```
 
-A Table cannot trigger the Function that writes it.
+Functions can also be [disabled](https://docs.tabsdata.com/guide/execution-and-triggers#enabled-and-disabled-functions). Disabled Functions do not execute when their trigger Tables commit new versions, preventing downstream Functions from executing through them.
 
-## A commit is not the same as a change
+## Table Commit Triggers and Dependency Configuration
 
-Every successful run commits a new Version, whether or not the rows differ from the previous one. A Publisher writing three Tables commits all three on every run, so a Function watching any of them fires each time, even for the Tables whose contents were identical.
+When a Function has multiple input Tables, the Tables specified in `trigger_by` also determine execution order within an execution.
 
-Returning `None` from a slot also commits a new Version, one that keeps the Table's previous data, so downstream Functions watching that Table fire for it too. See [`None` inputs and outputs](https://docs.tabsdata.com/guide/functions/#none-inputs-and-outputs).
+Tabsdata uses `trigger_by` to establish execution dependencies. If a Function reads an input Table that isn't listed as a trigger, it does not wait for that Table to be updated.
+
+For example, the following Transformer reads both `sales` and `inventory`, but only triggers on commits to `sales`:
+
+```python
+@transformer(
+    input_tables=["sales", "inventory"],
+    output_tables=["sales_with_stock"],
+    trigger_by=TablesTrigger(tables=["sales"]),
+)
+def sales_with_stock(sales: TableFrameSpec, inventory: TableFrameSpec) -> TableFrameSpec:
+    return sales.join(inventory, on="product_id")
+```
+
+If both `sales` and `inventory` tables are updated in the same execution plan, the Transformer only receives the update from the `sales` table. Unless `inventory` is upstream of a specified trigger Table, the Transformer reads the version that existed before the execution plan started. This modified behavior will not cause the function to fail, which may lead to silently passing stale data through the workflow.
+
+If both `sales` and `inventory` were set to trigger this Function, then this Function would receive the newest version of both `sales` and `inventory`.
+
+This restriction prevents circular execution dependencies, since Tabsdata only checks trigger relationships for cycles.
+
+The behavior also applies to Table version references:
+
+-   **`@HEAD`:** Resolves to the latest version available to the Function within the execution plan.
+-   **`@HEAD^`, `@HEAD~N`, and version ranges:** Resolve relative to that same version.
+
+To ensure the Function reads updated versions of all its input Tables, include each input in `trigger_by`, or simply omit `trigger_by` since all input Tables are used as triggers by default.
+
+## Referencing Tables in other Collections
+
+Functions can use Tables from other Collections within the same Project by specifying the Collection name:
+
+`collection/table`
+
+For example, `inventory/stock` references the `stock` Table in the `inventory` Collection. Without a Collection name, Tabsdata assumes the Table belongs to the Function's own Collection.
+
+Cross-Collection references are only supported within the same Project. Referencing a Table in another Project produces a `Dependency table '<x>' does not exist` error because the Table is not accessible from the current Project.
+
+A Function also cannot use its own output Table as a trigger.
+
+## Table commits vs. data changes
+
+Table Commit Triggers respond to new Table versions, not changes to the data itself.
+
+Every successful Function execution commits a new version of each output Table, regardless of whether its contents have changed.
+
+For example, a Publisher with three output Tables commits a new version of all three Tables on every successful run. Any downstream Function watching those Tables will execute, even if their data remains identical to the previous version.
+
+This also applies when a Function returns `None`. Although `None` preserves the data from the previous Table version, a new version is still committed and triggers downstream Functions.
+
+See [`None` as output](https://docs.tabsdata.com/guide/functions/#none-as-output) for more information.
 
 ---
 
@@ -10609,9 +11530,11 @@ def ingest(users: TableFramesSpec) -> TableFrameSpec:
 
 ## How a batch becomes a run
 
-A stream worker reads the source continuously. What it reads is buffered in memory and written out to data files as the buffer fills. When a batch is due, the files written so far, and anything still in memory, are staged and handed to the Function as one batch. The Function runs once per batch and commits a new Version of each of its output Tables.
+A stream worker reads the source continuously. What it reads is buffered in memory and written out to data files in the Function's stage as the buffer fills. When a batch is due, anything still in memory is written too, and the batch is staged for processing: its manifest is written, and the batch is scheduled for processing. Its processing may wait for a previous batch to finish; when it ends, it commits a new Version of each of its output Tables.
 
 The worker is long-lived and independent of the Function. It keeps reading while the previous batch is being processed, so a slow Function does not drop records. Batches are processed one at a time, in order, and if the Function takes longer than the batch interval, batches queue up and are processed in turn.
+
+A [disabled](https://docs.tabsdata.com/guide/execution-and-triggers#enabled-and-disabled-functions) stream publisher does not consume; `tdk stream enable` starts it from where it stopped.
 
 ## When a batch is due
 
@@ -10640,11 +11563,25 @@ The CDC sources track a list of qualified Table names and resume from a stored p
 
 ## Constraints on the Function
 
-A `@stream_publisher` differs from the other decorators in three ways:
+A `@stream_publisher` differs from the other decorators in two ways:
 
 -   It takes one `TableFramesSpec` parameter per source slot, always in array mode, because a batch is a list of frames rather than a single frame.
 -   It returns one `TableFrame` per output Table, the same as a Publisher.
--   It must **not** declare a `ctx` parameter. It runs inside the runtime's stream loop rather than per-transaction, so there is no `TrxCtx` at the call boundary and declaring one fails registration.
+
+Like the other decorators, it may declare an optional trailing `ctx: TransactionCtx` parameter. The function runs once per batch, in the transaction that commits the batch, so `ctx` carries that transaction's ids and the function's state store (`ctx.get_attr` / `ctx.set_attr`), which persists from one batch to the next.
+
+```python
+@stream_publisher(
+    source=KafkaStreamSrc(topic="clickstream", data_format="json", schema=EVENT_SCHEMA),
+    batch_max_secs=300,
+    output_tables=["events"],
+)
+def stream_events(batches: TableFramesSpec, ctx: TransactionCtx) -> TableFrameSpec:
+    seen = (ctx.get_attr("batches") or 0) + 1
+    ctx.set_attr("batches", seen)
+    frames = [frame for frame in (batches or []) if frame is not None]
+    return frames[0] if frames else None
+```
 
 See [Stream Publishers](https://docs.tabsdata.com/guide/functions/stream-publishers) for the decorator's parameters and lifecycle.
 
@@ -10820,170 +11757,68 @@ The Tabsdata **User Interface** (UI) is a web interface for inspecting and manag
 
 When running Tabsdata locally, the UI is available at `http://localhost:2457`, where `2457` is the Server's default public port. Sign in using the same username and password used with the `tdk` CLI.
 
-The UI demo provides a read-only Tabsdata Server with three Projects and existing execution history. Actions that create, modify, trigger, or delete resources are disabled.
-
-[Explore the UI](https://docs.tabsdata.com/ui-demo/)
-
-## Overview
-
-The **Overview** page summarizes activity across every Project in the Server.
-
-For each Project, the page shows:
-
--   Tables committed
--   Rows committed
--   Running Executions
--   Warnings
--   Errors
-
-Activity can be viewed across six time ranges.
-
 ## Projects
 
-The **Projects** page shows activity for the selected Project, including data that is currently in flight and data that has already been committed.
+Opening a Project shows a graph of its data flow or its execution flow. Selecting a group, Collection, Table, Function or Execution shows its details in the panel on the right.
 
-The page also includes a graph of committed data over time.
+From a Project, you can:
 
-From the UI, you can:
-
--   Create Projects
--   Share Projects
--   Switch the currently selected Project
-
-Most pages in the UI are scoped to the selected Project. Use the Project selector in the side panel to switch between Projects.
-
-## Collections
-
-The **Collections** page lists the Collections within the selected Project.
-
-Opening a Collection shows its:
-
--   Functions
--   Tables
--   Connection configuration
-
-Sensitive credentials stored in a Connection are hidden from the UI.
-
-From the UI, you can also:
-
--   Create, edit, and delete Collections
--   Grant a Collection access to Tables in another Collection
--   Remove previously granted access
-
-## Functions
-
-Opening a **Function** shows the code registered with Tabsdata and its version history.
-
-Function versions are retained so you can inspect previous versions, including the version used for a particular Function Run.
-
-From the UI, you can:
-
--   Trigger a Function
--   Delete a Function
-
-Editing a Function's code is performed using `tdk` rather than through the UI.
-
-## Tables
-
-Opening a **Table** shows its schema, sample rows, and version history.
-
-Each Table version includes the Execution that wrote it, allowing changes in the Table to be traced back to the Execution that produced them.
-
-The Table page also includes **Run SQL query**, which lets you edit and run a SQL query against the Table's sample data.
-
-From the UI, you can also delete a Table.
+-   Switch between the data flow and execution flow views
+-   View a Collection's Tables, Functions and Connection
+-   Inspect a Table's schema, versions, lineage and data quality
+-   Run a SQL query against a Table's data
+-   Read a Function's registered code
+-   Share the Project with other users
+-   Pin items for quick access
 
 ## Executions
 
-The **Executions** page shows the Execution Plans created within the selected Project.
+From the **Executions** pages, you can:
 
-Execution Plans are separated into:
-
--   Active
--   Issues
--   Finished
-
-Opening an Execution Plan shows a graph of its execution flow and provides access to the Transactions, Function Runs, and Workers created as part of the Execution.
-
-Transactions, Function Runs, and Workers can each be filtered by status.
-
-### Worker logs
-
-Opening a Worker provides access to the logs produced while it was running.
-
-Worker logs can be:
-
--   Viewed in the UI
--   Viewed in their raw form
--   Downloaded
+-   Filter Executions, Transactions, Function Runs and Workers by status
+-   Open an Execution to see the status of each run on its graph
+-   Cancel or recover an Execution
+-   Open a Worker's log
+-   View cron triggers and stream sources
 
 When a Function Run fails, its Worker logs contain the output and errors produced during execution.
 
-### Triggers
-
-The Executions area also shows the triggers configured for the Project, including:
-
--   Cron Triggers
--   Stream Sources
-
-This lets you inspect both what causes Functions to run and the Execution Plans created when they run.
-
-## Search
-
-The **Search** page searches for resources across the Tabsdata Server.
-
-Use Search to locate a resource without navigating through its Project and Collection.
-
 ## Tabby
 
-**Tabby** is the built-in Tabsdata agent for interacting with and inspecting a Tabsdata Server. See [Tabby](https://docs.tabsdata.com/guide/tabby) for setup, commands, and an example chat.
-
-Tabby requires an Anthropic or OpenAI API key to be configured on the Server.
+**Tabby** is the built-in Tabsdata agent for interacting with and inspecting a Tabsdata Server. It requires an Anthropic or OpenAI API key to be configured on the Server. See [Tabby](https://docs.tabsdata.com/guide/tabby) for setup, commands, and an example chat.
 
 From Tabby, you can:
 
--   Start a new chat
--   Continue existing chats
--   Stop a response while it is being generated
--   Search previous messages
--   Export a chat as Markdown
--   Use page-specific suggested prompts
--   Run a Server health check
+-   Ask about the Project you are viewing
+-   Start a new conversation or continue a past one
+-   Copy a conversation
+-   Choose the model
 
-Suggested prompts depend on the page you are viewing. For example, a Collection page may include prompts for listing Functions or creating a Publisher.
+## Search
 
-The **Run health check** action generates an AI-written report about the current health of the Server.
+**Search** finds Collections, Tables and Functions by name within a Project.
 
-## Security
+## Admin
 
-The **Security** page manages users, roles, and permissions for the Tabsdata Server.
+From **Admin**, you can:
 
-From the UI, you can:
-
--   Create, edit, and delete users
--   Create and delete roles
--   Add users to roles
--   Remove users from roles
--   Grant permissions
--   Remove permissions
-
-## System
-
-The **System** page shows the status and runtime information for the Tabsdata Server.
+-   View the Server's users
+-   Set a user's system permissions
+-   Check the Server's status and version
+-   View Executions and triggers across every Project
 
 ## Account
 
-The **Account** page shows information about the currently signed-in user.
-
-From the UI, you can also:
+From **Account**, you can:
 
 -   Change your password
--   Log out
 -   Switch between light and dark themes
--   Pin resources to the side panel
--   Clear pinned resources
+-   See your roles
+-   Set the time zone dates are shown in
+-   Create and revoke service tokens
+-   Log out
 
-The Server's SSL certificate can also be downloaded from the login page.
+A service token lets scripts and CI jobs act on your behalf. Clients send it in the `Authorization` header as a bearer token.
 
 ---
 
@@ -11014,10 +11849,6 @@ anthropic claude-sonnet-4-6
 Ask anything about your data flows… (⌘K)
 
 ↑
-
-The UI demo includes the Tabby page. Messages cannot be sent from the demo.
-
-[Open Tabby in the UI demo](https://docs.tabsdata.com/ui-demo/tabby)
 
 ## Requirements
 
@@ -12380,7 +13211,7 @@ Two tables are live in **sales\_cdc**, and both gain a version per batch:
 └───────────────────┴─────────────────┴───────────────────┘
 ```
 
-`start_from` also accepts `"full"` for a full load of the tracked tables followed by their changes, `"head"` to begin at the oldest retained log, or an explicit position. Rows carry the change operation, so a downstream transformer can apply inserts, updates and deletes rather than treating every row as new. A stream publisher takes no `trigger_by` and must not declare a `ctx` parameter.
+`start_from` also accepts `"full"` for a full load of the tracked tables followed by their changes, `"head"` to begin at the oldest retained log, or an explicit position. Rows carry the change operation, so a downstream transformer can apply inserts, updates and deletes rather than treating every row as new. A stream publisher takes no `trigger_by`.
 
 See [Db2 CDC](https://docs.tabsdata.com/guide/connectors/db2-cdc) for every option of the source.
 
@@ -12732,7 +13563,7 @@ Stream worker started. First batch committed after 128 MB, 0 failures.
 └───────────────────┴───────────────┘
 ```
 
-`schema` is required, and messages that fail to deserialize go to `dlq_topic` while the stream carries on. Without a `dlq_topic`, such a message stops the stream. A stream publisher takes no `trigger_by` at all, and it must not declare a `ctx` parameter, because it runs inside the stream loop rather than once per transaction.
+`schema` is required, and messages that fail to deserialize go to `dlq_topic` while the stream carries on. Without a `dlq_topic`, such a message stops the stream. A stream publisher takes no `trigger_by` at all.
 
 See [Kafka](https://docs.tabsdata.com/guide/connectors/kafka) for every option of the source and the connection, and [Batch parameters](https://docs.tabsdata.com/guide/functions/stream-publishers#batch-parameters) for when a batch is due.
 
@@ -13204,7 +14035,7 @@ Two tables are live in **sales\_cdc**, and both gain a version per batch:
 └───────────────────┴─────────────────┴───────────────────┘
 ```
 
-`start_from` also accepts `"full"` for a full load of the tracked tables followed by their changes, `"head"` to begin at the oldest retained binlog, or an explicit position. Rows carry the change operation, so a downstream transformer can apply inserts, updates and deletes rather than treating every row as new. A stream publisher takes no `trigger_by` and must not declare a `ctx` parameter.
+`start_from` also accepts `"full"` for a full load of the tracked tables followed by their changes, `"head"` to begin at the oldest retained binlog, or an explicit position. Rows carry the change operation, so a downstream transformer can apply inserts, updates and deletes rather than treating every row as new. A stream publisher takes no `trigger_by`.
 
 See [MySQL CDC](https://docs.tabsdata.com/guide/connectors/mysql-cdc) for every option of the source.
 
@@ -28245,7 +29076,7 @@ s3_credentials = td.S3AccessKeyCredentials(
                 schema_strategy = "<schema_strategy_update_strict>",
                 ),
                 ),
-    trigger_by=["<trigger_table1>", "<trigger_table2>"]),
+    trigger_by=td.TablesTrigger(tables=["<trigger_table1>", "<trigger_table2>"])),
 def <subscriber_name>(<table_frame1>: td.TableFrame, <table_frame2>: td.TableFrame):
     <function_logic>
     return <table_frame_output1>, <table_frame_output2>
@@ -28936,7 +29767,7 @@ catalog_definition =
             ....
           ),
           ),
-        trigger_by=["<trigger_table1>", "<trigger_table2>"]
+        trigger_by=td.TablesTrigger(tables=["<trigger_table1>", "<trigger_table2>"])
   ),
 def write_employees(tf1: td.TableFrame, tf2: td.TableFrame, tf3: td.TableFrame):
     return tf1, tf2, tf3
@@ -28987,7 +29818,7 @@ catalog_definition =
                 schema_strategy = "<schema_strategy_update_strict>",
                 ),
                 ),
-    trigger_by=["<trigger_table1>", "<trigger_table2>"]),
+    trigger_by=td.TablesTrigger(tables=["<trigger_table1>", "<trigger_table2>"])),
 def <subscriber_name>(<table_frame1>: td.TableFrame, <table_frame2>: td.TableFrame):
     <function_logic>
     return <table_frame_output1>, <table_frame_output2>
@@ -30121,7 +30952,7 @@ import tabsdata as td
         schema_strategy: str = "update" # update or strict
     ),
 
-    trigger_by=["<trigger_table1>", "<trigger_table2>"],
+    trigger_by=td.TablesTrigger(tables=["<trigger_table1>", "<trigger_table2>"]),
 
 )
 
@@ -30339,7 +31170,7 @@ Called tabsdata 2 times (ctrl+o to expand)
 
 ⏺
 
-Generating — trigger\_by narrows the default trigger set to orders alone. regions is still read on every run and still supplies its current data, it just no longer starts one.
+Generating — trigger\_by narrows the default trigger set to orders alone. regions is still read on every run, it just no longer starts one.
 
 Called tabsdata 3 times (ctrl+o to expand)
 
@@ -30351,7 +31182,7 @@ The transformer, registered in sales:
 @transformer(
   input_tables=["orders", "regions"],
   output_tables=["orders_by_region"],
-  trigger_by=["orders"],
+  trigger_by=TablesTrigger(tables=["orders"]),
 )
 def summarize(orders: TableFrameSpec, regions: TableFrameSpec) -> TableFrameSpec:
   return orders.group_by("region").agg(col("amount").sum())
@@ -30359,7 +31190,7 @@ def summarize(orders: TableFrameSpec, regions: TableFrameSpec) -> TableFrameSpec
 
 ⏺
 
-This is not about avoiding duplicate runs. A plan that commits both tables runs the transformer once either way, since the plan covers every downstream function and orders them by dependency rather than firing one run per committed table.
+regions no longer orders the run either. If the same plan writes regions, the transformer reads its version from before the plan. Add regions to trigger\_by to get the new one.
 
 AI agent session
 
@@ -30385,7 +31216,7 @@ The transformer, registered in sales:
 @transformer(
   input_tables=["orders", "regions"],
   output_tables=["orders_by_region"],
-  trigger_by=["purchases"],
+  trigger_by=TablesTrigger(tables=["purchases"]),
 )
 def summarize(orders: TableFrameSpec, regions: TableFrameSpec) -> TableFrameSpec:
   return orders.group_by("region").agg(col("amount").sum())
@@ -30411,7 +31242,7 @@ Called tabsdata 2 times (ctrl+o to expand)
 
 ⏺
 
-Generating — an empty trigger\_by. Orders and regions are both still read as inputs, and neither commit starts a run any more.
+Generating — an empty TablesTrigger. Orders and regions are both still read as inputs, and neither commit starts a run any more.
 
 Called tabsdata 3 times (ctrl+o to expand)
 
@@ -30423,7 +31254,7 @@ The transformer, registered in sales:
 @transformer(
   input_tables=["orders", "regions"],
   output_tables=["orders_by_region"],
-  trigger_by=[],
+  trigger_by=TablesTrigger(tables=[]),
 )
 def summarize(orders: TableFrameSpec, regions: TableFrameSpec) -> TableFrameSpec:
   return orders.group_by("region").agg(col("amount").sum())
@@ -30534,7 +31365,7 @@ inventory/products and inventory/stock are live — the worker is reading the bi
 └───────────────┴──────────────┴───────┘
 ```
 
-One output table per tracked table, in order, and one input slot per output table. The function declares no transaction context, since it runs inside the runtime's stream loop rather than per-transaction.
+One output table per tracked table, in order, and one input slot per output table.
 
 ## Where the stream starts
 
@@ -30686,7 +31517,7 @@ events/clicks is live — the worker is consuming, and the first batch lands wit
 └────────────────┴───────────┘
 ```
 
-`schema` is required. Without a schema registry, every JSON message is validated against it. The function takes one input slot per source, always in array mode, and declares no transaction context: it runs inside the runtime's stream loop rather than per-transaction.
+`schema` is required. Without a schema registry, every JSON message is validated against it. The function takes one input slot per source, always in array mode.
 
 ## When a batch is due
 
@@ -31325,11 +32156,11 @@ After installing, add the Tabsdata skill for your coding agent; see [Configure Y
 -   pip
 
 ```bash
-uv pip install "tabsdata[all]"
+uv pip install tabsdata
 ```
 
 ```bash
-pip install "tabsdata[all]"
+pip install tabsdata
 ```
 
 Some Notes on Tabsdata Server Providers
@@ -31490,7 +32321,7 @@ Before you begin
 
 A coding agent uses Tabsdata through `tdk`, in its own shell, and the Tabsdata skill tells it when Tabsdata fits a task and how to use it. Supported agents are Claude Code, Codex, Cursor, VS Code, Gemini CLI and Antigravity.
 
-Install the skill from the virtual environment that has `tabsdata[all]`. It is installed for every supported agent on the machine:
+Install the skill from the virtual environment that has `tabsdata`. It is installed for every supported agent on the machine:
 
 ```bash
 tdk ai agents install
@@ -31863,13 +32694,13 @@ From a machine with EKS cluster access, create a Python virtual environment and 
 **Using uv:**
 
 ```text
-uv pip install "tabsdata[all]"
+uv pip install tabsdata
 ```
 
 **Using pip:**
 
 ```text
-pip install "tabsdata[all]"
+pip install tabsdata
 ```
 
 **Note:** PostgreSQL connectors require a database driver that Tabsdata cannot redistribute. See "Installing Third-Party Database Drivers" if needed before proceeding.
@@ -32519,13 +33350,13 @@ From a machine with AKS cluster access, create a Python virtual environment and 
 **Using uv:**
 
 ```text
-uv pip install "tabsdata[all]"
+uv pip install tabsdata
 ```
 
 **Using pip:**
 
 ```text
-pip install "tabsdata[all]"
+pip install tabsdata
 ```
 
 **Note:** PostgreSQL connectors require a database driver that Tabsdata cannot redistribute. See "Installing Third-Party Database Drivers" if needed before proceeding.
@@ -32934,13 +33765,13 @@ From a machine with GKE cluster access, create a Python virtual environment and 
 **Using uv:**
 
 ```text
-uv pip install "tabsdata[all]"
+uv pip install tabsdata
 ```
 
 **Using pip:**
 
 ```text
-pip install "tabsdata[all]"
+pip install tabsdata
 ```
 
 **Note:** PostgreSQL connectors require a database driver that Tabsdata cannot redistribute. See "Installing Third-Party Database Drivers" if needed before proceeding.

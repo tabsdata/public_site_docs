@@ -1,6 +1,6 @@
 # FunctionCtx
 
-> Context handed to a user-decorated function (`@publisher` / `@transformer` / `@subscriber`) that declares a trailing `ctx` parameter.
+> Context handed to a user-decorated function (`@publisher` / `@stream_publisher` / `@transformer` / `@subscriber`) that declares a trailing `ctx` parameter.
 
 Source: https://docs.tabsdata.com/api/category/functions/functions/functionctx
 
@@ -14,7 +14,7 @@ Bases: [TransactionCtx](https://docs.tabsdata.com/api/module/tabsdatak-api#tabsd
 
 **Categories:** functions
 
-Context handed to a user-decorated function (`@publisher` / `@transformer` / `@subscriber`) that declares a trailing `ctx` parameter.
+Context handed to a user-decorated function (`@publisher` / `@stream_publisher` / `@transformer` / `@subscriber`) that declares a trailing `ctx` parameter.
 
 Combines [`TransactionCtx`](https://docs.tabsdata.com/api/module/tabsdatak-api#tabsdatak.api.TransactionCtx) (trx identifiers + per-flow attributes via `get_attr` / `set_attr`) with [`FlowCtx`](https://docs.tabsdata.com/api/category/functions/functions/flowctx) (flow identifiers), so the function can read state from the previous run and persist state for the next. It also gives the function the secrets of its project (`secret_names` / `secret`). Unlike the plugin contexts of `tabsdatak.spi` it does not carry plugin-only surface such as `work_dir`.
 

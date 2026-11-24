@@ -25,6 +25,8 @@ Bases: [Conn](https://docs.tabsdata.com/api/category/spi/spi/conn)
 
 Snowflake account connection.
 
+The database and schema must already exist; a named stage is created when missing.
+
 Registered on a collection; the runtime resolves it and hands it to the plugin at run time. Each string field accepts a plain string or a [`Secret`](https://docs.tabsdata.com/api/category/connectors/credentials/secret). `role` / `database` / `schema` / `warehouse` follow the same Snowflake identifier rules as `stage`.
 
 ## Parameters

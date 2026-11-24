@@ -21,6 +21,8 @@ Bases: [Conn](https://docs.tabsdata.com/api/category/spi/spi/conn)
 
 MySQL connection used by [`MySQLDest`](https://docs.tabsdata.com/api/category/connectors/destination/mysqldest).
 
+The database must already exist.
+
 Attribute-identical to [`MySQLSrcConn`](https://docs.tabsdata.com/api/category/connectors/source/mysqlsrcconn) but a distinct class; source and destination connections are separate types and cannot be used in place of one another. See [`MySQLSrcConn`](https://docs.tabsdata.com/api/category/connectors/source/mysqlsrcconn) for the field meanings.
 
 ## Parameters

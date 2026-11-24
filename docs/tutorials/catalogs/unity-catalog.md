@@ -68,7 +68,7 @@ import tabsdata as td
         schema_strategy: str = "update" # update or strict
     ),
 
-    trigger_by=["<trigger_table1>", "<trigger_table2>"],
+    trigger_by=td.TablesTrigger(tables=["<trigger_table1>", "<trigger_table2>"]),
 
 )
 

@@ -19,7 +19,6 @@ Source: https://docs.tabsdata.com/api/module/tabsdatak-conn-clickhouse
 | [`GCSLocation`](https://docs.tabsdata.com/api/category/connectors/destination/gcslocation-clickhouse) | GCS staging area for `ClickHouseDest`. |
 | [`IfTableExistsSpec`](#tabsdatak.conn.clickhouse.IfTableExistsSpec) |  |
 | [`S3Location`](https://docs.tabsdata.com/api/category/connectors/destination/s3location-clickhouse) | S3 staging area for `ClickHouseDest`. |
-| [`SchemaEvolutionEngineSpec`](#tabsdatak.conn.clickhouse.SchemaEvolutionEngineSpec) | Which machinery evolves the target's schema. |
 | [`SchemaEvolutionSpec`](#tabsdatak.conn.clickhouse.SchemaEvolutionSpec) |  |
 
 * * *
@@ -85,7 +84,7 @@ str | Secret
 type\_alias
 
 ```python
-DestCfgKey: Literal['clickhouse.logging_level', 'clickhouse.schema_evolution_engine']
+DestCfgKey: Literal['clickhouse.logging_level']
 ```
 
 * * *
@@ -101,7 +100,7 @@ DestCfgSpec: Mapping[DestCfgKey, Any]
 **Resolved type:**
 
 ```python
-Mapping[Literal['clickhouse.logging_level', 'clickhouse.schema_evolution_engine'], Any]
+Mapping[Literal['clickhouse.logging_level'], Any]
 ```
 
 * * *
@@ -113,18 +112,6 @@ type\_alias
 ```python
 IfTableExistsSpec: Literal['append', 'replace']
 ```
-
-* * *
-
-## SchemaEvolutionEngineSpec
-
-type\_alias
-
-```python
-SchemaEvolutionEngineSpec: Literal['iceberg']
-```
-
-Which machinery evolves the target's schema. ClickHouse has no schema evolution of its own, so the only engine is `"iceberg"`: the connector diffs the target against the incoming batch and emits the `ALTER` statements itself.
 
 * * *
 

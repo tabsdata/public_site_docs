@@ -26,10 +26,6 @@ Ask anything about your data flows… (⌘K)
 
 ↑
 
-The UI demo includes the Tabby page. Messages cannot be sent from the demo.
-
-[Open Tabby in the UI demo](https://docs.tabsdata.com/ui-demo/tabby)
-
 ## Requirements
 
 Tabby runs in the Server's AI agent service, on port `2459` by default, and requires an Anthropic or OpenAI API key. When no key is configured, the Server starts without the AI agent service and Tabby is unavailable.

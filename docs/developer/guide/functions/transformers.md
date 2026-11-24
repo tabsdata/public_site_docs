@@ -94,20 +94,20 @@ find\_big\_cities.py
         
 -   Reads the country and city data, joins it, and returns cities with a population above three million.
     
-    -   The arguments receive the data from `input_tables` in the order listed. An argument is `None` if the requested Table version does not exist.
+    -   The arguments receive the data from `input_tables` in the order listed. An argument is `None` if the requested Table version does not exist or has no data. An argument read at `@NEW` is an empty list when no version was committed since the last run.
         
     -   Renames the country name column, removes unused columns, and joins the country and city data.
         
-    -   The returned data is written to the Tables listed in `output_tables`, in that order. Returning `None` for a Table leaves its current version unchanged.
+    -   The returned data is written to the Tables listed in `output_tables`, in that order. Returning `None` for a Table commits a new version that keeps its previous data. An empty frame commits a version with no rows.
         
 
 ## The function
 
 A transformer function has one parameter per input table and returns one frame per output table.
 
--   **Parameters.** Inputs are passed to the function in `input_tables` order. Annotate a parameter as `TableFrameSpec` for one frame or `TableFramesSpec` for a list of frames. An input read at `@NEW`, a `v..v` range or a `v,v` list must be typed `TableFramesSpec`; `TableFrameSpec` is refused at registration. An input is `None` when the requested version does not exist or has no data; see [`None` inputs and outputs](https://docs.tabsdata.com/developer/guide/functions/#none-inputs-and-outputs). If no version has ever had data, a `None` version has nothing to fall back to, and readers get `None` instead of a frame.
+-   **Parameters.** Inputs are passed to the function in `input_tables` order. Annotate a parameter as `TableFrameSpec` for one frame or `TableFramesSpec` for a list of frames. An input read at `@NEW`, a `v..v` range or a `v,v` list must be typed `TableFramesSpec`; `TableFrameSpec` is refused at registration. An input is `None` when the requested version does not exist or has no data; see [`None` as input](https://docs.tabsdata.com/developer/guide/functions/#none-as-input). If no version has ever had data, a `None` version has nothing to fall back to, and readers get `None` instead of a frame.
 -   **Context.** The function can have a final `ctx: TransactionCtx` parameter to keep values between successful runs. Type it `FunctionCtx` to also read the run's identifiers and the project's secrets.
--   **Return value.** Return values map to `output_tables` in order. One output can be returned on its own; several outputs are returned as a tuple. Returning `None` for one output commits a new version that keeps that table's previous data.
+-   **Return value.** Return values map to `output_tables` in order. One output can be returned on its own; several outputs are returned as a tuple. Returning `None` for one output commits a new version that keeps that table's previous data. A reader at `@NEW` receives that version, with the previous data, again. Return an empty frame when there are no rows to write.
 
 Tabsdata checks the input count, output count, and function signature when the transformer is registered.
 

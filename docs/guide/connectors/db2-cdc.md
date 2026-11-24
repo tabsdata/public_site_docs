@@ -69,11 +69,10 @@ def stream_sales_changes(
 
 `batch_max_secs=120` hands the captured changes to the function at least every two minutes. The `batch_*` parameters decide when a batch of changes is handed to the function, and are the same for every stream source. See [Stream Publishers](https://docs.tabsdata.com/guide/functions/stream-publishers#batch-parameters) for all of them.
 
-A stream publisher differs from a regular publisher in three ways:
+A stream publisher differs from a regular publisher in two ways:
 
 -   It has no trigger. Registering it starts the stream worker, which runs until the function is disabled or deleted.
 -   Each element of `tables` is one function parameter, and each parameter receives a list of frames: the changes captured for that table since the previous batch. Fold them with `concat`, which also returns `None` when the batch carried nothing for that table.
--   The function must not declare a `ctx` parameter.
 
 ### Function Config Parameters
 
@@ -208,6 +207,8 @@ Use `"columns"` with `flatten_columns=True` for changes that land in a table and
 -   The stream reads only what `asncap` has captured. If Capture stops, the stream sees no new changes until it is running again.
 -   If a tracked table is deregistered, its registration is deactivated, Capture cold-starts, or pruning removes CD rows the stream has not read yet, the stream fails with an error explaining what happened. The fix is to restore the registration if needed and run a new full load: reset the stage with `start_from="full"`.
 -   A CD table added to `tables` after the stream started has no recorded position, so the stream fails until a new full load runs.
+
+When a stream batch closes, it is staged for processing, and at that point its commit-sequence position is saved with it. The staged batch is then scheduled for processing, which may not start right away because a previous batch may still be processing; its Table Versions are written when that processing ends; see [Delivery: when the data is in the Table](https://docs.tabsdata.com/guide/functions/stream-publishers#delivery-when-the-data-is-in-the-table).
 
 ## Connection
 

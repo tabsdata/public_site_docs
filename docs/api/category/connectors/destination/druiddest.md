@@ -10,6 +10,7 @@ class
 class DruidDest(
     tables: DruidTableNamesSpec,
     if_table_exists: IfTableExistsSpec = 'append',
+    schema_evolution: SchemaEvolutionSpec = 'update',
     time_column: str | None = None,
     segment_granularity: SegmentGranularitySpec = 'ALL',
     max_concurrent_subtasks: int = 1,
@@ -51,13 +52,19 @@ parameter
 
 `if_table_exists`[IfTableExistsSpec](https://docs.tabsdata.com/api/module/tabsdatak-conn-druid#tabsdatak.conn.druid.IfTableExistsSpec) (Literal\['append', 'replace'\])
 
-`"append"` (default) or `"replace"` (overwrite the datasource).
+`"append"` (default) or `"replace"` (overwrite the datasource). A slot returned as `None` leaves its datasource as it is.
+
+parameter
+
+`schema_evolution`[SchemaEvolutionSpec](https://docs.tabsdata.com/api/module/tabsdatak-conn-druid#tabsdatak.conn.druid.SchemaEvolutionSpec) (Literal\['update'\])
+
+`"update"`, the default and only policy: Druid cannot enforce a schema, so a datasource takes whatever columns a batch brings.
 
 parameter
 
 `time_column`[str](https://docs.python.org/3/builtins/stdtypes.html#str) | None
 
-Name of the row-level timestamp column Druid uses as its primary `__time` field at ingest. Druid requires a time column on every datasource; if the rows carry none, leave unset and the ingestion spec falls back to the current ingest time.
+Name of the row-level timestamp column Druid uses as its primary `__time` field at ingest. Druid requires a time column on every datasource; if the rows carry none, leave unset and every row gets `__time` `2000-01-01T00:00:00Z`.
 
 parameter
 
@@ -94,3 +101,17 @@ parameter
 `dest_cfg`[DestCfgSpec](https://docs.tabsdata.com/api/module/tabsdatak-conn-druid#tabsdatak.conn.druid.DestCfgSpec) | None (Mapping\[Literal\['druid.logging\_level', 'druid.poll\_interval\_seconds', 'druid.retry\_attempts', 'druid.retry\_backoff\_seconds'\], [Any](https://docs.python.org/3/library/typing.html#typing.Any)\] | None)
 
 Optional connector config over the keys `druid.logging_level`, `druid.poll_interval_seconds`, `druid.retry_attempts` and `druid.retry_backoff_seconds`.
+
+## Methods
+
+method
+
+`validate`
+
+```python
+def validate()
+```
+
+Cross-field validation: `if_table_exists`, `schema_evolution` and the engine form a combination this destination offers.
+
+Called by the framework; raises `SqlCommonValidateException`.

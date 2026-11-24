@@ -160,7 +160,7 @@ A list of Db2 table names (see [`Db2TableNameSpec`](https://docs.tabsdata.com/ap
 type\_alias
 
 ```python
-DestCfgKey: Literal['db2.logging_level', 'db2.schema_evolution_engine', 'tabsdata.sql.write_engine', 'tabsdata.sql.chunk_size']
+DestCfgKey: Literal['db2.logging_level', 'tabsdata.sql.write_engine', 'tabsdata.sql.chunk_size']
 ```
 
 * * *
@@ -176,7 +176,7 @@ DestCfgSpec: Mapping[DestCfgKey, Any]
 **Resolved type:**
 
 ```python
-Mapping[Literal['db2.logging_level', 'db2.schema_evolution_engine', 'tabsdata.sql.write_engine', 'tabsdata.sql.chunk_size'], Any]
+Mapping[Literal['db2.logging_level', 'tabsdata.sql.write_engine', 'tabsdata.sql.chunk_size'], Any]
 ```
 
 * * *

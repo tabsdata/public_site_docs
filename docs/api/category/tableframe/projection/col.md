@@ -19,6 +19,8 @@ Reference one or more columns as an expression.
 
 The returned [`Expr`](https://docs.tabsdata.com/api/category/tableframe/tableframe/expr) is the building block passed to `select`, `with_columns`, `filter` and `agg`.
 
+A selection by pattern -- `"*"`, a regular expression or a data type -- covers the user and `@td.*` meta columns, never the `$td.*` internal columns, so a frame-wide expression cannot change them. An internal column named explicitly can be read, but not rewritten.
+
 ## Parameters
 
 parameter

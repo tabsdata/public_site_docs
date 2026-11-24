@@ -28,9 +28,11 @@ def ingest(users: TableFramesSpec) -> TableFrameSpec:
 
 ## How a batch becomes a run
 
-A stream worker reads the source continuously. What it reads is buffered in memory and written out to data files as the buffer fills. When a batch is due, the files written so far, and anything still in memory, are staged and handed to the Function as one batch. The Function runs once per batch and commits a new Version of each of its output Tables.
+A stream worker reads the source continuously. What it reads is buffered in memory and written out to data files in the Function's stage as the buffer fills. When a batch is due, anything still in memory is written too, and the batch is staged for processing: its manifest is written, and the batch is scheduled for processing. Its processing may wait for a previous batch to finish; when it ends, it commits a new Version of each of its output Tables.
 
 The worker is long-lived and independent of the Function. It keeps reading while the previous batch is being processed, so a slow Function does not drop records. Batches are processed one at a time, in order, and if the Function takes longer than the batch interval, batches queue up and are processed in turn.
+
+A [disabled](https://docs.tabsdata.com/developer/guide/execution-and-triggers#enabled-and-disabled-functions) stream publisher does not consume; `tdk stream enable` starts it from where it stopped.
 
 ## When a batch is due
 
@@ -59,10 +61,24 @@ The CDC sources track a list of qualified Table names and resume from a stored p
 
 ## Constraints on the Function
 
-A `@stream_publisher` differs from the other decorators in three ways:
+A `@stream_publisher` differs from the other decorators in two ways:
 
 -   It takes one `TableFramesSpec` parameter per source slot, always in array mode, because a batch is a list of frames rather than a single frame.
 -   It returns one `TableFrame` per output Table, the same as a Publisher.
--   It must **not** declare a `ctx` parameter. It runs inside the runtime's stream loop rather than per-transaction, so there is no `TrxCtx` at the call boundary and declaring one fails registration.
+
+Like the other decorators, it may declare an optional trailing `ctx: TransactionCtx` parameter. The function runs once per batch, in the transaction that commits the batch, so `ctx` carries that transaction's ids and the function's state store (`ctx.get_attr` / `ctx.set_attr`), which persists from one batch to the next.
+
+```python
+@stream_publisher(
+    source=KafkaStreamSrc(topic="clickstream", data_format="json", schema=EVENT_SCHEMA),
+    batch_max_secs=300,
+    output_tables=["events"],
+)
+def stream_events(batches: TableFramesSpec, ctx: TransactionCtx) -> TableFrameSpec:
+    seen = (ctx.get_attr("batches") or 0) + 1
+    ctx.set_attr("batches", seen)
+    frames = [frame for frame in (batches or []) if frame is not None]
+    return frames[0] if frames else None
+```
 
 See [Stream Publishers](https://docs.tabsdata.com/developer/guide/functions/stream-publishers) for the decorator's parameters and lifecycle.

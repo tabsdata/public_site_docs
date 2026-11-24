@@ -12,7 +12,7 @@ newest is marked 'latest'.
 tdk table versions \
   --proj quickstart \
   --name country \
-  --coll <function pinned.<locals>.default at 0x10b6a2a20> \
+  --coll <function pinned.<locals>.default at 0x10b6aff60> \
   --format table \
   --browse \
   --wrap \
@@ -29,7 +29,7 @@ tdk table versions \
 | --- | --- | --- | --- |
 | `--proj, -P` | string | Optional | Project to target; overrides the pinned project. Prompted for when a command needs one and neither is set. |
 | `--name, -n` | string | Required | The name of the table to which the data belongs. |
-| `--coll, -c` | string | Optional | Name of the collection to which the data belongs. Defaults to `<function pinned.<locals>.default at 0x10b6a2a20>`. |
+| `--coll, -c` | string | Optional | Name of the collection to which the data belongs. Defaults to `<function pinned.<locals>.default at 0x10b6aff60>`. |
 | `-o, --format` | table \| json \| yaml | Optional | Output format. 'json' and 'yaml' give a listing as an array and table data as one object per row. |
 | `--browse, --print` | flag | Optional | Open the table in a viewer that scrolls both ways, or print it and return. |
 | `--wrap` | flag | Optional | Show every value whole, wrapping long and multi-line values inside their column instead of cutting them. |

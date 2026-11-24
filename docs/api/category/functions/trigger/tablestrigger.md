@@ -22,4 +22,4 @@ parameter
 
 `tables`[CollTableNamesSpec](https://docs.tabsdata.com/api/module/tabsdatak-api#tabsdatak.api.CollTableNamesSpec) ([list](https://docs.python.org/3/library/stdtypes.html#list)\[[str](https://docs.python.org/3/library/stdtypes.html#str)\])
 
-`[collection/]table` references to watch; they need not be inputs of the function. An empty list never fires: the function runs only when run manually.
+`[collection/]table` references to watch; they need not be inputs of the function. An empty list never fires: the function runs only when run manually. An input not listed does not order the function's run: when the same execution plan writes it, and its writer is not upstream of a listed table, the function reads its version from before the plan.

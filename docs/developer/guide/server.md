@@ -30,7 +30,7 @@ As the the top-level process Tabsdata, Servers store Functions and Tables as wel
 
 ## Connecting to a Server
 
-A Server uses three dedicated endpoints by default: A server requires a dedicated public and private port and an ai agent port if integrating the Tabby conversational agent. By default, a server runs on the `2457` port making the server URI `http://localhost:2457`. 2458 private and 2459 for AI but this can be configured to allow multiple servers to run on a single machine.
+A Server uses three dedicated endpoints:
 
 -   A **public endpoint** runs on port `2457`. The Tabsdata UI, `tdk` CLI, and Python API use this endpoint to communicate with the Server.
 -   A **private endpoint** runs on port `2458`. Tabsdata services use this endpoint for internal communication.

@@ -10,7 +10,7 @@ Before you begin
 
 A coding agent uses Tabsdata through `tdk`, in its own shell, and the Tabsdata skill tells it when Tabsdata fits a task and how to use it. Supported agents are Claude Code, Codex, Cursor, VS Code, Gemini CLI and Antigravity.
 
-Install the skill from the virtual environment that has `tabsdata[all]`. It is installed for every supported agent on the machine:
+Install the skill from the virtual environment that has `tabsdata`. It is installed for every supported agent on the machine:
 
 ```bash
 tdk ai agents install

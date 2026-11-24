@@ -14,7 +14,7 @@ class Schema
 
 Ordered mapping of column name to data type.
 
-Returned by `TableFrame.schema`. Iterates in column order and supports mapping access (`schema["col"]`, `"col" in schema`, `len(schema)`) plus the query helpers below.
+Returned by `TableFrame.schema` (the user columns) and `TableFrame.get_schema` (any selection). Iterates in column order and supports mapping access (`schema["col"]`, `"col" in schema`, `len(schema)`) plus the query helpers below.
 
 ## Examples
 

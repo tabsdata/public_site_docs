@@ -10,7 +10,7 @@ List the tags, system and user
 tdk fn tag list \
   --proj quickstart \
   --name read_world \
-  --coll <function pinned.<locals>.default at 0x10b6177e0> \
+  --coll <function pinned.<locals>.default at 0x10b648d60> \
   --format table \
   --browse \
   --wrap \
@@ -22,7 +22,7 @@ tdk fn tag list \
 | --- | --- | --- | --- |
 | `--proj, -P` | string | Optional | Project to target; overrides the pinned project. Prompted for when a command needs one and neither is set. |
 | `--name, -n` | string | Optional | Name of the function whose tags to use. |
-| `--coll, -c` | string | Optional | Name of the collection to which the function belongs. Defaults to `<function pinned.<locals>.default at 0x10b6177e0>`. |
+| `--coll, -c` | string | Optional | Name of the collection to which the function belongs. Defaults to `<function pinned.<locals>.default at 0x10b648d60>`. |
 | `-o, --format` | table \| json \| yaml | Optional | Output format. 'json' and 'yaml' give a listing as an array and table data as one object per row. |
 | `--browse, --print` | flag | Optional | Open the table in a viewer that scrolls both ways, or print it and return. |
 | `--wrap` | flag | Optional | Show every value whole, wrapping long and multi-line values inside their column instead of cutting them. |

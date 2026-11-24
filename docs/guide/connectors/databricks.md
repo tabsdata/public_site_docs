@@ -99,6 +99,7 @@ The subscriber is registered in a collection created with a `DatabricksDestConn`
 ### Prerequisites
 
 -   The Databricks workspace and SQL warehouse are reachable from the Tabsdata server.
+-   The target catalog and schema exist. The connector creates missing tables, but not the catalog and schema.
 -   The personal access token can use the SQL warehouse and create or write the destination tables.
 -   The configured Unity Catalog volume exists and the token can read and write its staging files.
 
@@ -145,9 +146,11 @@ Each element in `tables` represents one destination slot and maps positionally t
 
 #### `if_table_exists`
 
-`"merge"` applies inserts, updates, and deletes by key and requires a `merge_cfg` list. See [Merge configuration](https://docs.tabsdata.com/guide/functions/sql-merge#merge-configuration) for a complete example.
+`"merge"` applies inserts, updates, and deletes by key and requires a `merge_cfg` list. See [Merge configuration](https://docs.tabsdata.com/guide/functions/sql-merge#merge-configuration) for a complete example. A merge creates a temporary table next to the target and drops it afterwards, so the user needs to create and drop tables in that schema.
 
 Controls what happens when the destination table already exists. `"append"` (the default) adds rows. `"replace"` overwrites the table.
+
+A table the connector creates gets its column types from the returned frame, with every column nullable and no primary key. To choose keys, indexes or partitioning, create the table before the subscriber's first run; the connector writes into an existing table by column name, and `"replace"` keeps its definition. `if_table_exists` applies to every table the subscriber writes; use two subscribers to replace some tables and append to others.
 
 #### `schema_evolution`
 

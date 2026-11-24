@@ -67,11 +67,10 @@ def stream_sales_changes(
 
 `batch_max_secs=120` hands the captured changes to the function at least every two minutes. The `batch_*` parameters decide when a batch of changes is handed to the function, and are the same for every stream source. See [Stream Publishers](https://docs.tabsdata.com/developer/guide/functions/stream-publishers#batch-parameters) for all of them.
 
-A stream publisher differs from a regular publisher in three ways:
+A stream publisher differs from a regular publisher in two ways:
 
 -   It has no trigger. Registering it starts the stream worker, which runs until the function is disabled or deleted.
 -   Each element of `tables` is one function parameter, and each parameter receives a list of frames: the changes captured for that table since the previous batch. Fold them with `concat`, which also returns `None` when the batch carried nothing for that table.
--   The function must not declare a `ctx` parameter.
 
 ### Function Config Parameters
 
@@ -204,6 +203,8 @@ Use `"columns"` with `flatten_columns=True` for changes that land in a table and
 -   MariaDB is not supported. A `mariadb://` URI is accepted, but the server check fails with `MYSQL_27`, because MariaDB has no `gtid_mode`.
 -   MySQL has no replication slot, so a stopped stream holds nothing on the server. It resumes from its recorded GTID, provided the server still retains the binlogs from that point. If they were purged, the stream fails and needs a new full load: reset the stage with `start_from="full"`.
 -   A stream follows one source server. Switching it to another server (for example after a failover) is not supported: the new server's changes would be dropped as already published. Start a new stream instead.
+
+When a stream batch closes, it is staged for processing, and at that point its binlog position is saved with it. The staged batch is then scheduled for processing, which may not start right away because a previous batch may still be processing; its Table Versions are written when that processing ends; see [Delivery: when the data is in the Table](https://docs.tabsdata.com/developer/guide/functions/stream-publishers#delivery-when-the-data-is-in-the-table).
 
 ## Connection
 

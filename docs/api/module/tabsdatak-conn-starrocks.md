@@ -15,7 +15,6 @@ Source: https://docs.tabsdata.com/api/module/tabsdatak-conn-starrocks
 | [`GCSLocation`](https://docs.tabsdata.com/api/category/connectors/destination/gcslocation-starrocks) | GCS staging area for `StarRocksDest`. |
 | [`IfTableExistsSpec`](#tabsdatak.conn.starrocks.IfTableExistsSpec) |  |
 | [`S3Location`](https://docs.tabsdata.com/api/category/connectors/destination/s3location-starrocks) | S3 staging area for `StarRocksDest`. |
-| [`SchemaEvolutionEngineSpec`](#tabsdatak.conn.starrocks.SchemaEvolutionEngineSpec) | Which machinery evolves the target's schema. |
 | [`SchemaEvolutionSpec`](#tabsdatak.conn.starrocks.SchemaEvolutionSpec) |  |
 | [`StarRocksDest`](https://docs.tabsdata.com/api/category/connectors/destination/starrocksdest) | StarRocks destination for `@subscriber` -- one output slot per table. |
 | [`StarRocksDestConn`](https://docs.tabsdata.com/api/category/connectors/destination/starrocksdestconn) | StarRocks connection. |
@@ -57,7 +56,7 @@ str | Secret
 type\_alias
 
 ```python
-DestCfgKey: Literal['starrocks.logging_level', 'starrocks.schema_evolution_engine']
+DestCfgKey: Literal['starrocks.logging_level']
 ```
 
 * * *
@@ -73,7 +72,7 @@ DestCfgSpec: Mapping[DestCfgKey, Any]
 **Resolved type:**
 
 ```python
-Mapping[Literal['starrocks.logging_level', 'starrocks.schema_evolution_engine'], Any]
+Mapping[Literal['starrocks.logging_level'], Any]
 ```
 
 * * *
@@ -85,18 +84,6 @@ type\_alias
 ```python
 IfTableExistsSpec: Literal['append', 'replace']
 ```
-
-* * *
-
-## SchemaEvolutionEngineSpec
-
-type\_alias
-
-```python
-SchemaEvolutionEngineSpec: Literal['iceberg']
-```
-
-Which machinery evolves the target's schema. StarRocks has no schema evolution of its own, so the only engine is `"iceberg"`: the connector diffs the target against the incoming batch and emits the `ALTER` statements itself.
 
 * * *
 

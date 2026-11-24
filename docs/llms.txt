@@ -1,8 +1,8 @@
 # Tabsdata documentation
 
-> Documentation for Tabsdata 2.3.0, an AI-first data integration (ETL/ELT) platform built for agentic data engineering: an AI agent carries a data request end to end inside one system, from discovery through build to regression test, and a human approves every change. Python functions publish data from sources into versioned tables, transform them and subscribe them to destinations. Orchestration, execution, monitoring, lineage, data quality and versioning are native to the same server and the same `tdk` CLI, with one data model and one set of ids, so an agent works from one vocabulary. Two views of the guide: the Agentic guide at /guide gives steps an agent can follow; the Developer guide at /developer/guide gives concepts, configuration and reference for engineers working by hand.
+> Documentation for Tabsdata 2.4.1, an AI-first data integration (ETL/ELT) platform for agentic data engineering, built on a declarative publish-subscribe server for tables. Python functions declare the tables they read and write: publishers bring data from sources into versioned tables, transformers produce new tables, subscribers deliver them to destinations. The server derives the dependency graph from those declarations and runs downstream functions when an upstream table gets a new version, with no external scheduler. Tables are immutable and versioned, and lineage and provenance come from execution itself. The dependency graph, table versions, execution history and semantic catalog are addressable through the same server and the same `tdk` CLI, with one data model and one set of ids, so an AI agent does discovery, duplication checks, assembly and boilerplate from one vocabulary, and an engineer reviews and approves every change before it propagates. Two views of the guide: the Agentic guide at /guide gives steps an agent can follow; the Developer guide at /developer/guide gives concepts, configuration and reference for engineers working by hand.
 
-Local quick start: Python 3.12, `pip install "tabsdata[all]"`, `tdkserver quickstart -y --details false`, then `tdk login --server localhost --user admin --password tabsdata`. The UI is at http://localhost:2457, the API on the same port. The default instance is named `tabsdata`. The `tabsdata` package on PyPI is Tabsdata Enterprise, built on the Apache-licensed open source Tabsdata on GitHub; the full platform is free for self-supported deployments, with no feature gates.
+Local quick start: Python 3.12, `pip install tabsdata`, `tdkserver quickstart -y --details false`, then `tdk login --server localhost --user admin --password tabsdata`. The UI is at http://localhost:2457, the API on the same port. The default instance is named `tabsdata`. Tabsdata lands beside an existing warehouse or lakehouse and delivers governed, versioned tables into it; the same function code runs on a laptop or on Kubernetes, in your cloud, hybrid or on-premises. The `tabsdata` package on PyPI is Tabsdata Enterprise, built on the Apache-licensed open source Tabsdata on GitHub; the full platform is free for self-supported deployments, with no feature gates.
 
 Vocabulary: a project holds collections; a collection holds functions and the tables they produce, and a source or destination collection carries the connection (address and credentials) its functions share. A publisher reads an external system into tables, a transformer reads tables and writes tables, a subscriber writes tables to an external system, a stream publisher consumes Kafka or CDC continuously. Triggering a function builds an execution plan over every downstream function; it runs as transactions, function runs and workers, and table versions commit only when the whole plan succeeds.
 
@@ -20,13 +20,6 @@ Every page is also available as markdown: append `.md` to its URL, as in https:/
 - [Find out why last night's load failed or produced no data](https://docs.tabsdata.com/cli/tdk): `tdk plan get`, `tdk plan logs`, `tdk worker logs`, execution plans.
 - [See what changed in a table since the last run, and where a row came from](https://docs.tabsdata.com/guide/lineage): every run is a new version; lineage comes from execution.
 - [Track data quality over time](https://docs.tabsdata.com/guide/data-quality-trends): metrics kept by run, week and month.
-
-
-## For AI agents
-
-- [Configure Your AI Agent](https://docs.tabsdata.com/guide/connect-agent): install the Tabsdata skill for your coding agent with `tdk ai agents install`, then log in with `tdk login` from your own terminal so the agent acts through your session.
-- [tdk CLI reference](https://docs.tabsdata.com/cli/tdk): every command: projects, groups, collections, connections, functions and their runs, plans, transactions, workers, tables, streams, crons, permissions, users, metrics, examples; `tdk login`, `tdk settings`, `tdk shell`.
-- [Python API reference](https://docs.tabsdata.com/api/): decorators, TableFrame, connector classes and credentials, with an alphabetical index.
 
 ## Guide
 
@@ -67,6 +60,7 @@ Every page is also available as markdown: append `.md` to its URL, as in https:/
 - [SQL Merge](https://docs.tabsdata.com/guide/functions/sql-merge): How Subscriber Functions apply inserts, updates, and deletes to Snowflake, BigQuery, and Databricks tables.
 - [Amazon S3](https://docs.tabsdata.com/guide/connectors/amazon-s3): Reference for the Tabsdata Amazon S3 connector.
 - [Apache Druid](https://docs.tabsdata.com/guide/connectors/druid): Reference for the Tabsdata Apache Druid destination connector, cloud staging, and subscriber configuration.
+- [AWS Glue](https://docs.tabsdata.com/guide/connectors/aws-glue): Reference for the Tabsdata AWS Glue connector, which writes Apache Iceberg tables registered in the AWS Glue Data Catalog.
 - [Azure](https://docs.tabsdata.com/guide/connectors/azure): Reference for the Tabsdata Azure Blob Storage connector.
 - [BigQuery](https://docs.tabsdata.com/guide/connectors/bigquery): Reference for the Tabsdata BigQuery connector.
 - [ClickHouse](https://docs.tabsdata.com/guide/connectors/clickhouse): Reference for the Tabsdata ClickHouse destination connector, cloud staging, and subscriber configuration.
@@ -225,5 +219,5 @@ Every page is also available as markdown: append `.md` to its URL, as in https:/
 ## Optional
 
 - [Developer guide](https://docs.tabsdata.com/developer/guide/): the same guide written for engineers working by hand.
-- Docs for earlier versions: [2.2.0](https://docs.tabsdata.com/2.2.0/guide/), [2.1.0](https://docs.tabsdata.com/2.1.0/guide/), [2.0.1](https://docs.tabsdata.com/2.0.1/guide/), [2.0.0](https://docs.tabsdata.com/2.0.0/guide/).
+- Docs for earlier versions: [2.3.0](https://docs.tabsdata.com/2.3.0/guide/), [2.2.0](https://docs.tabsdata.com/2.2.0/guide/), [2.1.0](https://docs.tabsdata.com/2.1.0/guide/), [2.0.1](https://docs.tabsdata.com/2.0.1/guide/), [2.0.0](https://docs.tabsdata.com/2.0.0/guide/).
 - [Product site](https://tabsdata.com), [pricing](https://tabsdata.com/pricing) (free for self-supported deployments; paid contracts add 24/7 support, a private Slack channel and full indemnification) and [GitHub](https://github.com/tabsdata): the open source Tabsdata, Apache licensed.

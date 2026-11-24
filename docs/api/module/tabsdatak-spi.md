@@ -49,7 +49,13 @@ Source: https://docs.tabsdata.com/api/module/tabsdatak-spi
 type\_alias
 
 ```python
-CommitStateFn: Callable[[], None]
+CommitStateFn: Callable[[], BasicDictSpec | None]
+```
+
+**Resolved type:**
+
+```python
+Callable[[], dict[str, str | int | float | bool] | None]
 ```
 
 * * *
@@ -113,7 +119,8 @@ StreamStateSpec: Union[BasicDictSpec, CommitStateFn]
 **Resolved type:**
 
 ```python
-dict[str, str | int | float | bool] | Callable[[], None]
+dict[str, str | int | float | bool] |
+Callable[[], dict[str, str | int | float | bool] | None]
 ```
 
 * * *

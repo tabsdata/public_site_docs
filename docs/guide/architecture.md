@@ -118,8 +118,6 @@ Tabsdata does not have this issue. Function are declarative and declare their ow
 
 When a Function is triggered, Tabsdata identifies its downstream dependencies and automatically builds an **Execution Plan**, a DAG (directed acytclic graph) that finds and executes all downstream dependencies.
 
-Click any node to trace its dependencies
-
 In addition to automatically orchestrating workflows, Execution plans record everything that occurs during execution, capturing metadata such as:
 
 -   Execution start and stop time

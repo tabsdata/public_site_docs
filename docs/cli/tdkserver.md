@@ -34,6 +34,6 @@ Source: https://docs.tabsdata.com/cli/tdkserver/
 | [`status`](https://docs.tabsdata.com/cli/tdkserver/status) | Show the running workloads of a tabsdata instance |
 | [`stop`](https://docs.tabsdata.com/cli/tdkserver/stop) | Stop a tabsdata instance |
 | [`stubs`](https://docs.tabsdata.com/cli/tdkserver/stubs) | Copy the configuration stubs for '--config', and the project secrets stub, into the tabsdata home folder |
-| [`trash`](https://docs.tabsdata.com/cli/tdkserver/trash) | Trash a local kminus tabsdata instance |
+| [`trash`](https://docs.tabsdata.com/cli/tdkserver/trash) | Trash a local kminus tabsdata instance, moving its folder to the trash. A running instance is stopped first. An instance created by another tabsdata version, or whose settings cannot be read, only gets a best-effort stop of its kminus cluster, after a confirmation. If the stop fails, trashing it needs another confirmation, as processes and stale files may be left behind; on Windows, files they hold open can make the trash fail. Pass -y to confirm every prompt. |
 | [`unset`](https://docs.tabsdata.com/cli/tdkserver/unset) | Unset a session setting |
 | [`upgrade`](https://docs.tabsdata.com/cli/tdkserver/upgrade) | Upgrade a tabsdata instance to the running tabsdata version |

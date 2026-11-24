@@ -22,6 +22,8 @@ How a stream publisher's batches are bounded in time and size.
 
 A batch is the set of files one function run receives. Batches are spaced at least `min_secs` apart; with data waiting, one is staged at most `max_secs` after the previous one, or earlier once it holds `max_rows` rows or `max_bytes` bytes; with nothing waiting, an empty one is staged `idle_secs` after the previous one, so the function runs on a cadence while the source is quiet. A `None` is no limit, and at least one of `max_secs`, `max_rows` and `max_bytes` is set, so data never waits forever.
 
+When a stream batch closes, it is staged for processing, and at that point the source's position (such as the Kafka offsets) is committed. The staged batch is then scheduled for processing, which may not start right away because a previous batch may still be processing. Its table version is written when that processing ends.
+
 ## Parameters
 
 parameter

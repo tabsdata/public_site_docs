@@ -118,6 +118,17 @@ These optional parameters define a specific window of time during which the sche
 -   **Behavior:** - **If specified:** Tabsdata will only trigger the function based on the mask between the `start` and `end` times.
 -   **If omitted:** Tabsdata will trigger the function indefinitely based on the mask, starting from the moment the function is successfully registered.
 
+### Enabled and disabled Functions
+
+A Function is registered enabled unless `tdk fn register` is given `--disabled`, and `tdk fn enable` / `tdk fn disable` switch it later (`tdk stream` and `tdk cron` have the same commands for their Functions). A disabled Function is not run by any trigger:
+
+-   a commit to one of its trigger Tables does not plan it, and Functions downstream of it do not run through it;
+-   its cron schedule is ignored;
+-   a stream publisher's worker is stopped, and does not consume;
+-   `tdk fn trigger` refuses it.
+
+Enabling a Function does not run it; its next run comes from its next trigger. `tdk fn update` enables a disabled Function unless `--disabled` is given again.
+
 ### Trigger Scheduling Lifecycle
 
 The execution of Crontab triggers is dependent on the enabled status of the function.

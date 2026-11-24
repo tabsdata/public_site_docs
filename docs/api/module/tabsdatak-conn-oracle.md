@@ -41,7 +41,7 @@ The credential type for Oracle connections: [`UserPassword`](https://docs.tabsda
 type\_alias
 
 ```python
-DestCfgKey: Literal['oracle.logging_level', 'oracle.schema_evolution_engine', 'tabsdata.sql.write_engine', 'tabsdata.sql.chunk_size']
+DestCfgKey: Literal['oracle.logging_level', 'tabsdata.sql.write_engine', 'tabsdata.sql.chunk_size']
 ```
 
 * * *
@@ -57,7 +57,7 @@ DestCfgSpec: Mapping[DestCfgKey, Any]
 **Resolved type:**
 
 ```python
-Mapping[Literal['oracle.logging_level', 'oracle.schema_evolution_engine', 'tabsdata.sql.write_engine', 'tabsdata.sql.chunk_size'], Any]
+Mapping[Literal['oracle.logging_level', 'tabsdata.sql.write_engine', 'tabsdata.sql.chunk_size'], Any]
 ```
 
 * * *

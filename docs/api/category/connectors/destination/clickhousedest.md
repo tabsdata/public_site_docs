@@ -21,9 +21,11 @@ Bases: [Dest](https://docs.tabsdata.com/api/category/connectors/destination/dest
 
 ClickHouse destination for `@subscriber` -- one output slot per table.
 
+A missing table is created on the first write as `ENGINE = MergeTree() ORDER BY tuple()`, with no sorting or primary key, every scalar column `Nullable(...)` and dates as `Date32`. To get a sorting or primary key, partitions or non-nullable columns, create the table before the first run: the connector inserts into an existing table by column name, and `"replace"` truncates it, keeping its definition. `if_table_exists` applies to every table in `tables`; to replace some tables and append to others, use two subscribers.
+
 ## Examples
 
-Write a table with the `replace` disposition -- the first run creates it, later runs drop and recreate it (row count stays):
+Write a table with the `replace` disposition -- the first run creates it, later runs swap in the new batch (row count stays):
 
 ```python
 @subscriber(
@@ -46,10 +48,10 @@ Append rows with a wider schema and let ClickHouse evolve the table -- `schema_e
         if_table_exists="append",
         schema_evolution="update",
     ),
-    input_tables=["caps_input/cap_evo_v2"],
+    input_tables=["caps_input/cap_evo_v2@NEW"],
 )
-def evolve(rows: TableFrameSpec) -> TableFrameSpec:
-    return rows
+def evolve(rows: TableFramesSpec) -> TableFrameSpec:
+    return concat(rows)
 ```
 
 ## Parameters
@@ -64,19 +66,19 @@ parameter
 
 `if_table_exists`[IfTableExistsSpec](https://docs.tabsdata.com/api/module/tabsdatak-conn-clickhouse#tabsdatak.conn.clickhouse.IfTableExistsSpec) (Literal\['append', 'replace'\])
 
-`"append"` (the default) adds rows; `"replace"` overwrites the table.
+`"append"` (the default) adds rows; `"replace"` swaps in a table holding only the batch (see Replace). A slot returned as `None` leaves its table as it is.
 
 parameter
 
 `schema_evolution`[SchemaEvolutionSpec](https://docs.tabsdata.com/api/module/tabsdatak-conn-clickhouse#tabsdatak.conn.clickhouse.SchemaEvolutionSpec) (Literal\['strict', 'update'\])
 
-What a write does when the batch's columns differ from the table's. `"replace"` makes the table the batch's own, so it is not affected. `"strict"` (the default) refuses a batch with a column the table lacks or a wider type; `"update"` adds the column and widens the type, and refuses a change ClickHouse cannot make. A column the batch lacks is written NULL either way.
+What a write does when the batch's columns differ from the table's, a replace included. `"strict"` (the default) refuses a batch with a column the table lacks or a wider type; `"update"` adds the column and widens the type, and refuses a change ClickHouse cannot make. A column the batch lacks is written NULL either way.
 
 parameter
 
-`dest_cfg`[DestCfgSpec](https://docs.tabsdata.com/api/module/tabsdatak-conn-clickhouse#tabsdatak.conn.clickhouse.DestCfgSpec) | None (Mapping\[Literal\['clickhouse.logging\_level', 'clickhouse.schema\_evolution\_engine'\], [Any](https://docs.python.org/3/library/typing.html#typing.Any)\] | None)
+`dest_cfg`[DestCfgSpec](https://docs.tabsdata.com/api/module/tabsdatak-conn-clickhouse#tabsdatak.conn.clickhouse.DestCfgSpec) | None (Mapping\[Literal\['clickhouse.logging\_level'\], [Any](https://docs.python.org/3/library/typing.html#typing.Any)\] | None)
 
-Optional connector config. Supported keys: `clickhouse.logging_level`, and `clickhouse.schema_evolution_engine` -- `"iceberg"`, the default and only engine: ClickHouse has no schema evolution of its own.
+Optional connector config. The only supported key is `clickhouse.logging_level`.
 
 ## Methods
 

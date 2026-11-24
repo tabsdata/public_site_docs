@@ -19,7 +19,11 @@ def publisher(
 
 Decorate a function as a batch publisher.
 
-Pulls from `source` and emits `output_tables`. The function takes one parameter per source slot -- [`TableFrameSpec`](https://docs.tabsdata.com/api/module/tabsdatak-api#tabsdatak.api.TableFrameSpec) (single mode) or [`TableFramesSpec`](https://docs.tabsdata.com/api/module/tabsdatak-api#tabsdatak.api.TableFramesSpec) (array mode) -- plus an _optional_ trailing `ctx: TransactionCtx`, and returns one [`TableFrame`](https://docs.tabsdata.com/api/category/tableframe/tableframe/tableframe) per output table (a lone output may be returned bare rather than as a 1-tuple). A slot may be `None` when an upstream batch is absent.
+Pulls from `source` and emits `output_tables`. The function takes one parameter per source slot -- [`TableFrameSpec`](https://docs.tabsdata.com/api/module/tabsdatak-api#tabsdatak.api.TableFrameSpec) (single mode) or [`TableFramesSpec`](https://docs.tabsdata.com/api/module/tabsdatak-api#tabsdatak.api.TableFramesSpec) (array mode) -- plus an _optional_ trailing `ctx: TransactionCtx`, and returns one [`TableFrame`](https://docs.tabsdata.com/api/category/tableframe/tableframe/tableframe) per output table (a lone output may be returned bare rather than as a 1-tuple). When a run finds no new data, a source hands an empty frame with the columns of the last run that had data: publishing it writes a version with no rows. A file source with `incremental=False` hands nothing instead (`[]`), meaning nothing changed: [`concat`](https://docs.tabsdata.com/api/category/tableframe/concat) of it is `None`, and returning `None` keeps the table's data. A slot is `None` (`[]` for a list) while no run has had data for it, unless the source types the columns itself (a SQL query, a Salesforce sObject).
+
+A publisher is one read of its source, and runs as one unit: its outputs commit in the same transaction or not at all.
+
+Several outputs are annotated as a fixed-length tuple, one element per output; `tuple[TableFrameSpec, ...]` is refused at import.
 
 ## Parameters
 

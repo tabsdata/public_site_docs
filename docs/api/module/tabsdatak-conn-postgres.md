@@ -92,7 +92,7 @@ The credential type for Postgres connections: [`UserPassword`](https://docs.tabs
 type\_alias
 
 ```python
-DestCfgKey: Literal['postgres.logging_level', 'postgres.schema_evolution_engine', 'tabsdata.sql.write_engine', 'tabsdata.sql.chunk_size']
+DestCfgKey: Literal['postgres.logging_level', 'tabsdata.sql.write_engine', 'tabsdata.sql.chunk_size']
 ```
 
 * * *
@@ -108,7 +108,7 @@ DestCfgSpec: Mapping[DestCfgKey, Any]
 **Resolved type:**
 
 ```python
-Mapping[Literal['postgres.logging_level', 'postgres.schema_evolution_engine', 'tabsdata.sql.write_engine', 'tabsdata.sql.chunk_size'], Any]
+Mapping[Literal['postgres.logging_level', 'tabsdata.sql.write_engine', 'tabsdata.sql.chunk_size'], Any]
 ```
 
 * * *

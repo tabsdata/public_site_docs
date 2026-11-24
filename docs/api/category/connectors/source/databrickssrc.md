@@ -22,6 +22,8 @@ Databricks source for `@publisher` -- one output slot per query.
 
 Every table this source publishes automatically carries two metadata columns: `@td.sql.query`, the text of the query that produced the row, and `@td.sql.initial_values`, the JSON serialization of the bind values that query ran with (an empty JSON object when it has no binds). Setting the `src_cfg` key `tabsdata.src_metadata.drop` to `True` leaves them off.
 
+A query that returns no rows still gives a table, an empty one. It has the columns the query's result types or, when the result has a column of a type an empty result cannot tell (an array, map, struct or interval), those of the last run that typed them all; when no run did, the function gets `None` for it.
+
 ## Parameters
 
 parameter

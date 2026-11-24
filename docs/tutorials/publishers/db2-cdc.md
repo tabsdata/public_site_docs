@@ -90,6 +90,6 @@ Two tables are live in **sales\_cdc**, and both gain a version per batch:
 └───────────────────┴─────────────────┴───────────────────┘
 ```
 
-`start_from` also accepts `"full"` for a full load of the tracked tables followed by their changes, `"head"` to begin at the oldest retained log, or an explicit position. Rows carry the change operation, so a downstream transformer can apply inserts, updates and deletes rather than treating every row as new. A stream publisher takes no `trigger_by` and must not declare a `ctx` parameter.
+`start_from` also accepts `"full"` for a full load of the tracked tables followed by their changes, `"head"` to begin at the oldest retained log, or an explicit position. Rows carry the change operation, so a downstream transformer can apply inserts, updates and deletes rather than treating every row as new. A stream publisher takes no `trigger_by`.
 
 See [Db2 CDC](https://docs.tabsdata.com/guide/connectors/db2-cdc) for every option of the source.

@@ -21,7 +21,7 @@ Bases: [Conn](https://docs.tabsdata.com/api/category/spi/spi/conn)
 
 Postgres CDC connection used by [`PostgresCdcStreamSrc`](https://docs.tabsdata.com/api/category/connectors/source/postgrescdcstreamsrc).
 
-Mirrors [`PostgresSrcConn`](https://docs.tabsdata.com/api/category/connectors/source/postgressrcconn) for the SQLAlchemy / catalog introspection side. The replication slot and publication live on [`PostgresCdcStreamSrc`](https://docs.tabsdata.com/api/category/connectors/source/postgrescdcstreamsrc) instead, so one connection can front multiple sources if each uses a distinct slot. Not a subclass of [`PostgresSrcConn`](https://docs.tabsdata.com/api/category/connectors/source/postgressrcconn) -- CDC and batch SQL have different operational guarantees (the connecting role needs the `REPLICATION` attribute; the slot retention model is separate from query permissions).
+Mirrors [`PostgresSrcConn`](https://docs.tabsdata.com/api/category/connectors/source/postgressrcconn) for the SQLAlchemy / catalog introspection side. The replication slot lives on [`PostgresCdcStreamSrc`](https://docs.tabsdata.com/api/category/connectors/source/postgrescdcstreamsrc) instead, so one connection can front multiple sources if each uses a distinct slot. Not a subclass of [`PostgresSrcConn`](https://docs.tabsdata.com/api/category/connectors/source/postgressrcconn) -- CDC and batch SQL have different operational guarantees (the connecting role needs the `REPLICATION` attribute; the slot retention model is separate from query permissions).
 
 ## Parameters
 

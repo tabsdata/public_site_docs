@@ -23,7 +23,7 @@ Source: https://docs.tabsdata.com/api/module/tabsdatak-conn-bigquery
 | [`MergeColumnSpec`](#tabsdatak.conn.bigquery.MergeColumnSpec) |  |
 | [`MergeColumnsSpec`](#tabsdatak.conn.bigquery.MergeColumnsSpec) |  |
 | [`ProjectSpec`](#tabsdatak.conn.bigquery.ProjectSpec) |  |
-| [`SchemaEvolutionEngineSpec`](#tabsdatak.conn.bigquery.SchemaEvolutionEngineSpec) | Which machinery evolves the target's schema. |
+| [`SchemaEvolutionEngineSpec`](#tabsdatak.conn.bigquery.SchemaEvolutionEngineSpec) | The only engine a user writes, and only to evolve a merge: append and replace evolve natively, through BigQuery's own `schema_update_options` on the load job, and a `MERGE` takes no such option, so the connector diffs the target against the batch and emits the `ALTER` statements itself. |
 | [`SchemaEvolutionSpec`](#tabsdatak.conn.bigquery.SchemaEvolutionSpec) |  |
 
 * * *
@@ -197,10 +197,10 @@ str | Secret
 type\_alias
 
 ```python
-SchemaEvolutionEngineSpec: Literal['native', 'iceberg']
+SchemaEvolutionEngineSpec: Literal['iceberg']
 ```
 
-Which machinery evolves the target's schema. `"native"` leans on BigQuery's own `schema_update_options` on the load job; `"iceberg"` has the connector diff the target against the incoming batch and emit the `ALTER` statements itself.
+The only engine a user writes, and only to evolve a merge: append and replace evolve natively, through BigQuery's own `schema_update_options` on the load job, and a `MERGE` takes no such option, so the connector diffs the target against the batch and emits the `ALTER` statements itself.
 
 * * *
 

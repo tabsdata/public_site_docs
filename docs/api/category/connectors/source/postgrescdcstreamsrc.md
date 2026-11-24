@@ -12,7 +12,6 @@ class PostgresCdcStreamSrc(
     replication_slot: str,
     start_from: PostgresCdcStartFromSpec,
     replication_slot_behavior: ReplicationSlotBehaviorSpec = 'reuse',
-    publication_name: str | None = None,
     columns_format: CdcColumnsFormatSpec = 'columns',
     flatten_columns: bool = True,
     src_cfg: CdcSrcCfgSpec | None = None,
@@ -25,7 +24,9 @@ Bases: [StreamSrc](https://docs.tabsdata.com/api/category/connectors/source/stre
 
 Postgres CDC stream source for `@stream_publisher`.
 
-A streaming change-data-capture source: it emits one tableframe-batch per WAL flush across the tracked tables. Postgres logical replication requires a replication slot -- a persistent cursor on the WAL the database will not garbage-collect until the consumer confirms. `replication_slot` names it and `replication_slot_behavior` controls create vs reuse. The decorated `@stream_publisher` function receives the flushed batch as a list of frames and must NOT declare a `ctx` parameter.
+A streaming change-data-capture source: it emits one tableframe-batch per WAL flush across the tracked tables. Postgres logical replication requires a replication slot -- a persistent cursor on the WAL the database will not garbage-collect until the consumer confirms. `replication_slot` names it and `replication_slot_behavior` controls create vs reuse. The decorated `@stream_publisher` function receives the flushed batch as a list of frames. A table without changes in the batch hands a list holding one empty frame with the columns last staged for it, or `[]` while none was staged.
+
+When a stream batch closes, it is staged for processing, and at that point its WAL position is saved with it and confirmed on the replication slot, so the database can release the WAL before it. The staged batch is then scheduled for processing, which may not start right away because a previous batch may still be processing; its table version is written when that processing ends.
 
 ## Parameters
 
@@ -60,12 +61,6 @@ parameter
 `replication_slot_behavior`[ReplicationSlotBehaviorSpec](https://docs.tabsdata.com/api/module/tabsdatak-conn-postgres#tabsdatak.conn.postgres.ReplicationSlotBehaviorSpec) (Literal\['create', 'reuse'\])
 
 `"reuse"` (default, slot must exist) or `"create"` (create it, no-op if it exists). It also selects how a `"full"` start snapshots -- see `start_from`.
-
-parameter
-
-`publication_name`[str](https://docs.python.org/3/builtins/stdtypes.html#str) | None
-
-Optional publication scoping the slot's output (wal2json's `publication_names` option).
 
 parameter
 

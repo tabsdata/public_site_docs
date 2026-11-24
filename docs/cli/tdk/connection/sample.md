@@ -27,7 +27,7 @@ tdk connection sample \
 | --- | --- | --- | --- |
 | `--proj, -P` | string | Optional | Project to target; overrides the pinned project. Prompted for when a command needs one and neither is set. |
 | `--entity` | string | Required | Catalog entity to read rows of (see 'tdk connection entities'). |
-| `--name, -n` | string | Optional | Name of the source/destination collection whose connection to use. Default: the pinned collection. Defaults to `<function pinned.<locals>.default at 0x10b5abec0>`. |
+| `--name, -n` | string | Optional | Name of the source/destination collection whose connection to use. Default: the pinned collection. Defaults to `<function pinned.<locals>.default at 0x10b5d1260>`. |
 | `--len` | string | Optional | Rows to read. Defaults to `20`. |
 | `--no-wait` | flag | Optional | Return at once instead of waiting for the probe to end. Exits 7 when '--timeout' runs out and 8 when the probe did not succeed. |
 | `--timeout` | string | Optional | Stop waiting after S seconds, at most 300. Default: 60. |

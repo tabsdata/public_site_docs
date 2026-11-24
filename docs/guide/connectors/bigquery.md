@@ -12,7 +12,7 @@ The subscriber is registered in a collection created with a `BigQueryDestConn` c
 
 ### Prerequisites
 
--   The BigQuery project and dataset exist, and the service account can create and load tables in them.
+-   The BigQuery project and dataset exist, and the service account can create and load tables in them. The connector creates missing tables, but not the dataset.
 -   The GCS staging bucket exists. The service account can write staged Parquet files there and BigQuery can load them.
 -   The project and dataset are set either in each table name or as connection defaults.
 
@@ -59,9 +59,11 @@ Each element in `tables` represents one destination slot and maps positionally t
 
 #### `if_table_exists`
 
-`"merge"` applies inserts, updates, and deletes by key and requires a `merge_cfg` list. See [Merge configuration](https://docs.tabsdata.com/guide/functions/sql-merge#merge-configuration) for a complete example.
+`"merge"` applies inserts, updates, and deletes by key and requires a `merge_cfg` list. See [Merge configuration](https://docs.tabsdata.com/guide/functions/sql-merge#merge-configuration) for a complete example. A merge creates a temporary table next to the target and drops it afterwards, so the user needs to create and drop tables in that dataset.
 
-Controls what happens when the destination table already exists. `"append"` (the default) adds rows. `"replace"` drops and recreates the table.
+Controls what happens when the destination table already exists. `"append"` (the default) adds rows. `"replace"` empties the table (`TRUNCATE TABLE`) and loads the returned rows; the table's partitioning and clustering are kept.
+
+A table the connector creates gets its column types from the returned frame, with every column nullable and no primary key. To choose keys, indexes or partitioning, create the table before the subscriber's first run; the connector writes into an existing table by column name, and `"replace"` keeps its definition. `if_table_exists` applies to every table the subscriber writes; use two subscribers to replace some tables and append to others.
 
 #### `schema_evolution`
 
@@ -75,7 +77,7 @@ Sets additional destination configuration. Supported keys include `bigquery.logg
 
 Each entry in `tables` is one destination slot and maps by position to a value returned by the subscriber function. Returning `None` for a slot skips that write.
 
-`if_table_exists="append"` adds rows. `"replace"` drops and recreates the table. `"merge"` applies inserts, updates, and deletes by key and needs `merge_cfg`.
+`if_table_exists="append"` adds rows. `"replace"` empties the table and loads the returned rows. `"merge"` applies inserts, updates, and deletes by key and needs `merge_cfg`.
 
 With `schema_evolution="strict"`, a frame with a new column, or a wider type whose values do not fit, fails instead of changing the table. `"update"` adds and widens columns before the load.
 

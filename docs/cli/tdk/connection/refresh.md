@@ -24,7 +24,7 @@ tdk connection refresh \
 | Flag | Type | Required | Description |
 | --- | --- | --- | --- |
 | `--proj, -P` | string | Optional | Project to target; overrides the pinned project. Prompted for when a command needs one and neither is set. |
-| `--name, -n` | string | Optional | Name of the source/destination collection whose connection to use. Default: the pinned collection. Defaults to `<function pinned.<locals>.default at 0x10b5ab6a0>`. |
+| `--name, -n` | string | Optional | Name of the source/destination collection whose connection to use. Default: the pinned collection. Defaults to `<function pinned.<locals>.default at 0x10b5d0a40>`. |
 | `--no-wait` | flag | Optional | Return at once instead of waiting for the probe to end. Exits 7 when '--timeout' runs out and 8 when the probe did not succeed. |
 | `--timeout` | string | Optional | Stop waiting after S seconds, at most 300. Default: 60. |
 | `-o, --format` | table \| json \| yaml | Optional | Output format. 'json' and 'yaml' give a listing as an array and table data as one object per row. |

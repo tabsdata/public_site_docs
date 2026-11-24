@@ -215,20 +215,28 @@ A stream publisher function has one parameter per source slot, annotated `TableF
 
 -   **Slots.** A CDC source has one slot per entry in its `tables`, in the same order. A Kafka source has a single slot.
 -   **Parameters.** Each parameter receives a list of frames with the data read for that slot since the previous batch. For a CDC source, the list holds at most one frame. For Kafka, it can hold several, possibly with different schemas; combine them with `concat(frames, how="diagonal_relaxed")` if their columns can differ.
--   **Empty batches.** A slot with no new data receives an empty list. `concat` of an empty list returns `None`.
--   **Return value.** A tuple with one element per output table, in the order of `output_tables`. With a single output table, the frame can be returned on its own. Returning `None` for a table means no new data: it commits a new version that holds no data of its own. Reading it gives the data of the last version that did change the table.
--   **No other parameters.** A stream publisher cannot declare a `ctx` parameter or any parameter beyond its slots.
+-   **Empty batches.** A slot with no new data in the batch receives a list holding one empty frame, with the columns of the last batch that had data. Before any batch has had data for the slot, it receives an empty list, and `concat` of an empty list returns `None`.
+-   **Return value.** A tuple with one element per output table, in the order of `output_tables`. With a single output table, the frame can be returned on its own. Returning `None` for a table means no new data: it commits a new version that holds no data of its own. Reading it gives the data of the last version that did change the table. A reader at `@NEW` receives that version, with the previous data, again. Return the empty frame for a table with no new data.
+-   **No other parameters.** Beyond its slots, a stream publisher can declare only an optional trailing `ctx: TransactionCtx` parameter. See [Stream Triggers](https://docs.tabsdata.com/guide/triggers/stream#constraints-on-the-function).
 
 `concat` is imported from `tabsdatak.tableframe.functions`.
 
 ## Lifecycle
 
--   **Register.** `tdk fn register` starts the worker. The function must be registered in a source collection whose connection matches the source; see the source's connector page.
+-   **Register.** `tdk fn register` starts the worker, unless the function is registered with `--disabled`; then `tdk stream enable` starts it. Register a stream publisher disabled when the functions that read its Tables are not registered yet; see [Registering Functions in a pipeline](https://docs.tabsdata.com/guide/functions/#registering-functions-in-a-pipeline). The function must be registered in a source collection whose connection matches the source; see the source's connector page.
 -   **Disable and enable.** `tdk stream disable` stops the worker; `tdk stream enable` starts it again, from where it stopped. `tdk stream list` shows the stream publishers and their state.
--   **Update.** `tdk fn update` restarts the worker with the new code and settings. It resumes from where it stopped.
+-   **Update.** `tdk fn update` restarts the worker with the new code and settings. It resumes from where it stopped. It also enables a disabled stream publisher, unless `--disabled` is given again.
 -   **Delete.** Deleting the function stops the worker. Check the source's connector page for anything left on the source system, such as a Postgres replication slot.
 -   **Failures.** If the worker fails, Tabsdata restarts it, waiting one minute after the first failure and doubling the wait after each further failure, up to 30 minutes.
 -   **Start over.** `tdk fn update --reset-stage` discards the stream's recorded position. The stream starts again as if it were new: from the source's starting position, or with a new full load for a CDC source with `start_from="full"`.
+
+### Delivery: when the data is in the Table
+
+When a stream batch closes, it is staged for processing: its files and manifest are written to the Function's stage, and from then on Tabsdata guarantees it will be processed, even if the worker or the server restarts. At that point the source's position is updated: a Kafka consumer group's offsets are committed, a Postgres replication slot is confirmed, and a MySQL binlog or Db2 commit-sequence position is saved.
+
+The staged batch is then scheduled for processing. Its processing may not start right away, because a previous batch may still be processing: batches are processed one at a time, in the order they closed, and closed batches are picked up every 30 seconds. The batch's Table Versions are committed when its processing ends.
+
+So a source that shows its data as consumed (consumer lag at zero, a slot's confirmed LSN) means the data is staged, not that it can be read in Tabsdata. To know a batch is loaded, watch the stream's plans (`tdk stream plans`) or the output Table's versions.
 
 On a restart, the stream reads again whatever it had not yet handed to the function. A CDC stream publishes every change once, even across restarts. A Kafka stream is at least once: after a restart, some messages may be published again.
 

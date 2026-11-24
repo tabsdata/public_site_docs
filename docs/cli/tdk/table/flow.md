@@ -10,7 +10,7 @@ Show the functions and tables upstream and downstream of a table
 tdk table flow \
   --proj quickstart \
   --name country \
-  --coll <function pinned.<locals>.default at 0x10b6a3c40> \
+  --coll <function pinned.<locals>.default at 0x10b6d91c0> \
   --topology-version topology_version-example \
   --at 2024-05-20T10:00:00Z \
   --direction both \
@@ -27,7 +27,7 @@ tdk table flow \
 | --- | --- | --- | --- |
 | `--proj, -P` | string | Optional | Project to target; overrides the pinned project. Prompted for when a command needs one and neither is set. |
 | `--name, -n` | string | Optional | Name of the table. |
-| `--coll, -c` | string | Optional | Name of the collection to which the table belongs. Defaults to `<function pinned.<locals>.default at 0x10b6a3c40>`. |
+| `--coll, -c` | string | Optional | Name of the collection to which the table belongs. Defaults to `<function pinned.<locals>.default at 0x10b6d91c0>`. |
 | `--topology-version` | string | Optional | Read the graph at this topology version, as 'tdk project topology list' lists them. NOTE: This argument is mutually exclusive with arguments: \[at\]. |
 | `--at` | string | Optional | Read the graph as it was at this time, in the formats '--at' takes everywhere else. NOTE: This argument is mutually exclusive with arguments: \[topology-version\]. |
 | `--direction` | string | Optional | Follow what feeds the table (up), what it feeds (down) or both. Defaults to `both`. |

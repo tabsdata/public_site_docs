@@ -10,7 +10,7 @@ The BigQuery connector writes Tabsdata tables into BigQuery. It is destination-o
 
 ## Before you start
 
--   The BigQuery project and dataset exist, and the service account can create and load tables in them.
+-   The BigQuery project and dataset exist, and the service account can create and load tables in them. The connector creates missing tables, but not the dataset.
 -   The GCS staging bucket exists. The service account can write staged Parquet files there and BigQuery can load them.
 -   The project and dataset are set either in each table name or as connection defaults.
 
@@ -135,7 +135,7 @@ tdk fn register --coll bigquery_out --path write_orders.py::write_orders
 | Field | Type | Description |
 | --- | --- | --- |
 | `tables` | `list[str]` | Destination tables, one per returned value, in order. Each is `[[project.]dataset.]table`: a bare `table` or `dataset.table` is completed from the connection's `project` and `dataset` defaults, and a fully qualified name overrides them. BigQuery wraps the whole name in one backtick pair, for example `` `my-project.ds.t` ``. |
-| `if_table_exists` | `str` | `"append"` (the default) adds rows. `"replace"` drops and recreates the table. `"merge"` applies inserts, updates, and deletes by key and needs `merge_cfg`; see [Merge changes into a table](#merge-changes-into-a-table). |
+| `if_table_exists` | `str` | `"append"` (the default) adds rows. `"replace"` empties the table (`TRUNCATE TABLE`) and loads the returned rows; the table's partitioning and clustering are kept. `"merge"` applies inserts, updates, and deletes by key and needs `merge_cfg`; see [Merge changes into a table](#merge-changes-into-a-table). |
 | `schema_evolution` | `str` | `"strict"` (the default) refuses a new column, and a wider type unless its values fit the column. `"update"` changes the table. See [Schema evolution](#schema-evolution). |
 | `dest_cfg` | `dict` | Accepts `bigquery.logging_level` and `bigquery.schema_evolution_engine`. The engine key is only for a merge under `schema_evolution="update"`, where it must be `"iceberg"`. |
 
@@ -160,11 +160,15 @@ def load_orders(changes: TableFrameSpec) -> TableFrameSpec:
     return changes
 ```
 
+A merge creates a temporary table next to the target and drops it afterwards, so the user needs to create and drop tables in that dataset.
+
 A merge under `schema_evolution="update"` also needs `dest_cfg={"bigquery.schema_evolution_engine": "iceberg"}`. See [Merge configuration](https://docs.tabsdata.com/guide/functions/sql-merge#merge-configuration) for a complete example, and [Merging into SQL destinations](https://docs.tabsdata.com/guide/functions/sql-merge) for the operation column and retry watermarks.
 
 ## How writes behave
 
-`if_table_exists="append"` adds rows. `"replace"` drops and recreates the table. `"merge"` applies inserts, updates, and deletes by key. Returning `None` for a slot skips that write.
+`if_table_exists="append"` adds rows. `"replace"` empties the table and loads the returned rows. `"merge"` applies inserts, updates, and deletes by key. Returning `None` for a slot skips that write.
+
+A table the connector creates gets its column types from the returned frame, with every column nullable and no primary key. To choose keys, indexes or partitioning, create the table before the subscriber's first run; the connector writes into an existing table by column name, and `"replace"` keeps its definition. `if_table_exists` applies to every table the subscriber writes; use two subscribers to replace some tables and append to others.
 
 Each write is staged as Parquet in GCS before the BigQuery load job runs, and both must succeed. Tabsdata does not contact GCS or BigQuery when the collection is created, so connection and permission errors appear when the subscriber runs.
 

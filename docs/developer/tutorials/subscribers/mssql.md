@@ -126,7 +126,7 @@ Tabsdata writes one destination table per entry on the server.
 
 ## Triggering the Subscriber
 
-Without an explicit `trigger_by`, a subscriber runs only on a manual trigger. Add `trigger_by=[...]` when you need it to run automatically as its input tables get new commits.
+Without an explicit `trigger_by`, a subscriber runs only on a manual trigger. Add `trigger_by=TablesTrigger(tables=[...])` when you need it to run automatically as its input tables get new commits.
 
 ## None and Schema Changes
 

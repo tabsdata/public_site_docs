@@ -46,9 +46,9 @@ property
 
 `stream_state`[BasicDictSpec](https://docs.tabsdata.com/api/module/tabsdatak-api#tabsdatak.api.BasicDictSpec) | None ([dict](https://docs.python.org/3/library/stdtypes.html#dict)\[[str](https://docs.python.org/3/library/stdtypes.html#str), [str](https://docs.python.org/3/library/stdtypes.html#str) | [int](https://docs.python.org/3/library/functions.html#int) | [float](https://docs.python.org/3/library/functions.html#float) | [bool](https://docs.python.org/3/library/functions.html#bool)\] | None)
 
-The per-flow resume state persisted by the most recent [`BasicDictSpec`](https://docs.tabsdata.com/api/module/tabsdatak-api#tabsdatak.api.BasicDictSpec) handed to `stage`.
+The per-flow resume state persisted by the most recent commit: the [`BasicDictSpec`](https://docs.tabsdata.com/api/module/tabsdatak-api#tabsdatak.api.BasicDictSpec) handed to `stage` or `checkpoint`, or the one the [`CommitStateFn`](https://docs.tabsdata.com/api/module/tabsdatak-spi#tabsdatak.spi.CommitStateFn) handed to `stage` returned.
 
-`None` when the last commit handed `stage` a [`CommitStateFn`](https://docs.tabsdata.com/api/module/tabsdatak-spi#tabsdatak.spi.CommitStateFn) callable (a `lambda`) instead of a [`BasicDictSpec`](https://docs.tabsdata.com/api/module/tabsdatak-api#tabsdatak.api.BasicDictSpec) -- i.e. the _external_ system owns the offset and Tabsdata keeps no state. Distinguish "first run" (nothing staged yet) via `first_stage`, not by this being `None`.
+Empty when that [`CommitStateFn`](https://docs.tabsdata.com/api/module/tabsdatak-spi#tabsdatak.spi.CommitStateFn) returned `None` -- the _external_ system owns the offset and Tabsdata keeps nothing besides it. `None` when nothing was committed yet; distinguish "first run" (nothing staged yet) via `first_stage`.
 
 property
 
@@ -94,9 +94,9 @@ Per-output-table entries, positional by index (entry `i` -> table `i`), one for 
 
 parameter
 
-`new_state`[StreamStateSpec](https://docs.tabsdata.com/api/module/tabsdatak-spi#tabsdatak.spi.StreamStateSpec) | None ([dict](https://docs.python.org/3/library/stdtypes.html#dict)\[[str](https://docs.python.org/3/library/stdtypes.html#str), [str](https://docs.python.org/3/library/stdtypes.html#str) | [int](https://docs.python.org/3/library/functions.html#int) | [float](https://docs.python.org/3/library/functions.html#float) | [bool](https://docs.python.org/3/library/functions.html#bool)\] | Callable\[\[\], None\] | None)
+`new_state`[StreamStateSpec](https://docs.tabsdata.com/api/module/tabsdatak-spi#tabsdatak.spi.StreamStateSpec) | None ([dict](https://docs.python.org/3/library/stdtypes.html#dict)\[[str](https://docs.python.org/3/library/stdtypes.html#str), [str](https://docs.python.org/3/library/stdtypes.html#str) | [int](https://docs.python.org/3/library/functions.html#int) | [float](https://docs.python.org/3/library/functions.html#float) | [bool](https://docs.python.org/3/library/functions.html#bool)\] | Callable\[\[\], [dict](https://docs.python.org/3/library/stdtypes.html#dict)\[[str](https://docs.python.org/3/library/stdtypes.html#str), [str](https://docs.python.org/3/library/stdtypes.html#str) | [int](https://docs.python.org/3/library/functions.html#int) | [float](https://docs.python.org/3/library/functions.html#float) | [bool](https://docs.python.org/3/library/functions.html#bool)\] | None\] | None)
 
-The new resume state -- a [`BasicDictSpec`](https://docs.tabsdata.com/api/module/tabsdatak-api#tabsdatak.api.BasicDictSpec) the runtime persists, or a [`CommitStateFn`](https://docs.tabsdata.com/api/module/tabsdatak-spi#tabsdatak.spi.CommitStateFn) it invokes for its side effect (external system owns the offset). `None` to send without publishing.
+The new resume state -- a [`BasicDictSpec`](https://docs.tabsdata.com/api/module/tabsdatak-api#tabsdatak.api.BasicDictSpec) the runtime persists, or a [`CommitStateFn`](https://docs.tabsdata.com/api/module/tabsdatak-spi#tabsdatak.spi.CommitStateFn) it invokes to commit the offset the external system owns, persisting the state it returns, if any. `None` to send without publishing.
 
 **Returns:**
 

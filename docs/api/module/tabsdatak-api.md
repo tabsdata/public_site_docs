@@ -24,7 +24,7 @@ Source: https://docs.tabsdata.com/api/module/tabsdatak-api
 | [`Dest`](https://docs.tabsdata.com/api/category/connectors/destination/dest) | Abstract destination. |
 | [`FlowCtx`](https://docs.tabsdata.com/api/category/functions/functions/flowctx) | Flow-level identifiers (project / collection / function) shared by every role that runs inside a trx -- plugins _and_ user-decorated functions. |
 | [`FlushIntervalSpec`](#tabsdatak.api.FlushIntervalSpec) |  |
-| [`FunctionCtx`](https://docs.tabsdata.com/api/category/functions/functions/functionctx) | Context handed to a user-decorated function (`@publisher` / `@transformer` / `@subscriber`) that declares a trailing `ctx` parameter. |
+| [`FunctionCtx`](https://docs.tabsdata.com/api/category/functions/functions/functionctx) | Context handed to a user-decorated function (`@publisher` / `@stream_publisher` / `@transformer` / `@subscriber`) that declares a trailing `ctx` parameter. |
 | [`OnTablesAction`](#tabsdatak.api.OnTablesAction) | Abstract base for declarative table-side-effect actions. |
 | [`OnTablesActionSpec`](#tabsdatak.api.OnTablesActionSpec) |  |
 | [`PollThresholds`](https://docs.tabsdata.com/api/category/functions/functions/pollthresholds) | How a stream publisher polls its source: `max_secs` is the budget of one ingestion iteration, `idle_secs` the wait before the next one when the iteration read nothing. |
@@ -310,7 +310,7 @@ Bases: `TransactionCtxLegacy`, [ABC](https://docs.python.org/3/library/abc.html#
 
 Per-trx context handed by the runtime to every decorated function and connector plugin.
 
-A function receives it by declaring a trailing `ctx: TransactionCtx` parameter (not allowed on `@stream_publisher`). Carries the identifiers of the execution, transaction and function run it belongs to (named as the server API names them), a per-flow attribute store that survives across invocations (`get_attr` / `set_attr`), and a metadata sink (`add_metadata`).
+A function receives it by declaring a trailing `ctx: TransactionCtx` parameter. Carries the identifiers of the execution, transaction and function run it belongs to (named as the server API names them), a per-flow attribute store that survives across invocations (`get_attr` / `set_attr`), and a metadata sink (`add_metadata`).
 
 property
 
@@ -374,7 +374,7 @@ def set_attr(attr: ContextKeySpec, val: BasicTypeSpec | None)
 
 Write a per-flow attribute -- persists across trx invocations within the same flow.
 
-Connectors may reserve namespaces under this attribute store for their own internal bookkeeping (`file-lastmod.*` is the only one today). Writing to such names from user code can corrupt connector state -- pick names that don't collide with these prefixes.
+Connectors may reserve namespaces under this attribute store for their own internal bookkeeping (`file-lastmod.*` and `@td.schema.*` today). Writing to such names from user code can corrupt connector state -- pick names that don't collide with these prefixes.
 
 **Parameters:**
 

@@ -2,7 +2,24 @@
 
 Source: https://docs.tabsdata.com/release-notes
 
-## Tabsdata 2.3.0
+## Tabsdata 2.4.1 — November 23, 2026
+
+**New:**
+
+-   A fully redesigned UI that integrates table, functions, and execution plans into a single interactive view. Tabby, the AI agent, is directly embedded into the view and is able to analyze what you see in realtime.
+-   New S3/AWS Glue Catalog destination connector
+
+**Improvements:**
+
+-   File base connectors (Local files, AWS S3, Azure Storage, Google Cloud Storage) have a new configuration setting, `incremental`, that allows differentiating between no new data and new data is empty when working with full snapshot files.
+-   Stream publishers have access to the transaction context, allowing them to keep state between executions and access project secrets. Publishers and Subscribers already had access to it.
+-   Improved Agent skills.
+
+**Fixes:**
+
+-   Subscriber execution is not eager anymore. Publishers and transformers run in eager mode, starting when their input data becomes available, even if not yet committed. If case of cancelation or failure its work gets discarded. Subscribers, on the other hand, cannot do that if the destination system does not support transactions. A future improvement will enable subscribers eager execution on per subscriber basis.
+
+## Tabsdata 2.3.0 — November 11, 2026
 
 **New:**
 
@@ -19,7 +36,7 @@ Source: https://docs.tabsdata.com/release-notes
 -   Lighter Kubernetes jobs, reduced the number of containers in function execution pods.
 -   Unified type inference and schema evolution handling across connectors.
 
-## Tabsdata 2.2.1
+## Tabsdata 2.2.1 — October 17, 2026
 
 **Fixes and improvements:**
 
@@ -27,7 +44,7 @@ Source: https://docs.tabsdata.com/release-notes
 -   `if_table_exists="merge"` on Databricks, Snowflake and BigQuery destinations now handles initial load and truncate operations, so CDC streams that use `start_from="full"` or capture table truncates can be merged directly into these destinations. When a load operation arrives from an initial load, the destination table is truncated before the rows of the initial load are inserted.
 -   Fixed a corner case where a stream publisher could lose data under extreme load (tens of thousands of concurrent jobs) on an undersized server.
 
-## Tabsdata 2.2.0
+## Tabsdata 2.2.0 — October 14, 2026
 
 **New:**
 
@@ -128,7 +145,7 @@ tdk login --server https://tabsdata.example.com --token
 
 Each user holds at most two tokens, so a new token can be created while the old one is still in use. See [Service Tokens](https://docs.tabsdata.com/guide/service-tokens).
 
-## Tabsdata 2.1.0
+## Tabsdata 2.1.0 — September 24, 2026
 
 **New:**
 

@@ -1,10 +1,10 @@
 # tdkserver trash
 
-> Trash a local kminus tabsdata instance
+> Trash a local kminus tabsdata instance, moving its folder to the trash. A running instance is stopped first. An instance created by another tabsdata version, or whose settings cannot be read, only gets a best-effort stop of its kminus cluster, after a confirmation. If the stop fails, trashing it needs another confirmation, as processes and stale files may be left behind; on Windows, files they hold open can make the trash fail. Pass -y to confirm every prompt.
 
 Source: https://docs.tabsdata.com/cli/tdkserver/trash
 
-Trash a local kminus tabsdata instance
+Trash a local kminus tabsdata instance, moving its folder to the trash. A running instance is stopped first. An instance created by another tabsdata version, or whose settings cannot be read, only gets a best-effort stop of its kminus cluster, after a confirmation. If the stop fails, trashing it needs another confirmation, as processes and stale files may be left behind; on Windows, files they hold open can make the trash fail. Pass -y to confirm every prompt.
 
 ```bash
 tdkserver trash \

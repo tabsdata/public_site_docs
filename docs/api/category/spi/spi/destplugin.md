@@ -16,7 +16,9 @@ Bases: [ABC](https://docs.python.org/3/library/abc.html#abc.ABC), [Generic](http
 
 Plugin implementing the write-side of a [`Dest`](https://docs.tabsdata.com/api/category/connectors/destination/dest) subclass.
 
-The third type argument is the plugin's contract with the runtime: `list[pl.LazyFrame]` (`DestPlugin[MyConn, MyDest, list[pl.LazyFrame]]`) receives each of the subscriber's outputs as a `LazyFrame` scanning it from storage, and `write_out`'s `tables` is annotated with the same type. Without it, the legacy form, `tables` is a list of local parquet files. [`DestDef`](https://docs.tabsdata.com/api/category/spi/spi/destdef) refuses any other type, and a `tables` annotation that differs. Import polars at module level, so the annotation resolves at runtime.
+The third type argument is the plugin's contract with the runtime: `list[pl.LazyFrame | None]` (`DestPlugin[MyConn, MyDest, list[pl.LazyFrame | None]]`) receives each of the subscriber's outputs as a `LazyFrame` scanning it from storage, and `write_out`'s `tables` is annotated with the same type. Without it, the legacy form, `tables` is a list of local parquet files. [`DestDef`](https://docs.tabsdata.com/api/category/spi/spi/destdef) refuses any other type, and a `tables` annotation that differs. Import polars at module level, so the annotation resolves at runtime.
+
+`write_out` is called on every run of the subscriber, and an output the subscriber returned `None` for arrives as `None`: the plugin leaves that target as it is. When every output is `None`, it writes nothing.
 
 ## Methods
 
@@ -54,4 +56,4 @@ parameter
 
 `tables`\_T
 
-One table per target, by position, in the form the plugin declares: `LazyFrame`s, or local parquet files. The runtime guarantees as many tables as `dest`'s declared target count.
+One entry per target, by position, in the form the plugin declares: `LazyFrame`s, or local parquet files; `None` where the subscriber returned `None`. The runtime guarantees as many entries as `dest`'s declared target count.

@@ -26,6 +26,8 @@ Bases: [Conn](https://docs.tabsdata.com/api/category/spi/spi/conn)
 
 Databricks workspace connection used by [`DatabricksDest`](https://docs.tabsdata.com/api/category/connectors/destination/databricksdest).
 
+The catalog, schema and volume must already exist.
+
 Field-identical to [`DatabricksSrcConn`](https://docs.tabsdata.com/api/category/connectors/source/databrickssrcconn) but a distinct class; source and destination connections are separate types and cannot be used in place of one another. See [`DatabricksSrcConn`](https://docs.tabsdata.com/api/category/connectors/source/databrickssrcconn) for the field meanings.
 
 ## Parameters

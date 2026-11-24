@@ -15,6 +15,7 @@ class S3Src(
     src_cfg: SrcCfgSpec | None = None,
     purge: bool = False,
     include_compressed: bool = False,
+    incremental: bool = True,
 )
 ```
 
@@ -25,6 +26,22 @@ Bases: [Src](https://docs.tabsdata.com/api/category/connectors/source/src)
 S3 source for `@publisher` -- one output slot per path.
 
 Every table this source publishes automatically carries a `@td.file.path` metadata column: the `s3://` object URI the row was read from. A path that globs several files reports the specific file each row came from, and a worksheet read from a workbook keeps its `#<n>` fragment, so the value can be pasted straight back into `paths`. Setting the `src_cfg` key `tabsdata.src_metadata.drop` to `True` leaves the column off.
+
+## Examples
+
+Publish the new objects of a glob, folded with [`concat`](https://docs.tabsdata.com/api/category/tableframe/concat):
+
+```python
+@publisher(
+    source=S3Src(
+        paths=["events/*.parquet"],
+        initial_last_modified=datetime(2026, 1, 1, tzinfo=timezone.utc),
+    ),
+    output_tables=["events"],
+)
+def ingest(events: TableFramesSpec) -> TableFrameSpec:
+    return concat(events)
+```
 
 ## Parameters
 
@@ -58,7 +75,7 @@ parameter
 
 `initial_last_modified`[datetime](https://docs.python.org/3/library/datetime.html#datetime.datetime) | None
 
-Optional cutoff for incremental ingestion. The first run imports only files modified at or after this timestamp; the cutoff then advances each run so only newer files are re-imported.
+Optional cutoff that makes each run take only new files: the first run takes the files modified at or after this timestamp, each later run only the files modified since. Without it, every run takes every file a path matches. `incremental` is separate: it says what a run that takes no file hands.
 
 parameter
 
@@ -89,6 +106,15 @@ Also take compressed files and archives. A path takes a file whose name matches 
 -   `.zst`, `.zstd`: Zstandard.
 
 A file has at most one of these extensions: an archive inside a compressed file (`a.csv.tar.gz`) is not read. Defaults to `False`.
+
+parameter
+
+`incremental`[bool](https://docs.python.org/3/builtins/functions.html#bool)
+
+Whether the data of each run adds to the data of the previous runs (`True`, the default) or replaces it (`False`). The function handles the data accordingly; this option tells Tabsdata what to hand the function when a run finds no new data. It applies to each path on its own: in the same run one path can take files and another none. A path's files arrive as a list, so a run that takes no file for a path hands the function, for it:
+
+-   `True`: a list holding one empty [`TableFrame`](https://docs.tabsdata.com/api/category/tableframe/tableframe/tableframe) with the schema of the last run that had data for that path, or an empty list if no run has had data for it yet.
+-   `False`: always an empty list; the previous data of that path is still valid: [`concat`](https://docs.tabsdata.com/api/category/tableframe/concat) of it is `None`, and returning `None` keeps the table's data.
 
 ## Methods
 

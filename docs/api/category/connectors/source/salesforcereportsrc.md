@@ -29,6 +29,8 @@ Salesforce's Reports API returns at most 2,000 detail rows per run; a report tha
 
 Every table this source publishes automatically carries two metadata columns: `@td.salesforce.report_id`, the resolved report id that produced the row (even when `reports` named the report by name), and `@td.salesforce.last_modified`, the source's `initial_last_modified` cutoff (empty when unset). Setting the `src_cfg` key `tabsdata.src_metadata.drop` to `True` leaves them off.
 
+A report that returns no rows still gives a table, an empty one with the report's columns.
+
 ## Examples
 
 Publish a Tabular report by id, filtered server-side before download:

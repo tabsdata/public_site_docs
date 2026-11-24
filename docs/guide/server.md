@@ -30,7 +30,7 @@ As the the top-level process Tabsdata, Servers store Functions and Tables as wel
 
 ## Connecting to a Server
 
-A Tabsdata server uses three dedicated endpoints when running:
+A Tabsdata server uses three dedicated:
 
 -   A **public endpoint** runs on port `2457` by default. The Tabsdata UI, `tdk` CLI, and Python API use this endpoint to communicate with the Server.
 -   A **private endpoint** runs on port `2458` by default. Tabsdata services use this endpoint for internal communication.

@@ -12,7 +12,7 @@ Exact by default: the server aggregates the whole data version. When the version
 tdk table profile \
   --proj quickstart \
   --name country \
-  --coll <function pinned.<locals>.default at 0x10b6a3d80> \
+  --coll <function pinned.<locals>.default at 0x10b6d9300> \
   --at 2024-05-20T10:00:00Z \
   --at-trx trx-8c1d40 \
   --columns columns-example \
@@ -29,7 +29,7 @@ tdk table profile \
 | --- | --- | --- | --- |
 | `--proj, -P` | string | Optional | Project to target; overrides the pinned project. Prompted for when a command needs one and neither is set. |
 | `--name, -n` | string | Optional | Name of the table. |
-| `--coll, -c` | string | Optional | Name of the collection to which the table belongs. Defaults to `<function pinned.<locals>.default at 0x10b6a3d80>`. |
+| `--coll, -c` | string | Optional | Name of the collection to which the table belongs. Defaults to `<function pinned.<locals>.default at 0x10b6d9300>`. |
 | `--at` | string | Optional | Read the table as it was at this time: a unix timestamp in milliseconds (e.g. '1750074554472') or 'YYYY-MM-DD', 'YYYY-MM-DDTHH', 'YYYY-MM-DDTHH:MM', 'YYYY-MM-DDTHH:MM:SS' or 'YYYY-MM-DDTHH:MM:SS.sss', in UTC with a trailing 'Z' and in local time without it. NOTE: This argument is mutually exclusive with arguments: \[at-trx, version\]. |
 | `--at-trx` | string | Optional | Read the table as it was at the end of this transaction. NOTE: This argument is mutually exclusive with arguments: \[at, version\]. |
 | `--columns` | string | Optional | Comma-separated columns to profile. Defaults to every column. |

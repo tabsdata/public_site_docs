@@ -10,7 +10,7 @@ Show rows of data from the table
 tdk table data \
   --proj quickstart \
   --name country \
-  --coll <function pinned.<locals>.default at 0x10b6a1f80> \
+  --coll <function pinned.<locals>.default at 0x10b6af4c0> \
   --len 20 \
   --offset 0 \
   --sql sql-example \
@@ -29,7 +29,7 @@ tdk table data \
 | --- | --- | --- | --- |
 | `--proj, -P` | string | Optional | Project to target; overrides the pinned project. Prompted for when a command needs one and neither is set. |
 | `--name, -n` | string | Required | Name of the table. |
-| `--coll, -c` | string | Optional | Name of the collection to which the table belongs. Defaults to `<function pinned.<locals>.default at 0x10b6a1f80>`. |
+| `--coll, -c` | string | Optional | Name of the collection to which the table belongs. Defaults to `<function pinned.<locals>.default at 0x10b6af4c0>`. |
 | `--len` | string | Optional | Maximum amount of rows to be shown. Defaults to 100 rows, and to 20 when a program runs tdk. Cannot be greater than 1000. |
 | `--offset` | string | Optional | How many rows to skip before starting to read. If not provided, reading will start at the first row. |
 | `--sql` | string | Optional | A SQL query to run on the table server-side, before the rows are returned. The table is the only queryable relation and is referenced by its own name (for example, 'SELECT a, b FROM my\_table WHERE a > 10'); referencing any other table, a join or a file-reading function is rejected. '--offset' and '--len' page the query's result. |

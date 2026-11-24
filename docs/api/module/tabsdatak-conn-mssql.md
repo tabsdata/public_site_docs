@@ -41,7 +41,7 @@ The credential type for MSSQL connections: [`UserPassword`](https://docs.tabsdat
 type\_alias
 
 ```python
-DestCfgKey: Literal['mssql.logging_level', 'mssql.schema_evolution_engine', 'tabsdata.sql.write_engine', 'tabsdata.sql.chunk_size']
+DestCfgKey: Literal['mssql.logging_level', 'tabsdata.sql.write_engine', 'tabsdata.sql.chunk_size']
 ```
 
 * * *
@@ -57,7 +57,7 @@ DestCfgSpec: Mapping[DestCfgKey, Any]
 **Resolved type:**
 
 ```python
-Mapping[Literal['mssql.logging_level', 'mssql.schema_evolution_engine', 'tabsdata.sql.write_engine', 'tabsdata.sql.chunk_size'], Any]
+Mapping[Literal['mssql.logging_level', 'tabsdata.sql.write_engine', 'tabsdata.sql.chunk_size'], Any]
 ```
 
 * * *

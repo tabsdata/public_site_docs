@@ -50,31 +50,195 @@ Publishers and Subscribers use a Connector for the system-specific read or write
 
 Output Tables belong to the Collection where the Function is registered. Input Table references can identify Tables in other Collections within the same Project, allowing Functions to connect into a larger workflow.
 
-## `None` inputs and outputs
+### Table Version References
 
-A parameter or a returned value is `None` when there is no data at that position. `None` is not the same as a `TableFrame` with zero rows: an empty `TableFrame` is data and replaces the previous data, while `None` keeps it. `None` never invalidates data already in Tabsdata.
+Tabsdata maintains a version history for each Table, allowing Functions to read the latest version, a previous version, or multiple versions at once.
 
-A `None` parameter has a different meaning for each Function type:
+Functions reference Table versions using the following format:
 
-| Function | A parameter is `None` when |
+`[collection/]table[@version]`
+
+The Collection name is optional. If omitted, Tabsdata looks for the Table in the Function's own Collection. If no version is specified, Tabsdata uses `@HEAD`, which refers to the latest version.
+
+For example, `orders`, `orders@HEAD`, and `sales/orders@HEAD` all reference the latest version of the `orders` Table, assuming `orders` is in the `sales` Collection.
+
+**Supported version references**
+
+| Reference | Description |
 | --- | --- |
-| Publisher | The external system has no new data for that source slot. A slot that takes a list of frames receives `None`, not an empty list. The Publisher still runs, and can return data anyway. |
-| Transformer, Subscriber | The requested input version does not exist, the input Table has never been produced, or the Table had no data up to that version. The value alone does not tell these cases apart. |
+| `orders@HEAD` | The latest Table version. |
+| `orders@HEAD^` | The version immediately before `HEAD`. |
+| `orders@HEAD~3` | The version three versions before `HEAD`. |
+| `orders@INITIAL` | The first Table version. |
+| `orders@NEW` | All versions committed since the Function's previous run. |
+| `orders@HEAD~3..HEAD` | The four most recent versions, including `HEAD`. |
+| `orders@INITIAL..HEAD` | All existing versions, from the first to the latest. |
+| `orders@HEAD,HEAD~2` | A list containing the latest version and the version two versions before it. |
 
-A version range, such as `orders@HEAD~3..HEAD`, reaches a Transformer or Subscriber as a list with one element per version, oldest first. A `None` element is a version that does not exist or that has no data yet. A range of a fixed size, such as `HEAD~3..HEAD`, always has that many elements, and its `None` elements are always at the oldest end, because once a Table has data every later version has data too. A range from `INITIAL`, such as `INITIAL..HEAD`, has one element per existing version and can be empty.
+Functions can also reference a specific version using its version ID.
 
-### Returning `None`
+**Referencing multiple versions**
 
-Every successful run commits a new version of each of its output tables. What you return for a table decides what that version holds:
+Version ranges use `..` to specify a starting and ending version. Ranges are endpoint inclusive and are returned as a list of `TableFrame` objects ordered from oldest to newest.
 
--   A `TableFrame` is new data. The version holds it, and it replaces the table's previous data. This is true even for a frame with zero rows: the table is now empty.
--   `None` means "no changes for this table". The version is still committed, but it holds no data of its own. Reading it gives the data of the last version that did change the table.
+For example, `orders@HEAD~3..HEAD` returns the four latest versions of the `orders` Table.
 
-A version committed with `None` is a version like any other. It triggers the functions that depend on the table, and a function reading the table at `@NEW` receives it, with the unchanged data, as one of the new versions.
+For ranges with a defined size, if a requested version does not exist or has no data, Tabsdata returns `None` at that position in the list.
 
-A Subscriber has destination slots instead of output Tables. Returning `None` for a slot sends no new data to it. The Connector still runs and decides what `None` does to the external system; each Connector page describes it under **Write behavior**. A Subscriber also runs for a version committed with `None`: return `None` to leave the external system as it is, or the frame to write the data again.
+Ranges without a defined size, such as those starting with `INITIAL`, generally omit `None` values and only include existing versions containing data. An exception occurs when a Table has only a single commit containing `None`, in which case the returned list contains `[None]`. If no versions exist, an empty list (`[]`) is returned.
 
-When a Table version has no data, the UI and `tdk` say so, and say whether the version does not exist or has no data, instead of showing an empty table. `tdk` writes that message to stderr and exits with a non-zero code.
+The special reference `@NEW` returns all versions committed since the Function's previous run. If used on the function's first run, every version of the Table is returned. If no new versions have been committed, Tabsdata returns an empty list (`[]`).
+
+| Table reference | Table state | Function input |
+| --- | --- | --- |
+| `orders@HEAD~3..HEAD` | `[v1, v2, v3, v4]` | `[v1, v2, v3, v4]` |
+| `orders@HEAD~3..HEAD` | `[v1, v2]` | `[None, None, v1, v2]` |
+| `orders@HEAD~3..HEAD` | `[None, v2, v3, v4]` | `[None, v2, v3, v4]` |
+| `orders@INITIAL..HEAD` | `[None, v2, v3]` | `[v2, v3]` |
+| `orders@INITIAL..HEAD` | `[None]` | `[None]` |
+| `orders@INITIAL..HEAD` | `[]` | `[]` |
+| `orders@NEW` | `[v1, v2, v3, v4 ǀ v5, v6]` | `[v5, v6]` |
+| `orders@NEW` | `[ǀ v1, v2, v3]` | `[v1, v2, v3]` |
+| `orders@NEW` | `[v1, v2, v3 ǀ]` | `[]` |
+
+## `None` as input
+
+Tabsdata Functions generally accept a `TableFrameSpec`, or a `TableFramesSpec` for a list of frames as input. A `TableFrameSpec` represents tabular data, similar to a Polars `LazyFrame`. Functions can also receive `None`, depending on the Function type and whether data is available.
+
+### `None` vs. an empty `TableFrame`
+
+Tabsdata will attempt to provide an empty `TableFrame` when possible and will only default to `None` when no reference data is available.
+
+This is because a `TableFrame` requires a defined schema. If no previous run has produced data, Tabsdata will not know the expected columns and must pass `None` instead.
+
+The distinction is important:
+
+-   **`None`** indicates that no data is available.
+-   **An empty `TableFrame`** contains zero rows but has a defined schema. It is treated as data and can replace existing Table data.
+
+Empty TableFrame objects are preferable to None because they support operations like joins and concatenations without requiring additional handling. None values, on the other hand, require additional logic to handle missing data.
+
+### Publishers
+
+Publishers receive `None` when a source has never produced data for a particular input slot. For example, a file source pointing to a path where no files have appeared yet.
+
+There are a few exceptions:
+
+-   **Sources expecting a list of `TableFrame` objects** receive an empty list (`[]`) instead of `None`.
+-   **SQL queries and Salesforce sObjects** define their own schemas. Because Tabsdata already knows the expected columns, their slots receive an empty `TableFrame` even if no previous run has produced data.
+
+For file-based Publishers, the behavior also depends on the `incremental` setting:
+
+-   **`incremental=True`:** If no new files are found, Tabsdata uses the schema from the most recent run that produced data to provide an empty `TableFrame`. If no previous run has produced data, `None` is passed instead.
+-   **`incremental=False`:** If no new files are found, Tabsdata passes an empty list (`[]`), regardless of whether previous runs have produced data.
+
+### Transformers and Subscribers
+
+Transformers and Subscribers can receive `None` in three situations:
+
+1.  The input Table has never been produced because its Publisher has not run.
+2.  The requested Table version does not exist. For example, requesting `HEAD~1` when the Table only has one version.
+3.  The Publisher has run, but has only committed `None` to the input Table.
+
+In each case, `None` indicates that data is not available for the requested Table version.
+
+### Special cases: `@NEW` and version ranges
+
+**`@NEW`**
+
+Transformers and Subscribers can use `@NEW` to request all Table versions committed since the Function's previous run. On the Function's first run, `@NEW` is every version the Table has; see [Registering Functions in a pipeline](#registering-functions-in-a-pipeline).
+
+If no new versions have been committed, Tabsdata passes an empty list (`[]`) instead of `None`.
+
+**Handling empty `@NEW` inputs**
+
+A Transformer can execute even when no new versions are available for one of its `@NEW` inputs. This can happen when another input triggers the Function, when a scheduled trigger runs, or when the Function is executed manually.
+
+In these cases, the `@NEW` input receives an empty list (`[]`). If the Transformer needs an empty `TableFrame` instead, it can read the same Table using `@HEAD` and call `clear()`. This creates an empty `TableFrame` with the Table's existing schema, allowing the Transformer to perform operations that require a defined schema.
+
+| Table reference | Table state | Function input |
+| --- | --- | --- |
+| `orders@NEW` | `[v1, v2, v3, v4 ǀ v5, v6]` | `[v5, v6]` |
+| `orders@NEW` | `[ǀ v1, v2, v3]` | `[v1, v2, v3]` |
+| `orders@NEW` | `[v1, v2, v3 ǀ]` | `[]` |
+
+`ǀ` marks the Function's previous run.
+
+**Table version ranges**
+
+Transformers and Subscribers can also request multiple versions of a Table using a version range.
+
+For example, `orders@HEAD~3..HEAD` requests the four most recent versions of the `orders` Table, from oldest to newest.
+
+Tabsdata returns these versions as a list of `TableFrame` objects. If a requested version does not exist or has no data, `None` is returned at that position in the list.
+
+For example:
+
+```python
+[None, frame_v2, frame_v3, frame_v4]
+```
+
+Here, the oldest requested version is unavailable, while the other three versions contain data.
+
+Unlike a fixed range, a range beginning with `INITIAL`, such as `orders@INITIAL..HEAD`, includes only existing versions. If no versions exist, the result can be an empty list.
+
+### Registering Functions in a pipeline
+
+Functions are registered individually using `tdk fn register`. Because a Function can only reference input Tables produced by already registered Functions, pipelines must be registered in order, starting with Publishers, followed by Transformers, and finally Subscribers.
+
+Functions can begin executing as soon as their triggers are activated, meaning a Publisher might commit new Table versions before the rest of the pipeline has been registered.
+
+However, these versions are not lost. Functions reading from `@NEW` receive all Table versions committed since their previous execution. For Functions that have never run, this includes every existing Table version, ordered from oldest to newest. Keep in mind that registering a Function does not automatically trigger its first execution. For Table-triggered Functions, another commit to one of their trigger Tables is required.
+
+This is generally not an issue for Publishers using a `CronTrigger`, since they only execute on their configured schedule. Stream Publishers, however, begin consuming data immediately after registration.
+
+To prevent a stream Publisher from processing data before the rest of the pipeline is registered, you can register it in a disabled state and enable it once the downstream Functions are in place:
+
+```shell
+tdk fn register --coll sales --path stream_orders.py::stream_orders --disabled
+tdk fn register --coll sales --path clean_orders.py::clean_orders
+tdk fn register --coll sales --path export_orders.py::export_orders
+tdk stream enable --coll sales --name stream_orders
+```
+
+## `None` as output
+
+Every successful Function run commits a new version of each output Table. The value returned by the Function determines what data is stored in that version.
+
+-   **`TableFrame`:** The returned data is committed as a new version of the table.
+-   **`None`:** The Table's data remains unchanged. A new version is committed to the table. However, it doesn't contain any data of its own. Instead, it references the table's most recent version that contained data.
+
+### How `None` affects downstream Functions
+
+A Table version committed with `None` behaves like any other version. It triggers downstream Functions that depend on the Table and is included when a Function requests new versions using `@NEW`.
+
+Because `None` preserves the previous data, downstream Functions reading at `@NEW` receive that data again.
+
+For example, consider a Table that stores individual batches of data and a downstream Transformer that processes each batch using `@NEW`. If the upstream Function returns `None`, the Transformer receives the previous batch again, potentially processing the same data twice.
+
+For this reason, **Functions should return an empty `TableFrame` when there is no new batch to process**, rather than `None`.
+
+Returning `None` is appropriate when the Table's existing data should remain unchanged. For example:
+
+-   A Function produces a new snapshot, but the data fails validation. Returning `None` preserves the last valid snapshot.
+-   A Table accumulates data across runs, but the latest run has nothing new to add.
+
+### Subscribers
+
+Unlike Publishers and Transformers, Subscribers return data to destination slots rather than output Tables.
+
+Returning `None` for a destination slot indicates that no new data is being sent. However, the Connector still executes and determines how `None` affects the external system. Refer to the **Write behavior** section of each Connector's documentation for details.
+
+Subscribers also execute when an upstream Table commits a version containing `None`. Depending on the intended behavior, a Subscriber can:
+
+-   Return `None` to leave the destination unchanged, subject to the Connector's write behavior.
+-   Return a `TableFrame` to write the existing data to the destination again.
+
+### Viewing Table versions without data
+
+When a Table version does not contain data, the Tabsdata UI and `tdk` display a message instead of an empty Table. The message distinguishes between a version that does not exist and a version that exists but contains no data of its own.
+
+When using `tdk`, this message is written to stderr, and the command exits with a non-zero exit code.
 
 ## Triggers
 

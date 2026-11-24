@@ -22,7 +22,7 @@ tdk collection update \
 | --- | --- | --- | --- |
 | `--proj, -P` | string | Optional | Project to target; overrides the pinned project. Prompted for when a command needs one and neither is set. |
 | `-o, --format` | table \| json \| yaml | Optional | Output format. 'json' and 'yaml' give a listing as an array and table data as one object per row. |
-| `--name, -n` | string | Optional | Name of the collection to update. Defaults to `<function pinned.<locals>.default at 0x105b977e0>`. |
+| `--name, -n` | string | Optional | Name of the collection to update. Defaults to `<function pinned.<locals>.default at 0x105b2c0e0>`. |
 | `--new-name` | string | Optional | New name for the collection. |
 | `--description` | string | Optional | New description for the collection. |
 | `--storage-path` | string | Optional | New logical storage prefix for the collection's artifacts. Existing data versions keep their stamped path; only new artifacts use the new prefix. |

@@ -11,6 +11,7 @@ Several connectors read or write cloud object storage through an object store cl
 | Connector | Set with | What the keys configure |
 | --- | --- | --- |
 | Amazon S3, Google Cloud Storage, Azure Blob Storage | `conn_cfg` on the connection | Reads and writes |
+| AWS Glue | `conn_cfg` on the connection | The upload of the tables' data files. The Iceberg metadata files are written by another client, set with the `pyiceberg.s3.*` keys |
 | ClickHouse | `cfg` on the `staging` location | The staging upload, the address ClickHouse reads the files from, and the cleanup |
 | StarRocks | `cfg` on the `staging` location | The staging upload. StarRocks reads the files through its own path, which the keys do not change |
 | Druid | `cfg` on the `staging` location | The staging upload. The ingestion input source does not use them |

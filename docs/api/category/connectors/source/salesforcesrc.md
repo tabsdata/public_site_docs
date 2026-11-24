@@ -24,6 +24,8 @@ Salesforce SOQL source for `@publisher` -- one query.
 
 Every table this source publishes automatically carries two metadata columns: `@td.salesforce.soql`, the query that produced the row as it was sent to Salesforce (any `$lastModified` token already substituted), and `@td.salesforce.last_modified`, the `initial_last_modified` cutoff it ran with (empty when unset). Setting the `src_cfg` key `tabsdata.src_metadata.drop` to `True` leaves them off.
 
+A query that returns no records still gives a table, an empty one. It has the columns of the queried sObject when the query selects plain fields of it, or else those of the last run that returned records; when no run did, the function gets `None` for it.
+
 ## Examples
 
 Publish an SObject query, including deleted rows (queryAll):

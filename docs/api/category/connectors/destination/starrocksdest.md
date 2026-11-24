@@ -32,10 +32,10 @@ Append to an existing table -- row count grows each run:
     destination=StarRocksDest(
         tables=["wld_country"], if_table_exists="append"
     ),
-    input_tables=["subs_tables/wld_country"],
+    input_tables=["subs_tables/wld_country@NEW"],
 )
-def out_append(country: TableFrameSpec) -> TableFrameSpec:
-    return country
+def out_append(country: TableFramesSpec) -> TableFrameSpec:
+    return concat(country)
 ```
 
 Replace truncates the target table, then reloads it:
@@ -63,7 +63,7 @@ parameter
 
 `if_table_exists`[IfTableExistsSpec](https://docs.tabsdata.com/api/module/tabsdatak-conn-starrocks#tabsdatak.conn.starrocks.IfTableExistsSpec) (Literal\['append', 'replace'\])
 
-`"append"` (the default) issues `INSERT INTO`; `"replace"` issues `TRUNCATE` + `INSERT INTO` against the existing table.
+`"append"` (the default) issues `INSERT INTO`; `"replace"` issues `TRUNCATE` + `INSERT INTO` against the existing table. A slot returned as `None` leaves its table as it is.
 
 parameter
 
@@ -73,6 +73,20 @@ What a write does when the batch's columns differ from the table's. `"strict"` (
 
 parameter
 
-`dest_cfg`[DestCfgSpec](https://docs.tabsdata.com/api/module/tabsdatak-conn-starrocks#tabsdatak.conn.starrocks.DestCfgSpec) | None (Mapping\[Literal\['starrocks.logging\_level', 'starrocks.schema\_evolution\_engine'\], [Any](https://docs.python.org/3/library/typing.html#typing.Any)\] | None)
+`dest_cfg`[DestCfgSpec](https://docs.tabsdata.com/api/module/tabsdatak-conn-starrocks#tabsdatak.conn.starrocks.DestCfgSpec) | None (Mapping\[Literal\['starrocks.logging\_level'\], [Any](https://docs.python.org/3/library/typing.html#typing.Any)\] | None)
 
-Optional connector config. Supported keys: `starrocks.logging_level`, and `starrocks.schema_evolution_engine` -- `"iceberg"`, the default and only engine: StarRocks has no schema evolution of its own. A column type change runs as a StarRocks job, which the write waits for before loading.
+Optional connector config. The only supported key is `starrocks.logging_level`. StarRocks has no schema evolution of its own, so the connector evolves the table itself; a column type change runs as a StarRocks job, which the write waits for before loading.
+
+## Methods
+
+method
+
+`validate`
+
+```python
+def validate()
+```
+
+Cross-field validation: `if_table_exists`, `schema_evolution` and the engine form a combination this destination offers.
+
+Called by the framework; raises `SqlCommonValidateException`.

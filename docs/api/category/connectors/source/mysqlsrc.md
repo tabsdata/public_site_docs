@@ -24,6 +24,8 @@ MySQL source for `@publisher` -- one output slot per query.
 
 Every table this source publishes automatically carries two metadata columns: `@td.sql.query`, the text of the query that produced the row, and `@td.sql.initial_values`, the JSON serialization of the bind values that query ran with (an empty JSON object when it has no binds). Setting the `src_cfg` key `tabsdata.src_metadata.drop` to `True` leaves them off.
 
+A query that returns no rows still gives a table, an empty one. It has the columns the query's result types or, when the result leaves any column untyped, those of the last run that typed them all; when no run did, the function gets `None` for it.
+
 ## Examples
 
 Publish multiple MySQL tables, one output slot per query in order:
@@ -72,7 +74,7 @@ parameter
 
 `transactional`[bool](https://docs.python.org/3/builtins/functions.html#bool)
 
-When `True` (default), run all queries inside one transactional session; `False` opens a fresh autocommit connection per query.
+When `True` (default), run all queries inside one transactional session; `False` opens a fresh autocommit connection per query. The connector sets no isolation level, so the database's default decides whether the queries see one snapshot.
 
 parameter
 

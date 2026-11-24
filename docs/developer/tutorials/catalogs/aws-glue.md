@@ -87,7 +87,7 @@ s3_credentials = td.S3AccessKeyCredentials(
                 schema_strategy = "<schema_strategy_update_strict>",
                 ),
                 ),
-    trigger_by=["<trigger_table1>", "<trigger_table2>"]),
+    trigger_by=td.TablesTrigger(tables=["<trigger_table1>", "<trigger_table2>"])),
 def <subscriber_name>(<table_frame1>: td.TableFrame, <table_frame2>: td.TableFrame):
     <function_logic>
     return <table_frame_output1>, <table_frame_output2>
